@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content"><channel><title>Navan Chauhan</title><description>I try to post tutorials, tips and tricks related to programming, designing and just some science stuff</description><link>https://navanchauhan.github.io/SwiftWebsite</link><language>en</language><lastBuildDate>Wed, 1 Jan 2020 19:10:36 +0530</lastBuildDate><pubDate>Wed, 1 Jan 2020 19:10:36 +0530</pubDate><ttl>250</ttl><atom:link href="https://navanchauhan.github.io/SwiftWebsite/feed.rss" rel="self" type="application/rss+xml"/><item><guid isPermaLink="true">https://navanchauhan.github.io/SwiftWebsite/posts/splitting-zips</guid><title>Splitting ZIPs into Multiple Parts</title><description>Short code snippet for splitting zips.</description><link>https://navanchauhan.github.io/SwiftWebsite/posts/splitting-zips</link><pubDate>Sun, 8 Dec 2019 13:27:00 +0530</pubDate><content:encoded><![CDATA[<h1>Splitting ZIPs into Multiple Parts</h1><p><strong>Tested on macOS</strong></p><p>Creating the archive:</p><pre><code>zip -r -s 5 oodlesofnoodles.zip website/
+</code></pre><p>5 stands for each split files' size (in mb, kb and gb can also be specified)</p><p>For encrypting the zip:</p><pre><code>zip -er -s 5 oodlesofnoodles.zip website
+</code></pre><p>Extracting Files</p><p>First we need to collect all parts, then</p><pre><code>zip -F oodlesofnoodles.zip --out merged.zip
+</code></pre>]]></content:encoded></item><item><guid isPermaLink="true">https://navanchauhan.github.io/SwiftWebsite/tutorials/custom-image-classifier-keras-tensorflow</guid><title>Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</title><description>Short tutorial for creating a custom image classifier using TF 2.0</description><link>https://navanchauhan.github.io/SwiftWebsite/tutorials/custom-image-classifier-keras-tensorflow</link><pubDate>Sun, 8 Dec 2019 11:27:00 +0530</pubDate><content:encoded><![CDATA[<h1>Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</h1><p><strong>Done during Google Code-In. Org: Tensorflow.</strong></p><h2>Imports</h2><pre><code>%tensorflow_version 2.x #This is for telling Colab that you want to use TF 2.0, ignore if running on local machine
+
+from PIL import Image # We use the PIL Library to resize images
+import numpy as np
+import os
+import cv2
+import tensorflow as tf
+from tensorflow.keras import datasets, layers, models
+import pandas as pd
+import matplotlib.pyplot as plt
+from keras.models import Sequential
+from keras.layers import Conv2D,MaxPooling2D,Dense,Flatten,Dropout
+</code></pre><h2>Dataset</h2><h3>Fetching the Data</h3><pre><code>!wget ftp://lhcftp.nlm.nih.gov/Open-Access-Datasets/Malaria/cell_images.zip
+!unzip cell_images.zip
+</code></pre><h3>Processing the Data</h3><p>We resize all the images as 50x50 and add the numpy array of that image as well as their label names (Infected or Not) to common arrays.</p><pre><code>data = []
+labels = []
+
+Parasitized = os.listdir("./cell_images/Parasitized/")
+for parasite in Parasitized:
+    try:
+        image=cv2.imread("./cell_images/Parasitized/"+parasite)
+        image_from_array = Image.fromarray(image, 'RGB')
+        size_image = image_from_array.resize((50, 50))
+        data.append(np.array(size_image))
+        labels.append(0)
+    except AttributeError:
+        print("")
+
+Uninfected = os.listdir("./cell_images/Uninfected/")
+for uninfect in Uninfected:
+    try:
+        image=cv2.imread("./cell_images/Uninfected/"+uninfect)
+        image_from_array = Image.fromarray(image, 'RGB')
+        size_image = image_from_array.resize((50, 50))
+        data.append(np.array(size_image))
+        labels.append(1)
+    except AttributeError:
+        print("")
+</code></pre><h3>Splitting Data</h3><pre><code>df = np.array(data)
+labels = np.array(labels)
+(X_train, X_test) = df[(int)(0.1*len(df)):],df[:(int)(0.1*len(df))]
+(y_train, y_test) = labels[(int)(0.1*len(labels)):],labels[:(int)(0.1*len(labels))]
+</code></pre><pre><code>s=np.arange(X_train.shape[0])
+np.random.shuffle(s)
+X_train=X_train[s]
+y_train=y_train[s]
+X_train = X_train/255.0
+</code></pre><h2>Model</h2><h3>Creating Model</h3><p>By creating a sequential model, we create a linear stack of layers.</p><p><em>Note: The input shape for the first layer is 50,50 which corresponds with the sizes of the resized images</em></p><pre><code>model = models.Sequential()
+model.add(layers.Conv2D(filters=16, kernel_size=2, padding='same', activation='relu', input_shape=(50,50,3)))
+model.add(layers.MaxPooling2D(pool_size=2))
+model.add(layers.Conv2D(filters=32,kernel_size=2,padding='same',activation='relu'))
+model.add(layers.MaxPooling2D(pool_size=2))
+model.add(layers.Conv2D(filters=64,kernel_size=2,padding="same",activation="relu"))
+model.add(layers.MaxPooling2D(pool_size=2))
+model.add(layers.Dropout(0.2))
+model.add(layers.Flatten())
+model.add(layers.Dense(500,activation="relu"))
+model.add(layers.Dropout(0.2))
+model.add(layers.Dense(2,activation="softmax"))#2 represent output layer neurons
+model.summary()
+</code></pre><h3>Compiling Model</h3><p>We use the adam optimiser as it is an adaptive learning rate optimization algorithm that's been designed specifically for <em>training</em> deep neural networks, which means it changes its learning rate automaticaly to get the best results</p><pre><code>model.compile(optimizer="adam",
+              loss="sparse_categorical_crossentropy",
+             metrics=["accuracy"])
+</code></pre><h3>Training Model</h3><p>We train the model for 10 epochs on the training data and then validate it using the testing data</p><pre><code>history = model.fit(X_train,y_train, epochs=10, validation_data=(X_test,y_test))
+</code></pre><pre><code>Train on 24803 samples, validate on 2755 samples
+Epoch 1/10
+24803/24803 [==============================] - 57s 2ms/sample - loss: 0.0786 - accuracy: 0.9729 - val_loss: 0.0000e+00 - val_accuracy: 1.0000
+Epoch 2/10
+24803/24803 [==============================] - 58s 2ms/sample - loss: 0.0746 - accuracy: 0.9731 - val_loss: 0.0290 - val_accuracy: 0.9996
+Epoch 3/10
+24803/24803 [==============================] - 58s 2ms/sample - loss: 0.0672 - accuracy: 0.9764 - val_loss: 0.0000e+00 - val_accuracy: 1.0000
+Epoch 4/10
+24803/24803 [==============================] - 58s 2ms/sample - loss: 0.0601 - accuracy: 0.9789 - val_loss: 0.0000e+00 - val_accuracy: 1.0000
+Epoch 5/10
+24803/24803 [==============================] - 58s 2ms/sample - loss: 0.0558 - accuracy: 0.9804 - val_loss: 0.0000e+00 - val_accuracy: 1.0000
+Epoch 6/10
+24803/24803 [==============================] - 57s 2ms/sample - loss: 0.0513 - accuracy: 0.9819 - val_loss: 0.0000e+00 - val_accuracy: 1.0000
+Epoch 7/10
+24803/24803 [==============================] - 58s 2ms/sample - loss: 0.0452 - accuracy: 0.9849 - val_loss: 0.3190 - val_accuracy: 0.9985
+Epoch 8/10
+24803/24803 [==============================] - 58s 2ms/sample - loss: 0.0404 - accuracy: 0.9858 - val_loss: 0.0000e+00 - val_accuracy: 1.0000
+Epoch 9/10
+24803/24803 [==============================] - 58s 2ms/sample - loss: 0.0352 - accuracy: 0.9878 - val_loss: 0.0000e+00 - val_accuracy: 1.0000
+Epoch 10/10
+24803/24803 [==============================] - 58s 2ms/sample - loss: 0.0373 - accuracy: 0.9865 - val_loss: 0.0000e+00 - val_accuracy: 1.0000
+</code></pre><h3>Results</h3><pre><code>accuracy = history.history['accuracy'][-1]*100
+loss = history.history['loss'][-1]*100
+val_accuracy = history.history['val_accuracy'][-1]*100
+val_loss = history.history['val_loss'][-1]*100
+
+print(
+    'Accuracy:', accuracy,
+    '\nLoss:', loss,
+    '\nValidation Accuracy:', val_accuracy,
+    '\nValidation Loss:', val_loss
+)
+</code></pre><pre><code>Accuracy: 98.64532351493835
+Loss: 3.732407123270176
+Validation Accuracy: 100.0
+Validation Loss: 0.0
+</code></pre><p>We have achieved 98% Accuracy!</p><p><a href="https://colab.research.google.com/drive/1ZswDsxLwYZEnev89MzlL5Lwt6ut7iwp- "Colab Notebook"">Link to Colab Notebook</a></p>]]></content:encoded></item><item><guid isPermaLink="true">https://navanchauhan.github.io/SwiftWebsite/posts/hello-world</guid><title>Hello World</title><description>My first post.</description><link>https://navanchauhan.github.io/SwiftWebsite/posts/hello-world</link><pubDate>Tue, 16 Apr 2019 17:39:00 +0530</pubDate><content:encoded><![CDATA[<h1>Hello World</h1><p><strong>Why a Hello World post?</strong></p><p>Just re-did the entire website using Publish (Publish by John Sundell). So, a new hello world post :)</p>]]></content:encoded></item></channel></rss>

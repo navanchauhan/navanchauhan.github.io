@@ -14,7 +14,7 @@
 body {
     background: #fff;
     color: #000;
-    font-family: Helvetica, Arial;
+    font-family: -apple-system, BlinkMacSystemFont;  /*,Helvetica, Arial;*/
     text-align: center;
 }
 
@@ -40,12 +40,10 @@ header {
     height: 200px;
 }
 */
+
 header .wrapper {
-    padding: 0;
-    margin: 0;
-    max-width: none;
-    /* padding-top: 30px;
-    padding-bottom: 30px; */
+    padding-top: 30px;
+    padding-bottom: 30px;
     text-align: center;
 }
 
@@ -65,8 +63,16 @@ nav {
 
 nav li {
     display: inline-block;
+    background-color: #000;
+    color: #ddd;
+    padding: 4px 6px;
+    border-radius: 5px;
+    margin-right: 5px;
 }
-
+nav li:hover {
+    color: #000;
+    background-color: #ddd;
+}
 h1 {
     margin-bottom: 20px;
     font-size: 2em;
@@ -154,6 +160,15 @@ footer {
     body,
     header .site-name {
         color: #ddd;
+    }
+    nav li {
+        background-color: #ddd;
+        color: #000;
+
+    }
+    nav li:hover {
+        color: #ddd;
+        background-color: #000;
     }
 
     .item-list > li {

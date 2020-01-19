@@ -1,4 +1,224 @@
-<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content"><channel><title>Navan Chauhan</title><description>Welcome to my personal fragment of the internet.</description><link>https://navanchauhan.github.io/</link><language>en</language><lastBuildDate>Sat, 18 Jan 2020 19:19:50 +0530</lastBuildDate><pubDate>Sat, 18 Jan 2020 19:19:50 +0530</pubDate><ttl>250</ttl><atom:link href="https://navanchauhan.github.io/feed.rss" rel="self" type="application/rss+xml"/><item><guid isPermaLink="true">https://navanchauhan.github.io/posts/2020-01-14-Converting-between-PIL-NumPy</guid><title>Converting between image and NumPy array</title><description>Short code snippet for converting between PIL image and NumPy arrays.</description><link>https://navanchauhan.github.io/posts/2020-01-14-Converting-between-PIL-NumPy</link><pubDate>Tue, 14 Jan 2020 00:10:00 +0530</pubDate><content:encoded><![CDATA[<h1>Converting between image and NumPy array</h1><pre><code><div class="highlight"><span></span><span class="kn">import</span> <span class="nn">numpy</span>
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content"><channel><title>Navan Chauhan</title><description>Welcome to my personal fragment of the internet.</description><link>https://navanchauhan.github.io/</link><language>en</language><lastBuildDate>Sun, 19 Jan 2020 13:11:26 +0530</lastBuildDate><pubDate>Sun, 19 Jan 2020 13:11:26 +0530</pubDate><ttl>250</ttl><atom:link href="https://navanchauhan.github.io/feed.rss" rel="self" type="application/rss+xml"/><item><guid isPermaLink="true">https://navanchauhan.github.io/posts/2020-01-16-Image-Classifier-Using-Turicreate</guid><title>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</title><description>Tutorial on creating a custom Image Classifier using Turicreate and a dataset from Kaggle</description><link>https://navanchauhan.github.io/posts/2020-01-16-Image-Classifier-Using-Turicreate</link><pubDate>Thu, 16 Jan 2020 10:36:00 +0530</pubDate><content:encoded><![CDATA[<h1>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1><p><em>For setting up Kaggle with Google Colab, please refer to <a href="https://navanchauhan.github.io//posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab/"> my previous post</a></em></p><h2>Dataset</h2><h3>Mounting Google Drive</h3><pre><code><div class="highlight"><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</div>
+
+</code></pre><h3>Downloading Dataset from Kaggle</h3><pre><code><div class="highlight"><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
+<span class="err">!</span><span class="n">kaggle</span> <span class="n">datasets</span> <span class="n">download</span> <span class="n">ashutosh69</span><span class="o">/</span><span class="n">fire</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">smoke</span><span class="o">-</span><span class="n">dataset</span>
+<span class="err">!</span><span class="n">unzip</span> <span class="s2">&quot;fire-and-smoke-dataset.zip&quot;</span>
+</div>
+
+</code></pre><h2>Pre-Processing</h2><pre><code><div class="highlight"><span></span><span class="nt">!mkdir</span><span class="na"> default smoke fire</span>
+</div>
+
+</code></pre><p><br></p><pre><code><div class="highlight"><span></span><span class="nt">!ls</span><span class="na"> data/data/img_data/train/default/*.jpg</span>
+</div>
+
+</code></pre><p><br></p><pre><code><div class="highlight"><span></span><span class="nt">img_1002.jpg</span><span class="na">   img_20.jpg     img_519.jpg     img_604.jpg       img_80.jpg</span>
+<span class="na">img_1003.jpg   img_21.jpg     img_51.jpg     img_60.jpg       img_8.jpg</span>
+<span class="na">img_1007.jpg   img_22.jpg     img_520.jpg     img_61.jpg       img_900.jpg</span>
+<span class="na">img_100.jpg    img_23.jpg     img_521.jpg    &#39;img_62 (2).jpg&#39;   img_920.jpg</span>
+<span class="na">img_1014.jpg   img_24.jpg    &#39;img_52 (2).jpg&#39;     img_62.jpg       img_921.jpg</span>
+<span class="na">img_1018.jpg   img_29.jpg     img_522.jpg    &#39;img_63 (2).jpg&#39;   img_922.jpg</span>
+<span class="na">img_101.jpg    img_3000.jpg   img_523.jpg     img_63.jpg       img_923.jpg</span>
+<span class="na">img_1027.jpg   img_335.jpg    img_524.jpg     img_66.jpg       img_924.jpg</span>
+<span class="na">img_102.jpg    img_336.jpg    img_52.jpg     img_67.jpg       img_925.jpg</span>
+<span class="na">img_1042.jpg   img_337.jpg    img_530.jpg     img_68.jpg       img_926.jpg</span>
+<span class="na">img_1043.jpg   img_338.jpg    img_531.jpg     img_700.jpg       img_927.jpg</span>
+<span class="na">img_1046.jpg   img_339.jpg   &#39;img_53 (2).jpg&#39;     img_701.jpg       img_928.jpg</span>
+<span class="na">img_1052.jpg   img_340.jpg    img_532.jpg     img_702.jpg       img_929.jpg</span>
+<span class="na">img_107.jpg    img_341.jpg    img_533.jpg     img_703.jpg       img_930.jpg</span>
+<span class="na">img_108.jpg    img_3.jpg      img_537.jpg     img_704.jpg       img_931.jpg</span>
+<span class="na">img_109.jpg    img_400.jpg    img_538.jpg     img_705.jpg       img_932.jpg</span>
+<span class="na">img_10.jpg     img_471.jpg    img_539.jpg     img_706.jpg       img_933.jpg</span>
+<span class="na">img_118.jpg    img_472.jpg    img_53.jpg     img_707.jpg       img_934.jpg</span>
+<span class="na">img_12.jpg     img_473.jpg    img_540.jpg     img_708.jpg       img_935.jpg</span>
+<span class="na">img_14.jpg     img_488.jpg    img_541.jpg     img_709.jpg       img_938.jpg</span>
+<span class="na">img_15.jpg     img_489.jpg   &#39;img_54 (2).jpg&#39;     img_70.jpg       img_958.jpg</span>
+<span class="na">img_16.jpg     img_490.jpg    img_542.jpg     img_710.jpg       img_971.jpg</span>
+<span class="na">img_17.jpg     img_491.jpg    img_543.jpg    &#39;img_71 (2).jpg&#39;   img_972.jpg</span>
+<span class="na">img_18.jpg     img_492.jpg    img_54.jpg     img_71.jpg       img_973.jpg</span>
+<span class="na">img_19.jpg     img_493.jpg   &#39;img_55 (2).jpg&#39;     img_72.jpg       img_974.jpg</span>
+<span class="na">img_1.jpg      img_494.jpg    img_55.jpg     img_73.jpg       img_975.jpg</span>
+<span class="na">img_200.jpg    img_495.jpg    img_56.jpg     img_74.jpg       img_980.jpg</span>
+<span class="na">img_201.jpg    img_496.jpg    img_57.jpg     img_75.jpg       img_988.jpg</span>
+<span class="na">img_202.jpg    img_497.jpg    img_58.jpg     img_76.jpg       img_9.jpg</span>
+<span class="na">img_203.jpg    img_4.jpg      img_59.jpg     img_77.jpg</span>
+<span class="na">img_204.jpg    img_501.jpg    img_601.jpg     img_78.jpg</span>
+<span class="na">img_205.jpg    img_502.jpg    img_602.jpg     img_79.jpg</span>
+<span class="na">img_206.jpg    img_50.jpg     img_603.jpg     img_7.jpg</span>
+</div>
+
+</code></pre><p>The image files are not actually JPEG, thus we first need to save them in the correct format for Turicreate</p><pre><code><div class="highlight"><span></span><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+
+
+<span class="n">folders</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">,</span><span class="s2">&quot;smoke&quot;</span><span class="p">,</span><span class="s2">&quot;fire&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">folders</span><span class="p">:</span>
+  <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;./data/data/img_data/train/&quot;</span> <span class="o">+</span> <span class="n">folder</span> <span class="o">+</span> <span class="s2">&quot;/*.jpg&quot;</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+    <span class="n">rgb_im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+    <span class="n">rgb_im</span><span class="o">.</span><span class="n">save</span><span class="p">((</span><span class="n">folder</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.jpg&quot;</span><span class="p">),</span> <span class="n">quality</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">+=</span><span class="mi">1</span> 
+  <span class="k">for</span> <span class="nb">file</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;./data/data/img_data/train/&quot;</span> <span class="o">+</span> <span class="n">folder</span> <span class="o">+</span> <span class="s2">&quot;/*.jpg&quot;</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
+    <span class="n">rgb_im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+    <span class="n">rgb_im</span><span class="o">.</span><span class="n">save</span><span class="p">((</span><span class="n">folder</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.jpg&quot;</span><span class="p">),</span> <span class="n">quality</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">+=</span><span class="mi">1</span>
+</div>
+
+</code></pre><p><br></p><pre><code><div class="highlight"><span></span><span class="nt">!mkdir</span><span class="na"> train</span>
+<span class="na">!mv default ./train</span>
+<span class="na">!mv smoke ./train</span>
+<span class="na">!mv fire ./train</span>
+</div>
+
+</code></pre><h2>Making the Image Classifier</h2><h3>Making an SFrame</h3><pre><code><div class="highlight"><span></span><span class="nt">!pip</span><span class="na"> install turicreate</span>
+</div>
+
+</code></pre><p><br></p><pre><code><div class="highlight"><span></span><span class="kn">import</span> <span class="nn">turicreate</span> <span class="kn">as</span> <span class="nn">tc</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">image_analysis</span><span class="o">.</span><span class="n">load_images</span><span class="p">(</span><span class="s2">&quot;./train&quot;</span><span class="p">,</span> <span class="n">with_path</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;path&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">path</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">path</span><span class="p">)))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;fire-smoke.sframe&#39;</span><span class="p">)</span>
+</div>
+
+</code></pre><p><br></p><pre><code><div class="highlight"><span></span><span class="nt">+-------------------------+------------------------+</span>
+<span class="err">|           path          |         image          |</span>
+<span class="nt">+-------------------------+------------------------+</span>
+<span class="err">|  ./train/default/1.jpg  | Height: 224 Width: 224 |</span>
+<span class="err">|  ./train/default/10.jpg | Height: 224 Width: 224 |</span>
+<span class="err">| ./train/default/100.jpg | Height: 224 Width: 224 |</span>
+<span class="err">| ./train/default/101.jpg | Height: 224 Width: 224 |</span>
+<span class="err">| ./train/default/102.jpg | Height: 224 Width: 224 |</span>
+<span class="err">| ./train/default/103.jpg | Height: 224 Width: 224 |</span>
+<span class="err">| ./train/default/104.jpg | Height: 224 Width: 224 |</span>
+<span class="err">| ./train/default/105.jpg | Height: 224 Width: 224 |</span>
+<span class="err">| ./train/default/106.jpg | Height: 224 Width: 224 |</span>
+<span class="err">| ./train/default/107.jpg | Height: 224 Width: 224 |</span>
+<span class="nt">+-------------------------+------------------------+</span>
+<span class="nt">[2028</span><span class="na"> rows x 2 columns]</span>
+<span class="na">Note</span><span class="p">:</span><span class="err"> </span><span class="nc">Only</span><span class="err"> </span><span class="nc">the</span><span class="err"> </span><span class="nc">head</span><span class="err"> </span><span class="nc">of</span><span class="err"> </span><span class="nc">the</span><span class="err"> </span><span class="nc">SFrame</span><span class="err"> </span><span class="nc">is</span><span class="err"> </span><span class="nc">printed.</span>
+<span class="nt">You</span><span class="na"> can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.</span>
+<span class="na">+-------------------------+------------------------+---------+</span>
+<span class="p">|</span><span class="na">           path          </span><span class="p">|</span><span class="na">         image          </span><span class="p">|</span><span class="na">  label  </span><span class="p">|</span>
+<span class="nt">+-------------------------+------------------------+---------+</span>
+<span class="err">|  ./train/default/1.jpg  | Height: 224 Width: 224 | default |</span>
+<span class="err">|  ./train/default/10.jpg | Height: 224 Width: 224 | default |</span>
+<span class="err">| ./train/default/100.jpg | Height: 224 Width: 224 | default |</span>
+<span class="err">| ./train/default/101.jpg | Height: 224 Width: 224 | default |</span>
+<span class="err">| ./train/default/102.jpg | Height: 224 Width: 224 | default |</span>
+<span class="err">| ./train/default/103.jpg | Height: 224 Width: 224 | default |</span>
+<span class="err">| ./train/default/104.jpg | Height: 224 Width: 224 | default |</span>
+<span class="err">| ./train/default/105.jpg | Height: 224 Width: 224 | default |</span>
+<span class="err">| ./train/default/106.jpg | Height: 224 Width: 224 | default |</span>
+<span class="err">| ./train/default/107.jpg | Height: 224 Width: 224 | default |</span>
+<span class="nt">+-------------------------+------------------------+---------+</span>
+<span class="nt">[2028</span><span class="na"> rows x 3 columns]</span>
+<span class="na">Note</span><span class="p">:</span><span class="err"> </span><span class="nc">Only</span><span class="err"> </span><span class="nc">the</span><span class="err"> </span><span class="nc">head</span><span class="err"> </span><span class="nc">of</span><span class="err"> </span><span class="nc">the</span><span class="err"> </span><span class="nc">SFrame</span><span class="err"> </span><span class="nc">is</span><span class="err"> </span><span class="nc">printed.</span>
+<span class="nt">You</span><span class="na"> can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.</span>
+</div>
+
+</code></pre><h3>Making the Model</h3><pre><code><div class="highlight"><span></span><span class="kn">import</span> <span class="nn">turicreate</span> <span class="kn">as</span> <span class="nn">tc</span>
+
+<span class="c1"># Load the data</span>
+<span class="n">data</span> <span class="o">=</span>  <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="p">(</span><span class="s1">&#39;fire-smoke.sframe&#39;</span><span class="p">)</span>
+
+<span class="c1"># Make a train-test split</span>
+<span class="n">train_data</span><span class="p">,</span> <span class="n">test_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+
+<span class="c1"># Create the model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">image_classifier</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">train_data</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">)</span>
+
+<span class="c1"># Save predictions to an SArray</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the model and print the results</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">test_data</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">metrics</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+
+<span class="c1"># Save the model for later use in Turi Create</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;fire-smoke.model&#39;</span><span class="p">)</span>
+
+<span class="c1"># Export for use in Core ML</span>
+<span class="n">model</span><span class="o">.</span><span class="n">export_coreml</span><span class="p">(</span><span class="s1">&#39;fire-smoke.mlmodel&#39;</span><span class="p">)</span>
+</div>
+
+</code></pre><p><br></p><pre><code><div class="highlight"><span></span><span class="nt">Performing</span><span class="na"> feature extraction on resized images...</span>
+<span class="na">Completed   64/1633</span>
+<span class="na">Completed  128/1633</span>
+<span class="na">Completed  192/1633</span>
+<span class="na">Completed  256/1633</span>
+<span class="na">Completed  320/1633</span>
+<span class="na">Completed  384/1633</span>
+<span class="na">Completed  448/1633</span>
+<span class="na">Completed  512/1633</span>
+<span class="na">Completed  576/1633</span>
+<span class="na">Completed  640/1633</span>
+<span class="na">Completed  704/1633</span>
+<span class="na">Completed  768/1633</span>
+<span class="na">Completed  832/1633</span>
+<span class="na">Completed  896/1633</span>
+<span class="na">Completed  960/1633</span>
+<span class="na">Completed 1024/1633</span>
+<span class="na">Completed 1088/1633</span>
+<span class="na">Completed 1152/1633</span>
+<span class="na">Completed 1216/1633</span>
+<span class="na">Completed 1280/1633</span>
+<span class="na">Completed 1344/1633</span>
+<span class="na">Completed 1408/1633</span>
+<span class="na">Completed 1472/1633</span>
+<span class="na">Completed 1536/1633</span>
+<span class="na">Completed 1600/1633</span>
+<span class="na">Completed 1633/1633</span>
+<span class="na">PROGRESS</span><span class="p">:</span><span class="err"> </span><span class="nc">Creating</span><span class="err"> </span><span class="nc">a</span><span class="err"> </span><span class="nc">validation</span><span class="err"> </span><span class="nc">set</span><span class="err"> </span><span class="nc">from</span><span class="err"> </span><span class="nc">5</span><span class="err"> </span><span class="nc">percent</span><span class="err"> </span><span class="nc">of</span><span class="err"> </span><span class="nc">training</span><span class="err"> </span><span class="nc">data.</span><span class="err"> </span><span class="nc">This</span><span class="err"> </span><span class="nc">may</span><span class="err"> </span><span class="nc">take</span><span class="err"> </span><span class="nc">a</span><span class="err"> </span><span class="nc">while.</span>
+          <span class="err">You can set ``validation_set=None`` to disable validation tracking.</span>
+
+<span class="nt">Logistic</span><span class="na"> regression</span><span class="p">:</span>
+<span class="nt">--------------------------------------------------------</span>
+<span class="nt">Number</span><span class="na"> of examples          </span><span class="p">:</span><span class="err"> </span><span class="nc">1551</span>
+<span class="nt">Number</span><span class="na"> of classes           </span><span class="p">:</span><span class="err"> </span><span class="nc">3</span>
+<span class="nt">Number</span><span class="na"> of feature columns   </span><span class="p">:</span><span class="err"> </span><span class="nc">1</span>
+<span class="nt">Number</span><span class="na"> of unpacked features </span><span class="p">:</span><span class="err"> </span><span class="nc">2048</span>
+<span class="nt">Number</span><span class="na"> of coefficients      </span><span class="p">:</span><span class="err"> </span><span class="nc">4098</span>
+<span class="nt">Starting</span><span class="na"> L-BFGS</span>
+<span class="na">--------------------------------------------------------</span>
+<span class="na">+-----------+----------+-----------+--------------+-------------------+---------------------+</span>
+<span class="p">|</span><span class="na"> Iteration </span><span class="p">|</span><span class="na"> Passes   </span><span class="p">|</span><span class="na"> Step size </span><span class="p">|</span><span class="na"> Elapsed Time </span><span class="p">|</span><span class="na"> Training Accuracy </span><span class="p">|</span><span class="na"> Validation Accuracy </span><span class="p">|</span>
+<span class="nt">+-----------+----------+-----------+--------------+-------------------+---------------------+</span>
+<span class="err">| 0         | 6        | 0.018611  | 0.891830     | 0.553836          | 0.560976            |</span>
+<span class="err">| 1         | 10       | 0.390832  | 1.622383     | 0.744681          | 0.792683            |</span>
+<span class="err">| 2         | 11       | 0.488541  | 1.943987     | 0.733075          | 0.804878            |</span>
+<span class="err">| 3         | 14       | 2.442703  | 2.512545     | 0.727917          | 0.841463            |</span>
+<span class="err">| 4         | 15       | 2.442703  | 2.826964     | 0.861380          | 0.853659            |</span>
+<span class="err">| 9         | 28       | 2.340435  | 5.492035     | 0.941328          | 0.975610            |</span>
+<span class="nt">+-----------+----------+-----------+--------------+-------------------+---------------------+</span>
+<span class="nt">Performing</span><span class="na"> feature extraction on resized images...</span>
+<span class="na">Completed  64/395</span>
+<span class="na">Completed 128/395</span>
+<span class="na">Completed 192/395</span>
+<span class="na">Completed 256/395</span>
+<span class="na">Completed 320/395</span>
+<span class="na">Completed 384/395</span>
+<span class="na">Completed 395/395</span>
+<span class="na">0.9316455696202531</span>
+</div>
+
+</code></pre><p>We just got an accuracy of 94% on Training Data and 97% on Validation Data!</p>]]></content:encoded></item><item><guid isPermaLink="true">https://navanchauhan.github.io/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab</guid><title>Setting up Kaggle to use with Google Colab</title><description>Tutorial on setting up kaggle, to use with Google Colab</description><link>https://navanchauhan.github.io/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab</link><pubDate>Wed, 15 Jan 2020 23:36:00 +0530</pubDate><content:encoded><![CDATA[<h1>Setting up Kaggle to use with Google Colab</h1><p><em>In order to be able to access Kaggle Datasets, you will need to have an account on Kaggle (which is Free)</em></p><h2>Grabbing Our Tokens</h2><h3>Go to Kaggle</h3><img src="https://navanchauhan.github.io//assets/posts/kaggle-colab/ss1.png" alt=""Homepage""/><h3>Click on your User Profile and Click on My Account</h3><img src="https://navanchauhan.github.io//assets/posts/kaggle-colab/ss2.png" alt=""Account""/><h3>Scroll Down untill you see Create New API Token</h3><img src="https://navanchauhan.github.io//assets/posts/kaggle-colab/ss3.png"/><h3>This will download your token as a JSON file</h3><img src="https://navanchauhan.github.io//assets/posts/kaggle-colab/ss4.png"/><p>Copy the File to the root folder of your Google Drive</p><h2>Setting up Colab</h2><h3>Mounting Google Drive</h3><pre><code><div class="highlight"><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
+</div>
+
+</code></pre><p>After this click on the URL in the output section, login and then paste the Auth Code</p><h3>Configuring Kaggle</h3><pre><code><div class="highlight"><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
+</div>
+
+</code></pre><p>Voila! You can now download kaggel datasets</p>]]></content:encoded></item><item><guid isPermaLink="true">https://navanchauhan.github.io/posts/2020-01-14-Converting-between-PIL-NumPy</guid><title>Converting between image and NumPy array</title><description>Short code snippet for converting between PIL image and NumPy arrays.</description><link>https://navanchauhan.github.io/posts/2020-01-14-Converting-between-PIL-NumPy</link><pubDate>Tue, 14 Jan 2020 00:10:00 +0530</pubDate><content:encoded><![CDATA[<h1>Converting between image and NumPy array</h1><pre><code><div class="highlight"><span></span><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">PIL</span>
 
 <span class="c1"># Convert PIL Image to NumPy array</span>

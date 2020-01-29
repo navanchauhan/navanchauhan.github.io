@@ -1,8 +1,5 @@
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://navan-chauhan.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
+(function() {
+    var t = document,
+        e = t.createElement("script");
+    e.src = "https://navan-chauhan.disqus.com/embed.js", e.setAttribute("data-timestamp", +new Date), (t.head || t.body).appendChild(e)
 })();
-
-                            

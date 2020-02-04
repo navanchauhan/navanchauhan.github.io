@@ -125,7 +125,7 @@ a {
 }
 
 .item-list h1 {
-    margin-bottom: 15px;
+    margin-bottom: 0px; /*15px*/
     font-size: 1.3em;
 }
 .item-list a {

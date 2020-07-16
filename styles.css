@@ -66,7 +66,8 @@ header .site-name {
     margin: 0;
     cursor: pointer;
     font-weight: 50;
-    font-size: 2.3em;
+    font-size: 3.5em; /*#2.3em;*/
+    line-height: 1em;
     letter-spacing: 1px;
 }
 
@@ -102,6 +103,7 @@ h2 {
 
 p {
     margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 a {

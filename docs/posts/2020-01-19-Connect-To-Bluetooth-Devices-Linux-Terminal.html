@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>How to setup Bluetooth on a Raspberry Pi</h1>
+
+<p><em>This was tested on a Raspberry Pi Zero W</em></p>
+
+<h2>Enter in the Bluetooth Mode</h2>
+
+<p><code>pi@raspberrypi:~ $ bluetoothctl</code></p>
+
+<p><code>[bluetooth]# agent on</code></p>
+
+<p><code>[bluetooth]# default-agent</code></p>
+
+<p><code>[bluetooth]# scan on</code></p>
+
+<h2>To Pair</h2>
+
+<p>While being in bluetooth mode</p>
+
+<p><code>[bluetooth]# pair XX:XX:XX:XX:XX:XX</code></p>
+
+<p>To Exit out of bluetoothctl anytime, just type exit </p>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

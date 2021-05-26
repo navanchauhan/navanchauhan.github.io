@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Workflow for Lightning Fast Molecular Docking Part One</h1>
+
+<h2>My Setup</h2>
+
+<ul>
+<li>macOS Catalina ( RIP 32bit app)</li>
+<li>PyMOL</li>
+<li>AutoDock Vina</li>
+<li>Open Babel</li>
+</ul>
+
+<h2>One Command Docking</h2>
+
+<pre><code>obabel -:"$(pbpaste)" --gen3d -opdbqt -Otest.pdbqt &amp;&amp; vina --receptor lu.pdbqt --center_x -9.7 --center_y 11.4 --center_z 68.9 --size_x 19.3 --size_y 29.9 --size_z 21.3  --ligand test.pdbqt
+</code></pre>
+
+<p>To run this command you simple copy the SMILES structure of the ligand you want an it automatically takes it from your clipboard, generates the 3D structure in the AutoDock PDBQT format using Open Babel and then docks it with your receptor using AutoDock Vina, all with just one command.</p>
+
+<p>Let me break down the commands</p>
+
+<pre><code>obabel -:"$(pbpaste)" --gen3d -opdbqt -Otest.pdbqt
+</code></pre>
+
+<p><code>pbpaste</code>  and <code>pbcopy</code> are macOS commands for pasting and copying from and to the clipboard. Linux users may install the <code>xclip</code> and  <code>xsel</code> packages from their respective package managers and then insert these aliases into their bash_profile,  zshrc e.t.c</p>
+
+<pre><code>alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
+</code></pre>
+
+<pre><code>$(pbpaste)
+</code></pre>
+
+<p>This is used in bash to evaluate the results of a command. In this scenario we are using it to get the contents of the clipboard.</p>
+
+<p>The rest of the command is a normal Open Babel command to generate a 3D structure in PDBQT format and then save it as <code>test.pdbqt</code></p>
+
+<pre><code>&amp;&amp;
+</code></pre>
+
+<p>This tells the terminal to only run the next part if the previous command runs successfully without any errors.</p>
+
+<pre><code>vina --receptor lu.pdbqt --center_x -9.7 --center_y 11.4 --center_z 68.9 --size_x 19.3 --size_y 29.9 --size_z 21.3  --ligand test.pdbqt
+</code></pre>
+
+<p>This is just the docking command for AutoDock Vina. In the next part I will tell how to use PyMOL and a plugin to directly generate the coordinates in Vina format <code>--center_x -9.7 --center_y 11.4 --center_z 68.9 --size_x 19.3 --size_y 29.9 --size_z 21.3</code> without needing to type them manually.</p>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

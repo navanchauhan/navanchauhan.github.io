@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Fixing X11 Error on macOS Catalina for AmberTools 18/19</h1>
+
+<p>I was trying to install AmberTools on my macOS Catalina Installation. Running <code>./configure -macAccelerate clang</code> gave me an error that it could not find X11 libraries, even though <code>locate libXt</code> showed that my installation was correct.</p>
+
+<p>Error:</p>
+
+<pre><code>Could not find the X11 libraries; you may need to edit config.h
+   to set the XHOME and XLIBS variables.
+Error: The X11 libraries are not in the usual location !
+       To search for them try the command: locate libXt
+       On new Fedora OS's install the libXt-devel libXext-devel
+       libX11-devel libICE-devel libSM-devel packages.
+       On old Fedora OS's install the xorg-x11-devel package.
+       On RedHat OS's install the XFree86-devel package.
+       On Ubuntu OS's install the xorg-dev and xserver-xorg packages.
+
+          ...more info for various linuxes at ambermd.org/ubuntu.html
+
+       To build Amber without XLEaP, re-run configure with '-noX11:
+            ./configure -noX11 --with-python /usr/local/bin/python3 -macAccelerate clang
+Configure failed due to the errors above!
+</code></pre>
+
+<p>I searched on Google for a solution. Sadly, there was not even a single thread which had a solution about this error.</p>
+
+<h2>The Fix</h2>
+
+<p>Simply reinstalling XQuartz using homebrew fixed the error <code>brew cask reinstall xquartz</code></p>
+
+<p>If you do not have XQuartz installed, you need to run <code>brew cask install xquartz</code></p>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

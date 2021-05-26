@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Tinkering with an Android TV</h1>
+
+<p>So I have an Android TV, this posts covers everything I have tried on it</p>
+
+<h2>Contents</h2>
+
+<ol>
+<li><a href="#IP-Address">Getting TV's IP Address</a></li>
+<li><a href="#Developer-Settings">Enable Developer Settings</a></li>
+<li><a href="#Enable-ADB">Enable ADB</a></li>
+<li><a href="#Connect-ADB">Connect ADB</a></li>
+<li><a href="#">Manipulating Packages</a></li>
+</ol>
+
+<h2>IP-Address</h2>
+
+<p><em>These steps should be similar for all Android-TVs</em></p>
+
+<ul>
+<li>Go To Settings</li>
+<li>Go to Network</li>
+<li>Advanced Settings</li>
+<li>Network Status</li>
+<li>Note Down IP-Address</li>
+</ul>
+
+<p>The other option is to go to your router's server page and get connected devices</p>
+
+<h2>Developer-Settings</h2>
+
+<ul>
+<li>Go To Settings</li>
+<li>About</li>
+<li>Continously click on the "Build" option until it says "You are a Developer"</li>
+</ul>
+
+<h2>Enable-ADB</h2>
+
+<ul>
+<li>Go to Settings</li>
+<li>Go to Developer Options</li>
+<li>Scroll untill you find ADB Debugging and enable that option</li>
+</ul>
+
+<h2>Connect-ADB</h2>
+
+<ul>
+<li>Open Terminal (Make sure you have ADB installed)</li>
+<li>Enter the following command <code>adb connect &lt;IP_ADDRESS&gt;</code></li>
+<li>To test the connection run <code>adb logcat</code></li>
+</ul>
+
+<h2>Manipulating Apps / Packages</h2>
+
+<h3>Listing Packages</h3>
+
+<ul>
+<li><code>adb shell</code></li>
+<li><code>pm list packages</code></li>
+</ul>
+
+<h3>Installing Packages</h3>
+
+<ul>
+<li><code>adb install -r package.apk</code></li>
+</ul>
+
+<h3>Uninstalling Packages</h3>
+
+<ul>
+<li><code>adb uninstall com.company.yourpackagename</code></li>
+</ul>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Image Classifier With Teachable Machines</h1>
+
+<p>Made for Google Code-In</p>
+
+<p><strong>Task Description</strong></p>
+
+<p>Using Glitch and the Teachable Machines, build a Book Detector with Tensorflow.js. When a book is recognized, the code would randomly suggest a book/tell a famous quote from a book. Here is an example Project to get you started: https://glitch.com/~voltaic-acorn</p>
+
+<h3>Details</h3>
+
+<p>1) Collecting Data</p>
+
+<p>Teachable Machine allows you to create your dataset just by using your webcam! I created a database consisting of three classes ( Three Books ) and approximately grabbed 100 pictures for each book/class</p>
+
+<p><img src="/assets/gciTales/01-teachableMachines/01-collect.png" alt="" /></p>
+
+<p>2) Training</p>
+
+<p>Training on teachable machines is as simple as clicking the train button. I did not even have to modify any configurations. </p>
+
+<p><img src="/assets/gciTales/01-teachableMachines/02-train.png" alt="" /></p>
+
+<p>3) Finding Labels</p>
+
+<p>Because I originally entered the entire name of the book and it's author's name as the label, the class name got truncated (Note to self, use shorter class names :p ). I then modified the code to print the modified label names in an alert box. </p>
+
+<p><img src="/assets/gciTales/01-teachableMachines/03-label.png" alt="" /></p>
+
+<p><img src="/assets/gciTales/01-teachableMachines/04-alert.png" alt="" /></p>
+
+<p>4) Adding a suggestions function</p>
+
+<p>I first added a text field on the main page and then modified the JavaScript file to suggest a similar book whenever the model predicted with an accuracy &gt;= 98% </p>
+
+<p><img src="/assets/gciTales/01-teachableMachines/05-html.png" alt="" /></p>
+
+<p><img src="/assets/gciTales/01-teachableMachines/06-js.png" alt="" /></p>
+
+<p>5) Running!</p>
+
+<p>Here it is running!</p>
+
+<p><img src="/assets/gciTales/01-teachableMachines/07-eg.png" alt="" /></p>
+
+<p><img src="/assets/gciTales/01-teachableMachines/08-eg.png" alt="" /></p>
+
+<p>Remix this project:-</p>
+
+<p>https://luminous-opinion.glitch.me</p>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Splitting ZIPs into Multiple Parts</h1>
+
+<p><strong>Tested on macOS</strong></p>
+
+<p>Creating the archive:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="nt">zip</span><span class="na"> -r -s 5 oodlesofnoodles.zip website/</span>
+</code></pre></div>
+
+<p>5 stands for each split files' size (in mb, kb and gb can also be specified)</p>
+
+<p>For encrypting the zip:</p>
+
+<div class="codehilite"><pre><span></span><code><span class="nt">zip</span><span class="na"> -er -s 5 oodlesofnoodles.zip website</span>
+</code></pre></div>
+
+<p>Extracting Files</p>
+
+<p>First we need to collect all parts, then</p>
+
+<div class="codehilite"><pre><span></span><code><span class="nt">zip</span><span class="na"> -F oodlesofnoodles.zip --out merged.zip</span>
+</code></pre></div>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

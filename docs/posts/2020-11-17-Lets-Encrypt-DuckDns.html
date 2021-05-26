@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</h1>
+
+<p>I have a Raspberry-Pi running a Flask app through Gunicorn (Ubuntu 20.04 LTS). I am exposing it to the internet using DuckDNS.</p>
+
+<h2>Dependencies</h2>
+
+<div class="codehilite"><pre><span></span><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install certbot -y
+</code></pre></div>
+
+<h2>Get the Certificate</h2>
+
+<div class="codehilite"><pre><span></span><code>sudo certbot certonly --manual --preferred-challenges dns-01 --email senpai@email.com -d mydomain.duckdns.org
+</code></pre></div>
+
+<p>After you accept that you are okay with you IP address being logged, it will prompt you with updating your dns record. You need to create a new <code>TXT</code> record in the DNS settings for your domain.</p>
+
+<p>For DuckDNS users it is as simple as  entering this URL in their browser:</p>
+
+<pre><code>http://duckdns.org/update?domains=mydomain&amp;token=duckdnstoken&amp;txt=certbotdnstxt
+</code></pre>
+
+<p>Where <code>mydomain</code> is your DuckDNS domain, <code>duckdnstoken</code> is your DuckDNS Token ( Found on the dashboard when you login) and <code>certbotdnstxt</code> is the TXT record value given by the prompt.</p>
+
+<p>You can check if the TXT records have been updated by using the <code>dig</code> command:</p>
+
+<div class="codehilite"><pre><span></span><code>dig navanspi.duckdns.org TXT
+<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.16.1-Ubuntu &lt;&lt;&gt;&gt; navanspi.duckdns.org TXT
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">27592</span>
+<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+
+<span class="p">;;</span> OPT PSEUDOSECTION:
+<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">65494</span>
+<span class="p">;;</span> QUESTION SECTION:
+<span class="p">;</span>navanspi.duckdns.org.        IN    TXT
+
+<span class="p">;;</span> ANSWER SECTION:
+navanspi.duckdns.org.    <span class="m">60</span>    IN    TXT    <span class="s2">&quot;4OKbijIJmc82Yv2NiGVm1RmaBHSCZ_230qNtj9YA-qk&quot;</span>
+
+<span class="p">;;</span> Query time: <span class="m">275</span> msec
+<span class="p">;;</span> SERVER: <span class="m">127</span>.0.0.53#53<span class="o">(</span><span class="m">127</span>.0.0.53<span class="o">)</span>
+<span class="p">;;</span> WHEN: Tue Nov <span class="m">17</span> <span class="m">15</span>:23:15 IST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">105</span>
+</code></pre></div>
+
+<p>DuckDNS almost instantly propagates the changes but for other domain hosts, it could take a while. </p>
+
+<p>Once you can ensure that the TXT record changes has been successfully applied and is visible through the <code>dig</code> command, press enter on the Certbot prompt and your certificate should be generated.</p>
+
+<h2>Renewing</h2>
+
+<p>As we manually generated the certificate <code>certbot renew</code> will fail, to renew the certificate you need to simply re-generate the certificate using the above steps.</p>
+
+<h2>Using the Certificate with Gunicorn</h2>
+
+<p>Example Gunicorn command for running a web-app:</p>
+
+<div class="codehilite"><pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589
+</code></pre></div>
+
+<p>To use the certificate with it, simply copy the <code>cert.pem</code> and <code>privkey.pem</code> to your working directory ( change the appropriate permissions ) and include them in the command</p>
+
+<div class="codehilite"><pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589 --certfile<span class="o">=</span>cert.pem --keyfile<span class="o">=</span>privkey.pem
+</code></pre></div>
+
+<p>Caveats with copying the certificate: If you renew the certificate you will have to re-copy the files</p>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

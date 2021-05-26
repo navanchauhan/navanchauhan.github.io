@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Making Predictions using Image Classifier (TensorFlow)</h1>
+
+<p><em>This was tested on TF 2.x and works as of 2019-12-10</em></p>
+
+<p>If you want to understand how to make your own custom image classifier, please refer to my previous post.</p>
+
+<p>If you followed my last post, then you created a model which took an image of dimensions 50x50 as an input.</p>
+
+<p>First we import the following if we have not imported these before</p>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</code></pre></div>
+
+<p>Then we read the file using OpenCV.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">image</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imagePath</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The cv2. imread() function returns a NumPy array representing the image. Therefore, we need to convert it before we can use it.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">image_from_array</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Then we resize the image</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">size_image</span> <span class="o">=</span> <span class="n">image_from_array</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</code></pre></div>
+
+<p>After this we create a batch consisting of only one image</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">size_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+<p>We then convert this uint8 datatype to a float32 datatype</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">img</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Finally we make the prediction</p>
+
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">([</span><span class="s1">&#39;Infected&#39;</span><span class="p">,</span><span class="s1">&#39;Uninfected&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="p">))])</span>
+</code></pre></div>
+
+<p><code>Infected</code></p>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

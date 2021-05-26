@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Compiling AutoDock Vina on iOS</h1>
+
+<p>Why? Because I can.</p>
+
+<h2>Installing makedepend</h2>
+
+<p><code>makedepend</code> is a Unix tool used to generate dependencies of C source files. Most modern programs do not use this anymore, but then again AutoDock Vina's source code hasn't been changed since 2011. The first hurdle came when I saw that there was no makedepend command, neither was there any package on any development repository for iOS. So, I tracked down the original source code for <code>makedepend</code> (https://github.com/DerellLicht/makedepend). According to the repository this is actually the source code for the makedepend utility that came with some XWindows distribution back around Y2K. I am pretty sure there is a problem with my current compiler configuration because I had to manually edit the <code>Makefile</code> to provide the path to the iOS SDKs using the <code>-isysroot</code> flag.</p>
+
+<h2>Editing the Makefile</h2>
+
+<p>Original Makefile ( I used the provided mac Makefile base )</p>
+
+<pre><code>BASE=/usr/local
+BOOST_VERSION=1_41
+BOOST_INCLUDE = $(BASE)/include
+C_PLATFORM=-arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.5.sdk -mmacosx-version-min=10.4
+GPP=/usr/bin/g++
+C_OPTIONS= -O3 -DNDEBUG
+BOOST_LIB_VERSION=
+
+include ../../makefile_common
+</code></pre>
+
+<p>I installed Boost 1.68.0-1 from Sam Bingner's repository. ( Otherwise I would have had to compile boost too 😫 )</p>
+
+<p>Edited Makefile</p>
+
+<pre><code>BASE=/usr
+BOOST_VERSION=1_68
+BOOST_INCLUDE = $(BASE)/include
+C_PLATFORM=-arch arm64 -isysroot /var/sdks/Latest.sdk
+GPP=/usr/bin/g++
+C_OPTIONS= -O3 -DNDEBUG
+BOOST_LIB_VERSION=
+
+include ../../makefile_common
+
+</code></pre>
+
+<h2>Updating the Source Code</h2>
+
+<p>Of course since Boost 1.41 many things have been added and deprecated, that is why I had to edit the source code to make it work with version 1.68</p>
+
+<h3>Error 1 - No Matching Constructor</h3>
+
+<pre><code>../../../src/main/main.cpp:50:9: error: no matching constructor for initialization of 'path' (aka 'boost::filesystem::path')
+return path(str, boost::filesystem::native);
+</code></pre>
+
+<p>This was an easy fix, I just commented this and added a return statement to return the path</p>
+
+<pre><code>return path(str)
+</code></pre>
+
+<h3>Error 2 - No Member Named 'native<em>file</em>string'</h3>
+
+<pre><code>../../../src/main/main.cpp:665:57: error: no member named 'native_file_string' in 'boost::filesystem::path'
+                std::cerr &lt;&lt; "\n\nError: could not open \"" &lt;&lt; e.name.native_file_string() &lt;&lt; "\" for " &lt;&lt; (e.in ? "reading" : "writing") &lt;&lt; ".\n";
+                                                               ~~~~~~ ^
+../../../src/main/main.cpp:677:80: error: no member named 'native_file_string' in 'boost::filesystem::path'
+                std::cerr &lt;&lt; "\n\nParse error on line " &lt;&lt; e.line &lt;&lt; " in file \"" &lt;&lt; e.file.native_file_string() &lt;&lt; "\": " &lt;&lt; e.reason &lt;&lt; '\n';
+                                                                                      ~~~~~~ ^
+2 errors generated.
+</code></pre>
+
+<p>Turns out <code>native_file_string</code> was deprecated in Boost 1.57 and replaced with just <code>string</code></p>
+
+<h3>Error 3 - Library Not Found</h3>
+
+<p>This one still boggles me because there was no reason for it to not work, as a workaround I downloaded the DEB, extracted it and used that path for compiling.</p>
+
+<h3>Error 4 - No Member Named 'native<em>file</em>string' Again.</h3>
+
+<p>But, this time in another file and I quickly fixed it</p>
+
+<h2>Moment of Truth</h2>
+
+<p>Obviously it was working on my iPad, but would it work on another device? I transferred the compiled binary and </p>
+
+<p><img src="/assets/posts/autodock-vina/s1.png" alt="&quot;AutoDock Vina running on my iPhone&quot;" /></p>
+
+<p>The package is available on my repository and only depends on boost. ( Both, Vina and Vina-Split are part of the package)</p>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

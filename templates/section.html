@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Section{% endblock %}
+
+{% block body %}
+
+<main>
+	{{ content}}
+</main>
+
+<ul>
+{% for post in posts %}
+	<li><a href="{{post.link}}">{{ post.title }}</a></li>
+	<ul>
+		<li>{{ post.description}}</li>
+		<li>Published On: {{post.date}}</li>
+		<li>Tags: 
+			{% for tag in post.tags %}
+			{{ tag }},
+			{% endfor %}
+	</ul>
+
+{% endfor %}
+</ul>
+
+{% endblock %}

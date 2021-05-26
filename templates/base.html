@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - {% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    {% include "header.html" %}
+    {% block body %}{% endblock %}
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

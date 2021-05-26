@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content">
+	<channel>
+		<title>{{ feed.title}}</title>
+		<description>{{ feed.description }}</description>
+		<link>{{ feed.link }}</link><language>en</language>
+		<lastBuildDate>{{ feed.date }}</lastBuildDate>
+		<pubDate>{{ feed.date }}</pubDate>
+		<ttl>250</ttl>
+		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
+		{% for post in posts %}
+		<item>
+			<guid isPermaLink="true">
+				{{post.metadata.link}}
+			</guid>
+			<title>
+				{{post.metadata.title}}
+			</title>
+			<description>
+				{{post.metadata.description}}
+			</description>
+			<link>{{post.metadata.link}}</link>
+			<pubDate>{{post.metadata.date}}</pubDate>
+			<content:encoded><![CDATA[{{post}}]]></content:encoded>
+		</item>
+		{% endfor %}
+</channel></rss>

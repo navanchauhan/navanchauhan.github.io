@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Fri, 25 Jun 2021 02:35:50 -0000</lastBuildDate>
-		<pubDate>Fri, 25 Jun 2021 02:35:50 -0000</pubDate>
+		<lastBuildDate>Fri, 25 Jun 2021 02:41:04 -0000</lastBuildDate>
+		<pubDate>Fri, 25 Jun 2021 02:41:04 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -150,6 +150,12 @@ I am not handling lists or images right now.</p>
 
 <div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;Web Version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">post_link</span><span class="p">))</span>
 </code></pre></div>
+
+<h2>Result</h2>
+
+<p><blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Posting Blog Posts as Twitter Threads Part 1/n <br><br> Why? Eh, no good reason, but should be fun. <br> Plan of Action <br><br> I recently shifted my website to a static site generator I wrote specifically for myself. 1/5</p>&mdash; Navan Chauhan (@navanchauhan) <a rel="noopener" target="_blank" href="https://twitter.com/navanchauhan/status/1408165730487443456?ref_src=twsrc%5Etfw">June 24, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+<p><blockquote class="twitter-tweet" data-lang="en" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Web Version: <a rel="noopener" target="_blank" href="https://t.co/zROU1F5DYv">https://t.co/zROU1F5DYv</a></p>&mdash; Navan Chauhan (@navanchauhan) <a rel="noopener" target="_blank" href="https://twitter.com/navanchauhan/status/1408168879617052674?ref_src=twsrc%5Etfw">June 24, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 
 <h2>What's Next?</h2>
 

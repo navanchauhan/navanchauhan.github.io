@@ -11,7 +11,7 @@ Why? Eh, no good reason, but should be fun.
 ## Plan of Action
 
 I recently shifted my website to a static site generator I wrote specifically for myself. 
-Thus, it should be easy to just add a feature into it to check for new posts, split the text into chunks for Twitter threads and post them on Twitter.
+Thus, it should be easy to just add a feature to check for new posts, split the text into chunks for Twitter threads and tweet them.
 I am not handling lists or images right now.
 
 ## Time to Code
@@ -70,9 +70,9 @@ with open(sample_markdown_file) as f:
 				tweets.append(line)
 ```
 
-Every status update using tweepy has an id attached to it, for the next tweet in the thread, it add that ID while calling the function.
+Every status update using tweepy has an id attached to it, for the next tweet in the thread, it adds that ID while calling the function.
 
-For every tweet fragment, it also append 1/n.
+For every tweet fragment, it also appends 1/n.
 
 ```python
 for idx, tweet in enumerate(tweets):

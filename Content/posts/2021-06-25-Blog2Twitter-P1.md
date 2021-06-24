@@ -92,6 +92,14 @@ Finally, it replies to the last tweet in the thread with the link of the post.
 api.update_status("Web Version: {}".format(post_link))
 ```
 
+## Result
+
+<blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Posting Blog Posts as Twitter Threads Part 1/n <br><br> Why? Eh, no good reason, but should be fun. <br> Plan of Action <br><br> I recently shifted my website to a static site generator I wrote specifically for myself. 1/5</p>&mdash; Navan Chauhan (@navanchauhan) <a href="https://twitter.com/navanchauhan/status/1408165730487443456?ref_src=twsrc%5Etfw">June 24, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<blockquote class="twitter-tweet" data-lang="en" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Web Version: <a href="https://t.co/zROU1F5DYv">https://t.co/zROU1F5DYv</a></p>&mdash; Navan Chauhan (@navanchauhan) <a href="https://twitter.com/navanchauhan/status/1408168879617052674?ref_src=twsrc%5Etfw">June 24, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
 ## What's Next?
 
 For the next part, I will try to append the code as well. 

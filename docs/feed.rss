@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Fri, 25 Jun 2021 02:25:20 -0000</lastBuildDate>
-		<pubDate>Fri, 25 Jun 2021 02:25:20 -0000</pubDate>
+		<lastBuildDate>Fri, 25 Jun 2021 02:35:50 -0000</lastBuildDate>
+		<pubDate>Fri, 25 Jun 2021 02:35:50 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -74,7 +74,7 @@
 <h2>Plan of Action</h2>
 
 <p>I recently shifted my website to a static site generator I wrote specifically for myself. 
-Thus, it should be easy to just add a feature into it to check for new posts, split the text into chunks for Twitter threads and post them on Twitter.
+Thus, it should be easy to just add a feature to check for new posts, split the text into chunks for Twitter threads and tweet them.
 I am not handling lists or images right now.</p>
 
 <h2>Time to Code</h2>
@@ -131,9 +131,9 @@ I am not handling lists or images right now.</p>
                 <span class="n">tweets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 </code></pre></div>
 
-<p>Every status update using tweepy has an id attached to it, for the next tweet in the thread, it add that ID while calling the function.</p>
+<p>Every status update using tweepy has an id attached to it, for the next tweet in the thread, it adds that ID while calling the function.</p>
 
-<p>For every tweet fragment, it also append 1/n.</p>
+<p>For every tweet fragment, it also appends 1/n.</p>
 
 <div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tweets</span><span class="p">):</span>
     <span class="n">tweet</span> <span class="o">+=</span> <span class="s2">&quot; </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tweets</span><span class="p">))</span>

@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Thu, 27 May 2021 00:22:21 -0000</lastBuildDate>
-		<pubDate>Thu, 27 May 2021 00:22:21 -0000</pubDate>
+		<lastBuildDate>Fri, 25 Jun 2021 02:25:20 -0000</lastBuildDate>
+		<pubDate>Fri, 25 Jun 2021 02:25:20 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -52,6 +52,109 @@
 <h1>Where is the Programming?</h1>
 
 <p>The fact that there are steps on producing Vaporwave, this gave me the idea that Vaporwave can actually be made using programming, stay tuned for when I publish the program which I am working on ( Generating A E S T H E T I C artwork and remixes)</p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2021-06-25-Blog2Twitter-P1.html
+			</guid>
+			<title>
+				Posting Blog Posts as Twitter Threads Part 1/n
+			</title>
+			<description>
+				Converting Posts to Twitter Threads
+			</description>
+			<link>https://web.navan.dev/posts/2021-06-25-Blog2Twitter-P1.html</link>
+			<pubDate>Fri, 25 Jun 2021 00:08:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Posting Blog Posts as Twitter Threads Part 1/n</h1>
+
+<p>Why? Eh, no good reason, but should be fun.</p>
+
+<h2>Plan of Action</h2>
+
+<p>I recently shifted my website to a static site generator I wrote specifically for myself. 
+Thus, it should be easy to just add a feature into it to check for new posts, split the text into chunks for Twitter threads and post them on Twitter.
+I am not handling lists or images right now.</p>
+
+<h2>Time to Code</h2>
+
+<p>First, the dependency: tweepy for tweeting.</p>
+
+<p><code>pip install tweepy</code></p>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">tweepy</span>
+
+<span class="n">consumer_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;consumer_key&quot;</span><span class="p">]</span>
+<span class="n">consumer_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;consumer_secret&quot;</span><span class="p">]</span>
+
+<span class="n">access_token</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;access_token&quot;</span><span class="p">]</span>
+<span class="n">access_token_secret</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;access_token_secret&quot;</span><span class="p">]</span>
+
+<span class="n">auth</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">OAuthHandler</span><span class="p">(</span><span class="n">consumer_key</span><span class="p">,</span> <span class="n">consumer_secret</span><span class="p">)</span>
+<span class="n">auth</span><span class="o">.</span><span class="n">set_access_token</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span> <span class="n">access_token_secret</span><span class="p">)</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span>
+</code></pre></div>
+
+<p>The program need to convert the blog post into text fragments.</p>
+
+<p>It reads the markdown file, removes the top YAML content, checks for headers and splits the content.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">tweets</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">first___n</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sample_markdown_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">first___n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;---</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">:</span>
+                <span class="n">first___n</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">continue</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="n">line</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span>
+        <span class="k">if</span> <span class="s2">&quot;#&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">line</span>
+            <span class="n">line</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tweets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">260</span> <span class="ow">and</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tweets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">))</span> <span class="o">&lt;=</span> <span class="mi">260</span><span class="p">:</span>
+                <span class="n">tweets</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">line</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tweets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">260</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tweets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Every status update using tweepy has an id attached to it, for the next tweet in the thread, it add that ID while calling the function.</p>
+
+<p>For every tweet fragment, it also append 1/n.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tweets</span><span class="p">):</span>
+    <span class="n">tweet</span> <span class="o">+=</span> <span class="s2">&quot; </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tweets</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">tweet</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">tweet</span><span class="p">,</span><span class="n">in_reply_to_status_id</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tweet</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tweets</span><span class="p">)))</span>
+</code></pre></div>
+
+<p>Finally, it replies to the last tweet in the thread with the link of the post.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;Web Version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">post_link</span><span class="p">))</span>
+</code></pre></div>
+
+<h2>What's Next?</h2>
+
+<p>For the next part, I will try to append the code as well. 
+I actually added the code to this post after running the program.</p>
 ]]></content:encoded>
 		</item>
 		

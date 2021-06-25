@@ -6,6 +6,16 @@ tags: Tutorial, Code-Snippet, Colab
 
 # Installing RDKit on Google Colab
 
+**EDIT:** Try installing RDKit using pip
+
+```
+!pip install rdkit-pypi
+
+```
+
+## Old Method (Still Works)
+
+
 RDKit is one of the most integral part of any Cheminfomatic specialist's toolkit but it is notoriously difficult to install unless you already have `conda` installed. I originally found this in a GitHub Gist but I have not been able to find that gist again :/ 
 
 Just copy and paste this in a Colab cell and it will install it 👍

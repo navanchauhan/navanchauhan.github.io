@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Basic NFC Music Cards for iOS</h1>
+
+<p>I had a pack of NFC cards and decided it was the perfect time to create Music Cards. I do not have a "music setup."
+So, I did not have to ensure this could work with any device. I settled with using Shortcuts personal Automation.</p>
+
+<h2>Designing the Template</h2>
+
+<p>I tried measuring the card's dimensions with the in-built Measure app, but it was off by a few mm. </p>
+
+<p><img src="/assets/posts/music-cards/failed-measure.png" alt="Failed Attempt to Measure" /></p>
+
+<p>After measuring with a scale, I decided on a simple template I made in Apple Pages.</p>
+
+<p><img src="/assets/posts/music-cards/basic-template.png" alt="Screenshot of the Basic Template" /></p>
+
+<p><img src="/assets/posts/music-cards/mccartney-iii.png" alt="Screenshot of Design for McCartney III" /></p>
+
+<h2>Creating the Automation</h2>
+
+<p>I created a personal automation in the Shortcuts app which got triggered when a particular NFC card was scanned, ask playback destination and play the album/playlist.</p>
+
+<p><img src="/assets/popsts/music-cards/shortcuts-01.png" alt="Screenshot of Shortcuts App" /></p>
+
+<p><img src="/assets/posts/music-cards/shortcuts-02.png" alt="Screenshot of Automation Summary" /></p>
+
+<h2>Demo</h2>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pV5EPujEI-Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

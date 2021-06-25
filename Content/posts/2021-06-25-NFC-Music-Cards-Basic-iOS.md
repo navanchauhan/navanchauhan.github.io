@@ -26,7 +26,7 @@ After measuring with a scale, I decided on a simple template I made in Apple Pag
 
 I created a personal automation in the Shortcuts app which got triggered when a particular NFC card was scanned, ask playback destination and play the album/playlist.
 
-![Screenshot of Shortcuts App](/assets/popsts/music-cards/shortcuts-01.png)
+![Screenshot of Shortcuts App](/assets/posts/music-cards/shortcuts-01.png)
 
 ![Screenshot of Automation Summary](/assets/posts/music-cards/shortcuts-02.png)
 

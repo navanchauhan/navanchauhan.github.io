@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Fri, 25 Jun 2021 16:50:37 -0000</lastBuildDate>
-		<pubDate>Fri, 25 Jun 2021 16:50:37 -0000</pubDate>
+		<lastBuildDate>Fri, 25 Jun 2021 16:52:45 -0000</lastBuildDate>
+		<pubDate>Fri, 25 Jun 2021 16:52:45 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -1534,7 +1534,7 @@ So, I did not have to ensure this could work with any device. I settled with usi
 
 <p>I created a personal automation in the Shortcuts app which got triggered when a particular NFC card was scanned, ask playback destination and play the album/playlist.</p>
 
-<p><img src="/assets/popsts/music-cards/shortcuts-01.png" alt="Screenshot of Shortcuts App" /></p>
+<p><img src="/assets/posts/music-cards/shortcuts-01.png" alt="Screenshot of Shortcuts App" /></p>
 
 <p><img src="/assets/posts/music-cards/shortcuts-02.png" alt="Screenshot of Automation Summary" /></p>
 

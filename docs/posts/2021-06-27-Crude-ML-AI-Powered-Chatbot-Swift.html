@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey - Post</title>
+    <meta name="og:site_name" content="Navan Chauhan" />
+    <link rel="canonical" href="https://navanchauhan.github.io/" />
+    <meta name="twitter:url" content="https://navanchauhan.github.io/" />
+    <meta name="og:url" content="https://navanchauhan.github.io/" />
+    <meta name="twitter:title" content="Hey" />
+    <meta name="og:title" content="Hey" />
+    <meta name="description" content="Welcome to my personal fragment of the internet." />
+    <meta name="twitter:description" content="Welcome to my personal fragment of the internet. Majority of the posts should be complete." />
+    <meta name="og:description" content="Welcome to my personal fragment of the internet." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to Navan Chauhan" />
+    <meta name="twitter:image" content="https://navanchauhan.github.io/images/logo.png" />
+    <meta name="og:image" content="https://navanchauhan.github.io/images/logo.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="google-site-verification" content="LVeSZxz-QskhbEjHxOi7-BM5dDxTg53x2TwrjFxfL0k" />
+    <script async src="//gc.zgo.at/count.js" data-goatcounter="https://navanchauhan.goatcounter.com/count"></script>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+	<h1>Making a Crude ML Powered Chatbot in Swift using CoreML</h1>
+
+<p>A chatbot/virtual assistant, on paper, looks easy to build.
+The user says something, the programs finds the best action, checks if additional input is required and sends back the output.
+To do this in Swift, I used two separate ML Models created using Apple's Create ML App.
+First is a Text Classifier to classify intent, and the other a word tagger for extracting input from the input message. 
+Disclaimer: This is a very crude proof-of-concept, but it does work.</p>
+
+<h2>Text Classifier</h2>
+
+<p>I opened a CSV file and added some sample entries, with a corresponding label.</p>
+
+<p><img src="/assets/posts/swift-chatbot/intent-csv.png" alt="Screenshot of Sample Dataset" />
+<img src="/assets/posts/swift-chatbot/create-intent.png" alt="Screenshot of Create ML Text Classifier" /></p>
+
+<h2>Word Tagging</h2>
+
+<p>This is useful to extract the required variables directly from the user's input.
+This model will be only called if the intent from the classifier is a custom action.
+I created a sample JSON with only 3 examples (I know, very less, but works for a crude PoC).</p>
+
+<p><img src="/assets/posts/swift-chatbot/drugs-json.png" alt="Screenshot of Sample Dataset" />
+<img src="/assets/posts/swift-chatbot/create-tagger.png" alt="Screenshot of Create ML Text Classifier" /></p>
+
+<h2>Time to Get Swift-y</h2>
+
+<p>The initial part is easy, importing CoreML and NaturalLanguage and then initializing the models and the tagger.</p>
+
+<p><img src="/assets/posts/swift-chatbot/carbon.png" alt="Screenshot" /></p>
+
+<div class="codehilite"><pre><span></span><code><span class="kd">import</span> <span class="nc">CoreML</span>
+<span class="kd">import</span> <span class="nc">NaturalLanguage</span>
+
+<span class="kd">let</span> <span class="nv">mlModelClassifier</span> <span class="p">=</span> <span class="k">try</span> <span class="n">IntentDetection_1</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span>  <span class="bp">MLModelConfiguration</span><span class="p">()).</span><span class="n">model</span>
+<span class="kd">let</span> <span class="nv">mlModelTagger</span> <span class="p">=</span> <span class="k">try</span> <span class="n">CompoundTagger</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span> <span class="bp">MLModelConfiguration</span><span class="p">()).</span><span class="n">model</span>
+
+<span class="kd">let</span> <span class="nv">intentPredictor</span> <span class="p">=</span> <span class="k">try</span> <span class="bp">NLModel</span><span class="p">(</span><span class="n">mlModel</span><span class="p">:</span> <span class="n">mlModelClassifier</span><span class="p">)</span>
+<span class="kd">let</span> <span class="nv">tagPredictor</span> <span class="p">=</span> <span class="k">try</span> <span class="bp">NLModel</span><span class="p">(</span><span class="n">mlModel</span><span class="p">:</span> <span class="n">mlModelTagger</span><span class="p">)</span>
+
+<span class="kd">let</span> <span class="nv">tagger</span> <span class="p">=</span> <span class="bp">NLTagger</span><span class="p">(</span><span class="n">tagSchemes</span><span class="p">:</span> <span class="p">[.</span><span class="n">nameType</span><span class="p">,</span> <span class="n">NLTagScheme</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">)])</span>
+<span class="n">tagger</span><span class="p">.</span><span class="n">setModels</span><span class="p">([</span><span class="n">tagPredictor</span><span class="p">],</span> <span class="n">forTagScheme</span><span class="p">:</span> <span class="n">NLTagScheme</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">))</span>
+</code></pre></div>
+
+<p>Now, we define a simple structure which the custom function(s) can use to access the provided input. 
+It can also be used to hold additional variables.
+This custom action for our third label, uses the Word Tagger model to check for the compound in the user's message.
+If it is present then it displays the name, otherwise it tells the user that they have not provided the input.
+The latter can be replaced with a function which asks the user for the input. </p>
+
+<p><img src="/assets/posts/swift-chatbot/carbon-2.png" alt="Screenshot" /></p>
+
+<div class="codehilite"><pre><span></span><code><span class="kd">struct</span> <span class="nc">User</span> <span class="p">{</span>
+    <span class="kd">static</span> <span class="kd">var</span> <span class="nv">message</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">customAction</span><span class="p">()</span> <span class="p">-&gt;</span> <span class="nb">String</span> <span class="p">{</span>
+    <span class="kd">let</span> <span class="nv">sampleMessage</span> <span class="p">=</span> <span class="n">User</span><span class="p">.</span><span class="n">message</span>
+    <span class="kd">var</span> <span class="nv">actionable_item</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
+    <span class="n">tagger</span><span class="p">.</span><span class="n">string</span> <span class="p">=</span> <span class="n">sampleMessage</span>
+    <span class="n">tagger</span><span class="p">.</span><span class="n">enumerateTags</span><span class="p">(</span><span class="k">in</span><span class="p">:</span> <span class="n">sampleMessage</span><span class="p">.</span><span class="n">startIndex</span><span class="p">..&lt;</span><span class="n">sampleMessage</span><span class="p">.</span><span class="n">endIndex</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="p">.</span><span class="n">word</span><span class="p">,</span>
+                             <span class="n">scheme</span><span class="p">:</span> <span class="n">NLTagScheme</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">),</span> <span class="n">options</span><span class="p">:</span> <span class="p">.</span><span class="n">omitWhitespace</span><span class="p">)</span> <span class="p">{</span> <span class="n">tag</span><span class="p">,</span> <span class="n">tokenRange</span>  <span class="k">in</span>
+            <span class="k">if</span> <span class="kd">let</span> <span class="nv">tag</span> <span class="p">=</span> <span class="n">tag</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="n">tag</span><span class="p">.</span><span class="n">rawValue</span> <span class="p">==</span> <span class="s">&quot;COMPOUND&quot;</span> <span class="p">{</span>
+                    <span class="n">actionable_item</span> <span class="o">+=</span> <span class="n">sampleMessage</span><span class="p">[</span><span class="n">tokenRange</span><span class="p">]</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="k">return</span> <span class="kc">true</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">actionable_item</span> <span class="p">==</span> <span class="s">&quot;&quot;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;You did not provide any input&quot;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="s">&quot;You provided input </span><span class="si">\(</span><span class="n">actionable_item</span><span class="si">)</span><span class="s"> for performing custom action&quot;</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
+
+<p>Sometimes, no action needs to be performed, and the bot can use a predefined set of responses. 
+Otherwise, if an action is required, it can call the custom action.</p>
+
+<p><img src="/assets/posts/swift-chatbot/carbon-3.png" alt="Screenshot" /></p>
+
+<div class="codehilite"><pre><span></span><code><span class="kd">let</span> <span class="nv">defaultResponses</span> <span class="p">=</span> <span class="p">[</span>
+    <span class="s">&quot;greetings&quot;</span><span class="p">:</span> <span class="s">&quot;Hello&quot;</span><span class="p">,</span>
+    <span class="s">&quot;banter&quot;</span><span class="p">:</span> <span class="s">&quot;no, plix no&quot;</span>
+<span class="p">]</span>
+
+<span class="kd">let</span> <span class="nv">customActions</span> <span class="p">=</span> <span class="p">[</span>
+    <span class="s">&quot;deez-drug&quot;</span><span class="p">:</span> <span class="n">customAction</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p>In the sample input, the program is updating the User.message and checking if it has a default response.
+Otherwise, it calls the custom action.</p>
+
+<p><img src="/assets/posts/swift-chatbot/carbon-4.png" alt="Screenshot" /></p>
+
+<div class="codehilite"><pre><span></span><code><span class="kd">let</span> <span class="nv">defaultResponses</span> <span class="p">=</span> <span class="p">[</span>
+    <span class="s">&quot;greetings&quot;</span><span class="p">:</span> <span class="s">&quot;Hello&quot;</span><span class="p">,</span>
+    <span class="s">&quot;banter&quot;</span><span class="p">:</span> <span class="s">&quot;no, plix no&quot;</span>
+<span class="p">]</span>
+
+<span class="kd">let</span> <span class="nv">customActions</span> <span class="p">=</span> <span class="p">[</span>
+    <span class="s">&quot;deez-drug&quot;</span><span class="p">:</span> <span class="n">customAction</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p><img src="/assets/posts/swift-chatbot/output.png" alt="Output" /></p>
+
+<p>So easy.</p>
+
+<p>If I ever release a part-2, it will either be about implementing this in Tensorflow.JS or an iOS app using SwiftUI ;)</p>
+
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

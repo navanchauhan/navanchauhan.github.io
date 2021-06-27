@@ -41,24 +41,21 @@
 <main>
 	<h1>Cheminformatics on the Web (2021)</h1>
 
-<p>Here, I have compiled a list of some tools and possible solutions.
-The web is a nice platform, it is available anywhere and just requires an internet connection.
-I, personally like static websites which don't require a server side application and can be hosted on platforms like GitHub Pages.
-Or, just open the HTML file and run it in your browser. 
-No data is required to be sent to any server and your device's computational power is used.
-Even our phones have a lot of computational power now, which allows the user to run tasks on the go without needing to worry about managing dependencies.
-WebAssembly (Wasm) has made running code written for other platfroms on the web relativevly easier.
+<p>Here, I have compiled a list of some libraries and possible ideas.
+I, personally, like static websites which don't require a server side application and can be hosted on platforms like GitHub Pages.
+Or, just by opening the HTML file and running it in your browser. 
+WebAssembly (Wasm) has made running code written for other platforms on the web relatively easier.
 Combine Wasm with some pure JavaScript libraries, and you get a platform to quickly amp up your speed in some common tasks.</p>
 
 <h2>RDKit</h2>
 
 <p>RDKit bundles a minimal JavaScript Wrapper in their core RDKit suite. 
-This is perfect for generating 2D Figures (HTML5 Canva/SVGs), Cannonical SMILES, Descriptors e.t.c</p>
+This is perfect for generating 2D Figures (HTML5 Canva/SVGs), Canonical SMILES, Descriptors e.t.c</p>
 
 <h3>Substructure Matching</h3>
 
 <p>This can be used to flag undesirable functional groups in a given compound.
-Create a simple key:value pair of name:SMARTS and use it to highlight substructure matches. 
+Create a simple key:value pairs of name:SMARTS and use it to highlight substructure matches. 
 Thus, something like PostEra's Medicinal Chemistry Alert can be done with RDKit-JS alone.</p>
 
 <p><img src="/assets/posts/cheminformatics-web/postera-demo.png" alt="PostEra Demo" /></p>
@@ -78,22 +75,22 @@ Thus, something like PostEra's Medicinal Chemistry Alert can be done with RDKit-
 <p>Obviously, it takes a few hits in the time to complete the docking because the code is transpiled from C++ to Wasm.
 But, the only major drawback (for now) is that it uses SharedArrayBuffer.
 Due to Spectre, this feature was disabled on all browsers.
-Currently, only Chromium-based and Firefox browsers have reimplemented and renabled it. 
-Hopefully, soon this will be again supported by all major browsers.</p>
+Currently, only Chromium-based and Firefox browsers have reimplemented and enabled it. 
+Hopefully, soon, this will be again supported by all major browsers.</p>
 
 <h2>Machine Learning</h2>
 
 <p>Frameworks have now evolved enough to allow exporting models to be able to run them through JavaScript/Wasm backend.
 An example task can be <strong>NER</strong> or Named-entity Recognition.
-It can be used to extract compounds or diseases from a large blob of text and then matched with external refferences.
+It can be used to extract compounds or diseases from a large blob of text and then matched with external references.
 Another example is target-prediction right in the browser: <a rel="noopener" target="_blank" href="http://chembl.blogspot.com/2021/03/target-predictions-in-browser-with.html">CHEMBL - Target Prediction in Browser</a></p>
 
 <p>CHEMBL Group is first training the model using PyTorch (A Python ML Library), then converting it to the ONNX runtime.
-A model like this can be directly implemented in Tensorflow, and then exported to be able to run with TensorFlow.js</p>
+A model like this can be directly implemented in TensorFlow, and then exported to be able to run with TensorFlow.js</p>
 
 <h2>Cheminfo-to-web</h2>
 
-<p>The project aims to port chemoinformatics libraries into JavaScript via Emscripten.
+<p>The project aims to port cheminformatics libraries into JavaScript via Emscripten.
 They have ported InChI, Indigo, OpenBabel, and OpenMD</p>
 
 <h3>Kekule.js</h3>
@@ -108,7 +105,7 @@ They have ported InChI, Indigo, OpenBabel, and OpenMD</p>
 
 <p>The previous machine learning examples can be packaged as browser-extensions to perform tasks on the article you are reading. 
 With iOS 15 bringing WebExtensions to iOS/iPadOS, the same browser extension source code can be now used on Desktop and Mobile Phones.
-You can quickly create an extenison to convert PDB codes into links to RCSB, highlight SMILES, highlight output of NER models, e.t.c</p>
+You can quickly create an extension to convert PDB codes into links to RCSB, highlight SMILES, highlight output of NER models, e.t.c</p>
 
 <h2>Conclusion</h2>
 

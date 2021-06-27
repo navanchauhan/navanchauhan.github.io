@@ -17,6 +17,32 @@ Disclaimer: This is a very crude proof-of-concept, but it does work.
 I opened a CSV file and added some sample entries, with a corresponding label.
 
 ![Screenshot of Sample Dataset](/assets/posts/swift-chatbot/intent-csv.png)
+
+```csv
+text,label
+hey there,greetings
+hello,greetings
+good morning,greetings
+good evening,greetings
+hi,greetings
+open the pod bay doors,banter
+who let the dogs out,banter
+ahh that's hot,banter
+bruh that's rad,banter
+nothing,banter
+da fuq,banter
+can you tell me details about the compound aspirin,deez-drug
+i want to know about some compounds,deez-drug
+search about the compound,deez-drug
+tell me about the molecule,deez-drug
+tell me about something,banter
+tell me something cool,banter
+tell a joke,banter
+make me a sandwich,banter
+whatcha doing,greetings
+i love you,banter
+```
+
 ![Screenshot of Create ML Text Classifier](/assets/posts/swift-chatbot/create-intent.png)
 
 ## Word Tagging
@@ -26,6 +52,24 @@ This model will be only called if the intent from the classifier is a custom act
 I created a sample JSON with only 3 examples (I know, very less, but works for a crude PoC).
 
 ![Screenshot of Sample Dataset](/assets/posts/swift-chatbot/drugs-json.png)
+
+```json
+[
+    {
+        "tokens": ["Tell","me","about","the","drug","Aspirin","."],
+        "labels": ["NONE","NONE","NONE","NONE","NONE","COMPOUND","NONE"]
+    },
+    {
+        "tokens": ["Please","tell","me","information","about","the","compound","salicylic","acid","."],
+        "labels": ["NONE","NONE","NONE","NONE","NONE","NONE","NONE","COMPOUND","COMPOUND","NONE"]
+    },
+    {
+        "tokens": ["Information","about","the","compound","Ibuprofen","please","."],
+        "labels": ["NONE","NONE","NONE","NONE","COMPOUND","NONE","NONE"]
+    }
+]
+```
+
 ![Screenshot of Create ML Text Classifier](/assets/posts/swift-chatbot/create-tagger.png)
 
 ## Time to Get Swift-y

@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Mon, 28 Jun 2021 00:50:20 -0000</lastBuildDate>
-		<pubDate>Mon, 28 Jun 2021 00:50:20 -0000</pubDate>
+		<lastBuildDate>Mon, 28 Jun 2021 00:52:32 -0000</lastBuildDate>
+		<pubDate>Mon, 28 Jun 2021 00:52:32 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -2045,8 +2045,33 @@ Disclaimer: This is a very crude proof-of-concept, but it does work.</p>
 
 <p>I opened a CSV file and added some sample entries, with a corresponding label.</p>
 
-<p><img src="/assets/posts/swift-chatbot/intent-csv.png" alt="Screenshot of Sample Dataset" />
-<img src="/assets/posts/swift-chatbot/create-intent.png" alt="Screenshot of Create ML Text Classifier" /></p>
+<p><img src="/assets/posts/swift-chatbot/intent-csv.png" alt="Screenshot of Sample Dataset" /></p>
+
+<pre><code>text,label
+hey there,greetings
+hello,greetings
+good morning,greetings
+good evening,greetings
+hi,greetings
+open the pod bay doors,banter
+who let the dogs out,banter
+ahh that's hot,banter
+bruh that's rad,banter
+nothing,banter
+da fuq,banter
+can you tell me details about the compound aspirin,deez-drug
+i want to know about some compounds,deez-drug
+search about the compound,deez-drug
+tell me about the molecule,deez-drug
+tell me about something,banter
+tell me something cool,banter
+tell a joke,banter
+make me a sandwich,banter
+whatcha doing,greetings
+i love you,banter
+</code></pre>
+
+<p><img src="/assets/posts/swift-chatbot/create-intent.png" alt="Screenshot of Create ML Text Classifier" /></p>
 
 <h2>Word Tagging</h2>
 
@@ -2054,8 +2079,25 @@ Disclaimer: This is a very crude proof-of-concept, but it does work.</p>
 This model will be only called if the intent from the classifier is a custom action.
 I created a sample JSON with only 3 examples (I know, very less, but works for a crude PoC).</p>
 
-<p><img src="/assets/posts/swift-chatbot/drugs-json.png" alt="Screenshot of Sample Dataset" />
-<img src="/assets/posts/swift-chatbot/create-tagger.png" alt="Screenshot of Create ML Text Classifier" /></p>
+<p><img src="/assets/posts/swift-chatbot/drugs-json.png" alt="Screenshot of Sample Dataset" /></p>
+
+<div class="codehilite"><pre><span></span><code><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;tokens&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Tell&quot;</span><span class="p">,</span><span class="s2">&quot;me&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;drug&quot;</span><span class="p">,</span><span class="s2">&quot;Aspirin&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span>
+        <span class="nt">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;tokens&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Please&quot;</span><span class="p">,</span><span class="s2">&quot;tell&quot;</span><span class="p">,</span><span class="s2">&quot;me&quot;</span><span class="p">,</span><span class="s2">&quot;information&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;compound&quot;</span><span class="p">,</span><span class="s2">&quot;salicylic&quot;</span><span class="p">,</span><span class="s2">&quot;acid&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span>
+        <span class="nt">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;tokens&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Information&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;compound&quot;</span><span class="p">,</span><span class="s2">&quot;Ibuprofen&quot;</span><span class="p">,</span><span class="s2">&quot;please&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span>
+        <span class="nt">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<p><img src="/assets/posts/swift-chatbot/create-tagger.png" alt="Screenshot of Create ML Text Classifier" /></p>
 
 <h2>Time to Get Swift-y</h2>
 

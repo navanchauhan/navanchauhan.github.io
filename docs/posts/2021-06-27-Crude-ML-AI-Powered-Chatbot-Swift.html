@@ -136,14 +136,26 @@ Otherwise, it calls the custom action.</p>
 
 <p><img src="/assets/posts/swift-chatbot/carbon-4.png" alt="Screenshot" /></p>
 
-<div class="codehilite"><pre><span></span><code><span class="kd">let</span> <span class="nv">defaultResponses</span> <span class="p">=</span> <span class="p">[</span>
-    <span class="s">&quot;greetings&quot;</span><span class="p">:</span> <span class="s">&quot;Hello&quot;</span><span class="p">,</span>
-    <span class="s">&quot;banter&quot;</span><span class="p">:</span> <span class="s">&quot;no, plix no&quot;</span>
+<div class="codehilite"><pre><span></span><code><span class="kd">let</span> <span class="nv">sampleMessages</span> <span class="p">=</span> <span class="p">[</span>
+    <span class="s">&quot;Hey there, how is it going&quot;</span><span class="p">,</span>
+    <span class="s">&quot;hello, there&quot;</span><span class="p">,</span>
+    <span class="s">&quot;Who let the dogs out&quot;</span><span class="p">,</span>
+    <span class="s">&quot;can you tell me about the compound Geraniin&quot;</span><span class="p">,</span>
+    <span class="s">&quot;what do you know about the compound Ibuprofen&quot;</span><span class="p">,</span>
+    <span class="s">&quot;please, tell me more about the compound&quot;</span><span class="p">,</span>
+    <span class="s">&quot;please, tell me more about the molecule dihydrogen-monoxide&quot;</span>
 <span class="p">]</span>
 
-<span class="kd">let</span> <span class="nv">customActions</span> <span class="p">=</span> <span class="p">[</span>
-    <span class="s">&quot;deez-drug&quot;</span><span class="p">:</span> <span class="n">customAction</span>
-<span class="p">]</span>
+<span class="k">for</span> <span class="n">sampleMessage</span> <span class="k">in</span> <span class="n">sampleMessages</span> <span class="p">{</span>
+    <span class="n">User</span><span class="p">.</span><span class="n">message</span> <span class="p">=</span> <span class="n">sampleMessage</span>
+    <span class="kd">let</span> <span class="nv">prediction</span> <span class="p">=</span> <span class="n">intentPredictor</span><span class="p">.</span><span class="n">predictedLabel</span><span class="p">(</span><span class="k">for</span><span class="p">:</span> <span class="n">sampleMessage</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">defaultResponses</span><span class="p">[</span><span class="n">prediction</span><span class="p">!]</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">defaultResponses</span><span class="p">[</span><span class="n">prediction</span><span class="p">!]</span><span class="o">!</span><span class="p">)</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">customActions</span><span class="p">[</span><span class="n">prediction</span><span class="p">!]</span> <span class="o">!=</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">{</span>
+        <span class="bp">print</span><span class="p">(</span><span class="n">customActions</span><span class="p">[</span><span class="n">prediction</span><span class="p">!]</span><span class="o">!</span><span class="p">())</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre></div>
 
 <p><img src="/assets/posts/swift-chatbot/output.png" alt="Output" /></p>

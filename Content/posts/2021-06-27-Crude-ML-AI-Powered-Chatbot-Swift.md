@@ -105,14 +105,26 @@ Otherwise, it calls the custom action.
 ![Screenshot](/assets/posts/swift-chatbot/carbon-4.png)
 
 ```swift
-let defaultResponses = [
-    "greetings": "Hello",
-    "banter": "no, plix no"
+let sampleMessages = [
+    "Hey there, how is it going",
+    "hello, there",
+    "Who let the dogs out",
+    "can you tell me about the compound Geraniin",
+    "what do you know about the compound Ibuprofen",
+    "please, tell me more about the compound",
+    "please, tell me more about the molecule dihydrogen-monoxide"
 ]
 
-let customActions = [
-    "deez-drug": customAction
-]
+for sampleMessage in sampleMessages {
+    User.message = sampleMessage
+    let prediction = intentPredictor.predictedLabel(for: sampleMessage)
+
+    if (defaultResponses[prediction!] != nil) {
+        print(defaultResponses[prediction!]!)
+    } else if (customActions[prediction!] != nil) {
+        print(customActions[prediction!]!())
+    }
+}
 ```
 
 ![Output](/assets/posts/swift-chatbot/output.png)

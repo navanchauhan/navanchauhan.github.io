@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sun, 07 Nov 2021 17:42:49 -0000</lastBuildDate>
-		<pubDate>Sun, 07 Nov 2021 17:42:49 -0000</pubDate>
+		<lastBuildDate>Sun, 22 May 2022 11:59:10 -0000</lastBuildDate>
+		<pubDate>Sun, 22 May 2022 11:59:10 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -562,6 +562,410 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
 <p>Hopefully, I add some more screenshots to this post.</p>
 
 <p>Edit 1: Added Screenshots, had to replicate the errors.</p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html
+			</guid>
+			<title>
+				Building a Simple Similar Movies Recommender System
+			</title>
+			<description>
+				Building a Content Based Similar Movies Recommender System
+			</description>
+			<link>https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html</link>
+			<pubDate>Sat, 21 May 2022 17:56:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Building a Simple Similar Movies Recommender System</h1>
+
+<h2>Why?</h2>
+
+<p>I recently came across a movie/tv-show recommender, <a rel="noopener" target="_blank" href="https://couchmoney.tv/">couchmoney.tv</a>. I loved it. I decided that I wanted to build something similar, so I could tinker with it as much as I wanted.</p>
+
+<p>I also wanted a recommendation system I could use via a REST API. Although I have not included that part in this post, I did eventually create it.</p>
+
+<h2>How?</h2>
+
+<p>By measuring the cosine of the angle between two vectors, you can get a value in the range [0,1] with 0 meaning no similarity. Now, if we find a way to represent information about movies as a vector, we can use cosine similarity as a metric to find similar movies.</p>
+
+<p>As we are recommending just based on the content of the movies, this is called a content based recommendation system.</p>
+
+<h2>Data Collection</h2>
+
+<p>Trakt exposes a nice API to search for movies/tv-shows. To access the API, you first need to get an API key (the Trakt ID you get when you create a new application). </p>
+
+<p>I decided to use SQL-Alchemy with a SQLite backend just to make my life easier if I decided on switching to Postgres anytime I felt like. </p>
+
+<p>First, I needed to check the total number of records in Trakt’s database.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trakt_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TRAKT_ID&quot;</span><span class="p">)</span>
+
+<span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;https://api.trakt.tv&quot;</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;trakt-api-version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;trakt-api-key&quot;</span><span class="p">:</span> <span class="n">trakt_id</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;years&quot;</span><span class="p">:</span> <span class="s2">&quot;1900-2021&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;page&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;extended&quot;</span><span class="p">:</span> <span class="s2">&quot;full&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;languages&quot;</span><span class="p">:</span> <span class="s2">&quot;en&quot;</span>
+<span class="p">}</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_base</span><span class="si">}</span><span class="s2">/search/movie&quot;</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+<span class="n">total_items</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;x-pagination-item-count&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="n">total_items</span><span class="si">}</span><span class="s2"> movies&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<pre><code>There are 333946 movies
+</code></pre>
+
+<p>First, I needed to declare the database schema in (<code>database.py</code>):</p>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">insert</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
+<span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">IntegrityError</span>
+
+<span class="n">meta</span> <span class="o">=</span> <span class="n">MetaData</span><span class="p">()</span>
+
+<span class="n">movies_table</span> <span class="o">=</span> <span class="n">Table</span><span class="p">(</span>
+    <span class="s2">&quot;movies&quot;</span><span class="p">,</span>
+    <span class="n">meta</span><span class="p">,</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;trakt_id&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">autoincrement</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;overview&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;genres&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;released&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;runtime&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;country&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;language&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;rating&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;votes&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;comment_count&quot;</span><span class="p">,</span> <span class="n">Integer</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;tagline&quot;</span><span class="p">,</span> <span class="n">String</span><span class="p">),</span>
+    <span class="n">Column</span><span class="p">(</span><span class="s2">&quot;embeddings&quot;</span><span class="p">,</span> <span class="n">PickleType</span><span class="p">)</span>
+
+<span class="p">)</span>
+
+<span class="c1"># Helper function to connect to the db</span>
+<span class="k">def</span> <span class="nf">init_db_stuff</span><span class="p">(</span><span class="n">database_url</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">database_url</span><span class="p">)</span>
+    <span class="n">meta</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+    <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">engine</span><span class="p">,</span> <span class="n">Session</span>
+</code></pre></div>
+
+<p>In the end, I could have dropped the embeddings field from the table schema as I never got around to using it.</p>
+
+<h3>Scripting Time</h3>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">trakt_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TRAKT_ID&quot;</span><span class="p">)</span>
+
+<span class="n">max_requests</span> <span class="o">=</span> <span class="mi">5000</span> <span class="c1"># How many requests I wanted to wrap everything up in</span>
+<span class="n">req_count</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># A counter for how many requests I have made</span>
+
+<span class="n">years</span> <span class="o">=</span> <span class="s2">&quot;1900-2021&quot;</span> 
+<span class="n">page</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># The initial page number for the search</span>
+<span class="n">extended</span> <span class="o">=</span> <span class="s2">&quot;full&quot;</span> <span class="c1"># Required to get additional information </span>
+<span class="n">limit</span> <span class="o">=</span> <span class="s2">&quot;10&quot;</span> <span class="c1"># No of entires per request -- This will be automatically picked based on max_requests</span>
+<span class="n">languages</span> <span class="o">=</span> <span class="s2">&quot;en&quot;</span> <span class="c1"># Limit to English</span>
+
+<span class="n">api_base</span> <span class="o">=</span> <span class="s2">&quot;https://api.trakt.tv&quot;</span>
+<span class="n">database_url</span> <span class="o">=</span> <span class="s2">&quot;sqlite:///jlm.db&quot;</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;trakt-api-version&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;trakt-api-key&quot;</span><span class="p">:</span> <span class="n">trakt_id</span>
+<span class="p">}</span>
+
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;years&quot;</span><span class="p">:</span> <span class="n">years</span><span class="p">,</span>
+    <span class="s2">&quot;page&quot;</span><span class="p">:</span> <span class="n">page</span><span class="p">,</span>
+    <span class="s2">&quot;extended&quot;</span><span class="p">:</span> <span class="n">extended</span><span class="p">,</span>
+    <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="n">limit</span><span class="p">,</span>
+    <span class="s2">&quot;languages&quot;</span><span class="p">:</span> <span class="n">languages</span>
+<span class="p">}</span>
+
+<span class="c1"># Helper function to get desirable values from the response</span>
+<span class="k">def</span> <span class="nf">create_movie_dict</span><span class="p">(</span><span class="n">movie</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">movie</span><span class="p">[</span><span class="s2">&quot;movie&quot;</span><span class="p">]</span>
+    <span class="n">movie_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;overview&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;overview&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;genres&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;genres&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;language&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;trakt_id&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;ids&quot;</span><span class="p">][</span><span class="s2">&quot;trakt&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;released&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;released&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;runtime&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;runtime&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;country&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;rating&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;votes&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;votes&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;comment_count&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="s2">&quot;comment_count&quot;</span><span class="p">]),</span>
+        <span class="s2">&quot;tagline&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">[</span><span class="s2">&quot;tagline&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">movie_dict</span>
+
+<span class="c1"># Get total number of items</span>
+<span class="n">params</span><span class="p">[</span><span class="s2">&quot;limit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_base</span><span class="si">}</span><span class="s2">/search/movie&quot;</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+<span class="n">total_items</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;x-pagination-item-count&quot;</span><span class="p">]</span>
+
+<span class="n">engine</span><span class="p">,</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">init_db_stuff</span><span class="p">(</span><span class="n">database_url</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">page</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">max_requests</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;page&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">page</span>
+    <span class="n">params</span><span class="p">[</span><span class="s2">&quot;limit&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">total_items</span><span class="p">)</span><span class="o">/</span><span class="n">max_requests</span><span class="p">)</span>
+    <span class="n">movies</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_base</span><span class="si">}</span><span class="s2">/search/movie&quot;</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">500</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">elif</span> <span class="n">res</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="kc">None</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;OwO Code </span><span class="si">{</span><span class="n">res</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">():</span>
+        <span class="n">movies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">create_movie_dict</span><span class="p">(</span><span class="n">movie</span><span class="p">))</span>
+
+    <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">movie</span> <span class="ow">in</span> <span class="n">movies</span><span class="p">:</span>
+            <span class="k">with</span> <span class="n">conn</span><span class="o">.</span><span class="n">begin</span><span class="p">()</span> <span class="k">as</span> <span class="n">trans</span><span class="p">:</span>
+                <span class="n">stmt</span> <span class="o">=</span> <span class="n">insert</span><span class="p">(</span><span class="n">movies_table</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">(</span>
+                    <span class="n">trakt_id</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;trakt_id&quot;</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">],</span> <span class="n">genres</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;genres&quot;</span><span class="p">]),</span>
+                    <span class="n">language</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;language&quot;</span><span class="p">],</span> <span class="n">year</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;year&quot;</span><span class="p">],</span> <span class="n">released</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;released&quot;</span><span class="p">],</span>
+                    <span class="n">runtime</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;runtime&quot;</span><span class="p">],</span> <span class="n">country</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;country&quot;</span><span class="p">],</span> <span class="n">overview</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;overview&quot;</span><span class="p">],</span>
+                    <span class="n">rating</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;rating&quot;</span><span class="p">],</span> <span class="n">votes</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;votes&quot;</span><span class="p">],</span> <span class="n">comment_count</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;comment_count&quot;</span><span class="p">],</span>
+                    <span class="n">tagline</span><span class="o">=</span><span class="n">movie</span><span class="p">[</span><span class="s2">&quot;tagline&quot;</span><span class="p">])</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">stmt</span><span class="p">)</span>
+                    <span class="n">trans</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+                <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
+                    <span class="n">trans</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+    <span class="n">req_count</span> <span class="o">+=</span> <span class="mi">1</span>
+</code></pre></div>
+
+<p>(Note: I was well within the rate-limit so I did not have to slow down or implement any other measures)</p>
+
+<p>Running this script took me approximately 3 hours, and resulted in an SQLite database of 141.5 MB</p>
+
+<h2>Embeddings!</h2>
+
+<p>I did not want to put my poor Mac through the estimated 23 hours it would have taken to embed the sentences. I decided to use Google Colab instead.</p>
+
+<p>Because of the small size of the database file, I was able to just upload the file.</p>
+
+<p>For the encoding model, I decided to use the pretrained <code>paraphrase-multilingual-MiniLM-L12-v2</code> model for SentenceTransformers, a Python framework for SOTA sentence, text and image embeddings. I wanted to use a multilingual model as I personally consume content in various languages (natively, no dubs or subs) and some of the sources for their information do not translate to English. As of writing this post, I did not include any other database except Trakt. </p>
+
+<p>While deciding how I was going to process the embeddings, I came across multiple solutions:</p>
+
+<ul>
+<li><p><a rel="noopener" target="_blank" href="https://milvus.io">Milvus</a> - An open-source vector database with similar search functionality</p></li>
+<li><p><a rel="noopener" target="_blank" href="https://faiss.ai">FAISS</a> - A library for efficient similarity search</p></li>
+<li><p><a rel="noopener" target="_blank" href="https://pinecone.io">Pinecone</a> - A fully managed vector database with similar search functionality</p></li>
+</ul>
+
+<p>I did not want to waste time setting up the first two, so I decided to go with Pinecone which offers 1M 768-dim vectors for free with no credit card required (Our embeddings are 384-dim dense).</p>
+
+<p>Getting started with Pinecone was as easy as:</p>
+
+<ul>
+<li><p>Signing up</p></li>
+<li><p>Specifying the index name and vector dimensions along with the similarity search metric (Cosine Similarity for our use case)</p></li>
+<li><p>Getting the API key</p></li>
+<li><p>Installing the Python module (pinecone-client)</p></li>
+</ul>
+
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">pinecone</span>
+<span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> 
+
+<span class="n">database_url</span> <span class="o">=</span> <span class="s2">&quot;sqlite:///jlm.db&quot;</span>
+<span class="n">PINECONE_KEY</span> <span class="o">=</span> <span class="s2">&quot;not-this-at-all&quot;</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">32</span>
+
+<span class="n">pinecone</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="n">PINECONE_KEY</span><span class="p">,</span> <span class="n">environment</span><span class="o">=</span><span class="s2">&quot;us-west1-gcp&quot;</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">pinecone</span><span class="o">.</span><span class="n">Index</span><span class="p">(</span><span class="s2">&quot;movies&quot;</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">SentenceTransformer</span><span class="p">(</span><span class="s2">&quot;paraphrase-multilingual-MiniLM-L12-v2&quot;</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+<span class="n">engine</span><span class="p">,</span> <span class="n">Session</span> <span class="o">=</span> <span class="n">init_db_stuff</span><span class="p">(</span><span class="n">database_url</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&quot;Select * from movies&quot;</span><span class="p">,</span> <span class="n">engine</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;combined_text&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;overview&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; -  &quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;tagline&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; Genres:-  &quot;</span> <span class="o">+</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;genres&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># Creating the embedding and inserting it into the database</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">),</span><span class="n">batch_size</span><span class="p">)):</span>
+    <span class="n">to_send</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">trakt_ids</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;trakt_id&quot;</span><span class="p">][</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">sentences</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;combined_text&quot;</span><span class="p">][</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+    <span class="n">embeddings</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">trakt_ids</span><span class="p">):</span>
+        <span class="n">to_send</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">(</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="p">))</span>
+    <span class="n">index</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span><span class="n">to_send</span><span class="p">)</span>
+</code></pre></div>
+
+<p>That's it!</p>
+
+<h2>Interacting with Vectors</h2>
+
+<p>We use the <code>trakt_id</code> for the movie as the ID for the vectors and upsert it into the index. </p>
+
+<p>To find similar items, we will first have to map the name of the movie to its trakt_id, get the embeddings we have for that id and then perform a similarity search. It is possible that this additional step of mapping could be avoided by storing information as metadata in the index.</p>
+
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+  <span class="n">rec</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="n">movie_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
+  <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">trakt_id</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;multiple values found... </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">trakt_id</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="p">)):</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="n">x</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()[</span><span class="n">x</span><span class="p">]</span><span class="si">}</span><span class="s2">) - </span><span class="si">{</span><span class="n">rec</span><span class="p">[</span><span class="s1">&#39;overview&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;===&quot;</span><span class="p">)</span>
+      <span class="n">z</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Choose No: &quot;</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">rec</span><span class="o">.</span><span class="n">trakt_id</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="n">z</span><span class="p">]</span>
+  <span class="k">return</span> <span class="n">rec</span><span class="o">.</span><span class="n">trakt_id</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">get_vector_value</span><span class="p">(</span><span class="n">trakt_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+  <span class="n">fetch_response</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">trakt_id</span><span class="p">)])</span>
+  <span class="k">return</span> <span class="n">fetch_response</span><span class="p">[</span><span class="s2">&quot;vectors&quot;</span><span class="p">][</span><span class="nb">str</span><span class="p">(</span><span class="n">trakt_id</span><span class="p">)][</span><span class="s2">&quot;values&quot;</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">query_vectors</span><span class="p">(</span><span class="n">vector</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="n">include_values</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">include_metada</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+  <span class="n">query_response</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+      <span class="n">queries</span><span class="o">=</span><span class="p">[</span>
+          <span class="p">(</span><span class="n">vector</span><span class="p">),</span>
+      <span class="p">],</span>
+      <span class="n">top_k</span><span class="o">=</span><span class="n">top_k</span><span class="p">,</span>
+      <span class="n">include_values</span><span class="o">=</span><span class="n">include_values</span><span class="p">,</span>
+      <span class="n">include_metadata</span><span class="o">=</span><span class="n">include_metada</span>
+  <span class="p">)</span>
+  <span class="k">return</span> <span class="n">query_response</span>
+
+<span class="k">def</span> <span class="nf">query2ids</span><span class="p">(</span><span class="n">query_response</span><span class="p">):</span>
+  <span class="n">trakt_ids</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">query_response</span><span class="p">[</span><span class="s2">&quot;results&quot;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;matches&quot;</span><span class="p">]:</span>
+    <span class="n">trakt_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">match</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]))</span>
+  <span class="k">return</span> <span class="n">trakt_ids</span>
+
+<span class="k">def</span> <span class="nf">get_deets_by_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">trakt_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+  <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;trakt_id&quot;</span><span class="p">]</span><span class="o">==</span><span class="n">trakt_id</span><span class="p">]</span>
+  <span class="k">return</span> <span class="p">{</span>
+      <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+      <span class="s2">&quot;overview&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">overview</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+      <span class="s2">&quot;runtime&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+      <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="p">}</span>
+</code></pre></div>
+
+<h3>Testing it Out</h3>
+
+<div class="codehilite"><pre><span></span><code><span class="n">movie_name</span> <span class="o">=</span> <span class="s2">&quot;Now You See Me&quot;</span>
+
+<span class="n">movie_trakt_id</span> <span class="o">=</span> <span class="n">get_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">movie_name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">movie_trakt_id</span><span class="p">)</span>
+<span class="n">movie_vector</span> <span class="o">=</span> <span class="n">get_vector_value</span><span class="p">(</span><span class="n">movie_trakt_id</span><span class="p">)</span>
+<span class="n">movie_queries</span> <span class="o">=</span> <span class="n">query_vectors</span><span class="p">(</span><span class="n">movie_vector</span><span class="p">)</span>
+<span class="n">movie_ids</span> <span class="o">=</span> <span class="n">query2ids</span><span class="p">(</span><span class="n">movie_queries</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">movie_ids</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">trakt_id</span> <span class="ow">in</span> <span class="n">movie_ids</span><span class="p">:</span>
+  <span class="n">deets</span> <span class="o">=</span> <span class="n">get_deets_by_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">trakt_id</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">deets</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">deets</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">deets</span><span class="p">[</span><span class="s1">&#39;overview&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Output:</p>
+
+<pre><code>[55786, 18374, 299592, 662622, 6054, 227458, 139687, 303950, 70000, 129307, 70823, 5766, 23950, 137696, 655723, 32842, 413269, 145994, 197990, 373832]
+Now You See Me (2013): An FBI agent and an Interpol detective track a team of illusionists who pull off bank heists during their performances and reward their audiences with the money.
+Trapped (1949): U.S. Treasury Department agents go after a ring of counterfeiters.
+Brute Sanity (2018): An FBI-trained neuropsychologist teams up with a thief to find a reality-altering device while her insane ex-boss unleashes bizarre traps to stop her.
+The Chase (2017): Some FBI agents hunt down a criminal
+Surveillance (2008): An FBI agent tracks a serial killer with the help of three of his would-be victims - all of whom have wildly different stories to tell.
+Marauders (2016): An untraceable group of elite bank robbers is chased by a suicidal FBI agent who uncovers a deeper purpose behind the robbery-homicides.
+Miracles for Sale (1939): A maker of illusions for magicians protects an ingenue likely to be murdered.
+Deceptors (2005): A Ghostbusters knock-off where a group of con-artists create bogus monsters to scare up some cash. They run for their lives when real spooks attack.
+The Outfit (1993): A renegade FBI agent sparks an explosive mob war between gangster crime lords Legs Diamond and Dutch Schultz.
+Bank Alarm (1937): A federal agent learns the gangsters he's been investigating have kidnapped his sister.
+The Courier (2012): A shady FBI agent recruits a courier to deliver a mysterious package to a vengeful master criminal who has recently resurfaced with a diabolical plan.
+After the Sunset (2004): An FBI agent is suspicious of two master thieves, quietly enjoying their retirement near what may - or may not - be the biggest score of their careers.
+Down Three Dark Streets (1954): An FBI Agent takes on the three unrelated cases of a dead agent to track down his killer.
+The Executioner (1970): A British intelligence agent must track down a fellow spy suspected of being a double agent.
+Ace of Cactus Range (1924): A Secret Service agent goes undercover to unmask the leader of a gang of diamond thieves.
+Firepower (1979): A mercenary is hired by the FBI to track down a powerful recluse criminal, a woman is also trying to track him down for her own personal vendetta.
+Heroes &amp; Villains (2018): an FBI agent chases a thug to great tunes
+Federal Fugitives (1941): A government agent goes undercover in order to apprehend a saboteur who caused a plane crash.
+Hell on Earth (2012): An FBI Agent on the trail of a group of drug traffickers learns that their corruption runs deeper than she ever imagined, and finds herself in a supernatural - and deadly - situation.
+Spies (2015): A secret agent must perform a heist without time on his side
+</code></pre>
+
+<p>For now, I am happy with the recommendations.</p>
+
+<h2>Simple UI</h2>
+
+<p>The code for the flask app can be found on GitHub: <a rel="noopener" target="_blank" href="https://github.com/navanchauhan/FlixRec">navanchauhan/FlixRec</a> or on my <a rel="noopener" target="_blank" href="https://pi4.navan.dev/gitea/navan/FlixRec">Gitea instance</a></p>
+
+<p>I quickly whipped up a simple Flask App to deal with problems of multiple movies sharing the title, and typos in the search query.</p>
+
+<h3>Home Page</h3>
+
+<p><img src="/assets/flixrec/home.png" alt="Home Page" /></p>
+
+<h3>Handling Multiple Movies with Same Title</h3>
+
+<p><img src="/assets/flixrec/multiple.png" alt="Multiple Movies with Same Title" /></p>
+
+<h3>Results Page</h3>
+
+<p><img src="/assets/flixrec/results.png" alt="Results Page" /></p>
+
+<p>Includes additional filter options</p>
+
+<p><img src="/assets/flixrec/filter.png" alt="Advance Filtering Options" /></p>
+
+<p>Test it out at <a rel="noopener" target="_blank" href="https://flixrec.navan.dev">https://flixrec.navan.dev</a></p>
+
+<h2>Current Limittations</h2>
+
+<ul>
+<li>Does not work well with popular franchises</li>
+<li>No Genre Filter</li>
+</ul>
+
+<h2>Future Addons</h2>
+
+<ul>
+<li>Include Cast Data
+<ul>
+<li>e.g. If it sees a movie with Tom Hanks and Meg Ryan, then it will boost similar movies including them</li>
+<li>e.g. If it sees the movie has been directed my McG, then it will boost similar movies directed by them</li>
+</ul></li>
+<li>REST API</li>
+<li>TV Shows</li>
+<li>Multilingual database</li>
+<li>Filter based on popularity: The data already exists in the indexed database</li>
+</ul>
 ]]></content:encoded>
 		</item>
 		

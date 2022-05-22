@@ -240,7 +240,9 @@
 
 <p>Because of the small size of the database file, I was able to just upload the file.</p>
 
-<p>For the encoding model, I decided to use the pretrained <code>paraphrase-multilingual-MiniLM-L12-v2</code> model for SentenceTransformers, a Python framework for SOTA sentence, text and image embeddings. I wanted to use a multilingual model as I personally consume content in various languages (natively, no dubs or subs) and some of the sources for their information do not translate to English. As of writing this post, I did not include any other database except Trakt. </p>
+<p>For the encoding model, I decided to use the pretrained <code>paraphrase-multilingual-MiniLM-L12-v2</code> model for SentenceTransformers, a Python framework for SOTA sentence, text and image embeddings. 
+I wanted to use a multilingual model as I personally consume content in various languages and some of the sources for their information do not translate to English. 
+As of writing this post, I did not include any other database except Trakt. </p>
 
 <p>While deciding how I was going to process the embeddings, I came across multiple solutions:</p>
 
@@ -299,7 +301,8 @@
 
 <p>We use the <code>trakt_id</code> for the movie as the ID for the vectors and upsert it into the index. </p>
 
-<p>To find similar items, we will first have to map the name of the movie to its trakt_id, get the embeddings we have for that id and then perform a similarity search. It is possible that this additional step of mapping could be avoided by storing information as metadata in the index.</p>
+<p>To find similar items, we will first have to map the name of the movie to its trakt_id, get the embeddings we have for that id and then perform a similarity search. 
+It is possible that this additional step of mapping could be avoided by storing information as metadata in the index.</p>
 
 <div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
   <span class="n">rec</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="n">movie_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>

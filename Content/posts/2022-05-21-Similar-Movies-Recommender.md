@@ -208,7 +208,9 @@ I did not want to put my poor Mac through the estimated 23 hours it would have t
 
 Because of the small size of the database file, I was able to just upload the file.
 
-For the encoding model, I decided to use the pretrained `paraphrase-multilingual-MiniLM-L12-v2` model for SentenceTransformers, a Python framework for SOTA sentence, text and image embeddings. I wanted to use a multilingual model as I personally consume content in various languages (natively, no dubs or subs) and some of the sources for their information do not translate to English. As of writing this post, I did not include any other database except Trakt. 
+For the encoding model, I decided to use the pretrained `paraphrase-multilingual-MiniLM-L12-v2` model for SentenceTransformers, a Python framework for SOTA sentence, text and image embeddings. 
+I wanted to use a multilingual model as I personally consume content in various languages and some of the sources for their information do not translate to English. 
+As of writing this post, I did not include any other database except Trakt. 
 
 While deciding how I was going to process the embeddings, I came across multiple solutions:
 
@@ -269,7 +271,8 @@ That's it!
 
 We use the `trakt_id` for the movie as the ID for the vectors and upsert it into the index. 
 
-To find similar items, we will first have to map the name of the movie to its trakt_id, get the embeddings we have for that id and then perform a similarity search. It is possible that this additional step of mapping could be avoided by storing information as metadata in the index.
+To find similar items, we will first have to map the name of the movie to its trakt_id, get the embeddings we have for that id and then perform a similarity search. 
+It is possible that this additional step of mapping could be avoided by storing information as metadata in the index.
 
 ```python
 def get_trakt_id(df, title: str):

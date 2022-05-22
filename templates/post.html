@@ -1,8 +1,19 @@
 {% extends "base.html" %}
-{% block title %}Post{% endblock %}
+
+{% block title %}Post - {{content.metadata.title}}{% endblock %}
+{% block ogtitle %}Post - {{content.metadata.title}}{% endblock %}
+{% block twittertitle %}Post - {{content.metadata.title}}{% endblock %}
+
+{% block description %} {{content.metadata.description}} {% endblock %}
+{% block ogdescription %} {{content.metadata.description}} {% endblock %}
+{% block twitterdescription %} {{content.metadata.description}} {% endblock %}
+{% block twitter2description %} {{content.metadata.description}} {% endblock %}
 
 {% block body %}
 <main>
 	{{ content}}
+	<div class="commentbox"></div>
+	<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
+	<script>commentBox('5650347917836288-proj')</script>
 </main>
 {% endblock %}

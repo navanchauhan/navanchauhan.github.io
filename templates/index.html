@@ -14,7 +14,7 @@
 		<li>Published On: {{post.date}}</li>
 		<li>Tags: 
 			{% for tag in post.tags %}
-			{{ tag }},
+			{{ tag }}{{ ", " if not loop.last else "" }}
 			{% endfor %}
 	</ul>
 

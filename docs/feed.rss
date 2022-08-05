@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sun, 22 May 2022 12:30:06 -0000</lastBuildDate>
-		<pubDate>Sun, 22 May 2022 12:30:06 -0000</pubDate>
+		<lastBuildDate>Fri, 05 Aug 2022 15:00:12 -0000</lastBuildDate>
+		<pubDate>Fri, 05 Aug 2022 15:00:12 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -1905,6 +1905,197 @@ values using the X values. We then plot it to compare the actual data and predic
 <p>Remix this project:-</p>
 
 <p>https://luminous-opinion.glitch.me</p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2022-08-05-Why-You-No-Host.html
+			</guid>
+			<title>
+				Why You No Host?
+			</title>
+			<description>
+				Why you should self-host with YunoHost
+			</description>
+			<link>https://web.navan.dev/posts/2022-08-05-Why-You-No-Host.html</link>
+			<pubDate>Fri, 05 Aug 2022 14:46:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Why You No Host?</h1>
+
+<p>With all these data leaks happening every other day, why have you not started self-hosting?</p>
+
+<p>The title refers to the “Y U No Host” internet meme, which led to the name of “YunoHost”, an operating system aiming to democratise self-hosting. This post tries to discuss the idea that anyone can self-host and why you should consider YunoHost.</p>
+
+<h2>Should you Self-Host?</h2>
+
+<ul>
+<li>Do you get annoyed when half of the internet goes down because everything a few major companies host the majority of the internet?
+<ul>
+<li><a rel="noopener" target="_blank" href="https://blog.cloudflare.com/cloudflare-outage-on-june-21-2022/">Cloudflare outage</a></li>
+<li><a rel="noopener" target="_blank" href="https://www.fiercetelecom.com/cloud/extended-aws-outage-disrupts-services-across-globe">Amazon Web Services outage</a></li>
+<li><a rel="noopener" target="_blank" href="https://www.crn.com/news/cloud/google-cloud-outage-takes-major-websites-and-apps-down">Google Cloud Platform outage</a></li>
+</ul></li>
+<li>Do you get annoyed when lifetime promises go bust and you don’t actually own anything?
+<ul>
+<li><a rel="noopener" target="_blank" href="https://support.google.com/photos/answer/10100180?hl=en">Google Photos Unlimited Storage ending</a></li>
+<li><a rel="noopener" target="_blank" href="https://www.theverge.com/2018/1/9/16867380/nextbit-smart-storage-cloud-service-shut-down-robin-phone">Nextbit shutting down its Smart Storage Cloud</a> </li>
+<li><a rel="noopener" target="_blank" href="https://www.theverge.com/2022/7/8/23199861/playstation-store-film-tv-show-removed-austria-germany-studiocanal">Sony removing purchased movies from libraries</a></li>
+</ul></li>
+<li>How about account suspensions without any prior notice?
+<ul>
+<li><a rel="noopener" target="_blank" href="https://hn.algolia.com/?dateRange=all&amp;page=0&amp;prefix=true&amp;query=account%20suspended&amp;sort=byPopularity&amp;type=story">Hacker News stories with “account suspended“</a></li>
+</ul></li>
+<li>Do you value security and privacy?</li>
+<li>Or, do you want a new hobby?</li>
+</ul>
+
+<p>These are just some of the reasons to self-host.</p>
+
+<h2>What if you don’t know anything?</h2>
+
+<p>No one is born with the knowledge of knowing how to orchestrate a cluster. You can always learn how to, but sometimes you just don’t have the time or energy. YunoHost tries to ease this issue by providing a clean web-interface. You do not even need to touch the command line for all the basic tasks.</p>
+
+<h2>What should you self-host?</h2>
+
+<p>Anything and everything! The best part about self-hosting is that you own the data. This data is not going to be sold to the highest bidder.</p>
+
+<p>Just because you like watching YouTube does not mean you cannot self-host a privacy friendly front-end for it on your server. Why stop there, why not create your own Google Drive / Dropbox alternative and host it on your own with actual unlimited storage, where the only limit is how much capacity you want. Do you own tons of audiobooks or DVDs/Blu-rays? Simply host an audiobook server or create your own personal Netflix and share it with your friends and family.</p>
+
+<p>Do you own a small-business? Do you hate the idea of having your sensitive e-mails stored on someone else’s server? Why not setup your own mail server, with contacts and calendar syncing.</p>
+
+<p>Do you run a small hobby group? Why not host a forum for everyone to discuss on? Or, simply a chat server where everyone can hop on and text, or call.</p>
+
+<p>Although you can do all of this (and much more!) without needing to use YunoHost, it just makes it easy to manage.</p>
+
+<h2>What do I need to self-host?</h2>
+
+<ul>
+<li>A decent internet connection if you plan on using the services outside your home network and hosting at home</li>
+<li>Anything that can run Debian 10/11. Some examples:
+<ul>
+<li>A used server/PC bought in a Library/University’s liquidation sale</li>
+<li>An old laptop nobody uses</li>
+<li>A Raspberry Pi 4</li>
+<li>A VPS (Checkout Linode, Hetzner, OVH)</li>
+</ul></li>
+<li>Some patience</li>
+</ul>
+
+<h2><a rel="noopener" target="_blank" href="https://yunohost.org/en/whatsyunohost?q=%2Fwhatsyunohost">What is YunoHost</a>?</h2>
+
+<p><img src="/assets/y-u-n-o/meme.png" alt="" /></p>
+
+<p>YunoHost is a server operating system which takes  guesswork out of Self-Hosting. Out of the box it provides:</p>
+
+<ul>
+<li>a web-interface for easy administration</li>
+<li>few click app deployments </li>
+<li>multiple user support (with exposed ldap to integrate with your apps)</li>
+<li>automatic ssl certificate management for your domains</li>
+<li>integrated backup and restoration for all apps</li>
+<li>security features (fail2ban, firewall)</li>
+<li>Free *.noho.st domain(s)!</li>
+</ul>
+
+<p>and much more!</p>
+
+<h3>Why did I choose YunoHost?</h3>
+
+<p>I began my self-hosting journey with a Raspberry Pi 4 (4GB). I looked at tons of options for the base management layer:</p>
+
+<ul>
+<li><a rel="noopener" target="_blank" href="https://sandstorm.io/install">Sandstorm</a> - Does not run on arm64</li>
+<li><a rel="noopener" target="_blank" href="https://www.cloudron.io">Cloudron</a> - 2 app limitation on the free tier
+<ul>
+<li>Although I don’t have a problem with paying for software licenses, having an app limit on something which you are self-hosting and you don’t want support is kind of confusing</li>
+</ul></li>
+<li>Plain <a rel="noopener" target="_blank" href="https://ubuntu.com/download/server">Ubuntu Server</a> - I didn’t want to waste time configuring everything</li>
+</ul>
+
+<p>One look at the user portal and I was sold. Yep, more than the features it was the app screen which looked like elements from the periodic table which sold me on the idea of using YunoHost. </p>
+
+<p>Although there is no “correct“ way to self-host, YunoHost is indeed an easier way.</p>
+
+<p><img src="/assets/y-u-n-o/ssys.png" alt="YunoHost SSO Login Screen" />
+ <img src="/assets/y-u-n-o/ssyp.png" alt="YunoHost Portal" />
+ <img src="/assets/y-u-n-o/ssyw.png" alt="YunoHost Web Admin" /></p>
+
+<p>The stock Raspberry Pi image provided by YunoHost meant you don’t run in full arm64 mode. I had to first install Debian and then install YunoHost to get full arm64 goodness. </p>
+
+<p>Setting up the domain was as painless as following the online web admin diagnosis page to copy paste DNS records. </p>
+
+<p>The easiest way to deploy any app is to use Docker. I dislike this approach for a variety of reasons but I am not going to cover them here. All YunoHost apps are packaged to run on bare-metal for the best performance. See an app that does not have pre-compiled binaries? The package installer will download the latest source, install dependencies, compile, and then clean all the unnecessary files. Because you are running Debian after all, you can always SSH into the server and install docker if you want to. You can even install Portainer through YunoHost’s app catalogue if you really want to. </p>
+
+<h3>What do I self-host?</h3>
+
+<h4>audiobookshelf - an audiobook server</h4>
+
+<p><img src="/assets/y-u-n-o/ssabs.png" alt="Audiobook server" /></p>
+
+<h4>ergo chat - an IRC server</h4>
+
+<p><img src="/assets/y-u-n-o/sst.png" alt="Screenshot of Textual Client connected to my IRC server" /></p>
+
+<h4>FreshRSS - RSS aggregator</h4>
+
+<p><img src="/assets/y-u-n-o/ssfr.png" alt="Screenshot of FreshRSS" /></p>
+
+<h4>Gitea - self-hosted git</h4>
+
+<h4><img src="/assets/y-u-n-o/ssgi.png" alt="Screenshot of Gitea dashboard with logs about repository mirroring" /></h4>
+
+<h4>Grafana - Metrics dashboard</h4>
+
+<p><img src="/assets/y-u-n-o/ssgr.png" alt="Grafana Dashboard" /></p>
+
+<h4>Home Assistant - Home automation platform</h4>
+
+<p><img src="/assets/y-u-n-o/ssha.png" alt="Screenshot of Home Assistant dashboard" /></p>
+
+<h4>Jellyfin - Media server</h4>
+
+<p><img src="/assets/y-u-n-o/ssj.png" alt="Screenshot of Jellyfin showing movies " /></p>
+
+<h4>Listmonk - Newsletter and Mailing List manager</h4>
+
+<p><img src="/assets/y-u-n-o/ssl.png" alt="Screenshot of ListMonk" /></p>
+
+<h4>MinIO Server - S3 compatible storage server</h4>
+
+<p><img src="/assets/y-u-n-o/ssm.png" alt="Screenshot of MinIO console" /></p>
+
+<h4>Nextcloud - Storage, file-sharing, e.t.c</h4>
+
+<p><img src="/assets/y-u-n-o/ssn.png" alt="Screenshot of Nextcloud dashboard" /></p>
+
+<h4>Syncthing - continuous file synchronization</h4>
+
+<p><img src="/assets/y-u-n-o/sss.png" alt="Screenshot of Synching dashboard" /></p>
+
+<h4>Vaultwarden - Bitwarden server</h4>
+
+<p><img src="/assets/y-u-n-o/ssv.png" alt="Screenshot of Vaultwarden loading screen" /></p>
+
+<h4>Wallabag - Read it later app</h4>
+
+<p><img src="/assets/y-u-n-o/ssw.png" alt="Screenshot of Wallabag" /></p>
+
+<h4>h5ai - HTTP server index</h4>
+
+<p><img src="/assets/y-u-n-o/ssh.png" alt="Screenshot of h5ai" /></p>
+
+<h2>How do I install YunoHost?</h2>
+
+<ol>
+<li>Install minimal Debian 10/11  on your preferred machine</li>
+<li><code>curl https://install.yunohost.org | bash</code></li>
+</ol>
+
+<p>Done!</p>
+
+<h2>Should you actually self-host everything?</h2>
+
+<p>Highly context dependent. I run two YunoHost servers in two different locations. One of the ISP has actually blacklisted the residential IP address range and does not let me change my reverseDNS, which means all my outgoing emails are marked as spam. On the other hand, the other ISP gave a clean static IP and the server managed for a small business is not at all problematic for emailing. YMMV but at least you know you have an option.</p>
 ]]></content:encoded>
 		</item>
 		

@@ -6,6 +6,8 @@ tags: Self-Hosted, YunoHost
 
 # Why You No Host?
 
+![](/assets/y-u-n-o/meme.png)
+
 With all these data leaks happening every other day, why have you not started self-hosting?
 
 The title refers to the “Y U No Host” internet meme, which led to the name of “YunoHost”, an operating system aiming to democratise self-hosting. This post tries to discuss the idea that anyone can self-host and why you should consider YunoHost.
@@ -55,9 +57,7 @@ Although you can do all of this (and much more!) without needing to use YunoHost
 
 ## [What is YunoHost](https://yunohost.org/en/whatsyunohost?q=%2Fwhatsyunohost)?
 
- ![](/assets/y-u-n-o/meme.png)
-
-YunoHost is a server operating system which takes  guesswork out of Self-Hosting. Out of the box it provides:
+[YunoHost](https://yunohost.org/) is a server operating system which takes  guesswork out of Self-Hosting. Out of the box it provides:
 
 * a web-interface for easy administration
 * few click app deployments 
@@ -91,6 +91,8 @@ The stock Raspberry Pi image provided by YunoHost meant you don’t run in full 
 Setting up the domain was as painless as following the online web admin diagnosis page to copy paste DNS records. 
 
 The easiest way to deploy any app is to use Docker. I dislike this approach for a variety of reasons but I am not going to cover them here. All YunoHost apps are packaged to run on bare-metal for the best performance. See an app that does not have pre-compiled binaries? The package installer will download the latest source, install dependencies, compile, and then clean all the unnecessary files. Because you are running Debian after all, you can always SSH into the server and install docker if you want to. You can even install Portainer through YunoHost’s app catalogue if you really want to. 
+
+Also, YunoHost has been here for a long time! [Here](https://news.ycombinator.com/item?id=7894838) is an old Hacker News post about YunoHost. All the projects mentioned in the comments? Dead.  
 
 ### What do I self-host?
 

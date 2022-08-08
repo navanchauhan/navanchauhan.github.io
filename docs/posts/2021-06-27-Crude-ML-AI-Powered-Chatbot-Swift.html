@@ -89,20 +89,20 @@ I created a sample JSON with only 3 examples (I know, very less, but works for a
 
 <p><img src="/assets/posts/swift-chatbot/drugs-json.png" alt="Screenshot of Sample Dataset" /></p>
 
-<div class="codehilite"><pre><span></span><code><span class="p">[</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;tokens&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Tell&quot;</span><span class="p">,</span><span class="s2">&quot;me&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;drug&quot;</span><span class="p">,</span><span class="s2">&quot;Aspirin&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span>
-        <span class="nt">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;tokens&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Please&quot;</span><span class="p">,</span><span class="s2">&quot;tell&quot;</span><span class="p">,</span><span class="s2">&quot;me&quot;</span><span class="p">,</span><span class="s2">&quot;information&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;compound&quot;</span><span class="p">,</span><span class="s2">&quot;salicylic&quot;</span><span class="p">,</span><span class="s2">&quot;acid&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span>
-        <span class="nt">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-        <span class="nt">&quot;tokens&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Information&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;compound&quot;</span><span class="p">,</span><span class="s2">&quot;Ibuprofen&quot;</span><span class="p">,</span><span class="s2">&quot;please&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span>
-        <span class="nt">&quot;labels&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span>
-    <span class="p">}</span>
-<span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Tell&quot;</span><span class="p">,</span><span class="s2">&quot;me&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;drug&quot;</span><span class="p">,</span><span class="s2">&quot;Aspirin&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Please&quot;</span><span class="p">,</span><span class="s2">&quot;tell&quot;</span><span class="p">,</span><span class="s2">&quot;me&quot;</span><span class="p">,</span><span class="s2">&quot;information&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;compound&quot;</span><span class="p">,</span><span class="s2">&quot;salicylic&quot;</span><span class="p">,</span><span class="s2">&quot;acid&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Information&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;compound&quot;</span><span class="p">,</span><span class="s2">&quot;Ibuprofen&quot;</span><span class="p">,</span><span class="s2">&quot;please&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">]</span><span class="w"></span>
 </code></pre></div>
 
 <p><img src="/assets/posts/swift-chatbot/create-tagger.png" alt="Screenshot of Create ML Text Classifier" /></p>
@@ -208,9 +208,14 @@ Otherwise, it calls the custom action.</p>
 
 <p>If I ever release a part-2, it will either be about implementing this in Tensorflow.JS or an iOS app using SwiftUI ;)</p>
 
-	<div class="commentbox"></div>
+	<script data-isso="//comments.navan.dev/"
+        src="//comments.navan.dev/js/embed.min.js"></script>
+	<section id="isso-thread">
+	    <noscript>Javascript needs to be activated to view comments.</noscript>
+	</section>
+	<!--<div class="commentbox"></div>
 	<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
-	<script>commentBox('5650347917836288-proj')</script>
+	<script>commentBox('5650347917836288-proj')</script>-->
 </main>
 
 

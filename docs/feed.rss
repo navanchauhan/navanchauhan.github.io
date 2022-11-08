@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sun, 07 Aug 2022 22:53:57 -0000</lastBuildDate>
-		<pubDate>Sun, 07 Aug 2022 22:53:57 -0000</pubDate>
+		<lastBuildDate>Mon, 07 Nov 2022 23:34:29 -0000</lastBuildDate>
+		<pubDate>Mon, 07 Nov 2022 23:34:29 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -83,7 +83,8 @@ I am not handling lists or images right now.</p>
 
 <p><code>pip install tweepy</code></p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">tweepy</span>
 
 <span class="n">consumer_key</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;consumer_key&quot;</span><span class="p">]</span>
@@ -96,13 +97,15 @@ I am not handling lists or images right now.</p>
 <span class="n">auth</span><span class="o">.</span><span class="n">set_access_token</span><span class="p">(</span><span class="n">access_token</span><span class="p">,</span> <span class="n">access_token_secret</span><span class="p">)</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">tweepy</span><span class="o">.</span><span class="n">API</span><span class="p">(</span><span class="n">auth</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>The program need to convert the blog post into text fragments.</p>
 
 <p>It reads the markdown file, removes the top YAML content, checks for headers and splits the content.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">tweets</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">tweets</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="n">first___n</span> <span class="o">=</span> <span class="mi">0</span>
 
@@ -129,13 +132,15 @@ I am not handling lists or images right now.</p>
                 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">tweets</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Every status update using tweepy has an id attached to it, for the next tweet in the thread, it adds that ID while calling the function.</p>
 
 <p>For every tweet fragment, it also appends 1/n.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tweets</span><span class="p">):</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">tweet</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tweets</span><span class="p">):</span>
     <span class="n">tweet</span> <span class="o">+=</span> <span class="s2">&quot; </span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tweets</span><span class="p">))</span>
     <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="n">a</span> <span class="o">=</span> <span class="kc">None</span>
@@ -144,12 +149,15 @@ I am not handling lists or images right now.</p>
         <span class="n">a</span> <span class="o">=</span> <span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="n">tweet</span><span class="p">,</span><span class="n">in_reply_to_status_id</span><span class="o">=</span><span class="n">a</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tweet</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">/</span><span class="si">{}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">tweets</span><span class="p">)))</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Finally, it replies to the last tweet in the thread with the link of the post.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;Web Version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">post_link</span><span class="p">))</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">api</span><span class="o">.</span><span class="n">update_status</span><span class="p">(</span><span class="s2">&quot;Web Version: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">post_link</span><span class="p">))</span>
+</code></pre>
+</div>
 
 <h2>Result</h2>
 
@@ -244,17 +252,21 @@ I actually added the code to this post after running the program.</p>
 
 <h3>Mounting Google Drive</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>After this click on the URL in the output section, login and then paste the Auth Code</p>
 
 <h3>Configuring Kaggle</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
+</code></pre>
+</div>
 
 <p>Voila! You can now download Kaggle datasets</p>
 ]]></content:encoded>
@@ -278,7 +290,8 @@ I actually added the code to this post after running the program.</p>
 
 <h2>Imports</h2>
 
-<div class="codehilite"><pre><span></span><code><span class="o">%</span><span class="n">tensorflow_version</span> <span class="mf">2.</span><span class="n">x</span> <span class="c1">#This is for telling Colab that you want to use TF 2.0, ignore if running on local machine</span>
+<div class="codehilite">
+<pre><span></span><code><span class="o">%</span><span class="n">tensorflow_version</span> <span class="mf">2.</span><span class="n">x</span> <span class="c1">#This is for telling Colab that you want to use TF 2.0, ignore if running on local machine</span>
 
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> <span class="c1"># We use the PIL Library to resize images</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -290,21 +303,25 @@ I actually added the code to this post after running the program.</p>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span><span class="n">MaxPooling2D</span><span class="p">,</span><span class="n">Dense</span><span class="p">,</span><span class="n">Flatten</span><span class="p">,</span><span class="n">Dropout</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h2>Dataset</h2>
 
 <h3>Fetching the Data</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="err">!</span><span class="n">wget</span> <span class="n">ftp</span><span class="p">:</span><span class="o">//</span><span class="n">lhcftp</span><span class="o">.</span><span class="n">nlm</span><span class="o">.</span><span class="n">nih</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">Open</span><span class="o">-</span><span class="n">Access</span><span class="o">-</span><span class="n">Datasets</span><span class="o">/</span><span class="n">Malaria</span><span class="o">/</span><span class="n">cell_images</span><span class="o">.</span><span class="n">zip</span>
+<div class="codehilite">
+<pre><span></span><code><span class="err">!</span><span class="n">wget</span> <span class="n">ftp</span><span class="p">:</span><span class="o">//</span><span class="n">lhcftp</span><span class="o">.</span><span class="n">nlm</span><span class="o">.</span><span class="n">nih</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">Open</span><span class="o">-</span><span class="n">Access</span><span class="o">-</span><span class="n">Datasets</span><span class="o">/</span><span class="n">Malaria</span><span class="o">/</span><span class="n">cell_images</span><span class="o">.</span><span class="n">zip</span>
 <span class="err">!</span><span class="n">unzip</span> <span class="n">cell_images</span><span class="o">.</span><span class="n">zip</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Processing the Data</h3>
 
 <p>We resize all the images as 50x50 and add the numpy array of that image as well as their label names (Infected or Not) to common arrays.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="n">Parasitized</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./cell_images/Parasitized/&quot;</span><span class="p">)</span>
@@ -328,15 +345,18 @@ I actually added the code to this post after running the program.</p>
         <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Splitting Data</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
 <span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="nb">int</span><span class="p">)(</span><span class="mf">0.1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):],</span><span class="n">df</span><span class="p">[:(</span><span class="nb">int</span><span class="p">)(</span><span class="mf">0.1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))]</span>
 <span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[(</span><span class="nb">int</span><span class="p">)(</span><span class="mf">0.1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)):],</span><span class="n">labels</span><span class="p">[:(</span><span class="nb">int</span><span class="p">)(</span><span class="mf">0.1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))]</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <pre><code>s=np.arange(X_train.shape[0])
 np.random.shuffle(s)
@@ -353,7 +373,8 @@ X_train = X_train/255.0
 
 <p><em>Note: The input shape for the first layer is 50,50 which corresponds with the sizes of the resized images</em></p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
@@ -366,25 +387,31 @@ X_train = X_train/255.0
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s2">&quot;softmax&quot;</span><span class="p">))</span><span class="c1">#2 represent output layer neurons </span>
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Compiling Model</h3>
 
 <p>We use the Adam optimiser as it is an adaptive learning rate optimisation algorithm that's been designed specifically for <em>training</em> deep neural networks, which means it changes its learning rate automatically to get the best results</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span>
               <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;sparse_categorical_crossentropy&quot;</span><span class="p">,</span> 
              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Training Model</h3>
 
 <p>We train the model for 10 epochs on the training data and then validate it using the testing data</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">Train</span> <span class="n">on</span> <span class="mi">24803</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">2755</span> <span class="n">samples</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">Train</span> <span class="n">on</span> <span class="mi">24803</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">2755</span> <span class="n">samples</span>
 <span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span>
 <span class="mi">24803</span><span class="o">/</span><span class="mi">24803</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">57</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0786</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9729</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0000e+00</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">1.0000</span>
 <span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span>
@@ -405,11 +432,13 @@ X_train = X_train/255.0
 <span class="mi">24803</span><span class="o">/</span><span class="mi">24803</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">58</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0352</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9878</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0000e+00</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">1.0000</span>
 <span class="n">Epoch</span> <span class="mi">10</span><span class="o">/</span><span class="mi">10</span>
 <span class="mi">24803</span><span class="o">/</span><span class="mi">24803</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">58</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0373</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9865</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0000e+00</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">1.0000</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Results</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
 <span class="n">loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
 <span class="n">val_accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
 <span class="n">val_loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
@@ -420,13 +449,16 @@ X_train = X_train/255.0
     <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Validation Accuracy:&#39;</span><span class="p">,</span> <span class="n">val_accuracy</span><span class="p">,</span>
     <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Validation Loss:&#39;</span><span class="p">,</span> <span class="n">val_loss</span>
 <span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">Accuracy</span><span class="p">:</span> <span class="mf">98.64532351493835</span> 
+<div class="codehilite">
+<pre><span></span><code><span class="n">Accuracy</span><span class="p">:</span> <span class="mf">98.64532351493835</span> 
 <span class="n">Loss</span><span class="p">:</span> <span class="mf">3.732407123270176</span> 
 <span class="n">Validation</span> <span class="n">Accuracy</span><span class="p">:</span> <span class="mf">100.0</span> 
 <span class="n">Validation</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>We have achieved 98% Accuracy!</p>
 
@@ -599,7 +631,8 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
 
 <p>First, I needed to check the total number of records in Trakt’s database.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">trakt_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TRAKT_ID&quot;</span><span class="p">)</span>
@@ -623,14 +656,16 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
 <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_base</span><span class="si">}</span><span class="s2">/search/movie&quot;</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 <span class="n">total_items</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;x-pagination-item-count&quot;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="n">total_items</span><span class="si">}</span><span class="s2"> movies&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <pre><code>There are 333946 movies
 </code></pre>
 
 <p>First, I needed to declare the database schema in (<code>database.py</code>):</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">sqlalchemy</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">insert</span>
@@ -665,13 +700,15 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
     <span class="n">meta</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
     <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">engine</span><span class="p">,</span> <span class="n">Session</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>In the end, I could have dropped the embeddings field from the table schema as I never got around to using it.</p>
 
 <h3>Scripting Time</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -764,7 +801,8 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
                 <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
                     <span class="n">trans</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
     <span class="n">req_count</span> <span class="o">+=</span> <span class="mi">1</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>(Note: I was well within the rate-limit so I did not have to slow down or implement any other measures)</p>
 
@@ -799,7 +837,8 @@ As of writing this post, I did not include any other database except Trakt. </p>
 <li><p>Installing the Python module (pinecone-client)</p></li>
 </ul>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">pinecone</span>
 <span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> 
@@ -829,7 +868,8 @@ As of writing this post, I did not include any other database except Trakt. </p>
                 <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
             <span class="p">))</span>
     <span class="n">index</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span><span class="n">to_send</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>That's it!</p>
 
@@ -840,7 +880,8 @@ As of writing this post, I did not include any other database except Trakt. </p>
 <p>To find similar items, we will first have to map the name of the movie to its trakt_id, get the embeddings we have for that id and then perform a similarity search. 
 It is possible that this additional step of mapping could be avoided by storing information as metadata in the index.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
   <span class="n">rec</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="n">movie_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">trakt_id</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;multiple values found... </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">trakt_id</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -880,11 +921,13 @@ It is possible that this additional step of mapping could be avoided by storing 
       <span class="s2">&quot;runtime&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
       <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
   <span class="p">}</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Testing it Out</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">movie_name</span> <span class="o">=</span> <span class="s2">&quot;Now You See Me&quot;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">movie_name</span> <span class="o">=</span> <span class="s2">&quot;Now You See Me&quot;</span>
 
 <span class="n">movie_trakt_id</span> <span class="o">=</span> <span class="n">get_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">movie_name</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">movie_trakt_id</span><span class="p">)</span>
@@ -896,7 +939,8 @@ It is possible that this additional step of mapping could be avoided by storing 
 <span class="k">for</span> <span class="n">trakt_id</span> <span class="ow">in</span> <span class="n">movie_ids</span><span class="p">:</span>
   <span class="n">deets</span> <span class="o">=</span> <span class="n">get_deets_by_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">trakt_id</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">deets</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">deets</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">deets</span><span class="p">[</span><span class="s1">&#39;overview&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Output:</p>
 
@@ -1128,7 +1172,8 @@ me.fset  me.fset3 me.iset
 
 <p>Create a new file called <code>index.html</code> in your project folder. This is the basic template we are going to use. Replace <code>me</code> with the root filename of your image, for example <code>NeverGonnaGiveYouUp.png</code> will become <code>NeverGonnaGiveYouUp</code>. Make sure you have copied all three files from the output folder in the previous step to the root of your project folder.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
@@ -1175,7 +1220,8 @@ me.fset  me.fset3 me.iset
     <span class="p">&lt;</span><span class="nt">a-entity</span> <span class="na">camera</span><span class="p">&gt;&lt;/</span><span class="nt">a-entity</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">a-scene</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>In this we are creating a AFrame scene and we are telling it that we want to use NFT Tracking. The amazing part about using AFrame is that we are able to use all AFrame objects!</p>
 
@@ -1183,10 +1229,12 @@ me.fset  me.fset3 me.iset
 
 <p>Let us add a simple box!</p>
 
-<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a-nft</span> <span class="err">.....</span><span class="p">&gt;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">a-nft</span> <span class="err">.....</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">a-box</span> <span class="na">position</span><span class="o">=</span><span class="s">&#39;100 0.5 -180&#39;</span> <span class="na">material</span><span class="o">=</span><span class="s">&#39;opacity: 0.5; side: double&#39;</span> <span class="na">scale</span><span class="o">=</span><span class="s">&quot;100 100 100&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">a-box</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">a-nft</span><span class="p">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Now to test it out we will need to create a simple server, I use Python's inbuilt <code>SimpleHTTPServer</code> alongside <code>ngrok</code> </p>
 
@@ -1221,12 +1269,14 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p>Edit your <code>index.html</code> </p>
 
-<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a-nft</span> <span class="err">..</span><span class="p">&gt;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">a-nft</span> <span class="err">..</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">a-box</span> <span class="err">..</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">a-torus-knot</span> <span class="na">radius</span><span class="o">=</span><span class="s">&#39;0.26&#39;</span> <span class="na">radius-tubular</span><span class="o">=</span><span class="s">&#39;0.05&#39;</span> <span class="p">&gt;&lt;/</span><span class="nt">a-torus-knot</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span> <span class="nt">a-box</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span> <span class="nt">a-nft</span><span class="p">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/posts/arjs/03-knot.png" alt="" /></p>
 
@@ -1242,9 +1292,11 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p>Change the box's material to add the GIF shader</p>
 
-<div class="codehilite"><pre><span></span><code>...
+<div class="codehilite">
+<pre><span></span><code>...
 <span class="p">&lt;</span><span class="nt">a-box</span> <span class="na">position</span><span class="o">=</span><span class="s">&#39;100 0.5 -180&#39;</span> <span class="na">material</span><span class="o">=</span><span class="s">&quot;shader:gif;src:url(https://media.tenor.com/images/412b1aa9149d98d561df62db221e0789/tenor.gif);opacity:.5&quot;</span> <span class="err">.....</span><span class="p">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/posts/arjs/04-nyan.gif" alt="" /></p>
 
@@ -1261,6 +1313,52 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 <p>Here is a screenshot of me scanning a rounded version of my profile picture ( It still works! Even though the image is cropped and I haven't changed any line of code )</p>
 
 <p><img src="/assets/posts/arjs/05-GitHub.jpg" alt="" /></p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2022-11-07-a-new-method-to-blog.html
+			</guid>
+			<title>
+				A new method to blog
+			</title>
+			<description>
+				Writing posts in markdown using pen and paper
+			</description>
+			<link>https://web.navan.dev/posts/2022-11-07-a-new-method-to-blog.html</link>
+			<pubDate>Mon, 07 Nov 2022 23:29:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>A new method to blog</h1>
+
+<p><a rel="noopener" target="_blank" href="https://paperwebsite.com">Paper Website</a> is a service that lets you build a website with just pen and paper. I am going to try and replicate the process.</p>
+
+<h2>The Plan</h2>
+
+<p>The continuity feature on macOS + iOS lets you scan PDFs directly from your iPhone. I want to be able to scan these pages and automatically run an Automator script that takes the PDF and OCRs the text. Then I can further clean the text and convert from markdown.</p>
+
+<h2>Challenges</h2>
+
+<p>I quickly realised that the OCR software I planned on using could not detect my shitty handwriting accurately. I tried using ABBY Finereader, Prizmo and OCRMyPDF. (Abby Finereader and Prizmo support being automated by Automator).</p>
+
+<p>Now, I could either write neater, or use an external API like Microsoft Azure</p>
+
+<h2>Solution</h2>
+
+<h3>OCR</h3>
+
+<p>In the PDFs, all the scans are saved as images on a page. I extract the image and then send it to Azure's API. </p>
+
+<h3>Paragraph Breaks</h3>
+
+<p>The recognised text had multiple lines breaking in the middle of the sentence, Therefore, I use what is called a <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Pilcrow">pilcrow</a> to specify paragraph breaks. But, rather than trying to draw the normal pilcrow, I just use the HTML entity <code>&amp;#182;</code> which is the pilcrow character. </p>
+
+<h2>Where is the code?</h2>
+
+<p>I created a <a rel="noopener" target="_blank" href="https://gist.github.com/navanchauhan/5fc602b1e023b60a66bc63bd4eecd4f8">GitHub Gist</a> for a sample Python script to take the PDF and print the text </p>
+
+<p>A more complete version with Auomator scripts and an entire publishing pipeline will be available as a GitHub and Gitea repo soon.</p>
+
+<p><em>* In Part 2, I will discuss some more features *</em> </p>
 ]]></content:encoded>
 		</item>
 		
@@ -1391,12 +1489,14 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 
 <h2>Imports</h2>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="n">tf</span><span class="o">.</span><span class="n">disable_v2_behavior</span><span class="p">()</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h2>Dataset</h2>
 
@@ -1408,30 +1508,41 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 
 <p><code>linspace(lower_limit, upper_limit, no_of_observations)</code></p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>We use the following function to add noise to the data, so that our values</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">x</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">x</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Position vs Salary Dataset</h3>
 
 <p>We will be using https://drive.google.com/file/d/1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9/view (Salary vs Position Dataset)</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!wget</span><span class="na"> --no-check-certificate &#39;https</span><span class="p">:</span><span class="nc">//docs.google.com/uc?export</span><span class="o">=</span><span class="l">download&amp;id=1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9&#39; -O data.csv</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!wget</span><span class="na"> --no-check-certificate &#39;https</span><span class="p">:</span><span class="nc">//docs.google.com/uc?export</span><span class="o">=</span><span class="l">download&amp;id=1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9&#39; -O data.csv</span>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="c1"># this gives us a preview of the dataset we are working with</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">df</span> <span class="c1"># this gives us a preview of the dataset we are working with</span>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="o">|</span> <span class="n">Position</span>          <span class="o">|</span> <span class="n">Level</span> <span class="o">|</span> <span class="n">Salary</span>  <span class="o">|</span>
+<div class="codehilite">
+<pre><span></span><code><span class="o">|</span> <span class="n">Position</span>          <span class="o">|</span> <span class="n">Level</span> <span class="o">|</span> <span class="n">Salary</span>  <span class="o">|</span>
 <span class="o">|-------------------|-------|---------|</span>
 <span class="o">|</span> <span class="n">Business</span> <span class="n">Analyst</span>  <span class="o">|</span> <span class="mi">1</span>     <span class="o">|</span> <span class="mi">45000</span>   <span class="o">|</span>
 <span class="o">|</span> <span class="n">Junior</span> <span class="n">Consultant</span> <span class="o">|</span> <span class="mi">2</span>     <span class="o">|</span> <span class="mi">50000</span>   <span class="o">|</span>
@@ -1443,81 +1554,100 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 <span class="o">|</span> <span class="n">Senior</span> <span class="n">Partner</span>    <span class="o">|</span> <span class="mi">8</span>     <span class="o">|</span> <span class="mi">300000</span>  <span class="o">|</span>
 <span class="o">|</span> <span class="n">C</span><span class="o">-</span><span class="n">level</span>           <span class="o">|</span> <span class="mi">9</span>     <span class="o">|</span> <span class="mi">500000</span>  <span class="o">|</span>
 <span class="o">|</span> <span class="n">CEO</span>               <span class="o">|</span> <span class="mi">10</span>    <span class="o">|</span> <span class="mi">1000000</span> <span class="o">|</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>We convert the salary column as the ordinate (y-coordinate) and level column as the abscissa</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">abscissa</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Level&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="c1"># abscissa = [1,2,3,4,5,6,7,8,9,10]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">abscissa</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Level&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="c1"># abscissa = [1,2,3,4,5,6,7,8,9,10]</span>
 <span class="n">ordinate</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="c1"># ordinate = [45000,50000,60000,80000,110000,150000,200000,300000,500000,1000000]</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">abscissa</span><span class="p">)</span> <span class="c1"># no of observations</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">abscissa</span><span class="p">)</span> <span class="c1"># no of observations</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Salary&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Salary vs Position&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/1.png" alt="" /></p>
 
 <h2>Defining Stuff</h2>
 
-<div class="codehilite"><pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Defining Variables</h3>
 
 <p>We first define all the coefficients and constant as tensorflow variables having a random initial value</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;d&quot;</span><span class="p">)</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;e&quot;</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Model Configuration</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.2</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.2</span>
 <span class="n">no_of_epochs</span> <span class="o">=</span> <span class="mi">25000</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Equations</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">deg1</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">b</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">deg1</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">b</span>
 <span class="n">deg2</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">c</span>
 <span class="n">deg3</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">d</span>
 <span class="n">deg4</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">e</span>
 <span class="n">deg5</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">e</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">f</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Cost Function</h3>
 
 <p>We use the Mean Squared Error Function</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">mse1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg1</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">mse1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg1</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
 <span class="n">mse2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg2</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
 <span class="n">mse3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg3</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
 <span class="n">mse4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg4</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
 <span class="n">mse5</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg5</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Optimizer</h3>
 
 <p>We use the AdamOptimizer for the polynomial functions and GradientDescentOptimizer for the linear function</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">optimizer1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse1</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">optimizer1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse1</span><span class="p">)</span>
 <span class="n">optimizer2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse2</span><span class="p">)</span>
 <span class="n">optimizer3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse3</span><span class="p">)</span>
 <span class="n">optimizer4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse4</span><span class="p">)</span>
 <span class="n">optimizer5</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse5</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">init</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">init</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+</code></pre>
+</div>
 
 <h2>Model Predictions</h2>
 
@@ -1526,7 +1656,8 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <h3>Linear Equation</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -1540,9 +1671,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">training_cost</span><span class="p">,</span> <span class="n">coefficient1</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
@@ -1568,9 +1701,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">88999125000.0</span><span class="na"> 180396.42 -478869.12</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -1578,13 +1713,15 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linear Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/2.png" alt="" /></p>
 
 <h3>Quadratic Equation</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -1599,9 +1736,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">training_cost</span><span class="p">,</span> <span class="n">coefficient1</span><span class="p">,</span> <span class="n">coefficient2</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">52571360000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">1002.4456</span><span class="err"> </span><span class="nc">1097.0197</span><span class="err"> </span><span class="nc">1276.6921</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">52571360000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">1002.4456</span><span class="err"> </span><span class="nc">1097.0197</span><span class="err"> </span><span class="nc">1276.6921</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">37798890000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">1952.4263</span><span class="err"> </span><span class="nc">2130.2825</span><span class="err"> </span><span class="nc">2469.7756</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">26751185000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">2839.5825</span><span class="err"> </span><span class="nc">3081.6118</span><span class="err"> </span><span class="nc">3554.351</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">19020106000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">3644.56</span><span class="err"> </span><span class="nc">3922.9563</span><span class="err"> </span><span class="nc">4486.3135</span><span class="w"></span>
@@ -1627,9 +1766,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">8088001000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">6632.96</span><span class="err"> </span><span class="nc">3399.878</span><span class="err"> </span><span class="nc">-79.89219</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">8058094600.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">6659.793</span><span class="err"> </span><span class="nc">3227.2517</span><span class="err"> </span><span class="nc">-463.03156</span><span class="w"></span>
 <span class="nt">8058094600.0</span><span class="na"> 6659.793 3227.2517 -463.03156</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -1637,13 +1778,15 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Quadratic Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/3.png" alt="" /></p>
 
 <h3>Cubic</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -1659,9 +1802,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">training_cost</span><span class="p">,</span> <span class="n">coefficient1</span><span class="p">,</span> <span class="n">coefficient2</span><span class="p">,</span> <span class="n">coefficient3</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">4279814000.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">670.1527</span><span class="err"> </span><span class="nc">694.4212</span><span class="err"> </span><span class="nc">751.4653</span><span class="err"> </span><span class="nc">903.9527</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">4279814000.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">670.1527</span><span class="err"> </span><span class="nc">694.4212</span><span class="err"> </span><span class="nc">751.4653</span><span class="err"> </span><span class="nc">903.9527</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3770950400.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">742.6414</span><span class="err"> </span><span class="nc">666.3489</span><span class="err"> </span><span class="nc">636.94525</span><span class="err"> </span><span class="nc">859.2088</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3717708300.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">756.2582</span><span class="err"> </span><span class="nc">569.3339</span><span class="err"> </span><span class="nc">448.105</span><span class="err"> </span><span class="nc">748.23956</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3667464000.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">769.4476</span><span class="err"> </span><span class="nc">474.0318</span><span class="err"> </span><span class="nc">265.5761</span><span class="err"> </span><span class="nc">654.75525</span><span class="w"></span>
@@ -1687,9 +1832,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3070361300.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">975.52875</span><span class="err"> </span><span class="nc">-1095.4292</span><span class="err"> </span><span class="nc">-2211.854</span><span class="err"> </span><span class="nc">1847.4485</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3052791300.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">983.4346</span><span class="err"> </span><span class="nc">-1159.7922</span><span class="err"> </span><span class="nc">-2286.9412</span><span class="err"> </span><span class="nc">2027.4857</span><span class="w"></span>
 <span class="nt">3052791300.0</span><span class="na"> 983.4346 -1159.7922 -2286.9412 2027.4857</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient2</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -1697,13 +1844,15 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cubic Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/4.png" alt="" /></p>
 
 <h3>Quartic</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -1720,9 +1869,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">training_cost</span><span class="p">,</span> <span class="n">coefficient1</span><span class="p">,</span> <span class="n">coefficient2</span><span class="p">,</span> <span class="n">coefficient3</span><span class="p">,</span> <span class="n">coefficient4</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1902632600.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">84.48304</span><span class="err"> </span><span class="nc">52.210594</span><span class="err"> </span><span class="nc">54.791424</span><span class="err"> </span><span class="nc">142.51952</span><span class="err"> </span><span class="nc">512.0343</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1902632600.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">84.48304</span><span class="err"> </span><span class="nc">52.210594</span><span class="err"> </span><span class="nc">54.791424</span><span class="err"> </span><span class="nc">142.51952</span><span class="err"> </span><span class="nc">512.0343</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1854316200.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">88.998955</span><span class="err"> </span><span class="nc">13.073557</span><span class="err"> </span><span class="nc">14.276088</span><span class="err"> </span><span class="nc">223.55667</span><span class="err"> </span><span class="nc">1056.4655</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1812812400.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">92.9462</span><span class="err"> </span><span class="nc">-22.331177</span><span class="err"> </span><span class="nc">-15.262934</span><span class="err"> </span><span class="nc">327.41858</span><span class="err"> </span><span class="nc">1634.9054</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1775716000.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">96.42522</span><span class="err"> </span><span class="nc">-54.64535</span><span class="err"> </span><span class="nc">-35.829437</span><span class="err"> </span><span class="nc">449.5028</span><span class="err"> </span><span class="nc">2239.1392</span><span class="w"></span>
@@ -1748,9 +1899,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1252052600.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">135.9583</span><span class="err"> </span><span class="nc">-493.38254</span><span class="err"> </span><span class="nc">90.268616</span><span class="err"> </span><span class="nc">3764.0078</span><span class="err"> </span><span class="nc">15010.481</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1231713700.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">137.54753</span><span class="err"> </span><span class="nc">-512.1876</span><span class="err"> </span><span class="nc">101.59372</span><span class="err"> </span><span class="nc">3926.4897</span><span class="err"> </span><span class="nc">15609.368</span><span class="w"></span>
 <span class="nt">1231713700.0</span><span class="na"> 137.54753 -512.1876 101.59372 3926.4897 15609.368</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient2</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient3</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -1758,13 +1911,15 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Quartic Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/5.png" alt="" /></p>
 
 <h3>Quintic</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -1780,9 +1935,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">coefficient4</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
         <span class="n">coefficient5</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1409200100.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">7.949472</span><span class="err"> </span><span class="nc">7.46219</span><span class="err"> </span><span class="nc">55.626034</span><span class="err"> </span><span class="nc">184.29028</span><span class="err"> </span><span class="nc">484.00223</span><span class="err"> </span><span class="nc">1024.0083</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1409200100.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">7.949472</span><span class="err"> </span><span class="nc">7.46219</span><span class="err"> </span><span class="nc">55.626034</span><span class="err"> </span><span class="nc">184.29028</span><span class="err"> </span><span class="nc">484.00223</span><span class="err"> </span><span class="nc">1024.0083</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1306882400.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">8.732181</span><span class="err"> </span><span class="nc">-4.0085897</span><span class="err"> </span><span class="nc">73.25298</span><span class="err"> </span><span class="nc">315.90103</span><span class="err"> </span><span class="nc">904.08887</span><span class="err"> </span><span class="nc">2004.9749</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1212606000.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">9.732249</span><span class="err"> </span><span class="nc">-16.90125</span><span class="err"> </span><span class="nc">86.28379</span><span class="err"> </span><span class="nc">437.06552</span><span class="err"> </span><span class="nc">1305.055</span><span class="err"> </span><span class="nc">2966.2188</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1123640400.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">10.74851</span><span class="err"> </span><span class="nc">-29.82692</span><span class="err"> </span><span class="nc">98.59997</span><span class="err"> </span><span class="nc">555.331</span><span class="err"> </span><span class="nc">1698.4631</span><span class="err"> </span><span class="nc">3917.9155</span><span class="w"></span>
@@ -1808,9 +1965,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">229660080.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">27.102589</span><span class="err"> </span><span class="nc">-238.44817</span><span class="err"> </span><span class="nc">309.35342</span><span class="err"> </span><span class="nc">2420.4185</span><span class="err"> </span><span class="nc">7770.5728</span><span class="err"> </span><span class="nc">19536.19</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">216972400.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">27.660324</span><span class="err"> </span><span class="nc">-245.69016</span><span class="err"> </span><span class="nc">318.10062</span><span class="err"> </span><span class="nc">2483.3608</span><span class="err"> </span><span class="nc">7957.354</span><span class="err"> </span><span class="nc">20027.707</span><span class="w"></span>
 <span class="nt">216972400.0</span><span class="na"> 27.660324 -245.69016 318.10062 2483.3608 7957.354 20027.707</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient2</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient3</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient4</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -1818,7 +1977,8 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Quintic Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/6.png" alt="" /></p>
 
@@ -2682,7 +2842,8 @@ I created a sample JSON with only 3 examples (I know, very less, but works for a
 
 <p><img src="/assets/posts/swift-chatbot/drugs-json.png" alt="Screenshot of Sample Dataset" /></p>
 
-<div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="p">[</span><span class="w"></span>
 <span class="w">    </span><span class="p">{</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;tokens&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Tell&quot;</span><span class="p">,</span><span class="s2">&quot;me&quot;</span><span class="p">,</span><span class="s2">&quot;about&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;drug&quot;</span><span class="p">,</span><span class="s2">&quot;Aspirin&quot;</span><span class="p">,</span><span class="s2">&quot;.&quot;</span><span class="p">],</span><span class="w"></span>
 <span class="w">        </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span><span class="w"></span>
@@ -2696,7 +2857,8 @@ I created a sample JSON with only 3 examples (I know, very less, but works for a
 <span class="w">        </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;COMPOUND&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">,</span><span class="s2">&quot;NONE&quot;</span><span class="p">]</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
 <span class="p">]</span><span class="w"></span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/posts/swift-chatbot/create-tagger.png" alt="Screenshot of Create ML Text Classifier" /></p>
 
@@ -2706,7 +2868,8 @@ I created a sample JSON with only 3 examples (I know, very less, but works for a
 
 <p><img src="/assets/posts/swift-chatbot/carbon.png" alt="Screenshot" /></p>
 
-<div class="codehilite"><pre><span></span><code><span class="kd">import</span> <span class="nc">CoreML</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kd">import</span> <span class="nc">CoreML</span>
 <span class="kd">import</span> <span class="nc">NaturalLanguage</span>
 
 <span class="kd">let</span> <span class="nv">mlModelClassifier</span> <span class="p">=</span> <span class="k">try</span> <span class="n">IntentDetection_1</span><span class="p">(</span><span class="n">configuration</span><span class="p">:</span>  <span class="bp">MLModelConfiguration</span><span class="p">()).</span><span class="n">model</span>
@@ -2717,7 +2880,8 @@ I created a sample JSON with only 3 examples (I know, very less, but works for a
 
 <span class="kd">let</span> <span class="nv">tagger</span> <span class="p">=</span> <span class="bp">NLTagger</span><span class="p">(</span><span class="n">tagSchemes</span><span class="p">:</span> <span class="p">[.</span><span class="n">nameType</span><span class="p">,</span> <span class="n">NLTagScheme</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">)])</span>
 <span class="n">tagger</span><span class="p">.</span><span class="n">setModels</span><span class="p">([</span><span class="n">tagPredictor</span><span class="p">],</span> <span class="n">forTagScheme</span><span class="p">:</span> <span class="n">NLTagScheme</span><span class="p">(</span><span class="s">&quot;Apple&quot;</span><span class="p">))</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Now, we define a simple structure which the custom function(s) can use to access the provided input. 
 It can also be used to hold additional variables.
@@ -2727,7 +2891,8 @@ The latter can be replaced with a function which asks the user for the input. </
 
 <p><img src="/assets/posts/swift-chatbot/carbon-2.png" alt="Screenshot" /></p>
 
-<div class="codehilite"><pre><span></span><code><span class="kd">struct</span> <span class="nc">User</span> <span class="p">{</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kd">struct</span> <span class="nc">User</span> <span class="p">{</span>
     <span class="kd">static</span> <span class="kd">var</span> <span class="nv">message</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
 <span class="p">}</span>
 
@@ -2751,14 +2916,16 @@ The latter can be replaced with a function which asks the user for the input. </
     <span class="p">}</span>
 
 <span class="p">}</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Sometimes, no action needs to be performed, and the bot can use a predefined set of responses. 
 Otherwise, if an action is required, it can call the custom action.</p>
 
 <p><img src="/assets/posts/swift-chatbot/carbon-3.png" alt="Screenshot" /></p>
 
-<div class="codehilite"><pre><span></span><code><span class="kd">let</span> <span class="nv">defaultResponses</span> <span class="p">=</span> <span class="p">[</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span> <span class="nv">defaultResponses</span> <span class="p">=</span> <span class="p">[</span>
     <span class="s">&quot;greetings&quot;</span><span class="p">:</span> <span class="s">&quot;Hello&quot;</span><span class="p">,</span>
     <span class="s">&quot;banter&quot;</span><span class="p">:</span> <span class="s">&quot;no, plix no&quot;</span>
 <span class="p">]</span>
@@ -2766,14 +2933,16 @@ Otherwise, if an action is required, it can call the custom action.</p>
 <span class="kd">let</span> <span class="nv">customActions</span> <span class="p">=</span> <span class="p">[</span>
     <span class="s">&quot;deez-drug&quot;</span><span class="p">:</span> <span class="n">customAction</span>
 <span class="p">]</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>In the sample input, the program is updating the User.message and checking if it has a default response.
 Otherwise, it calls the custom action.</p>
 
 <p><img src="/assets/posts/swift-chatbot/carbon-4.png" alt="Screenshot" /></p>
 
-<div class="codehilite"><pre><span></span><code><span class="kd">let</span> <span class="nv">sampleMessages</span> <span class="p">=</span> <span class="p">[</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kd">let</span> <span class="nv">sampleMessages</span> <span class="p">=</span> <span class="p">[</span>
     <span class="s">&quot;Hey there, how is it going&quot;</span><span class="p">,</span>
     <span class="s">&quot;hello, there&quot;</span><span class="p">,</span>
     <span class="s">&quot;Who let the dogs out&quot;</span><span class="p">,</span>
@@ -2793,7 +2962,8 @@ Otherwise, it calls the custom action.</p>
         <span class="bp">print</span><span class="p">(</span><span class="n">customActions</span><span class="p">[</span><span class="n">prediction</span><span class="p">!]</span><span class="o">!</span><span class="p">())</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/posts/swift-chatbot/output.png" alt="Output" /></p>
 
@@ -2825,39 +2995,53 @@ Otherwise, it calls the custom action.</p>
 
 <p>First we import the following if we have not imported these before</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">cv2</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">import</span> <span class="nn">os</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Then we read the file using OpenCV.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">image</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imagePath</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">image</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">imagePath</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>The cv2. imread() function returns a NumPy array representing the image. Therefore, we need to convert it before we can use it.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">image_from_array</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">image_from_array</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>Then we resize the image</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">size_image</span> <span class="o">=</span> <span class="n">image_from_array</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">size_image</span> <span class="o">=</span> <span class="n">image_from_array</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+</code></pre>
+</div>
 
 <p>After this we create a batch consisting of only one image</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">size_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">size_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>We then convert this uint8 datatype to a float32 datatype</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">img</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">img</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>Finally we make the prediction</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">([</span><span class="s1">&#39;Infected&#39;</span><span class="p">,</span><span class="s1">&#39;Uninfected&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="p">))])</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nb">print</span><span class="p">([</span><span class="s1">&#39;Infected&#39;</span><span class="p">,</span><span class="s1">&#39;Uninfected&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">img</span><span class="p">))])</span>
+</code></pre>
+</div>
 
 <p><code>Infected</code></p>
 ]]></content:encoded>
@@ -2889,7 +3073,8 @@ Otherwise, it calls the custom action.</p>
 
 <p>Just copy and paste this in a Colab cell and it will install it 👍</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">subprocess</span>
@@ -2912,7 +3097,8 @@ Otherwise, it calls the custom action.</p>
         <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="s2">&quot;&quot;&quot;install rdkit from miniconda</span>
 <span class="s2">   </span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <pre><code>import rdkit_installer
 rdkit_installer.install()
@@ -2999,13 +3185,17 @@ logger.info("rdkit-{} installation finished!".format(rdkit.__version__))
 
 <h2>Dependencies</h2>
 
-<div class="codehilite"><pre><span></span><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install certbot -y
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install certbot -y
+</code></pre>
+</div>
 
 <h2>Get the Certificate</h2>
 
-<div class="codehilite"><pre><span></span><code>sudo certbot certonly --manual --preferred-challenges dns-01 --email senpai@email.com -d mydomain.duckdns.org
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code>sudo certbot certonly --manual --preferred-challenges dns-01 --email senpai@email.com -d mydomain.duckdns.org
+</code></pre>
+</div>
 
 <p>After you accept that you are okay with you IP address being logged, it will prompt you with updating your dns record. You need to create a new <code>TXT</code> record in the DNS settings for your domain.</p>
 
@@ -3018,7 +3208,8 @@ logger.info("rdkit-{} installation finished!".format(rdkit.__version__))
 
 <p>You can check if the TXT records have been updated by using the <code>dig</code> command:</p>
 
-<div class="codehilite"><pre><span></span><code>dig navanspi.duckdns.org TXT
+<div class="codehilite">
+<pre><span></span><code>dig navanspi.duckdns.org TXT
 <span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.16.1-Ubuntu &lt;&lt;&gt;&gt; navanspi.duckdns.org TXT
 <span class="p">;;</span> global options: +cmd
 <span class="p">;;</span> Got answer:
@@ -3037,7 +3228,8 @@ navanspi.duckdns.org.    <span class="m">60</span>    IN    TXT    <span class="
 <span class="p">;;</span> SERVER: <span class="m">127</span>.0.0.53#53<span class="o">(</span><span class="m">127</span>.0.0.53<span class="o">)</span>
 <span class="p">;;</span> WHEN: Tue Nov <span class="m">17</span> <span class="m">15</span>:23:15 IST <span class="m">2020</span>
 <span class="p">;;</span> MSG SIZE  rcvd: <span class="m">105</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>DuckDNS almost instantly propagates the changes but for other domain hosts, it could take a while. </p>
 
@@ -3051,13 +3243,17 @@ navanspi.duckdns.org.    <span class="m">60</span>    IN    TXT    <span class="
 
 <p>Example Gunicorn command for running a web-app:</p>
 
-<div class="codehilite"><pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589
+</code></pre>
+</div>
 
 <p>To use the certificate with it, simply copy the <code>cert.pem</code> and <code>privkey.pem</code> to your working directory ( change the appropriate permissions ) and include them in the command</p>
 
-<div class="codehilite"><pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589 --certfile<span class="o">=</span>cert.pem --keyfile<span class="o">=</span>privkey.pem
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589 --certfile<span class="o">=</span>cert.pem --keyfile<span class="o">=</span>privkey.pem
+</code></pre>
+</div>
 
 <p>Caveats with copying the certificate: If you renew the certificate you will have to re-copy the files</p>
 ]]></content:encoded>
@@ -3094,48 +3290,63 @@ Whenever you are looking for a dataset, always try searching on Kaggle and GitHu
 This allows you to train the model on the GPU. Turicreate is built on top of Apache's MXNet Framework, for us to use GPU we need to install
 a CUDA compatible MXNet package.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!pip</span><span class="na"> install turicreate</span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!pip</span><span class="na"> install turicreate</span>
 <span class="na">!pip uninstall -y mxnet</span>
 <span class="na">!pip install mxnet-cu100==1.4.0.post0</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>If you do not wish to train on GPU or are running it on your computer, you can ignore the last two lines</p>
 
 <h3>Downloading the Dataset</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!wget</span><span class="na"> -q &quot;https</span><span class="p">:</span><span class="nc">//github.com/joolsa/fake_real_news_dataset/raw/master/fake_or_real_news.csv.zip&quot;</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!wget</span><span class="na"> -q &quot;https</span><span class="p">:</span><span class="nc">//github.com/joolsa/fake_real_news_dataset/raw/master/fake_or_real_news.csv.zip&quot;</span><span class="w"></span>
 <span class="nt">!unzip</span><span class="na"> fake_or_real_news.csv.zip</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Model Creation</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
 <span class="n">tc</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">set_num_gpus</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># If you do not wish to use GPUs, set it to 0</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">dataSFrame</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="p">(</span><span class="s1">&#39;fake_or_real_news.csv&#39;</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">dataSFrame</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="p">(</span><span class="s1">&#39;fake_or_real_news.csv&#39;</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <p>The dataset contains a column named "X1", which is of no use to us. Therefore, we simply drop it</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">dataSFrame</span><span class="o">.</span><span class="n">remove_column</span><span class="p">(</span><span class="s1">&#39;X1&#39;</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">dataSFrame</span><span class="o">.</span><span class="n">remove_column</span><span class="p">(</span><span class="s1">&#39;X1&#39;</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <h4>Splitting Dataset</h4>
 
-<div class="codehilite"><pre><span></span><code><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">dataSFrame</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">.9</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">dataSFrame</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">.9</span><span class="p">)</span>
+</code></pre>
+</div>
 
 <h4>Training</h4>
 
-<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_classifier</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_classifier</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
     <span class="n">dataset</span><span class="o">=</span><span class="n">train</span><span class="p">,</span>
     <span class="n">target</span><span class="o">=</span><span class="s1">&#39;label&#39;</span><span class="p">,</span>
     <span class="n">features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">,</span><span class="s1">&#39;text&#39;</span><span class="p">]</span>
 <span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="o">+-----------+----------+-----------+--------------+-------------------+---------------------+</span>
+<div class="codehilite">
+<pre><span></span><code><span class="o">+-----------+----------+-----------+--------------+-------------------+---------------------+</span>
 <span class="o">|</span> <span class="n">Iteration</span> <span class="o">|</span> <span class="n">Passes</span>   <span class="o">|</span> <span class="n">Step</span> <span class="n">size</span> <span class="o">|</span> <span class="n">Elapsed</span> <span class="n">Time</span> <span class="o">|</span> <span class="n">Training</span> <span class="n">Accuracy</span> <span class="o">|</span> <span class="n">Validation</span> <span class="n">Accuracy</span> <span class="o">|</span>
 <span class="o">+-----------+----------+-----------+--------------+-------------------+---------------------+</span>
 <span class="o">|</span> <span class="mi">0</span>         <span class="o">|</span> <span class="mi">2</span>        <span class="o">|</span> <span class="mf">1.000000</span>  <span class="o">|</span> <span class="mf">1.156349</span>     <span class="o">|</span> <span class="mf">0.889680</span>          <span class="o">|</span> <span class="mf">0.790036</span>            <span class="o">|</span>
@@ -3145,39 +3356,50 @@ a CUDA compatible MXNet package.</p>
 <span class="o">|</span> <span class="mi">4</span>         <span class="o">|</span> <span class="mi">8</span>        <span class="o">|</span> <span class="mf">1.000000</span>  <span class="o">|</span> <span class="mf">1.814194</span>     <span class="o">|</span> <span class="mf">0.999063</span>          <span class="o">|</span> <span class="mf">0.925267</span>            <span class="o">|</span>
 <span class="o">|</span> <span class="mi">9</span>         <span class="o">|</span> <span class="mi">14</span>       <span class="o">|</span> <span class="mf">1.000000</span>  <span class="o">|</span> <span class="mf">2.507072</span>     <span class="o">|</span> <span class="mf">1.000000</span>          <span class="o">|</span> <span class="mf">0.911032</span>            <span class="o">|</span>
 <span class="o">+-----------+----------+-----------+--------------+-------------------+---------------------+</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Testing the Model</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">est_predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">est_predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
 <span class="n">accuracy</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">evaluation</span><span class="o">.</span><span class="n">accuracy</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="s1">&#39;label&#39;</span><span class="p">],</span> <span class="n">test_predictions</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Topic classifier model has a testing accuracy of </span><span class="si">{</span><span class="n">accuracy</span><span class="o">*</span><span class="mi">100</span><span class="si">}</span><span class="s1">% &#39;</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">Topic</span> <span class="n">classifier</span> <span class="n">model</span> <span class="n">has</span> <span class="n">a</span> <span class="n">testing</span> <span class="n">accuracy</span> <span class="n">of</span> <span class="mf">92.3076923076923</span><span class="o">%</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">Topic</span> <span class="n">classifier</span> <span class="n">model</span> <span class="n">has</span> <span class="n">a</span> <span class="n">testing</span> <span class="n">accuracy</span> <span class="n">of</span> <span class="mf">92.3076923076923</span><span class="o">%</span>
+</code></pre>
+</div>
 
 <p>We have just created our own Fake News Detection Model which has an accuracy of 92%!</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">example_text</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Middling ‘Rise Of Skywalker’ Review Leaves Fan On Fence About Whether To Threaten To Kill Critic&quot;</span><span class="p">],</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Expressing ambivalence toward the relatively balanced appraisal of the film, Star Wars fan Miles Ariely admitted Thursday that an online publication’s middling review of The Rise Of Skywalker had left him on the fence about whether he would still threaten to kill the critic who wrote it. “I’m really of two minds about this, because on the one hand, he said the new movie fails to live up to the original trilogy, which makes me at least want to throw a brick through his window with a note telling him to watch his back,” said Ariely, confirming he had already drafted an eight-page-long death threat to Stan Corimer of the website Screen-On Time, but had not yet decided whether to post it to the reviewer’s Facebook page. “On the other hand, though, he commended J.J. Abrams’ skillful pacing and faithfulness to George Lucas’ vision, which makes me wonder if I should just call the whole thing off. Now, I really don’t feel like camping outside his house for hours. Maybe I could go with a response that’s somewhere in between, like, threatening to kill his dog but not everyone in his whole family? I don’t know. This is a tough one.” At press time, sources reported that Ariely had resolved to wear his Ewok costume while he murdered the critic in his sleep.&quot;</span><span class="p">]}</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">example_text</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Middling ‘Rise Of Skywalker’ Review Leaves Fan On Fence About Whether To Threaten To Kill Critic&quot;</span><span class="p">],</span> <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Expressing ambivalence toward the relatively balanced appraisal of the film, Star Wars fan Miles Ariely admitted Thursday that an online publication’s middling review of The Rise Of Skywalker had left him on the fence about whether he would still threaten to kill the critic who wrote it. “I’m really of two minds about this, because on the one hand, he said the new movie fails to live up to the original trilogy, which makes me at least want to throw a brick through his window with a note telling him to watch his back,” said Ariely, confirming he had already drafted an eight-page-long death threat to Stan Corimer of the website Screen-On Time, but had not yet decided whether to post it to the reviewer’s Facebook page. “On the other hand, though, he commended J.J. Abrams’ skillful pacing and faithfulness to George Lucas’ vision, which makes me wonder if I should just call the whole thing off. Now, I really don’t feel like camping outside his house for hours. Maybe I could go with a response that’s somewhere in between, like, threatening to kill his dog but not everyone in his whole family? I don’t know. This is a tough one.” At press time, sources reported that Ariely had resolved to wear his Ewok costume while he murdered the critic in his sleep.&quot;</span><span class="p">]}</span>
 <span class="n">example_prediction</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">classify</span><span class="p">(</span><span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="p">(</span><span class="n">example_text</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">example_prediction</span><span class="p">,</span> <span class="n">flush</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="o">+-------+--------------------+</span>
+<div class="codehilite">
+<pre><span></span><code><span class="o">+-------+--------------------+</span>
 <span class="o">|</span> <span class="k">class</span> <span class="err">|    </span><span class="nc">probability</span>     <span class="o">|</span>
 <span class="o">+-------+--------------------+</span>
 <span class="o">|</span>  <span class="n">FAKE</span> <span class="o">|</span> <span class="mf">0.9245648658345308</span> <span class="o">|</span>
 <span class="o">+-------+--------------------+</span>
 <span class="p">[</span><span class="mi">1</span> <span class="n">rows</span> <span class="n">x</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">]</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Exporting the Model</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;FakeNews&#39;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;FakeNews&#39;</span>
 <span class="n">coreml_model_name</span> <span class="o">=</span> <span class="n">model_name</span> <span class="o">+</span> <span class="s1">&#39;.mlmodel&#39;</span>
 <span class="n">exportedModel</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">export_coreml</span><span class="p">(</span><span class="n">coreml_model_name</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><strong>Note: To download files from Google Colab, simply click on the files section in the sidebar, right click on filename and then click on download</strong></p>
 
@@ -3196,7 +3418,8 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 
 <p>We define our bag of words function</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kd">func</span> <span class="nf">bow</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Double</span><span class="p">]</span> <span class="p">{</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kd">func</span> <span class="nf">bow</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">String</span><span class="p">)</span> <span class="p">-&gt;</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Double</span><span class="p">]</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nv">bagOfWords</span> <span class="p">=</span> <span class="p">[</span><span class="nb">String</span><span class="p">:</span> <span class="nb">Double</span><span class="p">]()</span>
 
         <span class="kd">let</span> <span class="nv">tagger</span> <span class="p">=</span> <span class="bp">NSLinguisticTagger</span><span class="p">(</span><span class="n">tagSchemes</span><span class="p">:</span> <span class="p">[.</span><span class="n">tokenType</span><span class="p">],</span> <span class="n">options</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
@@ -3215,22 +3438,26 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 
         <span class="k">return</span> <span class="n">bagOfWords</span>
     <span class="p">}</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>We also declare our variables</p>
 
-<div class="codehilite"><pre><span></span><code><span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">title</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">title</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
 <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">headline</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
 <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">alertTitle</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
 <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">alertText</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
 <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">showingAlert</span> <span class="p">=</span> <span class="kc">false</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Finally, we implement a simple function which reads the two text fields, creates their bag of words representation and displays an alert with the appropriate result</p>
 
 <p><strong>Complete Code</strong></p>
 
-<div class="codehilite"><pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kd">import</span> <span class="nc">SwiftUI</span>
 
 <span class="kd">struct</span> <span class="nc">ContentView</span><span class="p">:</span> <span class="n">View</span> <span class="p">{</span>
     <span class="p">@</span><span class="n">State</span> <span class="kd">private</span> <span class="kd">var</span> <span class="nv">title</span><span class="p">:</span> <span class="nb">String</span> <span class="p">=</span> <span class="s">&quot;&quot;</span>
@@ -3305,7 +3532,8 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
         <span class="n">ContentView</span><span class="p">()</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div>
+</code></pre>
+</div>
 ]]></content:encoded>
 		</item>
 		
@@ -3325,7 +3553,8 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 
 <p>If you want to directly open the HTML file in your browser after saving, don't forget to set <code>CORS_PROXY=""</code> </p>
 
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;!doctype html&gt;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="cp">&lt;!doctype html&gt;</span>
 <span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;utf-8&quot;</span><span class="p">&gt;</span>
@@ -3520,7 +3749,8 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">noscript</span><span class="p">&gt;</span>Uh Oh! Your browser does not support JavaScript or JavaScript is currently disabled. Please enable JavaScript or switch to a different browser.<span class="p">&lt;/</span><span class="nt">noscript</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
 ]]></content:encoded>
 		</item>
 		
@@ -3574,7 +3804,8 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 			<pubDate>Tue, 14 Jan 2020 00:10:00 -0000</pubDate>
 			<content:encoded><![CDATA[<h1>Converting between image and NumPy array</h1>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span>
 <span class="kn">import</span> <span class="nn">PIL</span>
 
 <span class="c1"># Convert PIL Image to NumPy array</span>
@@ -3583,16 +3814,19 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 
 <span class="c1"># Convert array to Image</span>
 <span class="n">img</span> <span class="o">=</span> <span class="n">PIL</span><span class="o">.</span><span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h2>Saving an Image</h2>
 
-<div class="codehilite"><pre><span></span><code><span class="k">try</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">try</span><span class="p">:</span>
     <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="s2">&quot;JPEG&quot;</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">progressive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
     <span class="n">PIL</span><span class="o">.</span><span class="n">ImageFile</span><span class="o">.</span><span class="n">MAXBLOCK</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="s2">&quot;JPEG&quot;</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">progressive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 ]]></content:encoded>
 		</item>
 		
@@ -3614,22 +3848,28 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 
 <p>Creating the archive:</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">zip</span><span class="na"> -r -s 5 oodlesofnoodles.zip website/</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">zip</span><span class="na"> -r -s 5 oodlesofnoodles.zip website/</span>
+</code></pre>
+</div>
 
 <p>5 stands for each split files' size (in mb, kb and gb can also be specified)</p>
 
 <p>For encrypting the zip:</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">zip</span><span class="na"> -er -s 5 oodlesofnoodles.zip website</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">zip</span><span class="na"> -er -s 5 oodlesofnoodles.zip website</span>
+</code></pre>
+</div>
 
 <p>Extracting Files</p>
 
 <p>First we need to collect all parts, then</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">zip</span><span class="na"> -F oodlesofnoodles.zip --out merged.zip</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">zip</span><span class="na"> -F oodlesofnoodles.zip --out merged.zip</span>
+</code></pre>
+</div>
 ]]></content:encoded>
 		</item>
 		
@@ -3750,31 +3990,40 @@ return path(str, boost::filesystem::native);
 
 <h3>Mounting Google Drive</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Downloading Dataset from Kaggle</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
 <span class="err">!</span><span class="n">kaggle</span> <span class="n">datasets</span> <span class="n">download</span> <span class="n">ashutosh69</span><span class="o">/</span><span class="n">fire</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">smoke</span><span class="o">-</span><span class="n">dataset</span>
 <span class="err">!</span><span class="n">unzip</span> <span class="s2">&quot;fire-and-smoke-dataset.zip&quot;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h2>Pre-Processing</h2>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!mkdir</span><span class="na"> default smoke fire</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!mkdir</span><span class="na"> default smoke fire</span>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!ls</span><span class="na"> data/data/img_data/train/default/*.jpg</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!ls</span><span class="na"> data/data/img_data/train/default/*.jpg</span>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">img_1002.jpg</span><span class="na">   img_20.jpg     img_519.jpg     img_604.jpg       img_80.jpg</span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">img_1002.jpg</span><span class="na">   img_20.jpg     img_519.jpg     img_604.jpg       img_80.jpg</span>
 <span class="na">img_1003.jpg   img_21.jpg     img_51.jpg     img_60.jpg       img_8.jpg</span>
 <span class="na">img_1007.jpg   img_22.jpg     img_520.jpg     img_61.jpg       img_900.jpg</span>
 <span class="na">img_100.jpg    img_23.jpg     img_521.jpg    &#39;img_62 (2).jpg&#39;   img_920.jpg</span>
@@ -3807,11 +4056,13 @@ return path(str, boost::filesystem::native);
 <span class="na">img_204.jpg    img_501.jpg    img_601.jpg     img_78.jpg</span>
 <span class="na">img_205.jpg    img_502.jpg    img_602.jpg     img_79.jpg</span>
 <span class="na">img_206.jpg    img_50.jpg     img_603.jpg     img_7.jpg</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>The image files are not actually JPEG, thus we first need to save them in the correct format for Turicreate</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span> <span class="nn">glob</span>
 
 
@@ -3828,26 +4079,32 @@ return path(str, boost::filesystem::native);
     <span class="n">rgb_im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
     <span class="n">rgb_im</span><span class="o">.</span><span class="n">save</span><span class="p">((</span><span class="n">folder</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.jpg&quot;</span><span class="p">),</span> <span class="n">quality</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">n</span> <span class="o">+=</span><span class="mi">1</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!mkdir</span><span class="na"> train</span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!mkdir</span><span class="na"> train</span>
 <span class="na">!mv default ./train</span>
 <span class="na">!mv smoke ./train</span>
 <span class="na">!mv fire ./train</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h2>Making the Image Classifier</h2>
 
 <h3>Making an SFrame</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!pip</span><span class="na"> install turicreate</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!pip</span><span class="na"> install turicreate</span>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">image_analysis</span><span class="o">.</span><span class="n">load_images</span><span class="p">(</span><span class="s2">&quot;./train&quot;</span><span class="p">,</span> <span class="n">with_path</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -3857,11 +4114,13 @@ return path(str, boost::filesystem::native);
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;fire-smoke.sframe&#39;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">+-------------------------+------------------------+</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">+-------------------------+------------------------+</span><span class="w"></span>
 <span class="err">|</span><span class="w">           </span><span class="err">path</span><span class="w">          </span><span class="err">|</span><span class="w">         </span><span class="err">image</span><span class="w">          </span><span class="err">|</span><span class="w"></span>
 <span class="nt">+-------------------------+------------------------+</span><span class="w"></span>
 <span class="err">|</span><span class="w">  </span><span class="err">./train/default/1.jpg</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">Height:</span><span class="w"> </span><span class="err">224</span><span class="w"> </span><span class="err">Width:</span><span class="w"> </span><span class="err">224</span><span class="w"> </span><span class="err">|</span><span class="w"></span>
@@ -3895,11 +4154,13 @@ return path(str, boost::filesystem::native);
 <span class="nt">[2028</span><span class="na"> rows x 3 columns]</span>
 <span class="na">Note</span><span class="p">:</span><span class="err"> </span><span class="nc">Only</span><span class="err"> </span><span class="nc">the</span><span class="err"> </span><span class="nc">head</span><span class="err"> </span><span class="nc">of</span><span class="err"> </span><span class="nc">the</span><span class="err"> </span><span class="nc">SFrame</span><span class="err"> </span><span class="nc">is</span><span class="err"> </span><span class="nc">printed.</span><span class="w"></span>
 <span class="nt">You</span><span class="na"> can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Making the Model</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
 
 <span class="c1"># Load the data</span>
 <span class="n">data</span> <span class="o">=</span>  <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="p">(</span><span class="s1">&#39;fire-smoke.sframe&#39;</span><span class="p">)</span>
@@ -3922,11 +4183,13 @@ return path(str, boost::filesystem::native);
 
 <span class="c1"># Export for use in Core ML</span>
 <span class="n">model</span><span class="o">.</span><span class="n">export_coreml</span><span class="p">(</span><span class="s1">&#39;fire-smoke.mlmodel&#39;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Performing</span><span class="na"> feature extraction on resized images...</span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Performing</span><span class="na"> feature extraction on resized images...</span>
 <span class="na">Completed   64/1633</span>
 <span class="na">Completed  128/1633</span>
 <span class="na">Completed  192/1633</span>
@@ -3984,7 +4247,8 @@ return path(str, boost::filesystem::native);
 <span class="na">Completed 384/395</span>
 <span class="na">Completed 395/395</span>
 <span class="na">0.9316455696202531</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>We just got an accuracy of 94% on Training Data and 97% on Validation Data!</p>
 ]]></content:encoded>
@@ -4004,7 +4268,7 @@ return path(str, boost::filesystem::native);
 			<pubDate>Sun, 11 Oct 2020 16:12:00 -0000</pubDate>
 			<content:encoded><![CDATA[<h1>Trying Different Camera Setups</h1>
 
-<ol>
+<ol start="0">
 <li>Animated Overlays</li>
 <li>Using a modern camera as your webcam</li>
 <li>Using your phone's camera as your webcam</li>

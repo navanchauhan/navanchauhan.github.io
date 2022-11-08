@@ -184,7 +184,8 @@ me.fset  me.fset3 me.iset
 
 <p>Create a new file called <code>index.html</code> in your project folder. This is the basic template we are going to use. Replace <code>me</code> with the root filename of your image, for example <code>NeverGonnaGiveYouUp.png</code> will become <code>NeverGonnaGiveYouUp</code>. Make sure you have copied all three files from the output folder in the previous step to the root of your project folder.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">style</span><span class="p">&gt;</span><span class="w"></span>
@@ -231,7 +232,8 @@ me.fset  me.fset3 me.iset
     <span class="p">&lt;</span><span class="nt">a-entity</span> <span class="na">camera</span><span class="p">&gt;&lt;/</span><span class="nt">a-entity</span><span class="p">&gt;</span>
   <span class="p">&lt;/</span><span class="nt">a-scene</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>In this we are creating a AFrame scene and we are telling it that we want to use NFT Tracking. The amazing part about using AFrame is that we are able to use all AFrame objects!</p>
 
@@ -239,10 +241,12 @@ me.fset  me.fset3 me.iset
 
 <p>Let us add a simple box!</p>
 
-<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a-nft</span> <span class="err">.....</span><span class="p">&gt;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">a-nft</span> <span class="err">.....</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">a-box</span> <span class="na">position</span><span class="o">=</span><span class="s">&#39;100 0.5 -180&#39;</span> <span class="na">material</span><span class="o">=</span><span class="s">&#39;opacity: 0.5; side: double&#39;</span> <span class="na">scale</span><span class="o">=</span><span class="s">&quot;100 100 100&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">a-box</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span><span class="nt">a-nft</span><span class="p">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Now to test it out we will need to create a simple server, I use Python's inbuilt <code>SimpleHTTPServer</code> alongside <code>ngrok</code> </p>
 
@@ -277,12 +281,14 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p>Edit your <code>index.html</code> </p>
 
-<div class="codehilite"><pre><span></span><code><span class="p">&lt;</span><span class="nt">a-nft</span> <span class="err">..</span><span class="p">&gt;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">a-nft</span> <span class="err">..</span><span class="p">&gt;</span>
     <span class="p">&lt;</span><span class="nt">a-box</span> <span class="err">..</span><span class="p">&gt;</span>
         <span class="p">&lt;</span><span class="nt">a-torus-knot</span> <span class="na">radius</span><span class="o">=</span><span class="s">&#39;0.26&#39;</span> <span class="na">radius-tubular</span><span class="o">=</span><span class="s">&#39;0.05&#39;</span> <span class="p">&gt;&lt;/</span><span class="nt">a-torus-knot</span><span class="p">&gt;</span>
     <span class="p">&lt;/</span> <span class="nt">a-box</span><span class="p">&gt;</span>
 <span class="p">&lt;/</span> <span class="nt">a-nft</span><span class="p">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/posts/arjs/03-knot.png" alt="" /></p>
 
@@ -298,9 +304,11 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p>Change the box's material to add the GIF shader</p>
 
-<div class="codehilite"><pre><span></span><code>...
+<div class="codehilite">
+<pre><span></span><code>...
 <span class="p">&lt;</span><span class="nt">a-box</span> <span class="na">position</span><span class="o">=</span><span class="s">&#39;100 0.5 -180&#39;</span> <span class="na">material</span><span class="o">=</span><span class="s">&quot;shader:gif;src:url(https://media.tenor.com/images/412b1aa9149d98d561df62db221e0789/tenor.gif);opacity:.5&quot;</span> <span class="err">.....</span><span class="p">&gt;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/posts/arjs/04-nyan.gif" alt="" /></p>
 

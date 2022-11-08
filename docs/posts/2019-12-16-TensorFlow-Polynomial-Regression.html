@@ -69,12 +69,14 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 
 <h2>Imports</h2>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="n">tf</span><span class="o">.</span><span class="n">disable_v2_behavior</span><span class="p">()</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h2>Dataset</h2>
 
@@ -86,30 +88,41 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 
 <p><code>linspace(lower_limit, upper_limit, no_of_observations)</code></p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>We use the following function to add noise to the data, so that our values</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">x</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">x</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">+=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Position vs Salary Dataset</h3>
 
 <p>We will be using https://drive.google.com/file/d/1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9/view (Salary vs Position Dataset)</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!wget</span><span class="na"> --no-check-certificate &#39;https</span><span class="p">:</span><span class="nc">//docs.google.com/uc?export</span><span class="o">=</span><span class="l">download&amp;id=1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9&#39; -O data.csv</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!wget</span><span class="na"> --no-check-certificate &#39;https</span><span class="p">:</span><span class="nc">//docs.google.com/uc?export</span><span class="o">=</span><span class="l">download&amp;id=1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9&#39; -O data.csv</span>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="c1"># this gives us a preview of the dataset we are working with</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">df</span> <span class="c1"># this gives us a preview of the dataset we are working with</span>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="o">|</span> <span class="n">Position</span>          <span class="o">|</span> <span class="n">Level</span> <span class="o">|</span> <span class="n">Salary</span>  <span class="o">|</span>
+<div class="codehilite">
+<pre><span></span><code><span class="o">|</span> <span class="n">Position</span>          <span class="o">|</span> <span class="n">Level</span> <span class="o">|</span> <span class="n">Salary</span>  <span class="o">|</span>
 <span class="o">|-------------------|-------|---------|</span>
 <span class="o">|</span> <span class="n">Business</span> <span class="n">Analyst</span>  <span class="o">|</span> <span class="mi">1</span>     <span class="o">|</span> <span class="mi">45000</span>   <span class="o">|</span>
 <span class="o">|</span> <span class="n">Junior</span> <span class="n">Consultant</span> <span class="o">|</span> <span class="mi">2</span>     <span class="o">|</span> <span class="mi">50000</span>   <span class="o">|</span>
@@ -121,81 +134,100 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 <span class="o">|</span> <span class="n">Senior</span> <span class="n">Partner</span>    <span class="o">|</span> <span class="mi">8</span>     <span class="o">|</span> <span class="mi">300000</span>  <span class="o">|</span>
 <span class="o">|</span> <span class="n">C</span><span class="o">-</span><span class="n">level</span>           <span class="o">|</span> <span class="mi">9</span>     <span class="o">|</span> <span class="mi">500000</span>  <span class="o">|</span>
 <span class="o">|</span> <span class="n">CEO</span>               <span class="o">|</span> <span class="mi">10</span>    <span class="o">|</span> <span class="mi">1000000</span> <span class="o">|</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>We convert the salary column as the ordinate (y-coordinate) and level column as the abscissa</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">abscissa</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Level&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="c1"># abscissa = [1,2,3,4,5,6,7,8,9,10]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">abscissa</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Level&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="c1"># abscissa = [1,2,3,4,5,6,7,8,9,10]</span>
 <span class="n">ordinate</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span> <span class="c1"># ordinate = [45000,50000,60000,80000,110000,150000,200000,300000,500000,1000000]</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">abscissa</span><span class="p">)</span> <span class="c1"># no of observations</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">abscissa</span><span class="p">)</span> <span class="c1"># no of observations</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Salary&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Position&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Salary vs Position&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/1.png" alt="" /></p>
 
 <h2>Defining Stuff</h2>
 
-<div class="codehilite"><pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Defining Variables</h3>
 
 <p>We first define all the coefficients and constant as tensorflow variables having a random initial value</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;a&quot;</span><span class="p">)</span>
 <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;b&quot;</span><span class="p">)</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;c&quot;</span><span class="p">)</span>
 <span class="n">d</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;d&quot;</span><span class="p">)</span>
 <span class="n">e</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;e&quot;</span><span class="p">)</span>
 <span class="n">f</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(),</span> <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;f&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Model Configuration</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.2</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.2</span>
 <span class="n">no_of_epochs</span> <span class="o">=</span> <span class="mi">25000</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Equations</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">deg1</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">b</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">deg1</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">b</span>
 <span class="n">deg2</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">c</span>
 <span class="n">deg3</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">d</span>
 <span class="n">deg4</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">e</span>
 <span class="n">deg5</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">e</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">f</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Cost Function</h3>
 
 <p>We use the Mean Squared Error Function</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">mse1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg1</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">mse1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg1</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
 <span class="n">mse2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg2</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
 <span class="n">mse3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg3</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
 <span class="n">mse4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg4</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
 <span class="n">mse5</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_sum</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">deg5</span><span class="o">-</span><span class="n">Y</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Optimizer</h3>
 
 <p>We use the AdamOptimizer for the polynomial functions and GradientDescentOptimizer for the linear function</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">optimizer1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse1</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">optimizer1</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">GradientDescentOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse1</span><span class="p">)</span>
 <span class="n">optimizer2</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse2</span><span class="p">)</span>
 <span class="n">optimizer3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse3</span><span class="p">)</span>
 <span class="n">optimizer4</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse4</span><span class="p">)</span>
 <span class="n">optimizer5</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">train</span><span class="o">.</span><span class="n">AdamOptimizer</span><span class="p">(</span><span class="n">learning_rate</span><span class="p">)</span><span class="o">.</span><span class="n">minimize</span><span class="p">(</span><span class="n">mse5</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">init</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">init</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">global_variables_initializer</span><span class="p">()</span>
+</code></pre>
+</div>
 
 <h2>Model Predictions</h2>
 
@@ -204,7 +236,8 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <h3>Linear Equation</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -218,9 +251,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">training_cost</span><span class="p">,</span> <span class="n">coefficient1</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
@@ -246,9 +281,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">88999125000.0</span><span class="err">  </span><span class="nc">a,b</span><span class="p">:</span><span class="err"> </span><span class="nc">180396.42</span><span class="err"> </span><span class="nc">-478869.12</span><span class="w"></span>
 <span class="nt">88999125000.0</span><span class="na"> 180396.42 -478869.12</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -256,13 +293,15 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Linear Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/2.png" alt="" /></p>
 
 <h3>Quadratic Equation</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -277,9 +316,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">training_cost</span><span class="p">,</span> <span class="n">coefficient1</span><span class="p">,</span> <span class="n">coefficient2</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">52571360000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">1002.4456</span><span class="err"> </span><span class="nc">1097.0197</span><span class="err"> </span><span class="nc">1276.6921</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">52571360000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">1002.4456</span><span class="err"> </span><span class="nc">1097.0197</span><span class="err"> </span><span class="nc">1276.6921</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">37798890000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">1952.4263</span><span class="err"> </span><span class="nc">2130.2825</span><span class="err"> </span><span class="nc">2469.7756</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">26751185000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">2839.5825</span><span class="err"> </span><span class="nc">3081.6118</span><span class="err"> </span><span class="nc">3554.351</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">19020106000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">3644.56</span><span class="err"> </span><span class="nc">3922.9563</span><span class="err"> </span><span class="nc">4486.3135</span><span class="w"></span>
@@ -305,9 +346,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">8088001000.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">6632.96</span><span class="err"> </span><span class="nc">3399.878</span><span class="err"> </span><span class="nc">-79.89219</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">8058094600.0</span><span class="err">  </span><span class="nc">a,b,c</span><span class="p">:</span><span class="err"> </span><span class="nc">6659.793</span><span class="err"> </span><span class="nc">3227.2517</span><span class="err"> </span><span class="nc">-463.03156</span><span class="w"></span>
 <span class="nt">8058094600.0</span><span class="na"> 6659.793 3227.2517 -463.03156</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -315,13 +358,15 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Quadratic Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/3.png" alt="" /></p>
 
 <h3>Cubic</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -337,9 +382,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">training_cost</span><span class="p">,</span> <span class="n">coefficient1</span><span class="p">,</span> <span class="n">coefficient2</span><span class="p">,</span> <span class="n">coefficient3</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">4279814000.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">670.1527</span><span class="err"> </span><span class="nc">694.4212</span><span class="err"> </span><span class="nc">751.4653</span><span class="err"> </span><span class="nc">903.9527</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">4279814000.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">670.1527</span><span class="err"> </span><span class="nc">694.4212</span><span class="err"> </span><span class="nc">751.4653</span><span class="err"> </span><span class="nc">903.9527</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3770950400.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">742.6414</span><span class="err"> </span><span class="nc">666.3489</span><span class="err"> </span><span class="nc">636.94525</span><span class="err"> </span><span class="nc">859.2088</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3717708300.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">756.2582</span><span class="err"> </span><span class="nc">569.3339</span><span class="err"> </span><span class="nc">448.105</span><span class="err"> </span><span class="nc">748.23956</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3667464000.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">769.4476</span><span class="err"> </span><span class="nc">474.0318</span><span class="err"> </span><span class="nc">265.5761</span><span class="err"> </span><span class="nc">654.75525</span><span class="w"></span>
@@ -365,9 +412,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3070361300.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">975.52875</span><span class="err"> </span><span class="nc">-1095.4292</span><span class="err"> </span><span class="nc">-2211.854</span><span class="err"> </span><span class="nc">1847.4485</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">3052791300.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">983.4346</span><span class="err"> </span><span class="nc">-1159.7922</span><span class="err"> </span><span class="nc">-2286.9412</span><span class="err"> </span><span class="nc">2027.4857</span><span class="w"></span>
 <span class="nt">3052791300.0</span><span class="na"> 983.4346 -1159.7922 -2286.9412 2027.4857</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient2</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient3</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -375,13 +424,15 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Cubic Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/4.png" alt="" /></p>
 
 <h3>Quartic</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -398,9 +449,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">training_cost</span><span class="p">,</span> <span class="n">coefficient1</span><span class="p">,</span> <span class="n">coefficient2</span><span class="p">,</span> <span class="n">coefficient3</span><span class="p">,</span> <span class="n">coefficient4</span><span class="p">,</span> <span class="n">constant</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1902632600.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">84.48304</span><span class="err"> </span><span class="nc">52.210594</span><span class="err"> </span><span class="nc">54.791424</span><span class="err"> </span><span class="nc">142.51952</span><span class="err"> </span><span class="nc">512.0343</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1902632600.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">84.48304</span><span class="err"> </span><span class="nc">52.210594</span><span class="err"> </span><span class="nc">54.791424</span><span class="err"> </span><span class="nc">142.51952</span><span class="err"> </span><span class="nc">512.0343</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1854316200.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">88.998955</span><span class="err"> </span><span class="nc">13.073557</span><span class="err"> </span><span class="nc">14.276088</span><span class="err"> </span><span class="nc">223.55667</span><span class="err"> </span><span class="nc">1056.4655</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1812812400.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">92.9462</span><span class="err"> </span><span class="nc">-22.331177</span><span class="err"> </span><span class="nc">-15.262934</span><span class="err"> </span><span class="nc">327.41858</span><span class="err"> </span><span class="nc">1634.9054</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1775716000.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">96.42522</span><span class="err"> </span><span class="nc">-54.64535</span><span class="err"> </span><span class="nc">-35.829437</span><span class="err"> </span><span class="nc">449.5028</span><span class="err"> </span><span class="nc">2239.1392</span><span class="w"></span>
@@ -426,9 +479,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1252052600.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">135.9583</span><span class="err"> </span><span class="nc">-493.38254</span><span class="err"> </span><span class="nc">90.268616</span><span class="err"> </span><span class="nc">3764.0078</span><span class="err"> </span><span class="nc">15010.481</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1231713700.0</span><span class="err">  </span><span class="nc">a,b,c,d</span><span class="p">:</span><span class="err"> </span><span class="nc">137.54753</span><span class="err"> </span><span class="nc">-512.1876</span><span class="err"> </span><span class="nc">101.59372</span><span class="err"> </span><span class="nc">3926.4897</span><span class="err"> </span><span class="nc">15609.368</span><span class="w"></span>
 <span class="nt">1231713700.0</span><span class="na"> 137.54753 -512.1876 101.59372 3926.4897 15609.368</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient2</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient3</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient4</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -436,13 +491,15 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Quartic Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/5.png" alt="" /></p>
 
 <h3>Quintic</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">no_of_epochs</span><span class="p">):</span>
       <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">abscissa</span><span class="p">,</span> <span class="n">ordinate</span><span class="p">):</span>
@@ -458,9 +515,11 @@ values using the X values. We then plot it to compare the actual data and predic
         <span class="n">coefficient4</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
         <span class="n">coefficient5</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
         <span class="n">constant</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1409200100.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">7.949472</span><span class="err"> </span><span class="nc">7.46219</span><span class="err"> </span><span class="nc">55.626034</span><span class="err"> </span><span class="nc">184.29028</span><span class="err"> </span><span class="nc">484.00223</span><span class="err"> </span><span class="nc">1024.0083</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Epoch</span><span class="na"> 1000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1409200100.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">7.949472</span><span class="err"> </span><span class="nc">7.46219</span><span class="err"> </span><span class="nc">55.626034</span><span class="err"> </span><span class="nc">184.29028</span><span class="err"> </span><span class="nc">484.00223</span><span class="err"> </span><span class="nc">1024.0083</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 2000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1306882400.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">8.732181</span><span class="err"> </span><span class="nc">-4.0085897</span><span class="err"> </span><span class="nc">73.25298</span><span class="err"> </span><span class="nc">315.90103</span><span class="err"> </span><span class="nc">904.08887</span><span class="err"> </span><span class="nc">2004.9749</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 3000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1212606000.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">9.732249</span><span class="err"> </span><span class="nc">-16.90125</span><span class="err"> </span><span class="nc">86.28379</span><span class="err"> </span><span class="nc">437.06552</span><span class="err"> </span><span class="nc">1305.055</span><span class="err"> </span><span class="nc">2966.2188</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 4000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">1123640400.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">10.74851</span><span class="err"> </span><span class="nc">-29.82692</span><span class="err"> </span><span class="nc">98.59997</span><span class="err"> </span><span class="nc">555.331</span><span class="err"> </span><span class="nc">1698.4631</span><span class="err"> </span><span class="nc">3917.9155</span><span class="w"></span>
@@ -486,9 +545,11 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="nt">Epoch</span><span class="na"> 24000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">229660080.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">27.102589</span><span class="err"> </span><span class="nc">-238.44817</span><span class="err"> </span><span class="nc">309.35342</span><span class="err"> </span><span class="nc">2420.4185</span><span class="err"> </span><span class="nc">7770.5728</span><span class="err"> </span><span class="nc">19536.19</span><span class="w"></span>
 <span class="nt">Epoch</span><span class="na"> 25000 </span><span class="p">:</span><span class="err"> </span><span class="nc">Training</span><span class="err"> </span><span class="nc">Cost</span><span class="p">:</span><span class="err"> </span><span class="nc">216972400.0</span><span class="err">  </span><span class="nc">a,b,c,d,e,f</span><span class="p">:</span><span class="err"> </span><span class="nc">27.660324</span><span class="err"> </span><span class="nc">-245.69016</span><span class="err"> </span><span class="nc">318.10062</span><span class="err"> </span><span class="nc">2483.3608</span><span class="err"> </span><span class="nc">7957.354</span><span class="err"> </span><span class="nc">20027.707</span><span class="w"></span>
 <span class="nt">216972400.0</span><span class="na"> 27.660324 -245.69016 318.10062 2483.3608 7957.354 20027.707</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">abscissa</span><span class="p">:</span>
   <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">coefficient1</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient2</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient3</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient4</span><span class="o">*</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">coefficient5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">constant</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">abscissa</span> <span class="p">,</span> <span class="n">ordinate</span><span class="p">,</span> <span class="s1">&#39;ro&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">)</span>
@@ -496,7 +557,8 @@ values using the X values. We then plot it to compare the actual data and predic
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Quintic Regression Result&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p><img src="/assets/gciTales/03-regression/6.png" alt="" /></p>
 

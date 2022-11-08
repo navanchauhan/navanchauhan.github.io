@@ -47,13 +47,17 @@
 
 <h2>Dependencies</h2>
 
-<div class="codehilite"><pre><span></span><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install certbot -y
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install certbot -y
+</code></pre>
+</div>
 
 <h2>Get the Certificate</h2>
 
-<div class="codehilite"><pre><span></span><code>sudo certbot certonly --manual --preferred-challenges dns-01 --email senpai@email.com -d mydomain.duckdns.org
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code>sudo certbot certonly --manual --preferred-challenges dns-01 --email senpai@email.com -d mydomain.duckdns.org
+</code></pre>
+</div>
 
 <p>After you accept that you are okay with you IP address being logged, it will prompt you with updating your dns record. You need to create a new <code>TXT</code> record in the DNS settings for your domain.</p>
 
@@ -66,7 +70,8 @@
 
 <p>You can check if the TXT records have been updated by using the <code>dig</code> command:</p>
 
-<div class="codehilite"><pre><span></span><code>dig navanspi.duckdns.org TXT
+<div class="codehilite">
+<pre><span></span><code>dig navanspi.duckdns.org TXT
 <span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.16.1-Ubuntu &lt;&lt;&gt;&gt; navanspi.duckdns.org TXT
 <span class="p">;;</span> global options: +cmd
 <span class="p">;;</span> Got answer:
@@ -85,7 +90,8 @@ navanspi.duckdns.org.    <span class="m">60</span>    IN    TXT    <span class="
 <span class="p">;;</span> SERVER: <span class="m">127</span>.0.0.53#53<span class="o">(</span><span class="m">127</span>.0.0.53<span class="o">)</span>
 <span class="p">;;</span> WHEN: Tue Nov <span class="m">17</span> <span class="m">15</span>:23:15 IST <span class="m">2020</span>
 <span class="p">;;</span> MSG SIZE  rcvd: <span class="m">105</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>DuckDNS almost instantly propagates the changes but for other domain hosts, it could take a while. </p>
 
@@ -99,13 +105,17 @@ navanspi.duckdns.org.    <span class="m">60</span>    IN    TXT    <span class="
 
 <p>Example Gunicorn command for running a web-app:</p>
 
-<div class="codehilite"><pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589
+</code></pre>
+</div>
 
 <p>To use the certificate with it, simply copy the <code>cert.pem</code> and <code>privkey.pem</code> to your working directory ( change the appropriate permissions ) and include them in the command</p>
 
-<div class="codehilite"><pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589 --certfile<span class="o">=</span>cert.pem --keyfile<span class="o">=</span>privkey.pem
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589 --certfile<span class="o">=</span>cert.pem --keyfile<span class="o">=</span>privkey.pem
+</code></pre>
+</div>
 
 <p>Caveats with copying the certificate: If you renew the certificate you will have to re-copy the files</p>
 

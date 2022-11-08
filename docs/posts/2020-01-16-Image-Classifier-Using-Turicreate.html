@@ -49,31 +49,40 @@
 
 <h3>Mounting Google Drive</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">google.colab</span> <span class="kn">import</span> <span class="n">drive</span>
 <span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/content/drive&#39;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Downloading Dataset from Kaggle</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
 <span class="err">!</span><span class="n">kaggle</span> <span class="n">datasets</span> <span class="n">download</span> <span class="n">ashutosh69</span><span class="o">/</span><span class="n">fire</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">smoke</span><span class="o">-</span><span class="n">dataset</span>
 <span class="err">!</span><span class="n">unzip</span> <span class="s2">&quot;fire-and-smoke-dataset.zip&quot;</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h2>Pre-Processing</h2>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!mkdir</span><span class="na"> default smoke fire</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!mkdir</span><span class="na"> default smoke fire</span>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!ls</span><span class="na"> data/data/img_data/train/default/*.jpg</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!ls</span><span class="na"> data/data/img_data/train/default/*.jpg</span>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">img_1002.jpg</span><span class="na">   img_20.jpg     img_519.jpg     img_604.jpg       img_80.jpg</span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">img_1002.jpg</span><span class="na">   img_20.jpg     img_519.jpg     img_604.jpg       img_80.jpg</span>
 <span class="na">img_1003.jpg   img_21.jpg     img_51.jpg     img_60.jpg       img_8.jpg</span>
 <span class="na">img_1007.jpg   img_22.jpg     img_520.jpg     img_61.jpg       img_900.jpg</span>
 <span class="na">img_100.jpg    img_23.jpg     img_521.jpg    &#39;img_62 (2).jpg&#39;   img_920.jpg</span>
@@ -106,11 +115,13 @@
 <span class="na">img_204.jpg    img_501.jpg    img_601.jpg     img_78.jpg</span>
 <span class="na">img_205.jpg    img_502.jpg    img_602.jpg     img_79.jpg</span>
 <span class="na">img_206.jpg    img_50.jpg     img_603.jpg     img_7.jpg</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>The image files are not actually JPEG, thus we first need to save them in the correct format for Turicreate</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
 <span class="kn">import</span> <span class="nn">glob</span>
 
 
@@ -127,26 +138,32 @@
     <span class="n">rgb_im</span> <span class="o">=</span> <span class="n">im</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;RGB&#39;</span><span class="p">)</span>
     <span class="n">rgb_im</span><span class="o">.</span><span class="n">save</span><span class="p">((</span><span class="n">folder</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.jpg&quot;</span><span class="p">),</span> <span class="n">quality</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
     <span class="n">n</span> <span class="o">+=</span><span class="mi">1</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!mkdir</span><span class="na"> train</span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!mkdir</span><span class="na"> train</span>
 <span class="na">!mv default ./train</span>
 <span class="na">!mv smoke ./train</span>
 <span class="na">!mv fire ./train</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h2>Making the Image Classifier</h2>
 
 <h3>Making an SFrame</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">!pip</span><span class="na"> install turicreate</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">!pip</span><span class="na"> install turicreate</span>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">data</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">image_analysis</span><span class="o">.</span><span class="n">load_images</span><span class="p">(</span><span class="s2">&quot;./train&quot;</span><span class="p">,</span> <span class="n">with_path</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -156,11 +173,13 @@
 <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 
 <span class="n">data</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;fire-smoke.sframe&#39;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">+-------------------------+------------------------+</span><span class="w"></span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">+-------------------------+------------------------+</span><span class="w"></span>
 <span class="err">|</span><span class="w">           </span><span class="err">path</span><span class="w">          </span><span class="err">|</span><span class="w">         </span><span class="err">image</span><span class="w">          </span><span class="err">|</span><span class="w"></span>
 <span class="nt">+-------------------------+------------------------+</span><span class="w"></span>
 <span class="err">|</span><span class="w">  </span><span class="err">./train/default/1.jpg</span><span class="w">  </span><span class="err">|</span><span class="w"> </span><span class="err">Height:</span><span class="w"> </span><span class="err">224</span><span class="w"> </span><span class="err">Width:</span><span class="w"> </span><span class="err">224</span><span class="w"> </span><span class="err">|</span><span class="w"></span>
@@ -194,11 +213,13 @@
 <span class="nt">[2028</span><span class="na"> rows x 3 columns]</span>
 <span class="na">Note</span><span class="p">:</span><span class="err"> </span><span class="nc">Only</span><span class="err"> </span><span class="nc">the</span><span class="err"> </span><span class="nc">head</span><span class="err"> </span><span class="nc">of</span><span class="err"> </span><span class="nc">the</span><span class="err"> </span><span class="nc">SFrame</span><span class="err"> </span><span class="nc">is</span><span class="err"> </span><span class="nc">printed.</span><span class="w"></span>
 <span class="nt">You</span><span class="na"> can use print_rows(num_rows=m, num_columns=n) to print more rows and columns.</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Making the Model</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
 
 <span class="c1"># Load the data</span>
 <span class="n">data</span> <span class="o">=</span>  <span class="n">tc</span><span class="o">.</span><span class="n">SFrame</span><span class="p">(</span><span class="s1">&#39;fire-smoke.sframe&#39;</span><span class="p">)</span>
@@ -221,11 +242,13 @@
 
 <span class="c1"># Export for use in Core ML</span>
 <span class="n">model</span><span class="o">.</span><span class="n">export_coreml</span><span class="p">(</span><span class="s1">&#39;fire-smoke.mlmodel&#39;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>\</p>
 
-<div class="codehilite"><pre><span></span><code><span class="nt">Performing</span><span class="na"> feature extraction on resized images...</span>
+<div class="codehilite">
+<pre><span></span><code><span class="nt">Performing</span><span class="na"> feature extraction on resized images...</span>
 <span class="na">Completed   64/1633</span>
 <span class="na">Completed  128/1633</span>
 <span class="na">Completed  192/1633</span>
@@ -283,7 +306,8 @@
 <span class="na">Completed 384/395</span>
 <span class="na">Completed 395/395</span>
 <span class="na">0.9316455696202531</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>We just got an accuracy of 94% on Training Data and 97% on Validation Data!</p>
 

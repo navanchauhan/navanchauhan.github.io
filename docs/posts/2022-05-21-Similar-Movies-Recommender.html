@@ -63,7 +63,8 @@
 
 <p>First, I needed to check the total number of records in Trakt’s database.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">trakt_id</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TRAKT_ID&quot;</span><span class="p">)</span>
@@ -87,14 +88,16 @@
 <span class="n">res</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">api_base</span><span class="si">}</span><span class="s2">/search/movie&quot;</span><span class="p">,</span><span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span><span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 <span class="n">total_items</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;x-pagination-item-count&quot;</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="n">total_items</span><span class="si">}</span><span class="s2"> movies&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <pre><code>There are 333946 movies
 </code></pre>
 
 <p>First, I needed to declare the database schema in (<code>database.py</code>):</p>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlalchemy</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">sqlalchemy</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Table</span><span class="p">,</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">String</span><span class="p">,</span> <span class="n">MetaData</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">,</span> <span class="n">PickleType</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">insert</span>
@@ -129,13 +132,15 @@
     <span class="n">meta</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
     <span class="n">Session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">engine</span><span class="p">,</span> <span class="n">Session</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>In the end, I could have dropped the embeddings field from the table schema as I never got around to using it.</p>
 
 <h3>Scripting Time</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">import</span> <span class="nn">os</span>
@@ -228,7 +233,8 @@
                 <span class="k">except</span> <span class="n">IntegrityError</span><span class="p">:</span>
                     <span class="n">trans</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
     <span class="n">req_count</span> <span class="o">+=</span> <span class="mi">1</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>(Note: I was well within the rate-limit so I did not have to slow down or implement any other measures)</p>
 
@@ -263,7 +269,8 @@ As of writing this post, I did not include any other database except Trakt. </p>
 <li><p>Installing the Python module (pinecone-client)</p></li>
 </ul>
 
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">pinecone</span>
 <span class="kn">from</span> <span class="nn">sentence_transformers</span> <span class="kn">import</span> <span class="n">SentenceTransformer</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span> 
@@ -293,7 +300,8 @@ As of writing this post, I did not include any other database except Trakt. </p>
                 <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">embeddings</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
             <span class="p">))</span>
     <span class="n">index</span><span class="o">.</span><span class="n">upsert</span><span class="p">(</span><span class="n">to_send</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>That's it!</p>
 
@@ -304,7 +312,8 @@ As of writing this post, I did not include any other database except Trakt. </p>
 <p>To find similar items, we will first have to map the name of the movie to its trakt_id, get the embeddings we have for that id and then perform a similarity search. 
 It is possible that this additional step of mapping could be avoided by storing information as metadata in the index.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">get_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
   <span class="n">rec</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;title&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">==</span><span class="n">movie_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()]</span>
   <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">trakt_id</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;multiple values found... </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">rec</span><span class="o">.</span><span class="n">trakt_id</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -344,11 +353,13 @@ It is possible that this additional step of mapping could be avoided by storing 
       <span class="s2">&quot;runtime&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">runtime</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
       <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="n">df</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
   <span class="p">}</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Testing it Out</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">movie_name</span> <span class="o">=</span> <span class="s2">&quot;Now You See Me&quot;</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">movie_name</span> <span class="o">=</span> <span class="s2">&quot;Now You See Me&quot;</span>
 
 <span class="n">movie_trakt_id</span> <span class="o">=</span> <span class="n">get_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">movie_name</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">movie_trakt_id</span><span class="p">)</span>
@@ -360,7 +371,8 @@ It is possible that this additional step of mapping could be avoided by storing 
 <span class="k">for</span> <span class="n">trakt_id</span> <span class="ow">in</span> <span class="n">movie_ids</span><span class="p">:</span>
   <span class="n">deets</span> <span class="o">=</span> <span class="n">get_deets_by_trakt_id</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">trakt_id</span><span class="p">)</span>
   <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">deets</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">deets</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">deets</span><span class="p">[</span><span class="s1">&#39;overview&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>Output:</p>
 

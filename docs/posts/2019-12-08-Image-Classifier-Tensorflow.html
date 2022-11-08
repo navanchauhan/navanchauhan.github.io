@@ -47,7 +47,8 @@
 
 <h2>Imports</h2>
 
-<div class="codehilite"><pre><span></span><code><span class="o">%</span><span class="n">tensorflow_version</span> <span class="mf">2.</span><span class="n">x</span> <span class="c1">#This is for telling Colab that you want to use TF 2.0, ignore if running on local machine</span>
+<div class="codehilite">
+<pre><span></span><code><span class="o">%</span><span class="n">tensorflow_version</span> <span class="mf">2.</span><span class="n">x</span> <span class="c1">#This is for telling Colab that you want to use TF 2.0, ignore if running on local machine</span>
 
 <span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> <span class="c1"># We use the PIL Library to resize images</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -59,21 +60,25 @@
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv2D</span><span class="p">,</span><span class="n">MaxPooling2D</span><span class="p">,</span><span class="n">Dense</span><span class="p">,</span><span class="n">Flatten</span><span class="p">,</span><span class="n">Dropout</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h2>Dataset</h2>
 
 <h3>Fetching the Data</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="err">!</span><span class="n">wget</span> <span class="n">ftp</span><span class="p">:</span><span class="o">//</span><span class="n">lhcftp</span><span class="o">.</span><span class="n">nlm</span><span class="o">.</span><span class="n">nih</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">Open</span><span class="o">-</span><span class="n">Access</span><span class="o">-</span><span class="n">Datasets</span><span class="o">/</span><span class="n">Malaria</span><span class="o">/</span><span class="n">cell_images</span><span class="o">.</span><span class="n">zip</span>
+<div class="codehilite">
+<pre><span></span><code><span class="err">!</span><span class="n">wget</span> <span class="n">ftp</span><span class="p">:</span><span class="o">//</span><span class="n">lhcftp</span><span class="o">.</span><span class="n">nlm</span><span class="o">.</span><span class="n">nih</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">Open</span><span class="o">-</span><span class="n">Access</span><span class="o">-</span><span class="n">Datasets</span><span class="o">/</span><span class="n">Malaria</span><span class="o">/</span><span class="n">cell_images</span><span class="o">.</span><span class="n">zip</span>
 <span class="err">!</span><span class="n">unzip</span> <span class="n">cell_images</span><span class="o">.</span><span class="n">zip</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Processing the Data</h3>
 
 <p>We resize all the images as 50x50 and add the numpy array of that image as well as their label names (Infected or Not) to common arrays.</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="p">[]</span>
 
 <span class="n">Parasitized</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;./cell_images/Parasitized/&quot;</span><span class="p">)</span>
@@ -97,15 +102,18 @@
         <span class="n">labels</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Splitting Data</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
 <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
 <span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="nb">int</span><span class="p">)(</span><span class="mf">0.1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)):],</span><span class="n">df</span><span class="p">[:(</span><span class="nb">int</span><span class="p">)(</span><span class="mf">0.1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))]</span>
 <span class="p">(</span><span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">labels</span><span class="p">[(</span><span class="nb">int</span><span class="p">)(</span><span class="mf">0.1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)):],</span><span class="n">labels</span><span class="p">[:(</span><span class="nb">int</span><span class="p">)(</span><span class="mf">0.1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))]</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <pre><code>s=np.arange(X_train.shape[0])
 np.random.shuffle(s)
@@ -122,7 +130,8 @@ X_train = X_train/255.0
 
 <p><em>Note: The input shape for the first layer is 50,50 which corresponds with the sizes of the resized images</em></p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">Sequential</span><span class="p">()</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">3</span><span class="p">)))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">MaxPooling2D</span><span class="p">(</span><span class="n">pool_size</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">padding</span><span class="o">=</span><span class="s1">&#39;same&#39;</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s1">&#39;relu&#39;</span><span class="p">))</span>
@@ -135,25 +144,31 @@ X_train = X_train/255.0
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.2</span><span class="p">))</span>
 <span class="n">model</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">activation</span><span class="o">=</span><span class="s2">&quot;softmax&quot;</span><span class="p">))</span><span class="c1">#2 represent output layer neurons </span>
 <span class="n">model</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Compiling Model</h3>
 
 <p>We use the Adam optimiser as it is an adaptive learning rate optimisation algorithm that's been designed specifically for <em>training</em> deep neural networks, which means it changes its learning rate automatically to get the best results</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s2">&quot;adam&quot;</span><span class="p">,</span>
               <span class="n">loss</span><span class="o">=</span><span class="s2">&quot;sparse_categorical_crossentropy&quot;</span><span class="p">,</span> 
              <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">])</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Training Model</h3>
 
 <p>We train the model for 10 epochs on the training data and then validate it using the testing data</p>
 
-<div class="codehilite"><pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
-</code></pre></div>
+<div class="codehilite">
+<pre><span></span><code><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span><span class="n">y_test</span><span class="p">))</span>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">Train</span> <span class="n">on</span> <span class="mi">24803</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">2755</span> <span class="n">samples</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">Train</span> <span class="n">on</span> <span class="mi">24803</span> <span class="n">samples</span><span class="p">,</span> <span class="n">validate</span> <span class="n">on</span> <span class="mi">2755</span> <span class="n">samples</span>
 <span class="n">Epoch</span> <span class="mi">1</span><span class="o">/</span><span class="mi">10</span>
 <span class="mi">24803</span><span class="o">/</span><span class="mi">24803</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">57</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0786</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9729</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0000e+00</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">1.0000</span>
 <span class="n">Epoch</span> <span class="mi">2</span><span class="o">/</span><span class="mi">10</span>
@@ -174,11 +189,13 @@ X_train = X_train/255.0
 <span class="mi">24803</span><span class="o">/</span><span class="mi">24803</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">58</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0352</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9878</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0000e+00</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">1.0000</span>
 <span class="n">Epoch</span> <span class="mi">10</span><span class="o">/</span><span class="mi">10</span>
 <span class="mi">24803</span><span class="o">/</span><span class="mi">24803</span> <span class="p">[</span><span class="o">==============================</span><span class="p">]</span> <span class="o">-</span> <span class="mi">58</span><span class="n">s</span> <span class="mi">2</span><span class="n">ms</span><span class="o">/</span><span class="n">sample</span> <span class="o">-</span> <span class="n">loss</span><span class="p">:</span> <span class="mf">0.0373</span> <span class="o">-</span> <span class="n">accuracy</span><span class="p">:</span> <span class="mf">0.9865</span> <span class="o">-</span> <span class="n">val_loss</span><span class="p">:</span> <span class="mf">0.0000e+00</span> <span class="o">-</span> <span class="n">val_accuracy</span><span class="p">:</span> <span class="mf">1.0000</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <h3>Results</h3>
 
-<div class="codehilite"><pre><span></span><code><span class="n">accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
+<div class="codehilite">
+<pre><span></span><code><span class="n">accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
 <span class="n">loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;loss&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
 <span class="n">val_accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
 <span class="n">val_loss</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;val_loss&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
@@ -189,13 +206,16 @@ X_train = X_train/255.0
     <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Validation Accuracy:&#39;</span><span class="p">,</span> <span class="n">val_accuracy</span><span class="p">,</span>
     <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Validation Loss:&#39;</span><span class="p">,</span> <span class="n">val_loss</span>
 <span class="p">)</span>
-</code></pre></div>
+</code></pre>
+</div>
 
-<div class="codehilite"><pre><span></span><code><span class="n">Accuracy</span><span class="p">:</span> <span class="mf">98.64532351493835</span> 
+<div class="codehilite">
+<pre><span></span><code><span class="n">Accuracy</span><span class="p">:</span> <span class="mf">98.64532351493835</span> 
 <span class="n">Loss</span><span class="p">:</span> <span class="mf">3.732407123270176</span> 
 <span class="n">Validation</span> <span class="n">Accuracy</span><span class="p">:</span> <span class="mf">100.0</span> 
 <span class="n">Validation</span> <span class="n">Loss</span><span class="p">:</span> <span class="mf">0.0</span>
-</code></pre></div>
+</code></pre>
+</div>
 
 <p>We have achieved 98% Accuracy!</p>
 

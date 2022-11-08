@@ -6,6 +6,8 @@ tags: Python, OCR, Microsoft Azure
 
 # A new method to blog
 
+*[Here](/assets/pdfs/2022-11-07-a-new-way-to-blog.pdf) is the original PDF. I made some edits to the content after generating the markdown file*
+
 [Paper Website](https://paperwebsite.com) is a service that lets you build a website with just pen and paper. I am going to try and replicate the process.
 
 ## The Plan

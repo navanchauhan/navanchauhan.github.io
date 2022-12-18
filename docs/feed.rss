@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Mon, 07 Nov 2022 23:37:29 -0000</lastBuildDate>
-		<pubDate>Mon, 07 Nov 2022 23:37:29 -0000</pubDate>
+		<lastBuildDate>Sat, 17 Dec 2022 20:25:31 -0000</lastBuildDate>
+		<pubDate>Sat, 17 Dec 2022 20:25:31 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -4637,6 +4637,118 @@ alias pbpaste='xclip -selection clipboard -o'
 <p>This is still a pre-print.</p>
 
 <p><a rel="noopener" target="_blank" href="https://chemrxiv.org/articles/Possible_Drug_Candidates_for_COVID-19/11985231">Download paper here</a></p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/ideas/2022-12-17-ar-mr-xr.html
+			</guid>
+			<title>
+				AR XR MR
+			</title>
+			<description>
+				Data dump from my notes
+			</description>
+			<link>https://web.navan.dev/ideas/2022-12-17-ar-mr-xr.html</link>
+			<pubDate>Sat, 17 Dec 2022 19:43:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>AR XR MR</h1>
+
+<p>Last Updated: 2022-12-17</p>
+
+<h2>Projects</h2>
+
+<p>All projects listed here are in the following format:</p>
+
+<table>
+<thead>
+<tr>
+  <th>Name</th>
+  <th>Company</th>
+  <th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Hololens</td>
+  <td>Microsoft</td>
+  <td></td>
+</tr>
+<tr>
+  <td>Oculus</td>
+  <td>Facebook/Meta</td>
+  <td></td>
+</tr>
+<tr>
+  <td><a rel="noopener" target="_blank" href="https://tesseract.in">Tesseract</a></td>
+  <td>Jio/Tesseract</td>
+  <td>Indian "startup"</td>
+</tr>
+<tr>
+  <td><a rel="noopener" target="_blank" href="https://www.lynx-r.com/collections">R1</a></td>
+  <td>Lynx</td>
+  <td>MR Headset</td>
+</tr>
+<tr>
+  <td><a rel="noopener" target="_blank" href="https://www.brilliantmonocle.com">Monocle</a></td>
+  <td>Brilliant Labs</td>
+  <td>Open Source Smart Monocle</td>
+</tr>
+<tr>
+  <td><a rel="noopener" target="_blank" href="https://ar-js-org.github.io/AR.js-Docs/">AR.js</a></td>
+  <td>AR-js-org</td>
+  <td>Open Source framework for AR on the web. Supports image, location and marker based tracking</td>
+</tr>
+<tr>
+  <td>ARKit</td>
+  <td>Apple</td>
+  <td>Framework for iOS</td>
+</tr>
+<tr>
+  <td>ARCore</td>
+  <td>Google</td>
+  <td>Framework for Android</td>
+</tr>
+<tr>
+  <td><a rel="noopener" target="_blank" href="https://8thWall.com">8thWall</a></td>
+  <td>Niantic</td>
+  <td>Framework for AR on the web</td>
+</tr>
+<tr>
+  <td><a rel="noopener" target="_blank" href="https://www.theverge.com/2018/2/5/16966530/intel-vaunt-smart-glasses-announced-ar-video">Vaunt</a></td>
+  <td>Intel</td>
+  <td>Sold everything to North, the company behind Focals</td>
+</tr>
+<tr>
+  <td><a rel="noopener" target="_blank" href="https://www.theverge.com/2019/2/14/18223593/focals-smart-glasses-north-review-specs-features-price">Focals</a></td>
+  <td>North</td>
+  <td>One of the only consumer grade smart glasses which got bought by Google :/, don't think they will ever launch a v2 now</td>
+</tr>
+</tbody>
+</table>
+
+<h2>Resources</h2>
+
+<ul>
+<li>For latest updates, <a rel="noopener" target="_blank" href="https://reddit.com/r/AR_MR_XR">r/AR<em>MR</em>XR</a> is one of the best resources out there.</li>
+<li>Until WebXR actually becomes a thing and gets support on Safari, depending on the use case any of the frameworks can be used right now with each having their own pros and cons. Otherwise, for displaying simple models Google's ModelViewer framework can be used to integrate with the native AR frameworks for both iOS and Android to display glTF/USDZ models.</li>
+</ul>
+
+<h2>Ideas</h2>
+
+<h3>Safety Checklist for CUBRT</h3>
+
+<p>Would be nice to have an AR app/website that goes through all the safety checklists on our cars, so we never have to see another loose fuel line blow up the entire car. </p>
+
+<p>Possible solution: Add a fiduciary marker under the hood of the car and use it to highlight areas which need to be checked, or multiple markers which are activated in a particular order and show up as disabled until you complete the previous step.</p>
+
+<h3>App Clips</h3>
+
+<p>Although App Clips on iOS have limited capabilities available to them, ARKit is one of them. This means, a QR code / NFC trigger can be used to launch a mini ARKit based App Clip.</p>
+
+<h3>Non-AR Smart Glasses</h3>
+
+<p>Not every pair of smart glasses need to have AR based surface tracking / SLAM, to display stuff. Just a simple display which can overlay elements on the real world should be capable of displaying tons of data</p>
 ]]></content:encoded>
 		</item>
 		

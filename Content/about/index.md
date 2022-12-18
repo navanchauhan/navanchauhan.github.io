@@ -6,8 +6,13 @@ tags: Personal
 
 # About Me
 
-Hi! My name is Navan Chauhan. I dabble in the mysterious dark arts of programming and in-silico drug discovery. I am proficient in Python and ocassionaly dabble in C++/C, Swift, React Native, and Go. I only use vanilla JS for actual web based stuff because I don't want to spend time debugging yarn/npm installs faililng.
+Hi!
 
+
+My name is Navan Chauhan. I dabble in the mysterious dark arts of programming and in-silico drug discovery. I am proficient in Python and ocassionaly dabble in C++/C, Swift, React Native, and Go. I only use vanilla JS for actual web based stuff because I don't want to spend time debugging yarn/npm installs faililng.
+
+
+Main website with links: [https://navan.website](https://navan.website)
 
 ## Contact Me
 

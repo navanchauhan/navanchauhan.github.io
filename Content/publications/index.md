@@ -1,3 +1,3 @@
 # Publications
 
-Hopefully these grow with time, I already have tons of drafts ready. As I am currently studying in school, this allows me to experiment in Physics, Chemistry and Computer Science. I have started using LaTeX now ;)
+I have a huge backlog of actual articles waiting to be published. The following is just a list of pre-prints I did not find worthy of actual publications even though some journals still send me regular invites to publish these. 

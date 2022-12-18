@@ -1,0 +1,3 @@
+# Ideas
+
+Idea dumps and interesting projects found on the web. I also try to include archived links through archive.org and a self-hosted archive in-case something disappers. Most of the idea dumps are generated from an OCR scan of my diary page. Refer to [/posts/2022-11-07-a-new-method-to-blog.html](/posts/2022-11-07-a-new-method-to-blog.html) for details. Also, this page is not linked anywhere else and has been probably shared with you.

@@ -52,6 +52,7 @@ for x in os.walk(src_folder):
 			print("Posts in {}".format(x[0]))
 			tmp_array = []
 			for y in x[2]:
+				post_me = True
 				if y not in ("index.md",".DS_Store"):
 					fpath = os.path.join(x[0],y)
 					with open(fpath) as f:
@@ -62,14 +63,23 @@ for x in os.walk(src_folder):
 						_post["link"] = fpath.replace(src_folder,"").replace("md","html")
 						_post["tags"] = [x.strip() for x in _post["tags"].split(",")]
 
-						tmp_array.append(_post)
-						post_collection.append(_post)
-						_html.metadata = _post
-						post_collection_html.append(_html)
+						
+
+						if "draft" in _post:
+							if _post["draft"] == 'true':
+								print(_post)
+								post_me = False
+
+						if post_me:
+							tmp_array.append(_post)
+							post_collection.append(_post)
+							_html.metadata = _post
+							post_collection_html.append(_html)
 					#print(fpath)
 					#print(render_markdown_post(fpath))
-					with open(fpath.replace(src_folder,out_folder).replace("md","html"),"w") as f:
-						f.write(render_markdown_post(_html))	
+					if post_me:
+						with open(fpath.replace(src_folder,out_folder).replace("md","html"),"w") as f:
+							f.write(render_markdown_post(_html))	
 				elif y=="index.md":
 					fpath = os.path.join(x[0],y)
 					with open(fpath) as f:
@@ -89,7 +99,16 @@ for fpath in index_pages_to_generate:
 				fpath.replace("{}/".format(src_folder),"").replace("/index.md","")
 			])
 		except KeyError:
-			page = render_markdown_post(_html, template="index.html",posts=post_collection)
+			new_post_collection = []
+			for post in post_collection:
+				if "visible_on_main" in post:
+					if post["visible_on_main"] == 'false':
+						continue
+					else:
+						new_post_collection.append(post)
+				else:
+					new_post_collection.append(post)
+			page = render_markdown_post(_html, template="index.html",posts=new_post_collection)
 
 	with open(fpath.replace(src_folder,out_folder).replace("md","html"),"w") as f:
 		f.write(page)

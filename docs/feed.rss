@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sat, 17 Dec 2022 20:25:31 -0000</lastBuildDate>
-		<pubDate>Sat, 17 Dec 2022 20:25:31 -0000</pubDate>
+		<lastBuildDate>Sun, 25 Dec 2022 20:18:51 -0000</lastBuildDate>
+		<pubDate>Sun, 25 Dec 2022 20:18:51 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -3789,6 +3789,302 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 <p><code>[bluetooth]# pair XX:XX:XX:XX:XX:XX</code></p>
 
 <p>To Exit out of bluetoothctl anytime, just type exit </p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2022-12-25-blog-to-toot.html
+			</guid>
+			<title>
+				Posting blogs as Mastodon Toots
+			</title>
+			<description>
+				Cross posting blog posts to Mastodon
+			</description>
+			<link>https://web.navan.dev/posts/2022-12-25-blog-to-toot.html</link>
+			<pubDate>Sun, 25 Dec 2022 17:32:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Posting blogs as Mastodon Toots</h1>
+
+<p>What is better than posting a blog post? Posting about your posting pipeline. I did this previously with <a rel="noopener" target="_blank" href="/posts/2021-06-25-Blog2Twitter-P1.html">Twitter</a>. </p>
+
+<h2>the elephant in the room</h2>
+
+<p>mastodon.social does not support any formatting in the status posts. 
+Yes, there are other instances which have patches to enable features such as markdown formatting, but there is no upstream support.</p>
+
+<h2>time to code</h2>
+
+<p>My website is built using a really simple static site generator I wrote in Python.
+Therefore, each post is self-contained in a Markdown file with the necessary metadata.</p>
+
+<p>I am going to specify the path to the blog post, parse it and then publish it.</p>
+
+<p>I initially planned on having a command line parser and some more flags.</p>
+
+<h3>interacting with mastodon</h3>
+
+<p>I ended up using mastodon.py rather than crafting requests by hand. Each status<em>post/toot call returns a status</em>id that can be then used as an in<em>reply</em>to parameter.</p>
+
+<p>For the code snippets, seeing that mastodon does not support native formatting, I am resorting to using ray-so.</p>
+
+<h3>reading markdown</h3>
+
+<p>I am using a bunch of regex hacks, and reading the blog post line by line. 
+Because there is no markdown support, I append all the links to the end of the toot.
+For images, I upload them and attach them to the toot.
+The initial toot is generated based off the title and the tags associated with the post.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="c1"># Regexes I am using</span>
+
+<span class="n">markdown_image</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(?:!\[(.*?)\]\((.*?)\))&#39;</span>
+<span class="n">markdown_links</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(?:\[(.*?)\]\((.*?)\))&#39;</span>
+<span class="n">tags_within_metadata</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;tags: ([\w,\s]+)&quot;</span>
+<span class="n">metadata_regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;---\s*\n(.*?)\n---\s*\n&quot;</span>
+</code></pre>
+</div>
+
+<p>This is useful when I want to get the exact data I want.
+In this case, I can extract the tags from the front matter.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="n">metadata</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">metadata_regex</span><span class="p">,</span> <span class="n">markdown_content</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">metadata</span><span class="p">:</span>
+    <span class="n">tags_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;tags: ([\w,\s]+)&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">tags_match</span><span class="p">:</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="n">tags_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3>code snippet support</h3>
+
+<p>I am running <a rel="noopener" target="_blank" href="https://github.com/akashrchandran/Rayso-API">akashrchandran/Rayso-API</a>.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Code Snippet&quot;</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="n">language</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">title</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://localhost:3000/api&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+</code></pre>
+</div>
+
+<h3>threads! threads! threads!</h3>
+
+<p>Even though mastodon does officially have a higher character limit than Twitter. 
+I prefer the way threads look.</p>
+
+<h2>result</h2>
+
+<p>Everything does seem to work!
+Seeing that you are reading this on Mastodon, and that I have updated this section.</p>
+
+<p><iframe src="https://mastodon.social/@navanchauhan/109577330116812393/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><script src="https://static-cdn.mastodon.social/embed.js" async="async"></script></p>
+
+<h2>what's next?</h2>
+
+<p>Here is the current code:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">from</span> <span class="nn">mastodon</span> <span class="kn">import</span> <span class="n">Mastodon</span>
+<span class="kn">from</span> <span class="nn">mastodon.errors</span> <span class="kn">import</span> <span class="n">MastodonAPIError</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">mastodon</span> <span class="o">=</span> <span class="n">Mastodon</span><span class="p">(</span>
+    <span class="n">access_token</span><span class="o">=</span><span class="s1">&#39;reeeeee&#39;</span><span class="p">,</span>
+    <span class="n">api_base_url</span><span class="o">=</span><span class="s2">&quot;https://mastodon.social&quot;</span>
+    <span class="p">)</span>
+
+<span class="n">url_base</span> <span class="o">=</span> <span class="s2">&quot;https://web.navan.dev&quot;</span>
+<span class="n">sample_markdown_file</span> <span class="o">=</span> <span class="s2">&quot;Content/posts/2022-12-25-blog-to-toot.md&quot;</span>
+
+<span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">toots</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">image_idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">markdown_image</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(?:!\[(.*?)\]\((.*?)\))&#39;</span>
+<span class="n">markdown_links</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(?:\[(.*?)\]\((.*?)\))&#39;</span>
+
+<span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Code Snippet&quot;</span><span class="p">):</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="p">(</span><span class="s1">&#39;code&#39;</span><span class="p">,</span> <span class="n">code</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">,</span> <span class="n">language</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="n">title</span><span class="p">),</span>
+    <span class="p">)</span>
+
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://localhost:3000/api&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">content</span>
+
+<span class="k">class</span> <span class="nc">TootContent</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">links</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">toot_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+            <span class="n">toot_text</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">link</span>
+        <span class="k">return</span> <span class="n">toot_text</span>
+
+    <span class="k">def</span> <span class="nf">get_text</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">toot_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+            <span class="n">toot_text</span> <span class="o">+=</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">link</span>
+        <span class="k">return</span> <span class="n">toot_text</span>
+
+    <span class="k">def</span> <span class="nf">get_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">+=</span> <span class="mi">23</span>
+        <span class="k">return</span> <span class="n">length</span>
+
+    <span class="k">def</span> <span class="nf">add_link</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">link</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="o">+</span> <span class="mi">23</span> <span class="o">&lt;</span> <span class="mi">498</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">link</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">!=</span> <span class="s1">&#39;h&#39;</span><span class="p">:</span>
+                <span class="n">link</span> <span class="o">=</span> <span class="n">url_base</span> <span class="o">+</span> <span class="n">link</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">add_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="c1"># will handle in future</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cannot upload more than 4 images per toot&quot;</span><span class="p">)</span> 
+            <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># upload image and get id</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">add_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">+</span> <span class="n">text</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot; </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">get_links</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">))</span>
+
+
+<span class="n">in_metadata</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">in_code_block</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">my_toots</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">images</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">image_links</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">extra_links</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">tags</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="n">code_block</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="n">language</span> <span class="o">=</span> <span class="s2">&quot;bash&quot;</span>
+
+<span class="n">current_toot</span> <span class="o">=</span> <span class="n">TootContent</span><span class="p">()</span>
+
+<span class="n">metadata_regex</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;---\s*\n(.*?)\n---\s*\n&quot;</span>
+
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">sample_markdown_file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">markdown_content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+
+<span class="n">metadata</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">metadata_regex</span><span class="p">,</span> <span class="n">markdown_content</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">DOTALL</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">metadata</span><span class="p">:</span>
+    <span class="n">tags_match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;tags: ([\w,\s]+)&quot;</span><span class="p">,</span> <span class="n">metadata</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">tags_match</span><span class="p">:</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="n">tags_match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+
+
+<span class="n">markdown_content</span> <span class="o">=</span> <span class="n">markdown_content</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;---</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">markdown_content</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">current_toot</span><span class="o">.</span><span class="n">get_length</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">400</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;#&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_toots</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">current_toot</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">line</span><span class="si">}</span><span class="s2">: a cross-posted blog post </span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">hashtags</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">tags</span><span class="p">:</span>
+                    <span class="n">hashtags</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;#</span><span class="si">{</span><span class="n">tag</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">,&quot;</span>
+                <span class="n">current_toot</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="n">hashtags</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">my_toots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_toot</span><span class="p">)</span>
+                <span class="n">current_toot</span> <span class="o">=</span> <span class="n">TootContent</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">my_toots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_toot</span><span class="p">)</span>
+                <span class="n">current_toot</span> <span class="o">=</span> <span class="n">TootContent</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">title</span><span class="p">()</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;```&quot;</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">in_code_block</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">in_code_block</span>
+                <span class="k">if</span> <span class="n">in_code_block</span><span class="p">:</span>
+                    <span class="n">language</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;```&quot;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+                    <span class="k">continue</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;code-snipped_</span><span class="si">{</span><span class="n">image_idx</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span><span class="s2">&quot;wb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">get_image</span><span class="p">(</span><span class="n">code_block</span><span class="p">,</span> <span class="n">language</span><span class="p">))</span>
+                    <span class="n">current_toot</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;code-snipped_</span><span class="si">{</span><span class="n">image_idx</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+                    <span class="n">image_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">code_block</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">in_code_block</span><span class="p">:</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;   &quot;</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">code_block</span> <span class="o">+=</span> <span class="n">line</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">markdown_image</span><span class="p">,</span><span class="n">line</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">image_link</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">markdown_links</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+                    <span class="n">image_link</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image_link</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="c1"># not handled yet</span>
+                <span class="n">line</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">markdown_image</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">markdown_links</span><span class="p">,</span><span class="n">line</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">markdown_links</span><span class="p">,</span> <span class="n">line</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">current_toot</span><span class="o">.</span><span class="n">add_link</span><span class="p">(</span><span class="n">link</span><span class="p">[</span><span class="mi">1</span><span class="p">])):</span>
+                        <span class="n">extra_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">link</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+                    <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[</span><span class="si">{</span><span class="n">link</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">](</span><span class="si">{</span><span class="n">link</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">,</span><span class="n">link</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">current_toot</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="n">line</span><span class="p">):</span>
+                <span class="n">my_toots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_toot</span><span class="p">)</span>
+                <span class="n">current_toot</span> <span class="o">=</span> <span class="n">TootContent</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">my_toots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_toot</span><span class="p">)</span>
+        <span class="n">current_toot</span> <span class="o">=</span> <span class="n">TootContent</span><span class="p">()</span>
+
+<span class="n">my_toots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">current_toot</span><span class="p">)</span>
+
+<span class="n">in_reply_to_id</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">for</span> <span class="n">toot</span> <span class="ow">in</span> <span class="n">my_toots</span><span class="p">:</span>
+    <span class="n">image_ids</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">toot</span><span class="o">.</span><span class="n">images</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;uploading image, </span><span class="si">{</span><span class="n">image</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">image_id</span> <span class="o">=</span> <span class="n">mastodon</span><span class="o">.</span><span class="n">media_post</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+            <span class="n">image_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">image_id</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">MastodonAPIError</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;failed to upload. Continuing...&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">image_ids</span> <span class="o">==</span> <span class="p">[]:</span>
+        <span class="n">image_ids</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="n">in_reply_to_id</span> <span class="o">=</span> <span class="n">mastodon</span><span class="o">.</span><span class="n">status_post</span><span class="p">(</span>
+        <span class="n">toot</span><span class="o">.</span><span class="n">get_text</span><span class="p">(),</span> <span class="n">in_reply_to_id</span><span class="o">=</span><span class="n">in_reply_to_id</span><span class="p">,</span> <span class="n">media_ids</span><span class="o">=</span><span class="n">image_ids</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">id</span>
+</code></pre>
+</div>
+
+<p>Not the best thing I have ever written, but it works!</p>
 ]]></content:encoded>
 		</item>
 		

@@ -8,15 +8,13 @@ tags: Personal
 
 Hi!
 
-
-My name is Navan Chauhan. I dabble in the mysterious dark arts of programming and in-silico drug discovery. I am proficient in Python and ocassionaly dabble in C++/C, Swift, React Native, and Go. I only use vanilla JS for actual web based stuff because I don't want to spend time debugging yarn/npm installs faililng.
-
+My name is Navan Chauhan. I do lots of different things. Most of the bigger projects I am working on are currently private/unlisted. Although, all of them will be open-sourced, I don't want to publish them until I am happy with the version 1.0.
 
 Main website with links: [https://navan.website](https://navan.website)
 
 ## Contact Me
 
-The best way to reach out to me is by e-mail. navanchauhan[at]gmail.com Or, if I have made peace with my ISP and corrected the rDNS settings, then: hey[at]navan.dev
+The best way to reach out to me is by e-mail. subject[at]navan.email Or, if I have made peace with my ISP and corrected the rDNS settings, then: hey[at]navan.dev
 
 My GPG Fingerprint:
 
@@ -24,8 +22,8 @@ My GPG Fingerprint:
 
 ## Links
 
-* [Talk over a nice long game of Chess: (I am okayish at it, but Chess is fun.)](https://lichess.org/PrudentFox) 
 * [GitHub: @navanchauhan](https://github.com/navanchauhan)
 * [Mirror: Personal Instance of Gitea](https://pi4.navan.dev/gitea)
 * [GoatCounter: This Website's Analytics](https://navanchauhan.goatcounter.com)
 * [Twitter: @navanchauhan](https://github.com/navanchauhan)
+* [Mastodon: @navanchauhan@mastodon.social](https://mastodon.social/@navanchauhan)

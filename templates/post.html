@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 
-{% block title %}Post - {{content.metadata.title}}{% endblock %}
-{% block ogtitle %}Post - {{content.metadata.title}}{% endblock %}
-{% block twittertitle %}Post - {{content.metadata.title}}{% endblock %}
+{% block title %}{{content.metadata.title}}{% endblock %}
+{% block ogtitle %}{{content.metadata.title}}{% endblock %}
+{% block twittertitle %}{{content.metadata.title}}{% endblock %}
 
-{% block description %} {{content.metadata.description}} {% endblock %}
-{% block ogdescription %} {{content.metadata.description}} {% endblock %}
-{% block twitterdescription %} {{content.metadata.description}} {% endblock %}
-{% block twitter2description %} {{content.metadata.description}} {% endblock %}
+{% block description %}{{content.metadata.description}}{% endblock %}
+{% block ogdescription %}{{content.metadata.description}}{% endblock %}
+{% block twitterdescription %}{{content.metadata.description}}{% endblock %}
+{% block twitter2description %}summary_large_image{% endblock %}
 
 {% block body %}
 <main>

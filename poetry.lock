@@ -101,6 +101,18 @@ test = ["pytest", "pytest-runner", "pytest-cov", "vcrpy", "pytest-vcr", "pytest-
 webpush = ["http-ece (>=1.0.5)", "cryptography (>=1.6.0)"]
 
 [[package]]
+name = "pillow"
+version = "9.3.0"
+description = "Python Imaging Library (Fork)"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+docs = ["furo", "olefile", "sphinx (>=2.4)", "sphinx-copybutton", "sphinx-issues (>=3.0.1)", "sphinx-removed-in", "sphinxext-opengraph"]
+tests = ["check-manifest", "coverage", "defusedxml", "markdown2", "olefile", "packaging", "pyroma", "pytest", "pytest-cov", "pytest-timeout"]
+
+[[package]]
 name = "pygments"
 version = "2.13.0"
 description = "Pygments is a syntax highlighting package written in Python."
@@ -172,7 +184,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "e950173022d71e09b7d61b77f1bdcd9034d3da34d8a0fb0092e0b822e64b6096"
+content-hash = "3363dd4d7c560dd7acc742b0c0993bdcac014640dcbd83daf18fff6da62f4648"
 
 [metadata.files]
 blurhash = []
@@ -231,6 +243,7 @@ markupsafe = [
     {file = "MarkupSafe-2.1.1.tar.gz", hash = "sha256:7f91197cc9e48f989d12e4e6fbc46495c446636dfc81b9ccf50bb0ec74b91d4b"},
 ]
 "mastodon.py" = []
+pillow = []
 pygments = []
 python-dateutil = [
     {file = "python-dateutil-2.8.2.tar.gz", hash = "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86"},

@@ -8,6 +8,8 @@
 {% block ogdescription %}{{content.metadata.description}}{% endblock %}
 {% block twitterdescription %}{{content.metadata.description}}{% endblock %}
 {% block twitter2description %}summary_large_image{% endblock %}
+{% block ogimage %}{{content.metadata.image_link}}{% endblock %}
+{% block twimage %}{{content.metadata.image_link}}{% endblock %}
 
 {% block body %}
 <main>
@@ -19,8 +21,5 @@
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-	<!--<div class="commentbox"></div>
-	<script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js"></script>
-	<script>commentBox('5650347917836288-proj')</script>-->
 </main>
 {% endblock %}

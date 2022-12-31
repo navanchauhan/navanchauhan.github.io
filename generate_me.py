@@ -89,6 +89,8 @@ for x in os.walk(src_folder):
 								print(e)
 								exit(1)
 
+						_post["image_link"] = base_link[:-1] + _post["image_link"]
+
 
 						if "draft" in _post:
 							if _post["draft"] == 'true':

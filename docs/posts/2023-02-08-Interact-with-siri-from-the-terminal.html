@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="/assets/main.css" />
+    <link rel="stylesheet" href="/assets/sakura.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interacting with Siri using the command line</title>
+    <meta name="og:site_name" content="Navan Chauhan" />
+    <link rel="canonical" href="https://web.navan.dev/" />
+    <meta name="twitter:url" content="https://web.navan.dev/" />
+    <meta name="og:url" content="https://web.navan.dev/" />
+    <meta name="twitter:title" content="Interacting with Siri using the command line" />
+    <meta name="og:title" content="Interacting with Siri using the command line" />
+    <meta name="description" content="Code snippet to interact with Siri by issuing commands from the command-line." />
+    <meta name="twitter:description" content="Code snippet to interact with Siri by issuing commands from the command-line." />
+    <meta name="og:description" content="Code snippet to interact with Siri by issuing commands from the command-line." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to Navan Chauhan" />
+    <meta name="twitter:image" content="https://web.navan.dev/images/opengraph/posts/2023-02-08-Interact-with-siri-from-the-terminal.png" />
+    <meta name="og:image" content="https://web.navan.dev/images/opengraph/posts/2023-02-08-Interact-with-siri-from-the-terminal.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="google-site-verification" content="LVeSZxz-QskhbEjHxOi7-BM5dDxTg53x2TwrjFxfL0k" />
+    <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+    <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
+    <script defer data-domain="web.navan.dev" src="https://plausible.navan.dev/js/plausible.js"></script>
+    <!-- Begin Inspectlet Asynchronous Code. Only for some testing, will be removed soon -->
+    <script type="text/javascript">
+    (function() {
+    window.__insp = window.__insp || [];
+    __insp.push(['wid', 1038401947]);
+    var ldinsp = function(){
+    if(typeof window.__inspld != "undefined") return; window.__inspld = 1; var insp = document.createElement('script'); insp.type = 'text/javascript'; insp.async = true; insp.id = "inspsync"; insp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://cdn.inspectlet.com/inspectlet.js?wid=1038401947&r=' + Math.floor(new Date().getTime()/3600000); var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(insp, x); };
+    setTimeout(ldinsp, 0);
+    })();
+    </script>
+    <!-- End Inspectlet Asynchronous Code -->
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+
+	<h1>Interacting with Siri using the command line</h1>
+
+<p>My main objective was to see if I could issue multi-intent commands in one go. Obviously, Siri cannot do that (neither can Alexa, Cortana, or Google Assistant). The script here can issue either a single command, or use the help of OpenAI's DaVinci model to extract multiple commands and pass them onto siri.</p>
+
+<h2>Prerequisites</h2>
+
+<ul>
+<li>Run macOS</li>
+<li>Enable type to Siri (Settings &gt; Accessibility -> Type to Siri)</li>
+<li>Enable the Terminal to control System Events (The first time you run the script, it will prompt you to enable it)</li>
+</ul>
+
+<h2>Show me ze code</h2>
+
+<p>If you are here just for the code:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">applescript</span>
+<span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">getenv</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_KEY&quot;</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="s2">&quot;text-davinci-003&quot;</span>
+
+<span class="k">def</span> <span class="nf">execute_with_llm</span><span class="p">(</span><span class="n">command_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">llm_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;You are provided with multiple commands as a single command. Break down all the commands and return them in a list of strings. If you are provided with a single command, return a list with a single string, trying your best to understand the command.</span>
+
+<span class="s2">    Example:</span>
+<span class="s2">    Q: &quot;Turn on the lights and turn off the lights&quot;</span>
+<span class="s2">    A: [&quot;Turn on the lights&quot;, &quot;Turn off the lights&quot;]</span>
+
+<span class="s2">    Q: &quot;Switch off the lights and then play some music&quot;</span>
+<span class="s2">    A: [&quot;Switch off the lights&quot;, &quot;Play some music&quot;]</span>
+
+<span class="s2">    Q: &quot;I am feeling sad today, play some music&quot;</span>
+<span class="s2">    A: [&quot;Play some cheerful music&quot;]</span>
+
+<span class="s2">    Q: &quot;</span><span class="si">{</span><span class="n">command_text</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">    A: </span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">llm_prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">command_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="nb">eval</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">):</span>
+        <span class="n">execute_command</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">execute_command</span><span class="p">(</span><span class="n">command_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Execute a Siri command.&quot;&quot;&quot;</span>
+
+    <span class="n">script</span> <span class="o">=</span> <span class="n">applescript</span><span class="o">.</span><span class="n">AppleScript</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        tell application &quot;System Events&quot; to tell the front menu bar of process &quot;SystemUIServer&quot;</span>
+<span class="s2">            tell (first menu bar item whose description is &quot;Siri&quot;)</span>
+<span class="s2">                perform action &quot;AXPress&quot;</span>
+<span class="s2">            end tell</span>
+<span class="s2">        end tell</span>
+
+<span class="s2">        delay 2</span>
+
+<span class="s2">        tell application &quot;System Events&quot;</span>
+<span class="s2">            set textToType to &quot;</span><span class="si">{</span><span class="n">command_text</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">            keystroke textToType</span>
+<span class="s2">            key code 36</span>
+<span class="s2">        end tell</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">script</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;command&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The command to pass to Siri&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;What time is it?&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--openai&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">BooleanOptionalAction</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Use OpenAI to detect multiple intents&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">openai</span><span class="p">:</span>
+        <span class="n">execute_with_llm</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">execute_command</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Usage:</p>
+
+<div class="codehilite">
+<pre><span></span><code>python3 main.py <span class="s2">&quot;play some taylor swift&quot;</span>
+python3 main.py <span class="s2">&quot;turn off the lights and play some music&quot;</span> --openai
+</code></pre>
+</div>
+
+<h2>ELI5</h2>
+
+<p>I am not actually going to explain it as if I am explaining to a five-year old kid.</p>
+
+<h3>AppleScript</h3>
+
+<p>In the age of Siri Shortcuts, AppleScript can still do more. It is a scripting language created by Apple that can help you automate pretty much anything you see on your screen.</p>
+
+<p>We use the following AppleScript to trigger Siri and then type in our command:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">tell</span> <span class="nb">application</span> <span class="s2">&quot;System Events&quot;</span> <span class="k">to</span> <span class="k">tell</span> <span class="nb">the</span> <span class="nb">front</span> <span class="na">menu</span> <span class="nv">bar</span> <span class="k">of</span> <span class="nv">process</span> <span class="s2">&quot;SystemUIServer&quot;</span>
+    <span class="k">tell</span> <span class="p">(</span><span class="nb">first</span> <span class="na">menu</span> <span class="nv">bar</span> <span class="nb">item</span> <span class="nb">whose</span> <span class="nv">description</span> <span class="ow">is</span> <span class="s2">&quot;Siri&quot;</span><span class="p">)</span>
+        <span class="nb">perform action</span> <span class="s2">&quot;AXPress&quot;</span>
+    <span class="k">end</span> <span class="k">tell</span>
+<span class="k">end</span> <span class="k">tell</span>
+
+<span class="nb">delay</span> <span class="mi">2</span>
+
+<span class="k">tell</span> <span class="nb">application</span> <span class="s2">&quot;System Events&quot;</span>
+    <span class="k">set</span> <span class="nv">textToType</span> <span class="k">to</span> <span class="s2">&quot;Play some rock music&quot;</span>
+    <span class="nv">keystroke</span> <span class="nv">textToType</span>
+    <span class="na">key code</span> <span class="mi">36</span>
+<span class="k">end</span> <span class="k">tell</span>
+</code></pre>
+</div>
+
+<p>This first triggers Siri, waits for a couple of seconds, and then types in our command. In the script, this functionality is handled by the <code>execute_command</code> function.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">applescript</span>
+
+<span class="k">def</span> <span class="nf">execute_command</span><span class="p">(</span><span class="n">command_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Execute a Siri command.&quot;&quot;&quot;</span>
+
+    <span class="n">script</span> <span class="o">=</span> <span class="n">applescript</span><span class="o">.</span><span class="n">AppleScript</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        tell application &quot;System Events&quot; to tell the front menu bar of process &quot;SystemUIServer&quot;</span>
+<span class="s2">            tell (first menu bar item whose description is &quot;Siri&quot;)</span>
+<span class="s2">                perform action &quot;AXPress&quot;</span>
+<span class="s2">            end tell</span>
+<span class="s2">        end tell</span>
+
+<span class="s2">        delay 2</span>
+
+<span class="s2">        tell application &quot;System Events&quot;</span>
+<span class="s2">            set textToType to &quot;</span><span class="si">{</span><span class="n">command_text</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">            keystroke textToType</span>
+<span class="s2">            key code 36</span>
+<span class="s2">        end tell</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">script</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</code></pre>
+</div>
+
+<h3>Multi-Intent Commands</h3>
+
+<p>We can call OpenAI's API to autocomplete our prompt and extract multiple commands. We don't need to use OpenAI's API, and can also simply use Google's Flan-T5 model using HuggingFace's transformers library. </p>
+
+<h4>Ze Prompt</h4>
+
+<div class="codehilite">
+<pre><span></span><code>You are provided with multiple commands as a single command. Break down all the commands and return them in a list of strings. If you are provided with a single command, return a list with a single string, trying your best to understand the command.
+
+    Example:
+    Q: &quot;Turn on the lights and turn off the lights&quot;
+    A: [&quot;Turn on the lights&quot;, &quot;Turn off the lights&quot;]
+
+    Q: &quot;Switch off the lights and then play some music&quot;
+    A: [&quot;Switch off the lights&quot;, &quot;Play some music&quot;]
+
+    Q: &quot;I am feeling sad today, play some music&quot;
+    A: [&quot;Play some cheerful music&quot;]
+
+    Q: &quot;{command_text}&quot;
+    A:
+</code></pre>
+</div>
+
+<p>This prompt gives the model a few examples to increase the generation accuracy, along with instructing it to return a Python list. </p>
+
+<h4>Ze Code</h4>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
+
+<span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">getenv</span>
+
+<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_KEY&quot;</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="s2">&quot;text-davinci-003&quot;</span>
+
+<span class="k">def</span> <span class="nf">execute_with_llm</span><span class="p">(</span><span class="n">command_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">llm_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;You are provided with multiple commands as a single command. Break down all the commands and return them in a list of strings. If you are provided with a single command, return a list with a single string, trying your best to understand the command.</span>
+
+<span class="s2">    Example:</span>
+<span class="s2">    Q: &quot;Turn on the lights and turn off the lights&quot;</span>
+<span class="s2">    A: [&quot;Turn on the lights&quot;, &quot;Turn off the lights&quot;]</span>
+
+<span class="s2">    Q: &quot;Switch off the lights and then play some music&quot;</span>
+<span class="s2">    A: [&quot;Switch off the lights&quot;, &quot;Play some music&quot;]</span>
+
+<span class="s2">    Q: &quot;I am feeling sad today, play some music&quot;</span>
+<span class="s2">    A: [&quot;Play some cheerful music&quot;]</span>
+
+<span class="s2">    Q: &quot;</span><span class="si">{</span><span class="n">command_text</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="s2">    A: </span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">completion</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Completion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">engine</span><span class="o">=</span><span class="n">engine</span><span class="p">,</span> <span class="n">prompt</span><span class="o">=</span><span class="n">llm_prompt</span><span class="p">,</span> <span class="n">max_tokens</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">command_text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">))</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="nb">eval</span><span class="p">(</span><span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">text</span><span class="p">):</span> <span class="c1"># NEVER EVAL IN PROD RIGHT LIKE THIS</span>
+        <span class="n">execute_command</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h3>Gluing together code</h3>
+
+<p>To finish it all off, we can use argparse to only send the input command to OpenAI when asked to do so.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kn">import</span> <span class="nn">argparse</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s2">&quot;command&quot;</span><span class="p">,</span> <span class="n">nargs</span><span class="o">=</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;The command to pass to Siri&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">&quot;What time is it?&quot;</span><span class="p">)</span>
+    <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--openai&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">argparse</span><span class="o">.</span><span class="n">BooleanOptionalAction</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s2">&quot;Use OpenAI to detect multiple intents&quot;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="n">args</span><span class="o">.</span><span class="n">openai</span><span class="p">:</span>
+        <span class="n">execute_with_llm</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">execute_command</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">command</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<h2>Conclusion</h2>
+
+<p>Siri is still dumb. When I ask it to <code>Switch off the lights</code>, it default to the home thousands of miles away. But, this code snippet definitely does work!</p>
+
+	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
+	<script data-isso="//comments.navan.dev/"
+        src="//comments.navan.dev/js/embed.min.js"></script>
+	<section id="isso-thread">
+	    <noscript>Javascript needs to be activated to view comments.</noscript>
+	</section>
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

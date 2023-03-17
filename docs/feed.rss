@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Wed, 08 Feb 2023 17:38:18 -0000</lastBuildDate>
-		<pubDate>Wed, 08 Feb 2023 17:38:18 -0000</pubDate>
+		<lastBuildDate>Fri, 17 Mar 2023 14:07:30 -0000</lastBuildDate>
+		<pubDate>Fri, 17 Mar 2023 14:07:30 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -2261,6 +2261,44 @@ values using the X values. We then plot it to compare the actual data and predic
 <h2>Should you actually self-host everything?</h2>
 
 <p>Highly context dependent. I run two YunoHost servers in two different locations. One of the ISP has actually blacklisted the residential IP address range and does not let me change my reverseDNS, which means all my outgoing emails are marked as spam. On the other hand, the other ISP gave a clean static IP and the server managed for a small business is not at all problematic for emailing. YMMV but at least you know you have an option.</p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2023-03-17-future-of-writing.html
+			</guid>
+			<title>
+				Future of Writing
+			</title>
+			<description>
+				My thoughts on writing in the 21st century.
+			</description>
+			<link>https://web.navan.dev/posts/2023-03-17-future-of-writing.html</link>
+			<pubDate>Fri, 17 Mar 2023 13:57:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Future of Writing</h1>
+
+<p>I love taking jotting down my thoughts as bullet points.
+I find it easier to be able to recall my thoughts by just reading the keywords.
+But, at the same time, am I actually able to recall everything?</p>
+
+<p>The primary reason I started writing in my journal is because I knew, I was never 
+able to recall anything with 100% guarantee. </p>
+
+<p>So, the question arises, does it still make sense to put time and effort into writing blog posts?
+You can simply ask an autoregressive model to generate it for you, based on bullet points.
+I feel like writitng still has a place in this world. Limitting ourselves to a model trained on a finite dataset, feels like an insult to creativity.
+If neural networks stopped being prediction machines, and were actually able to "think", I would still believe that creativity wins. 
+Even if that creativity was now coming from the machine.</p>
+
+<blockquote>
+  <p>I am the master of my fate,. I am the captain of my soul.</p>
+</blockquote>
+
+<p>As long as I am alive, and I have the spirit of being rebellious, I am never going to stop trying to write.
+Even if we have a tool that can generate the perfect essay, we humans will still write.</p>
+
+<p>Why? Just because we can.</p>
 ]]></content:encoded>
 		</item>
 		

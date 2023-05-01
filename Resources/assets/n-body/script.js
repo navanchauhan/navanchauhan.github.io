@@ -290,7 +290,9 @@ function initCondGen(nBodies, vRange = [-7e3, 7e3], posRange = [-35, 35]) {
 }
 
 function random3BodySimSolver(tStop, nTPts, nBodiesStop=2, G=6.674e-11) {
-  let initConditions = initCondGen(3,[-7e3, 7e3],[-5, 5]);
+  let userInputPositionValue = parseInt(document.getElementById("distanceAU").value);
+  let userInputVelocityValue = Number(document.getElementById("vRange").value);
+  let initConditions = initCondGen(3,[-userInputVelocityValue, userInputVelocityValue],[-userInputPositionValue, userInputPositionValue]);
   let myMasses = initConditions.m;
   let myCoords = initConditions.coords;
 

@@ -1,9 +1,12 @@
 ---
-date: 2023-03-17 13:57
-description: My thoughts on writing in the 21st century.
-tags: ramblings, writing
+date: 2023-04-30 22:50
+description: n-body solution generator and solver
+tags: astrophysics, mathematics
 ---
 
 # n-body solution generator
 
+<noscript>
+This post requires JavaScript to be viewed properly :(
+</noscript>
 

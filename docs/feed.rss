@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sun, 30 Apr 2023 22:13:15 -0000</lastBuildDate>
-		<pubDate>Sun, 30 Apr 2023 22:13:15 -0000</pubDate>
+		<lastBuildDate>Sun, 30 Apr 2023 22:52:04 -0000</lastBuildDate>
+		<pubDate>Sun, 30 Apr 2023 22:52:04 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -4134,11 +4134,15 @@ Seeing that you are reading this on Mastodon, and that I have updated this secti
 				n-body solution generator
 			</title>
 			<description>
-				My thoughts on writing in the 21st century.
+				n-body solution generator and solver
 			</description>
 			<link>https://web.navan.dev/posts/2023-04-30-n-body-simulation.html</link>
-			<pubDate>Fri, 17 Mar 2023 13:57:00 -0000</pubDate>
+			<pubDate>Sun, 30 Apr 2023 22:50:00 -0000</pubDate>
 			<content:encoded><![CDATA[<h1>n-body solution generator</h1>
+
+<noscript>
+This post requires JavaScript to be viewed properly :(
+</noscript>
 ]]></content:encoded>
 		</item>
 		

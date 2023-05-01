@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sun, 30 Apr 2023 22:52:04 -0000</lastBuildDate>
-		<pubDate>Sun, 30 Apr 2023 22:52:04 -0000</pubDate>
+		<lastBuildDate>Sun, 30 Apr 2023 23:19:46 -0000</lastBuildDate>
+		<pubDate>Sun, 30 Apr 2023 23:19:46 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -4139,6 +4139,8 @@ Seeing that you are reading this on Mastodon, and that I have updated this secti
 			<link>https://web.navan.dev/posts/2023-04-30-n-body-simulation.html</link>
 			<pubDate>Sun, 30 Apr 2023 22:50:00 -0000</pubDate>
 			<content:encoded><![CDATA[<h1>n-body solution generator</h1>
+
+<p>This post requires JavaScript to be viewed properly :(</p>
 
 <noscript>
 This post requires JavaScript to be viewed properly :(

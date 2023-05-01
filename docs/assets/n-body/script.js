@@ -2,6 +2,7 @@
 var plotOrbit = true 
 var plotClassic = false
 var plotRandom = false
+var plotRandom3Body = false
 var plotIndex = 0
 var delay = 10
 var tailLength = 1;
@@ -288,6 +289,36 @@ function initCondGen(nBodies, vRange = [-7e3, 7e3], posRange = [-35, 35]) {
     return {m: m.map(x => x * 2e30), rad: rad.map(x => x * 7e8), coords: coords};
 }
 
+function random3BodySimSolver(tStop, nTPts, nBodiesStop=2, G=6.674e-11) {
+  let initConditions = initCondGen(3,[-7e3, 7e3],[-5, 5]);
+  let myMasses = initConditions.m;
+  let myCoords = initConditions.coords;
+
+  let nBodies3B = 3;
+
+  const yearSec = 365 * 24 * 3600;
+
+  const time = Array.from({ length: nTPts }, (_, i) => i * tStop / (nTPts - 1) * yearSec); // Years -> s
+  let t = time[0];
+  const deltaT = time[1] - time[0];
+  let tInd = 0;
+  const coordsRecord = [deepCopyCoordsArray(myCoords)];
+  const massRecord = [myMasses.slice()]; // Initialize records with initial conditions
+
+  while (tInd < nTPts && nBodies3B > nBodiesStop) { 
+    [myCoords, myMasses, nBodies3B] = nBodyStep(myCoords, myMasses, deltaT, 10 * 1.5e11, nBodies3B, G); // Update
+    coordsRecord.push(deepCopyCoordsArray(myCoords));
+    massRecord.push(myMasses.slice()); // Add to records
+    tInd++;
+    t = time[tInd];
+  }
+
+  console.log(nBodies3B)
+  
+  return [coordsRecord, massRecord, time.slice(0, tInd + 1)];
+
+}
+
 
 function calculateAndPlot() {
   try {
@@ -413,8 +444,8 @@ function calculateAndPlot() {
         yaxis: { title: 'y [AU]', range: [-2.1, 2.1], scaleanchor: 'x', scaleratio: 1 },
         showlegend: false,
         margin: { l: 60, r: 40, t: 40, b: 40 },
-        width: 800,
-        height: 800,
+        //width: 800,
+        //height: 800,
         plot_bgcolor: 'black',
     };
 }
@@ -448,6 +479,79 @@ function calculateAndPlot() {
 animateNBodyProblem();
 
 
+  } else if (plotRandom3Body==true) {
+    let [coordsRecord3, _, t3] = random3BodySimSolver(1,1000);
+
+    const yearSec = 365 * 24 * 3600;
+
+    function createFrame(coords3) {
+      if (!coords3 || !coords3[0] || !coords3[1]) {
+          return [];
+      }
+  
+      const xCoords = coords3[0].slice(0).map(x => x / 1.5e11);
+      const yCoords = coords3[1].slice(0).map(y => y / 1.5e11);
+
+      const traceOtherBodies = {
+          x: xCoords,
+          y: yCoords,
+          mode: 'markers',
+          type: 'scatter',
+          name: '',
+          marker: { color: 'dodgerblue', symbol: 'circle', size: 5 },
+      };
+  
+      return [traceOtherBodies];
+    }
+
+    function createLayout(i) {
+      return {
+          title: {
+              text: `3-Body Problem`,//= ${Number(t[i] / yearSec).toFixed(3)} years`,
+              x: 0.03,
+              y: 0.97,
+              xanchor: 'left',
+              yanchor: 'top',
+              font: { size: 14 },
+          },
+          xaxis: { title: 'x [AU]' },
+          yaxis: { title: 'y [AU]', scaleanchor: 'x', scaleratio: 1 },
+          showlegend: false,
+          margin: { l: 60, r: 40, t: 40, b: 40 },
+          //width: 800,
+          //height: 800,
+          plot_bgcolor: 'black',
+      };
+    }
+
+    function animate3BodyProblem() {
+      const nFrames = t3.length;
+
+      for (let i = 0; i < nFrames; i++) {
+          const frameData = createFrame(coordsRecord3[i]);
+          const layout = createLayout(i);
+          //Plotly.newPlot(plotDiv, frameData, layout);
+          try {
+            Plotly.animate("plot", {
+            data: frameData, layout: layout
+          }, {
+            staticPlot: true,
+            transition: {
+              duration: 0,
+            },
+            frame: {
+              duration: 0,
+              redraw: false,
+            }
+          });
+        } catch (err) {
+          Plotly.newPlot('plot', frameData, layout);
+        }
+      }
+    }
+
+    animate3BodyProblem();
+
   } else if (plotClassic==true) {
     // Initial conditions setup
     let M = [1, 1, 1];
@@ -478,11 +582,12 @@ animateNBodyProblem();
         VX.forEach((_, idx) => VX[idx][i] = coords[2][idx]);
         VY.forEach((_, idx) => VY[idx][i] = coords[3][idx]);
     }
+
     function plotClassicFunc() {
       var tailLength = 1;
       if (plotIndex < tailLength) {
       tailLength = 0;
-      } else if (plotIndex > time.length) {
+      } if (plotIndex > time.length) {
       plotIndex = 0;
       } else {
         tailLength = plotIndex - tailLength;
@@ -493,6 +598,7 @@ animateNBodyProblem();
      try {
          time[currentIndex].toFixed(3);
       } catch (e) {
+        console.log(e)
         currentIndex = 0;
       }
 

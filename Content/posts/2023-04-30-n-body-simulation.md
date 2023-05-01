@@ -13,12 +13,9 @@ Adapted from the Numerics Tutorial - [kirklong/ThreeBodyBot](https://github.com/
 Workflow:
 
 * Understand the problem
-
 * Visualise a basic orbit
-  
 * Solve and plot the classic figure-8 orbit
-  
-* random n-body solution generator
+* Random n-body solution generator
 
 **To workaround memory issues, the simulations are only run on-demand when the user clicks the respective button. Scroll down to the bottom of the page to see the results.**
 
@@ -28,7 +25,7 @@ The n-body problem is a classic puzzle in physics (and thus astrophysics) and ma
 
 Imagine you are observing a *cosmic dance* between multiple celestial bodies, all tugging on one another as they move through space. The n-body problem aims to undersand and predict the paths of these objects as they move through space.
 
-When `n=2`, i.e we have only two objects, say the Earth and the Moon, we can easily apply Newtonian physics to predict their motion. However, when `n>2`, the problem becomes much more difficult to solve analytically. This is because each object feels the gravitational pull from all other objects, and thus the equations of motion become coupled and non-linear. 
+When `n=2`, i.e we have only two objects, say the Earth and the Moon, we can easily apply Newtonian physics to predict their motion. However, when `n>2`, the problem becomes much more difficult to solve analytically.[1] This is because each object feels the gravitational pull from all other objects, and thus the equations of motion become coupled and non-linear. 
 
 As the number of objects increases, finding an exact solution becomes impossible, and we rely on analyticals approximations.
 
@@ -175,7 +172,7 @@ Now that we have the data for the Sun's position, Earth's orbit, and the referen
 ## Figure of 8 orbit
 
 
-The figure of 8 solution in the three-body problem refers to a unique and special trajectory where three celestial bodies (e.g., planets, stars) move in a figure of 8 shaped pattern around their mutual center of mass. This is special because it represents a stable and periodic solution to the three-body problem, which is known for its complexity and lack of general solutions.
+The figure of 8 solution[2] in the three-body problem refers to a unique and special trajectory where three celestial bodies (e.g., planets, stars) move in a figure of 8 shaped pattern around their mutual center of mass. This is special because it represents a stable and periodic solution to the three-body problem, which is known for its complexity and lack of general solutions.
 
 In the figure of 8 solution, each of the three bodies follows the same looping path, but with a phase difference such that when one body is at one end of the loop, the other two are symmetrically positioned elsewhere along the path. The bodies maintain equal distances from each other throughout their motion, and their velocities and positions are perfectly balanced to maintain this periodic motion.
 
@@ -643,6 +640,10 @@ animateNBodyProblem();
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
 <script src="/assets/n-body/script.js"></script>
 <div id="main-plot-div">
+<noscript>
+The simulations require JavaScript to be viewed properly :(
+</noscript>
+
 <div id="plot"></div>
    
 <label for="speedControl">Speed for 3-Body Visualisation</label>
@@ -652,12 +653,14 @@ animateNBodyProblem();
 </div>
 <button type="button" id="startSim1" onclick="plotEarthSun()">Sun-Earth Orbit</button>
 <button type="button" id="startSim2" onclick="plotClassic3BodyProblem()">Classic 3-Body Problem</button>
-<button type="button" id="startSim3" onclick="plotRandom3BodySimulation()">Random n-Body Simulation</button>
+<button type="button" id="startSim3" onclick="plotRandomNBodySimulation()">Random n-Body Simulation</button>
+<button type="button" id="startSim4" onclick="plotRandom3BodySimulation()">Random 3-Body Simulation</button>
 <script>
 function clearAl() {
     plotOrbit = false;
     plotClassic = false;
     plotRandom = false;
+    plotRandom3Body = false;
 }
 
 function plotEarthSun() {
@@ -678,11 +681,18 @@ function plotClassic3BodyProblem() {
       }, 500);
     }
 
-function plotRandom3BodySimulation() {
+function plotRandomNBodySimulation() {
       clearAl();
       plotRandom = true;
       calculateAndPlot();
     }
+
+  function plotRandom3BodySimulation() {
+    clearAl();
+    plotRandom3Body = true;
+    calculateAndPlot();
+  }
+
 
 
 </script>
@@ -698,7 +708,8 @@ function plotRandom3BodySimulation() {
 
  </script>     
 
-<noscript>
-This post requires JavaScript to be viewed properly :(
-</noscript>
 
+## References
+
+1. Barrow-Green, June (2008), "The Three-Body Problem", in Gowers, Timothy; Barrow-Green, June; Leader, Imre (eds.), *The Princeton Companion to Mathematics*, Princeton University Press, pp. 726–728
+2. Moore, Cristopher (1993), "Braids in classical dynamics", *Physical Review Letters*, 70 (24): 3675–3679

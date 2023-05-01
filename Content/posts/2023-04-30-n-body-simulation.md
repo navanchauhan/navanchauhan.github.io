@@ -6,6 +6,7 @@ tags: astrophysics, mathematics
 
 # n-body solution generator
 
+This post requires JavaScript to be viewed properly :(
 <noscript>
 This post requires JavaScript to be viewed properly :(
 </noscript>

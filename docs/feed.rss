@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Mon, 01 May 2023 12:58:21 -0000</lastBuildDate>
-		<pubDate>Mon, 01 May 2023 12:58:21 -0000</pubDate>
+		<lastBuildDate>Mon, 01 May 2023 13:13:07 -0000</lastBuildDate>
+		<pubDate>Mon, 01 May 2023 13:13:07 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -4783,6 +4783,11 @@ The simulations require JavaScript to be viewed properly :(
 <input type="range" min="1" max="20" value="10" id="speedControl">
 <label for="nBodies">Number of Bodies for n-Body Simulation (5-500)</label>
 <input type="range" min="5" max="500" value="256" id="nBodies">
+<label for="distanceAU">Position Range for Random 3-Body Simulations (1-55)</label>
+<input type="number" min="1" max="55" value="10" id="distanceAU">
+<label for="vRange">Velocity Range for Random 3-Body Simulation (1-10e4)<label>
+<input type="number" min="1" max="10000" value="7e3" id="vRange">
+
 </div>
 <button type="button" id="startSim1" onclick="plotEarthSun()">Sun-Earth Orbit</button>
 <button type="button" id="startSim2" onclick="plotClassic3BodyProblem()">Classic 3-Body Problem</button>

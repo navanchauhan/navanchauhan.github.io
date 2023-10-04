@@ -6,16 +6,16 @@
     <link rel="stylesheet" href="/assets/sakura.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bomb Lab Phases 1-4</title>
+    <title>Bomb Lab Phases 1-5</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/" />
     <meta name="twitter:url" content="https://web.navan.dev/" />
     <meta name="og:url" content="https://web.navan.dev/" />
-    <meta name="twitter:title" content="Bomb Lab Phases 1-4" />
-    <meta name="og:title" content="Bomb Lab Phases 1-4" />
-    <meta name="description" content="Introduction, Phases 1-4 of Bomb Lab for CSCI 2400 Lab - 2" />
-    <meta name="twitter:description" content="Introduction, Phases 1-4 of Bomb Lab for CSCI 2400 Lab - 2" />
-    <meta name="og:description" content="Introduction, Phases 1-4 of Bomb Lab for CSCI 2400 Lab - 2" />
+    <meta name="twitter:title" content="Bomb Lab Phases 1-5" />
+    <meta name="og:title" content="Bomb Lab Phases 1-5" />
+    <meta name="description" content="Introduction, Phases 1-5 of Bomb Lab for CSCI 2400 Lab - 2" />
+    <meta name="twitter:description" content="Introduction, Phases 1-5 of Bomb Lab for CSCI 2400 Lab - 2" />
+    <meta name="og:description" content="Introduction, Phases 1-5 of Bomb Lab for CSCI 2400 Lab - 2" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
@@ -54,7 +54,7 @@
     
 <main>
 
-	<h1>Bomb Lab Phases 1-4</h1>
+	<h1>Bomb Lab Phases 1-5</h1>
 
 <h2>Introduction</h2>
 
@@ -645,7 +645,7 @@ jmp 0x5555555557b4 &lt;func4+27&gt;
     else:
         return 0
 
-for x in range(10):
+for x in range(15): # We can limit to 14
    if func4(x) == 2:
       print(f"answer is {x}")
       break
@@ -674,6 +674,131 @@ Breakpoint 1, 0x00005555555557d3 in phase_4 ()
 Continuing.
 So you got that one.  Try this one.
 </code></pre>
+
+<h2>Phase 5</h2>
+
+<pre><code>So you got that one.  Try this one.
+test string
+
+Breakpoint 1, 0x0000555555555830 in phase_5 ()
+(gdb) disas phase_5
+Dump of assembler code for function phase_5:
+=&gt; 0x0000555555555830 &lt;+0&gt;:     endbr64 
+   0x0000555555555834 &lt;+4&gt;:     push   %rbx
+   0x0000555555555835 &lt;+5&gt;:     sub    $0x10,%rsp
+   0x0000555555555839 &lt;+9&gt;:     mov    %rdi,%rbx
+   0x000055555555583c &lt;+12&gt;:    call   0x555555555b10 &lt;string_length&gt;
+   0x0000555555555841 &lt;+17&gt;:    cmp    $0x6,%eax
+   0x0000555555555844 &lt;+20&gt;:    jne    0x55555555588b &lt;phase_5+91&gt;
+   0x0000555555555846 &lt;+22&gt;:    mov    $0x0,%eax
+   0x000055555555584b &lt;+27&gt;:    lea    0x199e(%rip),%rcx        # 0x5555555571f0 &lt;array.0&gt;
+   0x0000555555555852 &lt;+34&gt;:    movzbl (%rbx,%rax,1),%edx
+   0x0000555555555856 &lt;+38&gt;:    and    $0xf,%edx
+   0x0000555555555859 &lt;+41&gt;:    movzbl (%rcx,%rdx,1),%edx
+   0x000055555555585d &lt;+45&gt;:    mov    %dl,0x9(%rsp,%rax,1)
+   0x0000555555555861 &lt;+49&gt;:    add    $0x1,%rax
+   0x0000555555555865 &lt;+53&gt;:    cmp    $0x6,%rax
+   0x0000555555555869 &lt;+57&gt;:    jne    0x555555555852 &lt;phase_5+34&gt;
+   0x000055555555586b &lt;+59&gt;:    movb   $0x0,0xf(%rsp)
+   0x0000555555555870 &lt;+64&gt;:    lea    0x9(%rsp),%rdi
+   0x0000555555555875 &lt;+69&gt;:    lea    0x1943(%rip),%rsi        # 0x5555555571bf
+   0x000055555555587c &lt;+76&gt;:    call   0x555555555b31 &lt;strings_not_equal&gt;
+   0x0000555555555881 &lt;+81&gt;:    test   %eax,%eax
+   0x0000555555555883 &lt;+83&gt;:    jne    0x555555555892 &lt;phase_5+98&gt;
+   0x0000555555555885 &lt;+85&gt;:    add    $0x10,%rsp
+   0x0000555555555889 &lt;+89&gt;:    pop    %rbx
+   0x000055555555588a &lt;+90&gt;:    ret    
+   0x000055555555588b &lt;+91&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x0000555555555890 &lt;+96&gt;:    jmp    0x555555555846 &lt;phase_5+22&gt;
+   0x0000555555555892 &lt;+98&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x0000555555555897 &lt;+103&gt;:   jmp    0x555555555885 &lt;phase_5+85&gt;
+End of assembler dump.
+(gdb) 
+</code></pre>
+
+<pre><code>...
+   0x000055555555583c &lt;+12&gt;:    call   0x555555555b10 &lt;string_length&gt;
+   0x0000555555555841 &lt;+17&gt;:    cmp    $0x6,%eax
+   0x0000555555555844 &lt;+20&gt;:    jne    0x55555555588b &lt;phase_5+91&gt;
+...
+   0x000055555555588b &lt;+91&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+...
+</code></pre>
+
+<p>First things first, these instructions check to make sure the passed string is of length 6, otherwise <code>explode_bomb</code> is called.</p>
+
+<p>We can also see a similar pattern compared to Phase 2, where we had a loop:</p>
+
+<ul>
+<li>The looping part:
+<ul>
+<li><code>mov $0x0,%eax</code> - Initialise <code>%eax</code> and set it to 0 (our counter/iterator)</li>
+<li><code>movzbl (%rbx,%rax,1),%edx</code> - Access <code>%rbx + 1 * %rax</code> and store it in <code>%edx</code></li>
+<li><code>and $0xf,%edx</code> - Take the least significant 4 bits of the byte.</li>
+<li><code>movzbl (%rcx,%rdx,1),%edx</code> - Use the 4 bits as an index into another array and load the corresponding byte into <code>%edx</code></li>
+<li><code>mov %dl,0x9(%rsp,%rax,1)</code> - Store the transformed byte into a buffer on the stack</li>
+<li><code>add $0x1,%rax</code> - Increment <code>%rax</code></li>
+<li><code>cmp    $0x6,%rax</code> - If the index is not yet 6, loop again</li>
+</ul></li>
+<li><code>movb $0x0,0xf(%rsp)</code> - Null-terminate the transformed string</li>
+<li><code>lea 0x9(%rsp),%rdi</code> and <code>lea 0x1943(%rip),%rsi</code> </li>
+<li><code>all 0x555555555b31 &lt;strings_not_equal&gt;</code> check if the two strings loaded up just before this are equal or not.</li>
+</ul>
+
+<p>We can check the reference string we need, which <code>gdb</code> has marked as <code># 0x5555555571bf</code>, and the lookup table marked as <code># 0x5555555571f0 &lt;array.0&gt;</code></p>
+
+<pre><code>(gdb) x/s 0x5555555571bf
+0x5555555571bf: "bruins"
+(gdb) x/s 0x5555555571f0
+0x5555555571f0 &lt;array.0&gt;:       "maduiersnfotvbylSo you think you can stop the bomb with ctrl-c, do you?"
+(gdb) 
+</code></pre>
+
+<p>To summarize the transformation process:</p>
+
+<ul>
+<li>The function takes each byte of the string</li>
+<li>It keeps only the least significant 4 bits of each byte</li>
+<li>It uses these 4 bits as an index into the lookup table (<code>array.0</code>)</li>
+<li>The value from the array is then stored in a buffer</li>
+</ul>
+
+<p>Here's how the transformation process can be reversed for each character in "bruins":
+1. Find the index of <code>b</code> in the lookup table (in our case, it is 13 since we index starting 0)
+2. Calculate binary representation of this index (in our case 13 can be written as 1101 in binary)
+3. Find ASCII character whose least significant 4 bits match (in our case, <code>m</code> has binary representation <code>01101101</code>)</p>
+
+<p>Repeat for all 6 characters</p>
+
+<p><em>Hint: Using an <a rel="noopener" target="_blank" href="http://sticksandstones.kstrom.com/appen.html">ASCII - Binary Table</a> can save you time.</em> </p>
+
+<p>Thus, we can have the following transformation:</p>
+
+<pre><code>b -&gt; m
+r -&gt; f 
+u -&gt; c
+i -&gt; d
+n -&gt; h
+s -&gt; g
+</code></pre>
+
+<p>Let us try out this answer:</p>
+
+<pre><code>...
+That's number 2.  Keep going!
+Halfway there!
+So you got that one.  Try this one.
+mfcdhg
+
+Breakpoint 1, 0x0000555555555830 in phase_5 ()
+(gdb) continue
+Continuing.
+Good work!  On to the next...
+</code></pre>
+
+<p>Awesome!</p>
+
+<h2>Phase 6</h2>
 
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="//comments.navan.dev/"

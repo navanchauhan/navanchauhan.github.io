@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Wed, 04 Oct 2023 14:36:29 -0000</lastBuildDate>
-		<pubDate>Wed, 04 Oct 2023 14:36:29 -0000</pubDate>
+		<lastBuildDate>Wed, 04 Oct 2023 14:39:04 -0000</lastBuildDate>
+		<pubDate>Wed, 04 Oct 2023 14:39:04 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -3212,14 +3212,14 @@ logger.info("rdkit-{} installation finished!".format(rdkit.__version__))
 				https://web.navan.dev/posts/2023-10-04-bomb-lab.html
 			</guid>
 			<title>
-				Bomb Lab Phases 1 &amp; 2
+				Bomb Lab Phases 1-3
 			</title>
 			<description>
 				Introduction, Phases 1-3 of Bomb Lab for CSCI 2400 Lab - 2
 			</description>
 			<link>https://web.navan.dev/posts/2023-10-04-bomb-lab.html</link>
 			<pubDate>Wed, 04 Oct 2023 13:12:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Bomb Lab Phases 1 &amp; 2</h1>
+			<content:encoded><![CDATA[<h1>Bomb Lab Phases 1-3</h1>
 
 <h2>Introduction</h2>
 

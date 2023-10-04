@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Wed, 04 Oct 2023 14:39:04 -0000</lastBuildDate>
-		<pubDate>Wed, 04 Oct 2023 14:39:04 -0000</pubDate>
+		<lastBuildDate>Wed, 04 Oct 2023 15:21:02 -0000</lastBuildDate>
+		<pubDate>Wed, 04 Oct 2023 15:21:02 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -3212,14 +3212,14 @@ logger.info("rdkit-{} installation finished!".format(rdkit.__version__))
 				https://web.navan.dev/posts/2023-10-04-bomb-lab.html
 			</guid>
 			<title>
-				Bomb Lab Phases 1-3
+				Bomb Lab Phases 1-4
 			</title>
 			<description>
-				Introduction, Phases 1-3 of Bomb Lab for CSCI 2400 Lab - 2
+				Introduction, Phases 1-4 of Bomb Lab for CSCI 2400 Lab - 2
 			</description>
 			<link>https://web.navan.dev/posts/2023-10-04-bomb-lab.html</link>
 			<pubDate>Wed, 04 Oct 2023 13:12:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Bomb Lab Phases 1-3</h1>
+			<content:encoded><![CDATA[<h1>Bomb Lab Phases 1-4</h1>
 
 <h2>Introduction</h2>
 
@@ -3647,6 +3647,197 @@ Breakpoint 1, 0x0000555555555638 in phase_3 ()
 (gdb) continue
 Continuing.
 Halfway there!
+</code></pre>
+
+<h2>Phase 4</h2>
+
+<pre><code>jovyan@jupyter-nach6988:~/lab2-bomblab-navanchauhan/bombbomb$ gdb -ex 'break phase_4' -ex 'break explode_bomb' -ex 'run' -args ./bomb sol.txt 
+GNU gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+&lt;https://www.gnu.org/software/gdb/bugs/&gt;.
+Find the GDB manual and other documentation resources online at:
+    &lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./bomb...
+Breakpoint 1 at 0x17d3
+Breakpoint 2 at 0x1d4a
+Starting program: /home/jovyan/lab2-bomblab-navanchauhan/bombbomb/bomb sol.txt
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+Phase 1 defused. How about the next one?
+That's number 2.  Keep going!
+Halfway there!
+test string
+
+Breakpoint 1, 0x00005555555557d3 in phase_4 ()
+(gdb) disas phase_4
+Dump of assembler code for function phase_4:
+=&gt; 0x00005555555557d3 &lt;+0&gt;:     endbr64 
+   0x00005555555557d7 &lt;+4&gt;:     sub    $0x18,%rsp
+   0x00005555555557db &lt;+8&gt;:     lea    0x8(%rsp),%rcx
+   0x00005555555557e0 &lt;+13&gt;:    lea    0xc(%rsp),%rdx
+   0x00005555555557e5 &lt;+18&gt;:    lea    0x1bba(%rip),%rsi        # 0x5555555573a6
+   0x00005555555557ec &lt;+25&gt;:    mov    $0x0,%eax
+   0x00005555555557f1 &lt;+30&gt;:    call   0x5555555552e0 &lt;__isoc99_sscanf@plt&gt;
+   0x00005555555557f6 &lt;+35&gt;:    cmp    $0x2,%eax
+   0x00005555555557f9 &lt;+38&gt;:    jne    0x555555555802 &lt;phase_4+47&gt;
+   0x00005555555557fb &lt;+40&gt;:    cmpl   $0xe,0xc(%rsp)
+   0x0000555555555800 &lt;+45&gt;:    jbe    0x555555555807 &lt;phase_4+52&gt;
+   0x0000555555555802 &lt;+47&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x0000555555555807 &lt;+52&gt;:    mov    $0xe,%edx
+   0x000055555555580c &lt;+57&gt;:    mov    $0x0,%esi
+   0x0000555555555811 &lt;+62&gt;:    mov    0xc(%rsp),%edi
+   0x0000555555555815 &lt;+66&gt;:    call   0x555555555799 &lt;func4&gt;
+   0x000055555555581a &lt;+71&gt;:    cmp    $0x2,%eax
+   0x000055555555581d &lt;+74&gt;:    jne    0x555555555826 &lt;phase_4+83&gt;
+   0x000055555555581f &lt;+76&gt;:    cmpl   $0x2,0x8(%rsp)
+   0x0000555555555824 &lt;+81&gt;:    je     0x55555555582b &lt;phase_4+88&gt;
+   0x0000555555555826 &lt;+83&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x000055555555582b &lt;+88&gt;:    add    $0x18,%rsp
+   0x000055555555582f &lt;+92&gt;:    ret    
+End of assembler dump.
+(gdb) 
+</code></pre>
+
+<p>Again, <code>gdb</code> has marked the string being passed to <code>scanf</code></p>
+
+<pre><code>(gdb) x/1s 0x5555555573a6
+0x5555555573a6: "%d %d"
+</code></pre>
+
+<p>Okay, so this time we are supposed to enter 2 numbers.</p>
+
+<pre><code>   0x00005555555557f6 &lt;+35&gt;:    cmp    $0x2,%eax
+   0x00005555555557f9 &lt;+38&gt;:    jne    0x555555555802 &lt;phase_4+47&gt;
+</code></pre>
+
+<p>Checks if there were 2 values read from calling <code>scanf</code>, if not -> jump to <code>&lt;phase_4+47&gt;</code> which calls <code>&lt;explode_bomb&gt;</code>.</p>
+
+<pre><code>   0x00005555555557fb &lt;+40&gt;:    cmpl   $0xe,0xc(%rsp)
+   0x0000555555555800 &lt;+45&gt;:    jbe    0x555555555807 &lt;phase_4+52&gt;
+</code></pre>
+
+<p>Compare <code>0xe</code> (14 in Decimal) and value stored at <code>$rsp</code> + <code>0xc</code> bytes (Decimal 12). If this condition is met (&lt;= 14), jump to <code>&lt;phase_4+52&gt;</code>. If not, then explode bomb.</p>
+
+<pre><code>...
+   0x0000555555555807 &lt;+52&gt;:    mov    $0xe,%edx
+   0x000055555555580c &lt;+57&gt;:    mov    $0x0,%esi
+   0x0000555555555811 &lt;+62&gt;:    mov    0xc(%rsp),%edi
+   0x0000555555555815 &lt;+66&gt;:    call   0x555555555799 &lt;func4&gt;
+   0x000055555555581a &lt;+71&gt;:    cmp    $0x2,%eax
+   0x000055555555581d &lt;+74&gt;:    jne    0x555555555826 &lt;phase_4+83&gt;
+   0x000055555555581f &lt;+76&gt;:    cmpl   $0x2,0x8(%rsp)
+   0x0000555555555824 &lt;+81&gt;:    je     0x55555555582b &lt;phase_4+88&gt;
+   0x0000555555555826 &lt;+83&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+</code></pre>
+
+<ul>
+<li><code>0x0000555555555815 &lt;+66&gt;:    call   0x555555555799 &lt;func4&gt;</code> calls another function called <code>func4</code></li>
+<li>The returned value is compared with <code>0x2</code>, if they are not equal then the program jumps to call <code>&lt;explode_bomb&gt;</code>. This tells us that <code>func4</code> should return 2.</li>
+</ul>
+
+<p>Let us look into <code>func4</code></p>
+
+<pre><code>(gdb) disas func4
+Dump of assembler code for function func4:
+   0x0000555555555799 &lt;+0&gt;:     endbr64 
+   0x000055555555579d &lt;+4&gt;:     sub    $0x8,%rsp
+   0x00005555555557a1 &lt;+8&gt;:     mov    %edx,%ecx
+   0x00005555555557a3 &lt;+10&gt;:    sub    %esi,%ecx
+   0x00005555555557a5 &lt;+12&gt;:    shr    %ecx
+   0x00005555555557a7 &lt;+14&gt;:    add    %esi,%ecx
+   0x00005555555557a9 &lt;+16&gt;:    cmp    %edi,%ecx
+   0x00005555555557ab &lt;+18&gt;:    ja     0x5555555557b9 &lt;func4+32&gt;
+   0x00005555555557ad &lt;+20&gt;:    mov    $0x0,%eax
+   0x00005555555557b2 &lt;+25&gt;:    jb     0x5555555557c5 &lt;func4+44&gt;
+   0x00005555555557b4 &lt;+27&gt;:    add    $0x8,%rsp
+   0x00005555555557b8 &lt;+31&gt;:    ret    
+   0x00005555555557b9 &lt;+32&gt;:    lea    -0x1(%rcx),%edx
+   0x00005555555557bc &lt;+35&gt;:    call   0x555555555799 &lt;func4&gt;
+   0x00005555555557c1 &lt;+40&gt;:    add    %eax,%eax
+   0x00005555555557c3 &lt;+42&gt;:    jmp    0x5555555557b4 &lt;func4+27&gt;
+   0x00005555555557c5 &lt;+44&gt;:    lea    0x1(%rcx),%esi
+   0x00005555555557c8 &lt;+47&gt;:    call   0x555555555799 &lt;func4&gt;
+   0x00005555555557cd &lt;+52&gt;:    lea    0x1(%rax,%rax,1),%eax
+   0x00005555555557d1 &lt;+56&gt;:    jmp    0x5555555557b4 &lt;func4+27&gt;
+</code></pre>
+
+<p>This looks like a recursive function :(  (I hate recursive functions)</p>
+
+<p>Let's annotate the instructions.</p>
+
+<pre><code>endbr64
+sub $0x8,%rsp  // subtract 8 bytes from the stack pointer
+mov %edx,%ecx  // Move the value in register %edx to %ecx
+sub %esi,%ecx  // Subtract the value in %esi from %ecx
+shr %ecx       // Right shift the value in %ecx by one bit (dividing the value by 2)
+add %esi,%ecx  // Add the value in %esi to %ecx
+cmp %edi,%ecx  // Compare
+ja 0x5555555557b9 &lt;func4+32&gt; // If %ecx &gt; %edi -&gt; jump to instruction at offset +32
+mov $0x0,%eax  // Move 0 to %eax
+jb 0x5555555557c5 &lt;func4+44&gt; // If %ecx &lt; %edi -&gt; jump to instruction at offset +44.
+add $0x8,%rsp  // add 8 bytes to the stack pointer
+ret            // return
+lea -0x1(%rcx),%edx // LEA of $rxc - 1 into $edx
+call 0x555555555799 &lt;func4&gt; // Call itself
+add %eax,%eax  // Double the value in %eax
+jmp 0x5555555557b4 &lt;func4+27&gt; // jump to the instruction at offset +27
+lea 0x1(%rcx),%esi
+call 0x555555555799 &lt;func4&gt;
+lea 0x1(%rax,%rax,1),%eax // LEA of %rax * 2 + 1 into $eax 
+jmp 0x5555555557b4 &lt;func4+27&gt;
+</code></pre>
+
+<p>We can either try to compute the values by hand, or write a simple script in Python to get the answer.</p>
+
+<pre><code>def func4(edi, esi=0, edx=20):
+    ecx = (edx - esi) // 2 + esi
+    if ecx &gt; edi:
+        return 2 * func4(edi, esi, ecx - 1)
+    elif ecx &lt; edi:
+        return 2 * func4(edi, ecx + 1, edx) + 1
+    else:
+        return 0
+
+for x in range(10):
+   if func4(x) == 2:
+      print(f"answer is {x}")
+      break
+</code></pre>
+
+<p>Running this code, we get: <code>answer is 5</code></p>
+
+<p>Okay, so we know that the number needed to be passed to <code>func4</code> is 5. But, what about the second digit?</p>
+
+<p>If we go back to the code for <code>&lt;phase_4&gt;</code>, we can see that:</p>
+
+<pre><code>   0x000055555555581f &lt;+76&gt;:    cmpl   $0x2,0x8(%rsp)
+   0x0000555555555824 &lt;+81&gt;:    je     0x55555555582b &lt;phase_4+88&gt;
+</code></pre>
+
+<p>The value at <code>$rsp+8</code> should be equal to 2. So, let us try passing <code>5 2</code> as our input.</p>
+
+<pre><code>...
+Phase 1 defused. How about the next one?
+That's number 2.  Keep going!
+Halfway there!
+5 2
+
+Breakpoint 1, 0x00005555555557d3 in phase_4 ()
+(gdb) continue
+Continuing.
+So you got that one.  Try this one.
 </code></pre>
 ]]></content:encoded>
 		</item>

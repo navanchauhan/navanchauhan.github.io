@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Thu, 15 Jun 2023 19:33:51 -0000</lastBuildDate>
-		<pubDate>Thu, 15 Jun 2023 19:33:51 -0000</pubDate>
+		<lastBuildDate>Wed, 04 Oct 2023 13:16:44 -0000</lastBuildDate>
+		<pubDate>Wed, 04 Oct 2023 13:16:44 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -3204,6 +3204,186 @@ logger.info("rdkit-{} installation finished!".format(rdkit.__version__))
 <p>if <strong>name</strong> == "<strong>main</strong>":
     install()
 ```</p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2023-10-04-bomb-lab.html
+			</guid>
+			<title>
+				Bomb Lab
+			</title>
+			<description>
+				Introduction, Phase 1 and Phase 2 of Bomb Lab for CSCI 2400 Lab - 2
+			</description>
+			<link>https://web.navan.dev/posts/2023-10-04-bomb-lab.html</link>
+			<pubDate>Wed, 04 Oct 2023 13:12:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Bomb Lab</h1>
+
+<h2>Introduction</h2>
+
+<p>Lab 2 for CSCI 2400 - Computer Systems. </p>
+
+<h2>Phase 1</h2>
+
+<pre><code>jovyan@jupyter-nach6988:~/lab2-bomblab-navanchauhan/bombbomb$ gdb -ex 'break phase_1' -ex 'break explode_bomb' -ex 'run' ./bomb 
+GNU gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+&lt;https://www.gnu.org/software/gdb/bugs/&gt;.
+Find the GDB manual and other documentation resources online at:
+    &lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./bomb...
+Breakpoint 1 at 0x15c7
+Breakpoint 2 at 0x1d4a
+Starting program: /home/jovyan/lab2-bomblab-navanchauhan/bombbomb/bomb 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Welcome to my fiendish little bomb. You have 6 phases with
+which to blow yourself up. Have a nice day!
+test string
+
+Breakpoint 1, 0x00005555555555c7 in phase_1 ()
+(gdb) dias phase_1
+Undefined command: "dias".  Try "help".
+(gdb) disas phase_1
+Dump of assembler code for function phase_1:
+=&gt; 0x00005555555555c7 &lt;+0&gt;:     endbr64 
+   0x00005555555555cb &lt;+4&gt;:     sub    $0x8,%rsp
+   0x00005555555555cf &lt;+8&gt;:     lea    0x1b7a(%rip),%rsi        # 0x555555557150
+   0x00005555555555d6 &lt;+15&gt;:    call   0x555555555b31 &lt;strings_not_equal&gt;
+   0x00005555555555db &lt;+20&gt;:    test   %eax,%eax
+   0x00005555555555dd &lt;+22&gt;:    jne    0x5555555555e4 &lt;phase_1+29&gt;
+   0x00005555555555df &lt;+24&gt;:    add    $0x8,%rsp
+   0x00005555555555e3 &lt;+28&gt;:    ret    
+   0x00005555555555e4 &lt;+29&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x00005555555555e9 &lt;+34&gt;:    jmp    0x5555555555df &lt;phase_1+24&gt;
+End of assembler dump.
+(gdb) print 0x555555557150
+$1 = 93824992244048
+(gdb) x/1s 0x555555557150
+0x555555557150: "Controlling complexity is the essence of computer programming."
+(gdb) 
+</code></pre>
+
+<h2>Phase 2</h2>
+
+<pre><code>Phase 1 defused. How about the next one?
+1 2 3 4 5 6
+
+Breakpoint 1, 0x00005555555555eb in phase_2 ()
+(gdb) disas
+Dump of assembler code for function phase_2:
+=&gt; 0x00005555555555eb &lt;+0&gt;:     endbr64 
+   0x00005555555555ef &lt;+4&gt;:     push   %rbp
+   0x00005555555555f0 &lt;+5&gt;:     push   %rbx
+   0x00005555555555f1 &lt;+6&gt;:     sub    $0x28,%rsp
+   0x00005555555555f5 &lt;+10&gt;:    mov    %rsp,%rsi
+   0x00005555555555f8 &lt;+13&gt;:    call   0x555555555d97 &lt;read_six_numbers&gt;
+   0x00005555555555fd &lt;+18&gt;:    cmpl   $0x0,(%rsp)
+   0x0000555555555601 &lt;+22&gt;:    js     0x55555555560d &lt;phase_2+34&gt;
+   0x0000555555555603 &lt;+24&gt;:    mov    %rsp,%rbp
+   0x0000555555555606 &lt;+27&gt;:    mov    $0x1,%ebx
+   0x000055555555560b &lt;+32&gt;:    jmp    0x555555555620 &lt;phase_2+53&gt;
+   0x000055555555560d &lt;+34&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x0000555555555612 &lt;+39&gt;:    jmp    0x555555555603 &lt;phase_2+24&gt;
+   0x0000555555555614 &lt;+41&gt;:    add    $0x1,%ebx
+   0x0000555555555617 &lt;+44&gt;:    add    $0x4,%rbp
+   0x000055555555561b &lt;+48&gt;:    cmp    $0x6,%ebx
+   0x000055555555561e &lt;+51&gt;:    je     0x555555555631 &lt;phase_2+70&gt;
+   0x0000555555555620 &lt;+53&gt;:    mov    %ebx,%eax
+   0x0000555555555622 &lt;+55&gt;:    add    0x0(%rbp),%eax
+   0x0000555555555625 &lt;+58&gt;:    cmp    %eax,0x4(%rbp)
+   0x0000555555555628 &lt;+61&gt;:    je     0x555555555614 &lt;phase_2+41&gt;
+   0x000055555555562a &lt;+63&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x000055555555562f &lt;+68&gt;:    jmp    0x555555555614 &lt;phase_2+41&gt;
+   0x0000555555555631 &lt;+70&gt;:    add    $0x28,%rsp
+   0x0000555555555635 &lt;+74&gt;:    pop    %rbx
+   0x0000555555555636 &lt;+75&gt;:    pop    %rbp
+   0x0000555555555637 &lt;+76&gt;:    ret    
+End of assembler dump.
+(gdb) 
+</code></pre>
+
+<pre><code>   0x00005555555555fd &lt;+18&gt;:    cmpl   $0x0,(%rsp)
+   0x0000555555555601 &lt;+22&gt;:    js     0x55555555560d &lt;phase_2+34&gt;
+...
+   0x000055555555560d &lt;+34&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+</code></pre>
+
+<p>The program first compares if the first number is not 0. If the number is not 0, then the <code>cmpl</code> instruction returns a negative value. The <code>js</code> instruction stands for jump if sign -> causing a jump to the specified address if the sign bit is set. This would result in the explode_bomb function being called.</p>
+
+<pre><code>   0x0000555555555603 &lt;+24&gt;:    mov    %rsp,%rbp
+   0x0000555555555606 &lt;+27&gt;:    mov    $0x1,%ebx
+</code></pre>
+
+<p><code>%rsp</code> in x86-64 asm, is the stack pointer i.e. it points to the top of the current stack frame. Since the program just read six numbers, the top of the stack (<code>%rsp</code>) contains the address of the first number.</p>
+
+<p>By executing <code>mov %rsp,%rbp</code> we are setting the base pointer (<code>%rbp</code>) to point to this address.</p>
+
+<p>Now, for the second instruction <code>mov $0x1,%ebx</code>, we are initalising the <code>%ebx</code> register with the value 1. Based on the assembly code, you can see that this is being used as a counter/index for the loop.</p>
+
+<pre><code>   0x000055555555560b &lt;+32&gt;:    jmp    0x555555555620 &lt;phase_2+53&gt;
+</code></pre>
+
+<p>The program now jumps to <phase_2+53></p>
+
+<pre><code>   0x0000555555555620 &lt;+53&gt;:    mov    %ebx,%eax
+   0x0000555555555622 &lt;+55&gt;:    add    0x0(%rbp),%eax
+   0x0000555555555625 &lt;+58&gt;:    cmp    %eax,0x4(%rbp)
+   0x0000555555555628 &lt;+61&gt;:    je     0x555555555614 &lt;phase_2+41&gt;
+</code></pre>
+
+<p>Here, the value from <code>%ebx</code> is copied to the <code>%eax</code> register. For this iteration, the value should be 1.</p>
+
+<p>Then, the value at the memory location pointed by <code>%rbp</code> is added to the value in <code>%eax</code>. For now, 0 is added (the first number that we read).</p>
+
+<p><code>cmp %eax,0x4(%rbp)</code> - The instruction compares the value in %eax to the value at the memory address <code>%rbp + 4</code>. Since Integers in this context are stored using a word of memory of 4 bytes, this indicates it checks against the second number in the sequence.</p>
+
+<p><code>je 0x555555555614 &lt;phase_2+41&gt;</code> - The program will jump to <code>phase_2+41</code> if the previous <code>cmp</code> instruction determined the values as equal. </p>
+
+<pre><code>   0x0000555555555614 &lt;+41&gt;:    add    $0x1,%ebx
+   0x0000555555555617 &lt;+44&gt;:    add    $0x4,%rbp
+   0x000055555555561b &lt;+48&gt;:    cmp    $0x6,%ebx
+   0x000055555555561e &lt;+51&gt;:    je     0x555555555631 &lt;phase_2+70&gt;
+   0x0000555555555620 &lt;+53&gt;:    mov    %ebx,%eax
+   0x0000555555555622 &lt;+55&gt;:    add    0x0(%rbp),%eax
+   0x0000555555555625 &lt;+58&gt;:    cmp    %eax,0x4(%rbp)
+   0x0000555555555628 &lt;+61&gt;:    je     0x555555555614 &lt;phase_2+41&gt;
+</code></pre>
+
+<p>Here, we can see that the program increments <code>%ebx</code> by 1, adds a 4 byte offset to <code>%rbp</code> (the number we will be matching now), and checks if <code>%ebx</code> is equal to 6. If it is, it breaks the loop and jumps to <code>&lt;phase_2+70&gt;</code> succesfully finishing this stage.</p>
+
+<p>Now, given that we know the first two numbers in the sequence are <code>0 1</code>, we can calculate the other numbers by following the pattern of adding the counter and the value of the previous number.</p>
+
+<p>Thus,</p>
+
+<ul>
+<li>3rd number = 1 (previous value) + 2 = 3</li>
+<li>4th number = 3 (prev value) + 3 = 6</li>
+<li>5th number = 6 (prev value) + 4 = 10</li>
+<li>6th number = 10 (prev value) + 5 = 15</li>
+</ul>
+
+<pre><code>...
+Phase 1 defused. How about the next one?
+0 1 3 6 10 15
+
+Breakpoint 1, 0x00005555555555eb in phase_2 ()
+(gdb) continue
+Continuing.
+That's number 2.  Keep going!
+</code></pre>
 ]]></content:encoded>
 		</item>
 		

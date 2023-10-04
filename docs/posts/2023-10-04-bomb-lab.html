@@ -636,20 +636,22 @@ jmp 0x5555555557b4 &lt;func4+27&gt;
 
 <p>We can either try to compute the values by hand, or write a simple script in Python to get the answer.</p>
 
-<pre><code>def func4(edi, esi=0, edx=20):
-    ecx = (edx - esi) // 2 + esi
-    if ecx &gt; edi:
-        return 2 * func4(edi, esi, ecx - 1)
-    elif ecx &lt; edi:
-        return 2 * func4(edi, ecx + 1, edx) + 1
-    else:
-        return 0
+<div class="codehilite">
+<pre><span></span><code><span class="k">def</span> <span class="nf">func4</span><span class="p">(</span><span class="n">edi</span><span class="p">,</span> <span class="n">esi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">edx</span><span class="o">=</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">ecx</span> <span class="o">=</span> <span class="p">(</span><span class="n">edx</span> <span class="o">-</span> <span class="n">esi</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">esi</span>
+    <span class="k">if</span> <span class="n">ecx</span> <span class="o">&gt;</span> <span class="n">edi</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">func4</span><span class="p">(</span><span class="n">edi</span><span class="p">,</span> <span class="n">esi</span><span class="p">,</span> <span class="n">ecx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">ecx</span> <span class="o">&lt;</span> <span class="n">edi</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">func4</span><span class="p">(</span><span class="n">edi</span><span class="p">,</span> <span class="n">ecx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">edx</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
 
-for x in range(15): # We can limit to 14
-   if func4(x) == 2:
-      print(f"answer is {x}")
-      break
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span> <span class="c1"># We can limit to 14</span>
+   <span class="k">if</span> <span class="n">func4</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;answer is </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+      <span class="k">break</span>
 </code></pre>
+</div>
 
 <p>Running this code, we get: <code>answer is 5</code></p>
 
@@ -799,6 +801,220 @@ Good work!  On to the next...
 <p>Awesome!</p>
 
 <h2>Phase 6</h2>
+
+<pre><code>Good work!  On to the next...
+test string
+
+Breakpoint 1, 0x0000555555555899 in phase_6 ()
+(gdb) disas phase_6
+Dump of assembler code for function phase_6:
+=&gt; 0x0000555555555899 &lt;+0&gt;:     endbr64 
+   0x000055555555589d &lt;+4&gt;:     push   %r15
+   0x000055555555589f &lt;+6&gt;:     push   %r14
+   0x00005555555558a1 &lt;+8&gt;:     push   %r13
+   0x00005555555558a3 &lt;+10&gt;:    push   %r12
+   0x00005555555558a5 &lt;+12&gt;:    push   %rbp
+   0x00005555555558a6 &lt;+13&gt;:    push   %rbx
+   0x00005555555558a7 &lt;+14&gt;:    sub    $0x68,%rsp
+   0x00005555555558ab &lt;+18&gt;:    lea    0x40(%rsp),%rax
+   0x00005555555558b0 &lt;+23&gt;:    mov    %rax,%r14
+   0x00005555555558b3 &lt;+26&gt;:    mov    %rax,0x8(%rsp)
+   0x00005555555558b8 &lt;+31&gt;:    mov    %rax,%rsi
+   0x00005555555558bb &lt;+34&gt;:    call   0x555555555d97 &lt;read_six_numbers&gt;
+   0x00005555555558c0 &lt;+39&gt;:    mov    %r14,%r12
+   0x00005555555558c3 &lt;+42&gt;:    mov    $0x1,%r15d
+   0x00005555555558c9 &lt;+48&gt;:    mov    %r14,%r13
+   0x00005555555558cc &lt;+51&gt;:    jmp    0x555555555997 &lt;phase_6+254&gt;
+   0x00005555555558d1 &lt;+56&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x00005555555558d6 &lt;+61&gt;:    jmp    0x5555555559a9 &lt;phase_6+272&gt;
+   0x00005555555558db &lt;+66&gt;:    add    $0x1,%rbx
+   0x00005555555558df &lt;+70&gt;:    cmp    $0x5,%ebx
+   0x00005555555558e2 &lt;+73&gt;:    jg     0x55555555598f &lt;phase_6+246&gt;
+   0x00005555555558e8 &lt;+79&gt;:    mov    0x0(%r13,%rbx,4),%eax
+   0x00005555555558ed &lt;+84&gt;:    cmp    %eax,0x0(%rbp)
+   0x00005555555558f0 &lt;+87&gt;:    jne    0x5555555558db &lt;phase_6+66&gt;
+   0x00005555555558f2 &lt;+89&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x00005555555558f7 &lt;+94&gt;:    jmp    0x5555555558db &lt;phase_6+66&gt;
+   0x00005555555558f9 &lt;+96&gt;:    mov    0x8(%rsp),%rdx
+   0x00005555555558fe &lt;+101&gt;:   add    $0x18,%rdx
+   0x0000555555555902 &lt;+105&gt;:   mov    $0x7,%ecx
+   0x0000555555555907 &lt;+110&gt;:   mov    %ecx,%eax
+   0x0000555555555909 &lt;+112&gt;:   sub    (%r12),%eax
+   0x000055555555590d &lt;+116&gt;:   mov    %eax,(%r12)
+   0x0000555555555911 &lt;+120&gt;:   add    $0x4,%r12
+   0x0000555555555915 &lt;+124&gt;:   cmp    %r12,%rdx
+   0x0000555555555918 &lt;+127&gt;:   jne    0x555555555907 &lt;phase_6+110&gt;
+   0x000055555555591a &lt;+129&gt;:   mov    $0x0,%esi
+   0x000055555555591f &lt;+134&gt;:   mov    0x40(%rsp,%rsi,4),%ecx
+   0x0000555555555923 &lt;+138&gt;:   mov    $0x1,%eax
+   0x0000555555555928 &lt;+143&gt;:   lea    0x3d01(%rip),%rdx        # 0x555555559630 &lt;node1&gt;
+--Type &lt;RET&gt; for more, q to quit, c to continue without paging--
+   0x000055555555592f &lt;+150&gt;:   cmp    $0x1,%ecx
+   0x0000555555555932 &lt;+153&gt;:   jle    0x55555555593f &lt;phase_6+166&gt;
+   0x0000555555555934 &lt;+155&gt;:   mov    0x8(%rdx),%rdx
+   0x0000555555555938 &lt;+159&gt;:   add    $0x1,%eax
+   0x000055555555593b &lt;+162&gt;:   cmp    %ecx,%eax
+   0x000055555555593d &lt;+164&gt;:   jne    0x555555555934 &lt;phase_6+155&gt;
+   0x000055555555593f &lt;+166&gt;:   mov    %rdx,0x10(%rsp,%rsi,8)
+   0x0000555555555944 &lt;+171&gt;:   add    $0x1,%rsi
+   0x0000555555555948 &lt;+175&gt;:   cmp    $0x6,%rsi
+   0x000055555555594c &lt;+179&gt;:   jne    0x55555555591f &lt;phase_6+134&gt;
+   0x000055555555594e &lt;+181&gt;:   mov    0x10(%rsp),%rbx
+   0x0000555555555953 &lt;+186&gt;:   mov    0x18(%rsp),%rax
+   0x0000555555555958 &lt;+191&gt;:   mov    %rax,0x8(%rbx)
+   0x000055555555595c &lt;+195&gt;:   mov    0x20(%rsp),%rdx
+   0x0000555555555961 &lt;+200&gt;:   mov    %rdx,0x8(%rax)
+   0x0000555555555965 &lt;+204&gt;:   mov    0x28(%rsp),%rax
+   0x000055555555596a &lt;+209&gt;:   mov    %rax,0x8(%rdx)
+   0x000055555555596e &lt;+213&gt;:   mov    0x30(%rsp),%rdx
+   0x0000555555555973 &lt;+218&gt;:   mov    %rdx,0x8(%rax)
+   0x0000555555555977 &lt;+222&gt;:   mov    0x38(%rsp),%rax
+   0x000055555555597c &lt;+227&gt;:   mov    %rax,0x8(%rdx)
+   0x0000555555555980 &lt;+231&gt;:   movq   $0x0,0x8(%rax)
+   0x0000555555555988 &lt;+239&gt;:   mov    $0x5,%ebp
+   0x000055555555598d &lt;+244&gt;:   jmp    0x5555555559c4 &lt;phase_6+299&gt;
+   0x000055555555598f &lt;+246&gt;:   add    $0x1,%r15
+   0x0000555555555993 &lt;+250&gt;:   add    $0x4,%r14
+   0x0000555555555997 &lt;+254&gt;:   mov    %r14,%rbp
+   0x000055555555599a &lt;+257&gt;:   mov    (%r14),%eax
+   0x000055555555599d &lt;+260&gt;:   sub    $0x1,%eax
+   0x00005555555559a0 &lt;+263&gt;:   cmp    $0x5,%eax
+   0x00005555555559a3 &lt;+266&gt;:   ja     0x5555555558d1 &lt;phase_6+56&gt;
+   0x00005555555559a9 &lt;+272&gt;:   cmp    $0x5,%r15d
+   0x00005555555559ad &lt;+276&gt;:   jg     0x5555555558f9 &lt;phase_6+96&gt;
+   0x00005555555559b3 &lt;+282&gt;:   mov    %r15,%rbx
+   0x00005555555559b6 &lt;+285&gt;:   jmp    0x5555555558e8 &lt;phase_6+79&gt;
+   0x00005555555559bb &lt;+290&gt;:   mov    0x8(%rbx),%rbx
+   0x00005555555559bf &lt;+294&gt;:   sub    $0x1,%ebp
+   0x00005555555559c2 &lt;+297&gt;:   je     0x5555555559d5 &lt;phase_6+316&gt;
+   0x00005555555559c4 &lt;+299&gt;:   mov    0x8(%rbx),%rax
+   0x00005555555559c8 &lt;+303&gt;:   mov    (%rax),%eax
+   0x00005555555559ca &lt;+305&gt;:   cmp    %eax,(%rbx)
+--Type &lt;RET&gt; for more, q to quit, c to continue without paging--
+   0x00005555555559cc &lt;+307&gt;:   jge    0x5555555559bb &lt;phase_6+290&gt;
+   0x00005555555559ce &lt;+309&gt;:   call   0x555555555d4a &lt;explode_bomb&gt;
+   0x00005555555559d3 &lt;+314&gt;:   jmp    0x5555555559bb &lt;phase_6+290&gt;
+   0x00005555555559d5 &lt;+316&gt;:   add    $0x68,%rsp
+   0x00005555555559d9 &lt;+320&gt;:   pop    %rbx
+   0x00005555555559da &lt;+321&gt;:   pop    %rbp
+   0x00005555555559db &lt;+322&gt;:   pop    %r12
+   0x00005555555559dd &lt;+324&gt;:   pop    %r13
+   0x00005555555559df &lt;+326&gt;:   pop    %r14
+   0x00005555555559e1 &lt;+328&gt;:   pop    %r15
+   0x00005555555559e3 &lt;+330&gt;:   ret    
+End of assembler dump.
+(gdb) 
+</code></pre>
+
+<p>Again, we see the familiar <code>read_six_digits</code> function.</p>
+
+<p>Let us analyse this function in chunks:</p>
+
+<pre><code>   0x00005555555558bb &lt;+34&gt;:    call   0x555555555d97 &lt;read_six_numbers&gt;
+   0x00005555555558c0 &lt;+39&gt;:    mov    %r14,%r12
+   0x00005555555558c3 &lt;+42&gt;:    mov    $0x1,%r15d
+   0x00005555555558c9 &lt;+48&gt;:    mov    %r14,%r13
+   0x00005555555558cc &lt;+51&gt;:    jmp    0x555555555997 &lt;phase_6+254&gt;
+</code></pre>
+
+<ol>
+<li>Read six numbers</li>
+<li>Initialise Registers:
+2.1. <code>mov %r14,%r12</code>: <code>%r14</code> should be pointing to the location of the stack where the numbers were read into. This address is copied onto <code>%r12</code>
+2.2. <code>mov $0x1,%r15d</code>: The value <code>1</code> is moved into <code>%r15</code> register (probably acting like a counter)
+2.3. <code>mov %r14,%r13</code>: The value is also copied to <code>%r13</code></li>
+<li>Jump to start of loop:</li>
+</ol>
+
+<pre><code>   0x0000555555555997 &lt;+254&gt;:   mov    %r14,%rbp
+   0x000055555555599a &lt;+257&gt;:   mov    (%r14),%eax
+   0x000055555555599d &lt;+260&gt;:   sub    $0x1,%eax
+   0x00005555555559a0 &lt;+263&gt;:   cmp    $0x5,%eax
+   0x00005555555559a3 &lt;+266&gt;:   ja     0x5555555558d1 &lt;phase_6+56&gt;
+</code></pre>
+
+<ol>
+<li>Initialise register and point to first number in sequence</li>
+<li>Adjust number(s):
+2.1. <code>mov (%r14),%eax</code> -> load the current number in the sequence
+2.2. <code>sub $0x1,%eax</code> -> decrement number by 1</li>
+<li>Validation
+3.1. <code>cmp $0x5,%eax</code>: This compares the adjusted value in <code>%eax</code> with 5.
+3.2. <code>ja 0x5555555558d1 &lt;phase_6+56&gt;</code>: jump if given value is &gt; 5 or &lt; 0</li>
+</ol>
+
+<p>=&gt; All numbers should be between 1 and 6.</p>
+
+<pre><code>   0x00005555555559a9 &lt;+272&gt;:   cmp    $0x5,%r15d
+   0x00005555555559ad &lt;+276&gt;:   jg     0x5555555558f9 &lt;phase_6+96&gt;
+</code></pre>
+
+<p>This checks if the value stored in <code>%r15</code> is &gt; 5, if it is then it jumps somewhere else. This validates our assumption that <code>%r15</code> is acting as a counter.</p>
+
+<pre><code>   0x00005555555559b3 &lt;+282&gt;:   mov    %r15,%rbx
+   0x00005555555559b6 &lt;+285&gt;:   jmp    0x5555555558e8 &lt;phase_6+79&gt;
+</code></pre>
+
+<p>Let us jump to +79</p>
+
+<pre><code>   0x00005555555558e8 &lt;+79&gt;:    mov    0x0(%r13,%rbx,4),%eax
+   0x00005555555558ed &lt;+84&gt;:    cmp    %eax,0x0(%rbp)
+   0x00005555555558f0 &lt;+87&gt;:    jne    0x5555555558db &lt;phase_6+66&gt;
+   0x00005555555558f2 &lt;+89&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+   0x00005555555558f7 &lt;+94&gt;:    jmp    0x5555555558db &lt;phase_6+66&gt;
+</code></pre>
+
+<p>This section deals with checking if all the numbers in the sequence are unique or not. Thus, we need to ensure out 6 digits are unique</p>
+
+<pre><code>   0x00005555555558db &lt;+66&gt;:    add    $0x1,%rbx // Increments by 1
+   0x00005555555558df &lt;+70&gt;:    cmp    $0x5,%ebx 
+   0x00005555555558e2 &lt;+73&gt;:    jg     0x55555555598f &lt;phase_6+246&gt; // Jump if &gt; 5 (Loop iterations are complete)
+   0x00005555555558e8 &lt;+79&gt;:    mov    0x0(%r13,%rbx,4),%eax 
+   0x00005555555558ed &lt;+84&gt;:    cmp    %eax,0x0(%rbp)
+   0x00005555555558f0 &lt;+87&gt;:    jne    0x5555555558db &lt;phase_6+66&gt; // Again, check if the number being seen is unique
+</code></pre>
+
+<p>Now we know that the numbers are unique, between 1-6 (inclusive).</p>
+
+<p>After stepping through the instructions, we can also see that the numbers are being transformed:
+* By subtracting it from 7 (mov $0x7,%ecx followed by sub (%r12),%eax)
+* This effectively maps the numbers as follows: 1 to 6, 2 to 5, 3 to 4, 4 to 3, 5 to 2, and 6 to 1.</p>
+
+<p>Let us try to figure out what <code>0x0000555555555928 &lt;+143&gt;:   lea    0x3d01(%rip),%rdx        # 0x555555559630 &lt;node1&gt;</code> is:</p>
+
+<pre><code>(gdb) x/30wx 0x555555559630
+0x555555559630 &lt;node1&gt;: 0x000000d9      0x00000001      0x55559640      0x00005555
+0x555555559640 &lt;node2&gt;: 0x000003ab      0x00000002      0x55559650      0x00005555
+0x555555559650 &lt;node3&gt;: 0x0000014f      0x00000003      0x55559660      0x00005555
+0x555555559660 &lt;node4&gt;: 0x000000a1      0x00000004      0x55559670      0x00005555
+0x555555559670 &lt;node5&gt;: 0x000001b3      0x00000005      0x55559120      0x00005555
+0x555555559680 &lt;host_table&gt;:    0x555573f5      0x00005555      0x5555740f      0x00005555
+0x555555559690 &lt;host_table+16&gt;: 0x55557429      0x00005555      0x00000000      0x00000000
+0x5555555596a0 &lt;host_table+32&gt;: 0x00000000      0x00000000
+(gdb) x/30wx 0x555555559120
+0x555555559120 &lt;node6&gt;: 0x000002da      0x00000006      0x00000000      0x00000000
+0x555555559130: 0x00000000      0x00000000      0x00000000      0x00000000
+0x555555559140 &lt;userid&gt;:        0x61767861      0x38383535      0x00000000      0x00000000
+0x555555559150 &lt;userid+16&gt;:     0x00000000      0x00000000      0x00000000      0x00000000
+0x555555559160 &lt;userid+32&gt;:     0x00000000      0x00000000      0x00000000      0x00000000
+0x555555559170 &lt;userid+48&gt;:     0x00000000      0x00000000      0x00000000      0x00000000
+0x555555559180 &lt;userid+64&gt;:     0x00000000      0x00000000      0x00000000      0x00000000
+0x555555559190 &lt;userid+80&gt;:     0x00000000      0x00000000
+(gdb) 
+</code></pre>
+
+<p>It appears that this is a linked list. With roughly the following structure:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</code></pre>
+</div>
+
+<p>Let us convert the values into decimal</p>
 
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="//comments.navan.dev/"

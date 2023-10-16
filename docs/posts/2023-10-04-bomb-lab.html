@@ -77,130 +77,133 @@
 <h2>Phase 1</h2>
 
 <div class="codehilite">
-<pre><span></span><code>joxxxn@jupyter-nxxh6xx8:~/lab2-bomblab-navanchauhan/bombbomb$ gdb -ex <span class="s1">&#39;break phase_1&#39;</span> -ex <span class="s1">&#39;break explode_bomb&#39;</span> -ex <span class="s1">&#39;run&#39;</span> ./bomb 
-GNU gdb <span class="o">(</span>Ubuntu <span class="m">12</span>.1-0ubuntu1~22.04<span class="o">)</span> <span class="m">12</span>.1
-Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2022</span> Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version <span class="m">3</span> or later &lt;http://gnu.org/licenses/gpl.html&gt;
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-Type <span class="s2">&quot;show copying&quot;</span> and <span class="s2">&quot;show warranty&quot;</span> <span class="k">for</span> details.
-This GDB was configured as <span class="s2">&quot;x86_64-linux-gnu&quot;</span>.
-Type <span class="s2">&quot;show configuration&quot;</span> <span class="k">for</span> configuration details.
-For bug reporting instructions, please see:
+<pre><span></span><code>joxxxn@jupyter-nxxh6xx8:~/lab2-bomblab-navanchauhan/bombbomb$<span class="w"> </span>gdb<span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break phase_1&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break explode_bomb&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;run&#39;</span><span class="w"> </span>./bomb<span class="w"> </span>
+GNU<span class="w"> </span>gdb<span class="w"> </span><span class="o">(</span>Ubuntu<span class="w"> </span><span class="m">12</span>.1-0ubuntu1~22.04<span class="o">)</span><span class="w"> </span><span class="m">12</span>.1
+Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>Free<span class="w"> </span>Software<span class="w"> </span>Foundation,<span class="w"> </span>Inc.
+License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
+This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;x86_64-linux-gnu&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
+For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
 &lt;https://www.gnu.org/software/gdb/bugs/&gt;.
-Find the GDB manual and other documentation resources online at:
-    &lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
+<span class="w">    </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
 
-For help, <span class="nb">type</span> <span class="s2">&quot;help&quot;</span>.
-Type <span class="s2">&quot;apropos word&quot;</span> to search <span class="k">for</span> commands related to <span class="s2">&quot;word&quot;</span>...
-Reading symbols from ./bomb...
-Breakpoint <span class="m">1</span> at 0x15c7
-Breakpoint <span class="m">2</span> at 0x1d4a
-Starting program: /home/joxxxn/lab2-bomblab-navanchauhan/bombbomb/bomb 
-<span class="o">[</span>Thread debugging using libthread_db enabled<span class="o">]</span>
-Using host libthread_db library <span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
-Welcome to my fiendish little bomb. You have <span class="m">6</span> phases with
-which to blow yourself up. Have a nice day!
-<span class="nb">test</span> string
+For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>...
+Reading<span class="w"> </span>symbols<span class="w"> </span>from<span class="w"> </span>./bomb...
+Breakpoint<span class="w"> </span><span class="m">1</span><span class="w"> </span>at<span class="w"> </span>0x15c7
+Breakpoint<span class="w"> </span><span class="m">2</span><span class="w"> </span>at<span class="w"> </span>0x1d4a
+Starting<span class="w"> </span>program:<span class="w"> </span>/home/joxxxn/lab2-bomblab-navanchauhan/bombbomb/bomb<span class="w"> </span>
+<span class="o">[</span>Thread<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>libthread_db<span class="w"> </span>enabled<span class="o">]</span>
+Using<span class="w"> </span>host<span class="w"> </span>libthread_db<span class="w"> </span>library<span class="w"> </span><span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
+Welcome<span class="w"> </span>to<span class="w"> </span>my<span class="w"> </span>fiendish<span class="w"> </span>little<span class="w"> </span>bomb.<span class="w"> </span>You<span class="w"> </span>have<span class="w"> </span><span class="m">6</span><span class="w"> </span>phases<span class="w"> </span>with
+which<span class="w"> </span>to<span class="w"> </span>blow<span class="w"> </span>yourself<span class="w"> </span>up.<span class="w"> </span>Have<span class="w"> </span>a<span class="w"> </span>nice<span class="w"> </span>day!
+<span class="nb">test</span><span class="w"> </span>string
 
-Breakpoint <span class="m">1</span>, 0x00005555555555c7 <span class="k">in</span> phase_1 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> dias phase_1
-Undefined command: <span class="s2">&quot;dias&quot;</span>.  Try <span class="s2">&quot;help&quot;</span>.
-<span class="o">(</span>gdb<span class="o">)</span> disas phase_1
-Dump of assembler code <span class="k">for</span> <span class="k">function</span> phase_1:
-<span class="o">=</span>&gt; 0x00005555555555c7 &lt;+0&gt;:     endbr64 
-   0x00005555555555cb &lt;+4&gt;:     sub    <span class="nv">$0</span>x8,%rsp
-   0x00005555555555cf &lt;+8&gt;:     lea    0x1b7a<span class="o">(</span>%rip<span class="o">)</span>,%rsi        <span class="c1"># 0x555555557150</span>
-   0x00005555555555d6 &lt;+15&gt;:    call   0x555555555b31 &lt;strings_not_equal&gt;
-   0x00005555555555db &lt;+20&gt;:    <span class="nb">test</span>   %eax,%eax
-   0x00005555555555dd &lt;+22&gt;:    jne    0x5555555555e4 &lt;phase_1+29&gt;
-   0x00005555555555df &lt;+24&gt;:    add    <span class="nv">$0</span>x8,%rsp
-   0x00005555555555e3 &lt;+28&gt;:    ret    
-   0x00005555555555e4 &lt;+29&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x00005555555555e9 &lt;+34&gt;:    jmp    0x5555555555df &lt;phase_1+24&gt;
-End of assembler dump.
-<span class="o">(</span>gdb<span class="o">)</span> print 0x555555557150
-<span class="nv">$1</span> <span class="o">=</span> <span class="m">93824992244048</span>
-<span class="o">(</span>gdb<span class="o">)</span> x/1s 0x555555557150
-0x555555557150: <span class="s2">&quot;Controlling complexity is the essence of computer programming.&quot;</span>
-<span class="o">(</span>gdb<span class="o">)</span> 
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x00005555555555c7<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_1<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>dias<span class="w"> </span>phase_1
+Undefined<span class="w"> </span>command:<span class="w"> </span><span class="s2">&quot;dias&quot;</span>.<span class="w">  </span>Try<span class="w"> </span><span class="s2">&quot;help&quot;</span>.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>disas<span class="w"> </span>phase_1
+Dump<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>code<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>phase_1:
+<span class="o">=</span>&gt;<span class="w"> </span>0x00005555555555c7<span class="w"> </span>&lt;+0&gt;:<span class="w">     </span>endbr64<span class="w"> </span>
+<span class="w">   </span>0x00005555555555cb<span class="w"> </span>&lt;+4&gt;:<span class="w">     </span>sub<span class="w">    </span><span class="nv">$0</span>x8,%rsp
+<span class="w">   </span>0x00005555555555cf<span class="w"> </span>&lt;+8&gt;:<span class="w">     </span>lea<span class="w">    </span>0x1b7a<span class="o">(</span>%rip<span class="o">)</span>,%rsi<span class="w">        </span><span class="c1"># 0x555555557150</span>
+<span class="w">   </span>0x00005555555555d6<span class="w"> </span>&lt;+15&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555b31<span class="w"> </span>&lt;strings_not_equal&gt;
+<span class="w">   </span>0x00005555555555db<span class="w"> </span>&lt;+20&gt;:<span class="w">    </span><span class="nb">test</span><span class="w">   </span>%eax,%eax
+<span class="w">   </span>0x00005555555555dd<span class="w"> </span>&lt;+22&gt;:<span class="w">    </span>jne<span class="w">    </span>0x5555555555e4<span class="w"> </span>&lt;phase_1+29&gt;
+<span class="w">   </span>0x00005555555555df<span class="w"> </span>&lt;+24&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x8,%rsp
+<span class="w">   </span>0x00005555555555e3<span class="w"> </span>&lt;+28&gt;:<span class="w">    </span>ret<span class="w">    </span>
+<span class="w">   </span>0x00005555555555e4<span class="w"> </span>&lt;+29&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x00005555555555e9<span class="w"> </span>&lt;+34&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x5555555555df<span class="w"> </span>&lt;phase_1+24&gt;
+End<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>dump.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>print<span class="w"> </span>0x555555557150
+<span class="nv">$1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">93824992244048</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/1s<span class="w"> </span>0x555555557150
+0x555555557150:<span class="w"> </span><span class="s2">&quot;Controlling complexity is the essence of computer programming.&quot;</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>
 </code></pre>
 </div>
 
 <h2>Phase 2</h2>
 
 <div class="codehilite">
-<pre><span></span><code>Phase <span class="m">1</span> defused. How about the next one?
-<span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">4</span> <span class="m">5</span> <span class="m">6</span>
+<pre><span></span><code>Phase<span class="w"> </span><span class="m">1</span><span class="w"> </span>defused.<span class="w"> </span>How<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>one?
+<span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">6</span>
 
-Breakpoint <span class="m">1</span>, 0x00005555555555eb <span class="k">in</span> phase_2 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> disas
-Dump of assembler code <span class="k">for</span> <span class="k">function</span> phase_2:
-<span class="o">=</span>&gt; 0x00005555555555eb &lt;+0&gt;:     endbr64 
-   0x00005555555555ef &lt;+4&gt;:     push   %rbp
-   0x00005555555555f0 &lt;+5&gt;:     push   %rbx
-   0x00005555555555f1 &lt;+6&gt;:     sub    <span class="nv">$0</span>x28,%rsp
-   0x00005555555555f5 &lt;+10&gt;:    mov    %rsp,%rsi
-   0x00005555555555f8 &lt;+13&gt;:    call   0x555555555d97 &lt;read_six_numbers&gt;
-   0x00005555555555fd &lt;+18&gt;:    cmpl   <span class="nv">$0</span>x0,<span class="o">(</span>%rsp<span class="o">)</span>
-   0x0000555555555601 &lt;+22&gt;:    js     0x55555555560d &lt;phase_2+34&gt;
-   0x0000555555555603 &lt;+24&gt;:    mov    %rsp,%rbp
-   0x0000555555555606 &lt;+27&gt;:    mov    <span class="nv">$0</span>x1,%ebx
-   0x000055555555560b &lt;+32&gt;:    jmp    0x555555555620 &lt;phase_2+53&gt;
-   0x000055555555560d &lt;+34&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x0000555555555612 &lt;+39&gt;:    jmp    0x555555555603 &lt;phase_2+24&gt;
-   0x0000555555555614 &lt;+41&gt;:    add    <span class="nv">$0</span>x1,%ebx
-   0x0000555555555617 &lt;+44&gt;:    add    <span class="nv">$0</span>x4,%rbp
-   0x000055555555561b &lt;+48&gt;:    cmp    <span class="nv">$0</span>x6,%ebx
-   0x000055555555561e &lt;+51&gt;:    je     0x555555555631 &lt;phase_2+70&gt;
-   0x0000555555555620 &lt;+53&gt;:    mov    %ebx,%eax
-   0x0000555555555622 &lt;+55&gt;:    add    0x0<span class="o">(</span>%rbp<span class="o">)</span>,%eax
-   0x0000555555555625 &lt;+58&gt;:    cmp    %eax,0x4<span class="o">(</span>%rbp<span class="o">)</span>
-   0x0000555555555628 &lt;+61&gt;:    je     0x555555555614 &lt;phase_2+41&gt;
-   0x000055555555562a &lt;+63&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x000055555555562f &lt;+68&gt;:    jmp    0x555555555614 &lt;phase_2+41&gt;
-   0x0000555555555631 &lt;+70&gt;:    add    <span class="nv">$0</span>x28,%rsp
-   0x0000555555555635 &lt;+74&gt;:    pop    %rbx
-   0x0000555555555636 &lt;+75&gt;:    pop    %rbp
-   0x0000555555555637 &lt;+76&gt;:    ret    
-End of assembler dump.
-<span class="o">(</span>gdb<span class="o">)</span> 
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x00005555555555eb<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_2<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>disas
+Dump<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>code<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>phase_2:
+<span class="o">=</span>&gt;<span class="w"> </span>0x00005555555555eb<span class="w"> </span>&lt;+0&gt;:<span class="w">     </span>endbr64<span class="w"> </span>
+<span class="w">   </span>0x00005555555555ef<span class="w"> </span>&lt;+4&gt;:<span class="w">     </span>push<span class="w">   </span>%rbp
+<span class="w">   </span>0x00005555555555f0<span class="w"> </span>&lt;+5&gt;:<span class="w">     </span>push<span class="w">   </span>%rbx
+<span class="w">   </span>0x00005555555555f1<span class="w"> </span>&lt;+6&gt;:<span class="w">     </span>sub<span class="w">    </span><span class="nv">$0</span>x28,%rsp
+<span class="w">   </span>0x00005555555555f5<span class="w"> </span>&lt;+10&gt;:<span class="w">    </span>mov<span class="w">    </span>%rsp,%rsi
+<span class="w">   </span>0x00005555555555f8<span class="w"> </span>&lt;+13&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d97<span class="w"> </span>&lt;read_six_numbers&gt;
+<span class="w">   </span>0x00005555555555fd<span class="w"> </span>&lt;+18&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x0,<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555601<span class="w"> </span>&lt;+22&gt;:<span class="w">    </span>js<span class="w">     </span>0x55555555560d<span class="w"> </span>&lt;phase_2+34&gt;
+<span class="w">   </span>0x0000555555555603<span class="w"> </span>&lt;+24&gt;:<span class="w">    </span>mov<span class="w">    </span>%rsp,%rbp
+<span class="w">   </span>0x0000555555555606<span class="w"> </span>&lt;+27&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x1,%ebx
+<span class="w">   </span>0x000055555555560b<span class="w"> </span>&lt;+32&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x555555555620<span class="w"> </span>&lt;phase_2+53&gt;
+<span class="w">   </span>0x000055555555560d<span class="w"> </span>&lt;+34&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x0000555555555612<span class="w"> </span>&lt;+39&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x555555555603<span class="w"> </span>&lt;phase_2+24&gt;
+<span class="w">   </span>0x0000555555555614<span class="w"> </span>&lt;+41&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x1,%ebx
+<span class="w">   </span>0x0000555555555617<span class="w"> </span>&lt;+44&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x4,%rbp
+<span class="w">   </span>0x000055555555561b<span class="w"> </span>&lt;+48&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x6,%ebx
+<span class="w">   </span>0x000055555555561e<span class="w"> </span>&lt;+51&gt;:<span class="w">    </span>je<span class="w">     </span>0x555555555631<span class="w"> </span>&lt;phase_2+70&gt;
+<span class="w">   </span>0x0000555555555620<span class="w"> </span>&lt;+53&gt;:<span class="w">    </span>mov<span class="w">    </span>%ebx,%eax
+<span class="w">   </span>0x0000555555555622<span class="w"> </span>&lt;+55&gt;:<span class="w">    </span>add<span class="w">    </span>0x0<span class="o">(</span>%rbp<span class="o">)</span>,%eax
+<span class="w">   </span>0x0000555555555625<span class="w"> </span>&lt;+58&gt;:<span class="w">    </span>cmp<span class="w">    </span>%eax,0x4<span class="o">(</span>%rbp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555628<span class="w"> </span>&lt;+61&gt;:<span class="w">    </span>je<span class="w">     </span>0x555555555614<span class="w"> </span>&lt;phase_2+41&gt;
+<span class="w">   </span>0x000055555555562a<span class="w"> </span>&lt;+63&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x000055555555562f<span class="w"> </span>&lt;+68&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x555555555614<span class="w"> </span>&lt;phase_2+41&gt;
+<span class="w">   </span>0x0000555555555631<span class="w"> </span>&lt;+70&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x28,%rsp
+<span class="w">   </span>0x0000555555555635<span class="w"> </span>&lt;+74&gt;:<span class="w">    </span>pop<span class="w">    </span>%rbx
+<span class="w">   </span>0x0000555555555636<span class="w"> </span>&lt;+75&gt;:<span class="w">    </span>pop<span class="w">    </span>%rbp
+<span class="w">   </span>0x0000555555555637<span class="w"> </span>&lt;+76&gt;:<span class="w">    </span>ret<span class="w">    </span>
+End<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>dump.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>
 </code></pre>
 </div>
 
 <div class="codehilite">
-<pre><span></span><code>   0x00005555555555fd &lt;+18&gt;:    cmpl   <span class="nv">$0</span>x0,<span class="o">(</span>%rsp<span class="o">)</span>
-   0x0000555555555601 &lt;+22&gt;:    js     0x55555555560d &lt;phase_2+34&gt;
+<pre><span></span><code><span class="w">   </span>0x00005555555555fd<span class="w"> </span>&lt;+18&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x0,<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555601<span class="w"> </span>&lt;+22&gt;:<span class="w">    </span>js<span class="w">     </span>0x55555555560d<span class="w"> </span>&lt;phase_2+34&gt;
 ...
-   0x000055555555560d &lt;+34&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+<span class="w">   </span>0x000055555555560d<span class="w"> </span>&lt;+34&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
 </code></pre>
 </div>
 
-<p>The program first compares if the first number is not 0. If the number is not 0, then the <code>cmpl</code> instruction returns a negative value. The <code>js</code> instruction stands for jump if sign -> causing a jump to the specified address if the sign bit is set. This would result in the explode_bomb function being called.
-   <div class="codehilite">
-   <pre><span></span><code>0x0000555555555603 &lt;+24&gt;:    mov    %rsp,%rbp
-   0x0000555555555606 &lt;+27&gt;:    mov    <span class="nv">$0</span>x1,%ebx
-   </code></pre>
-   </div></p>
+<p>The program first compares if the first number is not 0. If the number is not 0, then the <code>cmpl</code> instruction returns a negative value. The <code>js</code> instruction stands for jump if sign -> causing a jump to the specified address if the sign bit is set. This would result in the explode_bomb function being called.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x0000555555555603<span class="w"> </span>&lt;+24&gt;:<span class="w">    </span>mov<span class="w">    </span>%rsp,%rbp
+<span class="w">   </span>0x0000555555555606<span class="w"> </span>&lt;+27&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x1,%ebx
+</code></pre>
+</div>
 
 <p><code>%rsp</code> in x86-64 asm, is the stack pointer i.e. it points to the top of the current stack frame. Since the program just read six numbers, the top of the stack (<code>%rsp</code>) contains the address of the first number.</p>
 
 <p>By executing <code>mov %rsp,%rbp</code> we are setting the base pointer (<code>%rbp</code>) to point to this address.</p>
 
-<p>Now, for the second instruction <code>mov $0x1,%ebx</code>, we are initalising the <code>%ebx</code> register with the value 1. Based on the assembly code, you can see that this is being used as a counter/index for the loop.
-   <div class="codehilite">
-   <pre><span></span><code>0x000055555555560b &lt;+32&gt;:    jmp    0x555555555620 &lt;phase_2+53&gt;
-   </code></pre>
-   </div></p>
+<p>Now, for the second instruction <code>mov $0x1,%ebx</code>, we are initalising the <code>%ebx</code> register with the value 1. Based on the assembly code, you can see that this is being used as a counter/index for the loop.</p>
 
-<p>The program now jumps to <phase_2+53>
-   <div class="codehilite">
-   <pre><span></span><code>0x0000555555555620 &lt;+53&gt;:    mov    %ebx,%eax
-   0x0000555555555622 &lt;+55&gt;:    add    0x0<span class="o">(</span>%rbp<span class="o">)</span>,%eax
-   0x0000555555555625 &lt;+58&gt;:    cmp    %eax,0x4<span class="o">(</span>%rbp<span class="o">)</span>
-   0x0000555555555628 &lt;+61&gt;:    je     0x555555555614 &lt;phase_2+41&gt;
-   </code></pre>
-   </div></p>
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x000055555555560b<span class="w"> </span>&lt;+32&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x555555555620<span class="w"> </span>&lt;phase_2+53&gt;
+</code></pre>
+</div>
+
+<p>The program now jumps to <phase_2+53></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x0000555555555620<span class="w"> </span>&lt;+53&gt;:<span class="w">    </span>mov<span class="w">    </span>%ebx,%eax
+<span class="w">   </span>0x0000555555555622<span class="w"> </span>&lt;+55&gt;:<span class="w">    </span>add<span class="w">    </span>0x0<span class="o">(</span>%rbp<span class="o">)</span>,%eax
+<span class="w">   </span>0x0000555555555625<span class="w"> </span>&lt;+58&gt;:<span class="w">    </span>cmp<span class="w">    </span>%eax,0x4<span class="o">(</span>%rbp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555628<span class="w"> </span>&lt;+61&gt;:<span class="w">    </span>je<span class="w">     </span>0x555555555614<span class="w"> </span>&lt;phase_2+41&gt;
+</code></pre>
+</div>
 
 <p>Here, the value from <code>%ebx</code> is copied to the <code>%eax</code> register. For this iteration, the value should be 1.</p>
 
@@ -208,18 +211,19 @@ End of assembler dump.
 
 <p><code>cmp %eax,0x4(%rbp)</code> - The instruction compares the value in %eax to the value at the memory address <code>%rbp + 4</code>. Since Integers in this context are stored using a word of memory of 4 bytes, this indicates it checks against the second number in the sequence.</p>
 
-<p><code>je 0x555555555614 &lt;phase_2+41&gt;</code> - The program will jump to <code>phase_2+41</code> if the previous <code>cmp</code> instruction determined the values as equal. 
-   <div class="codehilite">
-   <pre><span></span><code>0x0000555555555614 &lt;+41&gt;:    add    <span class="nv">$0</span>x1,%ebx
-   0x0000555555555617 &lt;+44&gt;:    add    <span class="nv">$0</span>x4,%rbp
-   0x000055555555561b &lt;+48&gt;:    cmp    <span class="nv">$0</span>x6,%ebx
-   0x000055555555561e &lt;+51&gt;:    je     0x555555555631 &lt;phase<em>2+70&gt;
-   0x0000555555555620 &lt;+53&gt;:    mov    %ebx,%eax
-   0x0000555555555622 &lt;+55&gt;:    add    0x0<span class="o">(</span>%rbp<span class="o">)</span>,%eax
-   0x0000555555555625 &lt;+58&gt;:    cmp    %eax,0x4<span class="o">(</span>%rbp<span class="o">)</span>
-   0x0000555555555628 &lt;+61&gt;:    je     0x555555555614 &lt;phase</em>2+41&gt;
-   </code></pre>
-   </div></p>
+<p><code>je 0x555555555614 &lt;phase_2+41&gt;</code> - The program will jump to <code>phase_2+41</code> if the previous <code>cmp</code> instruction determined the values as equal. </p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x0000555555555614<span class="w"> </span>&lt;+41&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x1,%ebx
+<span class="w">   </span>0x0000555555555617<span class="w"> </span>&lt;+44&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x4,%rbp
+<span class="w">   </span>0x000055555555561b<span class="w"> </span>&lt;+48&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x6,%ebx
+<span class="w">   </span>0x000055555555561e<span class="w"> </span>&lt;+51&gt;:<span class="w">    </span>je<span class="w">     </span>0x555555555631<span class="w"> </span>&lt;phase_2+70&gt;
+<span class="w">   </span>0x0000555555555620<span class="w"> </span>&lt;+53&gt;:<span class="w">    </span>mov<span class="w">    </span>%ebx,%eax
+<span class="w">   </span>0x0000555555555622<span class="w"> </span>&lt;+55&gt;:<span class="w">    </span>add<span class="w">    </span>0x0<span class="o">(</span>%rbp<span class="o">)</span>,%eax
+<span class="w">   </span>0x0000555555555625<span class="w"> </span>&lt;+58&gt;:<span class="w">    </span>cmp<span class="w">    </span>%eax,0x4<span class="o">(</span>%rbp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555628<span class="w"> </span>&lt;+61&gt;:<span class="w">    </span>je<span class="w">     </span>0x555555555614<span class="w"> </span>&lt;phase_2+41&gt;
+</code></pre>
+</div>
 
 <p>Here, we can see that the program increments <code>%ebx</code> by 1, adds a 4 byte offset to <code>%rbp</code> (the number we will be matching now), and checks if <code>%ebx</code> is equal to 6. If it is, it breaks the loop and jumps to <code>&lt;phase_2+70&gt;</code> succesfully finishing this stage.</p>
 
@@ -236,13 +240,13 @@ End of assembler dump.
 
 <div class="codehilite">
 <pre><span></span><code>...
-Phase <span class="m">1</span> defused. How about the next one?
-<span class="m">0</span> <span class="m">1</span> <span class="m">3</span> <span class="m">6</span> <span class="m">10</span> <span class="m">15</span>
+Phase<span class="w"> </span><span class="m">1</span><span class="w"> </span>defused.<span class="w"> </span>How<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>one?
+<span class="m">0</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="m">10</span><span class="w"> </span><span class="m">15</span>
 
-Breakpoint <span class="m">1</span>, 0x00005555555555eb <span class="k">in</span> phase_2 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> <span class="k">continue</span>
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x00005555555555eb<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_2<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span><span class="k">continue</span>
 Continuing.
-That<span class="err">&#39;</span>s number <span class="m">2</span>.  Keep going!
+That<span class="err">&#39;</span>s<span class="w"> </span>number<span class="w"> </span><span class="m">2</span>.<span class="w">  </span>Keep<span class="w"> </span>going!
 </code></pre>
 </div>
 
@@ -251,96 +255,96 @@ That<span class="err">&#39;</span>s number <span class="m">2</span>.  Keep going
 <p>Let us look at the disassembled code first</p>
 
 <div class="codehilite">
-<pre><span></span><code><span class="m">0000000000001638</span> &lt;phase_3&gt;:
-    <span class="m">1638</span>:   f3 0f 1e fa             endbr64 
-    163c:   <span class="m">48</span> <span class="m">83</span> ec <span class="m">18</span>             sub    <span class="nv">$0</span>x18,%rsp
-    <span class="m">1640</span>:   <span class="m">48</span> 8d 4c <span class="m">24</span> <span class="m">07</span>          lea    0x7<span class="o">(</span>%rsp<span class="o">)</span>,%rcx
-    <span class="m">1645</span>:   <span class="m">48</span> 8d <span class="m">54</span> <span class="m">24</span> 0c          lea    0xc<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
-    164a:   4c 8d <span class="m">44</span> <span class="m">24</span> <span class="m">08</span>          lea    0x8<span class="o">(</span>%rsp<span class="o">)</span>,%r8
-    164f:   <span class="m">48</span> 8d <span class="m">35</span> <span class="m">60</span> 1b <span class="m">00</span> <span class="m">00</span>    lea    0x1b60<span class="o">(</span>%rip<span class="o">)</span>,%rsi        <span class="c1"># 31b6 &lt;_IO_stdin_used+0x1b6&gt;</span>
-    <span class="m">1656</span>:   b8 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x0,%eax
-    165b:   e8 <span class="m">80</span> <span class="nb">fc</span> ff ff          call   12e0 &lt;__isoc99_sscanf@plt&gt;
-    <span class="m">1660</span>:   <span class="m">83</span> f8 <span class="m">02</span>                cmp    <span class="nv">$0</span>x2,%eax
-    <span class="m">1663</span>:   7e <span class="m">20</span>                   jle    <span class="m">1685</span> &lt;phase_3+0x4d&gt;
-    <span class="m">1665</span>:   <span class="m">83</span> 7c <span class="m">24</span> 0c <span class="m">07</span>          cmpl   <span class="nv">$0</span>x7,0xc<span class="o">(</span>%rsp<span class="o">)</span>
-    166a:   0f <span class="m">87</span> 0d <span class="m">01</span> <span class="m">00</span> <span class="m">00</span>       ja     177d &lt;phase_3+0x145&gt;
-    <span class="m">1670</span>:   8b <span class="m">44</span> <span class="m">24</span> 0c             mov    0xc<span class="o">(</span>%rsp<span class="o">)</span>,%eax
-    <span class="m">1674</span>:   <span class="m">48</span> 8d <span class="m">15</span> <span class="m">55</span> 1b <span class="m">00</span> <span class="m">00</span>    lea    0x1b55<span class="o">(</span>%rip<span class="o">)</span>,%rdx        <span class="c1"># 31d0 &lt;_IO_stdin_used+0x1d0&gt;</span>
-    167b:   <span class="m">48</span> <span class="m">63</span> <span class="m">04</span> <span class="m">82</span>             movslq <span class="o">(</span>%rdx,%rax,4<span class="o">)</span>,%rax
-    167f:   <span class="m">48</span> <span class="m">01</span> d0                add    %rdx,%rax
-    <span class="m">1682</span>:   3e ff e0                notrack jmp *%rax
-    <span class="m">1685</span>:   e8 c0 <span class="m">06</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    168a:   eb d9                   jmp    <span class="m">1665</span> &lt;phase_3+0x2d&gt;
-    168c:   b8 <span class="m">63</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x63,%eax
-    <span class="m">1691</span>:   <span class="m">81</span> 7c <span class="m">24</span> <span class="m">08</span> 3d <span class="m">02</span> <span class="m">00</span>    cmpl   <span class="nv">$0</span>x23d,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-    <span class="m">1698</span>:   <span class="m">00</span> 
-    <span class="m">1699</span>:   0f <span class="m">84</span> e8 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       je     <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    169f:   e8 a6 <span class="m">06</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    16a4:   b8 <span class="m">63</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x63,%eax
-    16a9:   e9 d9 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          jmp    <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    16ae:   b8 <span class="m">61</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x61,%eax
-    16b3:   <span class="m">81</span> 7c <span class="m">24</span> <span class="m">08</span> <span class="m">27</span> <span class="m">01</span> <span class="m">00</span>    cmpl   <span class="nv">$0</span>x127,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-    16ba:   <span class="m">00</span> 
-    16bb:   0f <span class="m">84</span> c6 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       je     <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    16c1:   e8 <span class="m">84</span> <span class="m">06</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    16c6:   b8 <span class="m">61</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x61,%eax
-    16cb:   e9 b7 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          jmp    <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    16d0:   b8 <span class="m">78</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x78,%eax
-    16d5:   <span class="m">81</span> 7c <span class="m">24</span> <span class="m">08</span> e7 <span class="m">02</span> <span class="m">00</span>    cmpl   <span class="nv">$0</span>x2e7,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-    16dc:   <span class="m">00</span> 
-    16dd:   0f <span class="m">84</span> a4 <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       je     <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    16e3:   e8 <span class="m">62</span> <span class="m">06</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    16e8:   b8 <span class="m">78</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x78,%eax
-    16ed:   e9 <span class="m">95</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          jmp    <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    16f2:   b8 <span class="m">64</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x64,%eax
-    16f7:   <span class="m">81</span> 7c <span class="m">24</span> <span class="m">08</span> <span class="m">80</span> <span class="m">02</span> <span class="m">00</span>    cmpl   <span class="nv">$0</span>x280,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-    16fe:   <span class="m">00</span> 
-    16ff:   0f <span class="m">84</span> <span class="m">82</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>       je     <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    <span class="m">1705</span>:   e8 <span class="m">40</span> <span class="m">06</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    170a:   b8 <span class="m">64</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x64,%eax
-    170f:   eb <span class="m">76</span>                   jmp    <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    <span class="m">1711</span>:   b8 6d <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x6d,%eax
-    <span class="m">1716</span>:   <span class="m">81</span> 7c <span class="m">24</span> <span class="m">08</span> ff <span class="m">02</span> <span class="m">00</span>    cmpl   <span class="nv">$0</span>x2ff,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-    171d:   <span class="m">00</span> 
-    171e:   <span class="m">74</span> <span class="m">67</span>                   je     <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    <span class="m">1720</span>:   e8 <span class="m">25</span> <span class="m">06</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    <span class="m">1725</span>:   b8 6d <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x6d,%eax
-    172a:   eb 5b                   jmp    <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    172c:   b8 <span class="m">71</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x71,%eax
-    <span class="m">1731</span>:   <span class="m">81</span> 7c <span class="m">24</span> <span class="m">08</span> <span class="m">75</span> <span class="m">03</span> <span class="m">00</span>    cmpl   <span class="nv">$0</span>x375,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-    <span class="m">1738</span>:   <span class="m">00</span> 
-    <span class="m">1739</span>:   <span class="m">74</span> 4c                   je     <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    173b:   e8 0a <span class="m">06</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    <span class="m">1740</span>:   b8 <span class="m">71</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x71,%eax
-    <span class="m">1745</span>:   eb <span class="m">40</span>                   jmp    <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    <span class="m">1747</span>:   b8 <span class="m">79</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x79,%eax
-    174c:   <span class="m">81</span> 7c <span class="m">24</span> <span class="m">08</span> <span class="m">94</span> <span class="m">02</span> <span class="m">00</span>    cmpl   <span class="nv">$0</span>x294,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-    <span class="m">1753</span>:   <span class="m">00</span> 
-    <span class="m">1754</span>:   <span class="m">74</span> <span class="m">31</span>                   je     <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    <span class="m">1756</span>:   e8 ef <span class="m">05</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    175b:   b8 <span class="m">79</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x79,%eax
-    <span class="m">1760</span>:   eb <span class="m">25</span>                   jmp    <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    <span class="m">1762</span>:   b8 <span class="m">79</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x79,%eax
-    <span class="m">1767</span>:   <span class="m">81</span> 7c <span class="m">24</span> <span class="m">08</span> <span class="m">88</span> <span class="m">02</span> <span class="m">00</span>    cmpl   <span class="nv">$0</span>x288,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-    176e:   <span class="m">00</span> 
-    176f:   <span class="m">74</span> <span class="m">16</span>                   je     <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    <span class="m">1771</span>:   e8 d4 <span class="m">05</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    <span class="m">1776</span>:   b8 <span class="m">79</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x79,%eax
-    177b:   eb 0a                   jmp    <span class="m">1787</span> &lt;phase_3+0x14f&gt;
-    177d:   e8 c8 <span class="m">05</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    <span class="m">1782</span>:   b8 <span class="m">68</span> <span class="m">00</span> <span class="m">00</span> <span class="m">00</span>          mov    <span class="nv">$0</span>x68,%eax
-    <span class="m">1787</span>:   <span class="m">38</span> <span class="m">44</span> <span class="m">24</span> <span class="m">07</span>             cmp    %al,0x7<span class="o">(</span>%rsp<span class="o">)</span>
-    178b:   <span class="m">75</span> <span class="m">05</span>                   jne    <span class="m">1792</span> &lt;phase_3+0x15a&gt;
-    178d:   <span class="m">48</span> <span class="m">83</span> c4 <span class="m">18</span>             add    <span class="nv">$0</span>x18,%rsp
-    <span class="m">1791</span>:   c3                      ret    
-    <span class="m">1792</span>:   e8 b3 <span class="m">05</span> <span class="m">00</span> <span class="m">00</span>          call   1d4a &lt;explode_bomb&gt;
-    <span class="m">1797</span>:   eb f4                   jmp    178d &lt;phase_3+0x155&gt;
+<pre><span></span><code><span class="m">0000000000001638</span><span class="w"> </span>&lt;phase_3&gt;:
+<span class="w">    </span><span class="m">1638</span>:<span class="w">   </span>f3<span class="w"> </span>0f<span class="w"> </span>1e<span class="w"> </span>fa<span class="w">             </span>endbr64<span class="w"> </span>
+<span class="w">    </span>163c:<span class="w">   </span><span class="m">48</span><span class="w"> </span><span class="m">83</span><span class="w"> </span>ec<span class="w"> </span><span class="m">18</span><span class="w">             </span>sub<span class="w">    </span><span class="nv">$0</span>x18,%rsp
+<span class="w">    </span><span class="m">1640</span>:<span class="w">   </span><span class="m">48</span><span class="w"> </span>8d<span class="w"> </span>4c<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">07</span><span class="w">          </span>lea<span class="w">    </span>0x7<span class="o">(</span>%rsp<span class="o">)</span>,%rcx
+<span class="w">    </span><span class="m">1645</span>:<span class="w">   </span><span class="m">48</span><span class="w"> </span>8d<span class="w"> </span><span class="m">54</span><span class="w"> </span><span class="m">24</span><span class="w"> </span>0c<span class="w">          </span>lea<span class="w">    </span>0xc<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
+<span class="w">    </span>164a:<span class="w">   </span>4c<span class="w"> </span>8d<span class="w"> </span><span class="m">44</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">08</span><span class="w">          </span>lea<span class="w">    </span>0x8<span class="o">(</span>%rsp<span class="o">)</span>,%r8
+<span class="w">    </span>164f:<span class="w">   </span><span class="m">48</span><span class="w"> </span>8d<span class="w"> </span><span class="m">35</span><span class="w"> </span><span class="m">60</span><span class="w"> </span>1b<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>lea<span class="w">    </span>0x1b60<span class="o">(</span>%rip<span class="o">)</span>,%rsi<span class="w">        </span><span class="c1"># 31b6 &lt;_IO_stdin_used+0x1b6&gt;</span>
+<span class="w">    </span><span class="m">1656</span>:<span class="w">   </span>b8<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
+<span class="w">    </span>165b:<span class="w">   </span>e8<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="nb">fc</span><span class="w"> </span>ff<span class="w"> </span>ff<span class="w">          </span>call<span class="w">   </span>12e0<span class="w"> </span>&lt;__isoc99_sscanf@plt&gt;
+<span class="w">    </span><span class="m">1660</span>:<span class="w">   </span><span class="m">83</span><span class="w"> </span>f8<span class="w"> </span><span class="m">02</span><span class="w">                </span>cmp<span class="w">    </span><span class="nv">$0</span>x2,%eax
+<span class="w">    </span><span class="m">1663</span>:<span class="w">   </span>7e<span class="w"> </span><span class="m">20</span><span class="w">                   </span>jle<span class="w">    </span><span class="m">1685</span><span class="w"> </span>&lt;phase_3+0x4d&gt;
+<span class="w">    </span><span class="m">1665</span>:<span class="w">   </span><span class="m">83</span><span class="w"> </span>7c<span class="w"> </span><span class="m">24</span><span class="w"> </span>0c<span class="w"> </span><span class="m">07</span><span class="w">          </span>cmpl<span class="w">   </span><span class="nv">$0</span>x7,0xc<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span>166a:<span class="w">   </span>0f<span class="w"> </span><span class="m">87</span><span class="w"> </span>0d<span class="w"> </span><span class="m">01</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>ja<span class="w">     </span>177d<span class="w"> </span>&lt;phase_3+0x145&gt;
+<span class="w">    </span><span class="m">1670</span>:<span class="w">   </span>8b<span class="w"> </span><span class="m">44</span><span class="w"> </span><span class="m">24</span><span class="w"> </span>0c<span class="w">             </span>mov<span class="w">    </span>0xc<span class="o">(</span>%rsp<span class="o">)</span>,%eax
+<span class="w">    </span><span class="m">1674</span>:<span class="w">   </span><span class="m">48</span><span class="w"> </span>8d<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">55</span><span class="w"> </span>1b<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>lea<span class="w">    </span>0x1b55<span class="o">(</span>%rip<span class="o">)</span>,%rdx<span class="w">        </span><span class="c1"># 31d0 &lt;_IO_stdin_used+0x1d0&gt;</span>
+<span class="w">    </span>167b:<span class="w">   </span><span class="m">48</span><span class="w"> </span><span class="m">63</span><span class="w"> </span><span class="m">04</span><span class="w"> </span><span class="m">82</span><span class="w">             </span>movslq<span class="w"> </span><span class="o">(</span>%rdx,%rax,4<span class="o">)</span>,%rax
+<span class="w">    </span>167f:<span class="w">   </span><span class="m">48</span><span class="w"> </span><span class="m">01</span><span class="w"> </span>d0<span class="w">                </span>add<span class="w">    </span>%rdx,%rax
+<span class="w">    </span><span class="m">1682</span>:<span class="w">   </span>3e<span class="w"> </span>ff<span class="w"> </span>e0<span class="w">                </span>notrack<span class="w"> </span>jmp<span class="w"> </span>*%rax
+<span class="w">    </span><span class="m">1685</span>:<span class="w">   </span>e8<span class="w"> </span>c0<span class="w"> </span><span class="m">06</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span>168a:<span class="w">   </span>eb<span class="w"> </span>d9<span class="w">                   </span>jmp<span class="w">    </span><span class="m">1665</span><span class="w"> </span>&lt;phase_3+0x2d&gt;
+<span class="w">    </span>168c:<span class="w">   </span>b8<span class="w"> </span><span class="m">63</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x63,%eax
+<span class="w">    </span><span class="m">1691</span>:<span class="w">   </span><span class="m">81</span><span class="w"> </span>7c<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">08</span><span class="w"> </span>3d<span class="w"> </span><span class="m">02</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x23d,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span><span class="m">1698</span>:<span class="w">   </span><span class="m">00</span><span class="w"> </span>
+<span class="w">    </span><span class="m">1699</span>:<span class="w">   </span>0f<span class="w"> </span><span class="m">84</span><span class="w"> </span>e8<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>je<span class="w">     </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span>169f:<span class="w">   </span>e8<span class="w"> </span>a6<span class="w"> </span><span class="m">06</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span>16a4:<span class="w">   </span>b8<span class="w"> </span><span class="m">63</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x63,%eax
+<span class="w">    </span>16a9:<span class="w">   </span>e9<span class="w"> </span>d9<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>jmp<span class="w">    </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span>16ae:<span class="w">   </span>b8<span class="w"> </span><span class="m">61</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x61,%eax
+<span class="w">    </span>16b3:<span class="w">   </span><span class="m">81</span><span class="w"> </span>7c<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">08</span><span class="w"> </span><span class="m">27</span><span class="w"> </span><span class="m">01</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x127,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span>16ba:<span class="w">   </span><span class="m">00</span><span class="w"> </span>
+<span class="w">    </span>16bb:<span class="w">   </span>0f<span class="w"> </span><span class="m">84</span><span class="w"> </span>c6<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>je<span class="w">     </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span>16c1:<span class="w">   </span>e8<span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">06</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span>16c6:<span class="w">   </span>b8<span class="w"> </span><span class="m">61</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x61,%eax
+<span class="w">    </span>16cb:<span class="w">   </span>e9<span class="w"> </span>b7<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>jmp<span class="w">    </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span>16d0:<span class="w">   </span>b8<span class="w"> </span><span class="m">78</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x78,%eax
+<span class="w">    </span>16d5:<span class="w">   </span><span class="m">81</span><span class="w"> </span>7c<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">08</span><span class="w"> </span>e7<span class="w"> </span><span class="m">02</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x2e7,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span>16dc:<span class="w">   </span><span class="m">00</span><span class="w"> </span>
+<span class="w">    </span>16dd:<span class="w">   </span>0f<span class="w"> </span><span class="m">84</span><span class="w"> </span>a4<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>je<span class="w">     </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span>16e3:<span class="w">   </span>e8<span class="w"> </span><span class="m">62</span><span class="w"> </span><span class="m">06</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span>16e8:<span class="w">   </span>b8<span class="w"> </span><span class="m">78</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x78,%eax
+<span class="w">    </span>16ed:<span class="w">   </span>e9<span class="w"> </span><span class="m">95</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>jmp<span class="w">    </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span>16f2:<span class="w">   </span>b8<span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x64,%eax
+<span class="w">    </span>16f7:<span class="w">   </span><span class="m">81</span><span class="w"> </span>7c<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">08</span><span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="m">02</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x280,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span>16fe:<span class="w">   </span><span class="m">00</span><span class="w"> </span>
+<span class="w">    </span>16ff:<span class="w">   </span>0f<span class="w"> </span><span class="m">84</span><span class="w"> </span><span class="m">82</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">       </span>je<span class="w">     </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span><span class="m">1705</span>:<span class="w">   </span>e8<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="m">06</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span>170a:<span class="w">   </span>b8<span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x64,%eax
+<span class="w">    </span>170f:<span class="w">   </span>eb<span class="w"> </span><span class="m">76</span><span class="w">                   </span>jmp<span class="w">    </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span><span class="m">1711</span>:<span class="w">   </span>b8<span class="w"> </span>6d<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x6d,%eax
+<span class="w">    </span><span class="m">1716</span>:<span class="w">   </span><span class="m">81</span><span class="w"> </span>7c<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">08</span><span class="w"> </span>ff<span class="w"> </span><span class="m">02</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x2ff,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span>171d:<span class="w">   </span><span class="m">00</span><span class="w"> </span>
+<span class="w">    </span>171e:<span class="w">   </span><span class="m">74</span><span class="w"> </span><span class="m">67</span><span class="w">                   </span>je<span class="w">     </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span><span class="m">1720</span>:<span class="w">   </span>e8<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">06</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span><span class="m">1725</span>:<span class="w">   </span>b8<span class="w"> </span>6d<span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x6d,%eax
+<span class="w">    </span>172a:<span class="w">   </span>eb<span class="w"> </span>5b<span class="w">                   </span>jmp<span class="w">    </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span>172c:<span class="w">   </span>b8<span class="w"> </span><span class="m">71</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x71,%eax
+<span class="w">    </span><span class="m">1731</span>:<span class="w">   </span><span class="m">81</span><span class="w"> </span>7c<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">08</span><span class="w"> </span><span class="m">75</span><span class="w"> </span><span class="m">03</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x375,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span><span class="m">1738</span>:<span class="w">   </span><span class="m">00</span><span class="w"> </span>
+<span class="w">    </span><span class="m">1739</span>:<span class="w">   </span><span class="m">74</span><span class="w"> </span>4c<span class="w">                   </span>je<span class="w">     </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span>173b:<span class="w">   </span>e8<span class="w"> </span>0a<span class="w"> </span><span class="m">06</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span><span class="m">1740</span>:<span class="w">   </span>b8<span class="w"> </span><span class="m">71</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x71,%eax
+<span class="w">    </span><span class="m">1745</span>:<span class="w">   </span>eb<span class="w"> </span><span class="m">40</span><span class="w">                   </span>jmp<span class="w">    </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span><span class="m">1747</span>:<span class="w">   </span>b8<span class="w"> </span><span class="m">79</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x79,%eax
+<span class="w">    </span>174c:<span class="w">   </span><span class="m">81</span><span class="w"> </span>7c<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">08</span><span class="w"> </span><span class="m">94</span><span class="w"> </span><span class="m">02</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x294,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span><span class="m">1753</span>:<span class="w">   </span><span class="m">00</span><span class="w"> </span>
+<span class="w">    </span><span class="m">1754</span>:<span class="w">   </span><span class="m">74</span><span class="w"> </span><span class="m">31</span><span class="w">                   </span>je<span class="w">     </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span><span class="m">1756</span>:<span class="w">   </span>e8<span class="w"> </span>ef<span class="w"> </span><span class="m">05</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span>175b:<span class="w">   </span>b8<span class="w"> </span><span class="m">79</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x79,%eax
+<span class="w">    </span><span class="m">1760</span>:<span class="w">   </span>eb<span class="w"> </span><span class="m">25</span><span class="w">                   </span>jmp<span class="w">    </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span><span class="m">1762</span>:<span class="w">   </span>b8<span class="w"> </span><span class="m">79</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x79,%eax
+<span class="w">    </span><span class="m">1767</span>:<span class="w">   </span><span class="m">81</span><span class="w"> </span>7c<span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">08</span><span class="w"> </span><span class="m">88</span><span class="w"> </span><span class="m">02</span><span class="w"> </span><span class="m">00</span><span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x288,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span>176e:<span class="w">   </span><span class="m">00</span><span class="w"> </span>
+<span class="w">    </span>176f:<span class="w">   </span><span class="m">74</span><span class="w"> </span><span class="m">16</span><span class="w">                   </span>je<span class="w">     </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span><span class="m">1771</span>:<span class="w">   </span>e8<span class="w"> </span>d4<span class="w"> </span><span class="m">05</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span><span class="m">1776</span>:<span class="w">   </span>b8<span class="w"> </span><span class="m">79</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x79,%eax
+<span class="w">    </span>177b:<span class="w">   </span>eb<span class="w"> </span>0a<span class="w">                   </span>jmp<span class="w">    </span><span class="m">1787</span><span class="w"> </span>&lt;phase_3+0x14f&gt;
+<span class="w">    </span>177d:<span class="w">   </span>e8<span class="w"> </span>c8<span class="w"> </span><span class="m">05</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span><span class="m">1782</span>:<span class="w">   </span>b8<span class="w"> </span><span class="m">68</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>mov<span class="w">    </span><span class="nv">$0</span>x68,%eax
+<span class="w">    </span><span class="m">1787</span>:<span class="w">   </span><span class="m">38</span><span class="w"> </span><span class="m">44</span><span class="w"> </span><span class="m">24</span><span class="w"> </span><span class="m">07</span><span class="w">             </span>cmp<span class="w">    </span>%al,0x7<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">    </span>178b:<span class="w">   </span><span class="m">75</span><span class="w"> </span><span class="m">05</span><span class="w">                   </span>jne<span class="w">    </span><span class="m">1792</span><span class="w"> </span>&lt;phase_3+0x15a&gt;
+<span class="w">    </span>178d:<span class="w">   </span><span class="m">48</span><span class="w"> </span><span class="m">83</span><span class="w"> </span>c4<span class="w"> </span><span class="m">18</span><span class="w">             </span>add<span class="w">    </span><span class="nv">$0</span>x18,%rsp
+<span class="w">    </span><span class="m">1791</span>:<span class="w">   </span>c3<span class="w">                      </span>ret<span class="w">    </span>
+<span class="w">    </span><span class="m">1792</span>:<span class="w">   </span>e8<span class="w"> </span>b3<span class="w"> </span><span class="m">05</span><span class="w"> </span><span class="m">00</span><span class="w"> </span><span class="m">00</span><span class="w">          </span>call<span class="w">   </span>1d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">    </span><span class="m">1797</span>:<span class="w">   </span>eb<span class="w"> </span>f4<span class="w">                   </span>jmp<span class="w">    </span>178d<span class="w"> </span>&lt;phase_3+0x155&gt;
 </code></pre>
 </div>
 
 <div class="codehilite">
 <pre><span></span><code>...
-    165b:   e8 <span class="m">80</span> <span class="nb">fc</span> ff ff          call   12e0 &lt;__isoc99_sscanf@plt&gt;
+<span class="w">    </span>165b:<span class="w">   </span>e8<span class="w"> </span><span class="m">80</span><span class="w"> </span><span class="nb">fc</span><span class="w"> </span>ff<span class="w"> </span>ff<span class="w">          </span>call<span class="w">   </span>12e0<span class="w"> </span>&lt;__isoc99_sscanf@plt&gt;
 ...
 </code></pre>
 </div>
@@ -350,82 +354,82 @@ That<span class="err">&#39;</span>s number <span class="m">2</span>.  Keep going
 <p>Because I do not want to enter the solutions to phases 1 and 2 again and again, I am goig to pass a file which has these solutions.</p>
 
 <div class="codehilite">
-<pre><span></span><code>joxxxn@jupyter-nxxh6xx8:~/lab2-bomblab-navanchauhan/bombbomb$ gdb -ex <span class="s1">&#39;break phase_3&#39;</span> -ex <span class="s1">&#39;break explode_bomb&#39;</span> -ex <span class="s1">&#39;run&#39;</span> -args ./bomb sol.txt 
-GNU gdb <span class="o">(</span>Ubuntu <span class="m">12</span>.1-0ubuntu1~22.04<span class="o">)</span> <span class="m">12</span>.1
-Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2022</span> Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version <span class="m">3</span> or later &lt;http://gnu.org/licenses/gpl.html&gt;
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-Type <span class="s2">&quot;show copying&quot;</span> and <span class="s2">&quot;show warranty&quot;</span> <span class="k">for</span> details.
-This GDB was configured as <span class="s2">&quot;x86_64-linux-gnu&quot;</span>.
-Type <span class="s2">&quot;show configuration&quot;</span> <span class="k">for</span> configuration details.
-For bug reporting instructions, please see:
+<pre><span></span><code>joxxxn@jupyter-nxxh6xx8:~/lab2-bomblab-navanchauhan/bombbomb$<span class="w"> </span>gdb<span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break phase_3&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break explode_bomb&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;run&#39;</span><span class="w"> </span>-args<span class="w"> </span>./bomb<span class="w"> </span>sol.txt<span class="w"> </span>
+GNU<span class="w"> </span>gdb<span class="w"> </span><span class="o">(</span>Ubuntu<span class="w"> </span><span class="m">12</span>.1-0ubuntu1~22.04<span class="o">)</span><span class="w"> </span><span class="m">12</span>.1
+Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>Free<span class="w"> </span>Software<span class="w"> </span>Foundation,<span class="w"> </span>Inc.
+License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
+This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;x86_64-linux-gnu&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
+For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
 &lt;https://www.gnu.org/software/gdb/bugs/&gt;.
-Find the GDB manual and other documentation resources online at:
-    &lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
+<span class="w">    </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
 
-For help, <span class="nb">type</span> <span class="s2">&quot;help&quot;</span>.
-Type <span class="s2">&quot;apropos word&quot;</span> to search <span class="k">for</span> commands related to <span class="s2">&quot;word&quot;</span>...
-Reading symbols from ./bomb...
-Breakpoint <span class="m">1</span> at 0x1638
-Breakpoint <span class="m">2</span> at 0x1d4a
-Starting program: /home/joxxxn/lab2-bomblab-navanchauhan/bombbomb/bomb sol.txt
-<span class="o">[</span>Thread debugging using libthread_db enabled<span class="o">]</span>
-Using host libthread_db library <span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
-Welcome to my fiendish little bomb. You have <span class="m">6</span> phases with
-which to blow yourself up. Have a nice day!
-Phase <span class="m">1</span> defused. How about the next one?
-That<span class="err">&#39;</span>s number <span class="m">2</span>.  Keep going!
-random string
+For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>...
+Reading<span class="w"> </span>symbols<span class="w"> </span>from<span class="w"> </span>./bomb...
+Breakpoint<span class="w"> </span><span class="m">1</span><span class="w"> </span>at<span class="w"> </span>0x1638
+Breakpoint<span class="w"> </span><span class="m">2</span><span class="w"> </span>at<span class="w"> </span>0x1d4a
+Starting<span class="w"> </span>program:<span class="w"> </span>/home/joxxxn/lab2-bomblab-navanchauhan/bombbomb/bomb<span class="w"> </span>sol.txt
+<span class="o">[</span>Thread<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>libthread_db<span class="w"> </span>enabled<span class="o">]</span>
+Using<span class="w"> </span>host<span class="w"> </span>libthread_db<span class="w"> </span>library<span class="w"> </span><span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
+Welcome<span class="w"> </span>to<span class="w"> </span>my<span class="w"> </span>fiendish<span class="w"> </span>little<span class="w"> </span>bomb.<span class="w"> </span>You<span class="w"> </span>have<span class="w"> </span><span class="m">6</span><span class="w"> </span>phases<span class="w"> </span>with
+which<span class="w"> </span>to<span class="w"> </span>blow<span class="w"> </span>yourself<span class="w"> </span>up.<span class="w"> </span>Have<span class="w"> </span>a<span class="w"> </span>nice<span class="w"> </span>day!
+Phase<span class="w"> </span><span class="m">1</span><span class="w"> </span>defused.<span class="w"> </span>How<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>one?
+That<span class="err">&#39;</span>s<span class="w"> </span>number<span class="w"> </span><span class="m">2</span>.<span class="w">  </span>Keep<span class="w"> </span>going!
+random<span class="w"> </span>string
 
-Breakpoint <span class="m">1</span>, 0x0000555555555638 <span class="k">in</span> phase_3 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> disas
-Dump of assembler code <span class="k">for</span> <span class="k">function</span> phase_3:
-<span class="o">=</span>&gt; 0x0000555555555638 &lt;+0&gt;:     endbr64 
-   0x000055555555563c &lt;+4&gt;:     sub    <span class="nv">$0</span>x18,%rsp
-   0x0000555555555640 &lt;+8&gt;:     lea    0x7<span class="o">(</span>%rsp<span class="o">)</span>,%rcx
-   0x0000555555555645 &lt;+13&gt;:    lea    0xc<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
-   0x000055555555564a &lt;+18&gt;:    lea    0x8<span class="o">(</span>%rsp<span class="o">)</span>,%r8
-   0x000055555555564f &lt;+23&gt;:    lea    0x1b60<span class="o">(</span>%rip<span class="o">)</span>,%rsi        <span class="c1"># 0x5555555571b6</span>
-   0x0000555555555656 &lt;+30&gt;:    mov    <span class="nv">$0</span>x0,%eax
-   0x000055555555565b &lt;+35&gt;:    call   0x5555555552e0 &lt;__isoc99_sscanf@plt&gt;
-   0x0000555555555660 &lt;+40&gt;:    cmp    <span class="nv">$0</span>x2,%eax
-   0x0000555555555663 &lt;+43&gt;:    jle    0x555555555685 &lt;phase_3+77&gt;
-   0x0000555555555665 &lt;+45&gt;:    cmpl   <span class="nv">$0</span>x7,0xc<span class="o">(</span>%rsp<span class="o">)</span>
-   0x000055555555566a &lt;+50&gt;:    ja     0x55555555577d &lt;phase_3+325&gt;
-   0x0000555555555670 &lt;+56&gt;:    mov    0xc<span class="o">(</span>%rsp<span class="o">)</span>,%eax
-   0x0000555555555674 &lt;+60&gt;:    lea    0x1b55<span class="o">(</span>%rip<span class="o">)</span>,%rdx        <span class="c1"># 0x5555555571d0</span>
-   0x000055555555567b &lt;+67&gt;:    movslq <span class="o">(</span>%rdx,%rax,4<span class="o">)</span>,%rax
-   0x000055555555567f &lt;+71&gt;:    add    %rdx,%rax
-   0x0000555555555682 &lt;+74&gt;:    notrack jmp *%rax
-   0x0000555555555685 &lt;+77&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x000055555555568a &lt;+82&gt;:    jmp    0x555555555665 &lt;phase_3+45&gt;
-   0x000055555555568c &lt;+84&gt;:    mov    <span class="nv">$0</span>x63,%eax
-   0x0000555555555691 &lt;+89&gt;:    cmpl   <span class="nv">$0</span>x23d,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-   0x0000555555555699 &lt;+97&gt;:    je     0x555555555787 &lt;phase_3+335&gt;
-   0x000055555555569f &lt;+103&gt;:   call   0x555555555d4a &lt;explode_bomb&gt;
-   0x00005555555556a4 &lt;+108&gt;:   mov    <span class="nv">$0</span>x63,%eax
-   0x00005555555556a9 &lt;+113&gt;:   jmp    0x555555555787 &lt;phase_3+335&gt;
---Type &lt;RET&gt; <span class="k">for</span> more, q to quit, c to <span class="k">continue</span> without paging--
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x0000555555555638<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_3<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>disas
+Dump<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>code<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>phase_3:
+<span class="o">=</span>&gt;<span class="w"> </span>0x0000555555555638<span class="w"> </span>&lt;+0&gt;:<span class="w">     </span>endbr64<span class="w"> </span>
+<span class="w">   </span>0x000055555555563c<span class="w"> </span>&lt;+4&gt;:<span class="w">     </span>sub<span class="w">    </span><span class="nv">$0</span>x18,%rsp
+<span class="w">   </span>0x0000555555555640<span class="w"> </span>&lt;+8&gt;:<span class="w">     </span>lea<span class="w">    </span>0x7<span class="o">(</span>%rsp<span class="o">)</span>,%rcx
+<span class="w">   </span>0x0000555555555645<span class="w"> </span>&lt;+13&gt;:<span class="w">    </span>lea<span class="w">    </span>0xc<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
+<span class="w">   </span>0x000055555555564a<span class="w"> </span>&lt;+18&gt;:<span class="w">    </span>lea<span class="w">    </span>0x8<span class="o">(</span>%rsp<span class="o">)</span>,%r8
+<span class="w">   </span>0x000055555555564f<span class="w"> </span>&lt;+23&gt;:<span class="w">    </span>lea<span class="w">    </span>0x1b60<span class="o">(</span>%rip<span class="o">)</span>,%rsi<span class="w">        </span><span class="c1"># 0x5555555571b6</span>
+<span class="w">   </span>0x0000555555555656<span class="w"> </span>&lt;+30&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
+<span class="w">   </span>0x000055555555565b<span class="w"> </span>&lt;+35&gt;:<span class="w">    </span>call<span class="w">   </span>0x5555555552e0<span class="w"> </span>&lt;__isoc99_sscanf@plt&gt;
+<span class="w">   </span>0x0000555555555660<span class="w"> </span>&lt;+40&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x2,%eax
+<span class="w">   </span>0x0000555555555663<span class="w"> </span>&lt;+43&gt;:<span class="w">    </span>jle<span class="w">    </span>0x555555555685<span class="w"> </span>&lt;phase_3+77&gt;
+<span class="w">   </span>0x0000555555555665<span class="w"> </span>&lt;+45&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x7,0xc<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x000055555555566a<span class="w"> </span>&lt;+50&gt;:<span class="w">    </span>ja<span class="w">     </span>0x55555555577d<span class="w"> </span>&lt;phase_3+325&gt;
+<span class="w">   </span>0x0000555555555670<span class="w"> </span>&lt;+56&gt;:<span class="w">    </span>mov<span class="w">    </span>0xc<span class="o">(</span>%rsp<span class="o">)</span>,%eax
+<span class="w">   </span>0x0000555555555674<span class="w"> </span>&lt;+60&gt;:<span class="w">    </span>lea<span class="w">    </span>0x1b55<span class="o">(</span>%rip<span class="o">)</span>,%rdx<span class="w">        </span><span class="c1"># 0x5555555571d0</span>
+<span class="w">   </span>0x000055555555567b<span class="w"> </span>&lt;+67&gt;:<span class="w">    </span>movslq<span class="w"> </span><span class="o">(</span>%rdx,%rax,4<span class="o">)</span>,%rax
+<span class="w">   </span>0x000055555555567f<span class="w"> </span>&lt;+71&gt;:<span class="w">    </span>add<span class="w">    </span>%rdx,%rax
+<span class="w">   </span>0x0000555555555682<span class="w"> </span>&lt;+74&gt;:<span class="w">    </span>notrack<span class="w"> </span>jmp<span class="w"> </span>*%rax
+<span class="w">   </span>0x0000555555555685<span class="w"> </span>&lt;+77&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x000055555555568a<span class="w"> </span>&lt;+82&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x555555555665<span class="w"> </span>&lt;phase_3+45&gt;
+<span class="w">   </span>0x000055555555568c<span class="w"> </span>&lt;+84&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x63,%eax
+<span class="w">   </span>0x0000555555555691<span class="w"> </span>&lt;+89&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x23d,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555699<span class="w"> </span>&lt;+97&gt;:<span class="w">    </span>je<span class="w">     </span>0x555555555787<span class="w"> </span>&lt;phase_3+335&gt;
+<span class="w">   </span>0x000055555555569f<span class="w"> </span>&lt;+103&gt;:<span class="w">   </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x00005555555556a4<span class="w"> </span>&lt;+108&gt;:<span class="w">   </span>mov<span class="w">    </span><span class="nv">$0</span>x63,%eax
+<span class="w">   </span>0x00005555555556a9<span class="w"> </span>&lt;+113&gt;:<span class="w">   </span>jmp<span class="w">    </span>0x555555555787<span class="w"> </span>&lt;phase_3+335&gt;
+--Type<span class="w"> </span>&lt;RET&gt;<span class="w"> </span><span class="k">for</span><span class="w"> </span>more,<span class="w"> </span>q<span class="w"> </span>to<span class="w"> </span>quit,<span class="w"> </span>c<span class="w"> </span>to<span class="w"> </span><span class="k">continue</span><span class="w"> </span>without<span class="w"> </span>paging--
 </code></pre>
 </div>
 
 <p><code>gdb</code> has thankfully marked the address which is being passed to <code>scanf</code>. We can access the value:</p>
 
 <div class="codehilite">
-<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> x/1s 0x5555555571b6
-0x5555555571b6: <span class="s2">&quot;%d %c %d&quot;</span>
-<span class="o">(</span>gdb<span class="o">)</span> 
+<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/1s<span class="w"> </span>0x5555555571b6
+0x5555555571b6:<span class="w"> </span><span class="s2">&quot;%d %c %d&quot;</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>
 </code></pre>
 </div>
 
 <p>BINGO! The program expects an integer, character, and another integer. Onwards.</p>
 
 <div class="codehilite">
-<pre><span></span><code>   0x0000555555555660 &lt;+40&gt;:    cmp    <span class="nv">$0</span>x2,%eax
-   0x0000555555555663 &lt;+43&gt;:    jle    0x555555555685 &lt;phase_3+77&gt;
+<pre><span></span><code><span class="w">   </span>0x0000555555555660<span class="w"> </span>&lt;+40&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x2,%eax
+<span class="w">   </span>0x0000555555555663<span class="w"> </span>&lt;+43&gt;:<span class="w">    </span>jle<span class="w">    </span>0x555555555685<span class="w"> </span>&lt;phase_3+77&gt;
 ...
-   0x0000555555555685 &lt;+77&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+<span class="w">   </span>0x0000555555555685<span class="w"> </span>&lt;+77&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
 </code></pre>
 </div>
 
@@ -434,23 +438,24 @@ Dump of assembler code <span class="k">for</span> <span class="k">function</span
 <p><em>Note: <code>scanf</code> returns the number of fields that were succesfully converted and assigned</em></p>
 
 <div class="codehilite">
-<pre><span></span><code>   0x0000555555555665 &lt;+45&gt;:    cmpl   <span class="nv">$0</span>x7,0xc<span class="o">(</span>%rsp<span class="o">)</span>
-   0x000055555555566a &lt;+50&gt;:    ja     0x55555555577d &lt;phase_3+325&gt;
+<pre><span></span><code><span class="w">   </span>0x0000555555555665<span class="w"> </span>&lt;+45&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x7,0xc<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x000055555555566a<span class="w"> </span>&lt;+50&gt;:<span class="w">    </span>ja<span class="w">     </span>0x55555555577d<span class="w"> </span>&lt;phase_3+325&gt;
 ...
-   0x000055555555577d &lt;+325&gt;:   call   0x555555555d4a &lt;explode_bomb&gt;
+<span class="w">   </span>0x000055555555577d<span class="w"> </span>&lt;+325&gt;:<span class="w">   </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
 </code></pre>
 </div>
 
-<p>Similarly, the program checks and ensures the returned value is not &gt; 7. 
-   <div class="codehilite">
-   <pre><span></span><code>0x0000555555555670 &lt;+56&gt;:    mov    0xc<span class="o">(</span>%rsp<span class="o">)</span>,%eax
-   0x0000555555555674 &lt;+60&gt;:    lea    0x1b55<span class="o">(</span>%rip<span class="o">)</span>,%rdx        <span class="c1"># 0x5555555571d0</span>
-   0x000055555555567b &lt;+67&gt;:    movslq <span class="o">(</span>%rdx,%rax,4<span class="o">)</span>,%rax
-   0x000055555555567f &lt;+71&gt;:    add    %rdx,%rax
-   0x0000555555555682 &lt;+74&gt;:    notrack jmp *%rax
-   0x0000555555555685 &lt;+77&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   </code></pre>
-   </div></p>
+<p>Similarly, the program checks and ensures the returned value is not &gt; 7. </p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x0000555555555670<span class="w"> </span>&lt;+56&gt;:<span class="w">    </span>mov<span class="w">    </span>0xc<span class="o">(</span>%rsp<span class="o">)</span>,%eax
+<span class="w">   </span>0x0000555555555674<span class="w"> </span>&lt;+60&gt;:<span class="w">    </span>lea<span class="w">    </span>0x1b55<span class="o">(</span>%rip<span class="o">)</span>,%rdx<span class="w">        </span><span class="c1"># 0x5555555571d0</span>
+<span class="w">   </span>0x000055555555567b<span class="w"> </span>&lt;+67&gt;:<span class="w">    </span>movslq<span class="w"> </span><span class="o">(</span>%rdx,%rax,4<span class="o">)</span>,%rax
+<span class="w">   </span>0x000055555555567f<span class="w"> </span>&lt;+71&gt;:<span class="w">    </span>add<span class="w">    </span>%rdx,%rax
+<span class="w">   </span>0x0000555555555682<span class="w"> </span>&lt;+74&gt;:<span class="w">    </span>notrack<span class="w"> </span>jmp<span class="w"> </span>*%rax
+<span class="w">   </span>0x0000555555555685<span class="w"> </span>&lt;+77&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+</code></pre>
+</div>
 
 <ul>
 <li><code>0x0000555555555670 &lt;+56&gt;:    mov    0xc(%rsp),%eax</code> - Moves value located at <code>0xc</code> (12 in Decimal) bytes above the stack pointer to <code>%eax</code> register. </li>
@@ -480,34 +485,36 @@ $1 = 3
 
 <p><img src="/assets/bomb-lab/phase-3.png" alt="Screenshot of GDB terminal depicting us checking the value of the instruction to be jumped to" /></p>
 
-<p>We can see that this makes us jump to <code>&lt;phase_3+186&gt;</code> (Continue to step through the code by using <code>ni</code>)
-   <div class="codehilite">
-   <pre><span></span><code>0x00005555555556f2 &lt;+186&gt;:   mov    <span class="nv">$0</span>x64,%eax
-   0x00005555555556f7 &lt;+191&gt;:   cmpl   <span class="nv">$0</span>x280,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-   0x00005555555556ff &lt;+199&gt;:   je     0x555555555787 &lt;phase<em>3+335&gt;
-   0x0000555555555705 &lt;+205&gt;:   call   0x555555555d4a &lt;explode</em>bomb&gt;
-   </code></pre>
-   </div></p>
+<p>We can see that this makes us jump to <code>&lt;phase_3+186&gt;</code> (Continue to step through the code by using <code>ni</code>)</p>
 
-<p>We see that <code>0x64</code> (Decimal 100) is being stored in <code>%eax</code>. Then, the program compares <code>0x280</code> (Decimal 640) with memory address <code>0x8</code> bytes above the stack pointer (<code>%rsp</code>). If the values are equal, then it jumps to <code>&lt;phase_3+335&gt;</code>, otherwise <code>explode_bomb</code> is called.
-   <div class="codehilite">
-   <pre><span></span><code>0x0000555555555787 &lt;+335&gt;:   cmp    %al,0x7<span class="o">(</span>%rsp<span class="o">)</span>
-   0x000055555555578b &lt;+339&gt;:   jne    0x555555555792 &lt;phase<em>3+346&gt;
-   0x000055555555578d &lt;+341&gt;:   add    <span class="nv">$0</span>x18,%rsp
-   0x0000555555555791 &lt;+345&gt;:   ret <br />
-   0x0000555555555792 &lt;+346&gt;:   call   0x555555555d4a &lt;explode</em>bomb&gt;
-   </code></pre>
-   </div></p>
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x00005555555556f2<span class="w"> </span>&lt;+186&gt;:<span class="w">   </span>mov<span class="w">    </span><span class="nv">$0</span>x64,%eax
+<span class="w">   </span>0x00005555555556f7<span class="w"> </span>&lt;+191&gt;:<span class="w">   </span>cmpl<span class="w">   </span><span class="nv">$0</span>x280,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x00005555555556ff<span class="w"> </span>&lt;+199&gt;:<span class="w">   </span>je<span class="w">     </span>0x555555555787<span class="w"> </span>&lt;phase_3+335&gt;
+<span class="w">   </span>0x0000555555555705<span class="w"> </span>&lt;+205&gt;:<span class="w">   </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+</code></pre>
+</div>
+
+<p>We see that <code>0x64</code> (Decimal 100) is being stored in <code>%eax</code>. Then, the program compares <code>0x280</code> (Decimal 640) with memory address <code>0x8</code> bytes above the stack pointer (<code>%rsp</code>). If the values are equal, then it jumps to <code>&lt;phase_3+335&gt;</code>, otherwise <code>explode_bomb</code> is called.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x0000555555555787<span class="w"> </span>&lt;+335&gt;:<span class="w">   </span>cmp<span class="w">    </span>%al,0x7<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x000055555555578b<span class="w"> </span>&lt;+339&gt;:<span class="w">   </span>jne<span class="w">    </span>0x555555555792<span class="w"> </span>&lt;phase_3+346&gt;
+<span class="w">   </span>0x000055555555578d<span class="w"> </span>&lt;+341&gt;:<span class="w">   </span>add<span class="w">    </span><span class="nv">$0</span>x18,%rsp
+<span class="w">   </span>0x0000555555555791<span class="w"> </span>&lt;+345&gt;:<span class="w">   </span>ret<span class="w">    </span>
+<span class="w">   </span>0x0000555555555792<span class="w"> </span>&lt;+346&gt;:<span class="w">   </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+</code></pre>
+</div>
 
 <p>Here, the program is comparing the value of our given character to the value stored in <code>%al</code> (lower 8 bits of <code>EAX</code>), and checks if they are not equal.</p>
 
 <p>Knowing that the character is stored at an offset of 7 bytes to <code>%rsp</code>, we can print and check the value by running:</p>
 
 <div class="codehilite">
-<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> x/1cw <span class="nv">$rsp</span>+7
+<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/1cw<span class="w"> </span><span class="nv">$rsp</span>+7
 c
-<span class="o">(</span>gdb<span class="o">)</span> print <span class="nv">$al</span>
-<span class="nv">$1</span> <span class="o">=</span> <span class="m">100</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>print<span class="w"> </span><span class="nv">$al</span>
+<span class="nv">$1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
 </code></pre>
 </div>
 
@@ -515,114 +522,116 @@ c
 
 <div class="codehilite">
 <pre><span></span><code>...
-That<span class="err">&#39;</span>s number <span class="m">2</span>.  Keep going!
-<span class="m">3</span> d <span class="m">640</span>
+That<span class="err">&#39;</span>s<span class="w"> </span>number<span class="w"> </span><span class="m">2</span>.<span class="w">  </span>Keep<span class="w"> </span>going!
+<span class="m">3</span><span class="w"> </span>d<span class="w"> </span><span class="m">640</span>
 
-Breakpoint <span class="m">1</span>, 0x0000555555555638 <span class="k">in</span> phase_3 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> <span class="k">continue</span>
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x0000555555555638<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_3<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span><span class="k">continue</span>
 Continuing.
-Halfway there!
+Halfway<span class="w"> </span>there!
 </code></pre>
 </div>
 
 <h2>Phase 4</h2>
 
 <div class="codehilite">
-<pre><span></span><code>joxxxn@jupyter-nxxh6xx8:~/lab2-bomblab-navanchauhan/bombbomb$ gdb -ex <span class="s1">&#39;break phase_4&#39;</span> -ex <span class="s1">&#39;break explode_bomb&#39;</span> -ex <span class="s1">&#39;run&#39;</span> -args ./bomb sol.txt 
-GNU gdb <span class="o">(</span>Ubuntu <span class="m">12</span>.1-0ubuntu1~22.04<span class="o">)</span> <span class="m">12</span>.1
-Copyright <span class="o">(</span>C<span class="o">)</span> <span class="m">2022</span> Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version <span class="m">3</span> or later &lt;http://gnu.org/licenses/gpl.html&gt;
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-Type <span class="s2">&quot;show copying&quot;</span> and <span class="s2">&quot;show warranty&quot;</span> <span class="k">for</span> details.
-This GDB was configured as <span class="s2">&quot;x86_64-linux-gnu&quot;</span>.
-Type <span class="s2">&quot;show configuration&quot;</span> <span class="k">for</span> configuration details.
-For bug reporting instructions, please see:
+<pre><span></span><code>joxxxn@jupyter-nxxh6xx8:~/lab2-bomblab-navanchauhan/bombbomb$<span class="w"> </span>gdb<span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break phase_4&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break explode_bomb&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;run&#39;</span><span class="w"> </span>-args<span class="w"> </span>./bomb<span class="w"> </span>sol.txt<span class="w"> </span>
+GNU<span class="w"> </span>gdb<span class="w"> </span><span class="o">(</span>Ubuntu<span class="w"> </span><span class="m">12</span>.1-0ubuntu1~22.04<span class="o">)</span><span class="w"> </span><span class="m">12</span>.1
+Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>Free<span class="w"> </span>Software<span class="w"> </span>Foundation,<span class="w"> </span>Inc.
+License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
+This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;x86_64-linux-gnu&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
+For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
 &lt;https://www.gnu.org/software/gdb/bugs/&gt;.
-Find the GDB manual and other documentation resources online at:
-    &lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
+<span class="w">    </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
 
-For help, <span class="nb">type</span> <span class="s2">&quot;help&quot;</span>.
-Type <span class="s2">&quot;apropos word&quot;</span> to search <span class="k">for</span> commands related to <span class="s2">&quot;word&quot;</span>...
-Reading symbols from ./bomb...
-Breakpoint <span class="m">1</span> at 0x17d3
-Breakpoint <span class="m">2</span> at 0x1d4a
-Starting program: /home/joxxxn/lab2-bomblab-navanchauhan/bombbomb/bomb sol.txt
-<span class="o">[</span>Thread debugging using libthread_db enabled<span class="o">]</span>
-Using host libthread_db library <span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
-Welcome to my fiendish little bomb. You have <span class="m">6</span> phases with
-which to blow yourself up. Have a nice day!
-Phase <span class="m">1</span> defused. How about the next one?
-That<span class="err">&#39;</span>s number <span class="m">2</span>.  Keep going!
-Halfway there!
-<span class="nb">test</span> string
+For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>...
+Reading<span class="w"> </span>symbols<span class="w"> </span>from<span class="w"> </span>./bomb...
+Breakpoint<span class="w"> </span><span class="m">1</span><span class="w"> </span>at<span class="w"> </span>0x17d3
+Breakpoint<span class="w"> </span><span class="m">2</span><span class="w"> </span>at<span class="w"> </span>0x1d4a
+Starting<span class="w"> </span>program:<span class="w"> </span>/home/joxxxn/lab2-bomblab-navanchauhan/bombbomb/bomb<span class="w"> </span>sol.txt
+<span class="o">[</span>Thread<span class="w"> </span>debugging<span class="w"> </span>using<span class="w"> </span>libthread_db<span class="w"> </span>enabled<span class="o">]</span>
+Using<span class="w"> </span>host<span class="w"> </span>libthread_db<span class="w"> </span>library<span class="w"> </span><span class="s2">&quot;/lib/x86_64-linux-gnu/libthread_db.so.1&quot;</span>.
+Welcome<span class="w"> </span>to<span class="w"> </span>my<span class="w"> </span>fiendish<span class="w"> </span>little<span class="w"> </span>bomb.<span class="w"> </span>You<span class="w"> </span>have<span class="w"> </span><span class="m">6</span><span class="w"> </span>phases<span class="w"> </span>with
+which<span class="w"> </span>to<span class="w"> </span>blow<span class="w"> </span>yourself<span class="w"> </span>up.<span class="w"> </span>Have<span class="w"> </span>a<span class="w"> </span>nice<span class="w"> </span>day!
+Phase<span class="w"> </span><span class="m">1</span><span class="w"> </span>defused.<span class="w"> </span>How<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>one?
+That<span class="err">&#39;</span>s<span class="w"> </span>number<span class="w"> </span><span class="m">2</span>.<span class="w">  </span>Keep<span class="w"> </span>going!
+Halfway<span class="w"> </span>there!
+<span class="nb">test</span><span class="w"> </span>string
 
-Breakpoint <span class="m">1</span>, 0x00005555555557d3 <span class="k">in</span> phase_4 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> disas phase_4
-Dump of assembler code <span class="k">for</span> <span class="k">function</span> phase_4:
-<span class="o">=</span>&gt; 0x00005555555557d3 &lt;+0&gt;:     endbr64 
-   0x00005555555557d7 &lt;+4&gt;:     sub    <span class="nv">$0</span>x18,%rsp
-   0x00005555555557db &lt;+8&gt;:     lea    0x8<span class="o">(</span>%rsp<span class="o">)</span>,%rcx
-   0x00005555555557e0 &lt;+13&gt;:    lea    0xc<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
-   0x00005555555557e5 &lt;+18&gt;:    lea    0x1bba<span class="o">(</span>%rip<span class="o">)</span>,%rsi        <span class="c1"># 0x5555555573a6</span>
-   0x00005555555557ec &lt;+25&gt;:    mov    <span class="nv">$0</span>x0,%eax
-   0x00005555555557f1 &lt;+30&gt;:    call   0x5555555552e0 &lt;__isoc99_sscanf@plt&gt;
-   0x00005555555557f6 &lt;+35&gt;:    cmp    <span class="nv">$0</span>x2,%eax
-   0x00005555555557f9 &lt;+38&gt;:    jne    0x555555555802 &lt;phase_4+47&gt;
-   0x00005555555557fb &lt;+40&gt;:    cmpl   <span class="nv">$0</span>xe,0xc<span class="o">(</span>%rsp<span class="o">)</span>
-   0x0000555555555800 &lt;+45&gt;:    jbe    0x555555555807 &lt;phase_4+52&gt;
-   0x0000555555555802 &lt;+47&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x0000555555555807 &lt;+52&gt;:    mov    <span class="nv">$0</span>xe,%edx
-   0x000055555555580c &lt;+57&gt;:    mov    <span class="nv">$0</span>x0,%esi
-   0x0000555555555811 &lt;+62&gt;:    mov    0xc<span class="o">(</span>%rsp<span class="o">)</span>,%edi
-   0x0000555555555815 &lt;+66&gt;:    call   0x555555555799 &lt;func4&gt;
-   0x000055555555581a &lt;+71&gt;:    cmp    <span class="nv">$0</span>x2,%eax
-   0x000055555555581d &lt;+74&gt;:    jne    0x555555555826 &lt;phase_4+83&gt;
-   0x000055555555581f &lt;+76&gt;:    cmpl   <span class="nv">$0</span>x2,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-   0x0000555555555824 &lt;+81&gt;:    je     0x55555555582b &lt;phase_4+88&gt;
-   0x0000555555555826 &lt;+83&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x000055555555582b &lt;+88&gt;:    add    <span class="nv">$0</span>x18,%rsp
-   0x000055555555582f &lt;+92&gt;:    ret    
-End of assembler dump.
-<span class="o">(</span>gdb<span class="o">)</span> 
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x00005555555557d3<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_4<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>disas<span class="w"> </span>phase_4
+Dump<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>code<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>phase_4:
+<span class="o">=</span>&gt;<span class="w"> </span>0x00005555555557d3<span class="w"> </span>&lt;+0&gt;:<span class="w">     </span>endbr64<span class="w"> </span>
+<span class="w">   </span>0x00005555555557d7<span class="w"> </span>&lt;+4&gt;:<span class="w">     </span>sub<span class="w">    </span><span class="nv">$0</span>x18,%rsp
+<span class="w">   </span>0x00005555555557db<span class="w"> </span>&lt;+8&gt;:<span class="w">     </span>lea<span class="w">    </span>0x8<span class="o">(</span>%rsp<span class="o">)</span>,%rcx
+<span class="w">   </span>0x00005555555557e0<span class="w"> </span>&lt;+13&gt;:<span class="w">    </span>lea<span class="w">    </span>0xc<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
+<span class="w">   </span>0x00005555555557e5<span class="w"> </span>&lt;+18&gt;:<span class="w">    </span>lea<span class="w">    </span>0x1bba<span class="o">(</span>%rip<span class="o">)</span>,%rsi<span class="w">        </span><span class="c1"># 0x5555555573a6</span>
+<span class="w">   </span>0x00005555555557ec<span class="w"> </span>&lt;+25&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
+<span class="w">   </span>0x00005555555557f1<span class="w"> </span>&lt;+30&gt;:<span class="w">    </span>call<span class="w">   </span>0x5555555552e0<span class="w"> </span>&lt;__isoc99_sscanf@plt&gt;
+<span class="w">   </span>0x00005555555557f6<span class="w"> </span>&lt;+35&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x2,%eax
+<span class="w">   </span>0x00005555555557f9<span class="w"> </span>&lt;+38&gt;:<span class="w">    </span>jne<span class="w">    </span>0x555555555802<span class="w"> </span>&lt;phase_4+47&gt;
+<span class="w">   </span>0x00005555555557fb<span class="w"> </span>&lt;+40&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>xe,0xc<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555800<span class="w"> </span>&lt;+45&gt;:<span class="w">    </span>jbe<span class="w">    </span>0x555555555807<span class="w"> </span>&lt;phase_4+52&gt;
+<span class="w">   </span>0x0000555555555802<span class="w"> </span>&lt;+47&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x0000555555555807<span class="w"> </span>&lt;+52&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>xe,%edx
+<span class="w">   </span>0x000055555555580c<span class="w"> </span>&lt;+57&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%esi
+<span class="w">   </span>0x0000555555555811<span class="w"> </span>&lt;+62&gt;:<span class="w">    </span>mov<span class="w">    </span>0xc<span class="o">(</span>%rsp<span class="o">)</span>,%edi
+<span class="w">   </span>0x0000555555555815<span class="w"> </span>&lt;+66&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555799<span class="w"> </span>&lt;func4&gt;
+<span class="w">   </span>0x000055555555581a<span class="w"> </span>&lt;+71&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x2,%eax
+<span class="w">   </span>0x000055555555581d<span class="w"> </span>&lt;+74&gt;:<span class="w">    </span>jne<span class="w">    </span>0x555555555826<span class="w"> </span>&lt;phase_4+83&gt;
+<span class="w">   </span>0x000055555555581f<span class="w"> </span>&lt;+76&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x2,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555824<span class="w"> </span>&lt;+81&gt;:<span class="w">    </span>je<span class="w">     </span>0x55555555582b<span class="w"> </span>&lt;phase_4+88&gt;
+<span class="w">   </span>0x0000555555555826<span class="w"> </span>&lt;+83&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x000055555555582b<span class="w"> </span>&lt;+88&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x18,%rsp
+<span class="w">   </span>0x000055555555582f<span class="w"> </span>&lt;+92&gt;:<span class="w">    </span>ret<span class="w">    </span>
+End<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>dump.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>
 </code></pre>
 </div>
 
 <p>Again, <code>gdb</code> has marked the string being passed to <code>scanf</code></p>
 
 <div class="codehilite">
-<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> x/1s 0x5555555573a6
-0x5555555573a6: <span class="s2">&quot;%d %d&quot;</span>
+<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/1s<span class="w"> </span>0x5555555573a6
+0x5555555573a6:<span class="w"> </span><span class="s2">&quot;%d %d&quot;</span>
 </code></pre>
 </div>
 
-<p>Okay, so this time we are supposed to enter 2 numbers.
-   <div class="codehilite">
-   <pre><span></span><code>0x00005555555557f6 &lt;+35&gt;:    cmp    <span class="nv">$0</span>x2,%eax
-   0x00005555555557f9 &lt;+38&gt;:    jne    0x555555555802 &lt;phase_4+47&gt;
-   </code></pre>
-   </div></p>
+<p>Okay, so this time we are supposed to enter 2 numbers.</p>
 
-<p>Checks if there were 2 values read from calling <code>scanf</code>, if not -> jump to <code>&lt;phase_4+47&gt;</code> which calls <code>&lt;explode_bomb&gt;</code>.
-   <div class="codehilite">
-   <pre><span></span><code>0x00005555555557fb &lt;+40&gt;:    cmpl   <span class="nv">$0</span>xe,0xc<span class="o">(</span>%rsp<span class="o">)</span>
-   0x0000555555555800 &lt;+45&gt;:    jbe    0x555555555807 &lt;phase_4+52&gt;
-   </code></pre>
-   </div></p>
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x00005555555557f6<span class="w"> </span>&lt;+35&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x2,%eax
+<span class="w">   </span>0x00005555555557f9<span class="w"> </span>&lt;+38&gt;:<span class="w">    </span>jne<span class="w">    </span>0x555555555802<span class="w"> </span>&lt;phase_4+47&gt;
+</code></pre>
+</div>
+
+<p>Checks if there were 2 values read from calling <code>scanf</code>, if not -> jump to <code>&lt;phase_4+47&gt;</code> which calls <code>&lt;explode_bomb&gt;</code>.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x00005555555557fb<span class="w"> </span>&lt;+40&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>xe,0xc<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555800<span class="w"> </span>&lt;+45&gt;:<span class="w">    </span>jbe<span class="w">    </span>0x555555555807<span class="w"> </span>&lt;phase_4+52&gt;
+</code></pre>
+</div>
 
 <p>Compare <code>0xe</code> (14 in Decimal) and value stored at <code>$rsp</code> + <code>0xc</code> bytes (Decimal 12). If this condition is met (&lt;= 14), jump to <code>&lt;phase_4+52&gt;</code>. If not, then explode bomb.</p>
 
 <div class="codehilite">
 <pre><span></span><code>...
-   0x0000555555555807 &lt;+52&gt;:    mov    <span class="nv">$0</span>xe,%edx
-   0x000055555555580c &lt;+57&gt;:    mov    <span class="nv">$0</span>x0,%esi
-   0x0000555555555811 &lt;+62&gt;:    mov    0xc<span class="o">(</span>%rsp<span class="o">)</span>,%edi
-   0x0000555555555815 &lt;+66&gt;:    call   0x555555555799 &lt;func4&gt;
-   0x000055555555581a &lt;+71&gt;:    cmp    <span class="nv">$0</span>x2,%eax
-   0x000055555555581d &lt;+74&gt;:    jne    0x555555555826 &lt;phase_4+83&gt;
-   0x000055555555581f &lt;+76&gt;:    cmpl   <span class="nv">$0</span>x2,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-   0x0000555555555824 &lt;+81&gt;:    je     0x55555555582b &lt;phase_4+88&gt;
-   0x0000555555555826 &lt;+83&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+<span class="w">   </span>0x0000555555555807<span class="w"> </span>&lt;+52&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>xe,%edx
+<span class="w">   </span>0x000055555555580c<span class="w"> </span>&lt;+57&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%esi
+<span class="w">   </span>0x0000555555555811<span class="w"> </span>&lt;+62&gt;:<span class="w">    </span>mov<span class="w">    </span>0xc<span class="o">(</span>%rsp<span class="o">)</span>,%edi
+<span class="w">   </span>0x0000555555555815<span class="w"> </span>&lt;+66&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555799<span class="w"> </span>&lt;func4&gt;
+<span class="w">   </span>0x000055555555581a<span class="w"> </span>&lt;+71&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x2,%eax
+<span class="w">   </span>0x000055555555581d<span class="w"> </span>&lt;+74&gt;:<span class="w">    </span>jne<span class="w">    </span>0x555555555826<span class="w"> </span>&lt;phase_4+83&gt;
+<span class="w">   </span>0x000055555555581f<span class="w"> </span>&lt;+76&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x2,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555824<span class="w"> </span>&lt;+81&gt;:<span class="w">    </span>je<span class="w">     </span>0x55555555582b<span class="w"> </span>&lt;phase_4+88&gt;
+<span class="w">   </span>0x0000555555555826<span class="w"> </span>&lt;+83&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
 </code></pre>
 </div>
 
@@ -634,28 +643,28 @@ End of assembler dump.
 <p>Let us look into <code>func4</code></p>
 
 <div class="codehilite">
-<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> disas func4
-Dump of assembler code <span class="k">for</span> <span class="k">function</span> func4:
-   0x0000555555555799 &lt;+0&gt;:     endbr64 
-   0x000055555555579d &lt;+4&gt;:     sub    <span class="nv">$0</span>x8,%rsp
-   0x00005555555557a1 &lt;+8&gt;:     mov    %edx,%ecx
-   0x00005555555557a3 &lt;+10&gt;:    sub    %esi,%ecx
-   0x00005555555557a5 &lt;+12&gt;:    shr    %ecx
-   0x00005555555557a7 &lt;+14&gt;:    add    %esi,%ecx
-   0x00005555555557a9 &lt;+16&gt;:    cmp    %edi,%ecx
-   0x00005555555557ab &lt;+18&gt;:    ja     0x5555555557b9 &lt;func4+32&gt;
-   0x00005555555557ad &lt;+20&gt;:    mov    <span class="nv">$0</span>x0,%eax
-   0x00005555555557b2 &lt;+25&gt;:    jb     0x5555555557c5 &lt;func4+44&gt;
-   0x00005555555557b4 &lt;+27&gt;:    add    <span class="nv">$0</span>x8,%rsp
-   0x00005555555557b8 &lt;+31&gt;:    ret    
-   0x00005555555557b9 &lt;+32&gt;:    lea    -0x1<span class="o">(</span>%rcx<span class="o">)</span>,%edx
-   0x00005555555557bc &lt;+35&gt;:    call   0x555555555799 &lt;func4&gt;
-   0x00005555555557c1 &lt;+40&gt;:    add    %eax,%eax
-   0x00005555555557c3 &lt;+42&gt;:    jmp    0x5555555557b4 &lt;func4+27&gt;
-   0x00005555555557c5 &lt;+44&gt;:    lea    0x1<span class="o">(</span>%rcx<span class="o">)</span>,%esi
-   0x00005555555557c8 &lt;+47&gt;:    call   0x555555555799 &lt;func4&gt;
-   0x00005555555557cd &lt;+52&gt;:    lea    0x1<span class="o">(</span>%rax,%rax,1<span class="o">)</span>,%eax
-   0x00005555555557d1 &lt;+56&gt;:    jmp    0x5555555557b4 &lt;func4+27&gt;
+<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>disas<span class="w"> </span>func4
+Dump<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>code<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>func4:
+<span class="w">   </span>0x0000555555555799<span class="w"> </span>&lt;+0&gt;:<span class="w">     </span>endbr64<span class="w"> </span>
+<span class="w">   </span>0x000055555555579d<span class="w"> </span>&lt;+4&gt;:<span class="w">     </span>sub<span class="w">    </span><span class="nv">$0</span>x8,%rsp
+<span class="w">   </span>0x00005555555557a1<span class="w"> </span>&lt;+8&gt;:<span class="w">     </span>mov<span class="w">    </span>%edx,%ecx
+<span class="w">   </span>0x00005555555557a3<span class="w"> </span>&lt;+10&gt;:<span class="w">    </span>sub<span class="w">    </span>%esi,%ecx
+<span class="w">   </span>0x00005555555557a5<span class="w"> </span>&lt;+12&gt;:<span class="w">    </span>shr<span class="w">    </span>%ecx
+<span class="w">   </span>0x00005555555557a7<span class="w"> </span>&lt;+14&gt;:<span class="w">    </span>add<span class="w">    </span>%esi,%ecx
+<span class="w">   </span>0x00005555555557a9<span class="w"> </span>&lt;+16&gt;:<span class="w">    </span>cmp<span class="w">    </span>%edi,%ecx
+<span class="w">   </span>0x00005555555557ab<span class="w"> </span>&lt;+18&gt;:<span class="w">    </span>ja<span class="w">     </span>0x5555555557b9<span class="w"> </span>&lt;func4+32&gt;
+<span class="w">   </span>0x00005555555557ad<span class="w"> </span>&lt;+20&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
+<span class="w">   </span>0x00005555555557b2<span class="w"> </span>&lt;+25&gt;:<span class="w">    </span>jb<span class="w">     </span>0x5555555557c5<span class="w"> </span>&lt;func4+44&gt;
+<span class="w">   </span>0x00005555555557b4<span class="w"> </span>&lt;+27&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x8,%rsp
+<span class="w">   </span>0x00005555555557b8<span class="w"> </span>&lt;+31&gt;:<span class="w">    </span>ret<span class="w">    </span>
+<span class="w">   </span>0x00005555555557b9<span class="w"> </span>&lt;+32&gt;:<span class="w">    </span>lea<span class="w">    </span>-0x1<span class="o">(</span>%rcx<span class="o">)</span>,%edx
+<span class="w">   </span>0x00005555555557bc<span class="w"> </span>&lt;+35&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555799<span class="w"> </span>&lt;func4&gt;
+<span class="w">   </span>0x00005555555557c1<span class="w"> </span>&lt;+40&gt;:<span class="w">    </span>add<span class="w">    </span>%eax,%eax
+<span class="w">   </span>0x00005555555557c3<span class="w"> </span>&lt;+42&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x5555555557b4<span class="w"> </span>&lt;func4+27&gt;
+<span class="w">   </span>0x00005555555557c5<span class="w"> </span>&lt;+44&gt;:<span class="w">    </span>lea<span class="w">    </span>0x1<span class="o">(</span>%rcx<span class="o">)</span>,%esi
+<span class="w">   </span>0x00005555555557c8<span class="w"> </span>&lt;+47&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555799<span class="w"> </span>&lt;func4&gt;
+<span class="w">   </span>0x00005555555557cd<span class="w"> </span>&lt;+52&gt;:<span class="w">    </span>lea<span class="w">    </span>0x1<span class="o">(</span>%rax,%rax,1<span class="o">)</span>,%eax
+<span class="w">   </span>0x00005555555557d1<span class="w"> </span>&lt;+56&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x5555555557b4<span class="w"> </span>&lt;func4+27&gt;
 </code></pre>
 </div>
 
@@ -665,25 +674,25 @@ Dump of assembler code <span class="k">for</span> <span class="k">function</span
 
 <div class="codehilite">
 <pre><span></span><code>endbr64
-sub <span class="nv">$0</span>x8,%rsp  // subtract <span class="m">8</span> bytes from the stack pointer
-mov %edx,%ecx  // Move the value <span class="k">in</span> register %edx to %ecx
-sub %esi,%ecx  // Subtract the value <span class="k">in</span> %esi from %ecx
-shr %ecx       // Right <span class="nb">shift</span> the value <span class="k">in</span> %ecx by one bit <span class="o">(</span>dividing the value by <span class="m">2</span><span class="o">)</span>
-add %esi,%ecx  // Add the value <span class="k">in</span> %esi to %ecx
-cmp %edi,%ecx  // Compare
-ja 0x5555555557b9 &lt;func4+32&gt; // If %ecx &gt; %edi -&gt; jump to instruction at offset +32
-mov <span class="nv">$0</span>x0,%eax  // Move <span class="m">0</span> to %eax
-jb 0x5555555557c5 &lt;func4+44&gt; // If %ecx &lt; %edi -&gt; jump to instruction at offset +44.
-add <span class="nv">$0</span>x8,%rsp  // add <span class="m">8</span> bytes to the stack pointer
-ret            // <span class="k">return</span>
-lea -0x1<span class="o">(</span>%rcx<span class="o">)</span>,%edx // LEA of <span class="nv">$rxc</span> - <span class="m">1</span> into <span class="nv">$edx</span>
-call 0x555555555799 &lt;func4&gt; // Call itself
-add %eax,%eax  // Double the value <span class="k">in</span> %eax
-jmp 0x5555555557b4 &lt;func4+27&gt; // jump to the instruction at offset +27
-lea 0x1<span class="o">(</span>%rcx<span class="o">)</span>,%esi
-call 0x555555555799 &lt;func4&gt;
-lea 0x1<span class="o">(</span>%rax,%rax,1<span class="o">)</span>,%eax // LEA of %rax * <span class="m">2</span> + <span class="m">1</span> into <span class="nv">$eax</span> 
-jmp 0x5555555557b4 &lt;func4+27&gt;
+sub<span class="w"> </span><span class="nv">$0</span>x8,%rsp<span class="w">  </span>//<span class="w"> </span>subtract<span class="w"> </span><span class="m">8</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>stack<span class="w"> </span>pointer
+mov<span class="w"> </span>%edx,%ecx<span class="w">  </span>//<span class="w"> </span>Move<span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span><span class="k">in</span><span class="w"> </span>register<span class="w"> </span>%edx<span class="w"> </span>to<span class="w"> </span>%ecx
+sub<span class="w"> </span>%esi,%ecx<span class="w">  </span>//<span class="w"> </span>Subtract<span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span><span class="k">in</span><span class="w"> </span>%esi<span class="w"> </span>from<span class="w"> </span>%ecx
+shr<span class="w"> </span>%ecx<span class="w">       </span>//<span class="w"> </span>Right<span class="w"> </span><span class="nb">shift</span><span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span><span class="k">in</span><span class="w"> </span>%ecx<span class="w"> </span>by<span class="w"> </span>one<span class="w"> </span>bit<span class="w"> </span><span class="o">(</span>dividing<span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span>by<span class="w"> </span><span class="m">2</span><span class="o">)</span>
+add<span class="w"> </span>%esi,%ecx<span class="w">  </span>//<span class="w"> </span>Add<span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span><span class="k">in</span><span class="w"> </span>%esi<span class="w"> </span>to<span class="w"> </span>%ecx
+cmp<span class="w"> </span>%edi,%ecx<span class="w">  </span>//<span class="w"> </span>Compare
+ja<span class="w"> </span>0x5555555557b9<span class="w"> </span>&lt;func4+32&gt;<span class="w"> </span>//<span class="w"> </span>If<span class="w"> </span>%ecx<span class="w"> </span>&gt;<span class="w"> </span>%edi<span class="w"> </span>-&gt;<span class="w"> </span>jump<span class="w"> </span>to<span class="w"> </span>instruction<span class="w"> </span>at<span class="w"> </span>offset<span class="w"> </span>+32
+mov<span class="w"> </span><span class="nv">$0</span>x0,%eax<span class="w">  </span>//<span class="w"> </span>Move<span class="w"> </span><span class="m">0</span><span class="w"> </span>to<span class="w"> </span>%eax
+jb<span class="w"> </span>0x5555555557c5<span class="w"> </span>&lt;func4+44&gt;<span class="w"> </span>//<span class="w"> </span>If<span class="w"> </span>%ecx<span class="w"> </span>&lt;<span class="w"> </span>%edi<span class="w"> </span>-&gt;<span class="w"> </span>jump<span class="w"> </span>to<span class="w"> </span>instruction<span class="w"> </span>at<span class="w"> </span>offset<span class="w"> </span>+44.
+add<span class="w"> </span><span class="nv">$0</span>x8,%rsp<span class="w">  </span>//<span class="w"> </span>add<span class="w"> </span><span class="m">8</span><span class="w"> </span>bytes<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>stack<span class="w"> </span>pointer
+ret<span class="w">            </span>//<span class="w"> </span><span class="k">return</span>
+lea<span class="w"> </span>-0x1<span class="o">(</span>%rcx<span class="o">)</span>,%edx<span class="w"> </span>//<span class="w"> </span>LEA<span class="w"> </span>of<span class="w"> </span><span class="nv">$rxc</span><span class="w"> </span>-<span class="w"> </span><span class="m">1</span><span class="w"> </span>into<span class="w"> </span><span class="nv">$edx</span>
+call<span class="w"> </span>0x555555555799<span class="w"> </span>&lt;func4&gt;<span class="w"> </span>//<span class="w"> </span>Call<span class="w"> </span>itself
+add<span class="w"> </span>%eax,%eax<span class="w">  </span>//<span class="w"> </span>Double<span class="w"> </span>the<span class="w"> </span>value<span class="w"> </span><span class="k">in</span><span class="w"> </span>%eax
+jmp<span class="w"> </span>0x5555555557b4<span class="w"> </span>&lt;func4+27&gt;<span class="w"> </span>//<span class="w"> </span>jump<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>instruction<span class="w"> </span>at<span class="w"> </span>offset<span class="w"> </span>+27
+lea<span class="w"> </span>0x1<span class="o">(</span>%rcx<span class="o">)</span>,%esi
+call<span class="w"> </span>0x555555555799<span class="w"> </span>&lt;func4&gt;
+lea<span class="w"> </span>0x1<span class="o">(</span>%rax,%rax,1<span class="o">)</span>,%eax<span class="w"> </span>//<span class="w"> </span>LEA<span class="w"> </span>of<span class="w"> </span>%rax<span class="w"> </span>*<span class="w"> </span><span class="m">2</span><span class="w"> </span>+<span class="w"> </span><span class="m">1</span><span class="w"> </span>into<span class="w"> </span><span class="nv">$eax</span><span class="w"> </span>
+jmp<span class="w"> </span>0x5555555557b4<span class="w"> </span>&lt;func4+27&gt;
 </code></pre>
 </div>
 
@@ -710,79 +719,80 @@ jmp 0x5555555557b4 &lt;func4+27&gt;
 
 <p>Okay, so we know that the number needed to be passed to <code>func4</code> is 5. But, what about the second digit?</p>
 
-<p>If we go back to the code for <code>&lt;phase_4&gt;</code>, we can see that:
-   <div class="codehilite">
-   <pre><span></span><code>0x000055555555581f &lt;+76&gt;:    cmpl   <span class="nv">$0</span>x2,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-   0x0000555555555824 &lt;+81&gt;:    je     0x55555555582b &lt;phase_4+88&gt;
-   </code></pre>
-   </div></p>
+<p>If we go back to the code for <code>&lt;phase_4&gt;</code>, we can see that:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x000055555555581f<span class="w"> </span>&lt;+76&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x2,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555824<span class="w"> </span>&lt;+81&gt;:<span class="w">    </span>je<span class="w">     </span>0x55555555582b<span class="w"> </span>&lt;phase_4+88&gt;
+</code></pre>
+</div>
 
 <p>The value at <code>$rsp+8</code> should be equal to 2. So, let us try passing <code>5 2</code> as our input.</p>
 
 <div class="codehilite">
 <pre><span></span><code>...
-Phase <span class="m">1</span> defused. How about the next one?
-That<span class="err">&#39;</span>s number <span class="m">2</span>.  Keep going!
-Halfway there!
-<span class="m">5</span> <span class="m">2</span>
+Phase<span class="w"> </span><span class="m">1</span><span class="w"> </span>defused.<span class="w"> </span>How<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>one?
+That<span class="err">&#39;</span>s<span class="w"> </span>number<span class="w"> </span><span class="m">2</span>.<span class="w">  </span>Keep<span class="w"> </span>going!
+Halfway<span class="w"> </span>there!
+<span class="m">5</span><span class="w"> </span><span class="m">2</span>
 
-Breakpoint <span class="m">1</span>, 0x00005555555557d3 <span class="k">in</span> phase_4 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> <span class="k">continue</span>
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x00005555555557d3<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_4<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span><span class="k">continue</span>
 Continuing.
-So you got that one.  Try this one.
+So<span class="w"> </span>you<span class="w"> </span>got<span class="w"> </span>that<span class="w"> </span>one.<span class="w">  </span>Try<span class="w"> </span>this<span class="w"> </span>one.
 </code></pre>
 </div>
 
 <h2>Phase 5</h2>
 
 <div class="codehilite">
-<pre><span></span><code>So you got that one.  Try this one.
-<span class="nb">test</span> string
+<pre><span></span><code>So<span class="w"> </span>you<span class="w"> </span>got<span class="w"> </span>that<span class="w"> </span>one.<span class="w">  </span>Try<span class="w"> </span>this<span class="w"> </span>one.
+<span class="nb">test</span><span class="w"> </span>string
 
-Breakpoint <span class="m">1</span>, 0x0000555555555830 <span class="k">in</span> phase_5 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> disas phase_5
-Dump of assembler code <span class="k">for</span> <span class="k">function</span> phase_5:
-<span class="o">=</span>&gt; 0x0000555555555830 &lt;+0&gt;:     endbr64 
-   0x0000555555555834 &lt;+4&gt;:     push   %rbx
-   0x0000555555555835 &lt;+5&gt;:     sub    <span class="nv">$0</span>x10,%rsp
-   0x0000555555555839 &lt;+9&gt;:     mov    %rdi,%rbx
-   0x000055555555583c &lt;+12&gt;:    call   0x555555555b10 &lt;string_length&gt;
-   0x0000555555555841 &lt;+17&gt;:    cmp    <span class="nv">$0</span>x6,%eax
-   0x0000555555555844 &lt;+20&gt;:    jne    0x55555555588b &lt;phase_5+91&gt;
-   0x0000555555555846 &lt;+22&gt;:    mov    <span class="nv">$0</span>x0,%eax
-   0x000055555555584b &lt;+27&gt;:    lea    0x199e<span class="o">(</span>%rip<span class="o">)</span>,%rcx        <span class="c1"># 0x5555555571f0 &lt;array.0&gt;</span>
-   0x0000555555555852 &lt;+34&gt;:    movzbl <span class="o">(</span>%rbx,%rax,1<span class="o">)</span>,%edx
-   0x0000555555555856 &lt;+38&gt;:    and    <span class="nv">$0</span>xf,%edx
-   0x0000555555555859 &lt;+41&gt;:    movzbl <span class="o">(</span>%rcx,%rdx,1<span class="o">)</span>,%edx
-   0x000055555555585d &lt;+45&gt;:    mov    %dl,0x9<span class="o">(</span>%rsp,%rax,1<span class="o">)</span>
-   0x0000555555555861 &lt;+49&gt;:    add    <span class="nv">$0</span>x1,%rax
-   0x0000555555555865 &lt;+53&gt;:    cmp    <span class="nv">$0</span>x6,%rax
-   0x0000555555555869 &lt;+57&gt;:    jne    0x555555555852 &lt;phase_5+34&gt;
-   0x000055555555586b &lt;+59&gt;:    movb   <span class="nv">$0</span>x0,0xf<span class="o">(</span>%rsp<span class="o">)</span>
-   0x0000555555555870 &lt;+64&gt;:    lea    0x9<span class="o">(</span>%rsp<span class="o">)</span>,%rdi
-   0x0000555555555875 &lt;+69&gt;:    lea    0x1943<span class="o">(</span>%rip<span class="o">)</span>,%rsi        <span class="c1"># 0x5555555571bf</span>
-   0x000055555555587c &lt;+76&gt;:    call   0x555555555b31 &lt;strings_not_equal&gt;
-   0x0000555555555881 &lt;+81&gt;:    <span class="nb">test</span>   %eax,%eax
-   0x0000555555555883 &lt;+83&gt;:    jne    0x555555555892 &lt;phase_5+98&gt;
-   0x0000555555555885 &lt;+85&gt;:    add    <span class="nv">$0</span>x10,%rsp
-   0x0000555555555889 &lt;+89&gt;:    pop    %rbx
-   0x000055555555588a &lt;+90&gt;:    ret    
-   0x000055555555588b &lt;+91&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x0000555555555890 &lt;+96&gt;:    jmp    0x555555555846 &lt;phase_5+22&gt;
-   0x0000555555555892 &lt;+98&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x0000555555555897 &lt;+103&gt;:   jmp    0x555555555885 &lt;phase_5+85&gt;
-End of assembler dump.
-<span class="o">(</span>gdb<span class="o">)</span> 
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x0000555555555830<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_5<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>disas<span class="w"> </span>phase_5
+Dump<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>code<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>phase_5:
+<span class="o">=</span>&gt;<span class="w"> </span>0x0000555555555830<span class="w"> </span>&lt;+0&gt;:<span class="w">     </span>endbr64<span class="w"> </span>
+<span class="w">   </span>0x0000555555555834<span class="w"> </span>&lt;+4&gt;:<span class="w">     </span>push<span class="w">   </span>%rbx
+<span class="w">   </span>0x0000555555555835<span class="w"> </span>&lt;+5&gt;:<span class="w">     </span>sub<span class="w">    </span><span class="nv">$0</span>x10,%rsp
+<span class="w">   </span>0x0000555555555839<span class="w"> </span>&lt;+9&gt;:<span class="w">     </span>mov<span class="w">    </span>%rdi,%rbx
+<span class="w">   </span>0x000055555555583c<span class="w"> </span>&lt;+12&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555b10<span class="w"> </span>&lt;string_length&gt;
+<span class="w">   </span>0x0000555555555841<span class="w"> </span>&lt;+17&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x6,%eax
+<span class="w">   </span>0x0000555555555844<span class="w"> </span>&lt;+20&gt;:<span class="w">    </span>jne<span class="w">    </span>0x55555555588b<span class="w"> </span>&lt;phase_5+91&gt;
+<span class="w">   </span>0x0000555555555846<span class="w"> </span>&lt;+22&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%eax
+<span class="w">   </span>0x000055555555584b<span class="w"> </span>&lt;+27&gt;:<span class="w">    </span>lea<span class="w">    </span>0x199e<span class="o">(</span>%rip<span class="o">)</span>,%rcx<span class="w">        </span><span class="c1"># 0x5555555571f0 &lt;array.0&gt;</span>
+<span class="w">   </span>0x0000555555555852<span class="w"> </span>&lt;+34&gt;:<span class="w">    </span>movzbl<span class="w"> </span><span class="o">(</span>%rbx,%rax,1<span class="o">)</span>,%edx
+<span class="w">   </span>0x0000555555555856<span class="w"> </span>&lt;+38&gt;:<span class="w">    </span>and<span class="w">    </span><span class="nv">$0</span>xf,%edx
+<span class="w">   </span>0x0000555555555859<span class="w"> </span>&lt;+41&gt;:<span class="w">    </span>movzbl<span class="w"> </span><span class="o">(</span>%rcx,%rdx,1<span class="o">)</span>,%edx
+<span class="w">   </span>0x000055555555585d<span class="w"> </span>&lt;+45&gt;:<span class="w">    </span>mov<span class="w">    </span>%dl,0x9<span class="o">(</span>%rsp,%rax,1<span class="o">)</span>
+<span class="w">   </span>0x0000555555555861<span class="w"> </span>&lt;+49&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x1,%rax
+<span class="w">   </span>0x0000555555555865<span class="w"> </span>&lt;+53&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x6,%rax
+<span class="w">   </span>0x0000555555555869<span class="w"> </span>&lt;+57&gt;:<span class="w">    </span>jne<span class="w">    </span>0x555555555852<span class="w"> </span>&lt;phase_5+34&gt;
+<span class="w">   </span>0x000055555555586b<span class="w"> </span>&lt;+59&gt;:<span class="w">    </span>movb<span class="w">   </span><span class="nv">$0</span>x0,0xf<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x0000555555555870<span class="w"> </span>&lt;+64&gt;:<span class="w">    </span>lea<span class="w">    </span>0x9<span class="o">(</span>%rsp<span class="o">)</span>,%rdi
+<span class="w">   </span>0x0000555555555875<span class="w"> </span>&lt;+69&gt;:<span class="w">    </span>lea<span class="w">    </span>0x1943<span class="o">(</span>%rip<span class="o">)</span>,%rsi<span class="w">        </span><span class="c1"># 0x5555555571bf</span>
+<span class="w">   </span>0x000055555555587c<span class="w"> </span>&lt;+76&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555b31<span class="w"> </span>&lt;strings_not_equal&gt;
+<span class="w">   </span>0x0000555555555881<span class="w"> </span>&lt;+81&gt;:<span class="w">    </span><span class="nb">test</span><span class="w">   </span>%eax,%eax
+<span class="w">   </span>0x0000555555555883<span class="w"> </span>&lt;+83&gt;:<span class="w">    </span>jne<span class="w">    </span>0x555555555892<span class="w"> </span>&lt;phase_5+98&gt;
+<span class="w">   </span>0x0000555555555885<span class="w"> </span>&lt;+85&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x10,%rsp
+<span class="w">   </span>0x0000555555555889<span class="w"> </span>&lt;+89&gt;:<span class="w">    </span>pop<span class="w">    </span>%rbx
+<span class="w">   </span>0x000055555555588a<span class="w"> </span>&lt;+90&gt;:<span class="w">    </span>ret<span class="w">    </span>
+<span class="w">   </span>0x000055555555588b<span class="w"> </span>&lt;+91&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x0000555555555890<span class="w"> </span>&lt;+96&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x555555555846<span class="w"> </span>&lt;phase_5+22&gt;
+<span class="w">   </span>0x0000555555555892<span class="w"> </span>&lt;+98&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x0000555555555897<span class="w"> </span>&lt;+103&gt;:<span class="w">   </span>jmp<span class="w">    </span>0x555555555885<span class="w"> </span>&lt;phase_5+85&gt;
+End<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>dump.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>
 </code></pre>
 </div>
 
 <div class="codehilite">
 <pre><span></span><code>...
-   0x000055555555583c &lt;+12&gt;:    call   0x555555555b10 &lt;string_length&gt;
-   0x0000555555555841 &lt;+17&gt;:    cmp    <span class="nv">$0</span>x6,%eax
-   0x0000555555555844 &lt;+20&gt;:    jne    0x55555555588b &lt;phase_5+91&gt;
+<span class="w">   </span>0x000055555555583c<span class="w"> </span>&lt;+12&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555b10<span class="w"> </span>&lt;string_length&gt;
+<span class="w">   </span>0x0000555555555841<span class="w"> </span>&lt;+17&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x6,%eax
+<span class="w">   </span>0x0000555555555844<span class="w"> </span>&lt;+20&gt;:<span class="w">    </span>jne<span class="w">    </span>0x55555555588b<span class="w"> </span>&lt;phase_5+91&gt;
 ...
-   0x000055555555588b &lt;+91&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
+<span class="w">   </span>0x000055555555588b<span class="w"> </span>&lt;+91&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
 ...
 </code></pre>
 </div>
@@ -810,11 +820,11 @@ End of assembler dump.
 <p>We can check the reference string we need, which <code>gdb</code> has marked as <code># 0x5555555571bf</code>, and the lookup table marked as <code># 0x5555555571f0 &lt;array.0&gt;</code></p>
 
 <div class="codehilite">
-<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> x/s 0x5555555571bf
-0x5555555571bf: <span class="s2">&quot;bruins&quot;</span>
-<span class="o">(</span>gdb<span class="o">)</span> x/s 0x5555555571f0
-0x5555555571f0 &lt;array.0&gt;:       <span class="s2">&quot;maduiersnfotvbylSo you think you can stop the bomb with ctrl-c, do you?&quot;</span>
-<span class="o">(</span>gdb<span class="o">)</span> 
+<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/s<span class="w"> </span>0x5555555571bf
+0x5555555571bf:<span class="w"> </span><span class="s2">&quot;bruins&quot;</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/s<span class="w"> </span>0x5555555571f0
+0x5555555571f0<span class="w"> </span>&lt;array.0&gt;:<span class="w">       </span><span class="s2">&quot;maduiersnfotvbylSo you think you can stop the bomb with ctrl-c, do you?&quot;</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>
 </code></pre>
 </div>
 
@@ -850,15 +860,15 @@ s -&gt; g
 
 <div class="codehilite">
 <pre><span></span><code>...
-That<span class="err">&#39;</span>s number <span class="m">2</span>.  Keep going!
-Halfway there!
-So you got that one.  Try this one.
+That<span class="err">&#39;</span>s<span class="w"> </span>number<span class="w"> </span><span class="m">2</span>.<span class="w">  </span>Keep<span class="w"> </span>going!
+Halfway<span class="w"> </span>there!
+So<span class="w"> </span>you<span class="w"> </span>got<span class="w"> </span>that<span class="w"> </span>one.<span class="w">  </span>Try<span class="w"> </span>this<span class="w"> </span>one.
 mfcdhg
 
-Breakpoint <span class="m">1</span>, 0x0000555555555830 <span class="k">in</span> phase_5 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> <span class="k">continue</span>
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x0000555555555830<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_5<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span><span class="k">continue</span>
 Continuing.
-Good work!  On to the next...
+Good<span class="w"> </span>work!<span class="w">  </span>On<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>next...
 </code></pre>
 </div>
 
@@ -867,122 +877,123 @@ Good work!  On to the next...
 <h2>Phase 6</h2>
 
 <div class="codehilite">
-<pre><span></span><code>Good work!  On to the next...
-<span class="nb">test</span> string
+<pre><span></span><code>Good<span class="w"> </span>work!<span class="w">  </span>On<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>next...
+<span class="nb">test</span><span class="w"> </span>string
 
-Breakpoint <span class="m">1</span>, 0x0000555555555899 <span class="k">in</span> phase_6 <span class="o">()</span>
-<span class="o">(</span>gdb<span class="o">)</span> disas phase_6
-Dump of assembler code <span class="k">for</span> <span class="k">function</span> phase_6:
-<span class="o">=</span>&gt; 0x0000555555555899 &lt;+0&gt;:     endbr64 
-   0x000055555555589d &lt;+4&gt;:     push   %r15
-   0x000055555555589f &lt;+6&gt;:     push   %r14
-   0x00005555555558a1 &lt;+8&gt;:     push   %r13
-   0x00005555555558a3 &lt;+10&gt;:    push   %r12
-   0x00005555555558a5 &lt;+12&gt;:    push   %rbp
-   0x00005555555558a6 &lt;+13&gt;:    push   %rbx
-   0x00005555555558a7 &lt;+14&gt;:    sub    <span class="nv">$0</span>x68,%rsp
-   0x00005555555558ab &lt;+18&gt;:    lea    0x40<span class="o">(</span>%rsp<span class="o">)</span>,%rax
-   0x00005555555558b0 &lt;+23&gt;:    mov    %rax,%r14
-   0x00005555555558b3 &lt;+26&gt;:    mov    %rax,0x8<span class="o">(</span>%rsp<span class="o">)</span>
-   0x00005555555558b8 &lt;+31&gt;:    mov    %rax,%rsi
-   0x00005555555558bb &lt;+34&gt;:    call   0x555555555d97 &lt;read_six_numbers&gt;
-   0x00005555555558c0 &lt;+39&gt;:    mov    %r14,%r12
-   0x00005555555558c3 &lt;+42&gt;:    mov    <span class="nv">$0</span>x1,%r15d
-   0x00005555555558c9 &lt;+48&gt;:    mov    %r14,%r13
-   0x00005555555558cc &lt;+51&gt;:    jmp    0x555555555997 &lt;phase_6+254&gt;
-   0x00005555555558d1 &lt;+56&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x00005555555558d6 &lt;+61&gt;:    jmp    0x5555555559a9 &lt;phase_6+272&gt;
-   0x00005555555558db &lt;+66&gt;:    add    <span class="nv">$0</span>x1,%rbx
-   0x00005555555558df &lt;+70&gt;:    cmp    <span class="nv">$0</span>x5,%ebx
-   0x00005555555558e2 &lt;+73&gt;:    jg     0x55555555598f &lt;phase_6+246&gt;
-   0x00005555555558e8 &lt;+79&gt;:    mov    0x0<span class="o">(</span>%r13,%rbx,4<span class="o">)</span>,%eax
-   0x00005555555558ed &lt;+84&gt;:    cmp    %eax,0x0<span class="o">(</span>%rbp<span class="o">)</span>
-   0x00005555555558f0 &lt;+87&gt;:    jne    0x5555555558db &lt;phase_6+66&gt;
-   0x00005555555558f2 &lt;+89&gt;:    call   0x555555555d4a &lt;explode_bomb&gt;
-   0x00005555555558f7 &lt;+94&gt;:    jmp    0x5555555558db &lt;phase_6+66&gt;
-   0x00005555555558f9 &lt;+96&gt;:    mov    0x8<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
-   0x00005555555558fe &lt;+101&gt;:   add    <span class="nv">$0</span>x18,%rdx
-   0x0000555555555902 &lt;+105&gt;:   mov    <span class="nv">$0</span>x7,%ecx
-   0x0000555555555907 &lt;+110&gt;:   mov    %ecx,%eax
-   0x0000555555555909 &lt;+112&gt;:   sub    <span class="o">(</span>%r12<span class="o">)</span>,%eax
-   0x000055555555590d &lt;+116&gt;:   mov    %eax,<span class="o">(</span>%r12<span class="o">)</span>
-   0x0000555555555911 &lt;+120&gt;:   add    <span class="nv">$0</span>x4,%r12
-   0x0000555555555915 &lt;+124&gt;:   cmp    %r12,%rdx
-   0x0000555555555918 &lt;+127&gt;:   jne    0x555555555907 &lt;phase_6+110&gt;
-   0x000055555555591a &lt;+129&gt;:   mov    <span class="nv">$0</span>x0,%esi
-   0x000055555555591f &lt;+134&gt;:   mov    0x40<span class="o">(</span>%rsp,%rsi,4<span class="o">)</span>,%ecx
-   0x0000555555555923 &lt;+138&gt;:   mov    <span class="nv">$0</span>x1,%eax
-   0x0000555555555928 &lt;+143&gt;:   lea    0x3d01<span class="o">(</span>%rip<span class="o">)</span>,%rdx        <span class="c1"># 0x555555559630 &lt;node1&gt;</span>
---Type &lt;RET&gt; <span class="k">for</span> more, q to quit, c to <span class="k">continue</span> without paging--
-   0x000055555555592f &lt;+150&gt;:   cmp    <span class="nv">$0</span>x1,%ecx
-   0x0000555555555932 &lt;+153&gt;:   jle    0x55555555593f &lt;phase_6+166&gt;
-   0x0000555555555934 &lt;+155&gt;:   mov    0x8<span class="o">(</span>%rdx<span class="o">)</span>,%rdx
-   0x0000555555555938 &lt;+159&gt;:   add    <span class="nv">$0</span>x1,%eax
-   0x000055555555593b &lt;+162&gt;:   cmp    %ecx,%eax
-   0x000055555555593d &lt;+164&gt;:   jne    0x555555555934 &lt;phase_6+155&gt;
-   0x000055555555593f &lt;+166&gt;:   mov    %rdx,0x10<span class="o">(</span>%rsp,%rsi,8<span class="o">)</span>
-   0x0000555555555944 &lt;+171&gt;:   add    <span class="nv">$0</span>x1,%rsi
-   0x0000555555555948 &lt;+175&gt;:   cmp    <span class="nv">$0</span>x6,%rsi
-   0x000055555555594c &lt;+179&gt;:   jne    0x55555555591f &lt;phase_6+134&gt;
-   0x000055555555594e &lt;+181&gt;:   mov    0x10<span class="o">(</span>%rsp<span class="o">)</span>,%rbx
-   0x0000555555555953 &lt;+186&gt;:   mov    0x18<span class="o">(</span>%rsp<span class="o">)</span>,%rax
-   0x0000555555555958 &lt;+191&gt;:   mov    %rax,0x8<span class="o">(</span>%rbx<span class="o">)</span>
-   0x000055555555595c &lt;+195&gt;:   mov    0x20<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
-   0x0000555555555961 &lt;+200&gt;:   mov    %rdx,0x8<span class="o">(</span>%rax<span class="o">)</span>
-   0x0000555555555965 &lt;+204&gt;:   mov    0x28<span class="o">(</span>%rsp<span class="o">)</span>,%rax
-   0x000055555555596a &lt;+209&gt;:   mov    %rax,0x8<span class="o">(</span>%rdx<span class="o">)</span>
-   0x000055555555596e &lt;+213&gt;:   mov    0x30<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
-   0x0000555555555973 &lt;+218&gt;:   mov    %rdx,0x8<span class="o">(</span>%rax<span class="o">)</span>
-   0x0000555555555977 &lt;+222&gt;:   mov    0x38<span class="o">(</span>%rsp<span class="o">)</span>,%rax
-   0x000055555555597c &lt;+227&gt;:   mov    %rax,0x8<span class="o">(</span>%rdx<span class="o">)</span>
-   0x0000555555555980 &lt;+231&gt;:   movq   <span class="nv">$0</span>x0,0x8<span class="o">(</span>%rax<span class="o">)</span>
-   0x0000555555555988 &lt;+239&gt;:   mov    <span class="nv">$0</span>x5,%ebp
-   0x000055555555598d &lt;+244&gt;:   jmp    0x5555555559c4 &lt;phase_6+299&gt;
-   0x000055555555598f &lt;+246&gt;:   add    <span class="nv">$0</span>x1,%r15
-   0x0000555555555993 &lt;+250&gt;:   add    <span class="nv">$0</span>x4,%r14
-   0x0000555555555997 &lt;+254&gt;:   mov    %r14,%rbp
-   0x000055555555599a &lt;+257&gt;:   mov    <span class="o">(</span>%r14<span class="o">)</span>,%eax
-   0x000055555555599d &lt;+260&gt;:   sub    <span class="nv">$0</span>x1,%eax
-   0x00005555555559a0 &lt;+263&gt;:   cmp    <span class="nv">$0</span>x5,%eax
-   0x00005555555559a3 &lt;+266&gt;:   ja     0x5555555558d1 &lt;phase_6+56&gt;
-   0x00005555555559a9 &lt;+272&gt;:   cmp    <span class="nv">$0</span>x5,%r15d
-   0x00005555555559ad &lt;+276&gt;:   jg     0x5555555558f9 &lt;phase_6+96&gt;
-   0x00005555555559b3 &lt;+282&gt;:   mov    %r15,%rbx
-   0x00005555555559b6 &lt;+285&gt;:   jmp    0x5555555558e8 &lt;phase_6+79&gt;
-   0x00005555555559bb &lt;+290&gt;:   mov    0x8<span class="o">(</span>%rbx<span class="o">)</span>,%rbx
-   0x00005555555559bf &lt;+294&gt;:   sub    <span class="nv">$0</span>x1,%ebp
-   0x00005555555559c2 &lt;+297&gt;:   je     0x5555555559d5 &lt;phase_6+316&gt;
-   0x00005555555559c4 &lt;+299&gt;:   mov    0x8<span class="o">(</span>%rbx<span class="o">)</span>,%rax
-   0x00005555555559c8 &lt;+303&gt;:   mov    <span class="o">(</span>%rax<span class="o">)</span>,%eax
-   0x00005555555559ca &lt;+305&gt;:   cmp    %eax,<span class="o">(</span>%rbx<span class="o">)</span>
---Type &lt;RET&gt; <span class="k">for</span> more, q to quit, c to <span class="k">continue</span> without paging--
-   0x00005555555559cc &lt;+307&gt;:   jge    0x5555555559bb &lt;phase_6+290&gt;
-   0x00005555555559ce &lt;+309&gt;:   call   0x555555555d4a &lt;explode_bomb&gt;
-   0x00005555555559d3 &lt;+314&gt;:   jmp    0x5555555559bb &lt;phase_6+290&gt;
-   0x00005555555559d5 &lt;+316&gt;:   add    <span class="nv">$0</span>x68,%rsp
-   0x00005555555559d9 &lt;+320&gt;:   pop    %rbx
-   0x00005555555559da &lt;+321&gt;:   pop    %rbp
-   0x00005555555559db &lt;+322&gt;:   pop    %r12
-   0x00005555555559dd &lt;+324&gt;:   pop    %r13
-   0x00005555555559df &lt;+326&gt;:   pop    %r14
-   0x00005555555559e1 &lt;+328&gt;:   pop    %r15
-   0x00005555555559e3 &lt;+330&gt;:   ret    
-End of assembler dump.
-<span class="o">(</span>gdb<span class="o">)</span> 
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>0x0000555555555899<span class="w"> </span><span class="k">in</span><span class="w"> </span>phase_6<span class="w"> </span><span class="o">()</span>
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>disas<span class="w"> </span>phase_6
+Dump<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>code<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>phase_6:
+<span class="o">=</span>&gt;<span class="w"> </span>0x0000555555555899<span class="w"> </span>&lt;+0&gt;:<span class="w">     </span>endbr64<span class="w"> </span>
+<span class="w">   </span>0x000055555555589d<span class="w"> </span>&lt;+4&gt;:<span class="w">     </span>push<span class="w">   </span>%r15
+<span class="w">   </span>0x000055555555589f<span class="w"> </span>&lt;+6&gt;:<span class="w">     </span>push<span class="w">   </span>%r14
+<span class="w">   </span>0x00005555555558a1<span class="w"> </span>&lt;+8&gt;:<span class="w">     </span>push<span class="w">   </span>%r13
+<span class="w">   </span>0x00005555555558a3<span class="w"> </span>&lt;+10&gt;:<span class="w">    </span>push<span class="w">   </span>%r12
+<span class="w">   </span>0x00005555555558a5<span class="w"> </span>&lt;+12&gt;:<span class="w">    </span>push<span class="w">   </span>%rbp
+<span class="w">   </span>0x00005555555558a6<span class="w"> </span>&lt;+13&gt;:<span class="w">    </span>push<span class="w">   </span>%rbx
+<span class="w">   </span>0x00005555555558a7<span class="w"> </span>&lt;+14&gt;:<span class="w">    </span>sub<span class="w">    </span><span class="nv">$0</span>x68,%rsp
+<span class="w">   </span>0x00005555555558ab<span class="w"> </span>&lt;+18&gt;:<span class="w">    </span>lea<span class="w">    </span>0x40<span class="o">(</span>%rsp<span class="o">)</span>,%rax
+<span class="w">   </span>0x00005555555558b0<span class="w"> </span>&lt;+23&gt;:<span class="w">    </span>mov<span class="w">    </span>%rax,%r14
+<span class="w">   </span>0x00005555555558b3<span class="w"> </span>&lt;+26&gt;:<span class="w">    </span>mov<span class="w">    </span>%rax,0x8<span class="o">(</span>%rsp<span class="o">)</span>
+<span class="w">   </span>0x00005555555558b8<span class="w"> </span>&lt;+31&gt;:<span class="w">    </span>mov<span class="w">    </span>%rax,%rsi
+<span class="w">   </span>0x00005555555558bb<span class="w"> </span>&lt;+34&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d97<span class="w"> </span>&lt;read_six_numbers&gt;
+<span class="w">   </span>0x00005555555558c0<span class="w"> </span>&lt;+39&gt;:<span class="w">    </span>mov<span class="w">    </span>%r14,%r12
+<span class="w">   </span>0x00005555555558c3<span class="w"> </span>&lt;+42&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x1,%r15d
+<span class="w">   </span>0x00005555555558c9<span class="w"> </span>&lt;+48&gt;:<span class="w">    </span>mov<span class="w">    </span>%r14,%r13
+<span class="w">   </span>0x00005555555558cc<span class="w"> </span>&lt;+51&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x555555555997<span class="w"> </span>&lt;phase_6+254&gt;
+<span class="w">   </span>0x00005555555558d1<span class="w"> </span>&lt;+56&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x00005555555558d6<span class="w"> </span>&lt;+61&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x5555555559a9<span class="w"> </span>&lt;phase_6+272&gt;
+<span class="w">   </span>0x00005555555558db<span class="w"> </span>&lt;+66&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x1,%rbx
+<span class="w">   </span>0x00005555555558df<span class="w"> </span>&lt;+70&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x5,%ebx
+<span class="w">   </span>0x00005555555558e2<span class="w"> </span>&lt;+73&gt;:<span class="w">    </span>jg<span class="w">     </span>0x55555555598f<span class="w"> </span>&lt;phase_6+246&gt;
+<span class="w">   </span>0x00005555555558e8<span class="w"> </span>&lt;+79&gt;:<span class="w">    </span>mov<span class="w">    </span>0x0<span class="o">(</span>%r13,%rbx,4<span class="o">)</span>,%eax
+<span class="w">   </span>0x00005555555558ed<span class="w"> </span>&lt;+84&gt;:<span class="w">    </span>cmp<span class="w">    </span>%eax,0x0<span class="o">(</span>%rbp<span class="o">)</span>
+<span class="w">   </span>0x00005555555558f0<span class="w"> </span>&lt;+87&gt;:<span class="w">    </span>jne<span class="w">    </span>0x5555555558db<span class="w"> </span>&lt;phase_6+66&gt;
+<span class="w">   </span>0x00005555555558f2<span class="w"> </span>&lt;+89&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x00005555555558f7<span class="w"> </span>&lt;+94&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x5555555558db<span class="w"> </span>&lt;phase_6+66&gt;
+<span class="w">   </span>0x00005555555558f9<span class="w"> </span>&lt;+96&gt;:<span class="w">    </span>mov<span class="w">    </span>0x8<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
+<span class="w">   </span>0x00005555555558fe<span class="w"> </span>&lt;+101&gt;:<span class="w">   </span>add<span class="w">    </span><span class="nv">$0</span>x18,%rdx
+<span class="w">   </span>0x0000555555555902<span class="w"> </span>&lt;+105&gt;:<span class="w">   </span>mov<span class="w">    </span><span class="nv">$0</span>x7,%ecx
+<span class="w">   </span>0x0000555555555907<span class="w"> </span>&lt;+110&gt;:<span class="w">   </span>mov<span class="w">    </span>%ecx,%eax
+<span class="w">   </span>0x0000555555555909<span class="w"> </span>&lt;+112&gt;:<span class="w">   </span>sub<span class="w">    </span><span class="o">(</span>%r12<span class="o">)</span>,%eax
+<span class="w">   </span>0x000055555555590d<span class="w"> </span>&lt;+116&gt;:<span class="w">   </span>mov<span class="w">    </span>%eax,<span class="o">(</span>%r12<span class="o">)</span>
+<span class="w">   </span>0x0000555555555911<span class="w"> </span>&lt;+120&gt;:<span class="w">   </span>add<span class="w">    </span><span class="nv">$0</span>x4,%r12
+<span class="w">   </span>0x0000555555555915<span class="w"> </span>&lt;+124&gt;:<span class="w">   </span>cmp<span class="w">    </span>%r12,%rdx
+<span class="w">   </span>0x0000555555555918<span class="w"> </span>&lt;+127&gt;:<span class="w">   </span>jne<span class="w">    </span>0x555555555907<span class="w"> </span>&lt;phase_6+110&gt;
+<span class="w">   </span>0x000055555555591a<span class="w"> </span>&lt;+129&gt;:<span class="w">   </span>mov<span class="w">    </span><span class="nv">$0</span>x0,%esi
+<span class="w">   </span>0x000055555555591f<span class="w"> </span>&lt;+134&gt;:<span class="w">   </span>mov<span class="w">    </span>0x40<span class="o">(</span>%rsp,%rsi,4<span class="o">)</span>,%ecx
+<span class="w">   </span>0x0000555555555923<span class="w"> </span>&lt;+138&gt;:<span class="w">   </span>mov<span class="w">    </span><span class="nv">$0</span>x1,%eax
+<span class="w">   </span>0x0000555555555928<span class="w"> </span>&lt;+143&gt;:<span class="w">   </span>lea<span class="w">    </span>0x3d01<span class="o">(</span>%rip<span class="o">)</span>,%rdx<span class="w">        </span><span class="c1"># 0x555555559630 &lt;node1&gt;</span>
+--Type<span class="w"> </span>&lt;RET&gt;<span class="w"> </span><span class="k">for</span><span class="w"> </span>more,<span class="w"> </span>q<span class="w"> </span>to<span class="w"> </span>quit,<span class="w"> </span>c<span class="w"> </span>to<span class="w"> </span><span class="k">continue</span><span class="w"> </span>without<span class="w"> </span>paging--
+<span class="w">   </span>0x000055555555592f<span class="w"> </span>&lt;+150&gt;:<span class="w">   </span>cmp<span class="w">    </span><span class="nv">$0</span>x1,%ecx
+<span class="w">   </span>0x0000555555555932<span class="w"> </span>&lt;+153&gt;:<span class="w">   </span>jle<span class="w">    </span>0x55555555593f<span class="w"> </span>&lt;phase_6+166&gt;
+<span class="w">   </span>0x0000555555555934<span class="w"> </span>&lt;+155&gt;:<span class="w">   </span>mov<span class="w">    </span>0x8<span class="o">(</span>%rdx<span class="o">)</span>,%rdx
+<span class="w">   </span>0x0000555555555938<span class="w"> </span>&lt;+159&gt;:<span class="w">   </span>add<span class="w">    </span><span class="nv">$0</span>x1,%eax
+<span class="w">   </span>0x000055555555593b<span class="w"> </span>&lt;+162&gt;:<span class="w">   </span>cmp<span class="w">    </span>%ecx,%eax
+<span class="w">   </span>0x000055555555593d<span class="w"> </span>&lt;+164&gt;:<span class="w">   </span>jne<span class="w">    </span>0x555555555934<span class="w"> </span>&lt;phase_6+155&gt;
+<span class="w">   </span>0x000055555555593f<span class="w"> </span>&lt;+166&gt;:<span class="w">   </span>mov<span class="w">    </span>%rdx,0x10<span class="o">(</span>%rsp,%rsi,8<span class="o">)</span>
+<span class="w">   </span>0x0000555555555944<span class="w"> </span>&lt;+171&gt;:<span class="w">   </span>add<span class="w">    </span><span class="nv">$0</span>x1,%rsi
+<span class="w">   </span>0x0000555555555948<span class="w"> </span>&lt;+175&gt;:<span class="w">   </span>cmp<span class="w">    </span><span class="nv">$0</span>x6,%rsi
+<span class="w">   </span>0x000055555555594c<span class="w"> </span>&lt;+179&gt;:<span class="w">   </span>jne<span class="w">    </span>0x55555555591f<span class="w"> </span>&lt;phase_6+134&gt;
+<span class="w">   </span>0x000055555555594e<span class="w"> </span>&lt;+181&gt;:<span class="w">   </span>mov<span class="w">    </span>0x10<span class="o">(</span>%rsp<span class="o">)</span>,%rbx
+<span class="w">   </span>0x0000555555555953<span class="w"> </span>&lt;+186&gt;:<span class="w">   </span>mov<span class="w">    </span>0x18<span class="o">(</span>%rsp<span class="o">)</span>,%rax
+<span class="w">   </span>0x0000555555555958<span class="w"> </span>&lt;+191&gt;:<span class="w">   </span>mov<span class="w">    </span>%rax,0x8<span class="o">(</span>%rbx<span class="o">)</span>
+<span class="w">   </span>0x000055555555595c<span class="w"> </span>&lt;+195&gt;:<span class="w">   </span>mov<span class="w">    </span>0x20<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
+<span class="w">   </span>0x0000555555555961<span class="w"> </span>&lt;+200&gt;:<span class="w">   </span>mov<span class="w">    </span>%rdx,0x8<span class="o">(</span>%rax<span class="o">)</span>
+<span class="w">   </span>0x0000555555555965<span class="w"> </span>&lt;+204&gt;:<span class="w">   </span>mov<span class="w">    </span>0x28<span class="o">(</span>%rsp<span class="o">)</span>,%rax
+<span class="w">   </span>0x000055555555596a<span class="w"> </span>&lt;+209&gt;:<span class="w">   </span>mov<span class="w">    </span>%rax,0x8<span class="o">(</span>%rdx<span class="o">)</span>
+<span class="w">   </span>0x000055555555596e<span class="w"> </span>&lt;+213&gt;:<span class="w">   </span>mov<span class="w">    </span>0x30<span class="o">(</span>%rsp<span class="o">)</span>,%rdx
+<span class="w">   </span>0x0000555555555973<span class="w"> </span>&lt;+218&gt;:<span class="w">   </span>mov<span class="w">    </span>%rdx,0x8<span class="o">(</span>%rax<span class="o">)</span>
+<span class="w">   </span>0x0000555555555977<span class="w"> </span>&lt;+222&gt;:<span class="w">   </span>mov<span class="w">    </span>0x38<span class="o">(</span>%rsp<span class="o">)</span>,%rax
+<span class="w">   </span>0x000055555555597c<span class="w"> </span>&lt;+227&gt;:<span class="w">   </span>mov<span class="w">    </span>%rax,0x8<span class="o">(</span>%rdx<span class="o">)</span>
+<span class="w">   </span>0x0000555555555980<span class="w"> </span>&lt;+231&gt;:<span class="w">   </span>movq<span class="w">   </span><span class="nv">$0</span>x0,0x8<span class="o">(</span>%rax<span class="o">)</span>
+<span class="w">   </span>0x0000555555555988<span class="w"> </span>&lt;+239&gt;:<span class="w">   </span>mov<span class="w">    </span><span class="nv">$0</span>x5,%ebp
+<span class="w">   </span>0x000055555555598d<span class="w"> </span>&lt;+244&gt;:<span class="w">   </span>jmp<span class="w">    </span>0x5555555559c4<span class="w"> </span>&lt;phase_6+299&gt;
+<span class="w">   </span>0x000055555555598f<span class="w"> </span>&lt;+246&gt;:<span class="w">   </span>add<span class="w">    </span><span class="nv">$0</span>x1,%r15
+<span class="w">   </span>0x0000555555555993<span class="w"> </span>&lt;+250&gt;:<span class="w">   </span>add<span class="w">    </span><span class="nv">$0</span>x4,%r14
+<span class="w">   </span>0x0000555555555997<span class="w"> </span>&lt;+254&gt;:<span class="w">   </span>mov<span class="w">    </span>%r14,%rbp
+<span class="w">   </span>0x000055555555599a<span class="w"> </span>&lt;+257&gt;:<span class="w">   </span>mov<span class="w">    </span><span class="o">(</span>%r14<span class="o">)</span>,%eax
+<span class="w">   </span>0x000055555555599d<span class="w"> </span>&lt;+260&gt;:<span class="w">   </span>sub<span class="w">    </span><span class="nv">$0</span>x1,%eax
+<span class="w">   </span>0x00005555555559a0<span class="w"> </span>&lt;+263&gt;:<span class="w">   </span>cmp<span class="w">    </span><span class="nv">$0</span>x5,%eax
+<span class="w">   </span>0x00005555555559a3<span class="w"> </span>&lt;+266&gt;:<span class="w">   </span>ja<span class="w">     </span>0x5555555558d1<span class="w"> </span>&lt;phase_6+56&gt;
+<span class="w">   </span>0x00005555555559a9<span class="w"> </span>&lt;+272&gt;:<span class="w">   </span>cmp<span class="w">    </span><span class="nv">$0</span>x5,%r15d
+<span class="w">   </span>0x00005555555559ad<span class="w"> </span>&lt;+276&gt;:<span class="w">   </span>jg<span class="w">     </span>0x5555555558f9<span class="w"> </span>&lt;phase_6+96&gt;
+<span class="w">   </span>0x00005555555559b3<span class="w"> </span>&lt;+282&gt;:<span class="w">   </span>mov<span class="w">    </span>%r15,%rbx
+<span class="w">   </span>0x00005555555559b6<span class="w"> </span>&lt;+285&gt;:<span class="w">   </span>jmp<span class="w">    </span>0x5555555558e8<span class="w"> </span>&lt;phase_6+79&gt;
+<span class="w">   </span>0x00005555555559bb<span class="w"> </span>&lt;+290&gt;:<span class="w">   </span>mov<span class="w">    </span>0x8<span class="o">(</span>%rbx<span class="o">)</span>,%rbx
+<span class="w">   </span>0x00005555555559bf<span class="w"> </span>&lt;+294&gt;:<span class="w">   </span>sub<span class="w">    </span><span class="nv">$0</span>x1,%ebp
+<span class="w">   </span>0x00005555555559c2<span class="w"> </span>&lt;+297&gt;:<span class="w">   </span>je<span class="w">     </span>0x5555555559d5<span class="w"> </span>&lt;phase_6+316&gt;
+<span class="w">   </span>0x00005555555559c4<span class="w"> </span>&lt;+299&gt;:<span class="w">   </span>mov<span class="w">    </span>0x8<span class="o">(</span>%rbx<span class="o">)</span>,%rax
+<span class="w">   </span>0x00005555555559c8<span class="w"> </span>&lt;+303&gt;:<span class="w">   </span>mov<span class="w">    </span><span class="o">(</span>%rax<span class="o">)</span>,%eax
+<span class="w">   </span>0x00005555555559ca<span class="w"> </span>&lt;+305&gt;:<span class="w">   </span>cmp<span class="w">    </span>%eax,<span class="o">(</span>%rbx<span class="o">)</span>
+--Type<span class="w"> </span>&lt;RET&gt;<span class="w"> </span><span class="k">for</span><span class="w"> </span>more,<span class="w"> </span>q<span class="w"> </span>to<span class="w"> </span>quit,<span class="w"> </span>c<span class="w"> </span>to<span class="w"> </span><span class="k">continue</span><span class="w"> </span>without<span class="w"> </span>paging--
+<span class="w">   </span>0x00005555555559cc<span class="w"> </span>&lt;+307&gt;:<span class="w">   </span>jge<span class="w">    </span>0x5555555559bb<span class="w"> </span>&lt;phase_6+290&gt;
+<span class="w">   </span>0x00005555555559ce<span class="w"> </span>&lt;+309&gt;:<span class="w">   </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x00005555555559d3<span class="w"> </span>&lt;+314&gt;:<span class="w">   </span>jmp<span class="w">    </span>0x5555555559bb<span class="w"> </span>&lt;phase_6+290&gt;
+<span class="w">   </span>0x00005555555559d5<span class="w"> </span>&lt;+316&gt;:<span class="w">   </span>add<span class="w">    </span><span class="nv">$0</span>x68,%rsp
+<span class="w">   </span>0x00005555555559d9<span class="w"> </span>&lt;+320&gt;:<span class="w">   </span>pop<span class="w">    </span>%rbx
+<span class="w">   </span>0x00005555555559da<span class="w"> </span>&lt;+321&gt;:<span class="w">   </span>pop<span class="w">    </span>%rbp
+<span class="w">   </span>0x00005555555559db<span class="w"> </span>&lt;+322&gt;:<span class="w">   </span>pop<span class="w">    </span>%r12
+<span class="w">   </span>0x00005555555559dd<span class="w"> </span>&lt;+324&gt;:<span class="w">   </span>pop<span class="w">    </span>%r13
+<span class="w">   </span>0x00005555555559df<span class="w"> </span>&lt;+326&gt;:<span class="w">   </span>pop<span class="w">    </span>%r14
+<span class="w">   </span>0x00005555555559e1<span class="w"> </span>&lt;+328&gt;:<span class="w">   </span>pop<span class="w">    </span>%r15
+<span class="w">   </span>0x00005555555559e3<span class="w"> </span>&lt;+330&gt;:<span class="w">   </span>ret<span class="w">    </span>
+End<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>dump.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>
 </code></pre>
 </div>
 
 <p>Again, we see the familiar <code>read_six_digits</code> function.</p>
 
-<p>Let us analyse this function in chunks:
-   <div class="codehilite">
-   <pre><span></span><code>0x00005555555558bb &lt;+34&gt;:    call   0x555555555d97 &lt;read<em>six</em>numbers&gt;
-   0x00005555555558c0 &lt;+39&gt;:    mov    %r14,%r12
-   0x00005555555558c3 &lt;+42&gt;:    mov    <span class="nv">$0</span>x1,%r15d
-   0x00005555555558c9 &lt;+48&gt;:    mov    %r14,%r13
-   0x00005555555558cc &lt;+51&gt;:    jmp    0x555555555997 &lt;phase_6+254&gt;
-   </code></pre>
-   </div></p>
+<p>Let us analyse this function in chunks:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x00005555555558bb<span class="w"> </span>&lt;+34&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d97<span class="w"> </span>&lt;read_six_numbers&gt;
+<span class="w">   </span>0x00005555555558c0<span class="w"> </span>&lt;+39&gt;:<span class="w">    </span>mov<span class="w">    </span>%r14,%r12
+<span class="w">   </span>0x00005555555558c3<span class="w"> </span>&lt;+42&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x1,%r15d
+<span class="w">   </span>0x00005555555558c9<span class="w"> </span>&lt;+48&gt;:<span class="w">    </span>mov<span class="w">    </span>%r14,%r13
+<span class="w">   </span>0x00005555555558cc<span class="w"> </span>&lt;+51&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x555555555997<span class="w"> </span>&lt;phase_6+254&gt;
+</code></pre>
+</div>
 
 <ol>
 <li>Read six numbers</li>
@@ -990,17 +1001,20 @@ End of assembler dump.
 2.1. <code>mov %r14,%r12</code>: <code>%r14</code> should be pointing to the location of the stack where the numbers were read into. This address is copied onto <code>%r12</code>
 2.2. <code>mov $0x1,%r15d</code>: The value <code>1</code> is moved into <code>%r15</code> register (probably acting like a counter)
 2.3. <code>mov %r14,%r13</code>: The value is also copied to <code>%r13</code></li>
-<li><p>Jump to start of loop:</p>
+<li>Jump to start of loop:</li>
+</ol>
 
 <div class="codehilite">
-<pre><span></span><code>0x0000555555555997 &lt;+254&gt;:   mov    %r14,%rbp
-0x000055555555599a &lt;+257&gt;:   mov    <span class="o">(</span>%r14<span class="o">)</span>,%eax
-0x000055555555599d &lt;+260&gt;:   sub    <span class="nv">$0</span>x1,%eax
-0x00005555555559a0 &lt;+263&gt;:   cmp    <span class="nv">$0</span>x5,%eax
-0x00005555555559a3 &lt;+266&gt;:   ja     0x5555555558d1 &lt;phase_6+56&gt;
+<pre><span></span><code><span class="w">   </span>0x0000555555555997<span class="w"> </span>&lt;+254&gt;:<span class="w">   </span>mov<span class="w">    </span>%r14,%rbp
+<span class="w">   </span>0x000055555555599a<span class="w"> </span>&lt;+257&gt;:<span class="w">   </span>mov<span class="w">    </span><span class="o">(</span>%r14<span class="o">)</span>,%eax
+<span class="w">   </span>0x000055555555599d<span class="w"> </span>&lt;+260&gt;:<span class="w">   </span>sub<span class="w">    </span><span class="nv">$0</span>x1,%eax
+<span class="w">   </span>0x00005555555559a0<span class="w"> </span>&lt;+263&gt;:<span class="w">   </span>cmp<span class="w">    </span><span class="nv">$0</span>x5,%eax
+<span class="w">   </span>0x00005555555559a3<span class="w"> </span>&lt;+266&gt;:<span class="w">   </span>ja<span class="w">     </span>0x5555555558d1<span class="w"> </span>&lt;phase_6+56&gt;
 </code></pre>
-</div></li>
-<li><p>Initialise register and point to first number in sequence</p></li>
+</div>
+
+<ol>
+<li>Initialise register and point to first number in sequence</li>
 <li>Adjust number(s):
 2.1. <code>mov (%r14),%eax</code> -> load the current number in the sequence
 2.2. <code>sub $0x1,%eax</code> -> decrement number by 1</li>
@@ -1009,40 +1023,44 @@ End of assembler dump.
 3.2. <code>ja 0x5555555558d1 &lt;phase_6+56&gt;</code>: jump if given value is &gt; 5 or &lt; 0</li>
 </ol>
 
-<p>=&gt; All numbers should be between 1 and 6.
-   <div class="codehilite">
-   <pre><span></span><code>0x00005555555559a9 &lt;+272&gt;:   cmp    <span class="nv">$0</span>x5,%r15d
-   0x00005555555559ad &lt;+276&gt;:   jg     0x5555555558f9 &lt;phase_6+96&gt;
-   </code></pre>
-   </div></p>
+<p>=&gt; All numbers should be between 1 and 6.</p>
 
-<p>This checks if the value stored in <code>%r15</code> is &gt; 5, if it is then it jumps somewhere else. This validates our assumption that <code>%r15</code> is acting as a counter.
-   <div class="codehilite">
-   <pre><span></span><code>0x00005555555559b3 &lt;+282&gt;:   mov    %r15,%rbx
-   0x00005555555559b6 &lt;+285&gt;:   jmp    0x5555555558e8 &lt;phase_6+79&gt;
-   </code></pre>
-   </div></p>
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x00005555555559a9<span class="w"> </span>&lt;+272&gt;:<span class="w">   </span>cmp<span class="w">    </span><span class="nv">$0</span>x5,%r15d
+<span class="w">   </span>0x00005555555559ad<span class="w"> </span>&lt;+276&gt;:<span class="w">   </span>jg<span class="w">     </span>0x5555555558f9<span class="w"> </span>&lt;phase_6+96&gt;
+</code></pre>
+</div>
 
-<p>Let us jump to +79
-   <div class="codehilite">
-   <pre><span></span><code>0x00005555555558e8 &lt;+79&gt;:    mov    0x0<span class="o">(</span>%r13,%rbx,4<span class="o">)</span>,%eax
-   0x00005555555558ed &lt;+84&gt;:    cmp    %eax,0x0<span class="o">(</span>%rbp<span class="o">)</span>
-   0x00005555555558f0 &lt;+87&gt;:    jne    0x5555555558db &lt;phase<em>6+66&gt;
-   0x00005555555558f2 &lt;+89&gt;:    call   0x555555555d4a &lt;explode</em>bomb&gt;
-   0x00005555555558f7 &lt;+94&gt;:    jmp    0x5555555558db &lt;phase_6+66&gt;
-   </code></pre>
-   </div></p>
+<p>This checks if the value stored in <code>%r15</code> is &gt; 5, if it is then it jumps somewhere else. This validates our assumption that <code>%r15</code> is acting as a counter.</p>
 
-<p>This section deals with checking if all the numbers in the sequence are unique or not. Thus, we need to ensure out 6 digits are unique
-   <div class="codehilite">
-   <pre><span></span><code>0x00005555555558db &lt;+66&gt;:    add    <span class="nv">$0</span>x1,%rbx // Increments by <span class="m">1</span>
-   0x00005555555558df &lt;+70&gt;:    cmp    <span class="nv">$0</span>x5,%ebx 
-   0x00005555555558e2 &lt;+73&gt;:    jg     0x55555555598f &lt;phase<em>6+246&gt; // Jump <span class="k">if</span> &gt; <span class="m">5</span> <span class="o">(</span>Loop iterations are <span class="nb">complete</span><span class="o">)</span>
-   0x00005555555558e8 &lt;+79&gt;:    mov    0x0<span class="o">(</span>%r13,%rbx,4<span class="o">)</span>,%eax 
-   0x00005555555558ed &lt;+84&gt;:    cmp    %eax,0x0<span class="o">(</span>%rbp<span class="o">)</span>
-   0x00005555555558f0 &lt;+87&gt;:    jne    0x5555555558db &lt;phase</em>6+66&gt; // Again, check <span class="k">if</span> the number being seen is unique
-   </code></pre>
-   </div></p>
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x00005555555559b3<span class="w"> </span>&lt;+282&gt;:<span class="w">   </span>mov<span class="w">    </span>%r15,%rbx
+<span class="w">   </span>0x00005555555559b6<span class="w"> </span>&lt;+285&gt;:<span class="w">   </span>jmp<span class="w">    </span>0x5555555558e8<span class="w"> </span>&lt;phase_6+79&gt;
+</code></pre>
+</div>
+
+<p>Let us jump to +79</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x00005555555558e8<span class="w"> </span>&lt;+79&gt;:<span class="w">    </span>mov<span class="w">    </span>0x0<span class="o">(</span>%r13,%rbx,4<span class="o">)</span>,%eax
+<span class="w">   </span>0x00005555555558ed<span class="w"> </span>&lt;+84&gt;:<span class="w">    </span>cmp<span class="w">    </span>%eax,0x0<span class="o">(</span>%rbp<span class="o">)</span>
+<span class="w">   </span>0x00005555555558f0<span class="w"> </span>&lt;+87&gt;:<span class="w">    </span>jne<span class="w">    </span>0x5555555558db<span class="w"> </span>&lt;phase_6+66&gt;
+<span class="w">   </span>0x00005555555558f2<span class="w"> </span>&lt;+89&gt;:<span class="w">    </span>call<span class="w">   </span>0x555555555d4a<span class="w"> </span>&lt;explode_bomb&gt;
+<span class="w">   </span>0x00005555555558f7<span class="w"> </span>&lt;+94&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x5555555558db<span class="w"> </span>&lt;phase_6+66&gt;
+</code></pre>
+</div>
+
+<p>This section deals with checking if all the numbers in the sequence are unique or not. Thus, we need to ensure out 6 digits are unique</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="w">   </span>0x00005555555558db<span class="w"> </span>&lt;+66&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x1,%rbx<span class="w"> </span>//<span class="w"> </span>Increments<span class="w"> </span>by<span class="w"> </span><span class="m">1</span>
+<span class="w">   </span>0x00005555555558df<span class="w"> </span>&lt;+70&gt;:<span class="w">    </span>cmp<span class="w">    </span><span class="nv">$0</span>x5,%ebx<span class="w"> </span>
+<span class="w">   </span>0x00005555555558e2<span class="w"> </span>&lt;+73&gt;:<span class="w">    </span>jg<span class="w">     </span>0x55555555598f<span class="w"> </span>&lt;phase_6+246&gt;<span class="w"> </span>//<span class="w"> </span>Jump<span class="w"> </span><span class="k">if</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="o">(</span>Loop<span class="w"> </span>iterations<span class="w"> </span>are<span class="w"> </span><span class="nb">complete</span><span class="o">)</span>
+<span class="w">   </span>0x00005555555558e8<span class="w"> </span>&lt;+79&gt;:<span class="w">    </span>mov<span class="w">    </span>0x0<span class="o">(</span>%r13,%rbx,4<span class="o">)</span>,%eax<span class="w"> </span>
+<span class="w">   </span>0x00005555555558ed<span class="w"> </span>&lt;+84&gt;:<span class="w">    </span>cmp<span class="w">    </span>%eax,0x0<span class="o">(</span>%rbp<span class="o">)</span>
+<span class="w">   </span>0x00005555555558f0<span class="w"> </span>&lt;+87&gt;:<span class="w">    </span>jne<span class="w">    </span>0x5555555558db<span class="w"> </span>&lt;phase_6+66&gt;<span class="w"> </span>//<span class="w"> </span>Again,<span class="w"> </span>check<span class="w"> </span><span class="k">if</span><span class="w"> </span>the<span class="w"> </span>number<span class="w"> </span>being<span class="w"> </span>seen<span class="w"> </span>is<span class="w"> </span>unique
+</code></pre>
+</div>
 
 <p>Now we know that the numbers are unique, between 1-6 (inclusive).</p>
 
@@ -1053,36 +1071,36 @@ End of assembler dump.
 <p>Let us try to figure out what <code>0x0000555555555928 &lt;+143&gt;:   lea    0x3d01(%rip),%rdx        # 0x555555559630 &lt;node1&gt;</code> is:</p>
 
 <div class="codehilite">
-<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span> x/30wx 0x555555559630
-0x555555559630 &lt;node1&gt;: 0x000000d9      0x00000001      0x55559640      0x00005555
-0x555555559640 &lt;node2&gt;: 0x000003ab      0x00000002      0x55559650      0x00005555
-0x555555559650 &lt;node3&gt;: 0x0000014f      0x00000003      0x55559660      0x00005555
-0x555555559660 &lt;node4&gt;: 0x000000a1      0x00000004      0x55559670      0x00005555
-0x555555559670 &lt;node5&gt;: 0x000001b3      0x00000005      0x55559120      0x00005555
-0x555555559680 &lt;host_table&gt;:    0x555573f5      0x00005555      0x5555740f      0x00005555
-0x555555559690 &lt;host_table+16&gt;: 0x55557429      0x00005555      0x00000000      0x00000000
-0x5555555596a0 &lt;host_table+32&gt;: 0x00000000      0x00000000
-<span class="o">(</span>gdb<span class="o">)</span> x/30wx 0x555555559120
-0x555555559120 &lt;node6&gt;: 0x000002da      0x00000006      0x00000000      0x00000000
-0x555555559130: 0x00000000      0x00000000      0x00000000      0x00000000
-0x555555559140 &lt;userid&gt;:        0x61767861      0x38383535      0x00000000      0x00000000
-0x555555559150 &lt;userid+16&gt;:     0x00000000      0x00000000      0x00000000      0x00000000
-0x555555559160 &lt;userid+32&gt;:     0x00000000      0x00000000      0x00000000      0x00000000
-0x555555559170 &lt;userid+48&gt;:     0x00000000      0x00000000      0x00000000      0x00000000
-0x555555559180 &lt;userid+64&gt;:     0x00000000      0x00000000      0x00000000      0x00000000
-0x555555559190 &lt;userid+80&gt;:     0x00000000      0x00000000
-<span class="o">(</span>gdb<span class="o">)</span> 
+<pre><span></span><code><span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/30wx<span class="w"> </span>0x555555559630
+0x555555559630<span class="w"> </span>&lt;node1&gt;:<span class="w"> </span>0x000000d9<span class="w">      </span>0x00000001<span class="w">      </span>0x55559640<span class="w">      </span>0x00005555
+0x555555559640<span class="w"> </span>&lt;node2&gt;:<span class="w"> </span>0x000003ab<span class="w">      </span>0x00000002<span class="w">      </span>0x55559650<span class="w">      </span>0x00005555
+0x555555559650<span class="w"> </span>&lt;node3&gt;:<span class="w"> </span>0x0000014f<span class="w">      </span>0x00000003<span class="w">      </span>0x55559660<span class="w">      </span>0x00005555
+0x555555559660<span class="w"> </span>&lt;node4&gt;:<span class="w"> </span>0x000000a1<span class="w">      </span>0x00000004<span class="w">      </span>0x55559670<span class="w">      </span>0x00005555
+0x555555559670<span class="w"> </span>&lt;node5&gt;:<span class="w"> </span>0x000001b3<span class="w">      </span>0x00000005<span class="w">      </span>0x55559120<span class="w">      </span>0x00005555
+0x555555559680<span class="w"> </span>&lt;host_table&gt;:<span class="w">    </span>0x555573f5<span class="w">      </span>0x00005555<span class="w">      </span>0x5555740f<span class="w">      </span>0x00005555
+0x555555559690<span class="w"> </span>&lt;host_table+16&gt;:<span class="w"> </span>0x55557429<span class="w">      </span>0x00005555<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000
+0x5555555596a0<span class="w"> </span>&lt;host_table+32&gt;:<span class="w"> </span>0x00000000<span class="w">      </span>0x00000000
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/30wx<span class="w"> </span>0x555555559120
+0x555555559120<span class="w"> </span>&lt;node6&gt;:<span class="w"> </span>0x000002da<span class="w">      </span>0x00000006<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000
+0x555555559130:<span class="w"> </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000
+0x555555559140<span class="w"> </span>&lt;userid&gt;:<span class="w">        </span>0x61767861<span class="w">      </span>0x38383535<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000
+0x555555559150<span class="w"> </span>&lt;userid+16&gt;:<span class="w">     </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000
+0x555555559160<span class="w"> </span>&lt;userid+32&gt;:<span class="w">     </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000
+0x555555559170<span class="w"> </span>&lt;userid+48&gt;:<span class="w">     </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000
+0x555555559180<span class="w"> </span>&lt;userid+64&gt;:<span class="w">     </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000<span class="w">      </span>0x00000000
+0x555555559190<span class="w"> </span>&lt;userid+80&gt;:<span class="w">     </span>0x00000000<span class="w">      </span>0x00000000
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>
 </code></pre>
 </div>
 
 <p>It appears that this is a linked list. With roughly the following structure:</p>
 
 <div class="codehilite">
-<pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span><span class="w"></span>
-<span class="p">};</span><span class="w"></span>
+<pre><span></span><code><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">index</span><span class="p">;</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">node</span><span class="w"> </span><span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">};</span>
 </code></pre>
 </div>
 

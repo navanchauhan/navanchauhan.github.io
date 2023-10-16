@@ -61,14 +61,14 @@
 <h2>Dependencies</h2>
 
 <div class="codehilite">
-<pre><span></span><code>sudo apt update <span class="o">&amp;&amp;</span> sudo apt install certbot -y
+<pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>certbot<span class="w"> </span>-y
 </code></pre>
 </div>
 
 <h2>Get the Certificate</h2>
 
 <div class="codehilite">
-<pre><span></span><code>sudo certbot certonly --manual --preferred-challenges dns-01 --email senpai@email.com -d mydomain.duckdns.org
+<pre><span></span><code>sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--manual<span class="w"> </span>--preferred-challenges<span class="w"> </span>dns-01<span class="w"> </span>--email<span class="w"> </span>senpai@email.com<span class="w"> </span>-d<span class="w"> </span>mydomain.duckdns.org
 </code></pre>
 </div>
 
@@ -84,25 +84,25 @@
 <p>You can check if the TXT records have been updated by using the <code>dig</code> command:</p>
 
 <div class="codehilite">
-<pre><span></span><code>dig navanspi.duckdns.org TXT
-<span class="p">;</span> &lt;&lt;&gt;&gt; DiG <span class="m">9</span>.16.1-Ubuntu &lt;&lt;&gt;&gt; navanspi.duckdns.org TXT
-<span class="p">;;</span> global options: +cmd
-<span class="p">;;</span> Got answer:
-<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">27592</span>
-<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: <span class="m">1</span>, ANSWER: <span class="m">1</span>, AUTHORITY: <span class="m">0</span>, ADDITIONAL: <span class="m">1</span>
+<pre><span></span><code>dig<span class="w"> </span>navanspi.duckdns.org<span class="w"> </span>TXT
+<span class="p">;</span><span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>DiG<span class="w"> </span><span class="m">9</span>.16.1-Ubuntu<span class="w"> </span>&lt;&lt;&gt;&gt;<span class="w"> </span>navanspi.duckdns.org<span class="w"> </span>TXT
+<span class="p">;;</span><span class="w"> </span>global<span class="w"> </span>options:<span class="w"> </span>+cmd
+<span class="p">;;</span><span class="w"> </span>Got<span class="w"> </span>answer:
+<span class="p">;;</span><span class="w"> </span>-&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de:<span class="w"> </span>QUERY,<span class="w"> </span>status:<span class="w"> </span>NOERROR,<span class="w"> </span>id:<span class="w"> </span><span class="m">27592</span>
+<span class="p">;;</span><span class="w"> </span>flags:<span class="w"> </span>qr<span class="w"> </span>rd<span class="w"> </span>ra<span class="p">;</span><span class="w"> </span>QUERY:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>ANSWER:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>AUTHORITY:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>ADDITIONAL:<span class="w"> </span><span class="m">1</span>
 
-<span class="p">;;</span> OPT PSEUDOSECTION:
-<span class="p">;</span> EDNS: version: <span class="m">0</span>, flags:<span class="p">;</span> udp: <span class="m">65494</span>
-<span class="p">;;</span> QUESTION SECTION:
-<span class="p">;</span>navanspi.duckdns.org.        IN    TXT
+<span class="p">;;</span><span class="w"> </span>OPT<span class="w"> </span>PSEUDOSECTION:
+<span class="p">;</span><span class="w"> </span>EDNS:<span class="w"> </span>version:<span class="w"> </span><span class="m">0</span>,<span class="w"> </span>flags:<span class="p">;</span><span class="w"> </span>udp:<span class="w"> </span><span class="m">65494</span>
+<span class="p">;;</span><span class="w"> </span>QUESTION<span class="w"> </span>SECTION:
+<span class="p">;</span>navanspi.duckdns.org.<span class="w">        </span>IN<span class="w">    </span>TXT
 
-<span class="p">;;</span> ANSWER SECTION:
-navanspi.duckdns.org.    <span class="m">60</span>    IN    TXT    <span class="s2">&quot;4OKbijIJmc82Yv2NiGVm1RmaBHSCZ_230qNtj9YA-qk&quot;</span>
+<span class="p">;;</span><span class="w"> </span>ANSWER<span class="w"> </span>SECTION:
+navanspi.duckdns.org.<span class="w">    </span><span class="m">60</span><span class="w">    </span>IN<span class="w">    </span>TXT<span class="w">    </span><span class="s2">&quot;4OKbijIJmc82Yv2NiGVm1RmaBHSCZ_230qNtj9YA-qk&quot;</span>
 
-<span class="p">;;</span> Query time: <span class="m">275</span> msec
-<span class="p">;;</span> SERVER: <span class="m">127</span>.0.0.53#53<span class="o">(</span><span class="m">127</span>.0.0.53<span class="o">)</span>
-<span class="p">;;</span> WHEN: Tue Nov <span class="m">17</span> <span class="m">15</span>:23:15 IST <span class="m">2020</span>
-<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">105</span>
+<span class="p">;;</span><span class="w"> </span>Query<span class="w"> </span>time:<span class="w"> </span><span class="m">275</span><span class="w"> </span>msec
+<span class="p">;;</span><span class="w"> </span>SERVER:<span class="w"> </span><span class="m">127</span>.0.0.53#53<span class="o">(</span><span class="m">127</span>.0.0.53<span class="o">)</span>
+<span class="p">;;</span><span class="w"> </span>WHEN:<span class="w"> </span>Tue<span class="w"> </span>Nov<span class="w"> </span><span class="m">17</span><span class="w"> </span><span class="m">15</span>:23:15<span class="w"> </span>IST<span class="w"> </span><span class="m">2020</span>
+<span class="p">;;</span><span class="w"> </span>MSG<span class="w"> </span>SIZE<span class="w">  </span>rcvd:<span class="w"> </span><span class="m">105</span>
 </code></pre>
 </div>
 
@@ -119,14 +119,14 @@ navanspi.duckdns.org.    <span class="m">60</span>    IN    TXT    <span class="
 <p>Example Gunicorn command for running a web-app:</p>
 
 <div class="codehilite">
-<pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589
+<pre><span></span><code>gunicorn<span class="w"> </span>api:app<span class="w"> </span>-k<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>-b<span class="w"> </span><span class="m">0</span>.0.0.0:7589
 </code></pre>
 </div>
 
 <p>To use the certificate with it, simply copy the <code>cert.pem</code> and <code>privkey.pem</code> to your working directory ( change the appropriate permissions ) and include them in the command</p>
 
 <div class="codehilite">
-<pre><span></span><code>gunicorn api:app -k uvicorn.workers.UvicornWorker -b <span class="m">0</span>.0.0.0:7589 --certfile<span class="o">=</span>cert.pem --keyfile<span class="o">=</span>privkey.pem
+<pre><span></span><code>gunicorn<span class="w"> </span>api:app<span class="w"> </span>-k<span class="w"> </span>uvicorn.workers.UvicornWorker<span class="w"> </span>-b<span class="w"> </span><span class="m">0</span>.0.0.0:7589<span class="w"> </span>--certfile<span class="o">=</span>cert.pem<span class="w"> </span>--keyfile<span class="o">=</span>privkey.pem
 </code></pre>
 </div>
 

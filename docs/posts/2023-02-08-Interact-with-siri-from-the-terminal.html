@@ -104,7 +104,7 @@
 
 
 <span class="k">def</span> <span class="nf">execute_command</span><span class="p">(</span><span class="n">command_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Execute a Siri command.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute a Siri command.&quot;&quot;&quot;</span>
 
     <span class="n">script</span> <span class="o">=</span> <span class="n">applescript</span><span class="o">.</span><span class="n">AppleScript</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        tell application &quot;System Events&quot; to tell the front menu bar of process &quot;SystemUIServer&quot;</span>
@@ -141,8 +141,8 @@
 <p>Usage:</p>
 
 <div class="codehilite">
-<pre><span></span><code>python3 main.py <span class="s2">&quot;play some taylor swift&quot;</span>
-python3 main.py <span class="s2">&quot;turn off the lights and play some music&quot;</span> --openai
+<pre><span></span><code>python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&quot;play some taylor swift&quot;</span>
+python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&quot;turn off the lights and play some music&quot;</span><span class="w"> </span>--openai
 </code></pre>
 </div>
 
@@ -179,7 +179,7 @@ python3 main.py <span class="s2">&quot;turn off the lights and play some music&q
 <pre><span></span><code><span class="kn">import</span> <span class="nn">applescript</span>
 
 <span class="k">def</span> <span class="nf">execute_command</span><span class="p">(</span><span class="n">command_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Execute a Siri command.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute a Siri command.&quot;&quot;&quot;</span>
 
     <span class="n">script</span> <span class="o">=</span> <span class="n">applescript</span><span class="o">.</span><span class="n">AppleScript</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">        tell application &quot;System Events&quot; to tell the front menu bar of process &quot;SystemUIServer&quot;</span>

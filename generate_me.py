@@ -142,7 +142,6 @@ for x in os.walk(src_folder):
 
                         if "draft" in _post:
                             if _post["draft"] == "true":
-                                print(_post)
                                 post_me = False
 
                         if post_me:

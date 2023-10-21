@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <meta name="og:site_name" content="Navan Chauhan" />
-    <link rel="canonical" href="https://web.navan.dev/" />
-    <meta name="twitter:url" content="https://web.navan.dev/" />
-    <meta name="og:url" content="https://web.navan.dev/" />
+    <link rel="canonical" href="https://web.navan.dev{% block canURL %}{% endblock %}" />
+    <meta name="twitter:url" content="https://web.navan.dev{% block twURL %}{% endblock %} />
+    <meta name="og:url" content="https://web.navan.dev{% block ogURL %}{% endblock %}" />
     <meta name="twitter:title" content="{% block twittertitle %}Hey - Home{% endblock %}" />
     <meta name="og:title" content="{% block ogtitle %}Hey - Home{% endblock %}" />
     <meta name="description" content="{% block description %}code snippets, long-form rants, and tutorials{% endblock %}" />
@@ -22,7 +22,6 @@
     <link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to Navan Chauhan" />
     <meta name="twitter:image" content="{% block twimage %}https://web.navan.dev/images/logo.png{% endblock %}" />
     <meta name="og:image" content="{% block ogimage %}https://web.navan.dev/images/logo.png{% endblock %}" />
-    <link rel="manifest" href="manifest.json" />
     <meta name="google-site-verification" content="LVeSZxz-QskhbEjHxOi7-BM5dDxTg53x2TwrjFxfL0k" />
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
@@ -33,7 +32,5 @@
     {% include "header.html" %}
     {% block body %}{% endblock %}
 
-<script src="assets/manup.min.js"></script>
-<script src="/pwabuilder-sw-register.js"></script>    
 </body>
 </html>

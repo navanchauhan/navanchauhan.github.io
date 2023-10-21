@@ -1,7 +1,7 @@
 ---
 date: 2023-10-05 20:01
 description: Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems
-tags: gdb, reverse-engineering, c++, csci2400, assembly
+tags: gdb, Reverse-Engineering, C++, CSCI2400, Assembly
 draft: false 
 ---
 
@@ -12,6 +12,8 @@ draft: false
 Lab 3 for CSCI 2400 @ CU Boulder - Computer Systems
 
 > This assignment involves generating a total of five attacks on two programs having different security vulnerabilities.  The directions for this lab are detailed but not difficult to follow.
+<cite> Attack Lab Handout </cite>
+
 
 Again, I like using objdump to disassemble the code. 
 
@@ -75,8 +77,9 @@ NICE JOB!
 ## Phase 2
 
 > Phase 2 involves injecting a small amount of code as part of your exploit string.
-
-> Within the file ctarget there is code for a function touch2 having the following C representation:
+<br><br>
+Within the file ctarget there is code for a function touch2 having the following C representation:
+<cite>Attack Lab Handout</cite>
 
 ```c
 void touch2(unsigned val)
@@ -95,8 +98,9 @@ void touch2(unsigned val)
 
 > Your task is to get CTARGET to execute the code for touch2 rather than returning to test. In this case, 
 however, you must make it appear to touch2 as if you have passed your cookie as its argument.
-
-> Recall that the first argument to a function is passed in register %rdi
+<br><br>
+Recall that the first argument to a function is passed in register %rdi
+<cite>Attack Lab Handout</cite>
 
 This hint tells us that we need to store the cookie in the rdi register
 
@@ -226,15 +230,16 @@ NICE JOB!
 ## Phase 3
 
 > Phase 3 also involves a code injection attack, but passing a string as argument.
-
-> You will need to include a string representation of your cookie in your exploit string. The string should
+<br><br>
+You will need to include a string representation of your cookie in your exploit string. The string should
 consist of the eight hexadecimal digits (ordered from most to least significant) without a leading “0x.”
-
-> Your injected code should set register %rdi to the address of this string
-
-> When functions hexmatch and strncmp are called, they push data onto the stack, overwriting
+<br><br>
+Your injected code should set register %rdi to the address of this string
+<br><br>
+When functions hexmatch and strncmp are called, they push data onto the stack, overwriting
 portions of memory that held the buffer used by getbuf. As a result, you will need to be careful
 where you place the string representation of your cookie.
+<cite>Attack Lab Handout</cite>
 
 Because `hexmatch` and `strncmp` might overwrite the buffer allocated for `getbuf` we will try to store the data after the function `touch3` itself.
 
@@ -329,14 +334,15 @@ and using only the first eight x86-64 registers (%rax–%rdi).
 * popq
 * ret
 * nop
-
-> All the gadgets you need can be found in the region of the code for rtarget demarcated by the
+<br><br>
+All the gadgets you need can be found in the region of the code for rtarget demarcated by the
 functions start_farm and mid_farm
-
-> You can do this attack with just two gadgets
-
-> When a gadget uses a popq instruction, it will pop data from the stack. As a result, your exploit
+<br><br>
+You can do this attack with just two gadgets
+<br><br>
+When a gadget uses a popq instruction, it will pop data from the stack. As a result, your exploit
 string will contain a combination of gadget addresses and data.
+<cite>Attack Lab Handout</cite>
 
 Let us check if we can find `popq %rdi` between `start_farm` and `end_farm`
 

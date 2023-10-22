@@ -4,10 +4,34 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sat, 21 Oct 2023 01:07:48 -0000</lastBuildDate>
-		<pubDate>Sat, 21 Oct 2023 01:07:48 -0000</pubDate>
+		<lastBuildDate>Sun, 22 Oct 2023 00:45:08 -0000</lastBuildDate>
+		<pubDate>Sun, 22 Oct 2023 00:45:08 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2023-10-22-search-by-flair-reddit.html
+			</guid>
+			<title>
+				Search / Filter posts by flair on Reddit
+			</title>
+			<description>
+				Search posts by flair on Reddit Web by using _
+			</description>
+			<link>https://web.navan.dev/posts/2023-10-22-search-by-flair-reddit.html</link>
+			<pubDate>Sun, 22 Oct 2023 00:37:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Search / Filter posts by flair on Reddit</h1>
+
+<p>Remember to replace any spaces in the flair with <code>_</code></p>
+
+<p>E.g. <code>flair:Snail_Mail</code> limited to r/penpals will only show posts that have the flair <code>Snail Mail</code>.</p>
+
+<p><img src="/assets/posts/reddit-flair-search.png" alt="Screenshot of Old Reddit with search filter being used" /></p>
+
+<p>I wish this was documented somewhere.</p>
+]]></content:encoded>
+		</item>
 		
 		<item>
 			<guid isPermaLink="true">

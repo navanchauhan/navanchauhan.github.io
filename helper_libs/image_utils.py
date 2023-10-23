@@ -20,11 +20,14 @@ class ImageText(object):
         self.draw = ImageDraw.Draw(self.image)
         self.encoding = encoding
 
-    def line(self, shape, fill):
-        self.draw.line(shape,fill=fill, width=10)
+    def line(self, shape, fill, width=10):
+        self.draw.line(shape,fill=fill, width=width)
 
     def save(self, filename=None):
         self.image.save(filename or self.filename)
+
+    def paste(self, image, coords):
+        self.image.paste(image, coords)
 
     def get_font_size(self, text, font, max_width=None, max_height=None):
         if max_width is None and max_height is None:

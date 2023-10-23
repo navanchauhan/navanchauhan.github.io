@@ -41,8 +41,9 @@ Let us try to look into the `getbuf` from our disassembled code.
 
 We can see that `0x18` (hex) or `24` (decimal) bytes of buffer is allocated to `getbuf` (Since, 24 bytes are being subtracted from the stack pointer).
 
+**Buffer Overflow**: A buffer overrun happens when the size of the data exceeds the memory size reserved for the buffer we are storing in our value.
 
-Now, since we know the buffer size we can try passing the address of the touch1 function.
+Now, since we know the buffer size we can try passing the address of the touch1 function after we pad it up with the buffer size.
 
 ```bash
 jxxxan@jupyter-xxxxxx8:~/lab3-attacklab-xxxxxxxxuhan/target66$ cat dis.txt | grep touch1
@@ -343,6 +344,11 @@ You can do this attack with just two gadgets
 When a gadget uses a popq instruction, it will pop data from the stack. As a result, your exploit
 string will contain a combination of gadget addresses and data.
 <cite>Attack Lab Handout</cite>
+
+> What is ROP Attack?
+<br><br>
+is a computer security exploit technique in which the attacker uses control of the call stack to indirectly execute cherry-picked machine instructions
+<cite>https://resources.infosecinstitute.com</cite>
 
 Let us check if we can find `popq %rdi` between `start_farm` and `end_farm`
 

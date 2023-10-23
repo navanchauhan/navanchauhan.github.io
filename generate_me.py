@@ -5,6 +5,7 @@ from distutils.dir_util import copy_tree
 import datetime
 import email.utils
 from helper_libs.image_utils import ImageText
+from PIL import Image
 
 templates = Environment(loader=FileSystemLoader("templates"))
 src_folder = "Content"
@@ -15,8 +16,8 @@ f_title = "Navan's Archive"
 f_description = "Rare Tips, Tricks and Posts"
 f_date = email.utils.format_datetime(datetime.datetime.now())
 
-image_title_color = (74, 74, 74)
-image_line_color = (29, 116, 132)
+image_title_color = (49,31,19) #(74, 74, 74)
+image_line_color = (176,113,84) #(29, 116, 132)
 image_title_font = "fonts/futura_bold.ttf"
 image_text_font = "fonts/futura_light.ttf"
 
@@ -97,37 +98,68 @@ for x in os.walk(src_folder):
 
                         # Check if image exists
                         if not os.path.exists(to_write_path):
+                            print(print("Generating Image for {}".format(fpath)))
                             img = ImageText((1200, 630), background=(238, 238, 238))
-                            img.write_text_box(
-                                (100, 50),
-                                _post_title,
-                                box_width=1000,
-                                font_filename=image_title_font,
-                                font_size=65,
-                                color=image_title_color,
-                                place="center",
-                            )
-                            img.line(
-                                shape=[(400, 400), (800, 400)], fill=image_line_color
-                            )
-                            img.write_text_box(
-                                (100, 430),
-                                f'Tags: {", ".join(_post["tags"])}',
-                                box_width=1000,
-                                font_filename=image_text_font,
-                                font_size=32,
-                                color=(0, 0, 0),
-                                place="left",
-                            )
-                            img.write_text_box(
-                                (100, 400),
-                                f'Date: {_post["date"]}',
-                                box_width=1000,
-                                font_filename=image_text_font,
-                                font_size=32,
-                                color=(0, 0, 0),
-                                place="left",
-                            )
+                            dall_e_image = to_write_path.replace("images/opengraph","DallE3Base")
+                            if (os.path.exists(dall_e_image)):
+                                print("Found DallE3Base Image")
+                                img = ImageText((1200,630), background=(248,247,240))
+                                dall_e_image_file = Image.open(dall_e_image)
+                                dall_e_image_file = dall_e_image_file.resize((630,630))
+                                img.paste(dall_e_image_file, (570,0))
+                                img.write_text_box(
+                                        (35, 50),
+                                        _post_title,
+                                        box_width=500,
+                                        font_filename=image_title_font,
+                                        font_size=65,
+                                        color=image_title_color,
+                                        place="center",
+                                    )
+                                img.line(
+                                    shape=[(500, 400), (70,400)], fill=image_line_color, width=5
+                                )
+                                img.write_text_box(
+                                        (35, 435),
+                                        _post["description"],
+                                        box_width=500,
+                                        font_filename=image_text_font,
+                                        font_size=32,
+                                        color=(0, 0, 0),
+                                        place="center",
+                                    )
+                            else: 
+                            #img = ImageText((1200, 630), background=(238, 238, 238))
+                                img.write_text_box(
+                                    (100, 50),
+                                    _post_title,
+                                    box_width=1000,
+                                    font_filename=image_title_font,
+                                    font_size=65,
+                                    color=image_title_color,
+                                    place="center",
+                                )
+                                img.line(
+                                    shape=[(400, 400), (800, 400)], fill=image_line_color
+                                )
+                                img.write_text_box(
+                                    (100, 430),
+                                    f'Tags: {", ".join(_post["tags"])}',
+                                    box_width=1000,
+                                    font_filename=image_text_font,
+                                    font_size=32,
+                                    color=(0, 0, 0),
+                                    place="left",
+                                )
+                                img.write_text_box(
+                                    (100, 400),
+                                    f'Date: {_post["date"]}',
+                                    box_width=1000,
+                                    font_filename=image_text_font,
+                                    font_size=32,
+                                    color=(0, 0, 0),
+                                    place="left",
+                                )
                             try:
                                 img.save(to_write_path)
                             except FileNotFoundError as e:

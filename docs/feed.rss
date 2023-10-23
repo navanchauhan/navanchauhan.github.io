@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sun, 22 Oct 2023 21:26:58 -0000</lastBuildDate>
-		<pubDate>Sun, 22 Oct 2023 21:26:58 -0000</pubDate>
+		<lastBuildDate>Mon, 23 Oct 2023 16:17:36 -0000</lastBuildDate>
+		<pubDate>Mon, 23 Oct 2023 16:17:36 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -1435,7 +1435,9 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p>We can see that <code>0x18</code> (hex) or <code>24</code> (decimal) bytes of buffer is allocated to <code>getbuf</code> (Since, 24 bytes are being subtracted from the stack pointer).</p>
 
-<p>Now, since we know the buffer size we can try passing the address of the touch1 function.</p>
+<p><strong>Buffer Overflow</strong>: A buffer overrun happens when the size of the data exceeds the memory size reserved for the buffer we are storing in our value.</p>
+
+<p>Now, since we know the buffer size we can try passing the address of the touch1 function after we pad it up with the buffer size.</p>
 
 <div class="codehilite">
 <pre><span></span><code>jxxxan@jupyter-xxxxxx8:~/lab3-attacklab-xxxxxxxxuhan/target66$<span class="w"> </span>cat<span class="w"> </span>dis.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>touch1
@@ -1752,6 +1754,13 @@ NICE<span class="w"> </span>JOB!
   When a gadget uses a popq instruction, it will pop data from the stack. As a result, your exploit
   string will contain a combination of gadget addresses and data.
   <cite>Attack Lab Handout</cite></p>
+</blockquote>
+
+<blockquote>
+  <p>What is ROP Attack?
+  <br><br>
+  is a computer security exploit technique in which the attacker uses control of the call stack to indirectly execute cherry-picked machine instructions
+  <cite>https://resources.infosecinstitute.com</cite></p>
 </blockquote>
 
 <p>Let us check if we can find <code>popq %rdi</code> between <code>start_farm</code> and <code>end_farm</code></p>

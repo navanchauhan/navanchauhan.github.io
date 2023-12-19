@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Mon, 23 Oct 2023 16:17:36 -0000</lastBuildDate>
-		<pubDate>Mon, 23 Oct 2023 16:17:36 -0000</pubDate>
+		<lastBuildDate>Mon, 18 Dec 2023 22:21:02 -0000</lastBuildDate>
+		<pubDate>Mon, 18 Dec 2023 22:21:02 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -55,7 +55,7 @@
 
 <h1>How to Vaporwave</h1>
 
-<p>The first track which is considered to be actual Vaporwave is Ramona Xavier's Macintosh Plus, this set the the guidelines for making Vaporwave</p>
+<p>The first track which is considered to be actual Vaporwave is Ramona Xavier's Macintosh Plus, this set the guidelines for making Vaporwave</p>
 
 <ul>
 <li>Take a 1980s RnB song</li>
@@ -1907,7 +1907,7 @@ NICE<span class="w"> </span>JOB!
 <ul>
 <li>Go To Settings</li>
 <li>About</li>
-<li>Continously click on the "Build" option until it says "You are a Developer"</li>
+<li>Continuously click on the "Build" option until it says "You are a Developer"</li>
 </ul>
 
 <h2>Enable-ADB</h2>
@@ -1915,7 +1915,7 @@ NICE<span class="w"> </span>JOB!
 <ul>
 <li>Go to Settings</li>
 <li>Go to Developer Options</li>
-<li>Scroll untill you find ADB Debugging and enable that option</li>
+<li>Scroll until you find ADB Debugging and enable that option</li>
 </ul>
 
 <h2>Connect-ADB</h2>
@@ -2764,44 +2764,6 @@ values using the X values. We then plot it to compare the actual data and predic
 		
 		<item>
 			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2023-03-17-future-of-writing.html
-			</guid>
-			<title>
-				Future of Writing
-			</title>
-			<description>
-				My thoughts on writing in the 21st century.
-			</description>
-			<link>https://web.navan.dev/posts/2023-03-17-future-of-writing.html</link>
-			<pubDate>Fri, 17 Mar 2023 13:57:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Future of Writing</h1>
-
-<p>I love taking jotting down my thoughts as bullet points.
-I find it easier to be able to recall my thoughts by just reading the keywords.
-But, at the same time, am I actually able to recall everything?</p>
-
-<p>The primary reason I started writing in my journal is because I knew, I was never 
-able to recall anything with 100% guarantee. </p>
-
-<p>So, the question arises, does it still make sense to put time and effort into writing blog posts?
-You can simply ask an autoregressive model to generate it for you, based on bullet points.
-I feel like writitng still has a place in this world. Limitting ourselves to a model trained on a finite dataset, feels like an insult to creativity.
-If neural networks stopped being prediction machines, and were actually able to "think", I would still believe that creativity wins. 
-Even if that creativity was now coming from the machine.</p>
-
-<blockquote>
-  <p>I am the master of my fate,. I am the captain of my soul.</p>
-</blockquote>
-
-<p>As long as I am alive, and I have the spirit of being rebellious, I am never going to stop trying to write.
-Even if we have a tool that can generate the perfect essay, we humans will still write.</p>
-
-<p>Why? Just because we can.</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
 				https://web.navan.dev/posts/2021-06-25-NFC-Music-Cards-Basic-iOS.html
 			</guid>
 			<title>
@@ -2902,7 +2864,7 @@ So, I did not have to ensure this could work with any device. I settled with usi
 
 <p>Now, you might ask what is the difference between <code>PackageName</code> and <code>ThemeName</code>?</p>
 
-<p>Well, if for example you want to publish two variants of your icons, one dark and one white but you do not want the user to seperately install them.
+<p>Well, if for example you want to publish two variants of your icons, one dark and one white but you do not want the user to separately install them.
 Then, you would name the package <code>MyTheme</code> and include two themes <code>Blackie</code> and <code>White</code> thus creating two entries. More about this in the end</p>
 
 <h2>Creating Icons</h2>
@@ -3850,7 +3812,7 @@ End<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> <
 
 <p>By executing <code>mov %rsp,%rbp</code> we are setting the base pointer (<code>%rbp</code>) to point to this address.</p>
 
-<p>Now, for the second instruction <code>mov $0x1,%ebx</code>, we are initalising the <code>%ebx</code> register with the value 1. Based on the assembly code, you can see that this is being used as a counter/index for the loop.</p>
+<p>Now, for the second instruction <code>mov $0x1,%ebx</code>, we are initialising the <code>%ebx</code> register with the value 1. Based on the assembly code, you can see that this is being used as a counter/index for the loop.</p>
 
 <div class="codehilite">
 <pre><span></span><code><span class="w">   </span>0x000055555555560b<span class="w"> </span>&lt;+32&gt;:<span class="w">    </span>jmp<span class="w">    </span>0x555555555620<span class="w"> </span>&lt;phase_2+53&gt;
@@ -3887,7 +3849,7 @@ End<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> <
 </code></pre>
 </div>
 
-<p>Here, we can see that the program increments <code>%ebx</code> by 1, adds a 4 byte offset to <code>%rbp</code> (the number we will be matching now), and checks if <code>%ebx</code> is equal to 6. If it is, it breaks the loop and jumps to <code>&lt;phase_2+70&gt;</code> succesfully finishing this stage.</p>
+<p>Here, we can see that the program increments <code>%ebx</code> by 1, adds a 4 byte offset to <code>%rbp</code> (the number we will be matching now), and checks if <code>%ebx</code> is equal to 6. If it is, it breaks the loop and jumps to <code>&lt;phase_2+70&gt;</code> successfully finishing this stage.</p>
 
 <p>Now, given that we know the first two numbers in the sequence are <code>0 1</code>, we can calculate the other numbers by following the pattern of adding the counter and the value of the previous number.</p>
 
@@ -4097,7 +4059,7 @@ Dump<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> 
 
 <p>The program checks whether <code>scanf</code> returns a value &lt;= 2, if it does then it calls the <code>explode_bomb</code> function. </p>
 
-<p><em>Note: <code>scanf</code> returns the number of fields that were succesfully converted and assigned</em></p>
+<p><em>Note: <code>scanf</code> returns the number of fields that were successfully converted and assigned</em></p>
 
 <div class="codehilite">
 <pre><span></span><code><span class="w">   </span>0x0000555555555665<span class="w"> </span>&lt;+45&gt;:<span class="w">    </span>cmpl<span class="w">   </span><span class="nv">$0</span>x7,0xc<span class="o">(</span>%rsp<span class="o">)</span>
@@ -5763,11 +5725,11 @@ Seeing that you are reading this on Mastodon, and that I have updated this secti
 
 <p>The n-body problem is a classic puzzle in physics (and thus astrophysics) and mathematics that deals with predicting the motion of multiple celestial objects that interact with each other through gravitational forces. </p>
 
-<p>Imagine you are observing a <em>cosmic dance</em> between multiple celestial bodies, all tugging on one another as they move through space. The n-body problem aims to undersand and predict the paths of these objects as they move through space.</p>
+<p>Imagine you are observing a <em>cosmic dance</em> between multiple celestial bodies, all tugging on one another as they move through space. The n-body problem aims to understand and predict the paths of these objects as they move through space.</p>
 
 <p>When <code>n=2</code>, i.e we have only two objects, say the Earth and the Moon, we can easily apply Newtonian physics to predict their motion. However, when <code>n&gt;2</code>, the problem becomes much more difficult to solve analytically.[1] This is because each object feels the gravitational pull from all other objects, and thus the equations of motion become coupled and non-linear. </p>
 
-<p>As the number of objects increases, finding an exact solution becomes impossible, and we rely on analyticals approximations.</p>
+<p>As the number of objects increases, finding an exact solution becomes impossible, and we rely on analytical approximations.</p>
 
 <h2>Visualising a basic orbit</h2>
 
@@ -6905,7 +6867,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 			<pubDate>Thu, 16 Jan 2020 10:36:00 -0000</pubDate>
 			<content:encoded><![CDATA[<h1>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1>
 
-<p><em>For setting up Kaggle with Google Colab, please refer to <a rel="noopener" target="_blank" href="/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab/"> my previous post</a></em></p>
+<p><em>For setting up Kaggle with Google Colab, please refer to <a rel="noopener" target="_blank" href="/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab"> my previous post</a></em></p>
 
 <h2>Dataset</h2>
 

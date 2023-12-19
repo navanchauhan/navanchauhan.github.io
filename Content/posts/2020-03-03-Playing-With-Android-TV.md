@@ -34,13 +34,13 @@ The other option is to go to your router's server page and get connected devices
 
 * Go To Settings
 * About
-* Continously click on the "Build" option until it says "You are a Developer"
+* Continuously click on the "Build" option until it says "You are a Developer"
 
 ## Enable-ADB
 
 * Go to Settings
 * Go to Developer Options
-* Scroll untill you find ADB Debugging and enable that option
+* Scroll until you find ADB Debugging and enable that option
 
 ## Connect-ADB
 

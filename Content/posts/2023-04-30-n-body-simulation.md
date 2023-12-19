@@ -23,11 +23,11 @@ Workflow:
 
 The n-body problem is a classic puzzle in physics (and thus astrophysics) and mathematics that deals with predicting the motion of multiple celestial objects that interact with each other through gravitational forces. 
 
-Imagine you are observing a *cosmic dance* between multiple celestial bodies, all tugging on one another as they move through space. The n-body problem aims to undersand and predict the paths of these objects as they move through space.
+Imagine you are observing a *cosmic dance* between multiple celestial bodies, all tugging on one another as they move through space. The n-body problem aims to understand and predict the paths of these objects as they move through space.
 
 When `n=2`, i.e we have only two objects, say the Earth and the Moon, we can easily apply Newtonian physics to predict their motion. However, when `n>2`, the problem becomes much more difficult to solve analytically.[1] This is because each object feels the gravitational pull from all other objects, and thus the equations of motion become coupled and non-linear. 
 
-As the number of objects increases, finding an exact solution becomes impossible, and we rely on analyticals approximations.
+As the number of objects increases, finding an exact solution becomes impossible, and we rely on analytical approximations.
 
 ## Visualising a basic orbit
 

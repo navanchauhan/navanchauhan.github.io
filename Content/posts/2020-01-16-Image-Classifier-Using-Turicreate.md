@@ -6,7 +6,7 @@ tags: Tutorial, Colab, Turicreate
 
 # Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire
 
-*For setting up Kaggle with Google Colab, please refer to <a href="/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab/"> my previous post</a>*
+*For setting up Kaggle with Google Colab, please refer to <a href="/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab"> my previous post</a>*
 
 
 ## Dataset

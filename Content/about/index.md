@@ -10,7 +10,7 @@ Hi!
 
 My name is Navan Chauhan. I do lots of different things. Most of the bigger projects I am working on are currently private/unlisted. Although, all of them will be open-sourced, I don't want to publish them until I am happy with the version 1.0.
 
-Main website with links: [https://navan.website](https://navan.website)
+Landing page with other links, and projects: [https://hi.navan.dev](https://hi.navan.dev)
 
 ## Contact Me
 

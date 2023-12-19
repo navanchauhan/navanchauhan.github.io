@@ -43,7 +43,7 @@ tags: Tutorial, Jailbreak, Designing, Snowboard, Anemone
 
 Now, you might ask what is the difference between `PackageName` and `ThemeName`?
 
-Well, if for example you want to publish two variants of your icons, one dark and one white but you do not want the user to seperately install them.
+Well, if for example you want to publish two variants of your icons, one dark and one white but you do not want the user to separately install them.
 Then, you would name the package `MyTheme` and include two themes `Blackie` and `White` thus creating two entries. More about this in the end
 
 ## Creating Icons

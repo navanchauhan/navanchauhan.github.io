@@ -14,7 +14,7 @@ Vaporwave is all about A E S T H E T I C S. Vaporwave is a type of music genre t
 
 # How to Vaporwave
 
-The first track which is considered to be actual Vaporwave is Ramona Xavier's Macintosh Plus, this set the the guidelines for making Vaporwave
+The first track which is considered to be actual Vaporwave is Ramona Xavier's Macintosh Plus, this set the guidelines for making Vaporwave
 
 * Take a 1980s RnB song
 * Slow it down

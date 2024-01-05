@@ -65,7 +65,7 @@ class ImageText(object):
 
     def get_text_size(self, font_filename, font_size, text):
         font = ImageFont.truetype(font_filename, font_size)
-        return font.getsize(text)
+        return font.getbbox(text)[2:4]
 
     def write_text_box(self, coords, text, box_width, font_filename,
                        font_size=11, color=(0, 0, 0), place='left',

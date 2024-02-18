@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sat, 06 Jan 2024 00:04:56 -0000</lastBuildDate>
-		<pubDate>Sat, 06 Jan 2024 00:04:56 -0000</pubDate>
+		<lastBuildDate>Sat, 17 Feb 2024 19:51:03 -0000</lastBuildDate>
+		<pubDate>Sat, 17 Feb 2024 19:51:03 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -7594,6 +7594,54 @@ alias pbpaste='xclip -selection clipboard -o'
 <p>This is still a pre-print.</p>
 
 <p><a rel="noopener" target="_blank" href="https://chemrxiv.org/articles/Possible_Drug_Candidates_for_COVID-19/11985231">Download paper here</a></p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/3D-Designs/2024-02-17-Can-Holder-Mountain-Bike.html
+			</guid>
+			<title>
+				Bike Soda Can Holder
+			</title>
+			<description>
+				Carry your favourite soda (or beer) can with you while you ride
+			</description>
+			<link>https://web.navan.dev/3D-Designs/2024-02-17-Can-Holder-Mountain-Bike.html</link>
+			<pubDate>Sat, 17 Feb 2024 18:42:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Bike Soda Can Holder</h1>
+
+<p>Ever wanted a nice craft soda, or a natty light during your ride? Mounts to the standard bottle cage holes on your bike.</p>
+
+<p>Printed on an Anycubic Kobra 2 (0.20mm resolution w/ 0.40mm nozzle at 40% Infill) </p>
+
+<p>Download Link: <a rel="noopener" target="_blank" href="https://github.com/navanchauhan/3D-Designs/tree/master/MTBCanHolder">Github</a></p>
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+<div class="wrapper">
+<model-viewer alt="Holder for standard 12oz can" src="https://raw.githubusercontent.com/navanchauhan/3D-Designs/master/MTBCanHolder/12ozCanHolder.glb" shadow-intensity="1" ar ar-scale="auto" camera-controls touch-action="pan-y" camera-orbit="90deg 45def auto" auto-rotate xr-environment>
+</div>
+
+<style>
+.wrapper {
+    width: 100%
+}
+
+model-viewer {
+    height: 600px;
+    width: auto;
+}
+</style>
+
+<h2>Current Variations</h2>
+
+<ul>
+<li>Standard 12oz Can</li>
+<li>8.4 oz Red Bull holder</li>
+</ul>
+
+<p>The OpenSCAD code can be modified to support tall boys and stovepipe cans. Email me if you need help generating more variations</p>
 ]]></content:encoded>
 		</item>
 		

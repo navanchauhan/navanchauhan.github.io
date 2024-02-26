@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <link rel="stylesheet" href="/assets/main.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interacting with underlying element in HTML</title>
+    <meta name="og:site_name" content="Navan Chauhan" />
+    <link rel="canonical" href="https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html" />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html />
+    <meta name="og:url" content="https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html" />
+    <meta name="twitter:title" content="Interacting with underlying element in HTML" />
+    <meta name="og:title" content="Interacting with underlying element in HTML" />
+    <meta name="description" content="With CSS you can disable any interactions with an element and directly control the underlying element" />
+    <meta name="twitter:description" content="With CSS you can disable any interactions with an element and directly control the underlying element" />
+    <meta name="og:description" content="With CSS you can disable any interactions with an element and directly control the underlying element" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to Navan Chauhan" />
+    <meta name="twitter:image" content="https://web.navan.dev/images/opengraph/posts/2024-02-26-control-element-under-another-element-html-css.png" />
+    <meta name="og:image" content="https://web.navan.dev/images/opengraph/posts/2024-02-26-control-element-under-another-element-html-css.png" />
+    <meta name="google-site-verification" content="LVeSZxz-QskhbEjHxOi7-BM5dDxTg53x2TwrjFxfL0k" />
+    <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+    <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
+    <link rel="manifest" href="/manifest.json" />
+    
+</head>
+<body>
+    <center><nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/3D-Designs/">3D designs</a> |
+<!--<a href="/publications/">publications</a> |-->
+<!--<a href="/repo/">iOS repo</a> |-->
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+</center>
+    
+<main>
+
+	<h1>Interacting with underlying element in HTML</h1>
+
+<p>I know that the title is a bit weird. I was trying to interact with a video under an iPhone Bezel Screen frame.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row-span-2 md:col-span-1 rounded-xl border-2 border-slate-400/10 bg-neutral-100 p-4 dark:bg-neutral-900&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content flex flex-wrap content-center justify-center&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;iphone-12-white.png&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h-[60vh] z-10 absolute&quot;</span><span class="p">&gt;</span>
+        <span class="cm">&lt;!--&lt;img src=&quot;screenshot2.jpeg&quot; class=&quot;h-[57vh] mt-4 mr-1 rounded-[2rem]&quot;&gt;--&gt;</span>
+        <span class="p">&lt;</span><span class="nt">video</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;screenrec.mp4&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h-[57vh] mt-4 mr-1 rounded-[2rem]&quot;</span> <span class="na">controls</span> <span class="na">muted</span> <span class="na">autoplay</span><span class="p">&gt;&lt;/</span><span class="nt">video</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p><img src="/assets/underlying/video-under-element.jpg" alt="Video Under a Transparent Image" /></p>
+
+<p>Turns out, you can disable pointer events!</p>
+
+<p>In Tailwind, it is as simple as adding <code>pointer-events-none</code> to the bezel screen.</p>
+
+<p>In CSS, this can be done by:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">.</span><span class="nc">className</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">pointer-events</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
+	<script data-isso="https://comments.navan.dev/"
+        src="https://comments.navan.dev/js/embed.min.js"></script>
+	<section id="isso-thread">
+	    <noscript>Javascript needs to be activated to view comments.</noscript>
+	</section>
+</main>
+
+    <script src="assets/manup.min.js"></script>
+    <script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

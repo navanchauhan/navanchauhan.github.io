@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sat, 17 Feb 2024 19:51:03 -0000</lastBuildDate>
-		<pubDate>Sat, 17 Feb 2024 19:51:03 -0000</pubDate>
+		<lastBuildDate>Mon, 26 Feb 2024 12:07:42 -0000</lastBuildDate>
+		<pubDate>Mon, 26 Feb 2024 12:07:42 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -3544,6 +3544,50 @@ Otherwise, it calls the custom action.</p>
 <p>So easy.</p>
 
 <p>If I ever release a part-2, it will either be about implementing this in Tensorflow.JS or an iOS app using SwiftUI ;)</p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html
+			</guid>
+			<title>
+				Interacting with underlying element in HTML
+			</title>
+			<description>
+				With CSS you can disable any interactions with an element and directly control the underlying element
+			</description>
+			<link>https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html</link>
+			<pubDate>Mon, 26 Feb 2024 11:57:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Interacting with underlying element in HTML</h1>
+
+<p>I know that the title is a bit weird. I was trying to interact with a video under an iPhone Bezel Screen frame.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row-span-2 md:col-span-1 rounded-xl border-2 border-slate-400/10 bg-neutral-100 p-4 dark:bg-neutral-900&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;content flex flex-wrap content-center justify-center&quot;</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;iphone-12-white.png&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h-[60vh] z-10 absolute&quot;</span><span class="p">&gt;</span>
+        <span class="cm">&lt;!--&lt;img src=&quot;screenshot2.jpeg&quot; class=&quot;h-[57vh] mt-4 mr-1 rounded-[2rem]&quot;&gt;--&gt;</span>
+        <span class="p">&lt;</span><span class="nt">video</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;screenrec.mp4&quot;</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;h-[57vh] mt-4 mr-1 rounded-[2rem]&quot;</span> <span class="na">controls</span> <span class="na">muted</span> <span class="na">autoplay</span><span class="p">&gt;&lt;/</span><span class="nt">video</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<p><img src="/assets/underlying/video-under-element.jpg" alt="Video Under a Transparent Image" /></p>
+
+<p>Turns out, you can disable pointer events!</p>
+
+<p>In Tailwind, it is as simple as adding <code>pointer-events-none</code> to the bezel screen.</p>
+
+<p>In CSS, this can be done by:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">.</span><span class="nc">className</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">pointer-events</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span>
+<span class="p">}</span>
+</code></pre>
+</div>
 ]]></content:encoded>
 		</item>
 		

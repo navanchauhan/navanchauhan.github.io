@@ -74,6 +74,49 @@
 </code></pre>
 </div>
 
+<p>Let us try this in a simple example.</p>
+
+<h2>Example</h2>
+
+<p>Here, we create a button and overlay a transparent box</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;height: 200px; width: 300px; background-color: rgba(255, 0, 0, 0.4); z-index: 2; position: absolute;&quot;</span><span class="p">&gt;</span>
+A box with 200px height and 200px width
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;z-index: 1; margin-top: 20px; margin-bottom: 200px;&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;alert(&#39;You were able to click this button&#39;)&quot;</span><span class="p">&gt;</span>Try clicking me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<hr>
+
+<div style="height: 200px; width: 300px; background-color: rgba(255, 0, 0, 0.4); z-index: 2; position: absolute;">
+A box with 200px height and 300px width
+</div>
+
+<p><button style="z-index: 1; margin-top: 20px; margin-bottom: 200px;" onclick="alert('You were able to click this button')">Try clicking me</button>
+<hr></p>
+
+<p>As you can see, you cannot click the button because the red box comes in the way. We can fix this by adding <code>pointer-events: none</code> to the box. </p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;height: 200px; width: 300px; background-color: rgba(0, 255, 0, 0.4); z-index: 2; position: absolute; pointer-events: none;&quot;</span><span class="p">&gt;</span>
+A box with 200px height and 300px width
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">button</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;z-index: 1; margin-top: 20px; margin-bottom: 200px&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;alert(&#39;You were able to click this button&#39;)&quot;</span><span class="p">&gt;</span>Try clicking me<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre>
+</div>
+
+<hr>
+
+<div style="height: 200px; width: 300px; background-color: rgba(0, 255, 0, 0.4); z-index: 2; position: absolute; pointer-events: none;">
+A box with 200px height and 300px width
+</div>
+
+<p><button style="z-index: 1; margin-top: 20px; margin-bottom: 200px" onclick="alert('You were able to click this button')">Try clicking me</button>
+</div></p>
+
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>

@@ -33,3 +33,45 @@ In CSS, this can be done by:
 }
 ```
 
+Let us try this in a simple example.
+
+## Example
+
+Here, we create a button and overlay a transparent box
+
+```html
+<div style="height: 200px; width: 300px; background-color: rgba(255, 0, 0, 0.4); z-index: 2; position: absolute;">
+A box with 200px height and 200px width
+</div>
+<button style="z-index: 1; margin-top: 20px; margin-bottom: 200px;" onclick="alert('You were able to click this button')">Try clicking me</button>
+```
+
+<hr>
+
+<div style="height: 200px; width: 300px; background-color: rgba(255, 0, 0, 0.4); z-index: 2; position: absolute;">
+A box with 200px height and 300px width
+</div>
+<button style="z-index: 1; margin-top: 20px; margin-bottom: 200px;" onclick="alert('You were able to click this button')">Try clicking me</button>
+<hr>
+
+As you can see, you cannot click the button because the red box comes in the way. We can fix this by adding `pointer-events: none` to the box. 
+
+```html
+<div style="height: 200px; width: 300px; background-color: rgba(0, 255, 0, 0.4); z-index: 2; position: absolute; pointer-events: none;">
+A box with 200px height and 300px width
+</div>
+<button style="z-index: 1; margin-top: 20px; margin-bottom: 200px" onclick="alert('You were able to click this button')">Try clicking me</button>
+</div>
+```
+
+<hr>
+
+<div style="height: 200px; width: 300px; background-color: rgba(0, 255, 0, 0.4); z-index: 2; position: absolute; pointer-events: none;">
+A box with 200px height and 300px width
+</div>
+<button style="z-index: 1; margin-top: 20px; margin-bottom: 200px" onclick="alert('You were able to click this button')">Try clicking me</button>
+</div>
+
+
+
+

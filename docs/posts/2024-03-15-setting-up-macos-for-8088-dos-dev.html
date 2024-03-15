@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <link rel="stylesheet" href="/assets/main.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-Compiling Hello World for DOS on macOS</title>
+    <meta name="og:site_name" content="Navan Chauhan" />
+    <link rel="canonical" href="https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html" />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html />
+    <meta name="og:url" content="https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html" />
+    <meta name="twitter:title" content="Cross-Compiling Hello World for DOS on macOS" />
+    <meta name="og:title" content="Cross-Compiling Hello World for DOS on macOS" />
+    <meta name="description" content="This goes through compiling Open Watcom 2 and creating simple hello-world exampls" />
+    <meta name="twitter:description" content="This goes through compiling Open Watcom 2 and creating simple hello-world exampls" />
+    <meta name="og:description" content="This goes through compiling Open Watcom 2 and creating simple hello-world exampls" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to Navan Chauhan" />
+    <meta name="twitter:image" content="https://web.navan.dev/images/opengraph/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.png" />
+    <meta name="og:image" content="https://web.navan.dev/images/opengraph/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.png" />
+    <meta name="google-site-verification" content="LVeSZxz-QskhbEjHxOi7-BM5dDxTg53x2TwrjFxfL0k" />
+    <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+    <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
+    <link rel="manifest" href="/manifest.json" />
+    
+</head>
+<body>
+    <center><nav style="display: block;">
+|
+<a href="/">home</a> |
+<a href="/about/">about/links</a> |
+<a href="/posts/">posts</a> |
+<a href="/3D-Designs/">3D designs</a> |
+<!--<a href="/publications/">publications</a> |-->
+<!--<a href="/repo/">iOS repo</a> |-->
+<a href="/feed.rss">RSS Feed</a> |
+</nav>
+</center>
+    
+<main>
+
+	<h1>Cross-Compiling Hello World for DOS on macOS</h1>
+
+<p>Technically this should work for any platform that OpenWatcom 2 supports compiling binaries for. Some instructions are based on <a rel="noopener" target="_blank" href="https://retrocoding.net/openwatcom-gateway-to-ancient-world-of-x86">a post at retrocoding.net</a>,
+ and <a rel="noopener" target="_blank" href="http://nuclear.mutantstargoat.com/articles/retrocoding/dos01-setup/#hello-world-program">John Tsiombikas's post</a></p>
+
+<h2>Prerequisites</h2>
+
+<p>You should already have XCode / Command Line Tools, and Homebrew installed. To compile Open Watcom for DOS you will need DOSBox (I use DOSBox-X).</p>
+
+<div class="codehilite">
+<pre><span></span><code>brew<span class="w"> </span>install<span class="w"> </span>--cask<span class="w"> </span>dosbox-x
+</code></pre>
+</div>
+
+<h2>Compiling Open Watcom v2</h2>
+
+<p><em>If this process is super annoying, I might make a custom homebrew tap to build and install Open Watcom</em></p>
+
+<div class="codehilite">
+<pre><span></span><code>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/open-watcom/open-watcom-v2
+cp<span class="w"> </span>open-watcom-v2/setvars.sh<span class="w"> </span>custom_setvars.sh
+</code></pre>
+</div>
+
+<p>Now, edit this <code>setvars.sh</code> file. My file looks like this:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="ch">#!/bin/zsh</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OWROOT</span><span class="o">=</span><span class="s2">&quot;/Users/navanchauhan/Developer/8088Stuff/open-watcom-v2&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OWTOOLS</span><span class="o">=</span>CLANG
+<span class="nb">export</span><span class="w"> </span><span class="nv">OWDOCBUILD</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OWGUINOBUILD</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OWDISTRBUILD</span><span class="o">=</span><span class="m">0</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OWDOSBOX</span><span class="o">=</span><span class="s2">&quot;/Applications/dosbox-x.app/Contents/MacOS/dosbox-x&quot;</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OWOBJDIR</span><span class="o">=</span>binbuildV01
+.<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OWROOT</span><span class="s2">/cmnvars.sh&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;OWROOT=</span><span class="nv">$OWROOT</span><span class="s2">&quot;</span>
+<span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OWROOT</span><span class="s2">&quot;</span>
+</code></pre>
+</div>
+
+<p>Note, your <code>OWRTOOT</code> is definitely going to be in a different location.</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nb">source</span><span class="w"> </span>./custom_setvars.sh
+./build.sh
+./build.sh<span class="w"> </span>rel
+</code></pre>
+</div>
+
+<p>This will build, and then copy everything to the <code>rel</code> directory inside <code>open-watcom-v2</code> directory. Since I ran this on an Apple Silicon Mac, 
+ all the binaries for me are in the <code>armo64</code> directory. You can now move everything inside the rel folder to another location, or create a simple 
+ script to init all variables whenever you want.</p>
+
+<p>I like having a script called <code>exportVarsForDOS.sh</code> </p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="ch">#!/bin/zsh</span>
+
+<span class="nb">export</span><span class="w"> </span><span class="nv">WATCOM</span><span class="o">=</span>/Users/navanchauhan/Developer/8088Stuff/open-watcom-v2/rel
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$WATCOM</span>/armo64
+<span class="nb">export</span><span class="w"> </span><span class="nv">EDDAT</span><span class="o">=</span><span class="nv">$WATCOM</span>/eddat
+
+<span class="c1"># For DOS 8088/8086 development</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">INCLUDE</span><span class="o">=</span><span class="nv">$WATCOM</span>/h
+<span class="nb">export</span><span class="w"> </span><span class="nv">LIB</span><span class="o">=</span><span class="nv">$WATCOM</span>/lib286<span class="w"> </span><span class="c1"># You don&#39;t really need this</span>
+</code></pre>
+</div>
+
+<p>Then, when you need to load up these variables, you can simply run <code>source exportVarsForDOS.sh</code> or <code>. exportVarsForDOS.sh</code></p>
+
+<h2>Hello World</h2>
+
+<h3>Buliding without any Makefiles</h3>
+
+<p>Create a new file called <code>example1.c</code></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>First we compile the code:</p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>wcc<span class="w"> </span>example1.c
+Open<span class="w"> </span>Watcom<span class="w"> </span>C<span class="w"> </span>x86<span class="w"> </span><span class="m">16</span>-bit<span class="w"> </span>Optimizing<span class="w"> </span>Compiler
+Version<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>beta<span class="w"> </span>Mar<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">13</span>:11:55
+Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">2002</span>-2024<span class="w"> </span>The<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Contributors.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Portions<span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">1984</span>-2002<span class="w"> </span>Sybase,<span class="w"> </span>Inc.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Source<span class="w"> </span>code<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>under<span class="w"> </span>the<span class="w"> </span>Sybase<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Public<span class="w"> </span>License.
+See<span class="w"> </span>https://github.com/open-watcom/open-watcom-v2#readme<span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+example1.c:<span class="w"> </span><span class="m">7</span><span class="w"> </span>lines,<span class="w"> </span>included<span class="w"> </span><span class="m">818</span>,<span class="w"> </span><span class="m">0</span><span class="w"> </span>warnings,<span class="w"> </span><span class="m">0</span><span class="w"> </span>errors
+Code<span class="w"> </span>size:<span class="w"> </span><span class="m">19</span>
+</code></pre>
+</div>
+
+<p>Then, link to make an executable:</p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>wlink<span class="w"> </span>name<span class="w"> </span>example1.exe<span class="w"> </span>system<span class="w"> </span>dos<span class="w"> </span>file<span class="w"> </span>example1.o
+Open<span class="w"> </span>Watcom<span class="w"> </span>Linker<span class="w"> </span>Version<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>beta<span class="w"> </span>Mar<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">13</span>:10:09
+Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">2002</span>-2024<span class="w"> </span>The<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Contributors.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Portions<span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">1985</span>-2002<span class="w"> </span>Sybase,<span class="w"> </span>Inc.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Source<span class="w"> </span>code<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>under<span class="w"> </span>the<span class="w"> </span>Sybase<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Public<span class="w"> </span>License.
+See<span class="w"> </span>https://github.com/open-watcom/open-watcom-v2#readme<span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+loading<span class="w"> </span>object<span class="w"> </span>files
+searching<span class="w"> </span>libraries
+creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </span>executable<span class="w"> </span>
+</code></pre>
+</div>
+
+<p>If you want to test this executable, jump to the section titled <code>Testing with DOSBox-X</code> below.</p>
+
+<h3>Simple Makefile</h3>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nv">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>main.o<span class="w"> </span>hello.o
+<span class="nv">bin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>tizts.com
+
+<span class="nv">CC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>wcc
+<span class="nv">CFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>-0
+<span class="nv">LD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>wlink
+
+<span class="nf">$(bin)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">obj</span><span class="k">)</span>
+<span class="w">    </span><span class="k">$(</span>LD<span class="k">)</span><span class="w"> </span>name<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>system<span class="w"> </span>dos<span class="w"> </span>file<span class="w"> </span>main.o<span class="w"> </span>file<span class="w"> </span>hello.o<span class="w"> </span>
+
+<span class="nf">.c.o</span><span class="o">:</span>
+<span class="w">    </span><span class="k">$(</span>CC<span class="k">)</span><span class="w"> </span><span class="k">$(</span>CFLAGS<span class="k">)</span><span class="w"> </span>$&lt;
+
+<span class="nf">clean</span><span class="o">:</span>
+<span class="w">    </span>rm<span class="w"> </span><span class="k">$(</span>obj<span class="k">)</span><span class="w"> </span><span class="k">$(</span>bin<span class="k">)</span>
+</code></pre>
+</div>
+
+<p>Where, <code>main.c</code></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">hello</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>and <code>hello.c</code></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cm">/* hello.c */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">hello</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Hello!&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<p>To compile into <code>tizts.com</code> simply run <code>wmake</code></p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>wmake
+➜<span class="w">  </span>simple-cpp<span class="w"> </span>wmake
+Open<span class="w"> </span>Watcom<span class="w"> </span>Make<span class="w"> </span>Version<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>beta<span class="w"> </span>Mar<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">13</span>:10:16
+Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">2002</span>-2024<span class="w"> </span>The<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Contributors.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Portions<span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">1988</span>-2002<span class="w"> </span>Sybase,<span class="w"> </span>Inc.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Source<span class="w"> </span>code<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>under<span class="w"> </span>the<span class="w"> </span>Sybase<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Public<span class="w"> </span>License.
+See<span class="w"> </span>https://github.com/open-watcom/open-watcom-v2#readme<span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+<span class="w">    </span>wcc<span class="w"> </span>-0<span class="w"> </span>main.c
+Open<span class="w"> </span>Watcom<span class="w"> </span>C<span class="w"> </span>x86<span class="w"> </span><span class="m">16</span>-bit<span class="w"> </span>Optimizing<span class="w"> </span>Compiler
+Version<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>beta<span class="w"> </span>Mar<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">13</span>:11:55
+Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">2002</span>-2024<span class="w"> </span>The<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Contributors.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Portions<span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">1984</span>-2002<span class="w"> </span>Sybase,<span class="w"> </span>Inc.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Source<span class="w"> </span>code<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>under<span class="w"> </span>the<span class="w"> </span>Sybase<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Public<span class="w"> </span>License.
+See<span class="w"> </span>https://github.com/open-watcom/open-watcom-v2#readme<span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+main.c<span class="o">(</span><span class="m">8</span><span class="o">)</span>:<span class="w"> </span>Warning!<span class="w"> </span>W138:<span class="w"> </span>No<span class="w"> </span>newline<span class="w"> </span>at<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>file
+main.c:<span class="w"> </span><span class="m">8</span><span class="w"> </span>lines,<span class="w"> </span>included<span class="w"> </span><span class="m">53</span>,<span class="w"> </span><span class="m">1</span><span class="w"> </span>warnings,<span class="w"> </span><span class="m">0</span><span class="w"> </span>errors
+Code<span class="w"> </span>size:<span class="w"> </span><span class="m">12</span>
+<span class="w">    </span>wcc<span class="w"> </span>-0<span class="w"> </span>hello.c
+Open<span class="w"> </span>Watcom<span class="w"> </span>C<span class="w"> </span>x86<span class="w"> </span><span class="m">16</span>-bit<span class="w"> </span>Optimizing<span class="w"> </span>Compiler
+Version<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>beta<span class="w"> </span>Mar<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">13</span>:11:55
+Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">2002</span>-2024<span class="w"> </span>The<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Contributors.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Portions<span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">1984</span>-2002<span class="w"> </span>Sybase,<span class="w"> </span>Inc.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Source<span class="w"> </span>code<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>under<span class="w"> </span>the<span class="w"> </span>Sybase<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Public<span class="w"> </span>License.
+See<span class="w"> </span>https://github.com/open-watcom/open-watcom-v2#readme<span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+hello.c:<span class="w"> </span><span class="m">8</span><span class="w"> </span>lines,<span class="w"> </span>included<span class="w"> </span><span class="m">818</span>,<span class="w"> </span><span class="m">0</span><span class="w"> </span>warnings,<span class="w"> </span><span class="m">0</span><span class="w"> </span>errors
+Code<span class="w"> </span>size:<span class="w"> </span><span class="m">17</span>
+<span class="w">    </span>wlink<span class="w"> </span>name<span class="w"> </span>tizts.com<span class="w"> </span>system<span class="w"> </span>dos<span class="w"> </span>file<span class="w"> </span>main.o<span class="w"> </span>file<span class="w"> </span>hello.o
+Open<span class="w"> </span>Watcom<span class="w"> </span>Linker<span class="w"> </span>Version<span class="w"> </span><span class="m">2</span>.0<span class="w"> </span>beta<span class="w"> </span>Mar<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">13</span>:10:09
+Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">2002</span>-2024<span class="w"> </span>The<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Contributors.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Portions<span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">1985</span>-2002<span class="w"> </span>Sybase,<span class="w"> </span>Inc.<span class="w"> </span>All<span class="w"> </span>Rights<span class="w"> </span>Reserved.
+Source<span class="w"> </span>code<span class="w"> </span>is<span class="w"> </span>available<span class="w"> </span>under<span class="w"> </span>the<span class="w"> </span>Sybase<span class="w"> </span>Open<span class="w"> </span>Watcom<span class="w"> </span>Public<span class="w"> </span>License.
+See<span class="w"> </span>https://github.com/open-watcom/open-watcom-v2#readme<span class="w"> </span><span class="k">for</span><span class="w"> </span>details.
+loading<span class="w"> </span>object<span class="w"> </span>files
+searching<span class="w"> </span>libraries
+creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </span>executable
+</code></pre>
+</div>
+
+<h3>Using CMake</h3>
+
+<p>Create a file called <code>CMakeLists.txt</code></p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="nb">project</span><span class="p">(</span><span class="s">hello</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">SOURCES</span><span class="w"> </span><span class="s">abc.c</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">hello</span><span class="w"> </span><span class="o">${</span><span class="nv">SOURCES</span><span class="o">}</span><span class="p">)</span>
+</code></pre>
+</div>
+
+<p>Where, <code>abc.c</code> is:</p>
+
+<div class="codehilite">
+<pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Does this work?&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+</div>
+
+<div class="codehilite">
+<pre><span></span><code>mkdir<span class="w"> </span>build
+<span class="nb">cd</span><span class="w"> </span>build
+</code></pre>
+</div>
+
+<p>And build using CMake</p>
+
+<pre><code>cmake -DCMAKE_SYSTEM_NAME=DOS -DCMAKE_SYSTEM_PROCESSOR=I86 -DCMAKE_C_FLAGS="-0 -bt=dos -d0 -oaxt" -G "Watcom WMake" ../..
+</code></pre>
+
+<p>There you have it. Three different ways to compile a C program on a macOS device in 2024 that can run on an IBM PC 5150 (which was released in 1981!)</p>
+
+<h2>Testing with DOSBox-X</h2>
+
+<div class="codehilite">
+<pre><span></span><code>cp<span class="w"> </span>example1.exe<span class="w"> </span>~/Downloads
+/Applications/dosbox-x.app/Contents/MacOS/dosbox-x
+</code></pre>
+</div>
+
+<p>In DOSBox-X we now mount the <code>~/Downloads</code> folder as our <code>C:</code> drive</p>
+
+<pre><code>mount C ~/Downloads
+</code></pre>
+
+<p>Switch to the C drive</p>
+
+<pre><code>C:
+</code></pre>
+
+<p>Run the program:</p>
+
+<pre><code>example1
+</code></pre>
+
+<p><img src="/assets/posts/dosbox/hello-world.png" alt="Running our program in DOSBox-X" /></p>
+
+<p><em>My DOSBox setup might look slightly different than yours...</em></p>
+
+	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
+	<script data-isso="https://comments.navan.dev/"
+        src="https://comments.navan.dev/js/embed.min.js"></script>
+	<section id="isso-thread">
+	    <noscript>Javascript needs to be activated to view comments.</noscript>
+	</section>
+</main>
+
+    <script src="assets/manup.min.js"></script>
+    <script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

@@ -103,18 +103,17 @@
 
 <p>Which is equivalent to the general cubic equation:</p>
 
-<p><script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></p>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.4/tex-mml-chtml.js" id="MathJax-script"></script>
 
-</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.4/input/tex/extensions/noerrors.js" charset="UTF-8"></script>
 
-$$
+<p>$$
 y = ax^3 + bx^2 + cx + d
-$$
+$$</p>
 
-### Optimizer Selection & Training
+<h3>Optimizer Selection &amp; Training</h3>
+
 <div class="codehilite">
-
 <pre><span></span><code><span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
 <span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">10_000</span>
 
@@ -127,25 +126,23 @@ $$
     <span class="k">if</span> <span class="p">(</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Epoch: </span><span class="si">{</span><span class="n">epoch</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">, Loss: </span><span class="si">{</span><span class="n">loss</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
 </code></pre>
-
 </div>
 
+<p>In TensorFlow 1, we would have been using <code>tf.Session</code> instead. </p>
 
-In TensorFlow 1, we would have been using `tf.Session` instead. 
+<p>Here we are using <code>GradientTape()</code> instead, to keep track of the loss evaluation and coefficients. This is crucial, as our optimizer needs these gradients to be able to optimize our coefficients. </p>
 
-Here we are using `GradientTape()` instead, to keep track of the loss evaluation and coefficients. This is crucial, as our optimizer needs these gradients to be able to optimize our coefficients.
+<p>Our loss function is Mean Squared Error (MSE):</p>
 
-Our loss function is Mean Squared Error (MSE)
+<p>$$
+= \frac{1}{n} \sum_{i=1}^{n}{(Y_i - \hat{Y_i})^2}
+$$</p>
 
-$$
-= \frac{1}{n}\sum_{i=1}^{n} (Y_i - \^{Y_i})
-$$
+<p>Where <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><msub><mi>Y</mi><mi>i</mi></msub><mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo></mover></math> is the predicted value and <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>Y</mi><mi>i</mi></msub></math> is the actual value</p>
 
-Where $\^{Y_i}$ is the predicted value and $Y_i$ is the actual value
+<h3>Plotting Final Coefficients</h3>
 
-### Plotting Final Coefficients
 <div class="codehilite">
-
 <pre><span></span><code><span class="n">final_coefficients</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coefficients</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Final Coefficients:&quot;</span><span class="p">,</span> <span class="n">final_coefficients</span><span class="p">)</span>
 
@@ -156,18 +153,15 @@ Where $\^{Y_i}$ is the predicted value and $Y_i$ is the actual value
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Salary vs Position&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
-
 </div>
 
+<h2>Code Snippet for a Polynomial of Degree N</h2>
 
+<h3>Using Gradient Tape</h3>
 
-## Code Snippet for a Polynomial of Degree N
+<p>This should work regardless of the Keras backend version (2 or 3)</p>
 
-### Using Gradient Tape
-
-This should work regardless of the Keras backend version (2 or 3)
 <div class="codehilite">
-
 <pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -216,17 +210,15 @@ This should work regardless of the Keras backend version (2 or 3)
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
-
 </div>
 
+<h3>Without Gradient Tape</h3>
 
-### Without Gradient Tape
+<p>This relies on the Optimizer's <code>minimize</code> function and uses the <code>var_list</code> parameter to update the variables.</p>
 
-This relies on the Optimizer's `minimize` function and uses the `var_list` parameter to update the variables.
+<p>This will not work with Keras 3 backend in TF 2.16.0 and above unless you switch to the legacy backend.</p>
 
-This will not work with Keras 3 backend in TF 2.16.0 and above unless you switch to the legacy backend.
 <div class="codehilite">
-
 <pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -276,26 +268,24 @@ This will not work with Keras 3 backend in TF 2.16.0 and above unless you switch
 <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">x_column</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">y_column</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </code></pre>
-
 </div>
 
+<p>As always, remember to tweak the parameters and choose the correct model for the job. A polynomial regression model might not even be the best model for this particular dataset.</p>
 
+<h2>Further Programming</h2>
 
-As always, remember to tweak the parameters and choose the correct model for the job. A polynomial regression model might not even be the best model for this particular dataset.
+<p>How would you modify this code to use another type of nonlinear regression? Say, </p>
 
-## Further Programming
+<p>$$ y = ab^x $$</p>
 
-How would you modify this code to use another type of nonlinear regression? Say, $ y = ab^x $
+<p>Hint: Your loss calculation would be similar to:</p>
 
-Hint: Your loss calculation would be similar to:
 <div class="codehilite">
-
 <pre><span></span><code><span class="n">bx</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">X</span><span class="p">)</span>
 <span class="n">pred_y</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">coefficients</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bx</span><span class="p">)</span>
 <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">pred_y</span> <span class="o">-</span> <span class="n">Y</span><span class="p">))</span>
 </code></pre>
-
-<p></div></p>
+</div>
 
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"

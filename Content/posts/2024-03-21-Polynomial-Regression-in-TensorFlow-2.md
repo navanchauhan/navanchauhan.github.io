@@ -59,9 +59,8 @@ y = (x**3)*coefficients[3] + (x**2)*coefficients[2] + (x**1)*coefficients[1] (x*
 
 Which is equivalent to the general cubic equation:
 
-<script type="text/javascript"
-  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.4/tex-mml-chtml.js" id="MathJax-script"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.4/input/tex/extensions/noerrors.js" charset="UTF-8"></script>
 
 $$
 y = ax^3 + bx^2 + cx + d
@@ -85,15 +84,15 @@ for epoch in range(num_epochs):
 
 In TensorFlow 1, we would have been using `tf.Session` instead. 
 
-Here we are using `GradientTape()` instead, to keep track of the loss evaluation and coefficients. This is crucial, as our optimizer needs these gradients to be able to optimize our coefficients.
+Here we are using `GradientTape()` instead, to keep track of the loss evaluation and coefficients. This is crucial, as our optimizer needs these gradients to be able to optimize our coefficients. 
 
-Our loss function is Mean Squared Error (MSE)
+Our loss function is Mean Squared Error (MSE):
 
 $$
-= \frac{1}{n}\sum_{i=1}^{n} (Y_i - \^{Y_i})
+= \frac{1}{n} \sum_{i=1}^{n}{(Y\_i - \hat{Y\_i})^2}
 $$
 
-Where $\^{Y_i}$ is the predicted value and $Y_i$ is the actual value
+Where <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><msub><mi>Y</mi><mi>i</mi></msub><mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo></mover></math> is the predicted value and <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>Y</mi><mi>i</mi></msub></math> is the actual value
 
 ### Plotting Final Coefficients
 
@@ -228,7 +227,9 @@ As always, remember to tweak the parameters and choose the correct model for the
 
 ## Further Programming
 
-How would you modify this code to use another type of nonlinear regression? Say, $ y = ab^x $
+How would you modify this code to use another type of nonlinear regression? Say, 
+
+$$ y = ab^x $$
 
 Hint: Your loss calculation would be similar to:
 

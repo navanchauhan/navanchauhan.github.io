@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Tue, 26 Mar 2024 18:20:37 -0000</lastBuildDate>
-		<pubDate>Tue, 26 Mar 2024 18:20:37 -0000</pubDate>
+		<lastBuildDate>Tue, 26 Mar 2024 23:37:56 -0000</lastBuildDate>
+		<pubDate>Tue, 26 Mar 2024 23:37:56 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -14,14 +14,14 @@
 				https://web.navan.dev/posts/2023-10-22-search-by-flair-reddit.html
 			</guid>
 			<title>
-				Search / Filter posts by flair on Reddit
+				id="search-filter-posts-by-flair-on-reddit">Search / Filter posts by flair on Reddit
 			</title>
 			<description>
 				Search posts by flair on Reddit Web by using _
 			</description>
 			<link>https://web.navan.dev/posts/2023-10-22-search-by-flair-reddit.html</link>
 			<pubDate>Sun, 22 Oct 2023 00:37:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Search / Filter posts by flair on Reddit</h1>
+			<content:encoded><![CDATA[<h1 id="search-filter-posts-by-flair-on-reddit">Search / Filter posts by flair on Reddit</h1>
 
 <p>Remember to replace any spaces in the flair with <code>_</code></p>
 
@@ -38,22 +38,22 @@
 				https://web.navan.dev/posts/2020-03-08-Making-Vaporwave-Track.html
 			</guid>
 			<title>
-				Making My First Vaporwave Track (Remix)
+				id="making-my-first-vaporwave-track-remix">Making My First Vaporwave Track (Remix)
 			</title>
 			<description>
 				I made my first vaporwave remix
 			</description>
 			<link>https://web.navan.dev/posts/2020-03-08-Making-Vaporwave-Track.html</link>
 			<pubDate>Sun, 08 Mar 2020 23:17:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Making My First Vaporwave Track (Remix)</h1>
+			<content:encoded><![CDATA[<h1 id="making-my-first-vaporwave-track-remix">Making My First Vaporwave Track (Remix)</h1>
 
 <p>I finally completed my first quick and dirty vaporwave remix of "I Want It That Way" by the Backstreet Boys</p>
 
-<h1>V A P O R W A V E</h1>
+<h1 id="v-a-p-o-r-w-a-v-e">V A P O R W A V E</h1>
 
 <p>Vaporwave is all about A E S T H E T I C S. Vaporwave is a type of music genre that emerged as a parody of Chillwave, shared more as a meme rather than a proper musical genre. Of course this changed as the genre become mature</p>
 
-<h1>How to Vaporwave</h1>
+<h1 id="how-to-vaporwave">How to Vaporwave</h1>
 
 <p>The first track which is considered to be actual Vaporwave is Ramona Xavier's Macintosh Plus, this set the guidelines for making Vaporwave</p>
 
@@ -69,11 +69,11 @@
 
 <p>( Now, there are some tracks being produced which are not remixes and are original )</p>
 
-<h1>My Remix</h1>
+<h1 id="my-remix">My Remix</h1>
 
 <iframe width="300" height="202" src="https://www.bandlab.com/embed/?id=aa91e786-6361-ea11-a94c-0003ffd1cad8&blur=false" frameborder="0" allowfullscreen></iframe>
 
-<h1>Where is the Programming?</h1>
+<h1 id="where-is-the-programming">Where is the Programming?</h1>
 
 <p>The fact that there are steps on producing Vaporwave, this gave me the idea that Vaporwave can actually be made using programming, stay tuned for when I publish the program which I am working on ( Generating A E S T H E T I C artwork and remixes)</p>
 ]]></content:encoded>
@@ -84,24 +84,24 @@
 				https://web.navan.dev/posts/2021-06-25-Blog2Twitter-P1.html
 			</guid>
 			<title>
-				Posting Blog Posts as Twitter Threads Part 1/n
+				id="posting-blog-posts-as-twitter-threads-part-1n">Posting Blog Posts as Twitter Threads Part 1/n
 			</title>
 			<description>
 				Converting Posts to Twitter Threads
 			</description>
 			<link>https://web.navan.dev/posts/2021-06-25-Blog2Twitter-P1.html</link>
 			<pubDate>Fri, 25 Jun 2021 00:08:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Posting Blog Posts as Twitter Threads Part 1/n</h1>
+			<content:encoded><![CDATA[<h1 id="posting-blog-posts-as-twitter-threads-part-1n">Posting Blog Posts as Twitter Threads Part 1/n</h1>
 
 <p>Why? Eh, no good reason, but should be fun.</p>
 
-<h2>Plan of Action</h2>
+<h2 id="plan-of-action">Plan of Action</h2>
 
 <p>I recently shifted my website to a static site generator I wrote specifically for myself. 
 Thus, it should be easy to just add a feature to check for new posts, split the text into chunks for Twitter threads and tweet them.
 I am not handling lists or images right now.</p>
 
-<h2>Time to Code</h2>
+<h2 id="time-to-code">Time to Code</h2>
 
 <p>First, the dependency: tweepy for tweeting.</p>
 
@@ -183,13 +183,13 @@ I am not handling lists or images right now.</p>
 </code></pre>
 </div>
 
-<h2>Result</h2>
+<h2 id="result">Result</h2>
 
 <p><blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Posting Blog Posts as Twitter Threads Part 1/n <br><br> Why? Eh, no good reason, but should be fun. <br> Plan of Action <br><br> I recently shifted my website to a static site generator I wrote specifically for myself. 1/5</p>&mdash; Navan Chauhan (@navanchauhan) <a rel="noopener" target="_blank" href="https://twitter.com/navanchauhan/status/1408165730487443456?ref_src=twsrc%5Etfw">June 24, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 
 <p><blockquote class="twitter-tweet" data-lang="en" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">Web Version: <a rel="noopener" target="_blank" href="https://t.co/zROU1F5DYv">https://t.co/zROU1F5DYv</a></p>&mdash; Navan Chauhan (@navanchauhan) <a rel="noopener" target="_blank" href="https://twitter.com/navanchauhan/status/1408168879617052674?ref_src=twsrc%5Etfw">June 24, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 
-<h2>What's Next?</h2>
+<h2 id="whats-next">What's Next?</h2>
 
 <p>For the next part, I will try to append the code as well. 
 I actually added the code to this post after running the program.</p>
@@ -201,19 +201,19 @@ I actually added the code to this post after running the program.</p>
 				https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html
 			</guid>
 			<title>
-				Cross-Compiling Hello World for DOS on macOS
+				id="cross-compiling-hello-world-for-dos-on-macos">Cross-Compiling Hello World for DOS on macOS
 			</title>
 			<description>
 				This goes through compiling Open Watcom 2 and creating simple hello-world exampls
 			</description>
 			<link>https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html</link>
 			<pubDate>Fri, 15 Mar 2024 13:16:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Cross-Compiling Hello World for DOS on macOS</h1>
+			<content:encoded><![CDATA[<h1 id="cross-compiling-hello-world-for-dos-on-macos">Cross-Compiling Hello World for DOS on macOS</h1>
 
 <p>Technically this should work for any platform that OpenWatcom 2 supports compiling binaries for. Some instructions are based on <a rel="noopener" target="_blank" href="https://retrocoding.net/openwatcom-gateway-to-ancient-world-of-x86">a post at retrocoding.net</a>,
  and <a rel="noopener" target="_blank" href="http://nuclear.mutantstargoat.com/articles/retrocoding/dos01-setup/#hello-world-program">John Tsiombikas's post</a></p>
 
-<h2>Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites</h2>
 
 <p>You should already have XCode / Command Line Tools, and Homebrew installed. To compile Open Watcom for DOS you will need DOSBox (I use DOSBox-X).</p>
 
@@ -222,7 +222,7 @@ I actually added the code to this post after running the program.</p>
 </code></pre>
 </div>
 
-<h2>Compiling Open Watcom v2</h2>
+<h2 id="compiling-open-watcom-v2">Compiling Open Watcom v2</h2>
 
 <p><em>If this process is super annoying, I might make a custom homebrew tap to build and install Open Watcom</em></p>
 
@@ -279,9 +279,9 @@ cp<span class="w"> </span>open-watcom-v2/setvars.sh<span class="w"> </span>custo
 
 <p>Then, when you need to load up these variables, you can simply run <code>source exportVarsForDOS.sh</code> or <code>. exportVarsForDOS.sh</code></p>
 
-<h2>Hello World</h2>
+<h2 id="hello-world">Hello World</h2>
 
-<h3>Buliding without any Makefiles</h3>
+<h3 id="buliding-without-any-makefiles">Buliding without any Makefiles</h3>
 
 <p>Create a new file called <code>example1.c</code></p>
 
@@ -327,7 +327,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 
 <p>If you want to test this executable, jump to the section titled <code>Testing with DOSBox-X</code> below.</p>
 
-<h3>Simple Makefile</h3>
+<h3 id="simple-makefile">Simple Makefile</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nv">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>main.o<span class="w"> </span>hello.o
@@ -415,7 +415,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </code></pre>
 </div>
 
-<h3>Using CMake</h3>
+<h3 id="using-cmake">Using CMake</h3>
 
 <p>Create a file called <code>CMakeLists.txt</code></p>
 
@@ -453,7 +453,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 
 <p>There you have it. Three different ways to compile a C program on a macOS device in 2024 that can run on an IBM PC 5150 (which was released in 1981!)</p>
 
-<h2>Testing with DOSBox-X</h2>
+<h2 id="testing-with-dosbox-x">Testing with DOSBox-X</h2>
 
 <div class="codehilite">
 <pre><span></span><code>cp<span class="w"> </span>example1.exe<span class="w"> </span>~/Downloads
@@ -487,20 +487,20 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html
 			</guid>
 			<title>
-				Polynomial Regression Using TensorFlow 2.x
+				id="polynomial-regression-using-tensorflow-2x">Polynomial Regression Using TensorFlow 2.x
 			</title>
 			<description>
 				Predicting n-th degree polynomials using TensorFlow 2.x
 			</description>
 			<link>https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html</link>
 			<pubDate>Thu, 21 Mar 2024 12:46:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Polynomial Regression Using TensorFlow 2.x</h1>
+			<content:encoded><![CDATA[<h1 id="polynomial-regression-using-tensorflow-2x">Polynomial Regression Using TensorFlow 2.x</h1>
 
 <p>I have a similar post titled <a rel="noopener" target="_blank" href="/posts/2019-12-16-TensorFlow-Polynomial-Regression.html">Polynomial Regression Using Tensorflow</a> that used <code>tensorflow.compat.v1</code> (Which still works as of TF 2.16). But, I thought it would be nicer to redo it with newer TF versions. </p>
 
 <p>I will be skipping all the introductions about polynomial regression and jumping straight to the code. Personally, I prefer using <code>scikit-learn</code> for this task.</p>
 
-<h2>Position vs Salary Dataset</h2>
+<h2 id="position-vs-salary-dataset">Position vs Salary Dataset</h2>
 
 <p>Again, we will be using https://drive.google.com/file/d/1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9/view (Salary vs Position Dataset)</p>
 
@@ -511,11 +511,11 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </code></pre>
 </div>
 
-<h2>Code</h2>
+<h2 id="code">Code</h2>
 
 <p>If you just want to copy-paste the code, scroll to the bottom for the entire snippet. Here I will try and walk through setting up code for a 3rd-degree (cubic) polynomial</p>
 
-<h3>Imports</h3>
+<h3 id="imports">Imports</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -525,14 +525,14 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </code></pre>
 </div>
 
-<h3>Reading the Dataset</h3>
+<h3 id="reading-the-dataset">Reading the Dataset</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
 </code></pre>
 </div>
 
-<h3>Variables and Constants</h3>
+<h3 id="variables-and-constants">Variables and Constants</h3>
 
 <p>Here, we initialize the X and Y values as constants, since they are not going to change. The coefficients are defined as variables.</p>
 
@@ -559,7 +559,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>y</mi><mo>&#x0003D;</mo><mi>a</mi><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mi>b</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>c</mi><mi>x</mi><mo>&#x0002B;</mo><mi>d</mi></mrow></math>
 
-<h3>Optimizer Selection &amp; Training</h3>
+<h3 id="optimizer-selection-training">Optimizer Selection &amp; Training</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
@@ -586,7 +586,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 
 <p>Where <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><msub><mi>Y</mi><mi>i</mi></msub><mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo></mover></math> is the predicted value and <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>Y</mi><mi>i</mi></msub></math> is the actual value</p>
 
-<h3>Plotting Final Coefficients</h3>
+<h3 id="plotting-final-coefficients">Plotting Final Coefficients</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">final_coefficients</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coefficients</span><span class="p">]</span>
@@ -601,9 +601,9 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </code></pre>
 </div>
 
-<h2>Code Snippet for a Polynomial of Degree N</h2>
+<h2 id="code-snippet-for-a-polynomial-of-degree-n">Code Snippet for a Polynomial of Degree N</h2>
 
-<h3>Using Gradient Tape</h3>
+<h3 id="using-gradient-tape">Using Gradient Tape</h3>
 
 <p>This should work regardless of the Keras backend version (2 or 3)</p>
 
@@ -658,7 +658,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </code></pre>
 </div>
 
-<h3>Without Gradient Tape</h3>
+<h3 id="without-gradient-tape">Without Gradient Tape</h3>
 
 <p>This relies on the Optimizer's <code>minimize</code> function and uses the <code>var_list</code> parameter to update the variables.</p>
 
@@ -718,7 +718,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 
 <p>As always, remember to tweak the parameters and choose the correct model for the job. A polynomial regression model might not even be the best model for this particular dataset.</p>
 
-<h2>Further Programming</h2>
+<h2 id="further-programming">Further Programming</h2>
 
 <p>How would you modify this code to use another type of nonlinear regression? Say, </p>
 
@@ -740,14 +740,14 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/hello-world.html
 			</guid>
 			<title>
-				Hello World
+				id="hello-world">Hello World
 			</title>
 			<description>
 				My first post.
 			</description>
 			<link>https://web.navan.dev/posts/hello-world.html</link>
 			<pubDate>Tue, 16 Apr 2019 17:39:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Hello World</h1>
+			<content:encoded><![CDATA[<h1 id="hello-world">Hello World</h1>
 
 <p><strong>Why a Hello World post?</strong></p>
 
@@ -760,14 +760,14 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/2010-01-24-experiments.html
 			</guid>
 			<title>
-				Experiments
+				id="experiments">Experiments
 			</title>
 			<description>
 				Just a markdown file for all experiments related to the website
 			</description>
 			<link>https://web.navan.dev/posts/2010-01-24-experiments.html</link>
 			<pubDate>Sun, 24 Jan 2010 23:43:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Experiments</h1>
+			<content:encoded><![CDATA[<h1 id="experiments">Experiments</h1>
 
 <p>https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/img-original.jpg</p>
 
@@ -780,40 +780,40 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html
 			</guid>
 			<title>
-				Setting up Kaggle to use with Google Colab
+				id="setting-up-kaggle-to-use-with-google-colab">Setting up Kaggle to use with Google Colab
 			</title>
 			<description>
 				Tutorial on setting up kaggle, to use with Google Colab
 			</description>
 			<link>https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html</link>
 			<pubDate>Wed, 15 Jan 2020 23:36:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Setting up Kaggle to use with Google Colab</h1>
+			<content:encoded><![CDATA[<h1 id="setting-up-kaggle-to-use-with-google-colab">Setting up Kaggle to use with Google Colab</h1>
 
 <p><em>In order to be able to access Kaggle Datasets, you will need to have an account on Kaggle (which is Free)</em></p>
 
-<h2>Grabbing Our Tokens</h2>
+<h2 id="grabbing-our-tokens">Grabbing Our Tokens</h2>
 
-<h3>Go to Kaggle</h3>
+<h3 id="go-to-kaggle">Go to Kaggle</h3>
 
 <p><img src="/assets/posts/kaggle-colab/ss1.png" alt="&quot;Homepage&quot;" /></p>
 
-<h3>Click on your User Profile and Click on My Account</h3>
+<h3 id="click-on-your-user-profile-and-click-on-my-account">Click on your User Profile and Click on My Account</h3>
 
 <p><img src="/assets/posts/kaggle-colab/ss2.png" alt="&quot;Account&quot;" /></p>
 
-<h3>Scroll Down until you see Create New API Token</h3>
+<h3 id="scroll-down-until-you-see-create-new-api-token">Scroll Down until you see Create New API Token</h3>
 
 <p><img src="/assets/posts/kaggle-colab/ss3.png" alt="" /></p>
 
-<h3>This will download your token as a JSON file</h3>
+<h3 id="this-will-download-your-token-as-a-json-file">This will download your token as a JSON file</h3>
 
 <p><img src="/assets/posts/kaggle-colab/ss4.png" alt="" /></p>
 
 <p>Copy the File to the root folder of your Google Drive</p>
 
-<h2>Setting up Colab</h2>
+<h2 id="setting-up-colab">Setting up Colab</h2>
 
-<h3>Mounting Google Drive</h3>
+<h3 id="mounting-google-drive">Mounting Google Drive</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
@@ -824,7 +824,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 
 <p>After this click on the URL in the output section, login and then paste the Auth Code</p>
 
-<h3>Configuring Kaggle</h3>
+<h3 id="configuring-kaggle">Configuring Kaggle</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
@@ -840,18 +840,18 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html
 			</guid>
 			<title>
-				Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria
+				id="creating-a-custom-image-classifier-using-tensorflow-2x-and-keras-for-detecting-malaria">Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria
 			</title>
 			<description>
 				Tutorial on creating an image classifier model using TensorFlow which detects malaria
 			</description>
 			<link>https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html</link>
 			<pubDate>Sun, 08 Dec 2019 14:16:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</h1>
+			<content:encoded><![CDATA[<h1 id="creating-a-custom-image-classifier-using-tensorflow-2x-and-keras-for-detecting-malaria">Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</h1>
 
 <p><strong>Done during Google Code-In. Org: Tensorflow.</strong></p>
 
-<h2>Imports</h2>
+<h2 id="imports">Imports</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="o">%</span><span class="n">tensorflow_version</span> <span class="mf">2.</span><span class="n">x</span> <span class="c1">#This is for telling Colab that you want to use TF 2.0, ignore if running on local machine</span>
@@ -869,9 +869,9 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </code></pre>
 </div>
 
-<h2>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 
-<h3>Fetching the Data</h3>
+<h3 id="fetching-the-data">Fetching the Data</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="err">!</span><span class="n">wget</span> <span class="n">ftp</span><span class="p">:</span><span class="o">//</span><span class="n">lhcftp</span><span class="o">.</span><span class="n">nlm</span><span class="o">.</span><span class="n">nih</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">Open</span><span class="o">-</span><span class="n">Access</span><span class="o">-</span><span class="n">Datasets</span><span class="o">/</span><span class="n">Malaria</span><span class="o">/</span><span class="n">cell_images</span><span class="o">.</span><span class="n">zip</span>
@@ -879,7 +879,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </code></pre>
 </div>
 
-<h3>Processing the Data</h3>
+<h3 id="processing-the-data">Processing the Data</h3>
 
 <p>We resize all the images as 50x50 and add the numpy array of that image as well as their label names (Infected or Not) to common arrays.</p>
 
@@ -911,7 +911,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </code></pre>
 </div>
 
-<h3>Splitting Data</h3>
+<h3 id="splitting-data">Splitting Data</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -928,9 +928,9 @@ y_train=y_train[s]
 X_train = X_train/255.0
 </code></pre>
 
-<h2>Model</h2>
+<h2 id="model">Model</h2>
 
-<h3>Creating Model</h3>
+<h3 id="creating-model">Creating Model</h3>
 
 <p>By creating a sequential model, we create a linear stack of layers.</p>
 
@@ -953,7 +953,7 @@ X_train = X_train/255.0
 </code></pre>
 </div>
 
-<h3>Compiling Model</h3>
+<h3 id="compiling-model">Compiling Model</h3>
 
 <p>We use the Adam optimiser as it is an adaptive learning rate optimisation algorithm that's been designed specifically for <em>training</em> deep neural networks, which means it changes its learning rate automatically to get the best results</p>
 
@@ -964,7 +964,7 @@ X_train = X_train/255.0
 </code></pre>
 </div>
 
-<h3>Training Model</h3>
+<h3 id="training-model">Training Model</h3>
 
 <p>We train the model for 10 epochs on the training data and then validate it using the testing data</p>
 
@@ -998,7 +998,7 @@ X_train = X_train/255.0
 </code></pre>
 </div>
 
-<h3>Results</h3>
+<h3 id="results">Results</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>
@@ -1034,14 +1034,14 @@ X_train = X_train/255.0
 				https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html
 			</guid>
 			<title>
-				Compiling Open Babel on iOS
+				id="compiling-open-babel-on-ios">Compiling Open Babel on iOS
 			</title>
 			<description>
 				Compiling Open Babel on iOS
 			</description>
 			<link>https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html</link>
 			<pubDate>Sun, 31 May 2020 23:30:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Compiling Open Babel on iOS</h1>
+			<content:encoded><![CDATA[<h1 id="compiling-open-babel-on-ios">Compiling Open Babel on iOS</h1>
 
 <p>Due to the fact that my summer vacations started today,
 I had the brilliant idea of trying to run open babel on my iPad.
@@ -1049,17 +1049,17 @@ To give a little background, I had tried to compile AutoDock Vina using a cross-
 
 <p>I am running the Checkr1n jailbreak on my iPad and the Unc0ver jailbreak on my phone.</p>
 
-<h2>But Why?</h2>
+<h2 id="but-why">But Why?</h2>
 
 <p>Well, just because I can. This is literally the only reason I tried compiling it and also partially because in the long run I want to compile AutoDock Vina so I can do Molecular Docking on the go.</p>
 
-<h2>Let's Go!</h2>
+<h2 id="lets-go">Let's Go!</h2>
 
 <p>How hard can it be to compile open babel right? It is just a simple software with clear and concise build instructions. I just need to use <code>cmake</code> to build and the <code>make</code> to install.</p>
 
 <p>It is 11 AM in the morning. I install <code>clang, cmake and make</code> from the Sam Bingner's repository, fired up ssh, downloaded the source code and ran the build command.`clang</p>
 
-<h3>Fail No. 1</h3>
+<h3 id="fail-no-1">Fail No. 1</h3>
 
 <p>I couldn't even get cmake to run, I did a little digging around StackOverflow and founf that I needed the iOS SDK, sure no problem. I waited for Xcode to update and transferred the SDKs to my iPad </p>
 
@@ -1068,7 +1068,7 @@ To give a little background, I had tried to compile AutoDock Vina using a cross-
 
 <p>Them I told cmake that this is the location for my SDK 😠. Successful! Now I just needed to use make.</p>
 
-<h3>Fail No. 2</h3>
+<h3 id="fail-no-2">Fail No. 2</h3>
 
 <p>It was giving the error that thread-local-storage was not supported on this device.</p>
 
@@ -1122,11 +1122,11 @@ make: *** [Makefile:129: all] Error 2
 
 <p><img src="/assets/posts/open-babel/s1.png" alt="&quot;Open-Babel running on my iPad&quot;" /></p>
 
-<h2>Packaging as a deb</h2>
+<h2 id="packaging-as-a-deb">Packaging as a deb</h2>
 
 <p>This was pretty straight forward, I tried installing it on my iPad and it was working pretty smoothly.</p>
 
-<h2>Moment of Truth</h2>
+<h2 id="moment-of-truth">Moment of Truth</h2>
 
 <p>So I airdropped the .deb to my phone and tried installing it, the installation was successful but when I tried <code>obabel</code> it just aborted.</p>
 
@@ -1144,7 +1144,7 @@ make: *** [Makefile:129: all] Error 2
 
 <p>I spent 2 hours around this problem, only to see the documentation and realise I hadn't setup the environment variable 🤦‍♂️</p>
 
-<h2>The Final Fix ( For Now )</h2>
+<h2 id="the-final-fix-for-now">The Final Fix ( For Now )</h2>
 
 <pre><code>export BABEL_DATADIR="/usr/share/openbabel/3.1.0"
 export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
@@ -1165,28 +1165,28 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
 				https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html
 			</guid>
 			<title>
-				Building a Similar Movies Recommendation System
+				id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System
 			</title>
 			<description>
 				Building a Content Based Similar Movies Recommendatiom System
 			</description>
 			<link>https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html</link>
 			<pubDate>Sat, 21 May 2022 17:56:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Building a Similar Movies Recommendation System</h1>
+			<content:encoded><![CDATA[<h1 id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System</h1>
 
-<h2>Why?</h2>
+<h2 id="why">Why?</h2>
 
 <p>I recently came across a movie/tv-show recommender, <a rel="noopener" target="_blank" href="https://couchmoney.tv/">couchmoney.tv</a>. I loved it. I decided that I wanted to build something similar, so I could tinker with it as much as I wanted.</p>
 
 <p>I also wanted a recommendation system I could use via a REST API. Although I have not included that part in this post, I did eventually create it.</p>
 
-<h2>How?</h2>
+<h2 id="how">How?</h2>
 
 <p>By measuring the cosine of the angle between two vectors, you can get a value in the range [0,1] with 0 meaning no similarity. Now, if we find a way to represent information about movies as a vector, we can use cosine similarity as a metric to find similar movies.</p>
 
 <p>As we are recommending just based on the content of the movies, this is called a content based recommendation system.</p>
 
-<h2>Data Collection</h2>
+<h2 id="data-collection">Data Collection</h2>
 
 <p>Trakt exposes a nice API to search for movies/tv-shows. To access the API, you first need to get an API key (the Trakt ID you get when you create a new application). </p>
 
@@ -1268,7 +1268,7 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
 
 <p>In the end, I could have dropped the embeddings field from the table schema as I never got around to using it.</p>
 
-<h3>Scripting Time</h3>
+<h3 id="scripting-time">Scripting Time</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="o">*</span>
@@ -1371,7 +1371,7 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
 
 <p>Running this script took me approximately 3 hours, and resulted in an SQLite database of 141.5 MB</p>
 
-<h2>Embeddings!</h2>
+<h2 id="embeddings">Embeddings!</h2>
 
 <p>I did not want to put my poor Mac through the estimated 23 hours it would have taken to embed the sentences. I decided to use Google Colab instead.</p>
 
@@ -1436,7 +1436,7 @@ As of writing this post, I did not include any other database except Trakt. </p>
 
 <p>That's it!</p>
 
-<h2>Interacting with Vectors</h2>
+<h2 id="interacting-with-vectors">Interacting with Vectors</h2>
 
 <p>We use the <code>trakt_id</code> for the movie as the ID for the vectors and upsert it into the index. </p>
 
@@ -1487,7 +1487,7 @@ It is possible that this additional step of mapping could be avoided by storing 
 </code></pre>
 </div>
 
-<h3>Testing it Out</h3>
+<h3 id="testing-it-out">Testing it Out</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">movie_name</span> <span class="o">=</span> <span class="s2">&quot;Now You See Me&quot;</span>
@@ -1533,21 +1533,21 @@ Spies (2015): A secret agent must perform a heist without time on his side
 
 <p>For now, I am happy with the recommendations.</p>
 
-<h2>Simple UI</h2>
+<h2 id="simple-ui">Simple UI</h2>
 
 <p>The code for the flask app can be found on GitHub: <a rel="noopener" target="_blank" href="https://github.com/navanchauhan/FlixRec">navanchauhan/FlixRec</a> or on my <a rel="noopener" target="_blank" href="https://pi4.navan.dev/gitea/navan/FlixRec">Gitea instance</a></p>
 
 <p>I quickly whipped up a simple Flask App to deal with problems of multiple movies sharing the title, and typos in the search query.</p>
 
-<h3>Home Page</h3>
+<h3 id="home-page">Home Page</h3>
 
 <p><img src="/assets/flixrec/home.png" alt="Home Page" /></p>
 
-<h3>Handling Multiple Movies with Same Title</h3>
+<h3 id="handling-multiple-movies-with-same-title">Handling Multiple Movies with Same Title</h3>
 
 <p><img src="/assets/flixrec/multiple.png" alt="Multiple Movies with Same Title" /></p>
 
-<h3>Results Page</h3>
+<h3 id="results-page">Results Page</h3>
 
 <p><img src="/assets/flixrec/results.png" alt="Results Page" /></p>
 
@@ -1557,14 +1557,14 @@ Spies (2015): A secret agent must perform a heist without time on his side
 
 <p>Test it out at <a rel="noopener" target="_blank" href="https://flixrec.navan.dev">https://flixrec.navan.dev</a></p>
 
-<h2>Current Limittations</h2>
+<h2 id="current-limittations">Current Limittations</h2>
 
 <ul>
 <li>Does not work well with popular franchises</li>
 <li>No Genre Filter</li>
 </ul>
 
-<h2>Future Addons</h2>
+<h2 id="future-addons">Future Addons</h2>
 
 <ul>
 <li>Include Cast Data
@@ -1585,24 +1585,24 @@ Spies (2015): A secret agent must perform a heist without time on his side
 				https://web.navan.dev/posts/2024-01-05-hello-20224.html
 			</guid>
 			<title>
-				Hello 2024
+				id="hello-2024">Hello 2024
 			</title>
 			<description>
 				Recap of 2023, and my goals for 2024
 			</description>
 			<link>https://web.navan.dev/posts/2024-01-05-hello-20224.html</link>
 			<pubDate>Fri, 05 Jan 2024 23:16:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Hello 2024</h1>
+			<content:encoded><![CDATA[<h1 id="hello-2024">Hello 2024</h1>
 
 <p><code>2024 % 4 == 0</code></p>
 
-<h2>2023</h2>
+<h2 id="2023">2023</h2>
 
 <p>Another revolution around the sun! This was a pretty fun and interesting year. I got to work on some interesting projects, and learned a lot.</p>
 
 <p>I am going to try and use my GitHub activity to recap.</p>
 
-<h3>Spring</h3>
+<h3 id="spring">Spring</h3>
 
 <ul>
 <li>I helped a friend modernize their Larvael codebase. Dockerized it for easier development, and added a CD pipeline. (Probably going to be released by end of this year)</li>
@@ -1613,7 +1613,7 @@ Spies (2015): A secret agent must perform a heist without time on his side
 <li>Got into Mountain Biking!</li>
 </ul>
 
-<h3>Summer</h3>
+<h3 id="summer">Summer</h3>
 
 <p>Summer was more relaxing. I mainly worked on some maintenance patches for my projects, and did some more freelancing stuff.</p>
 
@@ -1622,7 +1622,7 @@ Spies (2015): A secret agent must perform a heist without time on his side
 <li>Continued working on a research project using Computer Vision in analysing a lateral flow assay. Tried porting it to use OpenCV.js, but it wasn't reliable enough. I might look into directly working with OpenCV/Vision Framework for an iOS app.</li>
 </ul>
 
-<h3>Fall</h3>
+<h3 id="fall">Fall</h3>
 
 <ul>
 <li>Won a couple more hackathons. I might summarize my hackathon experience in a different blog post.</li>
@@ -1638,7 +1638,7 @@ Spies (2015): A secret agent must perform a heist without time on his side
 
 <p>I also did a ton of other stuff, but I am not sure how much I want to be sharing on my blog here. Maybe as I write more I will get more comfortable with sharing more information.</p>
 
-<h2>2024</h2>
+<h2 id="2024">2024</h2>
 
 <p>So, what are my plans for 2024? <strong>Learn. Build. Ship.</strong></p>
 
@@ -1659,16 +1659,16 @@ Spies (2015): A secret agent must perform a heist without time on his side
 				https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html
 			</guid>
 			<title>
-				Introduction to AR.js and Natural Feature Tracking
+				id="introduction-to-arjs-and-natural-feature-tracking">Introduction to AR.js and Natural Feature Tracking
 			</title>
 			<description>
 				An introduction to AR.js and NFT
 			</description>
 			<link>https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html</link>
 			<pubDate>Sat, 01 Aug 2020 15:43:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Introduction to AR.js and Natural Feature Tracking</h1>
+			<content:encoded><![CDATA[<h1 id="introduction-to-arjs-and-natural-feature-tracking">Introduction to AR.js and Natural Feature Tracking</h1>
 
-<h2>AR.js</h2>
+<h2 id="arjs">AR.js</h2>
 
 <p>AR.js is a lightweight library for Augmented Reality on the Web, coming with features like Image Tracking, Location based AR and Marker tracking. It is the easiest option for cross-browser augmented reality. </p>
 
@@ -1676,7 +1676,7 @@ Spies (2015): A secret agent must perform a heist without time on his side
 
 <p>It was initially created by Jerome Etienne and is now maintained by Nicolo Carpignoli and the AR-js Organisation</p>
 
-<h2>NFT</h2>
+<h2 id="nft">NFT</h2>
 
 <p>Usually for augmented reality you need specialised markers, like this Hiro marker (notice the thick non-aesthetic borders 🤢)</p>
 
@@ -1688,7 +1688,7 @@ Spies (2015): A secret agent must perform a heist without time on his side
 
 <p><img src="/images/me.jpeg" alt="" /></p>
 
-<h2>Creating the Marker!</h2>
+<h2 id="creating-the-marker">Creating the Marker!</h2>
 
 <p>First we need to create the marker files required by AR.js for NFT. For this we use Carnaux's repository 'NFT-Marker-Creator'.</p>
 
@@ -1705,7 +1705,7 @@ Resolving deltas: 100% (262/262), done.
 $ cd NFT-Makrer-Creator
 </code></pre>
 
-<h3>Install the dependencies</h3>
+<h3 id="install-the-dependencies">Install the dependencies</h3>
 
 <pre><code>$ npm install
 
@@ -1731,12 +1731,12 @@ found 0 vulnerabilities
 
 </code></pre>
 
-<h3>Copy the target marker to the folder</h3>
+<h3 id="copy-the-target-marker-to-the-folder">Copy the target marker to the folder</h3>
 
 <pre><code>$ cp ~/CodingAndStuff/ARjs/me.png .
 </code></pre>
 
-<h3>Generate Marker</h3>
+<h3 id="generate-marker">Generate Marker</h3>
 
 <pre><code>$ node app.js -i me.png
 
@@ -1805,7 +1805,7 @@ To run demo use: 'npm run demo'
 me.fset  me.fset3 me.iset
 </code></pre>
 
-<h2>Creating the HTML Page</h2>
+<h2 id="creating-the-html-page">Creating the HTML Page</h2>
 
 <p>Create a new file called <code>index.html</code> in your project folder. This is the basic template we are going to use. Replace <code>me</code> with the root filename of your image, for example <code>NeverGonnaGiveYouUp.png</code> will become <code>NeverGonnaGiveYouUp</code>. Make sure you have copied all three files from the output folder in the previous step to the root of your project folder.</p>
 
@@ -1862,7 +1862,7 @@ me.fset  me.fset3 me.iset
 
 <p>In this we are creating a AFrame scene and we are telling it that we want to use NFT Tracking. The amazing part about using AFrame is that we are able to use all AFrame objects!</p>
 
-<h2>Adding a simple box</h2>
+<h2 id="adding-a-simple-box">Adding a simple box</h2>
 
 <p>Let us add a simple box!</p>
 
@@ -1902,7 +1902,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p>👏 Congratulations! You just built an Augmented Reality experience using AR.js and AFrame</p>
 
-<h2>Adding a Torus-Knot in the box</h2>
+<h2 id="adding-a-torus-knot-in-the-box">Adding a Torus-Knot in the box</h2>
 
 <p>Edit your <code>index.html</code> </p>
 
@@ -1917,13 +1917,13 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p><img src="/assets/posts/arjs/03-knot.png" alt="" /></p>
 
-<h2>Where are the GIFs?</h2>
+<h2 id="where-are-the-gifs">Where are the GIFs?</h2>
 
 <p>Now that we know how to place a box in the scene and add a torus knot in it, what do we do next? We bring the classic internet back!</p>
 
 <p><code>AFrame GIF Shader</code> is a gif shader for A-Frame created by mayognaise.</p>
 
-<h3>First things first</h3>
+<h3 id="first-things-first">First things first</h3>
 
 <p>Add <code>&lt;script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"&gt;&lt;/script&gt;</code> to <code>&lt;head&gt;</code></p>
 
@@ -1937,15 +1937,15 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p><img src="/assets/posts/arjs/04-nyan.gif" alt="" /></p>
 
-<h2>Bonus Idea: Integrate it with GitHub's new profile Readme Feature!</h2>
+<h2 id="bonus-idea-integrate-it-with-githubs-new-profile-readme-feature">Bonus Idea: Integrate it with GitHub's new profile Readme Feature!</h2>
 
-<h3>1) Host the code using GitHub Pages</h3>
+<h3 id="1-host-the-code-using-github-pages">1) Host the code using GitHub Pages</h3>
 
-<h3>2) Create a new repository ( the name should be your GitHub username )</h3>
+<h3 id="2-create-a-new-repository-the-name-should-be-your-github-username">2) Create a new repository ( the name should be your GitHub username )</h3>
 
-<h3>3) Add QR Code to the page and tell the users to scan your profile picture</h3>
+<h3 id="3-add-qr-code-to-the-page-and-tell-the-users-to-scan-your-profile-picture">3) Add QR Code to the page and tell the users to scan your profile picture</h3>
 
-<h3>??) Profit 💸</h3>
+<h3 id="profit">??) Profit 💸</h3>
 
 <p>Here is a screenshot of me scanning a rounded version of my profile picture ( It still works! Even though the image is cropped and I haven't changed any line of code )</p>
 
@@ -1958,40 +1958,40 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 				https://web.navan.dev/posts/2022-11-07-a-new-method-to-blog.html
 			</guid>
 			<title>
-				A new method to blog
+				id="a-new-method-to-blog">A new method to blog
 			</title>
 			<description>
 				Writing posts in markdown using pen and paper
 			</description>
 			<link>https://web.navan.dev/posts/2022-11-07-a-new-method-to-blog.html</link>
 			<pubDate>Mon, 07 Nov 2022 23:29:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>A new method to blog</h1>
+			<content:encoded><![CDATA[<h1 id="a-new-method-to-blog">A new method to blog</h1>
 
 <p><em><a rel="noopener" target="_blank" href="/assets/pdfs/2022-11-07-a-new-way-to-blog.pdf">Here</a> is the original PDF. I made some edits to the content after generating the markdown file</em></p>
 
 <p><a rel="noopener" target="_blank" href="https://paperwebsite.com">Paper Website</a> is a service that lets you build a website with just pen and paper. I am going to try and replicate the process.</p>
 
-<h2>The Plan</h2>
+<h2 id="the-plan">The Plan</h2>
 
 <p>The continuity feature on macOS + iOS lets you scan PDFs directly from your iPhone. I want to be able to scan these pages and automatically run an Automator script that takes the PDF and OCRs the text. Then I can further clean the text and convert from markdown.</p>
 
-<h2>Challenges</h2>
+<h2 id="challenges">Challenges</h2>
 
 <p>I quickly realised that the OCR software I planned on using could not detect my shitty handwriting accurately. I tried using ABBY Finereader, Prizmo and OCRMyPDF. (Abby Finereader and Prizmo support being automated by Automator).</p>
 
 <p>Now, I could either write neater, or use an external API like Microsoft Azure</p>
 
-<h2>Solution</h2>
+<h2 id="solution">Solution</h2>
 
-<h3>OCR</h3>
+<h3 id="ocr">OCR</h3>
 
 <p>In the PDFs, all the scans are saved as images on a page. I extract the image and then send it to Azure's API. </p>
 
-<h3>Paragraph Breaks</h3>
+<h3 id="paragraph-breaks">Paragraph Breaks</h3>
 
 <p>The recognised text had multiple lines breaking in the middle of the sentence, Therefore, I use what is called a <a rel="noopener" target="_blank" href="https://en.wikipedia.org/wiki/Pilcrow">pilcrow</a> to specify paragraph breaks. But, rather than trying to draw the normal pilcrow, I just use the HTML entity <code>&amp;#182;</code> which is the pilcrow character. </p>
 
-<h2>Where is the code?</h2>
+<h2 id="where-is-the-code">Where is the code?</h2>
 
 <p>I created a <a rel="noopener" target="_blank" href="https://gist.github.com/navanchauhan/5fc602b1e023b60a66bc63bd4eecd4f8">GitHub Gist</a> for a sample Python script to take the PDF and print the text </p>
 
@@ -2006,16 +2006,16 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 				https://web.navan.dev/posts/2023-10-05-attack-lab.html
 			</guid>
 			<title>
-				Attack Lab
+				id="attack-lab">Attack Lab
 			</title>
 			<description>
 				Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems
 			</description>
 			<link>https://web.navan.dev/posts/2023-10-05-attack-lab.html</link>
 			<pubDate>Thu, 05 Oct 2023 20:01:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Attack Lab</h1>
+			<content:encoded><![CDATA[<h1 id="attack-lab">Attack Lab</h1>
 
-<h2>Introduction</h2>
+<h2 id="introduction">Introduction</h2>
 
 <p>Lab 3 for CSCI 2400 @ CU Boulder - Computer Systems</p>
 
@@ -2028,7 +2028,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p><code>objdump -d ctarget &gt; dis.txt</code></p>
 
-<h2>Phase 1</h2>
+<h2 id="phase-1">Phase 1</h2>
 
 <p>From the instructions, we know that our task is to get <code>CTARGET</code> to execute the code for <code>touch1</code> when <code>getbuf</code> executes its return statement, rather than returning to <code>test</code></p>
 
@@ -2084,7 +2084,7 @@ NICE<span class="w"> </span>JOB!
 </code></pre>
 </div>
 
-<h2>Phase 2</h2>
+<h2 id="phase-2">Phase 2</h2>
 
 <blockquote>
   <p>Phase 2 involves injecting a small amount of code as part of your exploit string.
@@ -2244,7 +2244,7 @@ NICE<span class="w"> </span>JOB!
 </code></pre>
 </div>
 
-<h2>Phase 3</h2>
+<h2 id="phase-3">Phase 3</h2>
 
 <blockquote>
   <p>Phase 3 also involves a code injection attack, but passing a string as argument.
@@ -2348,7 +2348,7 @@ NICE<span class="w"> </span>JOB!
 
 <p>Phases 1-3 Complete.</p>
 
-<h2>Phase 4</h2>
+<h2 id="phase-4">Phase 4</h2>
 
 <blockquote>
   <p>For Phase 4, you will repeat the attack of Phase 2, but do so on program RTARGET using gadgets from your
@@ -2480,18 +2480,18 @@ NICE<span class="w"> </span>JOB!
 				https://web.navan.dev/posts/2020-03-03-Playing-With-Android-TV.html
 			</guid>
 			<title>
-				Tinkering with an Android TV
+				id="tinkering-with-an-android-tv">Tinkering with an Android TV
 			</title>
 			<description>
 				Tinkering with an Android TV
 			</description>
 			<link>https://web.navan.dev/posts/2020-03-03-Playing-With-Android-TV.html</link>
 			<pubDate>Tue, 03 Mar 2020 18:37:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Tinkering with an Android TV</h1>
+			<content:encoded><![CDATA[<h1 id="tinkering-with-an-android-tv">Tinkering with an Android TV</h1>
 
 <p>So I have an Android TV, this posts covers everything I have tried on it</p>
 
-<h2>Contents</h2>
+<h2 id="contents">Contents</h2>
 
 <ol>
 <li><a href="#IP-Address">Getting TV's IP Address</a></li>
@@ -2501,7 +2501,7 @@ NICE<span class="w"> </span>JOB!
 <li><a href="#">Manipulating Packages</a></li>
 </ol>
 
-<h2>IP-Address</h2>
+<h2 id="ip-address">IP-Address</h2>
 
 <p><em>These steps should be similar for all Android-TVs</em></p>
 
@@ -2515,7 +2515,7 @@ NICE<span class="w"> </span>JOB!
 
 <p>The other option is to go to your router's server page and get connected devices</p>
 
-<h2>Developer-Settings</h2>
+<h2 id="developer-settings">Developer-Settings</h2>
 
 <ul>
 <li>Go To Settings</li>
@@ -2523,7 +2523,7 @@ NICE<span class="w"> </span>JOB!
 <li>Continuously click on the "Build" option until it says "You are a Developer"</li>
 </ul>
 
-<h2>Enable-ADB</h2>
+<h2 id="enable-adb">Enable-ADB</h2>
 
 <ul>
 <li>Go to Settings</li>
@@ -2531,7 +2531,7 @@ NICE<span class="w"> </span>JOB!
 <li>Scroll until you find ADB Debugging and enable that option</li>
 </ul>
 
-<h2>Connect-ADB</h2>
+<h2 id="connect-adb">Connect-ADB</h2>
 
 <ul>
 <li>Open Terminal (Make sure you have ADB installed)</li>
@@ -2539,22 +2539,22 @@ NICE<span class="w"> </span>JOB!
 <li>To test the connection run <code>adb logcat</code></li>
 </ul>
 
-<h2>Manipulating Apps / Packages</h2>
+<h2 id="manipulating-apps-packages">Manipulating Apps / Packages</h2>
 
-<h3>Listing Packages</h3>
+<h3 id="listing-packages">Listing Packages</h3>
 
 <ul>
 <li><code>adb shell</code></li>
 <li><code>pm list packages</code></li>
 </ul>
 
-<h3>Installing Packages</h3>
+<h3 id="installing-packages">Installing Packages</h3>
 
 <ul>
 <li><code>adb install -r package.apk</code></li>
 </ul>
 
-<h3>Uninstalling Packages</h3>
+<h3 id="uninstalling-packages">Uninstalling Packages</h3>
 
 <ul>
 <li><code>adb uninstall com.company.yourpackagename</code></li>
@@ -2567,14 +2567,14 @@ NICE<span class="w"> </span>JOB!
 				https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html
 			</guid>
 			<title>
-				Polynomial Regression Using TensorFlow
+				id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow
 			</title>
 			<description>
 				Polynomial regression using TensorFlow
 			</description>
 			<link>https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html</link>
 			<pubDate>Mon, 16 Dec 2019 14:16:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Polynomial Regression Using TensorFlow</h1>
+			<content:encoded><![CDATA[<h1 id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow</h1>
 
 <p><strong>In this tutorial you will learn about polynomial regression and how you can implement it in Tensorflow.</strong></p>
 
@@ -2588,19 +2588,19 @@ NICE<span class="w"> </span>JOB!
 <li>Quintic</li>
 </ul>
 
-<h2>Regression</h2>
+<h2 id="regression">Regression</h2>
 
-<h3>What is Regression?</h3>
+<h3 id="what-is-regression">What is Regression?</h3>
 
 <p>Regression is a statistical measurement that is used to try to determine the relationship between a
 dependent variable (often denoted by Y), and series of varying variables (called independent variables, often denoted by X ).</p>
 
-<h3>What is Polynomial Regression</h3>
+<h3 id="what-is-polynomial-regression">What is Polynomial Regression</h3>
 
 <p>This is a form of Regression Analysis where the relationship between Y and X is denoted as the nth degree/power of X.
 Polynomial regression even fits a non-linear relationship (e.g when the points don't form a straight line).</p>
 
-<h2>Imports</h2>
+<h2 id="imports">Imports</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
@@ -2611,9 +2611,9 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h2>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 
-<h3>Creating Random Data</h3>
+<h3 id="creating-random-data">Creating Random Data</h3>
 
 <p>Even though in this tutorial we will use a Position Vs Salary dataset, it is important to know how to create synthetic data</p>
 
@@ -2635,7 +2635,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Position vs Salary Dataset</h3>
+<h3 id="position-vs-salary-dataset">Position vs Salary Dataset</h3>
 
 <p>We will be using https://drive.google.com/file/d/1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9/view (Salary vs Position Dataset)</p>
 
@@ -2690,7 +2690,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 
 <p><img src="/assets/gciTales/03-regression/1.png" alt="" /></p>
 
-<h2>Defining Stuff</h2>
+<h2 id="defining-stuff">Defining Stuff</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
@@ -2698,7 +2698,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Defining Variables</h3>
+<h3 id="defining-variables">Defining Variables</h3>
 
 <p>We first define all the coefficients and constant as tensorflow variables having a random initial value</p>
 
@@ -2712,7 +2712,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Model Configuration</h3>
+<h3 id="model-configuration">Model Configuration</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.2</span>
@@ -2720,7 +2720,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Equations</h3>
+<h3 id="equations">Equations</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">deg1</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">b</span>
@@ -2731,7 +2731,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Cost Function</h3>
+<h3 id="cost-function">Cost Function</h3>
 
 <p>We use the Mean Squared Error Function</p>
 
@@ -2744,7 +2744,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Optimizer</h3>
+<h3 id="optimizer">Optimizer</h3>
 
 <p>We use the AdamOptimizer for the polynomial functions and GradientDescentOptimizer for the linear function</p>
 
@@ -2762,12 +2762,12 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h2>Model Predictions</h2>
+<h2 id="model-predictions">Model Predictions</h2>
 
 <p>For each type of equation first we make the model predict the values of the coefficient(s) and constant, once we get these values we use it to predict the Y
 values using the X values. We then plot it to compare the actual data and predicted line.</p>
 
-<h3>Linear Equation</h3>
+<h3 id="linear-equation">Linear Equation</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -2831,7 +2831,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/2.png" alt="" /></p>
 
-<h3>Quadratic Equation</h3>
+<h3 id="quadratic-equation">Quadratic Equation</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -2896,7 +2896,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/3.png" alt="" /></p>
 
-<h3>Cubic</h3>
+<h3 id="cubic">Cubic</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -2962,7 +2962,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/4.png" alt="" /></p>
 
-<h3>Quartic</h3>
+<h3 id="quartic">Quartic</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -3029,7 +3029,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/5.png" alt="" /></p>
 
-<h3>Quintic</h3>
+<h3 id="quintic">Quintic</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -3095,13 +3095,13 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/6.png" alt="" /></p>
 
-<h2>Results and Conclusion</h2>
+<h2 id="results-and-conclusion">Results and Conclusion</h2>
 
 <p>You just learnt Polynomial Regression using TensorFlow!</p>
 
-<h2>Notes</h2>
+<h2 id="notes">Notes</h2>
 
-<h3>Overfitting</h3>
+<h3 id="overfitting">Overfitting</h3>
 
 <blockquote>
   <blockquote>
@@ -3123,14 +3123,14 @@ values using the X values. We then plot it to compare the actual data and predic
 				https://web.navan.dev/posts/2019-12-04-Google-Teachable-Machines.html
 			</guid>
 			<title>
-				Image Classifier With Teachable Machines
+				id="image-classifier-with-teachable-machines">Image Classifier With Teachable Machines
 			</title>
 			<description>
 				Tutorial on creating a custom image classifier quickly with Google Teachable Machines
 			</description>
 			<link>https://web.navan.dev/posts/2019-12-04-Google-Teachable-Machines.html</link>
 			<pubDate>Wed, 04 Dec 2019 18:23:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Image Classifier With Teachable Machines</h1>
+			<content:encoded><![CDATA[<h1 id="image-classifier-with-teachable-machines">Image Classifier With Teachable Machines</h1>
 
 <p>Made for Google Code-In</p>
 
@@ -3138,7 +3138,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p>Using Glitch and the Teachable Machines, build a Book Detector with Tensorflow.js. When a book is recognized, the code would randomly suggest a book/tell a famous quote from a book. Here is an example Project to get you started: https://glitch.com/~voltaic-acorn</p>
 
-<h3>Details</h3>
+<h3 id="details">Details</h3>
 
 <p>1) Collecting Data</p>
 
@@ -3187,14 +3187,14 @@ values using the X values. We then plot it to compare the actual data and predic
 				https://web.navan.dev/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html
 			</guid>
 			<title>
-				Quadratic Formula Derivation
+				id="quadratic-formula-derivation">Quadratic Formula Derivation
 			</title>
 			<description>
 				Quick derivation of the quadratic equation by completing the square
 			</description>
 			<link>https://web.navan.dev/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html</link>
 			<pubDate>Tue, 26 Mar 2024 15:36:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Quadratic Formula Derivation</h1>
+			<content:encoded><![CDATA[<h1 id="quadratic-formula-derivation">Quadratic Formula Derivation</h1>
 
 <p>The standard form of a quadratic equation is:</p>
 
@@ -3233,14 +3233,14 @@ values using the X values. We then plot it to compare the actual data and predic
 				https://web.navan.dev/posts/2022-08-05-Why-You-No-Host.html
 			</guid>
 			<title>
-				Why You No Host?
+				id="why-you-no-host">Why You No Host?
 			</title>
 			<description>
 				Why you should self-host with YunoHost
 			</description>
 			<link>https://web.navan.dev/posts/2022-08-05-Why-You-No-Host.html</link>
 			<pubDate>Fri, 05 Aug 2022 14:46:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Why You No Host?</h1>
+			<content:encoded><![CDATA[<h1 id="why-you-no-host">Why You No Host?</h1>
 
 <p><img src="/assets/y-u-n-o/meme.png" alt="" /></p>
 
@@ -3248,7 +3248,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p>The title refers to the “Y U No Host” internet meme, which led to the name of “YunoHost”, an operating system aiming to democratise self-hosting. This post tries to discuss the idea that anyone can self-host and why you should consider YunoHost.</p>
 
-<h2>Should you Self-Host?</h2>
+<h2 id="should-you-self-host">Should you Self-Host?</h2>
 
 <ul>
 <li>Do you get annoyed when half of the internet goes down because everything a few major companies host the majority of the internet?
@@ -3273,11 +3273,11 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p>These are just some of the reasons to self-host.</p>
 
-<h2>What if you don’t know anything?</h2>
+<h2 id="what-if-you-dont-know-anything">What if you don’t know anything?</h2>
 
 <p>No one is born with the knowledge of knowing how to orchestrate a cluster. You can always learn how to, but sometimes you just don’t have the time or energy. YunoHost tries to ease this issue by providing a clean web-interface. You do not even need to touch the command line for all the basic tasks.</p>
 
-<h2>What should you self-host?</h2>
+<h2 id="what-should-you-self-host">What should you self-host?</h2>
 
 <p>Anything and everything! The best part about self-hosting is that you own the data. This data is not going to be sold to the highest bidder.</p>
 
@@ -3289,7 +3289,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p>Although you can do all of this (and much more!) without needing to use YunoHost, it just makes it easy to manage.</p>
 
-<h2>What do I need to self-host?</h2>
+<h2 id="what-do-i-need-to-self-host">What do I need to self-host?</h2>
 
 <ul>
 <li>A decent internet connection if you plan on using the services outside your home network and hosting at home</li>
@@ -3303,7 +3303,7 @@ values using the X values. We then plot it to compare the actual data and predic
 <li>Some patience</li>
 </ul>
 
-<h2><a rel="noopener" target="_blank" href="https://yunohost.org/en/whatsyunohost?q=%2Fwhatsyunohost">What is YunoHost</a>?</h2>
+<h2 id="what-is-yunohosthttpsyunohostorgenwhatsyunohostq2fwhatsyunohost"><a rel="noopener" target="_blank" href="https://yunohost.org/en/whatsyunohost?q=%2Fwhatsyunohost">What is YunoHost</a>?</h2>
 
 <p><a rel="noopener" target="_blank" href="https://yunohost.org/">YunoHost</a> is a server operating system which takes  guesswork out of Self-Hosting. Out of the box it provides:</p>
 
@@ -3319,7 +3319,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p>and much more!</p>
 
-<h3>Why did I choose YunoHost?</h3>
+<h3 id="why-did-i-choose-yunohost">Why did I choose YunoHost?</h3>
 
 <p>I began my self-hosting journey with a Raspberry Pi 4 (4GB). I looked at tons of options for the base management layer:</p>
 
@@ -3348,65 +3348,65 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p>Also, YunoHost has been here for a long time! <a rel="noopener" target="_blank" href="https://news.ycombinator.com/item?id=7894838">Here</a> is an old Hacker News post about YunoHost. All the projects mentioned in the comments? Dead.  </p>
 
-<h3>What do I self-host?</h3>
+<h3 id="what-do-i-self-host">What do I self-host?</h3>
 
-<h4>audiobookshelf - an audiobook server</h4>
+<h4 id="audiobookshelf-an-audiobook-server">audiobookshelf - an audiobook server</h4>
 
 <p><img src="/assets/y-u-n-o/ssabs.png" alt="Audiobook server" /></p>
 
-<h4>ergo chat - an IRC server</h4>
+<h4 id="ergo-chat-an-irc-server">ergo chat - an IRC server</h4>
 
 <p><img src="/assets/y-u-n-o/sst.png" alt="Screenshot of Textual Client connected to my IRC server" /></p>
 
-<h4>FreshRSS - RSS aggregator</h4>
+<h4 id="freshrss-rss-aggregator">FreshRSS - RSS aggregator</h4>
 
 <p><img src="/assets/y-u-n-o/ssfr.png" alt="Screenshot of FreshRSS" /></p>
 
-<h4>Gitea - self-hosted git</h4>
+<h4 id="gitea-self-hosted-git">Gitea - self-hosted git</h4>
 
-<h4><img src="/assets/y-u-n-o/ssgi.png" alt="Screenshot of Gitea dashboard with logs about repository mirroring" /></h4>
+<h4 id="screenshot-of-gitea-dashboard-with-logs-about-repository-mirroringassetsy-u-n-ossgipng"><img src="/assets/y-u-n-o/ssgi.png" alt="Screenshot of Gitea dashboard with logs about repository mirroring" /></h4>
 
-<h4>Grafana - Metrics dashboard</h4>
+<h4 id="grafana-metrics-dashboard">Grafana - Metrics dashboard</h4>
 
 <p><img src="/assets/y-u-n-o/ssgr.png" alt="Grafana Dashboard" /></p>
 
-<h4>Home Assistant - Home automation platform</h4>
+<h4 id="home-assistant-home-automation-platform">Home Assistant - Home automation platform</h4>
 
 <p><img src="/assets/y-u-n-o/ssha.png" alt="Screenshot of Home Assistant dashboard" /></p>
 
-<h4>Jellyfin - Media server</h4>
+<h4 id="jellyfin-media-server">Jellyfin - Media server</h4>
 
 <p><img src="/assets/y-u-n-o/ssj.png" alt="Screenshot of Jellyfin showing movies " /></p>
 
-<h4>Listmonk - Newsletter and Mailing List manager</h4>
+<h4 id="listmonk-newsletter-and-mailing-list-manager">Listmonk - Newsletter and Mailing List manager</h4>
 
 <p><img src="/assets/y-u-n-o/ssl.png" alt="Screenshot of ListMonk" /></p>
 
-<h4>MinIO Server - S3 compatible storage server</h4>
+<h4 id="minio-server-s3-compatible-storage-server">MinIO Server - S3 compatible storage server</h4>
 
 <p><img src="/assets/y-u-n-o/ssm.png" alt="Screenshot of MinIO console" /></p>
 
-<h4>Nextcloud - Storage, file-sharing, e.t.c</h4>
+<h4 id="nextcloud-storage-file-sharing-etc">Nextcloud - Storage, file-sharing, e.t.c</h4>
 
 <p><img src="/assets/y-u-n-o/ssn.png" alt="Screenshot of Nextcloud dashboard" /></p>
 
-<h4>Syncthing - continuous file synchronization</h4>
+<h4 id="syncthing-continuous-file-synchronization">Syncthing - continuous file synchronization</h4>
 
 <p><img src="/assets/y-u-n-o/sss.png" alt="Screenshot of Synching dashboard" /></p>
 
-<h4>Vaultwarden - Bitwarden server</h4>
+<h4 id="vaultwarden-bitwarden-server">Vaultwarden - Bitwarden server</h4>
 
 <p><img src="/assets/y-u-n-o/ssv.png" alt="Screenshot of Vaultwarden loading screen" /></p>
 
-<h4>Wallabag - Read it later app</h4>
+<h4 id="wallabag-read-it-later-app">Wallabag - Read it later app</h4>
 
 <p><img src="/assets/y-u-n-o/ssw.png" alt="Screenshot of Wallabag" /></p>
 
-<h4>h5ai - HTTP server index</h4>
+<h4 id="h5ai-http-server-index">h5ai - HTTP server index</h4>
 
 <p><img src="/assets/y-u-n-o/ssh.png" alt="Screenshot of h5ai" /></p>
 
-<h2>How do I install YunoHost?</h2>
+<h2 id="how-do-i-install-yunohost">How do I install YunoHost?</h2>
 
 <ol>
 <li>Install minimal Debian 10/11  on your preferred machine</li>
@@ -3415,7 +3415,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p>Done!</p>
 
-<h2>Should you actually self-host everything?</h2>
+<h2 id="should-you-actually-self-host-everything">Should you actually self-host everything?</h2>
 
 <p>Highly context dependent. I run two YunoHost servers in two different locations. One of the ISP has actually blacklisted the residential IP address range and does not let me change my reverseDNS, which means all my outgoing emails are marked as spam. On the other hand, the other ISP gave a clean static IP and the server managed for a small business is not at all problematic for emailing. YMMV but at least you know you have an option.</p>
 ]]></content:encoded>
@@ -3426,19 +3426,19 @@ values using the X values. We then plot it to compare the actual data and predic
 				https://web.navan.dev/posts/2021-06-25-NFC-Music-Cards-Basic-iOS.html
 			</guid>
 			<title>
-				Basic NFC Music Cards for iOS
+				id="basic-nfc-music-cards-for-ios">Basic NFC Music Cards for iOS
 			</title>
 			<description>
 				Basic NFC Music Cards on iOS with Shortcuts
 			</description>
 			<link>https://web.navan.dev/posts/2021-06-25-NFC-Music-Cards-Basic-iOS.html</link>
 			<pubDate>Fri, 25 Jun 2021 16:20:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Basic NFC Music Cards for iOS</h1>
+			<content:encoded><![CDATA[<h1 id="basic-nfc-music-cards-for-ios">Basic NFC Music Cards for iOS</h1>
 
 <p>I had a pack of NFC cards and decided it was the perfect time to create Music Cards. I do not have a "music setup."
 So, I did not have to ensure this could work with any device. I settled with using Shortcuts personal Automation.</p>
 
-<h2>Designing the Template</h2>
+<h2 id="designing-the-template">Designing the Template</h2>
 
 <p>I tried measuring the card's dimensions with the in-built Measure app, but it was off by a few mm. </p>
 
@@ -3450,7 +3450,7 @@ So, I did not have to ensure this could work with any device. I settled with usi
 
 <p><img src="/assets/posts/music-cards/mccartney-iii.png" alt="Screenshot of Design for McCartney III" /></p>
 
-<h2>Creating the Automation</h2>
+<h2 id="creating-the-automation">Creating the Automation</h2>
 
 <p>I created a personal automation in the Shortcuts app which got triggered when a particular NFC card was scanned, ask playback destination and play the album/playlist.</p>
 
@@ -3458,7 +3458,7 @@ So, I did not have to ensure this could work with any device. I settled with usi
 
 <p><img src="/assets/posts/music-cards/shortcuts-02.png" alt="Screenshot of Automation Summary" /></p>
 
-<h2>Demo</h2>
+<h2 id="demo">Demo</h2>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pV5EPujEI-Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ]]></content:encoded>
@@ -3469,16 +3469,16 @@ So, I did not have to ensure this could work with any device. I settled with usi
 				https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html
 			</guid>
 			<title>
-				Creating your own custom theme for Snowboard or Anemone
+				id="creating-your-own-custom-theme-for-snowboard-or-anemone">Creating your own custom theme for Snowboard or Anemone
 			</title>
 			<description>
 				Tutorial on creating your own custom theme for Snowboard or Anemone
 			</description>
 			<link>https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html</link>
 			<pubDate>Sun, 05 May 2019 12:34:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Creating your own custom theme for Snowboard or Anemone</h1>
+			<content:encoded><![CDATA[<h1 id="creating-your-own-custom-theme-for-snowboard-or-anemone">Creating your own custom theme for Snowboard or Anemone</h1>
 
-<h3>Contents</h3>
+<h3 id="contents">Contents</h3>
 
 <ul>
 <li>Getting Started</li>
@@ -3490,7 +3490,7 @@ So, I did not have to ensure this could work with any device. I settled with usi
 <li>Building the DEB</li>
 </ul>
 
-<h2>Getting Started</h2>
+<h2 id="getting-started">Getting Started</h2>
 
 <p><strong>Note: Without the proper folder structure, your theme may not show up!</strong></p>
 
@@ -3499,7 +3499,7 @@ So, I did not have to ensure this could work with any device. I settled with usi
 <li>Within <code>themeName.theme</code> folder, create another folder called <code>IconBundles</code> (<strong>You cannot change this name</strong>)</li>
 </ul>
 
-<h2>Theme Configuration</h2>
+<h2 id="theme-configuration">Theme Configuration</h2>
 
 <ul>
 <li>Now, inside the <code>themeName.theme</code> folder, create a file called <code>Info.plist</code> and paste the following</li>
@@ -3526,7 +3526,7 @@ So, I did not have to ensure this could work with any device. I settled with usi
 <p>Well, if for example you want to publish two variants of your icons, one dark and one white but you do not want the user to separately install them.
 Then, you would name the package <code>MyTheme</code> and include two themes <code>Blackie</code> and <code>White</code> thus creating two entries. More about this in the end</p>
 
-<h2>Creating Icons</h2>
+<h2 id="creating-icons">Creating Icons</h2>
 
 <ul>
 <li>Open up the Image Editor of your choice and create a new file having a resolution of 512x512</li>
@@ -3537,7 +3537,7 @@ Then, you would name the package <code>MyTheme</code> and include two themes <co
 <p><strong>Want to create rounded icons?</strong>
 Create them squared only, we will learn how to apply masks!</p>
 
-<h2>Exporting Icons</h2>
+<h2 id="exporting-icons">Exporting Icons</h2>
 
 <p><strong>Note: All icons must be saved as <code>*.png</code> (Tip: This means you can even create partially transparent icons!)</strong></p>
 
@@ -3545,7 +3545,7 @@ Create them squared only, we will learn how to apply masks!</p>
 <li>All Icons must be saved in <code>themeName.theme&gt;IconBundles</code> as <code>bundleID-large.png</code></li>
 </ul>
 
-<h5>Finding BundleIDs</h5>
+<h5 id="finding-bundleids">Finding BundleIDs</h5>
 
 <p><strong>Stock Application BundleIDs</strong></p>
 
@@ -3711,7 +3711,7 @@ Create them squared only, we will learn how to apply masks!</p>
 <p><strong>3rd Party Applications BundleID</strong>
 Click <a rel="noopener" target="_blank" href="http://offcornerdev.com/bundleid.html">here</a></p>
 
-<h3>Icon Masks</h3>
+<h3 id="icon-masks">Icon Masks</h3>
 
 <ul>
 <li>Getting the Classic Rounded Rectangle Masks</li>
@@ -3736,7 +3736,7 @@ Click <a rel="noopener" target="_blank" href="http://offcornerdev.com/bundleid.h
 </ul></li>
 </ul>
 
-<h4>Designing Masks</h4>
+<h4 id="designing-masks">Designing Masks</h4>
 
 <p><strong>Masking does not support IconBundles, therefore you need to save the masks for each of the following</strong></p>
 
@@ -3820,7 +3820,7 @@ Click <a rel="noopener" target="_blank" href="http://offcornerdev.com/bundleid.h
 
 <p><img src="https://pinpal.github.io/assets/theme-guide/mask-result.png" alt="Credit: Pinpal" /></p>
 
-<h3>Packaging</h3>
+<h3 id="packaging">Packaging</h3>
 
 <ul>
 <li>Create a new folder outside <code>themeName.theme</code> with the name you want to be shown on Cydia, e.g <code>themeNameForCydia</code></li>
@@ -3853,11 +3853,11 @@ Section: Themes
 <li>Finally, copy <code>themeName.theme</code> to the <code>Themes</code> folder (<strong>Copy the entire folder, not just the contents</strong>)</li>
 </ul>
 
-<h3>Building the DEB</h3>
+<h3 id="building-the-deb">Building the DEB</h3>
 
 <p><strong>For building the deb you need a <code>*nix</code> system, otherwise you can build it using your iPhones</strong></p>
 
-<h5>Pre-Requisite for MacOS users</h5>
+<h5 id="pre-requisite-for-macos-users">Pre-Requisite for MacOS users</h5>
 
 <p>1) Install Homenbrew <code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code> (Run this in the terminal)
 2) Install dpkg, by running <code>brew install dpkg</code></p>
@@ -3870,13 +3870,13 @@ Section: Themes
 <li>Now, run <code>find . -name "*.DS_Store" -type f -delete</code></li>
 </ul>
 
-<h5>Pre-Requisite for Windows Users</h5>
+<h5 id="pre-requisite-for-windows-users">Pre-Requisite for Windows Users</h5>
 
 <ul>
 <li>SSH into your iPhone and drag and drop the <code>themeNameForCyia</code> folder on the terminal</li>
 </ul>
 
-<h5>Common Instructions</h5>
+<h5 id="common-instructions">Common Instructions</h5>
 
 <ul>
 <li>You should be at the root of the folder in the terminal, i.e Inside <code>themeNameForCydia</code></li>
@@ -3901,14 +3901,14 @@ Section: Themes
 				https://web.navan.dev/posts/2020-04-13-Fixing-X11-Error-AmberTools-macOS.html
 			</guid>
 			<title>
-				Fixing X11 Error on macOS Catalina for AmberTools 18/19
+				id="fixing-x11-error-on-macos-catalina-for-ambertools-1819">Fixing X11 Error on macOS Catalina for AmberTools 18/19
 			</title>
 			<description>
 				Fixing Could not find the X11 libraries; you may need to edit config.h, AmberTools macOS Catalina
 			</description>
 			<link>https://web.navan.dev/posts/2020-04-13-Fixing-X11-Error-AmberTools-macOS.html</link>
 			<pubDate>Mon, 13 Apr 2020 11:41:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Fixing X11 Error on macOS Catalina for AmberTools 18/19</h1>
+			<content:encoded><![CDATA[<h1 id="fixing-x11-error-on-macos-catalina-for-ambertools-1819">Fixing X11 Error on macOS Catalina for AmberTools 18/19</h1>
 
 <p>I was trying to install AmberTools on my macOS Catalina Installation. Running <code>./configure -macAccelerate clang</code> gave me an error that it could not find X11 libraries, even though <code>locate libXt</code> showed that my installation was correct.</p>
 
@@ -3933,7 +3933,7 @@ Configure failed due to the errors above!
 
 <p>I searched on Google for a solution. Sadly, there was not even a single thread which had a solution about this error.</p>
 
-<h2>The Fix</h2>
+<h2 id="the-fix">The Fix</h2>
 
 <p>Simply reinstalling XQuartz using homebrew fixed the error <code>brew cask reinstall xquartz</code></p>
 
@@ -3946,14 +3946,14 @@ Configure failed due to the errors above!
 				https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html
 			</guid>
 			<title>
-				Making a Crude ML Powered Chatbot in Swift using CoreML
+				id="making-a-crude-ml-powered-chatbot-in-swift-using-coreml">Making a Crude ML Powered Chatbot in Swift using CoreML
 			</title>
 			<description>
 				Writing a simple Machine-Learning powered Chatbot (or, daresay virtual personal assistant ) in Swift using CoreML.
 			</description>
 			<link>https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html</link>
 			<pubDate>Sun, 27 Jun 2021 23:26:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Making a Crude ML Powered Chatbot in Swift using CoreML</h1>
+			<content:encoded><![CDATA[<h1 id="making-a-crude-ml-powered-chatbot-in-swift-using-coreml">Making a Crude ML Powered Chatbot in Swift using CoreML</h1>
 
 <p>A chatbot/virtual assistant, on paper, looks easy to build.
 The user says something, the programs finds the best action, checks if additional input is required and sends back the output.
@@ -3961,7 +3961,7 @@ To do this in Swift, I used two separate ML Models created using Apple's Create 
 First is a Text Classifier to classify intent, and the other a word tagger for extracting input from the input message. 
 Disclaimer: This is a very crude proof-of-concept, but it does work.</p>
 
-<h2>Text Classifier</h2>
+<h2 id="text-classifier">Text Classifier</h2>
 
 <p>I opened a CSV file and added some sample entries, with a corresponding label.</p>
 
@@ -3993,7 +3993,7 @@ i love you,banter
 
 <p><img src="/assets/posts/swift-chatbot/create-intent.png" alt="Screenshot of Create ML Text Classifier" /></p>
 
-<h2>Word Tagging</h2>
+<h2 id="word-tagging">Word Tagging</h2>
 
 <p>This is useful to extract the required variables directly from the user's input.
 This model will be only called if the intent from the classifier is a custom action.
@@ -4021,7 +4021,7 @@ I created a sample JSON with only 3 examples (I know, very less, but works for a
 
 <p><img src="/assets/posts/swift-chatbot/create-tagger.png" alt="Screenshot of Create ML Text Classifier" /></p>
 
-<h2>Time to Get Swift-y</h2>
+<h2 id="time-to-get-swift-y">Time to Get Swift-y</h2>
 
 <p>The initial part is easy, importing CoreML and NaturalLanguage and then initializing the models and the tagger.</p>
 
@@ -4137,14 +4137,14 @@ Otherwise, it calls the custom action.</p>
 				https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html
 			</guid>
 			<title>
-				Interacting with underlying element in HTML
+				id="interacting-with-underlying-element-in-html">Interacting with underlying element in HTML
 			</title>
 			<description>
 				With CSS you can disable any interactions with an element and directly control the underlying element
 			</description>
 			<link>https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html</link>
 			<pubDate>Mon, 26 Feb 2024 11:57:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Interacting with underlying element in HTML</h1>
+			<content:encoded><![CDATA[<h1 id="interacting-with-underlying-element-in-html">Interacting with underlying element in HTML</h1>
 
 <p>I know that the title is a bit weird. I was trying to interact with a video under an iPhone Bezel Screen frame.</p>
 
@@ -4176,7 +4176,7 @@ Otherwise, it calls the custom action.</p>
 
 <p>Let us try this in a simple example.</p>
 
-<h2>Example</h2>
+<h2 id="example">Example</h2>
 
 <p>Here, we create a button and overlay a transparent box</p>
 
@@ -4224,14 +4224,14 @@ A box with 200px height and 300px width
 				https://web.navan.dev/posts/2019-12-10-TensorFlow-Model-Prediction.html
 			</guid>
 			<title>
-				Making Predictions using Image Classifier (TensorFlow)
+				id="making-predictions-using-image-classifier-tensorflow">Making Predictions using Image Classifier (TensorFlow)
 			</title>
 			<description>
 				Making predictions for image classification models built using TensorFlow
 			</description>
 			<link>https://web.navan.dev/posts/2019-12-10-TensorFlow-Model-Prediction.html</link>
 			<pubDate>Tue, 10 Dec 2019 11:10:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Making Predictions using Image Classifier (TensorFlow)</h1>
+			<content:encoded><![CDATA[<h1 id="making-predictions-using-image-classifier-tensorflow">Making Predictions using Image Classifier (TensorFlow)</h1>
 
 <p><em>This was tested on TF 2.x and works as of 2019-12-10</em></p>
 
@@ -4298,14 +4298,14 @@ A box with 200px height and 300px width
 				https://web.navan.dev/posts/2020-07-01-Install-rdkit-colab.html
 			</guid>
 			<title>
-				Installing RDKit on Google Colab
+				id="installing-rdkit-on-google-colab">Installing RDKit on Google Colab
 			</title>
 			<description>
 				Install RDKit on Google Colab with one code snippet.
 			</description>
 			<link>https://web.navan.dev/posts/2020-07-01-Install-rdkit-colab.html</link>
 			<pubDate>Wed, 01 Jul 2020 14:23:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Installing RDKit on Google Colab</h1>
+			<content:encoded><![CDATA[<h1 id="installing-rdkit-on-google-colab">Installing RDKit on Google Colab</h1>
 
 <p><strong>EDIT:</strong> Try installing RDKit using pip</p>
 
@@ -4313,7 +4313,7 @@ A box with 200px height and 300px width
 
 </code></pre>
 
-<h2>Old Method (Still Works)</h2>
+<h2 id="old-method-still-works">Old Method (Still Works)</h2>
 
 <p>RDKit is one of the most integral part of any Cheminfomatic specialist's toolkit but it is notoriously difficult to install unless you already have <code>conda</code> installed. I originally found this in a GitHub Gist but I have not been able to find that gist again :/ </p>
 
@@ -4418,16 +4418,16 @@ logger.info("rdkit-{} installation finished!".format(rdkit.__version__))
 				https://web.navan.dev/posts/2023-10-04-bomb-lab.html
 			</guid>
 			<title>
-				Bomb Lab
+				id="bomb-lab">Bomb Lab
 			</title>
 			<description>
 				Walkthrough of Phases 1-6 of Bomb Lab for CSCI 2400 Computer Systems Lab 2
 			</description>
 			<link>https://web.navan.dev/posts/2023-10-04-bomb-lab.html</link>
 			<pubDate>Wed, 04 Oct 2023 13:12:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Bomb Lab</h1>
+			<content:encoded><![CDATA[<h1 id="bomb-lab">Bomb Lab</h1>
 
-<h2>Introduction</h2>
+<h2 id="introduction">Introduction</h2>
 
 <p>Lab 2 for CSCI 2400 @ CU Boulder - Computer Systems</p>
 
@@ -4444,7 +4444,7 @@ logger.info("rdkit-{} installation finished!".format(rdkit.__version__))
 
 <p><em>Note: I am not sure about the history of the bomb lab. I think it started at CMU.</em></p>
 
-<h2>Phase 1</h2>
+<h2 id="phase-1">Phase 1</h2>
 
 <div class="codehilite">
 <pre><span></span><code>joxxxn@jupyter-nxxh6xx8:~/lab2-bomblab-navanchauhan/bombbomb$<span class="w"> </span>gdb<span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break phase_1&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break explode_bomb&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;run&#39;</span><span class="w"> </span>./bomb<span class="w"> </span>
@@ -4497,7 +4497,7 @@ End<span class="w"> </span>of<span class="w"> </span>assembler<span class="w"> <
 </code></pre>
 </div>
 
-<h2>Phase 2</h2>
+<h2 id="phase-2">Phase 2</h2>
 
 <div class="codehilite">
 <pre><span></span><code>Phase<span class="w"> </span><span class="m">1</span><span class="w"> </span>defused.<span class="w"> </span>How<span class="w"> </span>about<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>one?
@@ -4620,7 +4620,7 @@ That<span class="err">&#39;</span>s<span class="w"> </span>number<span class="w"
 </code></pre>
 </div>
 
-<h2>Phase 3</h2>
+<h2 id="phase-3">Phase 3</h2>
 
 <p>Let us look at the disassembled code first</p>
 
@@ -4902,7 +4902,7 @@ Halfway<span class="w"> </span>there!
 </code></pre>
 </div>
 
-<h2>Phase 4</h2>
+<h2 id="phase-4">Phase 4</h2>
 
 <div class="codehilite">
 <pre><span></span><code>joxxxn@jupyter-nxxh6xx8:~/lab2-bomblab-navanchauhan/bombbomb$<span class="w"> </span>gdb<span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break phase_4&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;break explode_bomb&#39;</span><span class="w"> </span>-ex<span class="w"> </span><span class="s1">&#39;run&#39;</span><span class="w"> </span>-args<span class="w"> </span>./bomb<span class="w"> </span>sol.txt<span class="w"> </span>
@@ -5113,7 +5113,7 @@ So<span class="w"> </span>you<span class="w"> </span>got<span class="w"> </span>
 </code></pre>
 </div>
 
-<h2>Phase 5</h2>
+<h2 id="phase-5">Phase 5</h2>
 
 <div class="codehilite">
 <pre><span></span><code>So<span class="w"> </span>you<span class="w"> </span>got<span class="w"> </span>that<span class="w"> </span>one.<span class="w">  </span>Try<span class="w"> </span>this<span class="w"> </span>one.
@@ -5244,7 +5244,7 @@ Good<span class="w"> </span>work!<span class="w">  </span>On<span class="w"> </s
 
 <p>Awesome!</p>
 
-<h2>Phase 6</h2>
+<h2 id="phase-6">Phase 6</h2>
 
 <div class="codehilite">
 <pre><span></span><code>Good<span class="w"> </span>work!<span class="w">  </span>On<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>next...
@@ -5524,25 +5524,25 @@ Your instructor has been notified and will verify your solution.
 				https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html
 			</guid>
 			<title>
-				Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt
+				id="generating-https-certificate-using-dns-a-challenge-through-lets-encrypt">Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt
 			</title>
 			<description>
 				Short code-snippet to generate HTTPS certificates using the DNS Challenge through Lets Encrypt for a web-server using DuckDNS.
 			</description>
 			<link>https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html</link>
 			<pubDate>Tue, 17 Nov 2020 15:04:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</h1>
+			<content:encoded><![CDATA[<h1 id="generating-https-certificate-using-dns-a-challenge-through-lets-encrypt">Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</h1>
 
 <p>I have a Raspberry-Pi running a Flask app through Gunicorn (Ubuntu 20.04 LTS). I am exposing it to the internet using DuckDNS.</p>
 
-<h2>Dependencies</h2>
+<h2 id="dependencies">Dependencies</h2>
 
 <div class="codehilite">
 <pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>certbot<span class="w"> </span>-y
 </code></pre>
 </div>
 
-<h2>Get the Certificate</h2>
+<h2 id="get-the-certificate">Get the Certificate</h2>
 
 <div class="codehilite">
 <pre><span></span><code>sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--manual<span class="w"> </span>--preferred-challenges<span class="w"> </span>dns-01<span class="w"> </span>--email<span class="w"> </span>senpai@email.com<span class="w"> </span>-d<span class="w"> </span>mydomain.duckdns.org
@@ -5587,11 +5587,11 @@ navanspi.duckdns.org.<span class="w">    </span><span class="m">60</span><span c
 
 <p>Once you can ensure that the TXT record changes has been successfully applied and is visible through the <code>dig</code> command, press enter on the Certbot prompt and your certificate should be generated.</p>
 
-<h2>Renewing</h2>
+<h2 id="renewing">Renewing</h2>
 
 <p>As we manually generated the certificate <code>certbot renew</code> will fail, to renew the certificate you need to simply re-generate the certificate using the above steps.</p>
 
-<h2>Using the Certificate with Gunicorn</h2>
+<h2 id="using-the-certificate-with-gunicorn">Using the Certificate with Gunicorn</h2>
 
 <p>Example Gunicorn command for running a web-app:</p>
 
@@ -5616,27 +5616,27 @@ navanspi.duckdns.org.<span class="w">    </span><span class="m">60</span><span c
 				https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html
 			</guid>
 			<title>
-				Building a Fake News Detector with Turicreate
+				id="building-a-fake-news-detector-with-turicreate">Building a Fake News Detector with Turicreate
 			</title>
 			<description>
 				In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app
 			</description>
 			<link>https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html</link>
 			<pubDate>Sun, 22 Dec 2019 11:10:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Building a Fake News Detector with Turicreate</h1>
+			<content:encoded><![CDATA[<h1 id="building-a-fake-news-detector-with-turicreate">Building a Fake News Detector with Turicreate</h1>
 
 <p><strong>In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app</strong></p>
 
 <p>Note: These commands are written as if you are running a jupyter notebook.</p>
 
-<h2>Building the Machine Learning Model</h2>
+<h2 id="building-the-machine-learning-model">Building the Machine Learning Model</h2>
 
-<h3>Data Gathering</h3>
+<h3 id="data-gathering">Data Gathering</h3>
 
 <p>To build a classifier, you need a lot of data. George McIntire (GH: @joolsa) has created a wonderful dataset containing the headline, body and whether it is fake or real.
 Whenever you are looking for a dataset, always try searching on Kaggle and GitHub before you start building your own</p>
 
-<h3>Dependencies</h3>
+<h3 id="dependencies">Dependencies</h3>
 
 <p>I used a Google Colab instance for training my model.  If you also plan on using Google Colab then I recommend choosing a GPU Instance (It is Free)
 This allows you to train the model on the GPU. Turicreate is built on top of Apache's MXNet Framework, for us to use GPU we need to install
@@ -5651,7 +5651,7 @@ a CUDA compatible MXNet package.</p>
 
 <p>If you do not wish to train on GPU or are running it on your computer, you can ignore the last two lines</p>
 
-<h3>Downloading the Dataset</h3>
+<h3 id="downloading-the-dataset">Downloading the Dataset</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nt">!wget</span><span class="na"> -q &quot;https</span><span class="p">:</span><span class="nc">//github.com/joolsa/fake_real_news_dataset/raw/master/fake_or_real_news.csv.zip&quot;</span>
@@ -5659,7 +5659,7 @@ a CUDA compatible MXNet package.</p>
 </code></pre>
 </div>
 
-<h3>Model Creation</h3>
+<h3 id="model-creation">Model Creation</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
@@ -5679,14 +5679,14 @@ a CUDA compatible MXNet package.</p>
 </code></pre>
 </div>
 
-<h4>Splitting Dataset</h4>
+<h4 id="splitting-dataset">Splitting Dataset</h4>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">dataSFrame</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">.9</span><span class="p">)</span>
 </code></pre>
 </div>
 
-<h4>Training</h4>
+<h4 id="training">Training</h4>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_classifier</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -5711,7 +5711,7 @@ a CUDA compatible MXNet package.</p>
 </code></pre>
 </div>
 
-<h3>Testing the Model</h3>
+<h3 id="testing-the-model">Testing the Model</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">est_predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
@@ -5744,7 +5744,7 @@ a CUDA compatible MXNet package.</p>
 </code></pre>
 </div>
 
-<h3>Exporting the Model</h3>
+<h3 id="exporting-the-model">Exporting the Model</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;FakeNews&#39;</span>
@@ -5757,9 +5757,9 @@ a CUDA compatible MXNet package.</p>
 
 <p><a rel="noopener" target="_blank" href="https://colab.research.google.com/drive/1onMXGkhA__X2aOFdsoVL-6HQBsWQhOP4">Link to Colab Notebook</a></p>
 
-<h2>Building the App using SwiftUI</h2>
+<h2 id="building-the-app-using-swiftui">Building the App using SwiftUI</h2>
 
-<h3>Initial Setup</h3>
+<h3 id="initial-setup">Initial Setup</h3>
 
 <p>First we create a single view app (make sure you check the use SwiftUI button)</p>
 
@@ -5894,14 +5894,14 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 				https://web.navan.dev/posts/2020-12-1-HTML-JS-RSS-Feed.html
 			</guid>
 			<title>
-				RSS Feed written in HTML + JavaScript
+				id="rss-feed-written-in-html-javascript">RSS Feed written in HTML + JavaScript
 			</title>
 			<description>
 				Short code-snippet for an RSS feed, written in HTML and JavaScript
 			</description>
 			<link>https://web.navan.dev/posts/2020-12-1-HTML-JS-RSS-Feed.html</link>
 			<pubDate>Tue, 01 Dec 2020 20:52:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>RSS Feed written in HTML + JavaScript</h1>
+			<content:encoded><![CDATA[<h1 id="rss-feed-written-in-html-javascript">RSS Feed written in HTML + JavaScript</h1>
 
 <p>If you want to directly open the HTML file in your browser after saving, don't forget to set <code>CORS_PROXY=""</code> </p>
 
@@ -6111,18 +6111,18 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 				https://web.navan.dev/posts/2020-01-19-Connect-To-Bluetooth-Devices-Linux-Terminal.html
 			</guid>
 			<title>
-				How to setup Bluetooth on a Raspberry Pi
+				id="how-to-setup-bluetooth-on-a-raspberry-pi">How to setup Bluetooth on a Raspberry Pi
 			</title>
 			<description>
 				Connecting to Bluetooth Devices using terminal, tested on Raspberry Pi Zero W
 			</description>
 			<link>https://web.navan.dev/posts/2020-01-19-Connect-To-Bluetooth-Devices-Linux-Terminal.html</link>
 			<pubDate>Sun, 19 Jan 2020 15:27:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>How to setup Bluetooth on a Raspberry Pi</h1>
+			<content:encoded><![CDATA[<h1 id="how-to-setup-bluetooth-on-a-raspberry-pi">How to setup Bluetooth on a Raspberry Pi</h1>
 
 <p><em>This was tested on a Raspberry Pi Zero W</em></p>
 
-<h2>Enter in the Bluetooth Mode</h2>
+<h2 id="enter-in-the-bluetooth-mode">Enter in the Bluetooth Mode</h2>
 
 <p><code>pi@raspberrypi:~ $ bluetoothctl</code></p>
 
@@ -6132,7 +6132,7 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 
 <p><code>[bluetooth]# scan on</code></p>
 
-<h2>To Pair</h2>
+<h2 id="to-pair">To Pair</h2>
 
 <p>While being in bluetooth mode</p>
 
@@ -6147,23 +6147,23 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 				https://web.navan.dev/posts/2022-12-25-blog-to-toot.html
 			</guid>
 			<title>
-				Posting blogs as Mastodon Toots
+				id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots
 			</title>
 			<description>
 				Cross posting blog posts to Mastodon
 			</description>
 			<link>https://web.navan.dev/posts/2022-12-25-blog-to-toot.html</link>
 			<pubDate>Sun, 25 Dec 2022 17:32:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Posting blogs as Mastodon Toots</h1>
+			<content:encoded><![CDATA[<h1 id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots</h1>
 
 <p>What is better than posting a blog post? Posting about your posting pipeline. I did this previously with <a rel="noopener" target="_blank" href="/posts/2021-06-25-Blog2Twitter-P1.html">Twitter</a>. </p>
 
-<h2>the elephant in the room</h2>
+<h2 id="the-elephant-in-the-room">the elephant in the room</h2>
 
 <p>mastodon.social does not support any formatting in the status posts. 
 Yes, there are other instances which have patches to enable features such as markdown formatting, but there is no upstream support.</p>
 
-<h2>time to code</h2>
+<h2 id="time-to-code">time to code</h2>
 
 <p>My website is built using a really simple static site generator I wrote in Python.
 Therefore, each post is self-contained in a Markdown file with the necessary metadata.</p>
@@ -6172,13 +6172,13 @@ Therefore, each post is self-contained in a Markdown file with the necessary met
 
 <p>I initially planned on having a command line parser and some more flags.</p>
 
-<h3>interacting with mastodon</h3>
+<h3 id="interacting-with-mastodon">interacting with mastodon</h3>
 
 <p>I ended up using mastodon.py rather than crafting requests by hand. Each status<em>post/toot call returns a status</em>id that can be then used as an in<em>reply</em>to parameter.</p>
 
 <p>For the code snippets, seeing that mastodon does not support native formatting, I am resorting to using ray-so.</p>
 
-<h3>reading markdown</h3>
+<h3 id="reading-markdown">reading markdown</h3>
 
 <p>I am using a bunch of regex hacks, and reading the blog post line by line. 
 Because there is no markdown support, I append all the links to the end of the toot.
@@ -6207,7 +6207,7 @@ In this case, I can extract the tags from the front matter.</p>
 </code></pre>
 </div>
 
-<h3>code snippet support</h3>
+<h3 id="code-snippet-support">code snippet support</h3>
 
 <p>I am running <a rel="noopener" target="_blank" href="https://github.com/akashrchandran/Rayso-API">akashrchandran/Rayso-API</a>.</p>
 
@@ -6227,19 +6227,19 @@ In this case, I can extract the tags from the front matter.</p>
 </code></pre>
 </div>
 
-<h3>threads! threads! threads!</h3>
+<h3 id="threads-threads-threads">threads! threads! threads!</h3>
 
 <p>Even though mastodon does officially have a higher character limit than Twitter. 
 I prefer the way threads look.</p>
 
-<h2>result</h2>
+<h2 id="result">result</h2>
 
 <p>Everything does seem to work!
 Seeing that you are reading this on Mastodon, and that I have updated this section.</p>
 
 <p><iframe src="https://mastodon.social/@navanchauhan/109577330116812393/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><script src="https://static-cdn.mastodon.social/embed.js" async="async"></script></p>
 
-<h2>what's next?</h2>
+<h2 id="whats-next">what's next?</h2>
 
 <p>Here is the current code:</p>
 
@@ -6443,14 +6443,14 @@ Seeing that you are reading this on Mastodon, and that I have updated this secti
 				https://web.navan.dev/posts/2023-04-30-n-body-simulation.html
 			</guid>
 			<title>
-				n-body solution generator
+				id="n-body-solution-generator">n-body solution generator
 			</title>
 			<description>
 				n-body solution generator and solver
 			</description>
 			<link>https://web.navan.dev/posts/2023-04-30-n-body-simulation.html</link>
 			<pubDate>Sun, 30 Apr 2023 22:50:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>n-body solution generator</h1>
+			<content:encoded><![CDATA[<h1 id="n-body-solution-generator">n-body solution generator</h1>
 
 <p>This post requires JavaScript to be viewed properly :(</p>
 
@@ -6467,7 +6467,7 @@ Seeing that you are reading this on Mastodon, and that I have updated this secti
 
 <p><strong>To workaround memory issues, the simulations are only run on-demand when the user clicks the respective button. Scroll down to the bottom of the page to see the results.</strong></p>
 
-<h2>The n-body problem</h2>
+<h2 id="the-n-body-problem">The n-body problem</h2>
 
 <p>The n-body problem is a classic puzzle in physics (and thus astrophysics) and mathematics that deals with predicting the motion of multiple celestial objects that interact with each other through gravitational forces. </p>
 
@@ -6477,7 +6477,7 @@ Seeing that you are reading this on Mastodon, and that I have updated this secti
 
 <p>As the number of objects increases, finding an exact solution becomes impossible, and we rely on analytical approximations.</p>
 
-<h2>Visualising a basic orbit</h2>
+<h2 id="visualising-a-basic-orbit">Visualising a basic orbit</h2>
 
 <p>If we want to create a n-body simulation in our browser, we need to figure out how we are going to visualise the motion of the objects. There are a few ways to do this, but the easiest is to use Plotly.js, a JavaScript library for creating interactive graphs. (An alternative is to use the HTML5 canvas element).</p>
 
@@ -6544,7 +6544,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 
 <p>Finally, we normalize the position data by dividing it by the astronomical unit (AU) to make it more visually meaningful. We also create a circle for reference, which represents a perfect circular orbit. The code ends with the data for the Sun's position, Earth's orbit, and the reference circle ready to be plotted.</p>
 
-<h3>Plotting the orbit</h3>
+<h3 id="plotting-the-orbit">Plotting the orbit</h3>
 
 <p>Now that we have the data for the Sun's position, Earth's orbit, and the reference circle, we can plot them using Plotly.js.</p>
 
@@ -6618,7 +6618,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 </code></pre>
 </div>
 
-<h2>Figure of 8 orbit</h2>
+<h2 id="figure-of-8-orbit">Figure of 8 orbit</h2>
 
 <p>The figure of 8 solution[2] in the three-body problem refers to a unique and special trajectory where three celestial bodies (e.g., planets, stars) move in a figure of 8 shaped pattern around their mutual center of mass. This is special because it represents a stable and periodic solution to the three-body problem, which is known for its complexity and lack of general solutions.</p>
 
@@ -6632,7 +6632,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 <li><p>It looks cool!</p></li>
 </ul>
 
-<h3>Show me the code</h3>
+<h3 id="show-me-the-code">Show me the code</h3>
 
 <p>The code for this simulation is very similar to the Earth-Sun orbit simulation, except that we now have three bodies instead of two. We also use a different set of initial conditions to generate the figure of 8 orbit.</p>
 
@@ -6724,7 +6724,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 
 <p>Finally, a loop iterates over each time step, updating the positions and velocities of the celestial bodies using the <code>step</code> function. The updated coordinates are stored in the <code>X</code>, <code>Y</code>, <code>VX</code>, and <code>VY</code> arrays.</p>
 
-<h3>Animation?</h3>
+<h3 id="animation">Animation?</h3>
 
 <p>Now that we have time-series data, we need to animate it. We can use Plotly's animate function, as this does not force a full re-render, saving us some precious GPU and CPU cycles when we are trying to run this in the browser itself</p>
 
@@ -6844,9 +6844,9 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 </code></pre>
 </div>
 
-<h2>"General" N-Body Solver</h2>
+<h2 id="general-n-body-solver">"General" N-Body Solver</h2>
 
-<h3>Show me the code!</h3>
+<h3 id="show-me-the-code-2">Show me the code!</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">step</span><span class="p">(</span><span class="nx">coords</span><span class="p">,</span><span class="w"> </span><span class="nx">masses</span><span class="p">,</span><span class="w"> </span><span class="nx">deltaT</span><span class="p">,</span><span class="w"> </span><span class="nx">nBodies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6.67408313131313e-11</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -7081,7 +7081,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 </code></pre>
 </div>
 
-<h2>Playground</h2>
+<h2 id="playground">Playground</h2>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
@@ -7165,7 +7165,7 @@ function plotRandomNBodySimulation() {
 
  </script>     
 
-<h2>References</h2>
+<h2 id="references">References</h2>
 
 <ol>
 <li>Barrow-Green, June (2008), "The Three-Body Problem", in Gowers, Timothy; Barrow-Green, June; Leader, Imre (eds.), <em>The Princeton Companion to Mathematics</em>, Princeton University Press, pp. 726–728</li>
@@ -7179,14 +7179,14 @@ function plotRandomNBodySimulation() {
 				https://web.navan.dev/posts/2020-01-14-Converting-between-PIL-NumPy.html
 			</guid>
 			<title>
-				Converting between image and NumPy array
+				id="converting-between-image-and-numpy-array">Converting between image and NumPy array
 			</title>
 			<description>
 				Short code snippet for converting between PIL image and NumPy arrays.
 			</description>
 			<link>https://web.navan.dev/posts/2020-01-14-Converting-between-PIL-NumPy.html</link>
 			<pubDate>Tue, 14 Jan 2020 00:10:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Converting between image and NumPy array</h1>
+			<content:encoded><![CDATA[<h1 id="converting-between-image-and-numpy-array">Converting between image and NumPy array</h1>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span>
@@ -7201,7 +7201,7 @@ function plotRandomNBodySimulation() {
 </code></pre>
 </div>
 
-<h2>Saving an Image</h2>
+<h2 id="saving-an-image">Saving an Image</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">try</span><span class="p">:</span>
@@ -7219,14 +7219,14 @@ function plotRandomNBodySimulation() {
 				https://web.navan.dev/posts/2019-12-08-Splitting-Zips.html
 			</guid>
 			<title>
-				Splitting ZIPs into Multiple Parts
+				id="splitting-zips-into-multiple-parts">Splitting ZIPs into Multiple Parts
 			</title>
 			<description>
 				Short code snippet for splitting zips.
 			</description>
 			<link>https://web.navan.dev/posts/2019-12-08-Splitting-Zips.html</link>
 			<pubDate>Sun, 08 Dec 2019 13:27:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Splitting ZIPs into Multiple Parts</h1>
+			<content:encoded><![CDATA[<h1 id="splitting-zips-into-multiple-parts">Splitting ZIPs into Multiple Parts</h1>
 
 <p><strong>Tested on macOS</strong></p>
 
@@ -7262,22 +7262,22 @@ function plotRandomNBodySimulation() {
 				https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html
 			</guid>
 			<title>
-				Compiling AutoDock Vina on iOS
+				id="compiling-autodock-vina-on-ios">Compiling AutoDock Vina on iOS
 			</title>
 			<description>
 				Compiling AutoDock Vina on iOS
 			</description>
 			<link>https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html</link>
 			<pubDate>Tue, 02 Jun 2020 23:23:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Compiling AutoDock Vina on iOS</h1>
+			<content:encoded><![CDATA[<h1 id="compiling-autodock-vina-on-ios">Compiling AutoDock Vina on iOS</h1>
 
 <p>Why? Because I can.</p>
 
-<h2>Installing makedepend</h2>
+<h2 id="installing-makedepend">Installing makedepend</h2>
 
 <p><code>makedepend</code> is a Unix tool used to generate dependencies of C source files. Most modern programs do not use this anymore, but then again AutoDock Vina's source code hasn't been changed since 2011. The first hurdle came when I saw that there was no makedepend command, neither was there any package on any development repository for iOS. So, I tracked down the original source code for <code>makedepend</code> (https://github.com/DerellLicht/makedepend). According to the repository this is actually the source code for the makedepend utility that came with some XWindows distribution back around Y2K. I am pretty sure there is a problem with my current compiler configuration because I had to manually edit the <code>Makefile</code> to provide the path to the iOS SDKs using the <code>-isysroot</code> flag.</p>
 
-<h2>Editing the Makefile</h2>
+<h2 id="editing-the-makefile">Editing the Makefile</h2>
 
 <p>Original Makefile ( I used the provided mac Makefile base )</p>
 
@@ -7308,11 +7308,11 @@ include ../../makefile_common
 
 </code></pre>
 
-<h2>Updating the Source Code</h2>
+<h2 id="updating-the-source-code">Updating the Source Code</h2>
 
 <p>Of course since Boost 1.41 many things have been added and deprecated, that is why I had to edit the source code to make it work with version 1.68</p>
 
-<h3>Error 1 - No Matching Constructor</h3>
+<h3 id="error-1-no-matching-constructor">Error 1 - No Matching Constructor</h3>
 
 <pre><code>../../../src/main/main.cpp:50:9: error: no matching constructor for initialization of 'path' (aka 'boost::filesystem::path')
 return path(str, boost::filesystem::native);
@@ -7323,7 +7323,7 @@ return path(str, boost::filesystem::native);
 <pre><code>return path(str)
 </code></pre>
 
-<h3>Error 2 - No Member Named 'native<em>file</em>string'</h3>
+<h3 id="error-2-no-member-named-native_file_string">Error 2 - No Member Named 'native<em>file</em>string'</h3>
 
 <pre><code>../../../src/main/main.cpp:665:57: error: no member named 'native_file_string' in 'boost::filesystem::path'
                 std::cerr &lt;&lt; "\n\nError: could not open \"" &lt;&lt; e.name.native_file_string() &lt;&lt; "\" for " &lt;&lt; (e.in ? "reading" : "writing") &lt;&lt; ".\n";
@@ -7336,15 +7336,15 @@ return path(str, boost::filesystem::native);
 
 <p>Turns out <code>native_file_string</code> was deprecated in Boost 1.57 and replaced with just <code>string</code></p>
 
-<h3>Error 3 - Library Not Found</h3>
+<h3 id="error-3-library-not-found">Error 3 - Library Not Found</h3>
 
 <p>This one still boggles me because there was no reason for it to not work, as a workaround I downloaded the DEB, extracted it and used that path for compiling.</p>
 
-<h3>Error 4 - No Member Named 'native<em>file</em>string' Again.</h3>
+<h3 id="error-4-no-member-named-native_file_string-again">Error 4 - No Member Named 'native<em>file</em>string' Again.</h3>
 
 <p>But, this time in another file and I quickly fixed it</p>
 
-<h2>Moment of Truth</h2>
+<h2 id="moment-of-truth">Moment of Truth</h2>
 
 <p>Obviously it was working on my iPad, but would it work on another device? I transferred the compiled binary and </p>
 
@@ -7359,18 +7359,18 @@ return path(str, boost::filesystem::native);
 				https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html
 			</guid>
 			<title>
-				Interacting with Siri using the command line
+				id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line
 			</title>
 			<description>
 				Code snippet to interact with Siri by issuing commands from the command-line.
 			</description>
 			<link>https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html</link>
 			<pubDate>Wed, 08 Feb 2023 17:21:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Interacting with Siri using the command line</h1>
+			<content:encoded><![CDATA[<h1 id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line</h1>
 
 <p>My main objective was to see if I could issue multi-intent commands in one go. Obviously, Siri cannot do that (neither can Alexa, Cortana, or Google Assistant). The script here can issue either a single command, or use the help of OpenAI's DaVinci model to extract multiple commands and pass them onto siri.</p>
 
-<h2>Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites</h2>
 
 <ul>
 <li>Run macOS</li>
@@ -7378,7 +7378,7 @@ return path(str, boost::filesystem::native);
 <li>Enable the Terminal to control System Events (The first time you run the script, it will prompt you to enable it)</li>
 </ul>
 
-<h2>Show me ze code</h2>
+<h2 id="show-me-ze-code">Show me ze code</h2>
 
 <p>If you are here just for the code:</p>
 
@@ -7458,11 +7458,11 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h2>ELI5</h2>
+<h2 id="eli5">ELI5</h2>
 
 <p>I am not actually going to explain it as if I am explaining to a five-year old kid.</p>
 
-<h3>AppleScript</h3>
+<h3 id="applescript">AppleScript</h3>
 
 <p>In the age of Siri Shortcuts, AppleScript can still do more. It is a scripting language created by Apple that can help you automate pretty much anything you see on your screen.</p>
 
@@ -7513,11 +7513,11 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h3>Multi-Intent Commands</h3>
+<h3 id="multi-intent-commands">Multi-Intent Commands</h3>
 
 <p>We can call OpenAI's API to autocomplete our prompt and extract multiple commands. We don't need to use OpenAI's API, and can also simply use Google's Flan-T5 model using HuggingFace's transformers library. </p>
 
-<h4>Ze Prompt</h4>
+<h4 id="ze-prompt">Ze Prompt</h4>
 
 <div class="codehilite">
 <pre><span></span><code>You are provided with multiple commands as a single command. Break down all the commands and return them in a list of strings. If you are provided with a single command, return a list with a single string, trying your best to understand the command.
@@ -7539,7 +7539,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 
 <p>This prompt gives the model a few examples to increase the generation accuracy, along with instructing it to return a Python list. </p>
 
-<h4>Ze Code</h4>
+<h4 id="ze-code">Ze Code</h4>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
@@ -7573,7 +7573,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h3>Gluing together code</h3>
+<h3 id="gluing-together-code">Gluing together code</h3>
 
 <p>To finish it all off, we can use argparse to only send the input command to OpenAI when asked to do so.</p>
 
@@ -7593,7 +7593,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>Siri is still dumb. When I ask it to <code>Switch off the lights</code>, it default to the home thousands of miles away. But, this code snippet definitely does work!</p>
 ]]></content:encoded>
@@ -7604,20 +7604,20 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 				https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html
 			</guid>
 			<title>
-				Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire
+				id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire
 			</title>
 			<description>
 				Tutorial on creating a custom Image Classifier using Turicreate and a dataset from Kaggle
 			</description>
 			<link>https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html</link>
 			<pubDate>Thu, 16 Jan 2020 10:36:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1>
+			<content:encoded><![CDATA[<h1 id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1>
 
 <p><em>For setting up Kaggle with Google Colab, please refer to <a rel="noopener" target="_blank" href="/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab"> my previous post</a></em></p>
 
-<h2>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 
-<h3>Mounting Google Drive</h3>
+<h3 id="mounting-google-drive">Mounting Google Drive</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
@@ -7626,7 +7626,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h3>Downloading Dataset from Kaggle</h3>
+<h3 id="downloading-dataset-from-kaggle">Downloading Dataset from Kaggle</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
@@ -7635,7 +7635,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h2>Pre-Processing</h2>
+<h2 id="pre-processing">Pre-Processing</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nt">!mkdir</span><span class="na"> default smoke fire</span>
@@ -7721,9 +7721,9 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h2>Making the Image Classifier</h2>
+<h2 id="making-the-image-classifier">Making the Image Classifier</h2>
 
-<h3>Making an SFrame</h3>
+<h3 id="making-an-sframe">Making an SFrame</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nt">!pip</span><span class="na"> install turicreate</span>
@@ -7786,7 +7786,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h3>Making the Model</h3>
+<h3 id="making-the-model">Making the Model</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
@@ -7888,14 +7888,14 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 				https://web.navan.dev/posts/2020-10-11-macOS-Virtual-Cam-OBS.html
 			</guid>
 			<title>
-				Trying Different Camera Setups
+				id="trying-different-camera-setups">Trying Different Camera Setups
 			</title>
 			<description>
 				Comparison of different cameras setups for using as a webcam and tutorials for the same.
 			</description>
 			<link>https://web.navan.dev/posts/2020-10-11-macOS-Virtual-Cam-OBS.html</link>
 			<pubDate>Sun, 11 Oct 2020 16:12:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Trying Different Camera Setups</h1>
+			<content:encoded><![CDATA[<h1 id="trying-different-camera-setups">Trying Different Camera Setups</h1>
 
 <ol start="0">
 <li>Animated Overlays</li>
@@ -7904,7 +7904,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 <li>Using a USB Camera</li>
 </ol>
 
-<h2>Comparison</h2>
+<h2 id="comparison">Comparison</h2>
 
 <p>Here are the results before you begin reading.</p>
 
@@ -7916,13 +7916,13 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
   <img src="/assets/posts/obs/mirrorless.png" alt="Mirrorless Camera">
 </div>
 
-<h2>Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites</h2>
 
 <p>I am running macOS and iOS but I will try to link the same steps for Windows as well. If you are running Arch, I assume you already know what you are doing and are using this post as an inspiration and not a how-to guide.</p>
 
 <p>I assume that you have Homebrew installed.</p>
 
-<h3>OBS and OBS-Virtual-Cam</h3>
+<h3 id="obs-and-obs-virtual-cam">OBS and OBS-Virtual-Cam</h3>
 
 <p><em>Description</em></p>
 
@@ -7932,7 +7932,7 @@ brew cask install obs-virtualcam
 
 <p>Windows users can install the latest version of the plugin from <a rel="noopener" target="_blank" href="https://obsproject.com/forum/resources/obs-virtualcam.949/">OBS-Forums</a></p>
 
-<h2>0. Animated Overlays</h2>
+<h2 id="0-animated-overlays">0. Animated Overlays</h2>
 
 <p>I have always liked PewDiePie's animated border he uses in his videos</p>
 
@@ -7956,7 +7956,7 @@ brew cask install obs-virtualcam
 
 <p>and, locate and choose the downloaded overlay.</p>
 
-<h2>1. Using a Modern Camera (Without using a Capture Card)</h2>
+<h2 id="1-using-a-modern-camera-without-using-a-capture-card">1. Using a Modern Camera (Without using a Capture Card)</h2>
 
 <p>I have a Sony mirrorless camera. Using Sony's <a rel="noopener" target="_blank" href="https://imagingedge.sony.net/en/ie-desktop.html">Imaging Edge Desktop</a>, you can use your laptop as a remote viewfinder and capture or record media.</p>
 
@@ -7966,7 +7966,7 @@ brew cask install obs-virtualcam
 
 <p>Once you are able to see the output of the camera on the application, switch to OBS. Create a new scene, and this time choose <code>Window Capture</code> in the Sources menu. After you have chosen the appropriate window, you may transform/crop the output using the properties/filters options.</p>
 
-<h2>2.1 Using your iPhone using Quicktime</h2>
+<h2 id="21-using-your-iphone-using-quicktime">2.1 Using your iPhone using Quicktime</h2>
 
 <p>Connect your iPhone via a USB cable, then Open Quicktime ->  File -> New Movie Recording </p>
 
@@ -7978,13 +7978,13 @@ brew cask install obs-virtualcam
 
 <p><img src="/assets/posts/obs/021-rotate.png" alt="Rotation" /></p>
 
-<h2>2.2 Using your iPhone using an application like Camo</h2>
+<h2 id="22-using-your-iphone-using-an-application-like-camo">2.2 Using your iPhone using an application like Camo</h2>
 
 <p>Install the Camo app on your phone through the app store -> connect to Mac using USB cable, install the companion app and you are done.</p>
 
 <p>I tried both my current iPhone and an old iPhone 5S</p>
 
-<h2>3. A USB Webcam</h2>
+<h2 id="3-a-usb-webcam">3. A USB Webcam</h2>
 
 <p>The simplest solution, is to use a USB webcam. I used an old <a rel="noopener" target="_blank" href="https://www.logitech.com/en-in/product/hd-webcam-c310">Logitech C310</a> that was collecting dust. I was surprised to find that Logitech is still selling it after years and proudly advertising it! (5MP)</p>
 
@@ -8012,14 +8012,14 @@ new Dics({
 				https://web.navan.dev/posts/2021-06-26-Cheminformatics-On-The-Web-2021.html
 			</guid>
 			<title>
-				Cheminformatics on the Web (2021)
+				id="cheminformatics-on-the-web-2021">Cheminformatics on the Web (2021)
 			</title>
 			<description>
 				Summarising Cheminformatics on the web in 2021.
 			</description>
 			<link>https://web.navan.dev/posts/2021-06-26-Cheminformatics-On-The-Web-2021.html</link>
 			<pubDate>Sat, 26 Jun 2021 13:04:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Cheminformatics on the Web (2021)</h1>
+			<content:encoded><![CDATA[<h1 id="cheminformatics-on-the-web-2021">Cheminformatics on the Web (2021)</h1>
 
 <p>Here, I have compiled a list of some libraries and possible ideas.
 I, personally, like static websites which don't require a server side application and can be hosted on platforms like GitHub Pages.
@@ -8027,12 +8027,12 @@ Or, just by opening the HTML file and running it in your browser.
 WebAssembly (Wasm) has made running code written for other platforms on the web relatively easier.
 Combine Wasm with some pure JavaScript libraries, and you get a platform to quickly amp up your speed in some common tasks.</p>
 
-<h2>RDKit</h2>
+<h2 id="rdkit">RDKit</h2>
 
 <p>RDKit bundles a minimal JavaScript Wrapper in their core RDKit suite. 
 This is perfect for generating 2D Figures (HTML5 Canva/SVGs), Canonical SMILES, Descriptors e.t.c</p>
 
-<h3>Substructure Matching</h3>
+<h3 id="substructure-matching">Substructure Matching</h3>
 
 <p>This can be used to flag undesirable functional groups in a given compound.
 Create a simple key:value pairs of name:SMARTS and use it to highlight substructure matches. 
@@ -8040,13 +8040,13 @@ Thus, something like PostEra's Medicinal Chemistry Alert can be done with RDKit-
 
 <p><img src="/assets/posts/cheminformatics-web/postera-demo.png" alt="PostEra Demo" /></p>
 
-<h3>Computing Properties</h3>
+<h3 id="computing-properties">Computing Properties</h3>
 
 <p>This is useful to calculate basic properties of a given compound.</p>
 
 <p><img src="/assets/posts/cheminformatics-web/rdkit-demo.png" alt="RDKit-JS Demo" /></p>
 
-<h2>Webina - Molecular Docking</h2>
+<h2 id="webina-molecular-docking">Webina - Molecular Docking</h2>
 
 <p>Webina is a JavaScript/Wasm library that runs AutoDock Vina, which can enable you to run Molecular Docking straight in the browser itself.</p>
 
@@ -8058,7 +8058,7 @@ Due to Spectre, this feature was disabled on all browsers.
 Currently, only Chromium-based and Firefox browsers have reimplemented and enabled it. 
 Hopefully, soon, this will be again supported by all major browsers.</p>
 
-<h2>Machine Learning</h2>
+<h2 id="machine-learning">Machine Learning</h2>
 
 <p>Frameworks have now evolved enough to allow exporting models to be able to run them through JavaScript/Wasm backend.
 An example task can be <strong>NER</strong> or Named-entity Recognition.
@@ -8068,12 +8068,12 @@ Another example is target-prediction right in the browser: <a rel="noopener" tar
 <p>CHEMBL Group is first training the model using PyTorch (A Python ML Library), then converting it to the ONNX runtime.
 A model like this can be directly implemented in TensorFlow, and then exported to be able to run with TensorFlow.js</p>
 
-<h2>Cheminfo-to-web</h2>
+<h2 id="cheminfo-to-web">Cheminfo-to-web</h2>
 
 <p>The project aims to port cheminformatics libraries into JavaScript via Emscripten.
 They have ported InChI, Indigo, OpenBabel, and OpenMD</p>
 
-<h3>Kekule.js</h3>
+<h3 id="kekulejs">Kekule.js</h3>
 
 <p>It is written by @partridgejiang, who is behind the Cheminfo-to-web project</p>
 
@@ -8081,19 +8081,19 @@ They have ported InChI, Indigo, OpenBabel, and OpenMD</p>
   <p>It is molecule-centric, focusing on providing the ability to represent, draw, edit, compare and search molecule structures on web browsers.</p>
 </blockquote>
 
-<h2>Browser Extensions</h2>
+<h2 id="browser-extensions">Browser Extensions</h2>
 
 <p>The previous machine learning examples can be packaged as browser-extensions to perform tasks on the article you are reading. 
 With iOS 15 bringing WebExtensions to iOS/iPadOS, the same browser extension source code can be now used on Desktop and Mobile Phones.
 You can quickly create an extension to convert PDB codes into links to RCSB, highlight SMILES, highlight output of NER models, e.t.c</p>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>I have not even touched all the bases of cheminformatics for the web here.
 There is still a lot more to unpack.
 Hopefully, this encourages you to explore the world of cheminformatics on the web.</p>
 
-<h2>Further Reading</h2>
+<h2 id="further-reading">Further Reading</h2>
 
 <p><a rel="noopener" target="_blank" href="https://blueobelisk.github.io/greasemonkey.html">Blueobelisk Userscripts</a></p>
 
@@ -8108,16 +8108,16 @@ Hopefully, this encourages you to explore the world of cheminformatics on the we
 				https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html
 			</guid>
 			<title>
-				Workflow for Lightning Fast Molecular Docking Part One
+				id="workflow-for-lightning-fast-molecular-docking-part-one">Workflow for Lightning Fast Molecular Docking Part One
 			</title>
 			<description>
 				This is my workflow for lightning fast molecular docking.
 			</description>
 			<link>https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html</link>
 			<pubDate>Mon, 01 Jun 2020 13:10:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Workflow for Lightning Fast Molecular Docking Part One</h1>
+			<content:encoded><![CDATA[<h1 id="workflow-for-lightning-fast-molecular-docking-part-one">Workflow for Lightning Fast Molecular Docking Part One</h1>
 
-<h2>My Setup</h2>
+<h2 id="my-setup">My Setup</h2>
 
 <ul>
 <li>macOS Catalina ( RIP 32bit app)</li>
@@ -8126,7 +8126,7 @@ Hopefully, this encourages you to explore the world of cheminformatics on the we
 <li>Open Babel</li>
 </ul>
 
-<h2>One Command Docking</h2>
+<h2 id="one-command-docking">One Command Docking</h2>
 
 <pre><code>obabel -:"$(pbpaste)" --gen3d -opdbqt -Otest.pdbqt &amp;&amp; vina --receptor lu.pdbqt --center_x -9.7 --center_y 11.4 --center_z 68.9 --size_x 19.3 --size_y 29.9 --size_z 21.3  --ligand test.pdbqt
 </code></pre>
@@ -8168,14 +8168,14 @@ alias pbpaste='xclip -selection clipboard -o'
 				https://web.navan.dev/publications/2019-05-14-Detecting-Driver-Fatigue-Over-Speeding-and-Speeding-up-Post-Accident-Response.html
 			</guid>
 			<title>
-				Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response
+				id="detecting-driver-fatigue-over-speeding-and-speeding-up-post-accident-response">Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response
 			</title>
 			<description>
 				This paper is about Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response.
 			</description>
 			<link>https://web.navan.dev/publications/2019-05-14-Detecting-Driver-Fatigue-Over-Speeding-and-Speeding-up-Post-Accident-Response.html</link>
 			<pubDate>Tue, 14 May 2019 02:42:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response</h1>
+			<content:encoded><![CDATA[<h1 id="detecting-driver-fatigue-over-speeding-and-speeding-up-post-accident-response">Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response</h1>
 
 <blockquote>
   <p>Based on the project showcased at Toyota Hackathon, IITD - 17/18th December 2018</p>
@@ -8187,12 +8187,12 @@ alias pbpaste='xclip -selection clipboard -o'
 
 <p>Recommended citation:</p>
 
-<h3>ATP</h3>
+<h3 id="atp">ATP</h3>
 
 <pre><code>Chauhan, N. (2019). &amp;quot;Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response.&amp;quot; &lt;i&gt;International Research Journal of Engineering and Technology (IRJET), 6(5)&lt;/i&gt;.
 </code></pre>
 
-<h3>BibTeX</h3>
+<h3 id="bibtex">BibTeX</h3>
 
 <pre><code>@article{chauhan_2019, title={Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response}, volume={6}, url={https://www.irjet.net/archives/V6/i5/IRJET-V6I5318.pdf}, number={5}, journal={International Research Journal of Engineering and Technology (IRJET)}, author={Chauhan, Navan}, year={2019}}
 </code></pre>
@@ -8204,14 +8204,14 @@ alias pbpaste='xclip -selection clipboard -o'
 				https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html
 			</guid>
 			<title>
-				Is it possible to programmatically generate Vaporwave?
+				id="is-it-possible-to-programmatically-generate-vaporwave">Is it possible to programmatically generate Vaporwave?
 			</title>
 			<description>
 				This paper is about programmaticaly generating Vaporwave.
 			</description>
 			<link>https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html</link>
 			<pubDate>Sat, 14 Mar 2020 22:23:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Is it possible to programmatically generate Vaporwave?</h1>
+			<content:encoded><![CDATA[<h1 id="is-it-possible-to-programmatically-generate-vaporwave">Is it possible to programmatically generate Vaporwave?</h1>
 
 <p>This is still a pre-print.</p>
 
@@ -8219,22 +8219,22 @@ alias pbpaste='xclip -selection clipboard -o'
 
 <p>Recommended citation:</p>
 
-<h3>APA</h3>
+<h3 id="apa">APA</h3>
 
 <pre><code>Chauhan, N. (2020, March 15). Is it possible to programmatically generate Vaporwave?. https://doi.org/10.35543/osf.io/9um2r
 </code></pre>
 
-<h3>MLA</h3>
+<h3 id="mla">MLA</h3>
 
 <pre><code>Chauhan, Navan. “Is It Possible to Programmatically Generate Vaporwave?.” IndiaRxiv, 15 Mar. 2020. Web.
 </code></pre>
 
-<h3>Chicago</h3>
+<h3 id="chicago">Chicago</h3>
 
 <pre><code>Chauhan, Navan. 2020. “Is It Possible to Programmatically Generate Vaporwave?.” IndiaRxiv. March 15. doi:10.35543/osf.io/9um2r.
 </code></pre>
 
-<h3>Bibtex</h3>
+<h3 id="bibtex">Bibtex</h3>
 
 <pre><code>@misc{chauhan_2020,
  title={Is it possible to programmatically generate Vaporwave?},
@@ -8254,14 +8254,14 @@ alias pbpaste='xclip -selection clipboard -o'
 				https://web.navan.dev/publications/2020-03-17-Possible-Drug-Candidates-COVID-19.html
 			</guid>
 			<title>
-				Possible Drug Candidates for COVID-19
+				id="possible-drug-candidates-for-covid-19">Possible Drug Candidates for COVID-19
 			</title>
 			<description>
 				COVID-19, has been officially labeled as a pandemic by the World Health Organisation. This paper presents cloperastine and vigabatrin as two possible drug candidates for combatting the disease along with the process by which they were discovered.
 			</description>
 			<link>https://web.navan.dev/publications/2020-03-17-Possible-Drug-Candidates-COVID-19.html</link>
 			<pubDate>Tue, 17 Mar 2020 17:40:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Possible Drug Candidates for COVID-19</h1>
+			<content:encoded><![CDATA[<h1 id="possible-drug-candidates-for-covid-19">Possible Drug Candidates for COVID-19</h1>
 
 <p>This is still a pre-print.</p>
 
@@ -8274,14 +8274,14 @@ alias pbpaste='xclip -selection clipboard -o'
 				https://web.navan.dev/3D-Designs/2024-02-17-Can-Holder-Mountain-Bike.html
 			</guid>
 			<title>
-				Bike Soda Can Holder
+				id="bike-soda-can-holder">Bike Soda Can Holder
 			</title>
 			<description>
 				Carry your favourite soda (or beer) can with you while you ride
 			</description>
 			<link>https://web.navan.dev/3D-Designs/2024-02-17-Can-Holder-Mountain-Bike.html</link>
 			<pubDate>Sat, 17 Feb 2024 18:42:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>Bike Soda Can Holder</h1>
+			<content:encoded><![CDATA[<h1 id="bike-soda-can-holder">Bike Soda Can Holder</h1>
 
 <p>Ever wanted a nice craft soda, or a natty light during your ride? Mounts to the standard bottle cage holes on your bike.</p>
 
@@ -8306,7 +8306,7 @@ model-viewer {
 }
 </style>
 
-<h2>Current Variations</h2>
+<h2 id="current-variations">Current Variations</h2>
 
 <ul>
 <li>Standard 12oz Can</li>
@@ -8322,18 +8322,18 @@ model-viewer {
 				https://web.navan.dev/ideas/2022-12-17-ar-mr-xr.html
 			</guid>
 			<title>
-				AR XR MR
+				id="ar-xr-mr">AR XR MR
 			</title>
 			<description>
 				Data dump from my notes
 			</description>
 			<link>https://web.navan.dev/ideas/2022-12-17-ar-mr-xr.html</link>
 			<pubDate>Sat, 17 Dec 2022 19:43:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1>AR XR MR</h1>
+			<content:encoded><![CDATA[<h1 id="ar-xr-mr">AR XR MR</h1>
 
 <p>Last Updated: 2022-12-17</p>
 
-<h2>Projects</h2>
+<h2 id="projects">Projects</h2>
 
 <p>All projects listed here are in the following format:</p>
 
@@ -8404,26 +8404,26 @@ model-viewer {
 </tbody>
 </table>
 
-<h2>Resources</h2>
+<h2 id="resources">Resources</h2>
 
 <ul>
 <li>For latest updates, <a rel="noopener" target="_blank" href="https://reddit.com/r/AR_MR_XR">r/AR<em>MR</em>XR</a> is one of the best resources out there.</li>
 <li>Until WebXR actually becomes a thing and gets support on Safari, depending on the use case any of the frameworks can be used right now with each having their own pros and cons. Otherwise, for displaying simple models Google's ModelViewer framework can be used to integrate with the native AR frameworks for both iOS and Android to display glTF/USDZ models.</li>
 </ul>
 
-<h2>Ideas</h2>
+<h2 id="ideas">Ideas</h2>
 
-<h3>Safety Checklist for CUBRT</h3>
+<h3 id="safety-checklist-for-cubrt">Safety Checklist for CUBRT</h3>
 
 <p>Would be nice to have an AR app/website that goes through all the safety checklists on our cars, so we never have to see another loose fuel line blow up the entire car. </p>
 
 <p>Possible solution: Add a fiduciary marker under the hood of the car and use it to highlight areas which need to be checked, or multiple markers which are activated in a particular order and show up as disabled until you complete the previous step.</p>
 
-<h3>App Clips</h3>
+<h3 id="app-clips">App Clips</h3>
 
 <p>Although App Clips on iOS have limited capabilities available to them, ARKit is one of them. This means, a QR code / NFC trigger can be used to launch a mini ARKit based App Clip.</p>
 
-<h3>Non-AR Smart Glasses</h3>
+<h3 id="non-ar-smart-glasses">Non-AR Smart Glasses</h3>
 
 <p>Not every pair of smart glasses need to have AR based surface tracking / SLAM, to display stuff. Just a simple display which can overlay elements on the real world should be capable of displaying tons of data</p>
 ]]></content:encoded>

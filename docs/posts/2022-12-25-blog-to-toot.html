@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posting blogs as Mastodon Toots</title>
+    <title>id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2022-12-25-blog-to-toot.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2022-12-25-blog-to-toot.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2022-12-25-blog-to-toot.html" />
-    <meta name="twitter:title" content="Posting blogs as Mastodon Toots" />
-    <meta name="og:title" content="Posting blogs as Mastodon Toots" />
+    <meta name="twitter:title" content="id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots" />
+    <meta name="og:title" content="id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots" />
     <meta name="description" content="Cross posting blog posts to Mastodon" />
     <meta name="twitter:description" content="Cross posting blog posts to Mastodon" />
     <meta name="og:description" content="Cross posting blog posts to Mastodon" />
@@ -44,16 +44,16 @@
     
 <main>
 
-	<h1>Posting blogs as Mastodon Toots</h1>
+	<h1 id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots</h1>
 
 <p>What is better than posting a blog post? Posting about your posting pipeline. I did this previously with <a rel="noopener" target="_blank" href="/posts/2021-06-25-Blog2Twitter-P1.html">Twitter</a>. </p>
 
-<h2>the elephant in the room</h2>
+<h2 id="the-elephant-in-the-room">the elephant in the room</h2>
 
 <p>mastodon.social does not support any formatting in the status posts. 
 Yes, there are other instances which have patches to enable features such as markdown formatting, but there is no upstream support.</p>
 
-<h2>time to code</h2>
+<h2 id="time-to-code">time to code</h2>
 
 <p>My website is built using a really simple static site generator I wrote in Python.
 Therefore, each post is self-contained in a Markdown file with the necessary metadata.</p>
@@ -62,13 +62,13 @@ Therefore, each post is self-contained in a Markdown file with the necessary met
 
 <p>I initially planned on having a command line parser and some more flags.</p>
 
-<h3>interacting with mastodon</h3>
+<h3 id="interacting-with-mastodon">interacting with mastodon</h3>
 
 <p>I ended up using mastodon.py rather than crafting requests by hand. Each status<em>post/toot call returns a status</em>id that can be then used as an in<em>reply</em>to parameter.</p>
 
 <p>For the code snippets, seeing that mastodon does not support native formatting, I am resorting to using ray-so.</p>
 
-<h3>reading markdown</h3>
+<h3 id="reading-markdown">reading markdown</h3>
 
 <p>I am using a bunch of regex hacks, and reading the blog post line by line. 
 Because there is no markdown support, I append all the links to the end of the toot.
@@ -97,7 +97,7 @@ In this case, I can extract the tags from the front matter.</p>
 </code></pre>
 </div>
 
-<h3>code snippet support</h3>
+<h3 id="code-snippet-support">code snippet support</h3>
 
 <p>I am running <a rel="noopener" target="_blank" href="https://github.com/akashrchandran/Rayso-API">akashrchandran/Rayso-API</a>.</p>
 
@@ -117,19 +117,19 @@ In this case, I can extract the tags from the front matter.</p>
 </code></pre>
 </div>
 
-<h3>threads! threads! threads!</h3>
+<h3 id="threads-threads-threads">threads! threads! threads!</h3>
 
 <p>Even though mastodon does officially have a higher character limit than Twitter. 
 I prefer the way threads look.</p>
 
-<h2>result</h2>
+<h2 id="result">result</h2>
 
 <p>Everything does seem to work!
 Seeing that you are reading this on Mastodon, and that I have updated this section.</p>
 
 <p><iframe src="https://mastodon.social/@navanchauhan/109577330116812393/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><script src="https://static-cdn.mastodon.social/embed.js" async="async"></script></p>
 
-<h2>what's next?</h2>
+<h2 id="whats-next">what's next?</h2>
 
 <p>Here is the current code:</p>
 

@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Setting up Kaggle to use with Google Colab</title>
+    <title>id="setting-up-kaggle-to-use-with-google-colab">Setting up Kaggle to use with Google Colab</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html" />
-    <meta name="twitter:title" content="Setting up Kaggle to use with Google Colab" />
-    <meta name="og:title" content="Setting up Kaggle to use with Google Colab" />
+    <meta name="twitter:title" content="id="setting-up-kaggle-to-use-with-google-colab">Setting up Kaggle to use with Google Colab" />
+    <meta name="og:title" content="id="setting-up-kaggle-to-use-with-google-colab">Setting up Kaggle to use with Google Colab" />
     <meta name="description" content="Tutorial on setting up kaggle, to use with Google Colab" />
     <meta name="twitter:description" content="Tutorial on setting up kaggle, to use with Google Colab" />
     <meta name="og:description" content="Tutorial on setting up kaggle, to use with Google Colab" />
@@ -44,33 +44,33 @@
     
 <main>
 
-	<h1>Setting up Kaggle to use with Google Colab</h1>
+	<h1 id="setting-up-kaggle-to-use-with-google-colab">Setting up Kaggle to use with Google Colab</h1>
 
 <p><em>In order to be able to access Kaggle Datasets, you will need to have an account on Kaggle (which is Free)</em></p>
 
-<h2>Grabbing Our Tokens</h2>
+<h2 id="grabbing-our-tokens">Grabbing Our Tokens</h2>
 
-<h3>Go to Kaggle</h3>
+<h3 id="go-to-kaggle">Go to Kaggle</h3>
 
 <p><img src="/assets/posts/kaggle-colab/ss1.png" alt="&quot;Homepage&quot;" /></p>
 
-<h3>Click on your User Profile and Click on My Account</h3>
+<h3 id="click-on-your-user-profile-and-click-on-my-account">Click on your User Profile and Click on My Account</h3>
 
 <p><img src="/assets/posts/kaggle-colab/ss2.png" alt="&quot;Account&quot;" /></p>
 
-<h3>Scroll Down until you see Create New API Token</h3>
+<h3 id="scroll-down-until-you-see-create-new-api-token">Scroll Down until you see Create New API Token</h3>
 
 <p><img src="/assets/posts/kaggle-colab/ss3.png" alt="" /></p>
 
-<h3>This will download your token as a JSON file</h3>
+<h3 id="this-will-download-your-token-as-a-json-file">This will download your token as a JSON file</h3>
 
 <p><img src="/assets/posts/kaggle-colab/ss4.png" alt="" /></p>
 
 <p>Copy the File to the root folder of your Google Drive</p>
 
-<h2>Setting up Colab</h2>
+<h2 id="setting-up-colab">Setting up Colab</h2>
 
-<h3>Mounting Google Drive</h3>
+<h3 id="mounting-google-drive">Mounting Google Drive</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
@@ -81,7 +81,7 @@
 
 <p>After this click on the URL in the output section, login and then paste the Auth Code</p>
 
-<h3>Configuring Kaggle</h3>
+<h3 id="configuring-kaggle">Configuring Kaggle</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>

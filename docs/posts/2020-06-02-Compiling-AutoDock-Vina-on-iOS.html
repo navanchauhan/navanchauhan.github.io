@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compiling AutoDock Vina on iOS</title>
+    <title>id="compiling-autodock-vina-on-ios">Compiling AutoDock Vina on iOS</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html" />
-    <meta name="twitter:title" content="Compiling AutoDock Vina on iOS" />
-    <meta name="og:title" content="Compiling AutoDock Vina on iOS" />
+    <meta name="twitter:title" content="id="compiling-autodock-vina-on-ios">Compiling AutoDock Vina on iOS" />
+    <meta name="og:title" content="id="compiling-autodock-vina-on-ios">Compiling AutoDock Vina on iOS" />
     <meta name="description" content="Compiling AutoDock Vina on iOS" />
     <meta name="twitter:description" content="Compiling AutoDock Vina on iOS" />
     <meta name="og:description" content="Compiling AutoDock Vina on iOS" />
@@ -44,15 +44,15 @@
     
 <main>
 
-	<h1>Compiling AutoDock Vina on iOS</h1>
+	<h1 id="compiling-autodock-vina-on-ios">Compiling AutoDock Vina on iOS</h1>
 
 <p>Why? Because I can.</p>
 
-<h2>Installing makedepend</h2>
+<h2 id="installing-makedepend">Installing makedepend</h2>
 
 <p><code>makedepend</code> is a Unix tool used to generate dependencies of C source files. Most modern programs do not use this anymore, but then again AutoDock Vina's source code hasn't been changed since 2011. The first hurdle came when I saw that there was no makedepend command, neither was there any package on any development repository for iOS. So, I tracked down the original source code for <code>makedepend</code> (https://github.com/DerellLicht/makedepend). According to the repository this is actually the source code for the makedepend utility that came with some XWindows distribution back around Y2K. I am pretty sure there is a problem with my current compiler configuration because I had to manually edit the <code>Makefile</code> to provide the path to the iOS SDKs using the <code>-isysroot</code> flag.</p>
 
-<h2>Editing the Makefile</h2>
+<h2 id="editing-the-makefile">Editing the Makefile</h2>
 
 <p>Original Makefile ( I used the provided mac Makefile base )</p>
 
@@ -83,11 +83,11 @@ include ../../makefile_common
 
 </code></pre>
 
-<h2>Updating the Source Code</h2>
+<h2 id="updating-the-source-code">Updating the Source Code</h2>
 
 <p>Of course since Boost 1.41 many things have been added and deprecated, that is why I had to edit the source code to make it work with version 1.68</p>
 
-<h3>Error 1 - No Matching Constructor</h3>
+<h3 id="error-1-no-matching-constructor">Error 1 - No Matching Constructor</h3>
 
 <pre><code>../../../src/main/main.cpp:50:9: error: no matching constructor for initialization of 'path' (aka 'boost::filesystem::path')
 return path(str, boost::filesystem::native);
@@ -98,7 +98,7 @@ return path(str, boost::filesystem::native);
 <pre><code>return path(str)
 </code></pre>
 
-<h3>Error 2 - No Member Named 'native<em>file</em>string'</h3>
+<h3 id="error-2-no-member-named-native_file_string">Error 2 - No Member Named 'native<em>file</em>string'</h3>
 
 <pre><code>../../../src/main/main.cpp:665:57: error: no member named 'native_file_string' in 'boost::filesystem::path'
                 std::cerr &lt;&lt; "\n\nError: could not open \"" &lt;&lt; e.name.native_file_string() &lt;&lt; "\" for " &lt;&lt; (e.in ? "reading" : "writing") &lt;&lt; ".\n";
@@ -111,15 +111,15 @@ return path(str, boost::filesystem::native);
 
 <p>Turns out <code>native_file_string</code> was deprecated in Boost 1.57 and replaced with just <code>string</code></p>
 
-<h3>Error 3 - Library Not Found</h3>
+<h3 id="error-3-library-not-found">Error 3 - Library Not Found</h3>
 
 <p>This one still boggles me because there was no reason for it to not work, as a workaround I downloaded the DEB, extracted it and used that path for compiling.</p>
 
-<h3>Error 4 - No Member Named 'native<em>file</em>string' Again.</h3>
+<h3 id="error-4-no-member-named-native_file_string-again">Error 4 - No Member Named 'native<em>file</em>string' Again.</h3>
 
 <p>But, this time in another file and I quickly fixed it</p>
 
-<h2>Moment of Truth</h2>
+<h2 id="moment-of-truth">Moment of Truth</h2>
 
 <p>Obviously it was working on my iPad, but would it work on another device? I transferred the compiled binary and </p>
 

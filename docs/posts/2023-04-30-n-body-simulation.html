@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>n-body solution generator</title>
+    <title>id="n-body-solution-generator">n-body solution generator</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2023-04-30-n-body-simulation.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2023-04-30-n-body-simulation.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2023-04-30-n-body-simulation.html" />
-    <meta name="twitter:title" content="n-body solution generator" />
-    <meta name="og:title" content="n-body solution generator" />
+    <meta name="twitter:title" content="id="n-body-solution-generator">n-body solution generator" />
+    <meta name="og:title" content="id="n-body-solution-generator">n-body solution generator" />
     <meta name="description" content="n-body solution generator and solver" />
     <meta name="twitter:description" content="n-body solution generator and solver" />
     <meta name="og:description" content="n-body solution generator and solver" />
@@ -44,7 +44,7 @@
     
 <main>
 
-	<h1>n-body solution generator</h1>
+	<h1 id="n-body-solution-generator">n-body solution generator</h1>
 
 <p>This post requires JavaScript to be viewed properly :(</p>
 
@@ -61,7 +61,7 @@
 
 <p><strong>To workaround memory issues, the simulations are only run on-demand when the user clicks the respective button. Scroll down to the bottom of the page to see the results.</strong></p>
 
-<h2>The n-body problem</h2>
+<h2 id="the-n-body-problem">The n-body problem</h2>
 
 <p>The n-body problem is a classic puzzle in physics (and thus astrophysics) and mathematics that deals with predicting the motion of multiple celestial objects that interact with each other through gravitational forces. </p>
 
@@ -71,7 +71,7 @@
 
 <p>As the number of objects increases, finding an exact solution becomes impossible, and we rely on analytical approximations.</p>
 
-<h2>Visualising a basic orbit</h2>
+<h2 id="visualising-a-basic-orbit">Visualising a basic orbit</h2>
 
 <p>If we want to create a n-body simulation in our browser, we need to figure out how we are going to visualise the motion of the objects. There are a few ways to do this, but the easiest is to use Plotly.js, a JavaScript library for creating interactive graphs. (An alternative is to use the HTML5 canvas element).</p>
 
@@ -138,7 +138,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 
 <p>Finally, we normalize the position data by dividing it by the astronomical unit (AU) to make it more visually meaningful. We also create a circle for reference, which represents a perfect circular orbit. The code ends with the data for the Sun's position, Earth's orbit, and the reference circle ready to be plotted.</p>
 
-<h3>Plotting the orbit</h3>
+<h3 id="plotting-the-orbit">Plotting the orbit</h3>
 
 <p>Now that we have the data for the Sun's position, Earth's orbit, and the reference circle, we can plot them using Plotly.js.</p>
 
@@ -212,7 +212,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 </code></pre>
 </div>
 
-<h2>Figure of 8 orbit</h2>
+<h2 id="figure-of-8-orbit">Figure of 8 orbit</h2>
 
 <p>The figure of 8 solution[2] in the three-body problem refers to a unique and special trajectory where three celestial bodies (e.g., planets, stars) move in a figure of 8 shaped pattern around their mutual center of mass. This is special because it represents a stable and periodic solution to the three-body problem, which is known for its complexity and lack of general solutions.</p>
 
@@ -226,7 +226,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 <li><p>It looks cool!</p></li>
 </ul>
 
-<h3>Show me the code</h3>
+<h3 id="show-me-the-code">Show me the code</h3>
 
 <p>The code for this simulation is very similar to the Earth-Sun orbit simulation, except that we now have three bodies instead of two. We also use a different set of initial conditions to generate the figure of 8 orbit.</p>
 
@@ -318,7 +318,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 
 <p>Finally, a loop iterates over each time step, updating the positions and velocities of the celestial bodies using the <code>step</code> function. The updated coordinates are stored in the <code>X</code>, <code>Y</code>, <code>VX</code>, and <code>VY</code> arrays.</p>
 
-<h3>Animation?</h3>
+<h3 id="animation">Animation?</h3>
 
 <p>Now that we have time-series data, we need to animate it. We can use Plotly's animate function, as this does not force a full re-render, saving us some precious GPU and CPU cycles when we are trying to run this in the browser itself</p>
 
@@ -438,9 +438,9 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 </code></pre>
 </div>
 
-<h2>"General" N-Body Solver</h2>
+<h2 id="general-n-body-solver">"General" N-Body Solver</h2>
 
-<h3>Show me the code!</h3>
+<h3 id="show-me-the-code-2">Show me the code!</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">step</span><span class="p">(</span><span class="nx">coords</span><span class="p">,</span><span class="w"> </span><span class="nx">masses</span><span class="p">,</span><span class="w"> </span><span class="nx">deltaT</span><span class="p">,</span><span class="w"> </span><span class="nx">nBodies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6.67408313131313e-11</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -675,7 +675,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 </code></pre>
 </div>
 
-<h2>Playground</h2>
+<h2 id="playground">Playground</h2>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
@@ -759,7 +759,7 @@ function plotRandomNBodySimulation() {
 
  </script>     
 
-<h2>References</h2>
+<h2 id="references">References</h2>
 
 <ol>
 <li>Barrow-Green, June (2008), "The Three-Body Problem", in Gowers, Timothy; Barrow-Green, June; Leader, Imre (eds.), <em>The Princeton Companion to Mathematics</em>, Princeton University Press, pp. 726–728</li>

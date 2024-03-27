@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polynomial Regression Using TensorFlow</title>
+    <title>id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html" />
-    <meta name="twitter:title" content="Polynomial Regression Using TensorFlow" />
-    <meta name="og:title" content="Polynomial Regression Using TensorFlow" />
+    <meta name="twitter:title" content="id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow" />
+    <meta name="og:title" content="id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow" />
     <meta name="description" content="Polynomial regression using TensorFlow" />
     <meta name="twitter:description" content="Polynomial regression using TensorFlow" />
     <meta name="og:description" content="Polynomial regression using TensorFlow" />
@@ -44,7 +44,7 @@
     
 <main>
 
-	<h1>Polynomial Regression Using TensorFlow</h1>
+	<h1 id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow</h1>
 
 <p><strong>In this tutorial you will learn about polynomial regression and how you can implement it in Tensorflow.</strong></p>
 
@@ -58,19 +58,19 @@
 <li>Quintic</li>
 </ul>
 
-<h2>Regression</h2>
+<h2 id="regression">Regression</h2>
 
-<h3>What is Regression?</h3>
+<h3 id="what-is-regression">What is Regression?</h3>
 
 <p>Regression is a statistical measurement that is used to try to determine the relationship between a
 dependent variable (often denoted by Y), and series of varying variables (called independent variables, often denoted by X ).</p>
 
-<h3>What is Polynomial Regression</h3>
+<h3 id="what-is-polynomial-regression">What is Polynomial Regression</h3>
 
 <p>This is a form of Regression Analysis where the relationship between Y and X is denoted as the nth degree/power of X.
 Polynomial regression even fits a non-linear relationship (e.g when the points don't form a straight line).</p>
 
-<h2>Imports</h2>
+<h2 id="imports">Imports</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
@@ -81,9 +81,9 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h2>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 
-<h3>Creating Random Data</h3>
+<h3 id="creating-random-data">Creating Random Data</h3>
 
 <p>Even though in this tutorial we will use a Position Vs Salary dataset, it is important to know how to create synthetic data</p>
 
@@ -105,7 +105,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Position vs Salary Dataset</h3>
+<h3 id="position-vs-salary-dataset">Position vs Salary Dataset</h3>
 
 <p>We will be using https://drive.google.com/file/d/1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9/view (Salary vs Position Dataset)</p>
 
@@ -160,7 +160,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 
 <p><img src="/assets/gciTales/03-regression/1.png" alt="" /></p>
 
-<h2>Defining Stuff</h2>
+<h2 id="defining-stuff">Defining Stuff</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
@@ -168,7 +168,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Defining Variables</h3>
+<h3 id="defining-variables">Defining Variables</h3>
 
 <p>We first define all the coefficients and constant as tensorflow variables having a random initial value</p>
 
@@ -182,7 +182,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Model Configuration</h3>
+<h3 id="model-configuration">Model Configuration</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.2</span>
@@ -190,7 +190,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Equations</h3>
+<h3 id="equations">Equations</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">deg1</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">b</span>
@@ -201,7 +201,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Cost Function</h3>
+<h3 id="cost-function">Cost Function</h3>
 
 <p>We use the Mean Squared Error Function</p>
 
@@ -214,7 +214,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Optimizer</h3>
+<h3 id="optimizer">Optimizer</h3>
 
 <p>We use the AdamOptimizer for the polynomial functions and GradientDescentOptimizer for the linear function</p>
 
@@ -232,12 +232,12 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h2>Model Predictions</h2>
+<h2 id="model-predictions">Model Predictions</h2>
 
 <p>For each type of equation first we make the model predict the values of the coefficient(s) and constant, once we get these values we use it to predict the Y
 values using the X values. We then plot it to compare the actual data and predicted line.</p>
 
-<h3>Linear Equation</h3>
+<h3 id="linear-equation">Linear Equation</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -301,7 +301,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/2.png" alt="" /></p>
 
-<h3>Quadratic Equation</h3>
+<h3 id="quadratic-equation">Quadratic Equation</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -366,7 +366,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/3.png" alt="" /></p>
 
-<h3>Cubic</h3>
+<h3 id="cubic">Cubic</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -432,7 +432,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/4.png" alt="" /></p>
 
-<h3>Quartic</h3>
+<h3 id="quartic">Quartic</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -499,7 +499,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/5.png" alt="" /></p>
 
-<h3>Quintic</h3>
+<h3 id="quintic">Quintic</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -565,13 +565,13 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/6.png" alt="" /></p>
 
-<h2>Results and Conclusion</h2>
+<h2 id="results-and-conclusion">Results and Conclusion</h2>
 
 <p>You just learnt Polynomial Regression using TensorFlow!</p>
 
-<h2>Notes</h2>
+<h2 id="notes">Notes</h2>
 
-<h3>Overfitting</h3>
+<h3 id="overfitting">Overfitting</h3>
 
 <blockquote>
   <blockquote>

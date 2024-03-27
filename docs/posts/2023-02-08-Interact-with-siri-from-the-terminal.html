@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interacting with Siri using the command line</title>
+    <title>id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html" />
-    <meta name="twitter:title" content="Interacting with Siri using the command line" />
-    <meta name="og:title" content="Interacting with Siri using the command line" />
+    <meta name="twitter:title" content="id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line" />
+    <meta name="og:title" content="id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line" />
     <meta name="description" content="Code snippet to interact with Siri by issuing commands from the command-line." />
     <meta name="twitter:description" content="Code snippet to interact with Siri by issuing commands from the command-line." />
     <meta name="og:description" content="Code snippet to interact with Siri by issuing commands from the command-line." />
@@ -44,11 +44,11 @@
     
 <main>
 
-	<h1>Interacting with Siri using the command line</h1>
+	<h1 id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line</h1>
 
 <p>My main objective was to see if I could issue multi-intent commands in one go. Obviously, Siri cannot do that (neither can Alexa, Cortana, or Google Assistant). The script here can issue either a single command, or use the help of OpenAI's DaVinci model to extract multiple commands and pass them onto siri.</p>
 
-<h2>Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites</h2>
 
 <ul>
 <li>Run macOS</li>
@@ -56,7 +56,7 @@
 <li>Enable the Terminal to control System Events (The first time you run the script, it will prompt you to enable it)</li>
 </ul>
 
-<h2>Show me ze code</h2>
+<h2 id="show-me-ze-code">Show me ze code</h2>
 
 <p>If you are here just for the code:</p>
 
@@ -136,11 +136,11 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h2>ELI5</h2>
+<h2 id="eli5">ELI5</h2>
 
 <p>I am not actually going to explain it as if I am explaining to a five-year old kid.</p>
 
-<h3>AppleScript</h3>
+<h3 id="applescript">AppleScript</h3>
 
 <p>In the age of Siri Shortcuts, AppleScript can still do more. It is a scripting language created by Apple that can help you automate pretty much anything you see on your screen.</p>
 
@@ -191,11 +191,11 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h3>Multi-Intent Commands</h3>
+<h3 id="multi-intent-commands">Multi-Intent Commands</h3>
 
 <p>We can call OpenAI's API to autocomplete our prompt and extract multiple commands. We don't need to use OpenAI's API, and can also simply use Google's Flan-T5 model using HuggingFace's transformers library. </p>
 
-<h4>Ze Prompt</h4>
+<h4 id="ze-prompt">Ze Prompt</h4>
 
 <div class="codehilite">
 <pre><span></span><code>You are provided with multiple commands as a single command. Break down all the commands and return them in a list of strings. If you are provided with a single command, return a list with a single string, trying your best to understand the command.
@@ -217,7 +217,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 
 <p>This prompt gives the model a few examples to increase the generation accuracy, along with instructing it to return a Python list. </p>
 
-<h4>Ze Code</h4>
+<h4 id="ze-code">Ze Code</h4>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
@@ -251,7 +251,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h3>Gluing together code</h3>
+<h3 id="gluing-together-code">Gluing together code</h3>
 
 <p>To finish it all off, we can use argparse to only send the input command to OpenAI when asked to do so.</p>
 
@@ -271,7 +271,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>Siri is still dumb. When I ask it to <code>Switch off the lights</code>, it default to the home thousands of miles away. But, this code snippet definitely does work!</p>
 

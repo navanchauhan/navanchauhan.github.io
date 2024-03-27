@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building a Similar Movies Recommendation System</title>
+    <title>id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html" />
-    <meta name="twitter:title" content="Building a Similar Movies Recommendation System" />
-    <meta name="og:title" content="Building a Similar Movies Recommendation System" />
+    <meta name="twitter:title" content="id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System" />
+    <meta name="og:title" content="id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System" />
     <meta name="description" content="Building a Content Based Similar Movies Recommendatiom System" />
     <meta name="twitter:description" content="Building a Content Based Similar Movies Recommendatiom System" />
     <meta name="og:description" content="Building a Content Based Similar Movies Recommendatiom System" />
@@ -44,21 +44,21 @@
     
 <main>
 
-	<h1>Building a Similar Movies Recommendation System</h1>
+	<h1 id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System</h1>
 
-<h2>Why?</h2>
+<h2 id="why">Why?</h2>
 
 <p>I recently came across a movie/tv-show recommender, <a rel="noopener" target="_blank" href="https://couchmoney.tv/">couchmoney.tv</a>. I loved it. I decided that I wanted to build something similar, so I could tinker with it as much as I wanted.</p>
 
 <p>I also wanted a recommendation system I could use via a REST API. Although I have not included that part in this post, I did eventually create it.</p>
 
-<h2>How?</h2>
+<h2 id="how">How?</h2>
 
 <p>By measuring the cosine of the angle between two vectors, you can get a value in the range [0,1] with 0 meaning no similarity. Now, if we find a way to represent information about movies as a vector, we can use cosine similarity as a metric to find similar movies.</p>
 
 <p>As we are recommending just based on the content of the movies, this is called a content based recommendation system.</p>
 
-<h2>Data Collection</h2>
+<h2 id="data-collection">Data Collection</h2>
 
 <p>Trakt exposes a nice API to search for movies/tv-shows. To access the API, you first need to get an API key (the Trakt ID you get when you create a new application). </p>
 
@@ -140,7 +140,7 @@
 
 <p>In the end, I could have dropped the embeddings field from the table schema as I never got around to using it.</p>
 
-<h3>Scripting Time</h3>
+<h3 id="scripting-time">Scripting Time</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="o">*</span>
@@ -243,7 +243,7 @@
 
 <p>Running this script took me approximately 3 hours, and resulted in an SQLite database of 141.5 MB</p>
 
-<h2>Embeddings!</h2>
+<h2 id="embeddings">Embeddings!</h2>
 
 <p>I did not want to put my poor Mac through the estimated 23 hours it would have taken to embed the sentences. I decided to use Google Colab instead.</p>
 
@@ -308,7 +308,7 @@ As of writing this post, I did not include any other database except Trakt. </p>
 
 <p>That's it!</p>
 
-<h2>Interacting with Vectors</h2>
+<h2 id="interacting-with-vectors">Interacting with Vectors</h2>
 
 <p>We use the <code>trakt_id</code> for the movie as the ID for the vectors and upsert it into the index. </p>
 
@@ -359,7 +359,7 @@ It is possible that this additional step of mapping could be avoided by storing 
 </code></pre>
 </div>
 
-<h3>Testing it Out</h3>
+<h3 id="testing-it-out">Testing it Out</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">movie_name</span> <span class="o">=</span> <span class="s2">&quot;Now You See Me&quot;</span>
@@ -405,21 +405,21 @@ Spies (2015): A secret agent must perform a heist without time on his side
 
 <p>For now, I am happy with the recommendations.</p>
 
-<h2>Simple UI</h2>
+<h2 id="simple-ui">Simple UI</h2>
 
 <p>The code for the flask app can be found on GitHub: <a rel="noopener" target="_blank" href="https://github.com/navanchauhan/FlixRec">navanchauhan/FlixRec</a> or on my <a rel="noopener" target="_blank" href="https://pi4.navan.dev/gitea/navan/FlixRec">Gitea instance</a></p>
 
 <p>I quickly whipped up a simple Flask App to deal with problems of multiple movies sharing the title, and typos in the search query.</p>
 
-<h3>Home Page</h3>
+<h3 id="home-page">Home Page</h3>
 
 <p><img src="/assets/flixrec/home.png" alt="Home Page" /></p>
 
-<h3>Handling Multiple Movies with Same Title</h3>
+<h3 id="handling-multiple-movies-with-same-title">Handling Multiple Movies with Same Title</h3>
 
 <p><img src="/assets/flixrec/multiple.png" alt="Multiple Movies with Same Title" /></p>
 
-<h3>Results Page</h3>
+<h3 id="results-page">Results Page</h3>
 
 <p><img src="/assets/flixrec/results.png" alt="Results Page" /></p>
 
@@ -429,14 +429,14 @@ Spies (2015): A secret agent must perform a heist without time on his side
 
 <p>Test it out at <a rel="noopener" target="_blank" href="https://flixrec.navan.dev">https://flixrec.navan.dev</a></p>
 
-<h2>Current Limittations</h2>
+<h2 id="current-limittations">Current Limittations</h2>
 
 <ul>
 <li>Does not work well with popular franchises</li>
 <li>No Genre Filter</li>
 </ul>
 
-<h2>Future Addons</h2>
+<h2 id="future-addons">Future Addons</h2>
 
 <ul>
 <li>Include Cast Data

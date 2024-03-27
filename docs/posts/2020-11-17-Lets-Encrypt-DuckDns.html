@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</title>
+    <title>id="generating-https-certificate-using-dns-a-challenge-through-lets-encrypt">Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html" />
-    <meta name="twitter:title" content="Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt" />
-    <meta name="og:title" content="Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt" />
+    <meta name="twitter:title" content="id="generating-https-certificate-using-dns-a-challenge-through-lets-encrypt">Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt" />
+    <meta name="og:title" content="id="generating-https-certificate-using-dns-a-challenge-through-lets-encrypt">Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt" />
     <meta name="description" content="Short code-snippet to generate HTTPS certificates using the DNS Challenge through Lets Encrypt for a web-server using DuckDNS." />
     <meta name="twitter:description" content="Short code-snippet to generate HTTPS certificates using the DNS Challenge through Lets Encrypt for a web-server using DuckDNS." />
     <meta name="og:description" content="Short code-snippet to generate HTTPS certificates using the DNS Challenge through Lets Encrypt for a web-server using DuckDNS." />
@@ -44,18 +44,18 @@
     
 <main>
 
-	<h1>Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</h1>
+	<h1 id="generating-https-certificate-using-dns-a-challenge-through-lets-encrypt">Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</h1>
 
 <p>I have a Raspberry-Pi running a Flask app through Gunicorn (Ubuntu 20.04 LTS). I am exposing it to the internet using DuckDNS.</p>
 
-<h2>Dependencies</h2>
+<h2 id="dependencies">Dependencies</h2>
 
 <div class="codehilite">
 <pre><span></span><code>sudo<span class="w"> </span>apt<span class="w"> </span>update<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>certbot<span class="w"> </span>-y
 </code></pre>
 </div>
 
-<h2>Get the Certificate</h2>
+<h2 id="get-the-certificate">Get the Certificate</h2>
 
 <div class="codehilite">
 <pre><span></span><code>sudo<span class="w"> </span>certbot<span class="w"> </span>certonly<span class="w"> </span>--manual<span class="w"> </span>--preferred-challenges<span class="w"> </span>dns-01<span class="w"> </span>--email<span class="w"> </span>senpai@email.com<span class="w"> </span>-d<span class="w"> </span>mydomain.duckdns.org
@@ -100,11 +100,11 @@ navanspi.duckdns.org.<span class="w">    </span><span class="m">60</span><span c
 
 <p>Once you can ensure that the TXT record changes has been successfully applied and is visible through the <code>dig</code> command, press enter on the Certbot prompt and your certificate should be generated.</p>
 
-<h2>Renewing</h2>
+<h2 id="renewing">Renewing</h2>
 
 <p>As we manually generated the certificate <code>certbot renew</code> will fail, to renew the certificate you need to simply re-generate the certificate using the above steps.</p>
 
-<h2>Using the Certificate with Gunicorn</h2>
+<h2 id="using-the-certificate-with-gunicorn">Using the Certificate with Gunicorn</h2>
 
 <p>Example Gunicorn command for running a web-app:</p>
 

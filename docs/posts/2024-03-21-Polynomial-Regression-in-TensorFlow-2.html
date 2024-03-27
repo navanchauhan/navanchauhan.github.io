@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polynomial Regression Using TensorFlow 2.x</title>
+    <title>id="polynomial-regression-using-tensorflow-2x">Polynomial Regression Using TensorFlow 2.x</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html" />
-    <meta name="twitter:title" content="Polynomial Regression Using TensorFlow 2.x" />
-    <meta name="og:title" content="Polynomial Regression Using TensorFlow 2.x" />
+    <meta name="twitter:title" content="id="polynomial-regression-using-tensorflow-2x">Polynomial Regression Using TensorFlow 2.x" />
+    <meta name="og:title" content="id="polynomial-regression-using-tensorflow-2x">Polynomial Regression Using TensorFlow 2.x" />
     <meta name="description" content="Predicting n-th degree polynomials using TensorFlow 2.x" />
     <meta name="twitter:description" content="Predicting n-th degree polynomials using TensorFlow 2.x" />
     <meta name="og:description" content="Predicting n-th degree polynomials using TensorFlow 2.x" />
@@ -44,13 +44,13 @@
     
 <main>
 
-	<h1>Polynomial Regression Using TensorFlow 2.x</h1>
+	<h1 id="polynomial-regression-using-tensorflow-2x">Polynomial Regression Using TensorFlow 2.x</h1>
 
 <p>I have a similar post titled <a rel="noopener" target="_blank" href="/posts/2019-12-16-TensorFlow-Polynomial-Regression.html">Polynomial Regression Using Tensorflow</a> that used <code>tensorflow.compat.v1</code> (Which still works as of TF 2.16). But, I thought it would be nicer to redo it with newer TF versions. </p>
 
 <p>I will be skipping all the introductions about polynomial regression and jumping straight to the code. Personally, I prefer using <code>scikit-learn</code> for this task.</p>
 
-<h2>Position vs Salary Dataset</h2>
+<h2 id="position-vs-salary-dataset">Position vs Salary Dataset</h2>
 
 <p>Again, we will be using https://drive.google.com/file/d/1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9/view (Salary vs Position Dataset)</p>
 
@@ -61,11 +61,11 @@
 </code></pre>
 </div>
 
-<h2>Code</h2>
+<h2 id="code">Code</h2>
 
 <p>If you just want to copy-paste the code, scroll to the bottom for the entire snippet. Here I will try and walk through setting up code for a 3rd-degree (cubic) polynomial</p>
 
-<h3>Imports</h3>
+<h3 id="imports">Imports</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -75,14 +75,14 @@
 </code></pre>
 </div>
 
-<h3>Reading the Dataset</h3>
+<h3 id="reading-the-dataset">Reading the Dataset</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;data.csv&quot;</span><span class="p">)</span>
 </code></pre>
 </div>
 
-<h3>Variables and Constants</h3>
+<h3 id="variables-and-constants">Variables and Constants</h3>
 
 <p>Here, we initialize the X and Y values as constants, since they are not going to change. The coefficients are defined as variables.</p>
 
@@ -109,7 +109,7 @@
 
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>y</mi><mo>&#x0003D;</mo><mi>a</mi><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mi>b</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>c</mi><mi>x</mi><mo>&#x0002B;</mo><mi>d</mi></mrow></math>
 
-<h3>Optimizer Selection &amp; Training</h3>
+<h3 id="optimizer-selection-training">Optimizer Selection &amp; Training</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">optimizer</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
@@ -136,7 +136,7 @@
 
 <p>Where <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><msub><mi>Y</mi><mi>i</mi></msub><mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo></mover></math> is the predicted value and <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>Y</mi><mi>i</mi></msub></math> is the actual value</p>
 
-<h3>Plotting Final Coefficients</h3>
+<h3 id="plotting-final-coefficients">Plotting Final Coefficients</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">final_coefficients</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">coefficients</span><span class="p">]</span>
@@ -151,9 +151,9 @@
 </code></pre>
 </div>
 
-<h2>Code Snippet for a Polynomial of Degree N</h2>
+<h2 id="code-snippet-for-a-polynomial-of-degree-n">Code Snippet for a Polynomial of Degree N</h2>
 
-<h3>Using Gradient Tape</h3>
+<h3 id="using-gradient-tape">Using Gradient Tape</h3>
 
 <p>This should work regardless of the Keras backend version (2 or 3)</p>
 
@@ -208,7 +208,7 @@
 </code></pre>
 </div>
 
-<h3>Without Gradient Tape</h3>
+<h3 id="without-gradient-tape">Without Gradient Tape</h3>
 
 <p>This relies on the Optimizer's <code>minimize</code> function and uses the <code>var_list</code> parameter to update the variables.</p>
 
@@ -268,7 +268,7 @@
 
 <p>As always, remember to tweak the parameters and choose the correct model for the job. A polynomial regression model might not even be the best model for this particular dataset.</p>
 
-<h2>Further Programming</h2>
+<h2 id="further-programming">Further Programming</h2>
 
 <p>How would you modify this code to use another type of nonlinear regression? Say, </p>
 

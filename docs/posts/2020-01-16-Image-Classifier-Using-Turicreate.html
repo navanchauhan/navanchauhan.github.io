@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</title>
+    <title>id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html" />
-    <meta name="twitter:title" content="Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire" />
-    <meta name="og:title" content="Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire" />
+    <meta name="twitter:title" content="id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire" />
+    <meta name="og:title" content="id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire" />
     <meta name="description" content="Tutorial on creating a custom Image Classifier using Turicreate and a dataset from Kaggle" />
     <meta name="twitter:description" content="Tutorial on creating a custom Image Classifier using Turicreate and a dataset from Kaggle" />
     <meta name="og:description" content="Tutorial on creating a custom Image Classifier using Turicreate and a dataset from Kaggle" />
@@ -44,13 +44,13 @@
     
 <main>
 
-	<h1>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1>
+	<h1 id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1>
 
 <p><em>For setting up Kaggle with Google Colab, please refer to <a rel="noopener" target="_blank" href="/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab"> my previous post</a></em></p>
 
-<h2>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 
-<h3>Mounting Google Drive</h3>
+<h3 id="mounting-google-drive">Mounting Google Drive</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
@@ -59,7 +59,7 @@
 </code></pre>
 </div>
 
-<h3>Downloading Dataset from Kaggle</h3>
+<h3 id="downloading-dataset-from-kaggle">Downloading Dataset from Kaggle</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
@@ -68,7 +68,7 @@
 </code></pre>
 </div>
 
-<h2>Pre-Processing</h2>
+<h2 id="pre-processing">Pre-Processing</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nt">!mkdir</span><span class="na"> default smoke fire</span>
@@ -154,9 +154,9 @@
 </code></pre>
 </div>
 
-<h2>Making the Image Classifier</h2>
+<h2 id="making-the-image-classifier">Making the Image Classifier</h2>
 
-<h3>Making an SFrame</h3>
+<h3 id="making-an-sframe">Making an SFrame</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nt">!pip</span><span class="na"> install turicreate</span>
@@ -219,7 +219,7 @@
 </code></pre>
 </div>
 
-<h3>Making the Model</h3>
+<h3 id="making-the-model">Making the Model</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>

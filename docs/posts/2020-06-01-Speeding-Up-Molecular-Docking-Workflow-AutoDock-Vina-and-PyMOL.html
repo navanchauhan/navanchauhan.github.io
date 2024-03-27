@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workflow for Lightning Fast Molecular Docking Part One</title>
+    <title>id="workflow-for-lightning-fast-molecular-docking-part-one">Workflow for Lightning Fast Molecular Docking Part One</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html" />
-    <meta name="twitter:title" content="Workflow for Lightning Fast Molecular Docking Part One" />
-    <meta name="og:title" content="Workflow for Lightning Fast Molecular Docking Part One" />
+    <meta name="twitter:title" content="id="workflow-for-lightning-fast-molecular-docking-part-one">Workflow for Lightning Fast Molecular Docking Part One" />
+    <meta name="og:title" content="id="workflow-for-lightning-fast-molecular-docking-part-one">Workflow for Lightning Fast Molecular Docking Part One" />
     <meta name="description" content="This is my workflow for lightning fast molecular docking." />
     <meta name="twitter:description" content="This is my workflow for lightning fast molecular docking." />
     <meta name="og:description" content="This is my workflow for lightning fast molecular docking." />
@@ -44,9 +44,9 @@
     
 <main>
 
-	<h1>Workflow for Lightning Fast Molecular Docking Part One</h1>
+	<h1 id="workflow-for-lightning-fast-molecular-docking-part-one">Workflow for Lightning Fast Molecular Docking Part One</h1>
 
-<h2>My Setup</h2>
+<h2 id="my-setup">My Setup</h2>
 
 <ul>
 <li>macOS Catalina ( RIP 32bit app)</li>
@@ -55,7 +55,7 @@
 <li>Open Babel</li>
 </ul>
 
-<h2>One Command Docking</h2>
+<h2 id="one-command-docking">One Command Docking</h2>
 
 <pre><code>obabel -:"$(pbpaste)" --gen3d -opdbqt -Otest.pdbqt &amp;&amp; vina --receptor lu.pdbqt --center_x -9.7 --center_y 11.4 --center_z 68.9 --size_x 19.3 --size_y 29.9 --size_z 21.3  --ligand test.pdbqt
 </code></pre>

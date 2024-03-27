@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Making a Crude ML Powered Chatbot in Swift using CoreML</title>
+    <title>id="making-a-crude-ml-powered-chatbot-in-swift-using-coreml">Making a Crude ML Powered Chatbot in Swift using CoreML</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html" />
-    <meta name="twitter:title" content="Making a Crude ML Powered Chatbot in Swift using CoreML" />
-    <meta name="og:title" content="Making a Crude ML Powered Chatbot in Swift using CoreML" />
+    <meta name="twitter:title" content="id="making-a-crude-ml-powered-chatbot-in-swift-using-coreml">Making a Crude ML Powered Chatbot in Swift using CoreML" />
+    <meta name="og:title" content="id="making-a-crude-ml-powered-chatbot-in-swift-using-coreml">Making a Crude ML Powered Chatbot in Swift using CoreML" />
     <meta name="description" content="Writing a simple Machine-Learning powered Chatbot (or, daresay virtual personal assistant ) in Swift using CoreML." />
     <meta name="twitter:description" content="Writing a simple Machine-Learning powered Chatbot (or, daresay virtual personal assistant ) in Swift using CoreML." />
     <meta name="og:description" content="Writing a simple Machine-Learning powered Chatbot (or, daresay virtual personal assistant ) in Swift using CoreML." />
@@ -44,7 +44,7 @@
     
 <main>
 
-	<h1>Making a Crude ML Powered Chatbot in Swift using CoreML</h1>
+	<h1 id="making-a-crude-ml-powered-chatbot-in-swift-using-coreml">Making a Crude ML Powered Chatbot in Swift using CoreML</h1>
 
 <p>A chatbot/virtual assistant, on paper, looks easy to build.
 The user says something, the programs finds the best action, checks if additional input is required and sends back the output.
@@ -52,7 +52,7 @@ To do this in Swift, I used two separate ML Models created using Apple's Create 
 First is a Text Classifier to classify intent, and the other a word tagger for extracting input from the input message. 
 Disclaimer: This is a very crude proof-of-concept, but it does work.</p>
 
-<h2>Text Classifier</h2>
+<h2 id="text-classifier">Text Classifier</h2>
 
 <p>I opened a CSV file and added some sample entries, with a corresponding label.</p>
 
@@ -84,7 +84,7 @@ i love you,banter
 
 <p><img src="/assets/posts/swift-chatbot/create-intent.png" alt="Screenshot of Create ML Text Classifier" /></p>
 
-<h2>Word Tagging</h2>
+<h2 id="word-tagging">Word Tagging</h2>
 
 <p>This is useful to extract the required variables directly from the user's input.
 This model will be only called if the intent from the classifier is a custom action.
@@ -112,7 +112,7 @@ I created a sample JSON with only 3 examples (I know, very less, but works for a
 
 <p><img src="/assets/posts/swift-chatbot/create-tagger.png" alt="Screenshot of Create ML Text Classifier" /></p>
 
-<h2>Time to Get Swift-y</h2>
+<h2 id="time-to-get-swift-y">Time to Get Swift-y</h2>
 
 <p>The initial part is easy, importing CoreML and NaturalLanguage and then initializing the models and the tagger.</p>
 

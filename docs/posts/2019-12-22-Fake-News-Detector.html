@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building a Fake News Detector with Turicreate</title>
+    <title>id="building-a-fake-news-detector-with-turicreate">Building a Fake News Detector with Turicreate</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html" />
-    <meta name="twitter:title" content="Building a Fake News Detector with Turicreate" />
-    <meta name="og:title" content="Building a Fake News Detector with Turicreate" />
+    <meta name="twitter:title" content="id="building-a-fake-news-detector-with-turicreate">Building a Fake News Detector with Turicreate" />
+    <meta name="og:title" content="id="building-a-fake-news-detector-with-turicreate">Building a Fake News Detector with Turicreate" />
     <meta name="description" content="In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app" />
     <meta name="twitter:description" content="In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app" />
     <meta name="og:description" content="In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app" />
@@ -44,20 +44,20 @@
     
 <main>
 
-	<h1>Building a Fake News Detector with Turicreate</h1>
+	<h1 id="building-a-fake-news-detector-with-turicreate">Building a Fake News Detector with Turicreate</h1>
 
 <p><strong>In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app</strong></p>
 
 <p>Note: These commands are written as if you are running a jupyter notebook.</p>
 
-<h2>Building the Machine Learning Model</h2>
+<h2 id="building-the-machine-learning-model">Building the Machine Learning Model</h2>
 
-<h3>Data Gathering</h3>
+<h3 id="data-gathering">Data Gathering</h3>
 
 <p>To build a classifier, you need a lot of data. George McIntire (GH: @joolsa) has created a wonderful dataset containing the headline, body and whether it is fake or real.
 Whenever you are looking for a dataset, always try searching on Kaggle and GitHub before you start building your own</p>
 
-<h3>Dependencies</h3>
+<h3 id="dependencies">Dependencies</h3>
 
 <p>I used a Google Colab instance for training my model.  If you also plan on using Google Colab then I recommend choosing a GPU Instance (It is Free)
 This allows you to train the model on the GPU. Turicreate is built on top of Apache's MXNet Framework, for us to use GPU we need to install
@@ -72,7 +72,7 @@ a CUDA compatible MXNet package.</p>
 
 <p>If you do not wish to train on GPU or are running it on your computer, you can ignore the last two lines</p>
 
-<h3>Downloading the Dataset</h3>
+<h3 id="downloading-the-dataset">Downloading the Dataset</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nt">!wget</span><span class="na"> -q &quot;https</span><span class="p">:</span><span class="nc">//github.com/joolsa/fake_real_news_dataset/raw/master/fake_or_real_news.csv.zip&quot;</span>
@@ -80,7 +80,7 @@ a CUDA compatible MXNet package.</p>
 </code></pre>
 </div>
 
-<h3>Model Creation</h3>
+<h3 id="model-creation">Model Creation</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
@@ -100,14 +100,14 @@ a CUDA compatible MXNet package.</p>
 </code></pre>
 </div>
 
-<h4>Splitting Dataset</h4>
+<h4 id="splitting-dataset">Splitting Dataset</h4>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="o">=</span> <span class="n">dataSFrame</span><span class="o">.</span><span class="n">random_split</span><span class="p">(</span><span class="mf">.9</span><span class="p">)</span>
 </code></pre>
 </div>
 
-<h4>Training</h4>
+<h4 id="training">Training</h4>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">model</span> <span class="o">=</span> <span class="n">tc</span><span class="o">.</span><span class="n">text_classifier</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
@@ -132,7 +132,7 @@ a CUDA compatible MXNet package.</p>
 </code></pre>
 </div>
 
-<h3>Testing the Model</h3>
+<h3 id="testing-the-model">Testing the Model</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">est_predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
@@ -165,7 +165,7 @@ a CUDA compatible MXNet package.</p>
 </code></pre>
 </div>
 
-<h3>Exporting the Model</h3>
+<h3 id="exporting-the-model">Exporting the Model</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">model_name</span> <span class="o">=</span> <span class="s1">&#39;FakeNews&#39;</span>
@@ -178,9 +178,9 @@ a CUDA compatible MXNet package.</p>
 
 <p><a rel="noopener" target="_blank" href="https://colab.research.google.com/drive/1onMXGkhA__X2aOFdsoVL-6HQBsWQhOP4">Link to Colab Notebook</a></p>
 
-<h2>Building the App using SwiftUI</h2>
+<h2 id="building-the-app-using-swiftui">Building the App using SwiftUI</h2>
 
-<h3>Initial Setup</h3>
+<h3 id="initial-setup">Initial Setup</h3>
 
 <p>First we create a single view app (make sure you check the use SwiftUI button)</p>
 

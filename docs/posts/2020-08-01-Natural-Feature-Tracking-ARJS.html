@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introduction to AR.js and Natural Feature Tracking</title>
+    <title>id="introduction-to-arjs-and-natural-feature-tracking">Introduction to AR.js and Natural Feature Tracking</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html" />
-    <meta name="twitter:title" content="Introduction to AR.js and Natural Feature Tracking" />
-    <meta name="og:title" content="Introduction to AR.js and Natural Feature Tracking" />
+    <meta name="twitter:title" content="id="introduction-to-arjs-and-natural-feature-tracking">Introduction to AR.js and Natural Feature Tracking" />
+    <meta name="og:title" content="id="introduction-to-arjs-and-natural-feature-tracking">Introduction to AR.js and Natural Feature Tracking" />
     <meta name="description" content="An introduction to AR.js and NFT" />
     <meta name="twitter:description" content="An introduction to AR.js and NFT" />
     <meta name="og:description" content="An introduction to AR.js and NFT" />
@@ -44,9 +44,9 @@
     
 <main>
 
-	<h1>Introduction to AR.js and Natural Feature Tracking</h1>
+	<h1 id="introduction-to-arjs-and-natural-feature-tracking">Introduction to AR.js and Natural Feature Tracking</h1>
 
-<h2>AR.js</h2>
+<h2 id="arjs">AR.js</h2>
 
 <p>AR.js is a lightweight library for Augmented Reality on the Web, coming with features like Image Tracking, Location based AR and Marker tracking. It is the easiest option for cross-browser augmented reality. </p>
 
@@ -54,7 +54,7 @@
 
 <p>It was initially created by Jerome Etienne and is now maintained by Nicolo Carpignoli and the AR-js Organisation</p>
 
-<h2>NFT</h2>
+<h2 id="nft">NFT</h2>
 
 <p>Usually for augmented reality you need specialised markers, like this Hiro marker (notice the thick non-aesthetic borders 🤢)</p>
 
@@ -66,7 +66,7 @@
 
 <p><img src="/images/me.jpeg" alt="" /></p>
 
-<h2>Creating the Marker!</h2>
+<h2 id="creating-the-marker">Creating the Marker!</h2>
 
 <p>First we need to create the marker files required by AR.js for NFT. For this we use Carnaux's repository 'NFT-Marker-Creator'.</p>
 
@@ -83,7 +83,7 @@ Resolving deltas: 100% (262/262), done.
 $ cd NFT-Makrer-Creator
 </code></pre>
 
-<h3>Install the dependencies</h3>
+<h3 id="install-the-dependencies">Install the dependencies</h3>
 
 <pre><code>$ npm install
 
@@ -109,12 +109,12 @@ found 0 vulnerabilities
 
 </code></pre>
 
-<h3>Copy the target marker to the folder</h3>
+<h3 id="copy-the-target-marker-to-the-folder">Copy the target marker to the folder</h3>
 
 <pre><code>$ cp ~/CodingAndStuff/ARjs/me.png .
 </code></pre>
 
-<h3>Generate Marker</h3>
+<h3 id="generate-marker">Generate Marker</h3>
 
 <pre><code>$ node app.js -i me.png
 
@@ -183,7 +183,7 @@ To run demo use: 'npm run demo'
 me.fset  me.fset3 me.iset
 </code></pre>
 
-<h2>Creating the HTML Page</h2>
+<h2 id="creating-the-html-page">Creating the HTML Page</h2>
 
 <p>Create a new file called <code>index.html</code> in your project folder. This is the basic template we are going to use. Replace <code>me</code> with the root filename of your image, for example <code>NeverGonnaGiveYouUp.png</code> will become <code>NeverGonnaGiveYouUp</code>. Make sure you have copied all three files from the output folder in the previous step to the root of your project folder.</p>
 
@@ -240,7 +240,7 @@ me.fset  me.fset3 me.iset
 
 <p>In this we are creating a AFrame scene and we are telling it that we want to use NFT Tracking. The amazing part about using AFrame is that we are able to use all AFrame objects!</p>
 
-<h2>Adding a simple box</h2>
+<h2 id="adding-a-simple-box">Adding a simple box</h2>
 
 <p>Let us add a simple box!</p>
 
@@ -280,7 +280,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p>👏 Congratulations! You just built an Augmented Reality experience using AR.js and AFrame</p>
 
-<h2>Adding a Torus-Knot in the box</h2>
+<h2 id="adding-a-torus-knot-in-the-box">Adding a Torus-Knot in the box</h2>
 
 <p>Edit your <code>index.html</code> </p>
 
@@ -295,13 +295,13 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p><img src="/assets/posts/arjs/03-knot.png" alt="" /></p>
 
-<h2>Where are the GIFs?</h2>
+<h2 id="where-are-the-gifs">Where are the GIFs?</h2>
 
 <p>Now that we know how to place a box in the scene and add a torus knot in it, what do we do next? We bring the classic internet back!</p>
 
 <p><code>AFrame GIF Shader</code> is a gif shader for A-Frame created by mayognaise.</p>
 
-<h3>First things first</h3>
+<h3 id="first-things-first">First things first</h3>
 
 <p>Add <code>&lt;script src="https://rawgit.com/mayognaise/aframe-gif-shader/master/dist/aframe-gif-shader.min.js"&gt;&lt;/script&gt;</code> to <code>&lt;head&gt;</code></p>
 
@@ -315,15 +315,15 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 
 <p><img src="/assets/posts/arjs/04-nyan.gif" alt="" /></p>
 
-<h2>Bonus Idea: Integrate it with GitHub's new profile Readme Feature!</h2>
+<h2 id="bonus-idea-integrate-it-with-githubs-new-profile-readme-feature">Bonus Idea: Integrate it with GitHub's new profile Readme Feature!</h2>
 
-<h3>1) Host the code using GitHub Pages</h3>
+<h3 id="1-host-the-code-using-github-pages">1) Host the code using GitHub Pages</h3>
 
-<h3>2) Create a new repository ( the name should be your GitHub username )</h3>
+<h3 id="2-create-a-new-repository-the-name-should-be-your-github-username">2) Create a new repository ( the name should be your GitHub username )</h3>
 
-<h3>3) Add QR Code to the page and tell the users to scan your profile picture</h3>
+<h3 id="3-add-qr-code-to-the-page-and-tell-the-users-to-scan-your-profile-picture">3) Add QR Code to the page and tell the users to scan your profile picture</h3>
 
-<h3>??) Profit 💸</h3>
+<h3 id="profit">??) Profit 💸</h3>
 
 <p>Here is a screenshot of me scanning a rounded version of my profile picture ( It still works! Even though the image is cropped and I haven't changed any line of code )</p>
 

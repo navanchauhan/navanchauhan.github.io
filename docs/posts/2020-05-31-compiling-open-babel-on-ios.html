@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compiling Open Babel on iOS</title>
+    <title>id="compiling-open-babel-on-ios">Compiling Open Babel on iOS</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html" />
-    <meta name="twitter:title" content="Compiling Open Babel on iOS" />
-    <meta name="og:title" content="Compiling Open Babel on iOS" />
+    <meta name="twitter:title" content="id="compiling-open-babel-on-ios">Compiling Open Babel on iOS" />
+    <meta name="og:title" content="id="compiling-open-babel-on-ios">Compiling Open Babel on iOS" />
     <meta name="description" content="Compiling Open Babel on iOS" />
     <meta name="twitter:description" content="Compiling Open Babel on iOS" />
     <meta name="og:description" content="Compiling Open Babel on iOS" />
@@ -44,7 +44,7 @@
     
 <main>
 
-	<h1>Compiling Open Babel on iOS</h1>
+	<h1 id="compiling-open-babel-on-ios">Compiling Open Babel on iOS</h1>
 
 <p>Due to the fact that my summer vacations started today,
 I had the brilliant idea of trying to run open babel on my iPad.
@@ -52,17 +52,17 @@ To give a little background, I had tried to compile AutoDock Vina using a cross-
 
 <p>I am running the Checkr1n jailbreak on my iPad and the Unc0ver jailbreak on my phone.</p>
 
-<h2>But Why?</h2>
+<h2 id="but-why">But Why?</h2>
 
 <p>Well, just because I can. This is literally the only reason I tried compiling it and also partially because in the long run I want to compile AutoDock Vina so I can do Molecular Docking on the go.</p>
 
-<h2>Let's Go!</h2>
+<h2 id="lets-go">Let's Go!</h2>
 
 <p>How hard can it be to compile open babel right? It is just a simple software with clear and concise build instructions. I just need to use <code>cmake</code> to build and the <code>make</code> to install.</p>
 
 <p>It is 11 AM in the morning. I install <code>clang, cmake and make</code> from the Sam Bingner's repository, fired up ssh, downloaded the source code and ran the build command.`clang</p>
 
-<h3>Fail No. 1</h3>
+<h3 id="fail-no-1">Fail No. 1</h3>
 
 <p>I couldn't even get cmake to run, I did a little digging around StackOverflow and founf that I needed the iOS SDK, sure no problem. I waited for Xcode to update and transferred the SDKs to my iPad </p>
 
@@ -71,7 +71,7 @@ To give a little background, I had tried to compile AutoDock Vina using a cross-
 
 <p>Them I told cmake that this is the location for my SDK 😠. Successful! Now I just needed to use make.</p>
 
-<h3>Fail No. 2</h3>
+<h3 id="fail-no-2">Fail No. 2</h3>
 
 <p>It was giving the error that thread-local-storage was not supported on this device.</p>
 
@@ -125,11 +125,11 @@ make: *** [Makefile:129: all] Error 2
 
 <p><img src="/assets/posts/open-babel/s1.png" alt="&quot;Open-Babel running on my iPad&quot;" /></p>
 
-<h2>Packaging as a deb</h2>
+<h2 id="packaging-as-a-deb">Packaging as a deb</h2>
 
 <p>This was pretty straight forward, I tried installing it on my iPad and it was working pretty smoothly.</p>
 
-<h2>Moment of Truth</h2>
+<h2 id="moment-of-truth">Moment of Truth</h2>
 
 <p>So I airdropped the .deb to my phone and tried installing it, the installation was successful but when I tried <code>obabel</code> it just aborted.</p>
 
@@ -147,7 +147,7 @@ make: *** [Makefile:129: all] Error 2
 
 <p>I spent 2 hours around this problem, only to see the documentation and realise I hadn't setup the environment variable 🤦‍♂️</p>
 
-<h2>The Final Fix ( For Now )</h2>
+<h2 id="the-final-fix-for-now">The Final Fix ( For Now )</h2>
 
 <pre><code>export BABEL_DATADIR="/usr/share/openbabel/3.1.0"
 export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"

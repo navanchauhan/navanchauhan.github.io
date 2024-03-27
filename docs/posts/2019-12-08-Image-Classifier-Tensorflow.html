@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</title>
+    <title>id="creating-a-custom-image-classifier-using-tensorflow-2x-and-keras-for-detecting-malaria">Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html" />
-    <meta name="twitter:title" content="Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria" />
-    <meta name="og:title" content="Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria" />
+    <meta name="twitter:title" content="id="creating-a-custom-image-classifier-using-tensorflow-2x-and-keras-for-detecting-malaria">Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria" />
+    <meta name="og:title" content="id="creating-a-custom-image-classifier-using-tensorflow-2x-and-keras-for-detecting-malaria">Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria" />
     <meta name="description" content="Tutorial on creating an image classifier model using TensorFlow which detects malaria" />
     <meta name="twitter:description" content="Tutorial on creating an image classifier model using TensorFlow which detects malaria" />
     <meta name="og:description" content="Tutorial on creating an image classifier model using TensorFlow which detects malaria" />
@@ -44,11 +44,11 @@
     
 <main>
 
-	<h1>Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</h1>
+	<h1 id="creating-a-custom-image-classifier-using-tensorflow-2x-and-keras-for-detecting-malaria">Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</h1>
 
 <p><strong>Done during Google Code-In. Org: Tensorflow.</strong></p>
 
-<h2>Imports</h2>
+<h2 id="imports">Imports</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="o">%</span><span class="n">tensorflow_version</span> <span class="mf">2.</span><span class="n">x</span> <span class="c1">#This is for telling Colab that you want to use TF 2.0, ignore if running on local machine</span>
@@ -66,9 +66,9 @@
 </code></pre>
 </div>
 
-<h2>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 
-<h3>Fetching the Data</h3>
+<h3 id="fetching-the-data">Fetching the Data</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="err">!</span><span class="n">wget</span> <span class="n">ftp</span><span class="p">:</span><span class="o">//</span><span class="n">lhcftp</span><span class="o">.</span><span class="n">nlm</span><span class="o">.</span><span class="n">nih</span><span class="o">.</span><span class="n">gov</span><span class="o">/</span><span class="n">Open</span><span class="o">-</span><span class="n">Access</span><span class="o">-</span><span class="n">Datasets</span><span class="o">/</span><span class="n">Malaria</span><span class="o">/</span><span class="n">cell_images</span><span class="o">.</span><span class="n">zip</span>
@@ -76,7 +76,7 @@
 </code></pre>
 </div>
 
-<h3>Processing the Data</h3>
+<h3 id="processing-the-data">Processing the Data</h3>
 
 <p>We resize all the images as 50x50 and add the numpy array of that image as well as their label names (Infected or Not) to common arrays.</p>
 
@@ -108,7 +108,7 @@
 </code></pre>
 </div>
 
-<h3>Splitting Data</h3>
+<h3 id="splitting-data">Splitting Data</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
@@ -125,9 +125,9 @@ y_train=y_train[s]
 X_train = X_train/255.0
 </code></pre>
 
-<h2>Model</h2>
+<h2 id="model">Model</h2>
 
-<h3>Creating Model</h3>
+<h3 id="creating-model">Creating Model</h3>
 
 <p>By creating a sequential model, we create a linear stack of layers.</p>
 
@@ -150,7 +150,7 @@ X_train = X_train/255.0
 </code></pre>
 </div>
 
-<h3>Compiling Model</h3>
+<h3 id="compiling-model">Compiling Model</h3>
 
 <p>We use the Adam optimiser as it is an adaptive learning rate optimisation algorithm that's been designed specifically for <em>training</em> deep neural networks, which means it changes its learning rate automatically to get the best results</p>
 
@@ -161,7 +161,7 @@ X_train = X_train/255.0
 </code></pre>
 </div>
 
-<h3>Training Model</h3>
+<h3 id="training-model">Training Model</h3>
 
 <p>We train the model for 10 epochs on the training data and then validate it using the testing data</p>
 
@@ -195,7 +195,7 @@ X_train = X_train/255.0
 </code></pre>
 </div>
 
-<h3>Results</h3>
+<h3 id="results">Results</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">accuracy</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">100</span>

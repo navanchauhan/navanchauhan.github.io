@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating your own custom theme for Snowboard or Anemone</title>
+    <title>id="creating-your-own-custom-theme-for-snowboard-or-anemone">Creating your own custom theme for Snowboard or Anemone</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html" />
-    <meta name="twitter:title" content="Creating your own custom theme for Snowboard or Anemone" />
-    <meta name="og:title" content="Creating your own custom theme for Snowboard or Anemone" />
+    <meta name="twitter:title" content="id="creating-your-own-custom-theme-for-snowboard-or-anemone">Creating your own custom theme for Snowboard or Anemone" />
+    <meta name="og:title" content="id="creating-your-own-custom-theme-for-snowboard-or-anemone">Creating your own custom theme for Snowboard or Anemone" />
     <meta name="description" content="Tutorial on creating your own custom theme for Snowboard or Anemone" />
     <meta name="twitter:description" content="Tutorial on creating your own custom theme for Snowboard or Anemone" />
     <meta name="og:description" content="Tutorial on creating your own custom theme for Snowboard or Anemone" />
@@ -44,9 +44,9 @@
     
 <main>
 
-	<h1>Creating your own custom theme for Snowboard or Anemone</h1>
+	<h1 id="creating-your-own-custom-theme-for-snowboard-or-anemone">Creating your own custom theme for Snowboard or Anemone</h1>
 
-<h3>Contents</h3>
+<h3 id="contents">Contents</h3>
 
 <ul>
 <li>Getting Started</li>
@@ -58,7 +58,7 @@
 <li>Building the DEB</li>
 </ul>
 
-<h2>Getting Started</h2>
+<h2 id="getting-started">Getting Started</h2>
 
 <p><strong>Note: Without the proper folder structure, your theme may not show up!</strong></p>
 
@@ -67,7 +67,7 @@
 <li>Within <code>themeName.theme</code> folder, create another folder called <code>IconBundles</code> (<strong>You cannot change this name</strong>)</li>
 </ul>
 
-<h2>Theme Configuration</h2>
+<h2 id="theme-configuration">Theme Configuration</h2>
 
 <ul>
 <li>Now, inside the <code>themeName.theme</code> folder, create a file called <code>Info.plist</code> and paste the following</li>
@@ -94,7 +94,7 @@
 <p>Well, if for example you want to publish two variants of your icons, one dark and one white but you do not want the user to separately install them.
 Then, you would name the package <code>MyTheme</code> and include two themes <code>Blackie</code> and <code>White</code> thus creating two entries. More about this in the end</p>
 
-<h2>Creating Icons</h2>
+<h2 id="creating-icons">Creating Icons</h2>
 
 <ul>
 <li>Open up the Image Editor of your choice and create a new file having a resolution of 512x512</li>
@@ -105,7 +105,7 @@ Then, you would name the package <code>MyTheme</code> and include two themes <co
 <p><strong>Want to create rounded icons?</strong>
 Create them squared only, we will learn how to apply masks!</p>
 
-<h2>Exporting Icons</h2>
+<h2 id="exporting-icons">Exporting Icons</h2>
 
 <p><strong>Note: All icons must be saved as <code>*.png</code> (Tip: This means you can even create partially transparent icons!)</strong></p>
 
@@ -113,7 +113,7 @@ Create them squared only, we will learn how to apply masks!</p>
 <li>All Icons must be saved in <code>themeName.theme&gt;IconBundles</code> as <code>bundleID-large.png</code></li>
 </ul>
 
-<h5>Finding BundleIDs</h5>
+<h5 id="finding-bundleids">Finding BundleIDs</h5>
 
 <p><strong>Stock Application BundleIDs</strong></p>
 
@@ -279,7 +279,7 @@ Create them squared only, we will learn how to apply masks!</p>
 <p><strong>3rd Party Applications BundleID</strong>
 Click <a rel="noopener" target="_blank" href="http://offcornerdev.com/bundleid.html">here</a></p>
 
-<h3>Icon Masks</h3>
+<h3 id="icon-masks">Icon Masks</h3>
 
 <ul>
 <li>Getting the Classic Rounded Rectangle Masks</li>
@@ -304,7 +304,7 @@ Click <a rel="noopener" target="_blank" href="http://offcornerdev.com/bundleid.h
 </ul></li>
 </ul>
 
-<h4>Designing Masks</h4>
+<h4 id="designing-masks">Designing Masks</h4>
 
 <p><strong>Masking does not support IconBundles, therefore you need to save the masks for each of the following</strong></p>
 
@@ -388,7 +388,7 @@ Click <a rel="noopener" target="_blank" href="http://offcornerdev.com/bundleid.h
 
 <p><img src="https://pinpal.github.io/assets/theme-guide/mask-result.png" alt="Credit: Pinpal" /></p>
 
-<h3>Packaging</h3>
+<h3 id="packaging">Packaging</h3>
 
 <ul>
 <li>Create a new folder outside <code>themeName.theme</code> with the name you want to be shown on Cydia, e.g <code>themeNameForCydia</code></li>
@@ -421,11 +421,11 @@ Section: Themes
 <li>Finally, copy <code>themeName.theme</code> to the <code>Themes</code> folder (<strong>Copy the entire folder, not just the contents</strong>)</li>
 </ul>
 
-<h3>Building the DEB</h3>
+<h3 id="building-the-deb">Building the DEB</h3>
 
 <p><strong>For building the deb you need a <code>*nix</code> system, otherwise you can build it using your iPhones</strong></p>
 
-<h5>Pre-Requisite for MacOS users</h5>
+<h5 id="pre-requisite-for-macos-users">Pre-Requisite for MacOS users</h5>
 
 <p>1) Install Homenbrew <code>/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</code> (Run this in the terminal)
 2) Install dpkg, by running <code>brew install dpkg</code></p>
@@ -438,13 +438,13 @@ Section: Themes
 <li>Now, run <code>find . -name "*.DS_Store" -type f -delete</code></li>
 </ul>
 
-<h5>Pre-Requisite for Windows Users</h5>
+<h5 id="pre-requisite-for-windows-users">Pre-Requisite for Windows Users</h5>
 
 <ul>
 <li>SSH into your iPhone and drag and drop the <code>themeNameForCyia</code> folder on the terminal</li>
 </ul>
 
-<h5>Common Instructions</h5>
+<h5 id="common-instructions">Common Instructions</h5>
 
 <ul>
 <li>You should be at the root of the folder in the terminal, i.e Inside <code>themeNameForCydia</code></li>

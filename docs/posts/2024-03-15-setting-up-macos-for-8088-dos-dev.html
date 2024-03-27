@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cross-Compiling Hello World for DOS on macOS</title>
+    <title>id="cross-compiling-hello-world-for-dos-on-macos">Cross-Compiling Hello World for DOS on macOS</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html" />
     <meta name="twitter:url" content="https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html />
     <meta name="og:url" content="https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html" />
-    <meta name="twitter:title" content="Cross-Compiling Hello World for DOS on macOS" />
-    <meta name="og:title" content="Cross-Compiling Hello World for DOS on macOS" />
+    <meta name="twitter:title" content="id="cross-compiling-hello-world-for-dos-on-macos">Cross-Compiling Hello World for DOS on macOS" />
+    <meta name="og:title" content="id="cross-compiling-hello-world-for-dos-on-macos">Cross-Compiling Hello World for DOS on macOS" />
     <meta name="description" content="This goes through compiling Open Watcom 2 and creating simple hello-world exampls" />
     <meta name="twitter:description" content="This goes through compiling Open Watcom 2 and creating simple hello-world exampls" />
     <meta name="og:description" content="This goes through compiling Open Watcom 2 and creating simple hello-world exampls" />
@@ -44,12 +44,12 @@
     
 <main>
 
-	<h1>Cross-Compiling Hello World for DOS on macOS</h1>
+	<h1 id="cross-compiling-hello-world-for-dos-on-macos">Cross-Compiling Hello World for DOS on macOS</h1>
 
 <p>Technically this should work for any platform that OpenWatcom 2 supports compiling binaries for. Some instructions are based on <a rel="noopener" target="_blank" href="https://retrocoding.net/openwatcom-gateway-to-ancient-world-of-x86">a post at retrocoding.net</a>,
  and <a rel="noopener" target="_blank" href="http://nuclear.mutantstargoat.com/articles/retrocoding/dos01-setup/#hello-world-program">John Tsiombikas's post</a></p>
 
-<h2>Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites</h2>
 
 <p>You should already have XCode / Command Line Tools, and Homebrew installed. To compile Open Watcom for DOS you will need DOSBox (I use DOSBox-X).</p>
 
@@ -58,7 +58,7 @@
 </code></pre>
 </div>
 
-<h2>Compiling Open Watcom v2</h2>
+<h2 id="compiling-open-watcom-v2">Compiling Open Watcom v2</h2>
 
 <p><em>If this process is super annoying, I might make a custom homebrew tap to build and install Open Watcom</em></p>
 
@@ -115,9 +115,9 @@ cp<span class="w"> </span>open-watcom-v2/setvars.sh<span class="w"> </span>custo
 
 <p>Then, when you need to load up these variables, you can simply run <code>source exportVarsForDOS.sh</code> or <code>. exportVarsForDOS.sh</code></p>
 
-<h2>Hello World</h2>
+<h2 id="hello-world">Hello World</h2>
 
-<h3>Buliding without any Makefiles</h3>
+<h3 id="buliding-without-any-makefiles">Buliding without any Makefiles</h3>
 
 <p>Create a new file called <code>example1.c</code></p>
 
@@ -163,7 +163,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 
 <p>If you want to test this executable, jump to the section titled <code>Testing with DOSBox-X</code> below.</p>
 
-<h3>Simple Makefile</h3>
+<h3 id="simple-makefile">Simple Makefile</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nv">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>main.o<span class="w"> </span>hello.o
@@ -251,7 +251,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </code></pre>
 </div>
 
-<h3>Using CMake</h3>
+<h3 id="using-cmake">Using CMake</h3>
 
 <p>Create a file called <code>CMakeLists.txt</code></p>
 
@@ -289,7 +289,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 
 <p>There you have it. Three different ways to compile a C program on a macOS device in 2024 that can run on an IBM PC 5150 (which was released in 1981!)</p>
 
-<h2>Testing with DOSBox-X</h2>
+<h2 id="testing-with-dosbox-x">Testing with DOSBox-X</h2>
 
 <div class="codehilite">
 <pre><span></span><code>cp<span class="w"> </span>example1.exe<span class="w"> </span>~/Downloads

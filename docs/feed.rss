@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Thu, 21 Mar 2024 14:27:28 -0000</lastBuildDate>
-		<pubDate>Thu, 21 Mar 2024 14:27:28 -0000</pubDate>
+		<lastBuildDate>Tue, 26 Mar 2024 18:20:37 -0000</lastBuildDate>
+		<pubDate>Tue, 26 Mar 2024 18:20:37 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -557,9 +557,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 
 <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.4/input/tex/extensions/noerrors.js" charset="UTF-8"></script>
 
-<p>$$
-y = ax^3 + bx^2 + cx + d
-$$</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>y</mi><mo>&#x0003D;</mo><mi>a</mi><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mi>b</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>c</mi><mi>x</mi><mo>&#x0002B;</mo><mi>d</mi></mrow></math>
 
 <h3>Optimizer Selection &amp; Training</h3>
 
@@ -584,9 +582,7 @@ $$</p>
 
 <p>Our loss function is Mean Squared Error (MSE):</p>
 
-<p>$$
-= \frac{1}{n} \sum_{i=1}^{n}{(Y_i - \hat{Y_i})^2}
-$$</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac><msubsup><mo>&#x02211;</mo><mrow><mi>i</mi><mo>&#x0003D;</mo><mn>1</mn></mrow><mrow><mi>n</mi></mrow></msubsup><mrow><mo stretchy="false">&#x00028;</mo><mi>Y</mi><mi>&#x0005F;</mi><mi>i</mi><mo>&#x02212;</mo><mover><mrow><mi>Y</mi><mi>&#x0005F;</mi><mi>i</mi></mrow><mo stretchy="false">&#x0005E;</mo></mover><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></mrow></math>
 
 <p>Where <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><msub><mi>Y</mi><mi>i</mi></msub><mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo></mover></math> is the predicted value and <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>Y</mi><mi>i</mi></msub></math> is the actual value</p>
 
@@ -726,7 +722,7 @@ $$</p>
 
 <p>How would you modify this code to use another type of nonlinear regression? Say, </p>
 
-<p>$$ y = ab^x $$</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>y</mi><mo>&#x0003D;</mo><mi>a</mi><msup><mi>b</mi><mi>x</mi></msup></mrow></math>
 
 <p>Hint: Your loss calculation would be similar to:</p>
 
@@ -3183,6 +3179,52 @@ values using the X values. We then plot it to compare the actual data and predic
 <p>Remix this project:-</p>
 
 <p>https://luminous-opinion.glitch.me</p>
+]]></content:encoded>
+		</item>
+		
+		<item>
+			<guid isPermaLink="true">
+				https://web.navan.dev/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html
+			</guid>
+			<title>
+				Quadratic Formula Derivation
+			</title>
+			<description>
+				Quick derivation of the quadratic equation by completing the square
+			</description>
+			<link>https://web.navan.dev/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html</link>
+			<pubDate>Tue, 26 Mar 2024 15:36:00 -0000</pubDate>
+			<content:encoded><![CDATA[<h1>Quadratic Formula Derivation</h1>
+
+<p>The standard form of a quadratic equation is:</p>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>a</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>b</mi><mi>x</mi><mo>&#x0002B;</mo><mi>c</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math>
+
+<p>Here, <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x0002C;</mo><mi>b</mi><mo>&#x0002C;</mo><mi>c</mi><mo>&#x02208;</mo><mi>&#x0211D;</mi></mrow></math>, and <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi><mo>&#x02260;</mo><mn>0</mn></mrow></math></p>
+
+<p>We begin by first dividing both sides by the coefficient <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math></p>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x027F9;</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mfrac><mrow><mi>b</mi></mrow><mrow><mi>a</mi></mrow></mfrac><mi>x</mi><mo>&#x0002B;</mo><mfrac><mrow><mi>c</mi></mrow><mrow><mi>a</mi></mrow></mfrac><mo>&#x0003D;</mo><mn>0</mn></mrow></math>
+
+<p>We can rearrange the equation:</p>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mfrac><mrow><mi>b</mi></mrow><mrow><mi>a</mi></mrow></mfrac><mi>x</mi><mo>&#x0003D;</mo><mo>&#x02212;</mo><mfrac><mrow><mi>c</mi></mrow><mrow><mi>a</mi></mrow></mfrac></mrow></math>
+
+<p>We can then use the method of completing the square. (<a rel="noopener" target="_blank" href="https://www.mathsisfun.com/algebra/completing-square.html">Maths is Fun</a> has a really good explanation for this technique)</p>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mfrac><mrow><mi>b</mi></mrow><mrow><mi>a</mi></mrow></mfrac><mi>x</mi><mo>&#x0002B;</mo><mo stretchy="false">&#x00028;</mo><mfrac><mrow><mi>b</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mi>c</mi></mrow><mrow><mi>a</mi></mrow></mfrac><mo>&#x0002B;</mo><mo stretchy="false">&#x00028;</mo><mfrac><mrow><mi>b</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></math>
+
+<p>On our LHS, we can clearly recognize that it is the expanded form of <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mi>d</mi><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></math> i.e <math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>2</mn><mi>x</mi><mi>&#x000B7;</mi><mi>d</mi><mo>&#x0002B;</mo><msup><mi>d</mi><mn>2</mn></msup></mrow></math></p>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x027F9;</mi><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002B;</mo><mfrac><mrow><mi>b</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mi>c</mi></mrow><mrow><mi>a</mi></mrow></mfrac><mo>&#x0002B;</mo><mfrac><mrow><msup><mi>b</mi><mn>2</mn></msup></mrow><mrow><mn>4</mn><msup><mi>a</mi><mn>2</mn></msup></mrow></mfrac><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mn>4</mn><mi>a</mi><mi>c</mi><mo>&#x0002B;</mo><msup><mi>b</mi><mn>2</mn></msup></mrow><mrow><mn>4</mn><msup><mi>a</mi><mn>2</mn></msup></mrow></mfrac></mrow></math>
+
+<p>Taking the square root of both sides</p>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mtable displaystyle="true" rowspacing="3pt" columnspacing="0em 2em"><mtr><mtd columnalign="right"><mi>x</mi><mo>&#x0002B;</mo><mfrac><mrow><mi>b</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mtd><mtd columnalign="left"><mi /><mo>&#x0003D;</mo><mfrac><mrow><msqrt><mrow><mo>&#x02212;</mo><mn>4</mn><mi>a</mi><mi>c</mi><mo>&#x0002B;</mo><msup><mi>b</mi><mn>2</mn></msup></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mtd></mtr><mtr><mtd columnalign="right"><mi>x</mi></mtd><mtd columnalign="left"><mi /><mo>&#x0003D;</mo><mfrac><mrow><mi>&#x000B1;</mi><msqrt><mrow><mo>&#x02212;</mo><mn>4</mn><mi>a</mi><mi>c</mi><mo>&#x0002B;</mo><msup><mi>b</mi><mn>2</mn></msup></mrow></msqrt><mo>&#x02212;</mo><mi>b</mi></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mtd></mtr><mtr><mtd columnalign="right" /><mtd columnalign="left"><mi /><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mi>b</mi><mi>&#x000B1;</mi><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mtd></mtr></mtable></mrow></math>
+
+<p>This gives you the world famous quadratic formula:</p>
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>x</mi><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mi>b</mi><mi>&#x000B1;</mi><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></math>
 ]]></content:encoded>
 		</item>
 		

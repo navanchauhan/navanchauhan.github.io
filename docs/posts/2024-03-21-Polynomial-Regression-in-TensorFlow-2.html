@@ -107,9 +107,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0-beta.4/input/tex/extensions/noerrors.js" charset="UTF-8"></script>
 
-<p>$$
-y = ax^3 + bx^2 + cx + d
-$$</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>y</mi><mo>&#x0003D;</mo><mi>a</mi><msup><mi>x</mi><mn>3</mn></msup><mo>&#x0002B;</mo><mi>b</mi><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mi>c</mi><mi>x</mi><mo>&#x0002B;</mo><mi>d</mi></mrow></math>
 
 <h3>Optimizer Selection &amp; Training</h3>
 
@@ -134,9 +132,7 @@ $$</p>
 
 <p>Our loss function is Mean Squared Error (MSE):</p>
 
-<p>$$
-= \frac{1}{n} \sum_{i=1}^{n}{(Y_i - \hat{Y_i})^2}
-$$</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x0003D;</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>n</mi></mrow></mfrac><msubsup><mo>&#x02211;</mo><mrow><mi>i</mi><mo>&#x0003D;</mo><mn>1</mn></mrow><mrow><mi>n</mi></mrow></msubsup><mrow><mo stretchy="false">&#x00028;</mo><mi>Y</mi><mi>&#x0005F;</mi><mi>i</mi><mo>&#x02212;</mo><mover><mrow><mi>Y</mi><mi>&#x0005F;</mi><mi>i</mi></mrow><mo stretchy="false">&#x0005E;</mo></mover><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></mrow></math>
 
 <p>Where <math xmlns="http://www.w3.org/1998/Math/MathML"><mover><msub><mi>Y</mi><mi>i</mi></msub><mo stretchy="false" style="math-style:normal;math-depth:0;">^</mo></mover></math> is the predicted value and <math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>Y</mi><mi>i</mi></msub></math> is the actual value</p>
 
@@ -276,7 +272,7 @@ $$</p>
 
 <p>How would you modify this code to use another type of nonlinear regression? Say, </p>
 
-<p>$$ y = ab^x $$</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>y</mi><mo>&#x0003D;</mo><mi>a</mi><msup><mi>b</mi><mi>x</mi></msup></mrow></math>
 
 <p>Hint: Your loss calculation would be similar to:</p>
 

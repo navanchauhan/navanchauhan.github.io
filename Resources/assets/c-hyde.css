@@ -1,3 +1,76 @@
+/* 
+Latex CSS 
+*/
+@font-face {
+  font-family: "Latin Modern";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/assets/fonts/LM-regular.woff2") format("woff2"), url("/assets/fonts/LM-regular.woff") format("woff"), url("/assets/fonts/LM-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Latin Modern";
+  font-style: italic;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/assets/LM-italic.woff2") format("woff2"), url("LM-italic.woff") format("woff"), url("/assets/fonts/LM-italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Latin Modern";
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/assets/fonts/LM-bold.woff2") format("woff2"), url("/assets/fonts/LM-bold.woff") format("woff"), url("/assets/fonts/LM-bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Latin Modern";
+  font-style: italic;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/assets/fonts/LM-bold-italic.woff2") format("woff2"), url("/assets/fonts/LM-bold-italic.woff") format("woff"), url("/assets/fonts/LM-bold-italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Libertinus";
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/assets/fonts/Libertinus-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Libertinus";
+  font-style: italic;
+  font-weight: normal;
+  font-display: swap;
+  src: url("/assets/fonts/Libertinus-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Libertinus";
+  font-style: normal;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/assets/fonts/Libertinus-bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Libertinus";
+  font-style: italic;
+  font-weight: bold;
+  font-display: swap;
+  src: url("/assets/fonts/Libertinus-bold-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Libertinus";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/Libertinus-semibold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Libertinus";
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/assets/fonts/Libertinus-semibold-italic.woff2") format("woff2");
+}
 /*
 Port of @mdo's Hyde Theme by Zola
 
@@ -524,12 +597,21 @@ html {
   font-size: 3.25rem;
 }
 
-/* Sidebar nav */
 .sidebar-nav {
   padding-left: 0;
   list-style: none;
+  font-size: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
+/* Sidebar nav */
+@media (min-width: 48em) {
+  .sidebar-nav {
+    flex-direction: column;
+  }
+}
 .sidebar-nav-item {
   display: block;
 }
@@ -701,6 +783,26 @@ a.sidebar-nav-item:focus {
 .theme-base-0f .content a,
 .theme-base-0f .related-posts li a:hover {
   color: #8f5536;
+}
+
+/* LaTeX Style Reset */
+body.libertinus {
+  font-family: "Libertinus", Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+body {
+  font-family: "Latin Modern", Georgia, Cambria, "Times New Roman", Times, serif;
+  text-rendering: optimizeLegibility;
+}
+
+/* Additional */
+.copyright {
+  font-size: 60%;
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
+}
+
+.lead {
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
 }
 
 /*# sourceMappingURL=c-hyde.css.map */

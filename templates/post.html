@@ -14,14 +14,13 @@
 {% block twimage %}{{content.metadata.image_link}}{% endblock %}
 
 {% block body %}
-<main>
-
+	<div class="post">
 	{{ content}}
+	</div>
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-</main>
 {% endblock %}

@@ -6,7 +6,7 @@
 <main>
 	{{ content}}
 
-<h2>Recent Posts</h2>
+<h1>Recent Posts</h1>
 <ul>
 {% for post in posts[:5] %}
 	<li><a href="{{post.link}}">{{ post.title }}</a></li>

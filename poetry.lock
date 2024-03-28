@@ -164,14 +164,25 @@ MarkupSafe = ">=2.0"
 i18n = ["Babel (>=2.7)"]
 
 [[package]]
+name = "latex2mathml"
+version = "3.77.0"
+description = "Pure Python library for LaTeX to MathML conversion"
+optional = false
+python-versions = ">=3.8.1,<4.0.0"
+files = [
+    {file = "latex2mathml-3.77.0-py3-none-any.whl", hash = "sha256:5531e18a2a9eae7c24e257118b6a444cbba253cd27ff3e81f1bd6c41e88e786e"},
+    {file = "latex2mathml-3.77.0.tar.gz", hash = "sha256:e2f501d1878f2e489c3f6f12786bef74c62f712d2770f7f3c837eb20a55d0a1e"},
+]
+
+[[package]]
 name = "markdown2"
-version = "2.4.12"
+version = "2.4.13"
 description = "A fast and complete Python implementation of Markdown"
 optional = false
 python-versions = ">=3.5, <4"
 files = [
-    {file = "markdown2-2.4.12-py2.py3-none-any.whl", hash = "sha256:98f47591006f0ace0644cbece03fed6f3845513286f6c6e9f8bcf6a575174e2c"},
-    {file = "markdown2-2.4.12.tar.gz", hash = "sha256:1bc8692696954d597778e0e25713c14ca56d87992070dedd95c17eddaf709204"},
+    {file = "markdown2-2.4.13-py2.py3-none-any.whl", hash = "sha256:855bde5cbcceb9beda7c80efdf7f406c23e6079172c497fcfce22fdce998e892"},
+    {file = "markdown2-2.4.13.tar.gz", hash = "sha256:18ceb56590da77f2c22382e55be48c15b3c8f0c71d6398def387275e6c347a9f"},
 ]
 
 [package.extras]
@@ -443,4 +454,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "8e40b80581a332bddf013411192567bdd8a193f558b8b959030f9688cf92a3b6"
+content-hash = "2b2d4d8564d95438217855fb88cf03ad1564c4ff900bdede9cd11ca5c175b265"

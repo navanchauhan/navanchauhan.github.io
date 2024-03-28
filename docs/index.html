@@ -2,14 +2,26 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>Home</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev" />
-    <meta name="twitter:url" content="https://web.navan.dev />
+    <meta name="twitter:url" content="https://web.navan.dev" />
     <meta name="og:url" content="https://web.navan.dev" />
     <meta name="twitter:title" content="Hey - Home" />
     <meta name="og:title" content="Hey - Home" />
@@ -29,25 +41,38 @@
     <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<a href="/3D-Designs/">3D designs</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead">Something Funny</p>
+        </div>
+
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <p>&copy; 2024. All rights reserved.
+    </div>
+</div>
+    <div class="content container">
     
 
 <main>
-	<h1 id="navan-chauhan">Navan Chauhan</h1>
+	<h1 id="some-projects">Some Projects</h1>
+
+<ul>
+<li><a rel="noopener" target="_blank" href="https://web.navan.dev/iGopherBrowser">iGopherBrowser</a>: A modern Gopher client for iOS, macOS, and VisionOS. It is built on top of my <a rel="noopener" target="_blank" href="https://github.com/swift-gopher">swift-gopher</a> library. Available on the <a rel="noopener" target="_blank" href="https://apps.apple.com/in/app/igopherbrowser/id647463884">App Store</a></li>
+<li><a rel="noopener" target="_blank" href="https://timeslicerx.prudent.studio">TimeSlicerX</a>: A timeboxing app for iOS (and macOS) to schedule tasks around your calendar items. Everything is done on-device. Available on the <a rel="noopener" target="_blank" href="https://apps.apple.com/us/app/timeslicerx/id6447939029?uo=4">App Store</a></li>
+<li><a rel="noopener" target="_blank" href="https://github.com/navanchauhan/VaporwaveGenerator">VaporwaveGenerator</a>: A E S T H E T I C S </li>
+</ul>
 
 
-<h2>Recent Posts</h2>
+<h1>Recent Posts</h1>
 <ul>
 
 	<li><a href="/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html">Quadratic Formula Derivation</a></li>
@@ -123,6 +148,7 @@
 
 </main>
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

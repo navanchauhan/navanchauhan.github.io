@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Tue, 26 Mar 2024 23:37:56 -0000</lastBuildDate>
-		<pubDate>Tue, 26 Mar 2024 23:37:56 -0000</pubDate>
+		<lastBuildDate>Tue, 26 Mar 2024 23:45:22 -0000</lastBuildDate>
+		<pubDate>Tue, 26 Mar 2024 23:45:22 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -14,7 +14,7 @@
 				https://web.navan.dev/posts/2023-10-22-search-by-flair-reddit.html
 			</guid>
 			<title>
-				id="search-filter-posts-by-flair-on-reddit">Search / Filter posts by flair on Reddit
+				Search / Filter posts by flair on Reddit
 			</title>
 			<description>
 				Search posts by flair on Reddit Web by using _
@@ -38,7 +38,7 @@
 				https://web.navan.dev/posts/2020-03-08-Making-Vaporwave-Track.html
 			</guid>
 			<title>
-				id="making-my-first-vaporwave-track-remix">Making My First Vaporwave Track (Remix)
+				Making My First Vaporwave Track (Remix)
 			</title>
 			<description>
 				I made my first vaporwave remix
@@ -84,7 +84,7 @@
 				https://web.navan.dev/posts/2021-06-25-Blog2Twitter-P1.html
 			</guid>
 			<title>
-				id="posting-blog-posts-as-twitter-threads-part-1n">Posting Blog Posts as Twitter Threads Part 1/n
+				Posting Blog Posts as Twitter Threads Part 1/n
 			</title>
 			<description>
 				Converting Posts to Twitter Threads
@@ -201,7 +201,7 @@ I actually added the code to this post after running the program.</p>
 				https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html
 			</guid>
 			<title>
-				id="cross-compiling-hello-world-for-dos-on-macos">Cross-Compiling Hello World for DOS on macOS
+				Cross-Compiling Hello World for DOS on macOS
 			</title>
 			<description>
 				This goes through compiling Open Watcom 2 and creating simple hello-world exampls
@@ -487,7 +487,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html
 			</guid>
 			<title>
-				id="polynomial-regression-using-tensorflow-2x">Polynomial Regression Using TensorFlow 2.x
+				Polynomial Regression Using TensorFlow 2.x
 			</title>
 			<description>
 				Predicting n-th degree polynomials using TensorFlow 2.x
@@ -740,7 +740,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/hello-world.html
 			</guid>
 			<title>
-				id="hello-world">Hello World
+				Hello World
 			</title>
 			<description>
 				My first post.
@@ -760,7 +760,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/2010-01-24-experiments.html
 			</guid>
 			<title>
-				id="experiments">Experiments
+				Experiments
 			</title>
 			<description>
 				Just a markdown file for all experiments related to the website
@@ -780,7 +780,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html
 			</guid>
 			<title>
-				id="setting-up-kaggle-to-use-with-google-colab">Setting up Kaggle to use with Google Colab
+				Setting up Kaggle to use with Google Colab
 			</title>
 			<description>
 				Tutorial on setting up kaggle, to use with Google Colab
@@ -840,7 +840,7 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 				https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html
 			</guid>
 			<title>
-				id="creating-a-custom-image-classifier-using-tensorflow-2x-and-keras-for-detecting-malaria">Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria
+				Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria
 			</title>
 			<description>
 				Tutorial on creating an image classifier model using TensorFlow which detects malaria
@@ -1034,7 +1034,7 @@ X_train = X_train/255.0
 				https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html
 			</guid>
 			<title>
-				id="compiling-open-babel-on-ios">Compiling Open Babel on iOS
+				Compiling Open Babel on iOS
 			</title>
 			<description>
 				Compiling Open Babel on iOS
@@ -1165,7 +1165,7 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
 				https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html
 			</guid>
 			<title>
-				id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System
+				Building a Similar Movies Recommendation System
 			</title>
 			<description>
 				Building a Content Based Similar Movies Recommendatiom System
@@ -1585,7 +1585,7 @@ Spies (2015): A secret agent must perform a heist without time on his side
 				https://web.navan.dev/posts/2024-01-05-hello-20224.html
 			</guid>
 			<title>
-				id="hello-2024">Hello 2024
+				Hello 2024
 			</title>
 			<description>
 				Recap of 2023, and my goals for 2024
@@ -1659,7 +1659,7 @@ Spies (2015): A secret agent must perform a heist without time on his side
 				https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html
 			</guid>
 			<title>
-				id="introduction-to-arjs-and-natural-feature-tracking">Introduction to AR.js and Natural Feature Tracking
+				Introduction to AR.js and Natural Feature Tracking
 			</title>
 			<description>
 				An introduction to AR.js and NFT
@@ -1958,7 +1958,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 				https://web.navan.dev/posts/2022-11-07-a-new-method-to-blog.html
 			</guid>
 			<title>
-				id="a-new-method-to-blog">A new method to blog
+				A new method to blog
 			</title>
 			<description>
 				Writing posts in markdown using pen and paper
@@ -2006,7 +2006,7 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 				https://web.navan.dev/posts/2023-10-05-attack-lab.html
 			</guid>
 			<title>
-				id="attack-lab">Attack Lab
+				Attack Lab
 			</title>
 			<description>
 				Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems
@@ -2480,7 +2480,7 @@ NICE<span class="w"> </span>JOB!
 				https://web.navan.dev/posts/2020-03-03-Playing-With-Android-TV.html
 			</guid>
 			<title>
-				id="tinkering-with-an-android-tv">Tinkering with an Android TV
+				Tinkering with an Android TV
 			</title>
 			<description>
 				Tinkering with an Android TV
@@ -2567,7 +2567,7 @@ NICE<span class="w"> </span>JOB!
 				https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html
 			</guid>
 			<title>
-				id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow
+				Polynomial Regression Using TensorFlow
 			</title>
 			<description>
 				Polynomial regression using TensorFlow
@@ -3123,7 +3123,7 @@ values using the X values. We then plot it to compare the actual data and predic
 				https://web.navan.dev/posts/2019-12-04-Google-Teachable-Machines.html
 			</guid>
 			<title>
-				id="image-classifier-with-teachable-machines">Image Classifier With Teachable Machines
+				Image Classifier With Teachable Machines
 			</title>
 			<description>
 				Tutorial on creating a custom image classifier quickly with Google Teachable Machines
@@ -3187,7 +3187,7 @@ values using the X values. We then plot it to compare the actual data and predic
 				https://web.navan.dev/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html
 			</guid>
 			<title>
-				id="quadratic-formula-derivation">Quadratic Formula Derivation
+				Quadratic Formula Derivation
 			</title>
 			<description>
 				Quick derivation of the quadratic equation by completing the square
@@ -3233,7 +3233,7 @@ values using the X values. We then plot it to compare the actual data and predic
 				https://web.navan.dev/posts/2022-08-05-Why-You-No-Host.html
 			</guid>
 			<title>
-				id="why-you-no-host">Why You No Host?
+				Why You No Host?
 			</title>
 			<description>
 				Why you should self-host with YunoHost
@@ -3426,7 +3426,7 @@ values using the X values. We then plot it to compare the actual data and predic
 				https://web.navan.dev/posts/2021-06-25-NFC-Music-Cards-Basic-iOS.html
 			</guid>
 			<title>
-				id="basic-nfc-music-cards-for-ios">Basic NFC Music Cards for iOS
+				Basic NFC Music Cards for iOS
 			</title>
 			<description>
 				Basic NFC Music Cards on iOS with Shortcuts
@@ -3469,7 +3469,7 @@ So, I did not have to ensure this could work with any device. I settled with usi
 				https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html
 			</guid>
 			<title>
-				id="creating-your-own-custom-theme-for-snowboard-or-anemone">Creating your own custom theme for Snowboard or Anemone
+				Creating your own custom theme for Snowboard or Anemone
 			</title>
 			<description>
 				Tutorial on creating your own custom theme for Snowboard or Anemone
@@ -3901,7 +3901,7 @@ Section: Themes
 				https://web.navan.dev/posts/2020-04-13-Fixing-X11-Error-AmberTools-macOS.html
 			</guid>
 			<title>
-				id="fixing-x11-error-on-macos-catalina-for-ambertools-1819">Fixing X11 Error on macOS Catalina for AmberTools 18/19
+				Fixing X11 Error on macOS Catalina for AmberTools 18/19
 			</title>
 			<description>
 				Fixing Could not find the X11 libraries; you may need to edit config.h, AmberTools macOS Catalina
@@ -3946,7 +3946,7 @@ Configure failed due to the errors above!
 				https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html
 			</guid>
 			<title>
-				id="making-a-crude-ml-powered-chatbot-in-swift-using-coreml">Making a Crude ML Powered Chatbot in Swift using CoreML
+				Making a Crude ML Powered Chatbot in Swift using CoreML
 			</title>
 			<description>
 				Writing a simple Machine-Learning powered Chatbot (or, daresay virtual personal assistant ) in Swift using CoreML.
@@ -4137,7 +4137,7 @@ Otherwise, it calls the custom action.</p>
 				https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html
 			</guid>
 			<title>
-				id="interacting-with-underlying-element-in-html">Interacting with underlying element in HTML
+				Interacting with underlying element in HTML
 			</title>
 			<description>
 				With CSS you can disable any interactions with an element and directly control the underlying element
@@ -4224,7 +4224,7 @@ A box with 200px height and 300px width
 				https://web.navan.dev/posts/2019-12-10-TensorFlow-Model-Prediction.html
 			</guid>
 			<title>
-				id="making-predictions-using-image-classifier-tensorflow">Making Predictions using Image Classifier (TensorFlow)
+				Making Predictions using Image Classifier (TensorFlow)
 			</title>
 			<description>
 				Making predictions for image classification models built using TensorFlow
@@ -4298,7 +4298,7 @@ A box with 200px height and 300px width
 				https://web.navan.dev/posts/2020-07-01-Install-rdkit-colab.html
 			</guid>
 			<title>
-				id="installing-rdkit-on-google-colab">Installing RDKit on Google Colab
+				Installing RDKit on Google Colab
 			</title>
 			<description>
 				Install RDKit on Google Colab with one code snippet.
@@ -4418,7 +4418,7 @@ logger.info("rdkit-{} installation finished!".format(rdkit.__version__))
 				https://web.navan.dev/posts/2023-10-04-bomb-lab.html
 			</guid>
 			<title>
-				id="bomb-lab">Bomb Lab
+				Bomb Lab
 			</title>
 			<description>
 				Walkthrough of Phases 1-6 of Bomb Lab for CSCI 2400 Computer Systems Lab 2
@@ -5524,7 +5524,7 @@ Your instructor has been notified and will verify your solution.
 				https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html
 			</guid>
 			<title>
-				id="generating-https-certificate-using-dns-a-challenge-through-lets-encrypt">Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt
+				Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt
 			</title>
 			<description>
 				Short code-snippet to generate HTTPS certificates using the DNS Challenge through Lets Encrypt for a web-server using DuckDNS.
@@ -5616,7 +5616,7 @@ navanspi.duckdns.org.<span class="w">    </span><span class="m">60</span><span c
 				https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html
 			</guid>
 			<title>
-				id="building-a-fake-news-detector-with-turicreate">Building a Fake News Detector with Turicreate
+				Building a Fake News Detector with Turicreate
 			</title>
 			<description>
 				In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app
@@ -5894,7 +5894,7 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 				https://web.navan.dev/posts/2020-12-1-HTML-JS-RSS-Feed.html
 			</guid>
 			<title>
-				id="rss-feed-written-in-html-javascript">RSS Feed written in HTML + JavaScript
+				RSS Feed written in HTML + JavaScript
 			</title>
 			<description>
 				Short code-snippet for an RSS feed, written in HTML and JavaScript
@@ -6111,7 +6111,7 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 				https://web.navan.dev/posts/2020-01-19-Connect-To-Bluetooth-Devices-Linux-Terminal.html
 			</guid>
 			<title>
-				id="how-to-setup-bluetooth-on-a-raspberry-pi">How to setup Bluetooth on a Raspberry Pi
+				How to setup Bluetooth on a Raspberry Pi
 			</title>
 			<description>
 				Connecting to Bluetooth Devices using terminal, tested on Raspberry Pi Zero W
@@ -6147,7 +6147,7 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 				https://web.navan.dev/posts/2022-12-25-blog-to-toot.html
 			</guid>
 			<title>
-				id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots
+				Posting blogs as Mastodon Toots
 			</title>
 			<description>
 				Cross posting blog posts to Mastodon
@@ -6443,7 +6443,7 @@ Seeing that you are reading this on Mastodon, and that I have updated this secti
 				https://web.navan.dev/posts/2023-04-30-n-body-simulation.html
 			</guid>
 			<title>
-				id="n-body-solution-generator">n-body solution generator
+				n-body solution generator
 			</title>
 			<description>
 				n-body solution generator and solver
@@ -7179,7 +7179,7 @@ function plotRandomNBodySimulation() {
 				https://web.navan.dev/posts/2020-01-14-Converting-between-PIL-NumPy.html
 			</guid>
 			<title>
-				id="converting-between-image-and-numpy-array">Converting between image and NumPy array
+				Converting between image and NumPy array
 			</title>
 			<description>
 				Short code snippet for converting between PIL image and NumPy arrays.
@@ -7219,7 +7219,7 @@ function plotRandomNBodySimulation() {
 				https://web.navan.dev/posts/2019-12-08-Splitting-Zips.html
 			</guid>
 			<title>
-				id="splitting-zips-into-multiple-parts">Splitting ZIPs into Multiple Parts
+				Splitting ZIPs into Multiple Parts
 			</title>
 			<description>
 				Short code snippet for splitting zips.
@@ -7262,7 +7262,7 @@ function plotRandomNBodySimulation() {
 				https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html
 			</guid>
 			<title>
-				id="compiling-autodock-vina-on-ios">Compiling AutoDock Vina on iOS
+				Compiling AutoDock Vina on iOS
 			</title>
 			<description>
 				Compiling AutoDock Vina on iOS
@@ -7359,7 +7359,7 @@ return path(str, boost::filesystem::native);
 				https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html
 			</guid>
 			<title>
-				id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line
+				Interacting with Siri using the command line
 			</title>
 			<description>
 				Code snippet to interact with Siri by issuing commands from the command-line.
@@ -7604,7 +7604,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 				https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html
 			</guid>
 			<title>
-				id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire
+				Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire
 			</title>
 			<description>
 				Tutorial on creating a custom Image Classifier using Turicreate and a dataset from Kaggle
@@ -7888,7 +7888,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 				https://web.navan.dev/posts/2020-10-11-macOS-Virtual-Cam-OBS.html
 			</guid>
 			<title>
-				id="trying-different-camera-setups">Trying Different Camera Setups
+				Trying Different Camera Setups
 			</title>
 			<description>
 				Comparison of different cameras setups for using as a webcam and tutorials for the same.
@@ -8012,7 +8012,7 @@ new Dics({
 				https://web.navan.dev/posts/2021-06-26-Cheminformatics-On-The-Web-2021.html
 			</guid>
 			<title>
-				id="cheminformatics-on-the-web-2021">Cheminformatics on the Web (2021)
+				Cheminformatics on the Web (2021)
 			</title>
 			<description>
 				Summarising Cheminformatics on the web in 2021.
@@ -8108,7 +8108,7 @@ Hopefully, this encourages you to explore the world of cheminformatics on the we
 				https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html
 			</guid>
 			<title>
-				id="workflow-for-lightning-fast-molecular-docking-part-one">Workflow for Lightning Fast Molecular Docking Part One
+				Workflow for Lightning Fast Molecular Docking Part One
 			</title>
 			<description>
 				This is my workflow for lightning fast molecular docking.
@@ -8168,7 +8168,7 @@ alias pbpaste='xclip -selection clipboard -o'
 				https://web.navan.dev/publications/2019-05-14-Detecting-Driver-Fatigue-Over-Speeding-and-Speeding-up-Post-Accident-Response.html
 			</guid>
 			<title>
-				id="detecting-driver-fatigue-over-speeding-and-speeding-up-post-accident-response">Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response
+				Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response
 			</title>
 			<description>
 				This paper is about Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response.
@@ -8204,7 +8204,7 @@ alias pbpaste='xclip -selection clipboard -o'
 				https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html
 			</guid>
 			<title>
-				id="is-it-possible-to-programmatically-generate-vaporwave">Is it possible to programmatically generate Vaporwave?
+				Is it possible to programmatically generate Vaporwave?
 			</title>
 			<description>
 				This paper is about programmaticaly generating Vaporwave.
@@ -8254,7 +8254,7 @@ alias pbpaste='xclip -selection clipboard -o'
 				https://web.navan.dev/publications/2020-03-17-Possible-Drug-Candidates-COVID-19.html
 			</guid>
 			<title>
-				id="possible-drug-candidates-for-covid-19">Possible Drug Candidates for COVID-19
+				Possible Drug Candidates for COVID-19
 			</title>
 			<description>
 				COVID-19, has been officially labeled as a pandemic by the World Health Organisation. This paper presents cloperastine and vigabatrin as two possible drug candidates for combatting the disease along with the process by which they were discovered.
@@ -8274,7 +8274,7 @@ alias pbpaste='xclip -selection clipboard -o'
 				https://web.navan.dev/3D-Designs/2024-02-17-Can-Holder-Mountain-Bike.html
 			</guid>
 			<title>
-				id="bike-soda-can-holder">Bike Soda Can Holder
+				Bike Soda Can Holder
 			</title>
 			<description>
 				Carry your favourite soda (or beer) can with you while you ride
@@ -8322,7 +8322,7 @@ model-viewer {
 				https://web.navan.dev/ideas/2022-12-17-ar-mr-xr.html
 			</guid>
 			<title>
-				id="ar-xr-mr">AR XR MR
+				AR XR MR
 			</title>
 			<description>
 				Data dump from my notes

@@ -46,7 +46,7 @@
     <div class="container sidebar-sticky">
         <div class="sidebar-about">
             <h1><a href="/">Navan</a></h1>
-            <p class="lead">Something Funny</p>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
         </div>
 
         <ul class="sidebar-nav">
@@ -56,9 +56,21 @@
             <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
             <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
         </ul>
-        <p>&copy; 2024. All rights reserved.
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
     </div>
 </div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
     <div class="content container">
     
 

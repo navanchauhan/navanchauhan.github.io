@@ -619,11 +619,22 @@ html {
   font-size: 3.25rem;
 }
 
-/* Sidebar nav */
 .sidebar-nav {
   padding-left: 0;
   list-style: none;
+  font-size: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
+
+/* Sidebar nav */
+@media (min-width: 48em) {
+  .sidebar-nav {
+    flex-direction: column;
+  }
+}
+
 .sidebar-nav-item {
   display: block;
 }
@@ -823,3 +834,15 @@ body {
   font-family: 'Latin Modern', Georgia, Cambria, 'Times New Roman', Times, serif;
   text-rendering: optimizeLegibility;
 } 
+
+
+/* Additional */
+
+.copyright {
+  font-size: 60%;
+  font-family: "PT Sans",Helvetica,Arial,sans-serif;
+}
+
+.lead {
+  font-family: "PT Sans",Helvetica,Arial,sans-serif;
+}

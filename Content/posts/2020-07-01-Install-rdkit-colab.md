@@ -6,6 +6,16 @@ tags: Tutorial, Code-Snippet, Colab
 
 # Installing RDKit on Google Colab
 
+**Update: March 2024** 
+
+`rdkit-pypi` has been deprecated in favour of `rdkit`
+
+You can simply run:
+
+```
+!pip install rdkit
+```
+
 **EDIT:** Try installing RDKit using pip
 
 ```

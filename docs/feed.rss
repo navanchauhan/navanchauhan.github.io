@@ -4,8 +4,8 @@
 		<title>Navan's Archive</title>
 		<description>Rare Tips, Tricks and Posts</description>
 		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Thu, 28 Mar 2024 21:27:46 -0000</lastBuildDate>
-		<pubDate>Thu, 28 Mar 2024 21:27:46 -0000</pubDate>
+		<lastBuildDate>Sun, 31 Mar 2024 13:33:29 -0000</lastBuildDate>
+		<pubDate>Sun, 31 Mar 2024 13:33:29 -0000</pubDate>
 		<ttl>250</ttl>
 		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
 		
@@ -4714,6 +4714,15 @@ A box with 200px height and 300px width
 			<link>https://web.navan.dev/posts/2020-07-01-Install-rdkit-colab.html</link>
 			<pubDate>Wed, 01 Jul 2020 14:23:00 -0000</pubDate>
 			<content:encoded><![CDATA[<h1 id="installing-rdkit-on-google-colab">Installing RDKit on Google Colab</h1>
+
+<p><strong>Update: March 2024</strong> </p>
+
+<p><code>rdkit-pypi</code> has been deprecated in favour of <code>rdkit</code></p>
+
+<p>You can simply run:</p>
+
+<pre><code>!pip install rdkit
+</code></pre>
 
 <p><strong>EDIT:</strong> Try installing RDKit using pip</p>
 

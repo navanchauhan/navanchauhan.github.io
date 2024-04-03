@@ -1,4 +1,4 @@
-from markdown2 import Markdown
+from markdown3 import Markdown
 import os
 from jinja2 import Environment, FileSystemLoader
 from distutils.dir_util import copy_tree
@@ -6,6 +6,8 @@ import datetime
 import email.utils
 from helper_libs.image_utils import ImageText
 from PIL import Image
+
+import re
 
 templates = Environment(loader=FileSystemLoader("templates"))
 src_folder = "Content"
@@ -28,9 +30,13 @@ md = Markdown(
         "task_list",
         "tables",
         "target-blank-links",
+        "header-ids",
+        "latex",
     ]
 )
 
+# h1 tag regex ignoring any attributes
+h1_tag = re.compile(r"<h1[^>]*>(.*?)</h1>")
 
 def render_markdown_post(
     html, metadata=None, template="post.html", posts=[], title=None
@@ -83,7 +89,7 @@ for x in os.walk(src_folder):
                     fpath = os.path.join(x[0], y)
                     with open(fpath) as f:
                         _html = md.convert(f.read())
-                        _post_title = _html[4 : _html.find("</h1>")]
+                        _post_title = re.search(h1_tag, _html).group(1)
                         _post = _html.metadata
                         _post["title"] = _post_title
                         _post["link"] = fpath.replace(src_folder, "").replace(

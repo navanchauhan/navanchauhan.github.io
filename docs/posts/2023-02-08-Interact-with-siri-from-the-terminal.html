@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>Interacting with Siri using the command line</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interacting with Siri using the command line</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html" />
-    <meta name="twitter:url" content="https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html" />
     <meta name="og:url" content="https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html" />
     <meta name="twitter:title" content="Interacting with Siri using the command line" />
     <meta name="og:title" content="Interacting with Siri using the command line" />
@@ -26,28 +39,47 @@
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
-    
-<main>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
 
-	<h1>Interacting with Siri using the command line</h1>
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
+    
+	<div class="post">
+	<h1 id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line</h1>
 
 <p>My main objective was to see if I could issue multi-intent commands in one go. Obviously, Siri cannot do that (neither can Alexa, Cortana, or Google Assistant). The script here can issue either a single command, or use the help of OpenAI's DaVinci model to extract multiple commands and pass them onto siri.</p>
 
-<h2>Prerequisites</h2>
+<h2 id="prerequisites">Prerequisites</h2>
 
 <ul>
 <li>Run macOS</li>
@@ -55,7 +87,7 @@
 <li>Enable the Terminal to control System Events (The first time you run the script, it will prompt you to enable it)</li>
 </ul>
 
-<h2>Show me ze code</h2>
+<h2 id="show-me-ze-code">Show me ze code</h2>
 
 <p>If you are here just for the code:</p>
 
@@ -135,11 +167,11 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h2>ELI5</h2>
+<h2 id="eli5">ELI5</h2>
 
 <p>I am not actually going to explain it as if I am explaining to a five-year old kid.</p>
 
-<h3>AppleScript</h3>
+<h3 id="applescript">AppleScript</h3>
 
 <p>In the age of Siri Shortcuts, AppleScript can still do more. It is a scripting language created by Apple that can help you automate pretty much anything you see on your screen.</p>
 
@@ -190,11 +222,11 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h3>Multi-Intent Commands</h3>
+<h3 id="multi-intent-commands">Multi-Intent Commands</h3>
 
 <p>We can call OpenAI's API to autocomplete our prompt and extract multiple commands. We don't need to use OpenAI's API, and can also simply use Google's Flan-T5 model using HuggingFace's transformers library. </p>
 
-<h4>Ze Prompt</h4>
+<h4 id="ze-prompt">Ze Prompt</h4>
 
 <div class="codehilite">
 <pre><span></span><code>You are provided with multiple commands as a single command. Break down all the commands and return them in a list of strings. If you are provided with a single command, return a list with a single string, trying your best to understand the command.
@@ -216,7 +248,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 
 <p>This prompt gives the model a few examples to increase the generation accuracy, along with instructing it to return a Python list. </p>
 
-<h4>Ze Code</h4>
+<h4 id="ze-code">Ze Code</h4>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">openai</span>
@@ -250,7 +282,7 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h3>Gluing together code</h3>
+<h3 id="gluing-together-code">Gluing together code</h3>
 
 <p>To finish it all off, we can use argparse to only send the input command to OpenAI when asked to do so.</p>
 
@@ -270,18 +302,19 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </code></pre>
 </div>
 
-<h2>Conclusion</h2>
+<h2 id="conclusion">Conclusion</h2>
 
 <p>Siri is still dumb. When I ask it to <code>Switch off the lights</code>, it default to the home thousands of miles away. But, this code snippet definitely does work!</p>
 
+	</div>
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-</main>
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

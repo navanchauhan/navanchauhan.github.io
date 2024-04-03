@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html" />
-    <meta name="twitter:url" content="https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html" />
     <meta name="og:url" content="https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html" />
     <meta name="twitter:title" content="Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire" />
     <meta name="og:title" content="Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire" />
@@ -26,30 +39,49 @@
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
-    
-<main>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
 
-	<h1>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1>
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
+    
+	<div class="post">
+	<h1 id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1>
 
 <p><em>For setting up Kaggle with Google Colab, please refer to <a rel="noopener" target="_blank" href="/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab"> my previous post</a></em></p>
 
-<h2>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 
-<h3>Mounting Google Drive</h3>
+<h3 id="mounting-google-drive">Mounting Google Drive</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">os</span>
@@ -58,7 +90,7 @@
 </code></pre>
 </div>
 
-<h3>Downloading Dataset from Kaggle</h3>
+<h3 id="downloading-dataset-from-kaggle">Downloading Dataset from Kaggle</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;KAGGLE_CONFIG_DIR&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;/content/drive/My Drive/&quot;</span>
@@ -67,7 +99,7 @@
 </code></pre>
 </div>
 
-<h2>Pre-Processing</h2>
+<h2 id="pre-processing">Pre-Processing</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nt">!mkdir</span><span class="na"> default smoke fire</span>
@@ -153,9 +185,9 @@
 </code></pre>
 </div>
 
-<h2>Making the Image Classifier</h2>
+<h2 id="making-the-image-classifier">Making the Image Classifier</h2>
 
-<h3>Making an SFrame</h3>
+<h3 id="making-an-sframe">Making an SFrame</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="nt">!pip</span><span class="na"> install turicreate</span>
@@ -218,7 +250,7 @@
 </code></pre>
 </div>
 
-<h3>Making the Model</h3>
+<h3 id="making-the-model">Making the Model</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">turicreate</span> <span class="k">as</span> <span class="nn">tc</span>
@@ -313,14 +345,15 @@
 
 <p>We just got an accuracy of 94% on Training Data and 97% on Validation Data!</p>
 
+	</div>
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-</main>
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>About</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev" />
-    <meta name="twitter:url" content="https://web.navan.dev />
+    <meta name="twitter:url" content="https://web.navan.dev" />
     <meta name="og:url" content="https://web.navan.dev" />
     <meta name="twitter:title" content="Hey - Home" />
     <meta name="og:title" content="Hey - Home" />
@@ -26,32 +39,56 @@
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
+
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
     
 
 <main>
-	<h1>About Me</h1>
+	<h1 id="about-me">About Me</h1>
 
 <p>Hi!</p>
 
-<p>My name is Navan Chauhan. I do lots of different things. Most of the bigger projects I am working on are currently private/unlisted. Although, all of them will be open-sourced, I don't want to publish them until I am happy with the version 1.0.</p>
+<p>My name is Navan Chauhan. This is my small corner on the internet. Most of the bigger projects I am working on are either currently private or unlisted. Any of the cool research work I am doing also cannot be published anytime soon :(</p>
+
+<p>I like solving problems, no matter what field they are in. I might be a programmer by trade, but I have done way too much work in the field of drug discovery lately. I did fall in love with Math during college, and I have a special liking for probability theory. </p>
+
+<p>When not in front of a screen, I can be found injuring myself mountain biking (I hate road bikers /s), skiing, or homebrewing (WLP618 for all legal purposes).</p>
 
 <p>Landing page with other links, and projects: <a rel="noopener" target="_blank" href="https://hi.navan.dev">https://hi.navan.dev</a></p>
 
-<h2>Contact Me</h2>
+<h2 id="contact-me">Contact Me</h2>
 
 <p>The best way to reach out to me is by e-mail. subject[at]navan.email Or, if I have made peace with my ISP and corrected the rDNS settings, then: hey[at]navan.dev</p>
 
@@ -59,11 +96,11 @@
 
 <p><code>1DA1 04AA DEB7 7473 A4FA C27B 4EFC A289 7342 A778</code></p>
 
-<h2>Links</h2>
+<h2 id="links">Links</h2>
 
 <ul>
 <li><a rel="noopener" target="_blank" href="https://github.com/navanchauhan">GitHub: @navanchauhan</a></li>
-<li><a rel="noopener" target="_blank" href="https://pi4.navan.dev/gitea">Mirror: Personal Instance of Gitea</a></li>
+<li><a rel="noopener" target="_blank" href="https://pi4.navan.dev/gitea">Mirror: Personal Instance of Gitea</a> (Moving the Gitea server to another host)</li>
 <li><a rel="noopener" target="_blank" href="https://navanchauhan.goatcounter.com">GoatCounter: This Website's Analytics</a></li>
 <li><a rel="noopener" target="_blank" href="https://github.com/navanchauhan">Twitter: @navanchauhan</a></li>
 <li><a rel="noopener" target="_blank" href="https://mastodon.social/@navanchauhan">Mastodon: @navanchauhan@mastodon.social</a></li>
@@ -76,6 +113,7 @@
 </ul>
 
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

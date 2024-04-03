@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>Hello 2024</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello 2024</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2024-01-05-hello-20224.html" />
-    <meta name="twitter:url" content="https://web.navan.dev/posts/2024-01-05-hello-20224.html />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2024-01-05-hello-20224.html" />
     <meta name="og:url" content="https://web.navan.dev/posts/2024-01-05-hello-20224.html" />
     <meta name="twitter:title" content="Hello 2024" />
     <meta name="og:title" content="Hello 2024" />
@@ -26,34 +39,53 @@
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
-    
-<main>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
 
-	<h1>Hello 2024</h1>
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
+    
+	<div class="post">
+	<h1 id="hello-2024">Hello 2024</h1>
 
 <p><code>2024 % 4 == 0</code></p>
 
-<h2>2023</h2>
+<h2 id="2023">2023</h2>
 
 <p>Another revolution around the sun! This was a pretty fun and interesting year. I got to work on some interesting projects, and learned a lot.</p>
 
 <p>I am going to try and use my GitHub activity to recap.</p>
 
-<h3>Spring</h3>
+<h3 id="spring">Spring</h3>
 
 <ul>
 <li>I helped a friend modernize their Larvael codebase. Dockerized it for easier development, and added a CD pipeline. (Probably going to be released by end of this year)</li>
@@ -64,7 +96,7 @@
 <li>Got into Mountain Biking!</li>
 </ul>
 
-<h3>Summer</h3>
+<h3 id="summer">Summer</h3>
 
 <p>Summer was more relaxing. I mainly worked on some maintenance patches for my projects, and did some more freelancing stuff.</p>
 
@@ -73,7 +105,7 @@
 <li>Continued working on a research project using Computer Vision in analysing a lateral flow assay. Tried porting it to use OpenCV.js, but it wasn't reliable enough. I might look into directly working with OpenCV/Vision Framework for an iOS app.</li>
 </ul>
 
-<h3>Fall</h3>
+<h3 id="fall">Fall</h3>
 
 <ul>
 <li>Won a couple more hackathons. I might summarize my hackathon experience in a different blog post.</li>
@@ -89,7 +121,7 @@
 
 <p>I also did a ton of other stuff, but I am not sure how much I want to be sharing on my blog here. Maybe as I write more I will get more comfortable with sharing more information.</p>
 
-<h2>2024</h2>
+<h2 id="2024">2024</h2>
 
 <p>So, what are my plans for 2024? <strong>Learn. Build. Ship.</strong></p>
 
@@ -103,14 +135,15 @@
 <li>Do a deeper dive into the math of Machine/Deep Learning, before I get back into it</li>
 </ul>
 
+	</div>
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-</main>
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

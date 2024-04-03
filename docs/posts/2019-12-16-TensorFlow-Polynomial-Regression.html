@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>Polynomial Regression Using TensorFlow</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polynomial Regression Using TensorFlow</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html" />
-    <meta name="twitter:url" content="https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html" />
     <meta name="og:url" content="https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html" />
     <meta name="twitter:title" content="Polynomial Regression Using TensorFlow" />
     <meta name="og:title" content="Polynomial Regression Using TensorFlow" />
@@ -26,24 +39,43 @@
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
-    
-<main>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
 
-	<h1>Polynomial Regression Using TensorFlow</h1>
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
+    
+	<div class="post">
+	<h1 id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow</h1>
 
 <p><strong>In this tutorial you will learn about polynomial regression and how you can implement it in Tensorflow.</strong></p>
 
@@ -57,19 +89,19 @@
 <li>Quintic</li>
 </ul>
 
-<h2>Regression</h2>
+<h2 id="regression">Regression</h2>
 
-<h3>What is Regression?</h3>
+<h3 id="what-is-regression">What is Regression?</h3>
 
 <p>Regression is a statistical measurement that is used to try to determine the relationship between a
 dependent variable (often denoted by Y), and series of varying variables (called independent variables, often denoted by X ).</p>
 
-<h3>What is Polynomial Regression</h3>
+<h3 id="what-is-polynomial-regression">What is Polynomial Regression</h3>
 
 <p>This is a form of Regression Analysis where the relationship between Y and X is denoted as the nth degree/power of X.
 Polynomial regression even fits a non-linear relationship (e.g when the points don't form a straight line).</p>
 
-<h2>Imports</h2>
+<h2 id="imports">Imports</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">tensorflow.compat.v1</span> <span class="k">as</span> <span class="nn">tf</span>
@@ -80,9 +112,9 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h2>Dataset</h2>
+<h2 id="dataset">Dataset</h2>
 
-<h3>Creating Random Data</h3>
+<h3 id="creating-random-data">Creating Random Data</h3>
 
 <p>Even though in this tutorial we will use a Position Vs Salary dataset, it is important to know how to create synthetic data</p>
 
@@ -104,7 +136,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Position vs Salary Dataset</h3>
+<h3 id="position-vs-salary-dataset">Position vs Salary Dataset</h3>
 
 <p>We will be using https://drive.google.com/file/d/1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9/view (Salary vs Position Dataset)</p>
 
@@ -159,7 +191,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 
 <p><img src="/assets/gciTales/03-regression/1.png" alt="" /></p>
 
-<h2>Defining Stuff</h2>
+<h2 id="defining-stuff">Defining Stuff</h2>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">X</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">placeholder</span><span class="p">(</span><span class="s2">&quot;float&quot;</span><span class="p">)</span>
@@ -167,7 +199,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Defining Variables</h3>
+<h3 id="defining-variables">Defining Variables</h3>
 
 <p>We first define all the coefficients and constant as tensorflow variables having a random initial value</p>
 
@@ -181,7 +213,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Model Configuration</h3>
+<h3 id="model-configuration">Model Configuration</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.2</span>
@@ -189,7 +221,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Equations</h3>
+<h3 id="equations">Equations</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">deg1</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">b</span>
@@ -200,7 +232,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Cost Function</h3>
+<h3 id="cost-function">Cost Function</h3>
 
 <p>We use the Mean Squared Error Function</p>
 
@@ -213,7 +245,7 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h3>Optimizer</h3>
+<h3 id="optimizer">Optimizer</h3>
 
 <p>We use the AdamOptimizer for the polynomial functions and GradientDescentOptimizer for the linear function</p>
 
@@ -231,12 +263,12 @@ Polynomial regression even fits a non-linear relationship (e.g when the points d
 </code></pre>
 </div>
 
-<h2>Model Predictions</h2>
+<h2 id="model-predictions">Model Predictions</h2>
 
 <p>For each type of equation first we make the model predict the values of the coefficient(s) and constant, once we get these values we use it to predict the Y
 values using the X values. We then plot it to compare the actual data and predicted line.</p>
 
-<h3>Linear Equation</h3>
+<h3 id="linear-equation">Linear Equation</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -300,7 +332,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/2.png" alt="" /></p>
 
-<h3>Quadratic Equation</h3>
+<h3 id="quadratic-equation">Quadratic Equation</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -365,7 +397,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/3.png" alt="" /></p>
 
-<h3>Cubic</h3>
+<h3 id="cubic">Cubic</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -431,7 +463,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/4.png" alt="" /></p>
 
-<h3>Quartic</h3>
+<h3 id="quartic">Quartic</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -498,7 +530,7 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/5.png" alt="" /></p>
 
-<h3>Quintic</h3>
+<h3 id="quintic">Quintic</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -564,13 +596,13 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p><img src="/assets/gciTales/03-regression/6.png" alt="" /></p>
 
-<h2>Results and Conclusion</h2>
+<h2 id="results-and-conclusion">Results and Conclusion</h2>
 
 <p>You just learnt Polynomial Regression using TensorFlow!</p>
 
-<h2>Notes</h2>
+<h2 id="notes">Notes</h2>
 
-<h3>Overfitting</h3>
+<h3 id="overfitting">Overfitting</h3>
 
 <blockquote>
   <blockquote>
@@ -585,14 +617,15 @@ values using the X values. We then plot it to compare the actual data and predic
 
 <p>Basically if you train your machine learning model on a small dataset for a really large number of epochs, the model will learn all the deformities/noise in the data and will actually think that it is a normal part. Therefore when it will see some new data, it will discard that new data as noise and will impact the accuracy of the model in a negative manner</p>
 
+	</div>
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-</main>
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

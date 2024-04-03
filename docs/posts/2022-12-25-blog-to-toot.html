@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>Posting blogs as Mastodon Toots</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posting blogs as Mastodon Toots</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2022-12-25-blog-to-toot.html" />
-    <meta name="twitter:url" content="https://web.navan.dev/posts/2022-12-25-blog-to-toot.html />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2022-12-25-blog-to-toot.html" />
     <meta name="og:url" content="https://web.navan.dev/posts/2022-12-25-blog-to-toot.html" />
     <meta name="twitter:title" content="Posting blogs as Mastodon Toots" />
     <meta name="og:title" content="Posting blogs as Mastodon Toots" />
@@ -26,33 +39,52 @@
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
-    
-<main>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
 
-	<h1>Posting blogs as Mastodon Toots</h1>
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
+    
+	<div class="post">
+	<h1 id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots</h1>
 
 <p>What is better than posting a blog post? Posting about your posting pipeline. I did this previously with <a rel="noopener" target="_blank" href="/posts/2021-06-25-Blog2Twitter-P1.html">Twitter</a>. </p>
 
-<h2>the elephant in the room</h2>
+<h2 id="the-elephant-in-the-room">the elephant in the room</h2>
 
 <p>mastodon.social does not support any formatting in the status posts. 
 Yes, there are other instances which have patches to enable features such as markdown formatting, but there is no upstream support.</p>
 
-<h2>time to code</h2>
+<h2 id="time-to-code">time to code</h2>
 
 <p>My website is built using a really simple static site generator I wrote in Python.
 Therefore, each post is self-contained in a Markdown file with the necessary metadata.</p>
@@ -61,13 +93,13 @@ Therefore, each post is self-contained in a Markdown file with the necessary met
 
 <p>I initially planned on having a command line parser and some more flags.</p>
 
-<h3>interacting with mastodon</h3>
+<h3 id="interacting-with-mastodon">interacting with mastodon</h3>
 
 <p>I ended up using mastodon.py rather than crafting requests by hand. Each status<em>post/toot call returns a status</em>id that can be then used as an in<em>reply</em>to parameter.</p>
 
 <p>For the code snippets, seeing that mastodon does not support native formatting, I am resorting to using ray-so.</p>
 
-<h3>reading markdown</h3>
+<h3 id="reading-markdown">reading markdown</h3>
 
 <p>I am using a bunch of regex hacks, and reading the blog post line by line. 
 Because there is no markdown support, I append all the links to the end of the toot.
@@ -96,7 +128,7 @@ In this case, I can extract the tags from the front matter.</p>
 </code></pre>
 </div>
 
-<h3>code snippet support</h3>
+<h3 id="code-snippet-support">code snippet support</h3>
 
 <p>I am running <a rel="noopener" target="_blank" href="https://github.com/akashrchandran/Rayso-API">akashrchandran/Rayso-API</a>.</p>
 
@@ -116,19 +148,19 @@ In this case, I can extract the tags from the front matter.</p>
 </code></pre>
 </div>
 
-<h3>threads! threads! threads!</h3>
+<h3 id="threads-threads-threads">threads! threads! threads!</h3>
 
 <p>Even though mastodon does officially have a higher character limit than Twitter. 
 I prefer the way threads look.</p>
 
-<h2>result</h2>
+<h2 id="result">result</h2>
 
 <p>Everything does seem to work!
 Seeing that you are reading this on Mastodon, and that I have updated this section.</p>
 
 <p><iframe src="https://mastodon.social/@navanchauhan/109577330116812393/embed" class="mastodon-embed" style="max-width: 100%; border: 0" width="400" allowfullscreen="allowfullscreen"></iframe><script src="https://static-cdn.mastodon.social/embed.js" async="async"></script></p>
 
-<h2>what's next?</h2>
+<h2 id="whats-next">what's next?</h2>
 
 <p>Here is the current code:</p>
 
@@ -325,14 +357,15 @@ Seeing that you are reading this on Mastodon, and that I have updated this secti
 
 <p>Not the best thing I have ever written, but it works!</p>
 
+	</div>
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-</main>
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

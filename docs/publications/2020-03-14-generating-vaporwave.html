@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>Is it possible to programmatically generate Vaporwave?</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is it possible to programmatically generate Vaporwave?</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html" />
-    <meta name="twitter:url" content="https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html />
+    <meta name="twitter:url" content="https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html" />
     <meta name="og:url" content="https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html" />
     <meta name="twitter:title" content="Is it possible to programmatically generate Vaporwave?" />
     <meta name="og:title" content="Is it possible to programmatically generate Vaporwave?" />
@@ -26,24 +39,43 @@
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
-    
-<main>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
 
-	<h1>Is it possible to programmatically generate Vaporwave?</h1>
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
+    
+	<div class="post">
+	<h1 id="is-it-possible-to-programmatically-generate-vaporwave">Is it possible to programmatically generate Vaporwave?</h1>
 
 <p>This is still a pre-print.</p>
 
@@ -51,22 +83,22 @@
 
 <p>Recommended citation:</p>
 
-<h3>APA</h3>
+<h3 id="apa">APA</h3>
 
 <pre><code>Chauhan, N. (2020, March 15). Is it possible to programmatically generate Vaporwave?. https://doi.org/10.35543/osf.io/9um2r
 </code></pre>
 
-<h3>MLA</h3>
+<h3 id="mla">MLA</h3>
 
 <pre><code>Chauhan, Navan. “Is It Possible to Programmatically Generate Vaporwave?.” IndiaRxiv, 15 Mar. 2020. Web.
 </code></pre>
 
-<h3>Chicago</h3>
+<h3 id="chicago">Chicago</h3>
 
 <pre><code>Chauhan, Navan. 2020. “Is It Possible to Programmatically Generate Vaporwave?.” IndiaRxiv. March 15. doi:10.35543/osf.io/9um2r.
 </code></pre>
 
-<h3>Bibtex</h3>
+<h3 id="bibtex">Bibtex</h3>
 
 <pre><code>@misc{chauhan_2020,
  title={Is it possible to programmatically generate Vaporwave?},
@@ -79,14 +111,15 @@
 }
 </code></pre>
 
+	</div>
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-</main>
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

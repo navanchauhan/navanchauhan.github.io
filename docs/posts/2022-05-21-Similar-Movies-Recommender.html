@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>Building a Similar Movies Recommendation System</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building a Similar Movies Recommendation System</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html" />
-    <meta name="twitter:url" content="https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html" />
     <meta name="og:url" content="https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html" />
     <meta name="twitter:title" content="Building a Similar Movies Recommendation System" />
     <meta name="og:title" content="Building a Similar Movies Recommendation System" />
@@ -26,38 +39,57 @@
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
+
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
     
-<main>
+	<div class="post">
+	<h1 id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System</h1>
 
-	<h1>Building a Similar Movies Recommendation System</h1>
-
-<h2>Why?</h2>
+<h2 id="why">Why?</h2>
 
 <p>I recently came across a movie/tv-show recommender, <a rel="noopener" target="_blank" href="https://couchmoney.tv/">couchmoney.tv</a>. I loved it. I decided that I wanted to build something similar, so I could tinker with it as much as I wanted.</p>
 
 <p>I also wanted a recommendation system I could use via a REST API. Although I have not included that part in this post, I did eventually create it.</p>
 
-<h2>How?</h2>
+<h2 id="how">How?</h2>
 
 <p>By measuring the cosine of the angle between two vectors, you can get a value in the range [0,1] with 0 meaning no similarity. Now, if we find a way to represent information about movies as a vector, we can use cosine similarity as a metric to find similar movies.</p>
 
 <p>As we are recommending just based on the content of the movies, this is called a content based recommendation system.</p>
 
-<h2>Data Collection</h2>
+<h2 id="data-collection">Data Collection</h2>
 
 <p>Trakt exposes a nice API to search for movies/tv-shows. To access the API, you first need to get an API key (the Trakt ID you get when you create a new application). </p>
 
@@ -139,7 +171,7 @@
 
 <p>In the end, I could have dropped the embeddings field from the table schema as I never got around to using it.</p>
 
-<h3>Scripting Time</h3>
+<h3 id="scripting-time">Scripting Time</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">from</span> <span class="nn">database</span> <span class="kn">import</span> <span class="o">*</span>
@@ -242,7 +274,7 @@
 
 <p>Running this script took me approximately 3 hours, and resulted in an SQLite database of 141.5 MB</p>
 
-<h2>Embeddings!</h2>
+<h2 id="embeddings">Embeddings!</h2>
 
 <p>I did not want to put my poor Mac through the estimated 23 hours it would have taken to embed the sentences. I decided to use Google Colab instead.</p>
 
@@ -307,7 +339,7 @@ As of writing this post, I did not include any other database except Trakt. </p>
 
 <p>That's it!</p>
 
-<h2>Interacting with Vectors</h2>
+<h2 id="interacting-with-vectors">Interacting with Vectors</h2>
 
 <p>We use the <code>trakt_id</code> for the movie as the ID for the vectors and upsert it into the index. </p>
 
@@ -358,7 +390,7 @@ It is possible that this additional step of mapping could be avoided by storing 
 </code></pre>
 </div>
 
-<h3>Testing it Out</h3>
+<h3 id="testing-it-out">Testing it Out</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="n">movie_name</span> <span class="o">=</span> <span class="s2">&quot;Now You See Me&quot;</span>
@@ -404,21 +436,21 @@ Spies (2015): A secret agent must perform a heist without time on his side
 
 <p>For now, I am happy with the recommendations.</p>
 
-<h2>Simple UI</h2>
+<h2 id="simple-ui">Simple UI</h2>
 
 <p>The code for the flask app can be found on GitHub: <a rel="noopener" target="_blank" href="https://github.com/navanchauhan/FlixRec">navanchauhan/FlixRec</a> or on my <a rel="noopener" target="_blank" href="https://pi4.navan.dev/gitea/navan/FlixRec">Gitea instance</a></p>
 
 <p>I quickly whipped up a simple Flask App to deal with problems of multiple movies sharing the title, and typos in the search query.</p>
 
-<h3>Home Page</h3>
+<h3 id="home-page">Home Page</h3>
 
 <p><img src="/assets/flixrec/home.png" alt="Home Page" /></p>
 
-<h3>Handling Multiple Movies with Same Title</h3>
+<h3 id="handling-multiple-movies-with-same-title">Handling Multiple Movies with Same Title</h3>
 
 <p><img src="/assets/flixrec/multiple.png" alt="Multiple Movies with Same Title" /></p>
 
-<h3>Results Page</h3>
+<h3 id="results-page">Results Page</h3>
 
 <p><img src="/assets/flixrec/results.png" alt="Results Page" /></p>
 
@@ -428,14 +460,14 @@ Spies (2015): A secret agent must perform a heist without time on his side
 
 <p>Test it out at <a rel="noopener" target="_blank" href="https://flixrec.navan.dev">https://flixrec.navan.dev</a></p>
 
-<h2>Current Limittations</h2>
+<h2 id="current-limittations">Current Limittations</h2>
 
 <ul>
 <li>Does not work well with popular franchises</li>
 <li>No Genre Filter</li>
 </ul>
 
-<h2>Future Addons</h2>
+<h2 id="future-addons">Future Addons</h2>
 
 <ul>
 <li>Include Cast Data
@@ -449,14 +481,15 @@ Spies (2015): A secret agent must perform a heist without time on his side
 <li>Filter based on popularity: The data already exists in the indexed database</li>
 </ul>
 
+	</div>
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-</main>
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

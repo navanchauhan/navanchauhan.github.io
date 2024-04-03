@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>Fixing ADFRSuite for Apple Silicon</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+    <link rel="stylesheet" href="/assets/main.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="og:site_name" content="Navan Chauhan" />
+    <link rel="canonical" href="https://web.navan.dev/posts/2024-03-28-Running-ADFRSuite-on-arm64-Macs.html" />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2024-03-28-Running-ADFRSuite-on-arm64-Macs.html" />
+    <meta name="og:url" content="https://web.navan.dev/posts/2024-03-28-Running-ADFRSuite-on-arm64-Macs.html" />
+    <meta name="twitter:title" content="Fixing ADFRSuite for Apple Silicon" />
+    <meta name="og:title" content="Fixing ADFRSuite for Apple Silicon" />
+    <meta name="description" content="Fixing ADFRsuite on M1/MX chip Macs - CLI Tools" />
+    <meta name="twitter:description" content="Fixing ADFRsuite on M1/MX chip Macs - CLI Tools" />
+    <meta name="og:description" content="Fixing ADFRsuite on M1/MX chip Macs - CLI Tools" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png" />
+    <link rel="alternate" href="/feed.rss" type="application/rss+xml" title="Subscribe to Navan Chauhan" />
+    <meta name="twitter:image" content="https://web.navan.dev/images/opengraph/posts/2024-03-28-Running-ADFRSuite-on-arm64-Macs.png" />
+    <meta name="og:image" content="https://web.navan.dev/images/opengraph/posts/2024-03-28-Running-ADFRSuite-on-arm64-Macs.png" />
+    <meta name="google-site-verification" content="LVeSZxz-QskhbEjHxOi7-BM5dDxTg53x2TwrjFxfL0k" />
+    <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
+    <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
+    <link rel="manifest" href="/manifest.json" />
+    
+</head>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
+
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
+    
+	<div class="post">
+	<h1 id="fixing-adfrsuite-for-apple-silicon">Fixing ADFRSuite for Apple Silicon</h1>
+
+<p>We are going to be running everything through Rosetta 2. I am confident that if I had access to the original source code, I could find a way to run everything natively. </p>
+
+<p>These are the following issues that we will be fixing in this part:</p>
+
+<ul>
+<li>“python2.7” cannot be opened because the developer cannot be verified.</li>
+<li>OpenBabel Error</li>
+<li>Segmentation fault while running the <a rel="noopener" target="_blank" href="https://ccsb.scripps.edu/adcp/tutorial-redocking/">redocking tutorial</a></li>
+</ul>
+
+<p>For the sake of simplicity, I am assuming that I am running all these commands in the folder <code>~/Developer/scrippstuff/</code></p>
+
+<h2 id="installing-rosetta-2">Installing Rosetta 2</h2>
+
+<p>We are going to run all of these steps in the terminal</p>
+
+<div class="codehilite">
+<pre><span></span><code>/usr/sbin/softwareupdate<span class="w"> </span>--install-rosetta<span class="w"> </span>--agree-to-license
+</code></pre>
+</div>
+
+<h3 id="install-homebrew-for-x86">Install Homebrew for x86</h3>
+
+<p>Both versions of homebrew (x86 and arm64) can peacefully coexist on your system.</p>
+
+<p>From now on, every command should be run in a terminal session that starts with this as the first command:</p>
+
+<div class="codehilite">
+<pre><span></span><code>arch<span class="w"> </span>-x86_64<span class="w"> </span>zsh
+</code></pre>
+</div>
+
+<p>Now, we can install homebrew:</p>
+
+<div class="codehilite">
+<pre><span></span><code>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+</code></pre>
+</div>
+
+<p>Here is my output:</p>
+
+<div class="codehilite">
+<pre><span></span><code>➜<span class="w">  </span>scrippstuff<span class="w"> </span>uname<span class="w"> </span>-a
+Darwin<span class="w"> </span>Navans-MacBook-Pro.local<span class="w"> </span><span class="m">23</span>.3.0<span class="w"> </span>Darwin<span class="w"> </span>Kernel<span class="w"> </span>Version<span class="w"> </span><span class="m">23</span>.3.0:<span class="w"> </span>Wed<span class="w"> </span>Dec<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="m">21</span>:31:00<span class="w"> </span>PST<span class="w"> </span><span class="m">2023</span><span class="p">;</span><span class="w"> </span>root:xnu-10002.81.5~7/RELEASE_ARM64_T6020<span class="w"> </span>x86_64
+➜<span class="w">  </span>scrippstuff<span class="w"> </span>/bin/bash<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>curl<span class="w"> </span>-fsSL<span class="w"> </span>https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="k">)</span><span class="s2">&quot;</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Checking<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="sb">`</span>sudo<span class="sb">`</span><span class="w"> </span>access<span class="w"> </span><span class="o">(</span>which<span class="w"> </span>may<span class="w"> </span>request<span class="w"> </span>your<span class="w"> </span>password<span class="o">)</span>...
+Password:
+<span class="o">==</span>&gt;<span class="w"> </span>This<span class="w"> </span>script<span class="w"> </span>will<span class="w"> </span>install:
+/usr/local/bin/brew
+/usr/local/share/doc/homebrew
+/usr/local/share/man/man1/brew.1
+/usr/local/share/zsh/site-functions/_brew
+/usr/local/etc/bash_completion.d/brew
+/usr/local/Homebrew
+<span class="o">==</span>&gt;<span class="w"> </span>The<span class="w"> </span>following<span class="w"> </span>new<span class="w"> </span>directories<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>created:
+/usr/local/Cellar
+/usr/local/Caskroom
+
+Press<span class="w"> </span>RETURN/ENTER<span class="w"> </span>to<span class="w"> </span><span class="k">continue</span><span class="w"> </span>or<span class="w"> </span>any<span class="w"> </span>other<span class="w"> </span>key<span class="w"> </span>to<span class="w"> </span>abort:
+<span class="o">==</span>&gt;<span class="w"> </span>/usr/bin/sudo<span class="w"> </span>/bin/mkdir<span class="w"> </span>-p<span class="w"> </span>/usr/local/Cellar<span class="w"> </span>/usr/local/Caskroom
+<span class="o">==</span>&gt;<span class="w"> </span>/usr/bin/sudo<span class="w"> </span>/bin/chmod<span class="w"> </span><span class="nv">ug</span><span class="o">=</span>rwx<span class="w"> </span>/usr/local/Cellar<span class="w"> </span>/usr/local/Caskroom
+<span class="o">==</span>&gt;<span class="w"> </span>/usr/bin/sudo<span class="w"> </span>/usr/sbin/chown<span class="w"> </span>navanchauhan<span class="w"> </span>/usr/local/Cellar<span class="w"> </span>/usr/local/Caskroom
+<span class="o">==</span>&gt;<span class="w"> </span>/usr/bin/sudo<span class="w"> </span>/usr/bin/chgrp<span class="w"> </span>admin<span class="w"> </span>/usr/local/Cellar<span class="w"> </span>/usr/local/Caskroom
+<span class="o">==</span>&gt;<span class="w"> </span>/usr/bin/sudo<span class="w"> </span>/usr/sbin/chown<span class="w"> </span>-R<span class="w"> </span>navanchauhan:admin<span class="w"> </span>/usr/local/Homebrew
+<span class="o">==</span>&gt;<span class="w"> </span>/usr/bin/sudo<span class="w"> </span>/bin/mkdir<span class="w"> </span>-p<span class="w"> </span>/Users/navanchauhan/Library/Caches/Homebrew
+<span class="o">==</span>&gt;<span class="w"> </span>/usr/bin/sudo<span class="w"> </span>/bin/chmod<span class="w"> </span>g+rwx<span class="w"> </span>/Users/navanchauhan/Library/Caches/Homebrew
+<span class="o">==</span>&gt;<span class="w"> </span>/usr/bin/sudo<span class="w"> </span>/usr/sbin/chown<span class="w"> </span>-R<span class="w"> </span>navanchauhan<span class="w"> </span>/Users/navanchauhan/Library/Caches/Homebrew
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>and<span class="w"> </span>installing<span class="w"> </span>Homebrew...
+remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">47</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">47</span>/47<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">19</span>/19<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">47</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">28</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">47</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">28</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span>
+Unpacking<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">47</span>/47<span class="o">)</span>,<span class="w"> </span><span class="m">6</span>.11<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">223</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+From<span class="w"> </span>https://github.com/Homebrew/brew
+<span class="w"> </span>+<span class="w"> </span>18ebdd8c8f...67a096fcbb<span class="w"> </span>tapioca-compiler-for-tty-rbi<span class="w"> </span>-&gt;<span class="w"> </span>origin/tapioca-compiler-for-tty-rbi<span class="w">  </span><span class="o">(</span>forced<span class="w"> </span>update<span class="o">)</span>
+Switched<span class="w"> </span>to<span class="w"> </span>and<span class="w"> </span>reset<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;stable&#39;</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Updating<span class="w"> </span>Homebrew...
+<span class="o">==</span>&gt;<span class="w"> </span>Installation<span class="w"> </span>successful!
+
+<span class="o">==</span>&gt;<span class="w"> </span>Homebrew<span class="w"> </span>has<span class="w"> </span>enabled<span class="w"> </span>anonymous<span class="w"> </span>aggregate<span class="w"> </span>formulae<span class="w"> </span>and<span class="w"> </span>cask<span class="w"> </span>analytics.
+Read<span class="w"> </span>the<span class="w"> </span>analytics<span class="w"> </span>documentation<span class="w"> </span><span class="o">(</span>and<span class="w"> </span>how<span class="w"> </span>to<span class="w"> </span>opt-out<span class="o">)</span><span class="w"> </span>here:
+<span class="w">  </span>https://docs.brew.sh/Analytics
+No<span class="w"> </span>analytics<span class="w"> </span>data<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>sent<span class="w"> </span>yet<span class="w"> </span><span class="o">(</span>nor<span class="w"> </span>will<span class="w"> </span>any<span class="w"> </span>be<span class="w"> </span>during<span class="w"> </span>this<span class="w"> </span>install<span class="w"> </span>run<span class="o">)</span>.
+
+<span class="o">==</span>&gt;<span class="w"> </span>Homebrew<span class="w"> </span>is<span class="w"> </span>run<span class="w"> </span>entirely<span class="w"> </span>by<span class="w"> </span>unpaid<span class="w"> </span>volunteers.<span class="w"> </span>Please<span class="w"> </span>consider<span class="w"> </span>donating:
+<span class="w">  </span>https://github.com/Homebrew/brew#donations
+
+<span class="o">==</span>&gt;<span class="w"> </span>Next<span class="w"> </span>steps:
+-<span class="w"> </span>Run<span class="w"> </span>these<span class="w"> </span>two<span class="w"> </span>commands<span class="w"> </span><span class="k">in</span><span class="w"> </span>your<span class="w"> </span>terminal<span class="w"> </span>to<span class="w"> </span>add<span class="w"> </span>Homebrew<span class="w"> </span>to<span class="w"> </span>your<span class="w"> </span>PATH:
+<span class="w">    </span><span class="o">(</span>echo<span class="p">;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;eval &quot;$(/usr/local/bin/brew shellenv)&quot;&#39;</span><span class="o">)</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>/Users/navanchauhan/.zprofile
+<span class="w">    </span><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>/usr/local/bin/brew<span class="w"> </span>shellenv<span class="k">)</span><span class="s2">&quot;</span>
+-<span class="w"> </span>Run<span class="w"> </span>brew<span class="w"> </span><span class="nb">help</span><span class="w"> </span>to<span class="w"> </span>get<span class="w"> </span>started
+-<span class="w"> </span>Further<span class="w"> </span>documentation:
+<span class="w">    </span>https://docs.brew.sh
+</code></pre>
+</div>
+
+<p>At this point, you don't need to edit your <code>zshrc</code> or <code>zsh_profile</code>.</p>
+
+<h3 id="install-pyenv">Install pyenv</h3>
+
+<p>The reason we are installing pyenv is because it is easier to build Python 2.7.18 from scratch than messing around with codesigning and quarantine bs on macOS.</p>
+
+<div class="codehilite">
+<pre><span></span><code>➜<span class="w">  </span>scrippstuff<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span><span class="nv">pyenv</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/pyenv/manifests/2.3.36
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Fetching<span class="w"> </span>dependencies<span class="w"> </span><span class="k">for</span><span class="w"> </span>pyenv:<span class="w"> </span>m4,<span class="w"> </span>autoconf,<span class="w"> </span>ca-certificates,<span class="w"> </span>openssl@3,<span class="w"> </span>pkg-config<span class="w"> </span>and<span class="w"> </span><span class="nv">readline</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/m4/manifests/1.4.19
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Fetching<span class="w"> </span><span class="nv">m4</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/m4/blobs/sha256:8434a67a4383836b2531a6180e068640c5b482ee6781b673d65712e4fc86ca76
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/autoconf/manifests/2.72
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Fetching<span class="w"> </span><span class="nv">autoconf</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/autoconf/blobs/sha256:12368e33b89d221550ba9e261b0c6ece0b0e89250fb4c95169d09081e0ebb2dd
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/ca-certificates/manifests/2024-03-11
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Fetching<span class="w"> </span>ca-certificates
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/ca-certificates/blobs/sha256:cab828953672906e00a8f25db751977b8dc4115f021f8dfe82b644ade03dacdb
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/openssl/3/manifests/3.2.1-1
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Fetching<span class="w"> </span>openssl@3
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/openssl/3/blobs/sha256:ef8211c5115fc85f01261037f8fea76cc432b92b4fb23bc87bbf41e9198fcc0f
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/pkg-config/manifests/0.29.2_3
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Fetching<span class="w"> </span>pkg-config
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/pkg-config/blobs/sha256:421571f340277c62c5cc6fd68737bd7c4e085de113452ea49b33bcd46509bb12
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/readline/manifests/8.2.10
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Fetching<span class="w"> </span><span class="nv">readline</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/readline/blobs/sha256:9796e0ff1cc29ae7e75d8fc1a3e2c5e8ae2aeade8d9d59a16363306bf6c5b8f4
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Fetching<span class="w"> </span><span class="nv">pyenv</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/pyenv/blobs/sha256:d117a99ed53502aff29109bfa366693ca623f2326e1e6b4db68fef7b7f63eeba
+<span class="c1">############################################################################################################################################################### 100.0%</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Installing<span class="w"> </span>dependencies<span class="w"> </span><span class="k">for</span><span class="w"> </span>pyenv:<span class="w"> </span>m4,<span class="w"> </span>autoconf,<span class="w"> </span>ca-certificates,<span class="w"> </span>openssl@3,<span class="w"> </span>pkg-config<span class="w"> </span>and<span class="w"> </span><span class="nv">readline</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Installing<span class="w"> </span>pyenv<span class="w"> </span>dependency:<span class="w"> </span><span class="nv">m4</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/m4/manifests/1.4.19
+Already<span class="w"> </span>downloaded:<span class="w"> </span>/Users/navanchauhan/Library/Caches/Homebrew/downloads/5b2a7f715487b7377e409e8ca58569040cd89f33859f691210c58d94410fd33b--m4-1.4.19.bottle_manifest.json
+<span class="o">==</span>&gt;<span class="w"> </span>Pouring<span class="w"> </span>m4--1.4.19.sonoma.bottle.tar.gz
+🍺<span class="w">  </span>/usr/local/Cellar/m4/1.4.19:<span class="w"> </span><span class="m">13</span><span class="w"> </span>files,<span class="w"> </span><span class="m">739</span>.9KB
+<span class="o">==</span>&gt;<span class="w"> </span>Installing<span class="w"> </span>pyenv<span class="w"> </span>dependency:<span class="w"> </span><span class="nv">autoconf</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/autoconf/manifests/2.72
+Already<span class="w"> </span>downloaded:<span class="w"> </span>/Users/navanchauhan/Library/Caches/Homebrew/downloads/b73cdb320c4261bbf8d02d03e50dc755c869c5859c1d4e93616898fc7cd939ff--autoconf-2.72.bottle_manifest.json
+<span class="o">==</span>&gt;<span class="w"> </span>Pouring<span class="w"> </span>autoconf--2.72.sonoma.bottle.tar.gz
+🍺<span class="w">  </span>/usr/local/Cellar/autoconf/2.72:<span class="w"> </span><span class="m">71</span><span class="w"> </span>files,<span class="w"> </span><span class="m">3</span>.6MB
+<span class="o">==</span>&gt;<span class="w"> </span>Installing<span class="w"> </span>pyenv<span class="w"> </span>dependency:<span class="w"> </span>ca-certificates
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/ca-certificates/manifests/2024-03-11
+Already<span class="w"> </span>downloaded:<span class="w"> </span>/Users/navanchauhan/Library/Caches/Homebrew/downloads/c431e0186df2ccc2ea942b34a3c26c2cebebec8e07ad6abdae48447a52c5f506--ca-certificates-2024-03-11.bottle_manifest.json
+<span class="o">==</span>&gt;<span class="w"> </span>Pouring<span class="w"> </span>ca-certificates--2024-03-11.all.bottle.tar.gz
+<span class="o">==</span>&gt;<span class="w"> </span>Regenerating<span class="w"> </span>CA<span class="w"> </span>certificate<span class="w"> </span>bundle<span class="w"> </span>from<span class="w"> </span>keychain,<span class="w"> </span>this<span class="w"> </span>may<span class="w"> </span>take<span class="w"> </span>a<span class="w"> </span><span class="k">while</span>...
+🍺<span class="w">  </span>/usr/local/Cellar/ca-certificates/2024-03-11:<span class="w"> </span><span class="m">3</span><span class="w"> </span>files,<span class="w"> </span><span class="m">229</span>.6KB
+<span class="o">==</span>&gt;<span class="w"> </span>Installing<span class="w"> </span>pyenv<span class="w"> </span>dependency:<span class="w"> </span>openssl@3
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/openssl/3/manifests/3.2.1-1
+Already<span class="w"> </span>downloaded:<span class="w"> </span>/Users/navanchauhan/Library/Caches/Homebrew/downloads/f7b6e249843882452d784a8cbc4e19231186230b9e485a2a284d5c1952a95ec2--openssl@3-3.2.1-1.bottle_manifest.json
+<span class="o">==</span>&gt;<span class="w"> </span>Pouring<span class="w"> </span>openssl@3--3.2.1.sonoma.bottle.1.tar.gz
+🍺<span class="w">  </span>/usr/local/Cellar/openssl@3/3.2.1:<span class="w"> </span><span class="m">6</span>,874<span class="w"> </span>files,<span class="w"> </span><span class="m">32</span>.5MB
+<span class="o">==</span>&gt;<span class="w"> </span>Installing<span class="w"> </span>pyenv<span class="w"> </span>dependency:<span class="w"> </span>pkg-config
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/pkg-config/manifests/0.29.2_3
+Already<span class="w"> </span>downloaded:<span class="w"> </span>/Users/navanchauhan/Library/Caches/Homebrew/downloads/ac691fc7ab8ecffba32a837e7197101d271474a3a84cfddcc30c9fd6763ab3c6--pkg-config-0.29.2_3.bottle_manifest.json
+<span class="o">==</span>&gt;<span class="w"> </span>Pouring<span class="w"> </span>pkg-config--0.29.2_3.sonoma.bottle.tar.gz
+🍺<span class="w">  </span>/usr/local/Cellar/pkg-config/0.29.2_3:<span class="w"> </span><span class="m">11</span><span class="w"> </span>files,<span class="w"> </span><span class="m">656</span>.4KB
+<span class="o">==</span>&gt;<span class="w"> </span>Installing<span class="w"> </span>pyenv<span class="w"> </span>dependency:<span class="w"> </span><span class="nv">readline</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Downloading<span class="w"> </span>https://ghcr.io/v2/homebrew/core/readline/manifests/8.2.10
+Already<span class="w"> </span>downloaded:<span class="w"> </span>/Users/navanchauhan/Library/Caches/Homebrew/downloads/4ddd52803319828799f1932d4c7fa8d11c667049b20a56341c0c19246a1be93b--readline-8.2.10.bottle_manifest.json
+<span class="o">==</span>&gt;<span class="w"> </span>Pouring<span class="w"> </span>readline--8.2.10.sonoma.bottle.tar.gz
+🍺<span class="w">  </span>/usr/local/Cellar/readline/8.2.10:<span class="w"> </span><span class="m">50</span><span class="w"> </span>files,<span class="w"> </span><span class="m">1</span>.7MB
+<span class="o">==</span>&gt;<span class="w"> </span>Installing<span class="w"> </span><span class="nv">pyenv</span>
+<span class="o">==</span>&gt;<span class="w"> </span>Pouring<span class="w"> </span>pyenv--2.3.36.sonoma.bottle.tar.gz
+🍺<span class="w">  </span>/usr/local/Cellar/pyenv/2.3.36:<span class="w"> </span><span class="m">1</span>,158<span class="w"> </span>files,<span class="w"> </span><span class="m">3</span>.4MB
+<span class="o">==</span>&gt;<span class="w"> </span>Running<span class="w"> </span><span class="sb">`</span>brew<span class="w"> </span>cleanup<span class="w"> </span>pyenv<span class="sb">`</span>...
+Disable<span class="w"> </span>this<span class="w"> </span>behaviour<span class="w"> </span>by<span class="w"> </span>setting<span class="w"> </span>HOMEBREW_NO_INSTALL_CLEANUP.
+Hide<span class="w"> </span>these<span class="w"> </span>hints<span class="w"> </span>with<span class="w"> </span>HOMEBREW_NO_ENV_HINTS<span class="w"> </span><span class="o">(</span>see<span class="w"> </span><span class="sb">`</span>man<span class="w"> </span>brew<span class="sb">`</span><span class="o">)</span>.
+</code></pre>
+</div>
+
+<p>And, build the last version of Python 2.7</p>
+
+<div class="codehilite">
+<pre><span></span><code>➜<span class="w">  </span>scrippstuff<span class="w"> </span><span class="nv">PYENV_ROOT</span><span class="o">=</span><span class="s2">&quot;~/Developer/scrippstuff&quot;</span><span class="w"> </span>pyenv<span class="w"> </span>install<span class="w"> </span><span class="m">2</span>.7.18
+python-build:<span class="w"> </span>use<span class="w"> </span>openssl<span class="w"> </span>from<span class="w"> </span>homebrew
+python-build:<span class="w"> </span>use<span class="w"> </span>readline<span class="w"> </span>from<span class="w"> </span>homebrew
+Downloading<span class="w"> </span>Python-2.7.18.tar.xz...
+-&gt;<span class="w"> </span>https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tar.xz
+Installing<span class="w"> </span>Python-2.7.18...
+patching<span class="w"> </span>file<span class="w"> </span>configure
+patching<span class="w"> </span>file<span class="w"> </span>configure.ac
+patching<span class="w"> </span>file<span class="w"> </span>setup.py
+patching<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;Mac/Tools/pythonw.c&#39;</span>
+patching<span class="w"> </span>file<span class="w"> </span>setup.py
+patching<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;Doc/library/ctypes.rst&#39;</span>
+patching<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;Lib/test/test_str.py&#39;</span>
+patching<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;Lib/test/test_unicode.py&#39;</span>
+patching<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;Modules/_ctypes/_ctypes.c&#39;</span>
+patching<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;Modules/_ctypes/callproc.c&#39;</span>
+patching<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;Modules/_ctypes/ctypes.h&#39;</span>
+patching<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;Modules/_ctypes/callproc.c&#39;</span>
+patching<span class="w"> </span>file<span class="w"> </span>setup.py
+patching<span class="w"> </span>file<span class="w"> </span><span class="s1">&#39;Mac/Modules/qt/setup.py&#39;</span>
+patching<span class="w"> </span>file<span class="w"> </span>setup.py
+python-build:<span class="w"> </span>use<span class="w"> </span>readline<span class="w"> </span>from<span class="w"> </span>homebrew
+python-build:<span class="w"> </span>use<span class="w"> </span>zlib<span class="w"> </span>from<span class="w"> </span>xcode<span class="w"> </span>sdk
+Installed<span class="w"> </span>Python-2.7.18<span class="w"> </span>to<span class="w"> </span>/Users/navanchauhan/Developer/scrippstuff/~/Developer/scrippstuff/versions/2.7.18
+</code></pre>
+</div>
+
+<p>Test the new installation:</p>
+
+<div class="codehilite">
+<pre><span></span><code>➜<span class="w">  </span>scrippstuff<span class="w"> </span>~/Developer/scrippstuff/<span class="se">\~</span>/Developer/scrippstuff/versions/2.7.18/bin/python2.7
+Python<span class="w"> </span><span class="m">2</span>.7.18<span class="w"> </span><span class="o">(</span>default,<span class="w"> </span>Mar<span class="w"> </span><span class="m">28</span><span class="w"> </span><span class="m">2024</span>,<span class="w"> </span><span class="m">20</span>:47:13<span class="o">)</span>
+<span class="o">[</span>GCC<span class="w"> </span>Apple<span class="w"> </span>LLVM<span class="w"> </span><span class="m">15</span>.0.0<span class="w"> </span><span class="o">(</span>clang-1500.1.0.2.5<span class="o">)]</span><span class="w"> </span>on<span class="w"> </span>darwin
+Type<span class="w"> </span><span class="s2">&quot;help&quot;</span>,<span class="w"> </span><span class="s2">&quot;copyright&quot;</span>,<span class="w"> </span><span class="s2">&quot;credits&quot;</span><span class="w"> </span>or<span class="w"> </span><span class="s2">&quot;license&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+&gt;&gt;&gt;<span class="w"> </span>from<span class="w"> </span>random<span class="w"> </span>import<span class="w"> </span>randint
+&gt;&gt;&gt;<span class="w"> </span>randint<span class="o">(</span><span class="m">0</span>,10<span class="o">)</span>
+<span class="m">6</span>
+&gt;&gt;&gt;<span class="w"> </span>exit<span class="o">()</span>
+</code></pre>
+</div>
+
+<p>Now, we can compress this newly created Python version into a <code>tar.gz</code> file to replace the one provided in ADFRsuite<em>x86</em>64Darwin_1.0.tar.gz. Don't forget the <code>.</code> at the end</p>
+
+<div class="codehilite">
+<pre><span></span><code>➜<span class="w">  </span>scrippstuff<span class="w"> </span>tar<span class="w"> </span>-C<span class="w"> </span>./<span class="se">\~</span>/Developer/scrippstuff/versions/2.7.18<span class="w"> </span>-czf<span class="w"> </span>new.tar.gz<span class="w"> </span>.
+</code></pre>
+</div>
+
+<h2 id="install-adfrsuite">Install ADFRsuite</h2>
+
+<p>If you don't already have the tarball, you can download it by:</p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-o<span class="w"> </span>adfr.tar.gz<span class="w"> </span>https://ccsb.scripps.edu/adfr/download/1033/
+</code></pre>
+</div>
+
+<p>Uncompress it</p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>tar<span class="w"> </span>-xvzf<span class="w"> </span>adfr.tar.gz
+</code></pre>
+</div>
+
+<p>Replace the provided Python archive with the one we created:</p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ADFRsuite_x86_64Darwin_1.0
+$<span class="w"> </span>mv<span class="w"> </span>new.tar.gz<span class="w"> </span>Python2.7.tar.gz
+</code></pre>
+</div>
+
+<p>Note: For some reason simply copying it doesn't work and you need to use <code>mv</code></p>
+
+<p>Just to not mess with anything else, I will be installing everything in a folder called <code>clean_install</code></p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>clean_install
+$<span class="w"> </span>./install.sh<span class="w"> </span>-d<span class="w"> </span>clean_install
+...
+<span class="w"> </span>ADFRsuite<span class="w"> </span>installation<span class="w"> </span>complete.
+To<span class="w"> </span>run<span class="w"> </span>agfr,<span class="w"> </span>agfrgui,<span class="w"> </span>adfr,<span class="w"> </span>autosite,<span class="w"> </span>about,<span class="w"> </span>pythonsh<span class="w"> </span>scripts<span class="w"> </span>located<span class="w"> </span>at:
+/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/bin
+add<span class="w">  </span>/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/bin<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>path<span class="w"> </span>environment<span class="w"> </span>variable<span class="w"> </span><span class="k">in</span><span class="w"> </span>.cshrc<span class="w"> </span>or<span class="w"> </span>.bashrc:
+.cshrc:
+<span class="nb">set</span><span class="w"> </span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/bin<span class="w"> </span><span class="nv">$path</span><span class="o">)</span>
+
+.bashrc:
+<span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/bin:<span class="nv">$PATH</span>
+</code></pre>
+</div>
+
+<p>Now, to test <code>agfr</code>, first run the command (replacing <code>navanchauhan</code> with yout username)</p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span>/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/bin:<span class="nv">$PATH</span>
+$<span class="w"> </span>agfr
+➜<span class="w">  </span>ADFRsuite_x86_64Darwin_1.0<span class="w"> </span><span class="nv">agfr</span>
+<span class="o">==============================</span>
+***<span class="w"> </span>Open<span class="w"> </span>Babel<span class="w"> </span>Error<span class="w">  </span><span class="k">in</span><span class="w"> </span>openLib
+<span class="w">  </span>/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/lib/openbabel/2.4.1/acesformat.so<span class="w"> </span>did<span class="w"> </span>not<span class="w"> </span>load<span class="w"> </span>properly.
+<span class="w"> </span>Error:<span class="w"> </span>dlopen<span class="o">(</span>/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/lib/openbabel/2.4.1/acesformat.so,<span class="w"> </span>0x0009<span class="o">)</span>:<span class="w"> </span>Library<span class="w"> </span>not<span class="w"> </span>loaded:<span class="w"> </span>/opt/X11/lib/libcairo.2.dylib
+<span class="w">  </span>Referenced<span class="w"> </span>from:<span class="w"> </span>&lt;24174F3E-2670-79AC-4F26-F8B49774194A&gt;<span class="w"> </span>/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/lib/openbabel/2.4.1/acesformat.so
+<span class="w">  </span>Reason:<span class="w"> </span>tried:<span class="w"> </span><span class="s1">&#39;/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/lib/libcairo.2.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/opt/X11/lib/libcairo.2.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/System/Volumes/Preboot/Cryptexes/OS/opt/X11/lib/libcairo.2.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/opt/X11/lib/libcairo.2.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/usr/local/lib/libcairo.2.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/usr/lib/libcairo.2.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file,<span class="w"> </span>not<span class="w"> </span><span class="k">in</span><span class="w"> </span>dyld<span class="w"> </span>cache<span class="o">)</span>
+<span class="o">==============================</span>
+</code></pre>
+</div>
+
+<h2 id="fixing-open-babel-error">Fixing <code>Open Babel Error</code></h2>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>brew<span class="w"> </span>install<span class="w"> </span>cairo
+</code></pre>
+</div>
+
+<h2 id="completing-the-re-docking-tutorial">Completing the re-docking tutorial</h2>
+
+<h3 id="dowbloading-the-dataset">Dowbloading the dataset</h3>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>curl<span class="w"> </span>-o<span class="w"> </span>tutorial-data.zip<span class="w"> </span>https://ccsb.scripps.edu/adcp/download/1063/
+$<span class="w"> </span>unzip<span class="w"> </span>tutorial-data.zip
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ADCP_tutorial_data/3Q47
+</code></pre>
+</div>
+
+<h3 id="conversion-to-pdbqt">Conversion to PDBQT</h3>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>reduce<span class="w"> </span>3Q47_rec.pdb<span class="w"> </span>&gt;<span class="w"> </span>3Q47_recH.pdb
+$<span class="w"> </span>reduce<span class="w"> </span>3Q47_pep.pdb<span class="w"> </span>&gt;<span class="w"> </span>3Q47_pepH.pdb
+</code></pre>
+</div>
+
+<h3 id="preparing-receptor">Preparing Receptor</h3>
+
+<pre><code>$ prepare_receptor -r 3Q47_recH.pdb
+$ prepare_ligand -l 3Q47_pepH.pdb
+</code></pre>
+
+<h3 id="generate-target-file">Generate Target File</h3>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>agfr<span class="w"> </span>-r<span class="w"> </span>3Q47_recH.pdbqt<span class="w"> </span>-l<span class="w"> </span>3Q47_pepH.pdbqt<span class="w"> </span>-asv<span class="w"> </span><span class="m">1</span>.1<span class="w"> </span>-o<span class="w"> </span>3Q47
+➜<span class="w">  </span>3Q47<span class="w"> </span>agfr<span class="w"> </span>-r<span class="w"> </span>3Q47_recH.pdbqt<span class="w"> </span>-l<span class="w"> </span>3Q47_pepH.pdbqt<span class="w"> </span>-asv<span class="w"> </span><span class="m">1</span>.1<span class="w"> </span>-o<span class="w"> </span>3Q47
+Traceback<span class="w"> </span><span class="o">(</span>most<span class="w"> </span>recent<span class="w"> </span>call<span class="w"> </span>last<span class="o">)</span>:
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/CCSBpckgs/ADFR/bin/runAGFR.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">36</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">    </span>from<span class="w"> </span>ADFR.utils.runAGFR<span class="w"> </span>import<span class="w"> </span>runAGFR
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/CCSBpckgs/ADFR/utils/runAGFR.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">41</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">    </span>from<span class="w"> </span>ADFR.utils.maps<span class="w"> </span>import<span class="w"> </span>flexResStr2flexRes
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/CCSBpckgs/ADFR/utils/maps.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">35</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">    </span>from<span class="w"> </span>ADFRcc.adfr<span class="w"> </span>import<span class="w"> </span>GridMap
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/CCSBpckgs/ADFRcc/__init__.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">34</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">    </span>from<span class="w"> </span>ADFRcc.adfr<span class="w"> </span>import<span class="w"> </span>Parameters
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/CCSBpckgs/ADFRcc/adfr.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">43</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">    </span>import<span class="w"> </span>ADFRcc.adfrcc<span class="w"> </span>as<span class="w"> </span>CPP
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/CCSBpckgs/ADFRcc/adfrcc.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">28</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>&lt;module&gt;
+<span class="w">    </span><span class="nv">_adfrcc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>swig_import_helper<span class="o">()</span>
+<span class="w">  </span>File<span class="w"> </span><span class="s2">&quot;/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/CCSBpckgs/ADFRcc/adfrcc.py&quot;</span>,<span class="w"> </span>line<span class="w"> </span><span class="m">24</span>,<span class="w"> </span><span class="k">in</span><span class="w"> </span>swig_import_helper
+<span class="w">    </span><span class="nv">_mod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>imp.load_module<span class="o">(</span><span class="s1">&#39;_adfrcc&#39;</span>,<span class="w"> </span>fp,<span class="w"> </span>pathname,<span class="w"> </span>description<span class="o">)</span>
+ImportError:<span class="w"> </span>dlopen<span class="o">(</span>/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/CCSBpckgs/ADFRcc/_adfrcc.so,<span class="w"> </span>0x0002<span class="o">)</span>:<span class="w"> </span>Library<span class="w"> </span>not<span class="w"> </span>loaded:<span class="w"> </span>/Users/Shared/mgltoolsDev/src/homebrew/opt/gcc/lib/gcc/8/libgomp.1.dylib
+<span class="w">  </span>Referenced<span class="w"> </span>from:<span class="w"> </span>&lt;424BF61E-BF0F-351E-B546-E82EBBD8FBF5&gt;<span class="w"> </span>/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/CCSBpckgs/ADFRcc/_adfrcc.so
+<span class="w">  </span>Reason:<span class="w"> </span>tried:<span class="w"> </span><span class="s1">&#39;/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0/clean_install/lib/libgomp.1.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/Users/Shared/mgltoolsDev/src/homebrew/opt/gcc/lib/gcc/8/libgomp.1.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/System/Volumes/Preboot/Cryptexes/OS/Users/Shared/mgltoolsDev/src/homebrew/opt/gcc/lib/gcc/8/libgomp.1.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/Users/Shared/mgltoolsDev/src/homebrew/opt/gcc/lib/gcc/8/libgomp.1.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/usr/local/lib/libgomp.1.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file<span class="o">)</span>,<span class="w"> </span><span class="s1">&#39;/usr/lib/libgomp.1.dylib&#39;</span><span class="w"> </span><span class="o">(</span>no<span class="w"> </span>such<span class="w"> </span>file,<span class="w"> </span>not<span class="w"> </span><span class="k">in</span><span class="w"> </span>dyld<span class="w"> </span>cache<span class="o">)</span>
+➜<span class="w">  </span>3Q47
+</code></pre>
+</div>
+
+<p>Sometimes this error is simply outputted as a segmentation fault. But, it is because it cannot find the <code>libgomp.1.dylib</code>. I haven't tested using a newer version of GCC to make it work. Building GCC 8 yourself is absolutely painful. We are going to use a copy generated by the homebrew team.</p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>../../
+$<span class="w"> </span><span class="nb">pwd</span>
+/Users/navanchauhan/Developer/scrippstuff/ADFRsuite_x86_64Darwin_1.0
+$<span class="w"> </span>curl<span class="w"> </span>-L<span class="w"> </span>-H<span class="w"> </span><span class="s2">&quot;Authorization: Bearer QQ==&quot;</span><span class="w"> </span>-o<span class="w"> </span>gcc8amd64.tar.gz<span class="w"> </span>https://ghcr.io/v2/homebrew/core/gcc/8/blobs/sha256:438d5902e5f21a5e8acb5920f1f5684ecfe0c645247d46c8d44c2bbe435966b2
+$<span class="w"> </span>tar<span class="w"> </span>-xzf<span class="w"> </span>gcc8amd64.tar.gz
+$<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>gcc@8/8.5.0/lib/gcc/8/*<span class="w"> </span>clean_install/lib/
+</code></pre>
+</div>
+
+<p>Now, we should be able to go back and run the target generation command:</p>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>ADCP_tutorial_data/3Q47
+$<span class="w"> </span>agfr<span class="w"> </span>-r<span class="w"> </span>3Q47_recH.pdbqt<span class="w"> </span>-l<span class="w"> </span>3Q47_pepH.pdbqt<span class="w"> </span>-asv<span class="w"> </span><span class="m">1</span>.1<span class="w"> </span>-o<span class="w"> </span>3Q47
+<span class="c1">#################################################################</span>
+<span class="c1"># If you used AGFR in your work, please cite:                   #</span>
+<span class="c1">#                                                               #</span>
+<span class="c1"># P.A. Ravindranath S. Forli, D.S. Goodsell, A.J. Olson and     #</span>
+<span class="c1"># M.F. Sanner                                                   #</span>
+<span class="c1"># AutoDockFR: Advances in Protein-Ligand Docking with           #</span>
+...
+</code></pre>
+</div>
+
+<h3 id="docking-peptide">Docking Peptide</h3>
+
+<div class="codehilite">
+<pre><span></span><code>$<span class="w"> </span>adcp<span class="w"> </span>-t<span class="w"> </span>3Q47.trg<span class="w"> </span>-s<span class="w"> </span>npisdvd<span class="w"> </span>-N<span class="w"> </span><span class="m">20</span><span class="w"> </span>-n<span class="w"> </span><span class="m">1000000</span><span class="w"> </span>-o<span class="w"> </span>3Q47_redocking<span class="w"> </span>-ref<span class="w"> </span>3Q47_pepH.pdb
+</code></pre>
+</div>
+
+<p>There you have it. Running ADCP on the newest macOS version against all odds.</p>
+
+<p>I haven't yet looked into fixing/patching <code>agfrgui</code> as I don't use the software. But, if someone reallllly needs to run it on Apple Silicon, I am happy to take a look at monkeypatching it.</p>
+
+<p>In case years down the line the prebuilt version of GCC 8 is not available, let me know so I can replace the link with my mirror.</p>
+
+	</div>
+	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
+	<script data-isso="https://comments.navan.dev/"
+        src="https://comments.navan.dev/js/embed.min.js"></script>
+	<section id="isso-thread">
+	    <noscript>Javascript needs to be activated to view comments.</noscript>
+	</section>
+
+    </div>
+    <script src="assets/manup.min.js"></script>
+    <script src="/pwabuilder-sw-register.js"></script>    
+</body>
+</html>

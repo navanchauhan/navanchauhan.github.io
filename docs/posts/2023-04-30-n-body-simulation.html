@@ -2,14 +2,27 @@
 <html lang="en">
 <head>
     
-    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="theme-color" content="#6a9fb5">
+
+    <title>n-body solution generator</title>
+
+    <!--
+    <link rel="stylesheet" href="https://unpkg.com/latex.css/style.min.css" /> 
+    -->
+
+    <link rel="stylesheet" href="/assets/c-hyde.css" />
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
     <link rel="stylesheet" href="/assets/main.css" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>n-body solution generator</title>
     <meta name="og:site_name" content="Navan Chauhan" />
     <link rel="canonical" href="https://web.navan.dev/posts/2023-04-30-n-body-simulation.html" />
-    <meta name="twitter:url" content="https://web.navan.dev/posts/2023-04-30-n-body-simulation.html />
+    <meta name="twitter:url" content="https://web.navan.dev/posts/2023-04-30-n-body-simulation.html" />
     <meta name="og:url" content="https://web.navan.dev/posts/2023-04-30-n-body-simulation.html" />
     <meta name="twitter:title" content="n-body solution generator" />
     <meta name="og:title" content="n-body solution generator" />
@@ -26,24 +39,43 @@
     <script data-goatcounter="https://navanchauhan.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
     <script defer data-domain="web.navan.dev" src="https://plausible.io/js/plausible.js"></script>
-    <link rel="manifest" href="manifest.json" />
+    <link rel="manifest" href="/manifest.json" />
     
 </head>
-<body>
-    <center><nav style="display: block;">
-|
-<a href="/">home</a> |
-<a href="/about/">about/links</a> |
-<a href="/posts/">posts</a> |
-<!--<a href="/publications/">publications</a> |-->
-<!--<a href="/repo/">iOS repo</a> |-->
-<a href="/feed.rss">RSS Feed</a> |
-</nav>
-</center>
-    
-<main>
+<body class="theme-base-0d">
+    <div class="sidebar">
+    <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+            <h1><a href="/">Navan</a></h1>
+            <p class="lead" id="random-lead">Alea iacta est.</p>
+        </div>
 
-	<h1>n-body solution generator</h1>
+        <ul class="sidebar-nav">
+            <li><a class="sidebar-nav-item" href="/about/">about/links</a></li>
+            <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
+            <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
+            <li><a class="sidebar-nav-item" href="/feed.rss">RSS Feed</a></li>
+            <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+        </ul>
+        <div class="copyright"><p>&copy; 2019-2024. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
+    </div>
+</div>
+
+<script>
+let phrases = [
+    "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
+    ];
+
+let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
+
+let lead = document.getElementById("random-lead");
+lead.innerText = new_phrase;
+</script>
+    <div class="content container">
+    
+	<div class="post">
+	<h1 id="n-body-solution-generator">n-body solution generator</h1>
 
 <p>This post requires JavaScript to be viewed properly :(</p>
 
@@ -60,7 +92,7 @@
 
 <p><strong>To workaround memory issues, the simulations are only run on-demand when the user clicks the respective button. Scroll down to the bottom of the page to see the results.</strong></p>
 
-<h2>The n-body problem</h2>
+<h2 id="the-n-body-problem">The n-body problem</h2>
 
 <p>The n-body problem is a classic puzzle in physics (and thus astrophysics) and mathematics that deals with predicting the motion of multiple celestial objects that interact with each other through gravitational forces. </p>
 
@@ -70,7 +102,7 @@
 
 <p>As the number of objects increases, finding an exact solution becomes impossible, and we rely on analytical approximations.</p>
 
-<h2>Visualising a basic orbit</h2>
+<h2 id="visualising-a-basic-orbit">Visualising a basic orbit</h2>
 
 <p>If we want to create a n-body simulation in our browser, we need to figure out how we are going to visualise the motion of the objects. There are a few ways to do this, but the easiest is to use Plotly.js, a JavaScript library for creating interactive graphs. (An alternative is to use the HTML5 canvas element).</p>
 
@@ -137,7 +169,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 
 <p>Finally, we normalize the position data by dividing it by the astronomical unit (AU) to make it more visually meaningful. We also create a circle for reference, which represents a perfect circular orbit. The code ends with the data for the Sun's position, Earth's orbit, and the reference circle ready to be plotted.</p>
 
-<h3>Plotting the orbit</h3>
+<h3 id="plotting-the-orbit">Plotting the orbit</h3>
 
 <p>Now that we have the data for the Sun's position, Earth's orbit, and the reference circle, we can plot them using Plotly.js.</p>
 
@@ -211,7 +243,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 </code></pre>
 </div>
 
-<h2>Figure of 8 orbit</h2>
+<h2 id="figure-of-8-orbit">Figure of 8 orbit</h2>
 
 <p>The figure of 8 solution[2] in the three-body problem refers to a unique and special trajectory where three celestial bodies (e.g., planets, stars) move in a figure of 8 shaped pattern around their mutual center of mass. This is special because it represents a stable and periodic solution to the three-body problem, which is known for its complexity and lack of general solutions.</p>
 
@@ -225,7 +257,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 <li><p>It looks cool!</p></li>
 </ul>
 
-<h3>Show me the code</h3>
+<h3 id="show-me-the-code">Show me the code</h3>
 
 <p>The code for this simulation is very similar to the Earth-Sun orbit simulation, except that we now have three bodies instead of two. We also use a different set of initial conditions to generate the figure of 8 orbit.</p>
 
@@ -317,7 +349,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 
 <p>Finally, a loop iterates over each time step, updating the positions and velocities of the celestial bodies using the <code>step</code> function. The updated coordinates are stored in the <code>X</code>, <code>Y</code>, <code>VX</code>, and <code>VY</code> arrays.</p>
 
-<h3>Animation?</h3>
+<h3 id="animation">Animation?</h3>
 
 <p>Now that we have time-series data, we need to animate it. We can use Plotly's animate function, as this does not force a full re-render, saving us some precious GPU and CPU cycles when we are trying to run this in the browser itself</p>
 
@@ -437,9 +469,9 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 </code></pre>
 </div>
 
-<h2>"General" N-Body Solver</h2>
+<h2 id="general-n-body-solver">"General" N-Body Solver</h2>
 
-<h3>Show me the code!</h3>
+<h3 id="show-me-the-code-2">Show me the code!</h3>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">step</span><span class="p">(</span><span class="nx">coords</span><span class="p">,</span><span class="w"> </span><span class="nx">masses</span><span class="p">,</span><span class="w"> </span><span class="nx">deltaT</span><span class="p">,</span><span class="w"> </span><span class="nx">nBodies</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">G</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">6.67408313131313e-11</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -674,7 +706,7 @@ Next, the function dR takes the position r and velocity v of Earth as input and 
 </code></pre>
 </div>
 
-<h2>Playground</h2>
+<h2 id="playground">Playground</h2>
 
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
@@ -758,21 +790,22 @@ function plotRandomNBodySimulation() {
 
  </script>     
 
-<h2>References</h2>
+<h2 id="references">References</h2>
 
 <ol>
 <li>Barrow-Green, June (2008), "The Three-Body Problem", in Gowers, Timothy; Barrow-Green, June; Leader, Imre (eds.), <em>The Princeton Companion to Mathematics</em>, Princeton University Press, pp. 726–728</li>
 <li>Moore, Cristopher (1993), "Braids in classical dynamics", <em>Physical Review Letters</em>, 70 (24): 3675–3679</li>
 </ol>
 
+	</div>
 	<blockquote>If you have scrolled this far, consider subscribing to my mailing list <a href="https://listmonk.navan.dev/subscription/form">here.</a> You can subscribe to either a specific type of post you are interested in, or subscribe to everything with the "Everything" list.</blockquote>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<section id="isso-thread">
 	    <noscript>Javascript needs to be activated to view comments.</noscript>
 	</section>
-</main>
 
+    </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>    
 </body>

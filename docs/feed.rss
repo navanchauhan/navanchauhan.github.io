@@ -1,27 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content">
-	<channel>
-		<title>Navan's Archive</title>
-		<description>Rare Tips, Tricks and Posts</description>
-		<link>https://web.navan.dev/</link><language>en</language>
-		<lastBuildDate>Sat, 13 Apr 2024 21:42:40 -0000</lastBuildDate>
-		<pubDate>Sat, 13 Apr 2024 21:42:40 -0000</pubDate>
-		<ttl>250</ttl>
-		<atom:link href="https://web.navan.dev/feed.rss" rel="self" type="application/rss+xml"/>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2023-10-22-search-by-flair-reddit.html
-			</guid>
-			<title>
-				Search / Filter posts by flair on Reddit
-			</title>
-			<description>
-				Search posts by flair on Reddit Web by using _
-			</description>
-			<link>https://web.navan.dev/posts/2023-10-22-search-by-flair-reddit.html</link>
-			<pubDate>Sun, 22 Oct 2023 00:37:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="search-filter-posts-by-flair-on-reddit">Search / Filter posts by flair on Reddit</h1>
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Navan's Archive</title>
+	<link rel="alternate" type="text/html" href="https://web.navan.dev/"/>
+	<link rel="self" type="application/atom+xml" href="https://web.navan.dev/feed.rss"/>
+	<subtitle>Rare Tips, Tricks and Posts</subtitle>
+	<updated>2024-04-13T22:30:15.472249</updated>
+	<author>
+		<name>Navan Chauhan</name>
+	</author>
+	<id>https://web.navan.dev/</id>
+
+	<entry>
+		<title>Search / Filter posts by flair on Reddit</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2023-10-22-search-by-flair-reddit.html" />
+		<id>https://web.navan.dev/posts/2023-10-22-search-by-flair-reddit.html</id>
+		<published>2023-10-22T00:37:00</published>
+		<updated>2023-10-22T00:37:00</updated>
+		<summary>Search posts by flair on Reddit Web by using _</summary>
+		<content type="html">
+			<![CDATA[<h1 id="search-filter-posts-by-flair-on-reddit">Search / Filter posts by flair on Reddit</h1>
 
 <p>Remember to replace any spaces in the flair with <code>_</code></p>
 
@@ -30,22 +27,23 @@
 <p><img src="/assets/posts/reddit-flair-search.png" alt="Screenshot of Old Reddit with search filter being used" /></p>
 
 <p>I wish this was documented somewhere.</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-03-08-Making-Vaporwave-Track.html
-			</guid>
-			<title>
-				Making My First Vaporwave Track (Remix)
-			</title>
-			<description>
-				I made my first vaporwave remix
-			</description>
-			<link>https://web.navan.dev/posts/2020-03-08-Making-Vaporwave-Track.html</link>
-			<pubDate>Sun, 08 Mar 2020 23:17:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="making-my-first-vaporwave-track-remix">Making My First Vaporwave Track (Remix)</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Making My First Vaporwave Track (Remix)</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-03-08-Making-Vaporwave-Track.html" />
+		<id>https://web.navan.dev/posts/2020-03-08-Making-Vaporwave-Track.html</id>
+		<published>2020-03-08T23:17:00</published>
+		<updated>2020-03-08T23:17:00</updated>
+		<summary>I made my first vaporwave remix</summary>
+		<content type="html">
+			<![CDATA[<h1 id="making-my-first-vaporwave-track-remix">Making My First Vaporwave Track (Remix)</h1>
 
 <p>I finally completed my first quick and dirty vaporwave remix of "I Want It That Way" by the Backstreet Boys</p>
 
@@ -76,22 +74,23 @@
 <h1 id="where-is-the-programming">Where is the Programming?</h1>
 
 <p>The fact that there are steps on producing Vaporwave, this gave me the idea that Vaporwave can actually be made using programming, stay tuned for when I publish the program which I am working on ( Generating A E S T H E T I C artwork and remixes)</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2021-06-25-Blog2Twitter-P1.html
-			</guid>
-			<title>
-				Posting Blog Posts as Twitter Threads Part 1/n
-			</title>
-			<description>
-				Converting Posts to Twitter Threads
-			</description>
-			<link>https://web.navan.dev/posts/2021-06-25-Blog2Twitter-P1.html</link>
-			<pubDate>Fri, 25 Jun 2021 00:08:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="posting-blog-posts-as-twitter-threads-part-1n">Posting Blog Posts as Twitter Threads Part 1/n</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Posting Blog Posts as Twitter Threads Part 1/n</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2021-06-25-Blog2Twitter-P1.html" />
+		<id>https://web.navan.dev/posts/2021-06-25-Blog2Twitter-P1.html</id>
+		<published>2021-06-25T00:08:00</published>
+		<updated>2021-06-25T00:08:00</updated>
+		<summary>Converting Posts to Twitter Threads</summary>
+		<content type="html">
+			<![CDATA[<h1 id="posting-blog-posts-as-twitter-threads-part-1n">Posting Blog Posts as Twitter Threads Part 1/n</h1>
 
 <p>Why? Eh, no good reason, but should be fun.</p>
 
@@ -193,22 +192,23 @@ I am not handling lists or images right now.</p>
 
 <p>For the next part, I will try to append the code as well. 
 I actually added the code to this post after running the program.</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html
-			</guid>
-			<title>
-				Cross-Compiling Hello World for DOS on macOS
-			</title>
-			<description>
-				This goes through compiling Open Watcom 2 and creating simple hello-world exampls
-			</description>
-			<link>https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html</link>
-			<pubDate>Fri, 15 Mar 2024 13:16:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="cross-compiling-hello-world-for-dos-on-macos">Cross-Compiling Hello World for DOS on macOS</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Cross-Compiling Hello World for DOS on macOS</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html" />
+		<id>https://web.navan.dev/posts/2024-03-15-setting-up-macos-for-8088-dos-dev.html</id>
+		<published>2024-03-15T13:16:00</published>
+		<updated>2024-03-15T13:16:00</updated>
+		<summary>This goes through compiling Open Watcom 2 and creating simple hello-world exampls</summary>
+		<content type="html">
+			<![CDATA[<h1 id="cross-compiling-hello-world-for-dos-on-macos">Cross-Compiling Hello World for DOS on macOS</h1>
 
 <p>Technically this should work for any platform that OpenWatcom 2 supports compiling binaries for. Some instructions are based on <a rel="noopener" target="_blank" href="https://retrocoding.net/openwatcom-gateway-to-ancient-world-of-x86">a post at retrocoding.net</a>,
  and <a rel="noopener" target="_blank" href="http://nuclear.mutantstargoat.com/articles/retrocoding/dos01-setup/#hello-world-program">John Tsiombikas's post</a></p>
@@ -479,22 +479,23 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 <p><img src="/assets/posts/dosbox/hello-world.png" alt="Running our program in DOSBox-X" /></p>
 
 <p><em>My DOSBox setup might look slightly different than yours...</em></p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html
-			</guid>
-			<title>
-				Polynomial Regression Using TensorFlow 2.x
-			</title>
-			<description>
-				Predicting n-th degree polynomials using TensorFlow 2.x
-			</description>
-			<link>https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html</link>
-			<pubDate>Thu, 21 Mar 2024 12:46:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="polynomial-regression-using-tensorflow-2x">Polynomial Regression Using TensorFlow 2.x</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Polynomial Regression Using TensorFlow 2.x</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html" />
+		<id>https://web.navan.dev/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html</id>
+		<published>2024-03-21T12:46:00</published>
+		<updated>2024-03-21T12:46:00</updated>
+		<summary>Predicting n-th degree polynomials using TensorFlow 2.x</summary>
+		<content type="html">
+			<![CDATA[<h1 id="polynomial-regression-using-tensorflow-2x">Polynomial Regression Using TensorFlow 2.x</h1>
 
 <p>I have a similar post titled <a rel="noopener" target="_blank" href="/posts/2019-12-16-TensorFlow-Polynomial-Regression.html">Polynomial Regression Using Tensorflow</a> that used <code>tensorflow.compat.v1</code> (Which still works as of TF 2.16). But, I thought it would be nicer to redo it with newer TF versions. </p>
 
@@ -732,62 +733,65 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 <span class="n">loss</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reduce_mean</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">pred_y</span> <span class="o">-</span> <span class="n">Y</span><span class="p">))</span>
 </code></pre>
 </div>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/hello-world.html
-			</guid>
-			<title>
-				Hello World
-			</title>
-			<description>
-				My first post.
-			</description>
-			<link>https://web.navan.dev/posts/hello-world.html</link>
-			<pubDate>Tue, 16 Apr 2019 17:39:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="hello-world">Hello World</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Hello World</title>
+		<link type="text/html" href="https://web.navan.dev/posts/hello-world.html" />
+		<id>https://web.navan.dev/posts/hello-world.html</id>
+		<published>2019-04-16T17:39:00</published>
+		<updated>2019-04-16T17:39:00</updated>
+		<summary>My first post.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="hello-world">Hello World</h1>
 
 <p><strong>Why a Hello World post?</strong></p>
 
 <p>Just re-did the entire website using Publish (Publish by John Sundell). So, a new hello world post :) </p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2010-01-24-experiments.html
-			</guid>
-			<title>
-				Experiments
-			</title>
-			<description>
-				Just a markdown file for all experiments related to the website
-			</description>
-			<link>https://web.navan.dev/posts/2010-01-24-experiments.html</link>
-			<pubDate>Sun, 24 Jan 2010 23:43:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="experiments">Experiments</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Experiments</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2010-01-24-experiments.html" />
+		<id>https://web.navan.dev/posts/2010-01-24-experiments.html</id>
+		<published>2010-01-24T23:43:00</published>
+		<updated>2010-01-24T23:43:00</updated>
+		<summary>Just a markdown file for all experiments related to the website</summary>
+		<content type="html">
+			<![CDATA[<h1 id="experiments">Experiments</h1>
 
 <p>https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/img-original.jpg</p>
 
 <iframe frameborder="0" class="juxtapose" width="100%" height="675" src="https://cdn.knightlab.com/libs/juxtapose/latest/embed/index.html?uid=c600ff8c-3edc-11ea-b9b8-0edaf8f81e27"></iframe>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html
-			</guid>
-			<title>
-				Setting up Kaggle to use with Google Colab
-			</title>
-			<description>
-				Tutorial on setting up kaggle, to use with Google Colab
-			</description>
-			<link>https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html</link>
-			<pubDate>Wed, 15 Jan 2020 23:36:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="setting-up-kaggle-to-use-with-google-colab">Setting up Kaggle to use with Google Colab</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Setting up Kaggle to use with Google Colab</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html" />
+		<id>https://web.navan.dev/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab.html</id>
+		<published>2020-01-15T23:36:00</published>
+		<updated>2020-01-15T23:36:00</updated>
+		<summary>Tutorial on setting up kaggle, to use with Google Colab</summary>
+		<content type="html">
+			<![CDATA[<h1 id="setting-up-kaggle-to-use-with-google-colab">Setting up Kaggle to use with Google Colab</h1>
 
 <p><em>In order to be able to access Kaggle Datasets, you will need to have an account on Kaggle (which is Free)</em></p>
 
@@ -832,22 +836,23 @@ creating<span class="w"> </span>a<span class="w"> </span>DOS<span class="w"> </s
 </div>
 
 <p>Voila! You can now download Kaggle datasets</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html
-			</guid>
-			<title>
-				Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria
-			</title>
-			<description>
-				Tutorial on creating an image classifier model using TensorFlow which detects malaria
-			</description>
-			<link>https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html</link>
-			<pubDate>Sun, 08 Dec 2019 14:16:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="creating-a-custom-image-classifier-using-tensorflow-2x-and-keras-for-detecting-malaria">Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html" />
+		<id>https://web.navan.dev/posts/2019-12-08-Image-Classifier-Tensorflow.html</id>
+		<published>2019-12-08T14:16:00</published>
+		<updated>2019-12-08T14:16:00</updated>
+		<summary>Tutorial on creating an image classifier model using TensorFlow which detects malaria</summary>
+		<content type="html">
+			<![CDATA[<h1 id="creating-a-custom-image-classifier-using-tensorflow-2x-and-keras-for-detecting-malaria">Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria</h1>
 
 <p><strong>Done during Google Code-In. Org: Tensorflow.</strong></p>
 
@@ -1026,22 +1031,23 @@ X_train = X_train/255.0
 <p>We have achieved 98% Accuracy!</p>
 
 <p><a rel="noopener" target="_blank" href="https://colab.research.google.com/drive/1ZswDsxLwYZEnev89MzlL5Lwt6ut7iwp-" title="Colab Notebook">Link to Colab Notebook</a></p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html
-			</guid>
-			<title>
-				Compiling Open Babel on iOS
-			</title>
-			<description>
-				Compiling Open Babel on iOS
-			</description>
-			<link>https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html</link>
-			<pubDate>Sun, 31 May 2020 23:30:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="compiling-open-babel-on-ios">Compiling Open Babel on iOS</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Compiling Open Babel on iOS</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html" />
+		<id>https://web.navan.dev/posts/2020-05-31-compiling-open-babel-on-ios.html</id>
+		<published>2020-05-31T23:30:00</published>
+		<updated>2020-05-31T23:30:00</updated>
+		<summary>Compiling Open Babel on iOS</summary>
+		<content type="html">
+			<![CDATA[<h1 id="compiling-open-babel-on-ios">Compiling Open Babel on iOS</h1>
 
 <p>Due to the fact that my summer vacations started today,
 I had the brilliant idea of trying to run open babel on my iPad.
@@ -1157,22 +1163,23 @@ export BABEL_LIBDIR="/usr/lib/openbabel/3.1.0"
 <p>Hopefully, I add some more screenshots to this post.</p>
 
 <p>Edit 1: Added Screenshots, had to replicate the errors.</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html
-			</guid>
-			<title>
-				Building a Similar Movies Recommendation System
-			</title>
-			<description>
-				Building a Content Based Similar Movies Recommendatiom System
-			</description>
-			<link>https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html</link>
-			<pubDate>Sat, 21 May 2022 17:56:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Building a Similar Movies Recommendation System</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html" />
+		<id>https://web.navan.dev/posts/2022-05-21-Similar-Movies-Recommender.html</id>
+		<published>2022-05-21T17:56:00</published>
+		<updated>2022-05-21T17:56:00</updated>
+		<summary>Building a Content Based Similar Movies Recommendatiom System</summary>
+		<content type="html">
+			<![CDATA[<h1 id="building-a-similar-movies-recommendation-system">Building a Similar Movies Recommendation System</h1>
 
 <h2 id="why">Why?</h2>
 
@@ -1577,22 +1584,23 @@ Spies (2015): A secret agent must perform a heist without time on his side
 <li>Multilingual database</li>
 <li>Filter based on popularity: The data already exists in the indexed database</li>
 </ul>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2024-01-05-hello-20224.html
-			</guid>
-			<title>
-				Hello 2024
-			</title>
-			<description>
-				Recap of 2023, and my goals for 2024
-			</description>
-			<link>https://web.navan.dev/posts/2024-01-05-hello-20224.html</link>
-			<pubDate>Fri, 05 Jan 2024 23:16:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="hello-2024">Hello 2024</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Hello 2024</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2024-01-05-hello-20224.html" />
+		<id>https://web.navan.dev/posts/2024-01-05-hello-20224.html</id>
+		<published>2024-01-05T23:16:00</published>
+		<updated>2024-01-05T23:16:00</updated>
+		<summary>Recap of 2023, and my goals for 2024</summary>
+		<content type="html">
+			<![CDATA[<h1 id="hello-2024">Hello 2024</h1>
 
 <p><code>2024 % 4 == 0</code></p>
 
@@ -1651,22 +1659,23 @@ Spies (2015): A secret agent must perform a heist without time on his side
 <li>Improve my handwriting</li>
 <li>Do a deeper dive into the math of Machine/Deep Learning, before I get back into it</li>
 </ul>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html
-			</guid>
-			<title>
-				Introduction to AR.js and Natural Feature Tracking
-			</title>
-			<description>
-				An introduction to AR.js and NFT
-			</description>
-			<link>https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html</link>
-			<pubDate>Sat, 01 Aug 2020 15:43:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="introduction-to-arjs-and-natural-feature-tracking">Introduction to AR.js and Natural Feature Tracking</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Introduction to AR.js and Natural Feature Tracking</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html" />
+		<id>https://web.navan.dev/posts/2020-08-01-Natural-Feature-Tracking-ARJS.html</id>
+		<published>2020-08-01T15:43:00</published>
+		<updated>2020-08-01T15:43:00</updated>
+		<summary>An introduction to AR.js and NFT</summary>
+		<content type="html">
+			<![CDATA[<h1 id="introduction-to-arjs-and-natural-feature-tracking">Introduction to AR.js and Natural Feature Tracking</h1>
 
 <h2 id="arjs">AR.js</h2>
 
@@ -1950,22 +1959,23 @@ Serving HTTP on 0.0.0.0 port 8000 ...
 <p>Here is a screenshot of me scanning a rounded version of my profile picture ( It still works! Even though the image is cropped and I haven't changed any line of code )</p>
 
 <p><img src="/assets/posts/arjs/05-GitHub.jpg" alt="" /></p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2024-03-28-Running-ADFRSuite-on-arm64-Macs.html
-			</guid>
-			<title>
-				Fixing ADFRSuite for Apple Silicon
-			</title>
-			<description>
-				Fixing ADFRsuite on M1/MX chip Macs - CLI Tools
-			</description>
-			<link>https://web.navan.dev/posts/2024-03-28-Running-ADFRSuite-on-arm64-Macs.html</link>
-			<pubDate>Thu, 28 Mar 2024 20:12:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="fixing-adfrsuite-for-apple-silicon">Fixing ADFRSuite for Apple Silicon</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Fixing ADFRSuite for Apple Silicon</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2024-03-28-Running-ADFRSuite-on-arm64-Macs.html" />
+		<id>https://web.navan.dev/posts/2024-03-28-Running-ADFRSuite-on-arm64-Macs.html</id>
+		<published>2024-03-28T20:12:00</published>
+		<updated>2024-03-28T20:12:00</updated>
+		<summary>Fixing ADFRsuite on M1/MX chip Macs - CLI Tools</summary>
+		<content type="html">
+			<![CDATA[<h1 id="fixing-adfrsuite-for-apple-silicon">Fixing ADFRSuite for Apple Silicon</h1>
 
 <p>We are going to be running everything through Rosetta 2. I am confident that if I had access to the original source code, I could find a way to run everything natively. </p>
 
@@ -2358,22 +2368,23 @@ $<span class="w"> </span>agfr<span class="w"> </span>-r<span class="w"> </span>3
 <p>I haven't yet looked into fixing/patching <code>agfrgui</code> as I don't use the software. But, if someone reallllly needs to run it on Apple Silicon, I am happy to take a look at monkeypatching it.</p>
 
 <p>In case years down the line the prebuilt version of GCC 8 is not available, let me know so I can replace the link with my mirror.</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2022-11-07-a-new-method-to-blog.html
-			</guid>
-			<title>
-				A new method to blog
-			</title>
-			<description>
-				Writing posts in markdown using pen and paper
-			</description>
-			<link>https://web.navan.dev/posts/2022-11-07-a-new-method-to-blog.html</link>
-			<pubDate>Mon, 07 Nov 2022 23:29:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="a-new-method-to-blog">A new method to blog</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>A new method to blog</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2022-11-07-a-new-method-to-blog.html" />
+		<id>https://web.navan.dev/posts/2022-11-07-a-new-method-to-blog.html</id>
+		<published>2022-11-07T23:29:00</published>
+		<updated>2022-11-07T23:29:00</updated>
+		<summary>Writing posts in markdown using pen and paper</summary>
+		<content type="html">
+			<![CDATA[<h1 id="a-new-method-to-blog">A new method to blog</h1>
 
 <p><em><a rel="noopener" target="_blank" href="/assets/pdfs/2022-11-07-a-new-way-to-blog.pdf">Here</a> is the original PDF. I made some edits to the content after generating the markdown file</em></p>
 
@@ -2406,22 +2417,23 @@ $<span class="w"> </span>agfr<span class="w"> </span>-r<span class="w"> </span>3
 <p>A more complete version with Auomator scripts and an entire publishing pipeline will be available as a GitHub and Gitea repo soon.</p>
 
 <p><em>* In Part 2, I will discuss some more features *</em> </p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2023-10-05-attack-lab.html
-			</guid>
-			<title>
-				Attack Lab
-			</title>
-			<description>
-				Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems
-			</description>
-			<link>https://web.navan.dev/posts/2023-10-05-attack-lab.html</link>
-			<pubDate>Thu, 05 Oct 2023 20:01:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="attack-lab">Attack Lab</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Attack Lab</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2023-10-05-attack-lab.html" />
+		<id>https://web.navan.dev/posts/2023-10-05-attack-lab.html</id>
+		<published>2023-10-05T20:01:00</published>
+		<updated>2023-10-05T20:01:00</updated>
+		<summary>Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems</summary>
+		<content type="html">
+			<![CDATA[<h1 id="attack-lab">Attack Lab</h1>
 
 <h2 id="introduction">Introduction</h2>
 
@@ -2880,22 +2892,23 @@ PASS:<span class="w"> </span>Sent<span class="w"> </span>exploit<span class="w">
 NICE<span class="w"> </span>JOB!
 </code></pre>
 </div>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-03-03-Playing-With-Android-TV.html
-			</guid>
-			<title>
-				Tinkering with an Android TV
-			</title>
-			<description>
-				Tinkering with an Android TV
-			</description>
-			<link>https://web.navan.dev/posts/2020-03-03-Playing-With-Android-TV.html</link>
-			<pubDate>Tue, 03 Mar 2020 18:37:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="tinkering-with-an-android-tv">Tinkering with an Android TV</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Tinkering with an Android TV</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-03-03-Playing-With-Android-TV.html" />
+		<id>https://web.navan.dev/posts/2020-03-03-Playing-With-Android-TV.html</id>
+		<published>2020-03-03T18:37:00</published>
+		<updated>2020-03-03T18:37:00</updated>
+		<summary>Tinkering with an Android TV</summary>
+		<content type="html">
+			<![CDATA[<h1 id="tinkering-with-an-android-tv">Tinkering with an Android TV</h1>
 
 <p>So I have an Android TV, this posts covers everything I have tried on it</p>
 
@@ -2967,22 +2980,23 @@ NICE<span class="w"> </span>JOB!
 <ul>
 <li><code>adb uninstall com.company.yourpackagename</code></li>
 </ul>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html
-			</guid>
-			<title>
-				Polynomial Regression Using TensorFlow
-			</title>
-			<description>
-				Polynomial regression using TensorFlow
-			</description>
-			<link>https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html</link>
-			<pubDate>Mon, 16 Dec 2019 14:16:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Polynomial Regression Using TensorFlow</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html" />
+		<id>https://web.navan.dev/posts/2019-12-16-TensorFlow-Polynomial-Regression.html</id>
+		<published>2019-12-16T14:16:00</published>
+		<updated>2019-12-16T14:16:00</updated>
+		<summary>Polynomial regression using TensorFlow</summary>
+		<content type="html">
+			<![CDATA[<h1 id="polynomial-regression-using-tensorflow">Polynomial Regression Using TensorFlow</h1>
 
 <p><strong>In this tutorial you will learn about polynomial regression and how you can implement it in Tensorflow.</strong></p>
 
@@ -3523,22 +3537,23 @@ values using the X values. We then plot it to compare the actual data and predic
 </blockquote>
 
 <p>Basically if you train your machine learning model on a small dataset for a really large number of epochs, the model will learn all the deformities/noise in the data and will actually think that it is a normal part. Therefore when it will see some new data, it will discard that new data as noise and will impact the accuracy of the model in a negative manner</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2019-12-04-Google-Teachable-Machines.html
-			</guid>
-			<title>
-				Image Classifier With Teachable Machines
-			</title>
-			<description>
-				Tutorial on creating a custom image classifier quickly with Google Teachable Machines
-			</description>
-			<link>https://web.navan.dev/posts/2019-12-04-Google-Teachable-Machines.html</link>
-			<pubDate>Wed, 04 Dec 2019 18:23:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="image-classifier-with-teachable-machines">Image Classifier With Teachable Machines</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Image Classifier With Teachable Machines</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2019-12-04-Google-Teachable-Machines.html" />
+		<id>https://web.navan.dev/posts/2019-12-04-Google-Teachable-Machines.html</id>
+		<published>2019-12-04T18:23:00</published>
+		<updated>2019-12-04T18:23:00</updated>
+		<summary>Tutorial on creating a custom image classifier quickly with Google Teachable Machines</summary>
+		<content type="html">
+			<![CDATA[<h1 id="image-classifier-with-teachable-machines">Image Classifier With Teachable Machines</h1>
 
 <p>Made for Google Code-In</p>
 
@@ -3587,22 +3602,23 @@ values using the X values. We then plot it to compare the actual data and predic
 <p>Remix this project:-</p>
 
 <p>https://luminous-opinion.glitch.me</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html
-			</guid>
-			<title>
-				Quadratic Formula Derivation
-			</title>
-			<description>
-				Quick derivation of the quadratic equation by completing the square
-			</description>
-			<link>https://web.navan.dev/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html</link>
-			<pubDate>Tue, 26 Mar 2024 15:36:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="quadratic-formula-derivation">Quadratic Formula Derivation</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Quadratic Formula Derivation</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html" />
+		<id>https://web.navan.dev/posts/2024-03-26-Derivation-of-the-Quadratic-Equation.html</id>
+		<published>2024-03-26T15:36:00</published>
+		<updated>2024-03-26T15:36:00</updated>
+		<summary>Quick derivation of the quadratic equation by completing the square</summary>
+		<content type="html">
+			<![CDATA[<h1 id="quadratic-formula-derivation">Quadratic Formula Derivation</h1>
 
 <p>The standard form of a quadratic equation is:</p>
 
@@ -3633,22 +3649,23 @@ values using the X values. We then plot it to compare the actual data and predic
 <p>This gives you the world famous quadratic formula:</p>
 
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>x</mi><mo>&#x0003D;</mo><mfrac><mrow><mo>&#x02212;</mo><mi>b</mi><mi>&#x000B1;</mi><msqrt><mrow><msup><mi>b</mi><mn>2</mn></msup><mo>&#x02212;</mo><mn>4</mn><mi>a</mi><mi>c</mi></mrow></msqrt></mrow><mrow><mn>2</mn><mi>a</mi></mrow></mfrac></mrow></math>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2022-08-05-Why-You-No-Host.html
-			</guid>
-			<title>
-				Why You No Host?
-			</title>
-			<description>
-				Why you should self-host with YunoHost
-			</description>
-			<link>https://web.navan.dev/posts/2022-08-05-Why-You-No-Host.html</link>
-			<pubDate>Fri, 05 Aug 2022 14:46:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="why-you-no-host">Why You No Host?</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Why You No Host?</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2022-08-05-Why-You-No-Host.html" />
+		<id>https://web.navan.dev/posts/2022-08-05-Why-You-No-Host.html</id>
+		<published>2022-08-05T14:46:00</published>
+		<updated>2022-08-05T14:46:00</updated>
+		<summary>Why you should self-host with YunoHost</summary>
+		<content type="html">
+			<![CDATA[<h1 id="why-you-no-host">Why You No Host?</h1>
 
 <p><img src="/assets/y-u-n-o/meme.png" alt="" /></p>
 
@@ -3826,22 +3843,23 @@ values using the X values. We then plot it to compare the actual data and predic
 <h2 id="should-you-actually-self-host-everything">Should you actually self-host everything?</h2>
 
 <p>Highly context dependent. I run two YunoHost servers in two different locations. One of the ISP has actually blacklisted the residential IP address range and does not let me change my reverseDNS, which means all my outgoing emails are marked as spam. On the other hand, the other ISP gave a clean static IP and the server managed for a small business is not at all problematic for emailing. YMMV but at least you know you have an option.</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2021-06-25-NFC-Music-Cards-Basic-iOS.html
-			</guid>
-			<title>
-				Basic NFC Music Cards for iOS
-			</title>
-			<description>
-				Basic NFC Music Cards on iOS with Shortcuts
-			</description>
-			<link>https://web.navan.dev/posts/2021-06-25-NFC-Music-Cards-Basic-iOS.html</link>
-			<pubDate>Fri, 25 Jun 2021 16:20:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="basic-nfc-music-cards-for-ios">Basic NFC Music Cards for iOS</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Basic NFC Music Cards for iOS</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2021-06-25-NFC-Music-Cards-Basic-iOS.html" />
+		<id>https://web.navan.dev/posts/2021-06-25-NFC-Music-Cards-Basic-iOS.html</id>
+		<published>2021-06-25T16:20:00</published>
+		<updated>2021-06-25T16:20:00</updated>
+		<summary>Basic NFC Music Cards on iOS with Shortcuts</summary>
+		<content type="html">
+			<![CDATA[<h1 id="basic-nfc-music-cards-for-ios">Basic NFC Music Cards for iOS</h1>
 
 <p>I had a pack of NFC cards and decided it was the perfect time to create Music Cards. I do not have a "music setup."
 So, I did not have to ensure this could work with any device. I settled with using Shortcuts personal Automation.</p>
@@ -3869,22 +3887,23 @@ So, I did not have to ensure this could work with any device. I settled with usi
 <h2 id="demo">Demo</h2>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/pV5EPujEI-Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html
-			</guid>
-			<title>
-				Creating your own custom theme for Snowboard or Anemone
-			</title>
-			<description>
-				Tutorial on creating your own custom theme for Snowboard or Anemone
-			</description>
-			<link>https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html</link>
-			<pubDate>Sun, 05 May 2019 12:34:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="creating-your-own-custom-theme-for-snowboard-or-anemone">Creating your own custom theme for Snowboard or Anemone</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Creating your own custom theme for Snowboard or Anemone</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html" />
+		<id>https://web.navan.dev/posts/2019-05-05-Custom-Snowboard-Anemone-Theme.html</id>
+		<published>2019-05-05T12:34:00</published>
+		<updated>2019-05-05T12:34:00</updated>
+		<summary>Tutorial on creating your own custom theme for Snowboard or Anemone</summary>
+		<content type="html">
+			<![CDATA[<h1 id="creating-your-own-custom-theme-for-snowboard-or-anemone">Creating your own custom theme for Snowboard or Anemone</h1>
 
 <h3 id="contents">Contents</h3>
 
@@ -4301,22 +4320,23 @@ Section: Themes
 <p><strong>Now you will have the <code>themeNameForCydia.deb</code> in the same directory</strong></p>
 
 <p>You can share this with your friends :+1:</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-04-13-Fixing-X11-Error-AmberTools-macOS.html
-			</guid>
-			<title>
-				Fixing X11 Error on macOS Catalina for AmberTools 18/19
-			</title>
-			<description>
-				Fixing Could not find the X11 libraries; you may need to edit config.h, AmberTools macOS Catalina
-			</description>
-			<link>https://web.navan.dev/posts/2020-04-13-Fixing-X11-Error-AmberTools-macOS.html</link>
-			<pubDate>Mon, 13 Apr 2020 11:41:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="fixing-x11-error-on-macos-catalina-for-ambertools-1819">Fixing X11 Error on macOS Catalina for AmberTools 18/19</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Fixing X11 Error on macOS Catalina for AmberTools 18/19</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-04-13-Fixing-X11-Error-AmberTools-macOS.html" />
+		<id>https://web.navan.dev/posts/2020-04-13-Fixing-X11-Error-AmberTools-macOS.html</id>
+		<published>2020-04-13T11:41:00</published>
+		<updated>2020-04-13T11:41:00</updated>
+		<summary>Fixing Could not find the X11 libraries; you may need to edit config.h, AmberTools macOS Catalina</summary>
+		<content type="html">
+			<![CDATA[<h1 id="fixing-x11-error-on-macos-catalina-for-ambertools-1819">Fixing X11 Error on macOS Catalina for AmberTools 18/19</h1>
 
 <p>I was trying to install AmberTools on my macOS Catalina Installation. Running <code>./configure -macAccelerate clang</code> gave me an error that it could not find X11 libraries, even though <code>locate libXt</code> showed that my installation was correct.</p>
 
@@ -4346,22 +4366,23 @@ Configure failed due to the errors above!
 <p>Simply reinstalling XQuartz using homebrew fixed the error <code>brew cask reinstall xquartz</code></p>
 
 <p>If you do not have XQuartz installed, you need to run <code>brew cask install xquartz</code></p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html
-			</guid>
-			<title>
-				Making a Crude ML Powered Chatbot in Swift using CoreML
-			</title>
-			<description>
-				Writing a simple Machine-Learning powered Chatbot (or, daresay virtual personal assistant ) in Swift using CoreML.
-			</description>
-			<link>https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html</link>
-			<pubDate>Sun, 27 Jun 2021 23:26:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="making-a-crude-ml-powered-chatbot-in-swift-using-coreml">Making a Crude ML Powered Chatbot in Swift using CoreML</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Making a Crude ML Powered Chatbot in Swift using CoreML</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html" />
+		<id>https://web.navan.dev/posts/2021-06-27-Crude-ML-AI-Powered-Chatbot-Swift.html</id>
+		<published>2021-06-27T23:26:00</published>
+		<updated>2021-06-27T23:26:00</updated>
+		<summary>Writing a simple Machine-Learning powered Chatbot (or, daresay virtual personal assistant ) in Swift using CoreML.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="making-a-crude-ml-powered-chatbot-in-swift-using-coreml">Making a Crude ML Powered Chatbot in Swift using CoreML</h1>
 
 <p>A chatbot/virtual assistant, on paper, looks easy to build.
 The user says something, the programs finds the best action, checks if additional input is required and sends back the output.
@@ -4537,22 +4558,23 @@ Otherwise, it calls the custom action.</p>
 <p>So easy.</p>
 
 <p>If I ever release a part-2, it will either be about implementing this in Tensorflow.JS or an iOS app using SwiftUI ;)</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html
-			</guid>
-			<title>
-				Interacting with underlying element in HTML
-			</title>
-			<description>
-				With CSS you can disable any interactions with an element and directly control the underlying element
-			</description>
-			<link>https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html</link>
-			<pubDate>Mon, 26 Feb 2024 11:57:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="interacting-with-underlying-element-in-html">Interacting with underlying element in HTML</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Interacting with underlying element in HTML</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html" />
+		<id>https://web.navan.dev/posts/2024-02-26-control-element-under-another-element-html-css.html</id>
+		<published>2024-02-26T11:57:00</published>
+		<updated>2024-02-26T11:57:00</updated>
+		<summary>With CSS you can disable any interactions with an element and directly control the underlying element</summary>
+		<content type="html">
+			<![CDATA[<h1 id="interacting-with-underlying-element-in-html">Interacting with underlying element in HTML</h1>
 
 <p>I know that the title is a bit weird. I was trying to interact with a video under an iPhone Bezel Screen frame.</p>
 
@@ -4624,22 +4646,23 @@ A box with 200px height and 300px width
 
 <p><button style="z-index: 1; margin-top: 20px; margin-bottom: 200px" onclick="alert('You were able to click this button')">Try clicking me</button>
 </div></p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2019-12-10-TensorFlow-Model-Prediction.html
-			</guid>
-			<title>
-				Making Predictions using Image Classifier (TensorFlow)
-			</title>
-			<description>
-				Making predictions for image classification models built using TensorFlow
-			</description>
-			<link>https://web.navan.dev/posts/2019-12-10-TensorFlow-Model-Prediction.html</link>
-			<pubDate>Tue, 10 Dec 2019 11:10:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="making-predictions-using-image-classifier-tensorflow">Making Predictions using Image Classifier (TensorFlow)</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Making Predictions using Image Classifier (TensorFlow)</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2019-12-10-TensorFlow-Model-Prediction.html" />
+		<id>https://web.navan.dev/posts/2019-12-10-TensorFlow-Model-Prediction.html</id>
+		<published>2019-12-10T11:10:00</published>
+		<updated>2019-12-10T11:10:00</updated>
+		<summary>Making predictions for image classification models built using TensorFlow</summary>
+		<content type="html">
+			<![CDATA[<h1 id="making-predictions-using-image-classifier-tensorflow">Making Predictions using Image Classifier (TensorFlow)</h1>
 
 <p><em>This was tested on TF 2.x and works as of 2019-12-10</em></p>
 
@@ -4698,22 +4721,23 @@ A box with 200px height and 300px width
 </div>
 
 <p><code>Infected</code></p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-07-01-Install-rdkit-colab.html
-			</guid>
-			<title>
-				Installing RDKit on Google Colab
-			</title>
-			<description>
-				Install RDKit on Google Colab with one code snippet.
-			</description>
-			<link>https://web.navan.dev/posts/2020-07-01-Install-rdkit-colab.html</link>
-			<pubDate>Wed, 01 Jul 2020 14:23:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="installing-rdkit-on-google-colab">Installing RDKit on Google Colab</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Installing RDKit on Google Colab</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-07-01-Install-rdkit-colab.html" />
+		<id>https://web.navan.dev/posts/2020-07-01-Install-rdkit-colab.html</id>
+		<published>2020-07-01T14:23:00</published>
+		<updated>2020-07-01T14:23:00</updated>
+		<summary>Install RDKit on Google Colab with one code snippet.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="installing-rdkit-on-google-colab">Installing RDKit on Google Colab</h1>
 
 <p><strong>Update: March 2024</strong> </p>
 
@@ -4827,22 +4851,23 @@ logger.info("rdkit-{} installation finished!".format(rdkit.__version__))
 <p>if <strong>name</strong> == "<strong>main</strong>":
     install()
 ```</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2023-10-04-bomb-lab.html
-			</guid>
-			<title>
-				Bomb Lab
-			</title>
-			<description>
-				Walkthrough of Phases 1-6 of Bomb Lab for CSCI 2400 Computer Systems Lab 2
-			</description>
-			<link>https://web.navan.dev/posts/2023-10-04-bomb-lab.html</link>
-			<pubDate>Wed, 04 Oct 2023 13:12:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="bomb-lab">Bomb Lab</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Bomb Lab</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2023-10-04-bomb-lab.html" />
+		<id>https://web.navan.dev/posts/2023-10-04-bomb-lab.html</id>
+		<published>2023-10-04T13:12:00</published>
+		<updated>2023-10-04T13:12:00</updated>
+		<summary>Walkthrough of Phases 1-6 of Bomb Lab for CSCI 2400 Computer Systems Lab 2</summary>
+		<content type="html">
+			<![CDATA[<h1 id="bomb-lab">Bomb Lab</h1>
 
 <h2 id="introduction">Introduction</h2>
 
@@ -5933,22 +5958,23 @@ Your instructor has been notified and will verify your solution.
 </code></pre>
 
 <p>But, what about the secret phase?</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html
-			</guid>
-			<title>
-				Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt
-			</title>
-			<description>
-				Short code-snippet to generate HTTPS certificates using the DNS Challenge through Lets Encrypt for a web-server using DuckDNS.
-			</description>
-			<link>https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html</link>
-			<pubDate>Tue, 17 Nov 2020 15:04:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="generating-https-certificate-using-dns-a-challenge-through-lets-encrypt">Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html" />
+		<id>https://web.navan.dev/posts/2020-11-17-Lets-Encrypt-DuckDns.html</id>
+		<published>2020-11-17T15:04:00</published>
+		<updated>2020-11-17T15:04:00</updated>
+		<summary>Short code-snippet to generate HTTPS certificates using the DNS Challenge through Lets Encrypt for a web-server using DuckDNS.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="generating-https-certificate-using-dns-a-challenge-through-lets-encrypt">Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt</h1>
 
 <p>I have a Raspberry-Pi running a Flask app through Gunicorn (Ubuntu 20.04 LTS). I am exposing it to the internet using DuckDNS.</p>
 
@@ -6025,22 +6051,23 @@ navanspi.duckdns.org.<span class="w">    </span><span class="m">60</span><span c
 </div>
 
 <p>Caveats with copying the certificate: If you renew the certificate you will have to re-copy the files</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html
-			</guid>
-			<title>
-				Building a Fake News Detector with Turicreate
-			</title>
-			<description>
-				In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app
-			</description>
-			<link>https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html</link>
-			<pubDate>Sun, 22 Dec 2019 11:10:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="building-a-fake-news-detector-with-turicreate">Building a Fake News Detector with Turicreate</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Building a Fake News Detector with Turicreate</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html" />
+		<id>https://web.navan.dev/posts/2019-12-22-Fake-News-Detector.html</id>
+		<published>2019-12-22T11:10:00</published>
+		<updated>2019-12-22T11:10:00</updated>
+		<summary>In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app</summary>
+		<content type="html">
+			<![CDATA[<h1 id="building-a-fake-news-detector-with-turicreate">Building a Fake News Detector with Turicreate</h1>
 
 <p><strong>In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app</strong></p>
 
@@ -6303,22 +6330,23 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 <span class="p">}</span>
 </code></pre>
 </div>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-12-1-HTML-JS-RSS-Feed.html
-			</guid>
-			<title>
-				RSS Feed written in HTML + JavaScript
-			</title>
-			<description>
-				Short code-snippet for an RSS feed, written in HTML and JavaScript
-			</description>
-			<link>https://web.navan.dev/posts/2020-12-1-HTML-JS-RSS-Feed.html</link>
-			<pubDate>Tue, 01 Dec 2020 20:52:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="rss-feed-written-in-html-javascript">RSS Feed written in HTML + JavaScript</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>RSS Feed written in HTML + JavaScript</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-12-1-HTML-JS-RSS-Feed.html" />
+		<id>https://web.navan.dev/posts/2020-12-1-HTML-JS-RSS-Feed.html</id>
+		<published>2020-12-01T20:52:00</published>
+		<updated>2020-12-01T20:52:00</updated>
+		<summary>Short code-snippet for an RSS feed, written in HTML and JavaScript</summary>
+		<content type="html">
+			<![CDATA[<h1 id="rss-feed-written-in-html-javascript">RSS Feed written in HTML + JavaScript</h1>
 
 <p>If you want to directly open the HTML file in your browser after saving, don't forget to set <code>CORS_PROXY=""</code> </p>
 
@@ -6520,22 +6548,23 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </code></pre>
 </div>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-01-19-Connect-To-Bluetooth-Devices-Linux-Terminal.html
-			</guid>
-			<title>
-				How to setup Bluetooth on a Raspberry Pi
-			</title>
-			<description>
-				Connecting to Bluetooth Devices using terminal, tested on Raspberry Pi Zero W
-			</description>
-			<link>https://web.navan.dev/posts/2020-01-19-Connect-To-Bluetooth-Devices-Linux-Terminal.html</link>
-			<pubDate>Sun, 19 Jan 2020 15:27:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="how-to-setup-bluetooth-on-a-raspberry-pi">How to setup Bluetooth on a Raspberry Pi</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>How to setup Bluetooth on a Raspberry Pi</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-01-19-Connect-To-Bluetooth-Devices-Linux-Terminal.html" />
+		<id>https://web.navan.dev/posts/2020-01-19-Connect-To-Bluetooth-Devices-Linux-Terminal.html</id>
+		<published>2020-01-19T15:27:00</published>
+		<updated>2020-01-19T15:27:00</updated>
+		<summary>Connecting to Bluetooth Devices using terminal, tested on Raspberry Pi Zero W</summary>
+		<content type="html">
+			<![CDATA[<h1 id="how-to-setup-bluetooth-on-a-raspberry-pi">How to setup Bluetooth on a Raspberry Pi</h1>
 
 <p><em>This was tested on a Raspberry Pi Zero W</em></p>
 
@@ -6556,22 +6585,23 @@ DescriptionThe bag-of-words model is a simplifying representation used in NLP, i
 <p><code>[bluetooth]# pair XX:XX:XX:XX:XX:XX</code></p>
 
 <p>To Exit out of bluetoothctl anytime, just type exit </p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2022-12-25-blog-to-toot.html
-			</guid>
-			<title>
-				Posting blogs as Mastodon Toots
-			</title>
-			<description>
-				Cross posting blog posts to Mastodon
-			</description>
-			<link>https://web.navan.dev/posts/2022-12-25-blog-to-toot.html</link>
-			<pubDate>Sun, 25 Dec 2022 17:32:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Posting blogs as Mastodon Toots</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2022-12-25-blog-to-toot.html" />
+		<id>https://web.navan.dev/posts/2022-12-25-blog-to-toot.html</id>
+		<published>2022-12-25T17:32:00</published>
+		<updated>2022-12-25T17:32:00</updated>
+		<summary>Cross posting blog posts to Mastodon</summary>
+		<content type="html">
+			<![CDATA[<h1 id="posting-blogs-as-mastodon-toots">Posting blogs as Mastodon Toots</h1>
 
 <p>What is better than posting a blog post? Posting about your posting pipeline. I did this previously with <a rel="noopener" target="_blank" href="/posts/2021-06-25-Blog2Twitter-P1.html">Twitter</a>. </p>
 
@@ -6852,22 +6882,23 @@ Seeing that you are reading this on Mastodon, and that I have updated this secti
 </div>
 
 <p>Not the best thing I have ever written, but it works!</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2023-04-30-n-body-simulation.html
-			</guid>
-			<title>
-				n-body solution generator
-			</title>
-			<description>
-				n-body solution generator and solver
-			</description>
-			<link>https://web.navan.dev/posts/2023-04-30-n-body-simulation.html</link>
-			<pubDate>Sun, 30 Apr 2023 22:50:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="n-body-solution-generator">n-body solution generator</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>n-body solution generator</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2023-04-30-n-body-simulation.html" />
+		<id>https://web.navan.dev/posts/2023-04-30-n-body-simulation.html</id>
+		<published>2023-04-30T22:50:00</published>
+		<updated>2023-04-30T22:50:00</updated>
+		<summary>n-body solution generator and solver</summary>
+		<content type="html">
+			<![CDATA[<h1 id="n-body-solution-generator">n-body solution generator</h1>
 
 <p>This post requires JavaScript to be viewed properly :(</p>
 
@@ -7588,22 +7619,23 @@ function plotRandomNBodySimulation() {
 <li>Barrow-Green, June (2008), "The Three-Body Problem", in Gowers, Timothy; Barrow-Green, June; Leader, Imre (eds.), <em>The Princeton Companion to Mathematics</em>, Princeton University Press, pp. 726–728</li>
 <li>Moore, Cristopher (1993), "Braids in classical dynamics", <em>Physical Review Letters</em>, 70 (24): 3675–3679</li>
 </ol>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-01-14-Converting-between-PIL-NumPy.html
-			</guid>
-			<title>
-				Converting between image and NumPy array
-			</title>
-			<description>
-				Short code snippet for converting between PIL image and NumPy arrays.
-			</description>
-			<link>https://web.navan.dev/posts/2020-01-14-Converting-between-PIL-NumPy.html</link>
-			<pubDate>Tue, 14 Jan 2020 00:10:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="converting-between-image-and-numpy-array">Converting between image and NumPy array</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Converting between image and NumPy array</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-01-14-Converting-between-PIL-NumPy.html" />
+		<id>https://web.navan.dev/posts/2020-01-14-Converting-between-PIL-NumPy.html</id>
+		<published>2020-01-14T00:10:00</published>
+		<updated>2020-01-14T00:10:00</updated>
+		<summary>Short code snippet for converting between PIL image and NumPy arrays.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="converting-between-image-and-numpy-array">Converting between image and NumPy array</h1>
 
 <div class="codehilite">
 <pre><span></span><code><span class="kn">import</span> <span class="nn">numpy</span>
@@ -7628,22 +7660,23 @@ function plotRandomNBodySimulation() {
     <span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">destination</span><span class="p">,</span> <span class="s2">&quot;JPEG&quot;</span><span class="p">,</span> <span class="n">quality</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">optimize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">progressive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre>
 </div>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2019-12-08-Splitting-Zips.html
-			</guid>
-			<title>
-				Splitting ZIPs into Multiple Parts
-			</title>
-			<description>
-				Short code snippet for splitting zips.
-			</description>
-			<link>https://web.navan.dev/posts/2019-12-08-Splitting-Zips.html</link>
-			<pubDate>Sun, 08 Dec 2019 13:27:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="splitting-zips-into-multiple-parts">Splitting ZIPs into Multiple Parts</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Splitting ZIPs into Multiple Parts</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2019-12-08-Splitting-Zips.html" />
+		<id>https://web.navan.dev/posts/2019-12-08-Splitting-Zips.html</id>
+		<published>2019-12-08T13:27:00</published>
+		<updated>2019-12-08T13:27:00</updated>
+		<summary>Short code snippet for splitting zips.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="splitting-zips-into-multiple-parts">Splitting ZIPs into Multiple Parts</h1>
 
 <p><strong>Tested on macOS</strong></p>
 
@@ -7671,22 +7704,23 @@ function plotRandomNBodySimulation() {
 <pre><span></span><code><span class="nt">zip</span><span class="na"> -F oodlesofnoodles.zip --out merged.zip</span>
 </code></pre>
 </div>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html
-			</guid>
-			<title>
-				Compiling AutoDock Vina on iOS
-			</title>
-			<description>
-				Compiling AutoDock Vina on iOS
-			</description>
-			<link>https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html</link>
-			<pubDate>Tue, 02 Jun 2020 23:23:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="compiling-autodock-vina-on-ios">Compiling AutoDock Vina on iOS</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Compiling AutoDock Vina on iOS</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html" />
+		<id>https://web.navan.dev/posts/2020-06-02-Compiling-AutoDock-Vina-on-iOS.html</id>
+		<published>2020-06-02T23:23:00</published>
+		<updated>2020-06-02T23:23:00</updated>
+		<summary>Compiling AutoDock Vina on iOS</summary>
+		<content type="html">
+			<![CDATA[<h1 id="compiling-autodock-vina-on-ios">Compiling AutoDock Vina on iOS</h1>
 
 <p>Why? Because I can.</p>
 
@@ -7768,22 +7802,23 @@ return path(str, boost::filesystem::native);
 <p><img src="/assets/posts/autodock-vina/s1.png" alt="&quot;AutoDock Vina running on my iPhone&quot;" /></p>
 
 <p>The package is available on my repository and only depends on boost. ( Both, Vina and Vina-Split are part of the package)</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html
-			</guid>
-			<title>
-				Interacting with Siri using the command line
-			</title>
-			<description>
-				Code snippet to interact with Siri by issuing commands from the command-line.
-			</description>
-			<link>https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html</link>
-			<pubDate>Wed, 08 Feb 2023 17:21:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Interacting with Siri using the command line</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html" />
+		<id>https://web.navan.dev/posts/2023-02-08-Interact-with-siri-from-the-terminal.html</id>
+		<published>2023-02-08T17:21:00</published>
+		<updated>2023-02-08T17:21:00</updated>
+		<summary>Code snippet to interact with Siri by issuing commands from the command-line.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="interacting-with-siri-using-the-command-line">Interacting with Siri using the command line</h1>
 
 <p>My main objective was to see if I could issue multi-intent commands in one go. Obviously, Siri cannot do that (neither can Alexa, Cortana, or Google Assistant). The script here can issue either a single command, or use the help of OpenAI's DaVinci model to extract multiple commands and pass them onto siri.</p>
 
@@ -8013,22 +8048,23 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 <h2 id="conclusion">Conclusion</h2>
 
 <p>Siri is still dumb. When I ask it to <code>Switch off the lights</code>, it default to the home thousands of miles away. But, this code snippet definitely does work!</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html
-			</guid>
-			<title>
-				Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire
-			</title>
-			<description>
-				Tutorial on creating a custom Image Classifier using Turicreate and a dataset from Kaggle
-			</description>
-			<link>https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html</link>
-			<pubDate>Thu, 16 Jan 2020 10:36:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html" />
+		<id>https://web.navan.dev/posts/2020-01-16-Image-Classifier-Using-Turicreate.html</id>
+		<published>2020-01-16T10:36:00</published>
+		<updated>2020-01-16T10:36:00</updated>
+		<summary>Tutorial on creating a custom Image Classifier using Turicreate and a dataset from Kaggle</summary>
+		<content type="html">
+			<![CDATA[<h1 id="creating-a-custom-image-classifier-using-turicreate-to-detect-smoke-and-fire">Creating a Custom Image Classifier using Turicreate to detect Smoke and Fire</h1>
 
 <p><em>For setting up Kaggle with Google Colab, please refer to <a rel="noopener" target="_blank" href="/posts/2020-01-15-Setting-up-Kaggle-to-use-with-Colab"> my previous post</a></em></p>
 
@@ -8297,22 +8333,23 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 </div>
 
 <p>We just got an accuracy of 94% on Training Data and 97% on Validation Data!</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-10-11-macOS-Virtual-Cam-OBS.html
-			</guid>
-			<title>
-				Trying Different Camera Setups
-			</title>
-			<description>
-				Comparison of different cameras setups for using as a webcam and tutorials for the same.
-			</description>
-			<link>https://web.navan.dev/posts/2020-10-11-macOS-Virtual-Cam-OBS.html</link>
-			<pubDate>Sun, 11 Oct 2020 16:12:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="trying-different-camera-setups">Trying Different Camera Setups</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Trying Different Camera Setups</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-10-11-macOS-Virtual-Cam-OBS.html" />
+		<id>https://web.navan.dev/posts/2020-10-11-macOS-Virtual-Cam-OBS.html</id>
+		<published>2020-10-11T16:12:00</published>
+		<updated>2020-10-11T16:12:00</updated>
+		<summary>Comparison of different cameras setups for using as a webcam and tutorials for the same.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="trying-different-camera-setups">Trying Different Camera Setups</h1>
 
 <ol start="0">
 <li>Animated Overlays</li>
@@ -8421,22 +8458,23 @@ new Dics({
     container: document.querySelector('.b-dics')
 });
 </script>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2021-06-26-Cheminformatics-On-The-Web-2021.html
-			</guid>
-			<title>
-				Cheminformatics on the Web (2021)
-			</title>
-			<description>
-				Summarising Cheminformatics on the web in 2021.
-			</description>
-			<link>https://web.navan.dev/posts/2021-06-26-Cheminformatics-On-The-Web-2021.html</link>
-			<pubDate>Sat, 26 Jun 2021 13:04:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="cheminformatics-on-the-web-2021">Cheminformatics on the Web (2021)</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Cheminformatics on the Web (2021)</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2021-06-26-Cheminformatics-On-The-Web-2021.html" />
+		<id>https://web.navan.dev/posts/2021-06-26-Cheminformatics-On-The-Web-2021.html</id>
+		<published>2021-06-26T13:04:00</published>
+		<updated>2021-06-26T13:04:00</updated>
+		<summary>Summarising Cheminformatics on the web in 2021.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="cheminformatics-on-the-web-2021">Cheminformatics on the Web (2021)</h1>
 
 <p>Here, I have compiled a list of some libraries and possible ideas.
 I, personally, like static websites which don't require a server side application and can be hosted on platforms like GitHub Pages.
@@ -8517,22 +8555,23 @@ Hopefully, this encourages you to explore the world of cheminformatics on the we
 <p><a rel="noopener" target="_blank" href="https://depth-first.com/articles/2019/05/01/javascript-for-cheminformatics-part-2/">JavaScript for Cheminformatics</a></p>
 
 <p><a rel="noopener" target="_blank" href="https://unpkg.com/@rdkit/rdkit@2021.3.3/Code/MinimalLib/dist/GettingStartedInJS.html">Getting Started with RDKit-JS</a></p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html
-			</guid>
-			<title>
-				Workflow for Lightning Fast Molecular Docking Part One
-			</title>
-			<description>
-				This is my workflow for lightning fast molecular docking.
-			</description>
-			<link>https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html</link>
-			<pubDate>Mon, 01 Jun 2020 13:10:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="workflow-for-lightning-fast-molecular-docking-part-one">Workflow for Lightning Fast Molecular Docking Part One</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Workflow for Lightning Fast Molecular Docking Part One</title>
+		<link type="text/html" href="https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html" />
+		<id>https://web.navan.dev/posts/2020-06-01-Speeding-Up-Molecular-Docking-Workflow-AutoDock-Vina-and-PyMOL.html</id>
+		<published>2020-06-01T13:10:00</published>
+		<updated>2020-06-01T13:10:00</updated>
+		<summary>This is my workflow for lightning fast molecular docking.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="workflow-for-lightning-fast-molecular-docking-part-one">Workflow for Lightning Fast Molecular Docking Part One</h1>
 
 <h2 id="my-setup">My Setup</h2>
 
@@ -8577,22 +8616,23 @@ alias pbpaste='xclip -selection clipboard -o'
 </code></pre>
 
 <p>This is just the docking command for AutoDock Vina. In the next part I will tell how to use PyMOL and a plugin to directly generate the coordinates in Vina format <code>--center_x -9.7 --center_y 11.4 --center_z 68.9 --size_x 19.3 --size_y 29.9 --size_z 21.3</code> without needing to type them manually.</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/publications/2019-05-14-Detecting-Driver-Fatigue-Over-Speeding-and-Speeding-up-Post-Accident-Response.html
-			</guid>
-			<title>
-				Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response
-			</title>
-			<description>
-				This paper is about Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response.
-			</description>
-			<link>https://web.navan.dev/publications/2019-05-14-Detecting-Driver-Fatigue-Over-Speeding-and-Speeding-up-Post-Accident-Response.html</link>
-			<pubDate>Tue, 14 May 2019 02:42:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="detecting-driver-fatigue-over-speeding-and-speeding-up-post-accident-response">Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response</title>
+		<link type="text/html" href="https://web.navan.dev/publications/2019-05-14-Detecting-Driver-Fatigue-Over-Speeding-and-Speeding-up-Post-Accident-Response.html" />
+		<id>https://web.navan.dev/publications/2019-05-14-Detecting-Driver-Fatigue-Over-Speeding-and-Speeding-up-Post-Accident-Response.html</id>
+		<published>2019-05-14T02:42:00</published>
+		<updated>2019-05-14T02:42:00</updated>
+		<summary>This paper is about Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="detecting-driver-fatigue-over-speeding-and-speeding-up-post-accident-response">Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response</h1>
 
 <blockquote>
   <p>Based on the project showcased at Toyota Hackathon, IITD - 17/18th December 2018</p>
@@ -8613,22 +8653,23 @@ alias pbpaste='xclip -selection clipboard -o'
 
 <pre><code>@article{chauhan_2019, title={Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response}, volume={6}, url={https://www.irjet.net/archives/V6/i5/IRJET-V6I5318.pdf}, number={5}, journal={International Research Journal of Engineering and Technology (IRJET)}, author={Chauhan, Navan}, year={2019}}
 </code></pre>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html
-			</guid>
-			<title>
-				Is it possible to programmatically generate Vaporwave?
-			</title>
-			<description>
-				This paper is about programmaticaly generating Vaporwave.
-			</description>
-			<link>https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html</link>
-			<pubDate>Sat, 14 Mar 2020 22:23:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="is-it-possible-to-programmatically-generate-vaporwave">Is it possible to programmatically generate Vaporwave?</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Is it possible to programmatically generate Vaporwave?</title>
+		<link type="text/html" href="https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html" />
+		<id>https://web.navan.dev/publications/2020-03-14-generating-vaporwave.html</id>
+		<published>2020-03-14T22:23:00</published>
+		<updated>2020-03-14T22:23:00</updated>
+		<summary>This paper is about programmaticaly generating Vaporwave.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="is-it-possible-to-programmatically-generate-vaporwave">Is it possible to programmatically generate Vaporwave?</h1>
 
 <p>This is still a pre-print.</p>
 
@@ -8663,42 +8704,44 @@ alias pbpaste='xclip -selection clipboard -o'
  month={Mar}
 }
 </code></pre>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/publications/2020-03-17-Possible-Drug-Candidates-COVID-19.html
-			</guid>
-			<title>
-				Possible Drug Candidates for COVID-19
-			</title>
-			<description>
-				COVID-19, has been officially labeled as a pandemic by the World Health Organisation. This paper presents cloperastine and vigabatrin as two possible drug candidates for combatting the disease along with the process by which they were discovered.
-			</description>
-			<link>https://web.navan.dev/publications/2020-03-17-Possible-Drug-Candidates-COVID-19.html</link>
-			<pubDate>Tue, 17 Mar 2020 17:40:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="possible-drug-candidates-for-covid-19">Possible Drug Candidates for COVID-19</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Possible Drug Candidates for COVID-19</title>
+		<link type="text/html" href="https://web.navan.dev/publications/2020-03-17-Possible-Drug-Candidates-COVID-19.html" />
+		<id>https://web.navan.dev/publications/2020-03-17-Possible-Drug-Candidates-COVID-19.html</id>
+		<published>2020-03-17T17:40:00</published>
+		<updated>2020-03-17T17:40:00</updated>
+		<summary>COVID-19, has been officially labeled as a pandemic by the World Health Organisation. This paper presents cloperastine and vigabatrin as two possible drug candidates for combatting the disease along with the process by which they were discovered.</summary>
+		<content type="html">
+			<![CDATA[<h1 id="possible-drug-candidates-for-covid-19">Possible Drug Candidates for COVID-19</h1>
 
 <p>This is still a pre-print.</p>
 
 <p><a rel="noopener" target="_blank" href="https://chemrxiv.org/articles/Possible_Drug_Candidates_for_COVID-19/11985231">Download paper here</a></p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/3D-Designs/2024-02-17-Can-Holder-Mountain-Bike.html
-			</guid>
-			<title>
-				Bike Soda Can Holder
-			</title>
-			<description>
-				Carry your favourite soda (or beer) can with you while you ride
-			</description>
-			<link>https://web.navan.dev/3D-Designs/2024-02-17-Can-Holder-Mountain-Bike.html</link>
-			<pubDate>Sat, 17 Feb 2024 18:42:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="bike-soda-can-holder">Bike Soda Can Holder</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>Bike Soda Can Holder</title>
+		<link type="text/html" href="https://web.navan.dev/3D-Designs/2024-02-17-Can-Holder-Mountain-Bike.html" />
+		<id>https://web.navan.dev/3D-Designs/2024-02-17-Can-Holder-Mountain-Bike.html</id>
+		<published>2024-02-17T18:42:00</published>
+		<updated>2024-02-17T18:42:00</updated>
+		<summary>Carry your favourite soda (or beer) can with you while you ride</summary>
+		<content type="html">
+			<![CDATA[<h1 id="bike-soda-can-holder">Bike Soda Can Holder</h1>
 
 <p>Ever wanted a nice craft soda, or a natty light during your ride? Mounts to the standard bottle cage holes on your bike.</p>
 
@@ -8731,22 +8774,23 @@ model-viewer {
 </ul>
 
 <p>The OpenSCAD code can be modified to support tall boys and stovepipe cans. Email me if you need help generating more variations</p>
-]]></content:encoded>
-		</item>
-		
-		<item>
-			<guid isPermaLink="true">
-				https://web.navan.dev/ideas/2022-12-17-ar-mr-xr.html
-			</guid>
-			<title>
-				AR XR MR
-			</title>
-			<description>
-				Data dump from my notes
-			</description>
-			<link>https://web.navan.dev/ideas/2022-12-17-ar-mr-xr.html</link>
-			<pubDate>Sat, 17 Dec 2022 19:43:00 -0000</pubDate>
-			<content:encoded><![CDATA[<h1 id="ar-xr-mr">AR XR MR</h1>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+	<entry>
+		<title>AR XR MR</title>
+		<link type="text/html" href="https://web.navan.dev/ideas/2022-12-17-ar-mr-xr.html" />
+		<id>https://web.navan.dev/ideas/2022-12-17-ar-mr-xr.html</id>
+		<published>2022-12-17T19:43:00</published>
+		<updated>2022-12-17T19:43:00</updated>
+		<summary>Data dump from my notes</summary>
+		<content type="html">
+			<![CDATA[<h1 id="ar-xr-mr">AR XR MR</h1>
 
 <p>Last Updated: 2022-12-17</p>
 
@@ -8843,7 +8887,12 @@ model-viewer {
 <h3 id="non-ar-smart-glasses">Non-AR Smart Glasses</h3>
 
 <p>Not every pair of smart glasses need to have AR based surface tracking / SLAM, to display stuff. Just a simple display which can overlay elements on the real world should be capable of displaying tons of data</p>
-]]></content:encoded>
-		</item>
-		
-</channel></rss>
+]]>
+		</content>
+		<author>
+			<name>Navan Chauhan</name>
+			<email>blog@navan.email</email>
+		</author>
+	</entry>
+
+</feed>

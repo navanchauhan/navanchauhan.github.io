@@ -256,17 +256,21 @@ for fpath in index_pages_to_generate:
 
 for post in post_collection_html:
     post.metadata["link"] = "https://web.navan.dev" + post.metadata["link"]
-    post.metadata["date"] = email.utils.format_datetime(
-        datetime.datetime.strptime(post.metadata["date"], "%Y-%m-%d %H:%M")
-    )
+    #post.metadata["date"] = email.utils.format_datetime(
+    #    datetime.datetime.strptime(post.metadata["date"], "%Y-%m-%d %H:%M")
+    #)
+
+    # datetime in RFC 3339 format
+    post.metadata["date"] = datetime.datetime.strptime(post.metadata["date"], "%Y-%m-%d %H:%M").isoformat()
 
 
+rfc_3389 = datetime.datetime.now().isoformat()
 with open(os.path.join(out_folder, "feed.rss"), "w") as f:
     f.write(
         templates.get_template("feed.rss").render(
             feed={
                 "title": f_title,
-                "date": f_date,
+                "date": rfc_3389,
                 "description": f_description,
                 "link": base_link,
             },

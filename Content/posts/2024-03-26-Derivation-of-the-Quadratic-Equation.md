@@ -1,7 +1,7 @@
 ---
 date: 2024-03-26 15:36
 description: Quick derivation of the quadratic equation by completing the square 
-tags: mathematics 
+tags: Mathematics 
 ---
 
 # Quadratic Formula Derivation

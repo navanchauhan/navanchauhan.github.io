@@ -6,3 +6,5 @@ All the Open Graph images are generated using Pillow and the Futura font. The ma
 
 Since this website is currently using the `.dev` tld, there is no support for HTTP in most browsers (Since they use HSTS preloading). But if you ever find yourself on an IBM PC 5150 and need to use `hget`, that should work.
 
+<a href="https://validator.w3.org/check/referer"><img src="https://www.w3.org/Icons/valid-html401-v.svg" alt="Valid HTML 4.01 Transitional" height="31" width="88"></a>
+

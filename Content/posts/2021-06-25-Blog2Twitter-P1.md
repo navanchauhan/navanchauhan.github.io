@@ -1,7 +1,7 @@
 ---
 date: 2021-06-25 00:08
 description: Converting Posts to Twitter Threads
-tags: Python, Twitter, Eh
+tags: Tutorial, Python, Twitter
 ---
 
 # Posting Blog Posts as Twitter Threads Part 1/n

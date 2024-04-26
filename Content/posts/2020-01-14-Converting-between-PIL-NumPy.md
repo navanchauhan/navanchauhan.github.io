@@ -1,7 +1,7 @@
 ---
 date: 2020-01-14 00:10
 description: Short code snippet for converting between PIL image and NumPy arrays.
-tags: Code-Snippet, Tutorial
+tags: Code-Snippet
 ---
 
 # Converting between image and NumPy array

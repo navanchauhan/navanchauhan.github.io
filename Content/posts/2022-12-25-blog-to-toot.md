@@ -1,7 +1,7 @@
 ---
 date: 2022-12-25 17:32
 description: Cross posting blog posts to Mastodon
-tags: Python, Mastodon
+tags: Python, Mastodon, Tutorial, Code-Snippet
 ---
 
 # Posting blogs as Mastodon Toots

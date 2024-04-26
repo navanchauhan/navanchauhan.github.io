@@ -1,7 +1,7 @@
 ---
 date: 2023-04-30 22:50
 description: n-body solution generator and solver
-tags: astrophysics, mathematics
+tags: Astrophysics, Mathematics
 ---
 
 # n-body solution generator

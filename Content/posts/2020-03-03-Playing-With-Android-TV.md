@@ -1,7 +1,7 @@
 ---
 date: 2020-03-03 18:37
 description: Tinkering with an Android TV
-tags: Android-TV, Android
+tags: Tutorial, Android-TV, Android
 ---
 
 # Tinkering with an Android TV
@@ -10,11 +10,11 @@ So I have an Android TV, this posts covers everything I have tried on it
 
 ## Contents
 
-1. [Getting TV's IP Address](#IP-Address)
-2. [Enable Developer Settings](#Developer-Settings)
-3. [Enable ADB](#Enable-ADB)
-4. [Connect ADB](#Connect-ADB)
-5. [Manipulating Packages](#)
+1. [Getting TV's IP Address](#ip-address)
+2. [Enable Developer Settings](#developer-settings)
+3. [Enable ADB](#enable-adb)
+4. [Connect ADB](#connect-adb)
+5. [Manipulating Packages](#manipulating-apps-packages)
 
 ## IP-Address
 

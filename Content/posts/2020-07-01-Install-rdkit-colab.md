@@ -1,7 +1,7 @@
 ---
 date: 2020-07-01 14:23
 description: Install RDKit on Google Colab with one code snippet.
-tags: Tutorial, Code-Snippet, Colab
+tags: Tutorial, Code-Snippet, Colab, RDKit
 ---
 
 # Installing RDKit on Google Colab

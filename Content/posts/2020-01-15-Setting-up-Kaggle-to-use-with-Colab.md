@@ -1,7 +1,7 @@
 ---
 date: 2020-01-15 23:36
 description: Tutorial on setting up kaggle, to use with Google Colab
-tags: Tutorial, Colab, Turicreate, Kaggle
+tags: Tutorial, Colab, Kaggle
 ---
 
 # Setting up Kaggle to use with Google Colab

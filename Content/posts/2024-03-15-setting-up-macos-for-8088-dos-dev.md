@@ -1,7 +1,7 @@
 ---
 date: 2024-03-15 13:16
 description: This goes through compiling Open Watcom 2 and creating simple hello-world exampls
-tags: DOS, x86, macOS
+tags: DOS, x86, macOS, Tutorial
 draft: false
 ---
 

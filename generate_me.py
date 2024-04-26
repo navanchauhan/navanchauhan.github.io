@@ -96,6 +96,8 @@ for x in os.walk(src_folder):
                             "md", "html"
                         )
                         _post["tags"] = [x.strip() for x in _post["tags"].split(",")]
+                        _post["tags"] = [x.replace(" ","-") for x in _post["tags"]]
+                        _post["tags"].sort()
                         _post["image_link"] = "/images/opengraph" + fpath.replace(
                             src_folder, ""
                         ).replace("md", "png")

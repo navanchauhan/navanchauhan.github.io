@@ -4,7 +4,7 @@
 	<link rel="alternate" type="text/html" href="https://web.navan.dev/"/>
 	<link rel="self" type="application/atom+xml" href="https://web.navan.dev/feed.rss"/>
 	<subtitle>Rare Tips, Tricks and Posts</subtitle>
-	<updated>2024-04-26T00:30:59.024721</updated>
+	<updated>2024-04-26T01:24:43.568113</updated>
 	<author>
 		<name>Navan Chauhan</name>
 	</author>
@@ -2915,11 +2915,11 @@ NICE<span class="w"> </span>JOB!
 <h2 id="contents">Contents</h2>
 
 <ol>
-<li><a href="#IP-Address">Getting TV's IP Address</a></li>
-<li><a href="#Developer-Settings">Enable Developer Settings</a></li>
-<li><a href="#Enable-ADB">Enable ADB</a></li>
-<li><a href="#Connect-ADB">Connect ADB</a></li>
-<li><a href="#">Manipulating Packages</a></li>
+<li><a href="#ip-address">Getting TV's IP Address</a></li>
+<li><a href="#developer-settings">Enable Developer Settings</a></li>
+<li><a href="#enable-adb">Enable ADB</a></li>
+<li><a href="#connect-adb">Connect ADB</a></li>
+<li><a href="#manipulating-apps-packages">Manipulating Packages</a></li>
 </ol>
 
 <h2 id="ip-address">IP-Address</h2>
@@ -8689,8 +8689,6 @@ python3<span class="w"> </span>main.py<span class="w"> </span><span class="s2">&
 <p>I assume that you have Homebrew installed.</p>
 
 <h3 id="obs-and-obs-virtual-cam">OBS and OBS-Virtual-Cam</h3>
-
-<p><em>Description</em></p>
 
 <pre><code>brew cask install obs
 brew cask install obs-virtualcam

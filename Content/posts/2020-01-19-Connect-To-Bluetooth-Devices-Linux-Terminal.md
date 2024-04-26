@@ -1,7 +1,7 @@
 ---
 date: 2020-01-19 15:27
 description: Connecting to Bluetooth Devices using terminal, tested on Raspberry Pi Zero W
-tags: Code-Snippet, tutorial, Raspberry-Pi, Linux
+tags: Code-Snippet, Raspberry-Pi, Linux
 ---
 
 # How to setup Bluetooth on a Raspberry Pi

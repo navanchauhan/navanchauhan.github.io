@@ -1,7 +1,7 @@
 ---
 date: 2024-03-21 12:46
 description: Predicting n-th degree polynomials using TensorFlow 2.x
-tags: Tutorial, Tensorflow, Colab
+tags: Tutorial, Tensorflow, Colab, AI
 ---
 
 # Polynomial Regression Using TensorFlow 2.x

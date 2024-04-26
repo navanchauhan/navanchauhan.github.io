@@ -1,7 +1,7 @@
 ---
 date: 2022-05-21 17:56
 description: Building a Content Based Similar Movies Recommendatiom System
-tags: Python, Transformers, Recommendation-System
+tags: Python, Transformers, Recommendation-System, Tutorial
 ---
 
 # Building a Similar Movies Recommendation System

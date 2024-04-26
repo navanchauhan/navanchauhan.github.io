@@ -1,7 +1,7 @@
 ---
 date: 2020-10-11 16:12
 description: Comparison of different cameras setups for using as a webcam and tutorials for the same.
-tags: Tutorial, Review, Webcam
+tags: Tutorial, macOS
 ---
 
 #  Trying Different Camera Setups 
@@ -35,8 +35,6 @@ I am running macOS and iOS but I will try to link the same steps for Windows as 
 I assume that you have Homebrew installed.
 
 ### OBS and OBS-Virtual-Cam
-
-*Description*
 
 ```
 brew cask install obs

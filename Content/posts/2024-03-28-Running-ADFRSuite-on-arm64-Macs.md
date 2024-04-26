@@ -1,7 +1,7 @@
 ---
 date: 2024-03-28 20:12
 description: Fixing ADFRsuite on M1/MX chip Macs - CLI Tools
-tags: macOS, Cheminformatics
+tags: macOS, Cheminformatics, Tutorial
 ---
 
 # Fixing ADFRSuite for Apple Silicon

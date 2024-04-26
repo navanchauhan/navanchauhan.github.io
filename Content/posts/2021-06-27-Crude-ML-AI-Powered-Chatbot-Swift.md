@@ -1,7 +1,7 @@
 ---
 date: 2021-06-27 23:26
 description: Writing a simple Machine-Learning powered Chatbot (or, daresay virtual personal assistant ) in Swift using CoreML.
-tags: Swift, CoreML, NLP
+tags: Swift, CoreML, NLP, AI, Tutorial
 ---
 
 # Making a Crude ML Powered Chatbot in Swift using CoreML

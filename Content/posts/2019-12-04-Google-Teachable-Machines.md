@@ -1,7 +1,7 @@
 ---
 date: 2019-12-04 18:23
 description: Tutorial on creating a custom image classifier quickly with Google Teachable Machines
-tags: Tutorial
+tags: Tutorial, AI
 ---
 
 # Image Classifier With Teachable Machines

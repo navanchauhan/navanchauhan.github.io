@@ -1,7 +1,7 @@
 ---
 date: 2020-05-31 23:30
 description: Compiling Open Babel on iOS
-tags: iOS, Jailbreak, Cheminformatics, Open-Babel
+tags: Tutorial, iOS, Jailbreak, Cheminformatics, Open-Babel
 ---
 
 # Compiling Open Babel on iOS

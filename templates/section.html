@@ -9,7 +9,7 @@
 
 <ul>
 {% for post in posts %}
-	<li><a href="{{post.link}}">{{ post.title }}</a></li>
+	<li><a href="{{post.link}}">{{ post.title }}</a>
 	<ul>
 		<li>{{ post.description}}</li>
 		<li>Published On: {{post.date}}</li>
@@ -18,6 +18,7 @@
             <a href='/tags/{{tag}}.html'>{{ tag }}</a>{{ ", " if not loop.last else "" }}
 			{% endfor %}
 	</ul>
+    </li>
 
 {% endfor %}
 </ul>

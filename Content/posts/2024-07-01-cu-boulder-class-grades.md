@@ -10,6 +10,8 @@ In every student's journey, there comes a time when they need to take classes th
 
 ![Screenshot of the Web UI](/assets/buffs-eda/main-ss.png)
 
+Live demo: [https://web.navan.dev/BuffClassesEDA](https://web.navan.dev/BuffClassesEDA)
+
 ## Exploring and Exporting the Data
 
 The data is provided as a spreadsheet and contains data of main campus courses with 10+ grades (including passes), from Fall 2006 to Spring 2024. This spreadsheet is updated after both fall and spring terms.

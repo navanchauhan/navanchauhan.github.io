@@ -14,8 +14,6 @@ I like solving problems, no matter what field they are in. I might be a programm
 
 When not in front of a screen, I can be found injuring myself mountain biking (I hate road bikers /s), skiing, or homebrewing (WLP618 for all legal purposes).
 
-Landing page with other links, and projects: [https://hi.navan.dev](https://hi.navan.dev)
-
 ## Contact Me
 
 The best way to reach out to me is by e-mail. subject[at]navan.email Or, if I have made peace with my ISP and corrected the rDNS settings, then: hey[at]navan.dev

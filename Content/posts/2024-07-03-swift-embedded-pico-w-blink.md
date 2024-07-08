@@ -1,5 +1,5 @@
 ---
-date: 2024-07-01 14:41 
+date: 2024-07-03 14:41 
 description: Setting up macOS to run Apple's Swift Embedded Example on Raspberry Pi Pico-W
 tags: Pico-W, Swift, macOS
 ---

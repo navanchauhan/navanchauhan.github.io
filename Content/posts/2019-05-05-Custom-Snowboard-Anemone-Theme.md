@@ -2,9 +2,12 @@
 date: 2019-05-05 12:34
 description: Tutorial on creating your own custom theme for Snowboard or Anemone
 tags: Tutorial, Jailbreak, Designing, Snowboard, Anemone
+draft: true
 ---
 
 # Creating your own custom theme for Snowboard or Anemone
+
+Edit 2024: I don't see any difference between this and Pinpal's guide [here](https://pinpal.github.io/theme-guide/). Just follow their guide.
 
 ### Contents
 * Getting Started

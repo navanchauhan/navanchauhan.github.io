@@ -12,7 +12,7 @@ I will be skipping all the introductions about polynomial regression and jumping
 
 ## Position vs Salary Dataset
 
-Again, we will be using https://drive.google.com/file/d/1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9/view (Salary vs Position Dataset)
+Again, we will be using the [https://drive.google.com/file/d/1tNL4jxZEfpaP4oflfSn6pIHJX7Pachm9/view](Salary vs Position Dataset)
 
 If you are in a Python Notebook environment like Kaggle or Google Colaboratory, you can simply run:
 ```Termcap

@@ -1,4 +1,4 @@
-from markdown3 import Markdown
+from markdown2 import Markdown, UnicodeWithAttrs
 import os
 from jinja2 import Environment, FileSystemLoader
 from distutils.dir_util import copy_tree
@@ -25,13 +25,14 @@ image_text_font = "fonts/futura_light.ttf"
 
 md = Markdown(
     extras=[
+        "toc",
         "fenced-code-blocks",
         "metadata",
         "task_list",
         "tables",
         "target-blank-links",
         "header-ids",
-        "latex",
+        "latex"
     ]
 )
 
@@ -101,6 +102,12 @@ for x in os.walk(src_folder):
                         _post["image_link"] = "/images/opengraph" + fpath.replace(
                             src_folder, ""
                         ).replace("md", "png")
+                        toc_html = md._toc_html
+                        position = _html.find('</h1>')
+                        if position != -1:
+                            metadata_copy = _html.metadata
+                            _html = UnicodeWithAttrs(_html[:position+5] + toc_html + _html[position+5:])
+                            _html.metadata = metadata_copy
 
                         to_write_path = "./Resources" + _post["image_link"]
 

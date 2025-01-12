@@ -7,7 +7,9 @@ draft: true
 
 # Interpreting If— by Kipling
 
-I wouldn't really consider myself to be a stoic person, nor have I finished Meditations by Marcus Aurelius. But, one thing that has really influenced me is the poem If. Praise the syllabus cooridnator for NCERT to have assigned this poem for 6th graders, but I really do feel like this is how I have decided to live my life. I may have a different interpretation than what Rudyard Kipling intended, and that is fine. As I feel like I am the only person who can give meaning to something for myself. 
+I wouldn’t really consider myself a stoic person, nor have I finished *Meditations* by Marcus Aurelius. However, one thing that has truly influenced me is the poem *If*. Praise to the NCERT syllabus coordinator for assigning this poem to 6th graders, because I genuinely feel that it has shaped the way I choose to live my life. I am aware that Kipling was a flawed person, but I believe we can separate the art from the artist.
+
+I may interpret the poem differently from what Rudyard Kipling intended—and that’s perfectly fine.
 
 > If you can keep your head when all about you
 >     Are losing theirs and blaming it on you;
@@ -18,53 +20,67 @@ I wouldn't really consider myself to be a stoic person, nor have I finished Medi
 > Or being hated don't give way to hating,
 >     And yet don't look too good, nor talk too wise;
 
-I interpret this stanza as basically a guide to keep calm when shit hits the fan. In a situation that is beyond your control or something that you did not do, when everyone else is blaming you for who you are, what you are doing, stay calm and stay rational. When people are doubting your abilities, or your character, make sure you are capable of ignoring them and trusting yourself and your abilites, but at the same time make sure that if there is any valid criticism, you do use it to become a better person. 
+I interpret this stanza as a quintessential guide to staying calm when everything goes wrong. In moments beyond your control, or when you are being unfairly blamed for who you are or what you are doing (or something else), just try to stay calm and rational. When people doubt your abilities or character, it is imperitive to rise above their skepticism and place an ungodly amount of trust in yourself and your capabilities. At the same time, even if you do have some kind of ungodly skills, it is equally crucial to remain receptive to constructive critisicism and use it as an opportunity to grow into a better person. You don't know what you don't know.
 
 > If you can dream—and not make dreams your master;
 >     If you can think—and not make thoughts your aim,
 
-This is more of a guideline to make sure that you should be both rational and ambitious at the same time. Sometimes you know something doesn't make any rational sense, but you just do it because why not? Same with how you really want to send that text message because of what if, but you know for sure what is going to happen. 
+This serves as a guideline to ensure you strike a balance between rationality and, at times, unreasonable ambition. Sometimes you know something doesn’t make much sense logically—something a sane and rational person would never attempt—but you do it anyway, simply because, why not? If you want to dream big, then by all means, dream big. But don’t stop there—take action to bring those dreams to life. Similarly, if you enjoy analyzing every detail, thinking about outcomes, and strategizing how to approach something, don’t get stuck in the thought process. Act. Sometimes, being overly rational can hold you back, especially when you can clearly see the odds are not in your favor or there’s no obvious benefit. In those moments, stop overthinking and just do something. What good is constantly sharpening your knife if you never use it?
 
 > If you can meet with Triumph and Disaster
 >     And treat those two impostors just the same:
 
-Now, this is where my interpretation might be different from the interpretations of stoics. I think of this as if I can be happy when I succeed, and sad when soemthing doesn't go my way or I fail at something, if I can make sure to learn what can be learned from both success or failure, and as long as I gave it my 100%, then winning or losing is just an outcome that would have happened anyway. I don't interpret this as not celebrating when you win, or not learning anything from failure. I treat this as two sides of the same coin, and not being able to control the outcome, but being able to give my best, and then if I don't succeed then treating that as a succesful learning experience.
+This is where my interpretation might differ from that of the stoics. I believe it’s important to allow yourself to feel happy when you succeed and sad when things don’t go your way or when you fail. As long as I learn from both success and failure, and I’ve given my absolute best, winning or losing is simply the outcome that was meant to happen. I don’t interpret this as a call to avoid celebrating success or disregarding the lessons failure can teach us. For me, it’s about recognizing that success and failure are two sides of the same coin. While I may not always control the outcome, I can control the effort I put in. If I fail, I choose to view that failure as a valuable learning experience.
+
+Not feeling emotions is one of the most foolish things you can do as a human being. We are meant to feel emotions—they are integral to who we are. However, it’s crucial not to let those emotions cloud our judgment or dictate our decisions.
 
 > If you can bear to hear the truth you've spoken
 >     Twisted by knaves to make a trap for fools,
 > Or watch the things you gave your life to, broken,
 >     And stoop and build 'em up with worn-out tools;
 
-People love talking about stuff. And, as any game of Chinese whispers (also known as Telephone) can show you, what you start out with is rarely how it ends up. People can lie about you, or rumours can crop up, or even misunderstandings can happen. Sometimes a project you have been working on for months can crumble right in front of you because you missed an important detail. All you have to do is say "balls balls balls" and then get right back to start working on it again.
+People love to talk, and as any game of Chinese whispers (or Telephone) shows, what you say often ends up far removed from its original meaning. People might lie about you, rumors can spread, or innocent misunderstandings can spiral out of control. Gossiping and twisting stories are things people often indulge in, but their actions are a reflection of them, not of you. Don’t worry too much about it. Stay true to yourself.
+
+Words can hurt—there’s no denying that. But like a double-edged sword, words cannot alter your past actions or intentions. Whatever good or bad you or someone else has done or said isn’t going to change much in the grand scheme of things. Don’t waste too much energy dwelling on it.
+
+Sometimes, a project you’ve poured months of effort into can crumble before your eyes because of one overlooked detail. In those moments, all you can do is shrug it off, roll up your sleeves, and start rebuilding. Failure isn’t the end of the world. As long as you’re alive and thinking clearly, there are few things you can’t start over.
 
 > If you can make one heap of all your winnings
 >     And risk it on one turn of pitch-and-toss,
 > And lose, and start again at your beginnings
 >     ⁠And never breathe a word about your loss:
 
-What one has achieved in the past is amazing, and if it gives expereince or something to learn from then it is amazing, but other than that it is all moot. You should be able to risk it all and gamble everything on something if you think it is worth risking everything for. (Of course, as you grow your risk for apetite goes down, is that a good or bad thing, I don't know). If you win that gamble or risk, oh that is amazing and you should be happy about it, But if you don't win and lose it all, that is completely fine. Just move on, learn from your mistakes but don't make excuses about why you lost that or why you couldn't do something. As long as you gave it your all, it shouldn't matter, just keep giving it your all and learn from your mistakes and keep going at it.
+What one has achieved in the past is remarkable, and if it provides experience or lessons to learn from, then that’s invaluable. But beyond that, it’s all moot. You should be willing to risk it all and gamble everything on something if you truly believe it’s worth the risk. (Of course, as you grow older, your appetite for risk tends to diminish—whether that’s good or bad, I’m not entirely sure.)
+
+If you win that gamble, it’s incredible, and you should celebrate it. But if you don’t win and lose everything, that’s okay too. Accept it, learn from your mistakes, and move on without making excuses or blaming circumstances for the loss. As long as you gave it your all, the outcome shouldn’t matter. Keep giving it your best, learn from the past, and keep pushing forward.
 
 > If you can force your heart and nerve and sinew
 >     To serve your turn long after they are gone,
 > And so hold on when there is nothing in you
 >     ⁠Except the Will which says to them: 'Hold on!'
 
-There comes a time when you are both emotionally and physically exhausted, maybe things in your life are not going the way you want them to go. Nothing you are doing seems to make a difference and everything you do seems to be the wrong choice. Or more literally, you are doing a streneous activity and you just want to call it quits, take it easy. That is the moment when you need to push yourself beyond what you think are your limits. When there is a miniscule chance of you being able to push through but you will yourself out of the sitation, just pushing through all the boring grunt work which is boring but needs to get done, because you are the kind of person that gets stuff done.
+There are moments when you find yourself both emotionally and physically drained. Life may not be unfolding the way you want it to, and it feels like nothing you do makes a difference—every choice seems wrong. Or, more literally, you might be engaged in a strenuous activity, and all you want to do is quit and take it easy.
+
+It’s in these moments that you need to push yourself beyond what you believe your limits are. Even when the odds of succeeding feel minuscule, you summon the will to keep going. You push through the tedious, grueling tasks—the ones that are dull but necessary—because you’re the kind of person who gets things done. It’s not just about the outcome; it’s about proving to yourself that you can endure and overcome.
 
 > If you can talk with crowds and keep your virtue,
 >     Or walk with Kings—nor lose the common touch,
 > If neither foes nor loving friends can hurt you,
 >     If all men count with you, but none too much:
 
-People come in different shapes and sizes. What one person you are talking to wants out of their life is not necessarily what you want to get out of your life. Don't judge people based on what they want, don't judge people for what they have or don't. Just because a group of people want to do something that doesn't gel with what you would do, you don't have to follow them. Hold your own, and act according to your ethics and morals. There will be times when you have a position of power over someone, or you are better at something than someone, and sometimes you are going to be in awe of someone who has some skills you have only dreamed of. All of these needed to be treated as the same. Learning can come from anywhere, from anyone, and there is a lot to learn. So learn from everyone, stay humble, and don't judge people.
+People come in all shapes and sizes, and what one person wants out of life may not align with what you want. Don’t judge others based on their goals, possessions, or lack thereof. Just because a group of people pursues something that doesn’t resonate with you doesn’t mean you need to follow them. Stand firm, hold your ground, and act according to your own ethics and morals.
 
-Neither overtly negative or positive responses from anyone should be able to influence what you think or influence your state of mind. People should be able to count on you, you should be the kind of person who shows up for other people and ...
+There will be times when you have power over someone or are more skilled at something than they are, and there will be times when you encounter people whose abilities leave you in awe—skills you’ve only dreamed of. Treat all these situations the same. There’s something to learn from everyone, regardless of their position or skill set. Stay humble, remain open, and avoid passing judgment.
+
+Neither overly negative nor excessively positive responses from others should dictate what you think or how you feel. Your sense of self should remain steady. Be someone others can count on—the kind of person who shows up when it matters—but never allow anyone to depend on you so much that it becomes unhealthy, for you or for them. Similarly, never rely so heavily on others that your sense of self or purpose is compromised. Strike a balance: let all people matter to you, but not so much that you lose sight of yourself or your own path.
 
 > If you can fill the unforgiving minute
 >     With sixty seconds' worth of distance run,
 > Yours is the Earth and everything that's in it,
 >     ⁠And—which is more—you'll be a Man, my son!
 
-Time doesn't stop for anyone. You can do nothing or do a lot of things, time will pass either way. Time is unforgiving in the fact that it won't wait for you, it won't wait for whatever situation you are in to end, or it won't wait for you to be happy. You have to be able to muster up the courage to constantly be working towards your goal. How much time you get is not known. You could suddenly die of a brain aneurysm even while being a healthy adult (citation_needed). You should be able to look at yourself in the mirror at the end of the day and know that you spent your time well. This doesn't mean that you have to become a workaholic and simply keep working on something all the time. Spending time with friends and family is also time well spent for some people. Relaxing by utilising afternoon siestas, or by playing video games is also time well spent for some people. There isn't a one size fits all answer for what is considered time well spent, that will differ person to person, but just use your time well.
+Time waits for no one. Whether you do nothing or accomplish a great deal, time will continue to pass. It is unforgiving because it won’t pause for your struggles, your happiness, or your circumstances. That’s why it’s essential to muster the courage to consistently work toward your goals. How much time you have is uncertain—you could unexpectedly die of something like a brain aneurysm, even as a healthy adult. At the end of each day, you should be able to look at yourself in the mirror and know you spent your time well.
 
-And, if you can do all of these things well, if you can fall in love with the process instead of one of your goals, you will be happy, and you will live a life you love.
+This doesn’t mean you need to become a workaholic or constantly grind away at something. For some people, time well spent means being with friends and family. For others, it might be relaxing with an afternoon nap or playing video games. There’s no universal answer to what constitutes time well spent—it’s personal and will vary from one person to another. The key is to ensure that whatever you do, it aligns with what matters to you.
+
+And if you can embrace all of these ideas, if you can fall in love with the process rather than fixating solely on your goals, you’ll find happiness and live a life you truly love. (Or, at least I think so.)

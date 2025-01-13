@@ -5,7 +5,7 @@ tags: Writings
 draft: false
 ---
 
-# Interpreting If— by Kipling
+# My Interpretation of If—
 
 I wouldn’t really consider myself a stoic person, nor have I finished Meditations by Marcus Aurelius yet. However, one thing that has influenced me is the poem If. Praise the NCERT syllabus coordinator for assigning this poem to 6th graders because I genuinely feel that it has shaped the way I live my life. I am aware that Kipling was a flawed person,<label for="sn-1" class="sidenote-toggle sidenote-number"></label>
 <input type="checkbox" id="sn-1" class="sidenote-toggle" />

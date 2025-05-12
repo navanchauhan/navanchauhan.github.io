@@ -104,7 +104,8 @@ for x in os.walk(src_folder):
                         ).replace("md", "png")
                         toc_html = md._toc_html
                         position = _html.find('</h1>')
-                        if position != -1:
+                        toc_item_count = len(re.findall(r"<li>", toc_html))
+                        if position != -1 and toc_item_count > 1:
                             metadata_copy = _html.metadata
                             _html = UnicodeWithAttrs(_html[:position+5] + toc_html + _html[position+5:])
                             _html.metadata = metadata_copy

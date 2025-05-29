@@ -96,9 +96,14 @@ for x in os.walk(src_folder):
                         _post["link"] = fpath.replace(src_folder, "").replace(
                             "md", "html"
                         )
-                        _post["tags"] = [x.strip() for x in _post["tags"].split(",")]
-                        _post["tags"] = [x.replace(" ","-") for x in _post["tags"]]
-                        _post["tags"].sort()
+                        if "tags" in _post.keys():
+                            _post["tags"] = [x.strip() for x in _post["tags"].split(",")]
+                            _post["tags"] = [x.replace(" ","-") for x in _post["tags"]]
+                            _post["tags"].sort()
+                        else:
+                            _post["tags"] = []
+                        if "date" not in _post.keys():
+                            _post["date"] = "2003-12-21 00:00"
                         _post["image_link"] = "/images/opengraph" + fpath.replace(
                             src_folder, ""
                         ).replace("md", "png")

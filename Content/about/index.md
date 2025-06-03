@@ -18,6 +18,10 @@ When not in front of a screen, I can be found injuring myself mountain biking (I
 
 The best way to reach out to me is by e-mail. subject[at]navan.email Or, if I have made peace with my ISP and corrected the rDNS settings, then: hey[at]navan.dev
 
+You can also book a 15 minute chat with me using the link below. I try to have a few slots available Monday through Saturday, but always feel free to email me if you need to chat at a different time.
+
+[Book a 15 minute chat with me](https://calendar.notion.so/meet/navanchauhan/ry95v4ops)
+
 My GPG Fingerprint:
 
 `1DA1 04AA DEB7 7473 A4FA C27B 4EFC A289 7342 A778`

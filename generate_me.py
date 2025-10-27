@@ -32,7 +32,8 @@ md = Markdown(
         "tables",
         "target-blank-links",
         "header-ids",
-        "latex"
+        "latex",
+        "mermaid"
     ]
 )
 
@@ -149,7 +150,7 @@ for x in os.walk(src_folder):
                                         color=(0, 0, 0),
                                         place="center",
                                     )
-                            else: 
+                            else:
                             #img = ImageText((1200, 630), background=(238, 238, 238))
                                 img.write_text_box(
                                     (100, 50),

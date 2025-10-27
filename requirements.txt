@@ -1,3 +1,10 @@
-jinja2
+Jinja2
 markdown2
 Pygments
+Mastodon.py
+Pillow
+requests
+certifi
+urllib3
+setuptools
+latex2mathml

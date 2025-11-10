@@ -18,6 +18,8 @@ This is a collection of some quotes I really like.
 
 > And when nobody wakes you up in the morning, and when nobody waits for you at night, and when you can do whatever you want. What do you call it, freedom or loneliness? <cite>&mdash; *Milan Kundera*, *The Unbearable Lightness of Being*</cite>
 
+> If a friend of mine gave a feast, and did not invite me to it, I should not mind a bit. But if a friend of mine had a sorrow and refused to allow me to share it, I should feel it most bitterly. <cite>— *Oscar Wilde*, *De Profundis*</cite>
+
 ### Blogs/Websites
 
 > Honor was not won once, and forever retained — it had to be earned, and re-earned over and over again. <cite>&mdash; *Brett and Kate McKay*, *Does Stoicism Extinguish the Fire of Life?*</cite>

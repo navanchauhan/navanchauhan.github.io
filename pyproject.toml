@@ -13,7 +13,7 @@ Pygments = "^2.16.1"
 Pillow = "10.3.0"
 requests = "^2.32.4"
 certifi = "^2024.7.4"
-urllib3 = "^2.5.0"
+urllib3 = "^2.6.0"
 latex2mathml = "^3.77.0"
 
 [tool.poetry.dev-dependencies]

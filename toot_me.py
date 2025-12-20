@@ -34,7 +34,7 @@ class TootContent:
 		self.text = text
 		self.images = []
 		self.links = []
-		self.image_count = len(images)
+		self.image_count = len(self.images)
 
 	def __str__(self):
 		toot_text = self.text
@@ -153,7 +153,7 @@ for line in markdown_content.split("\n"):
 				continue
 			if len(re.findall(markdown_image,line)) > 0:
 				for image_link in re.findall(markdown_links, line):
-					image_link.append(image_link[1])
+					image_links.append(image_link[1])
 					# not handled yet
 				line = re.sub(markdown_image,"",line)
 			if len(re.findall(markdown_links,line)) > 0:

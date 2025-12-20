@@ -1,7 +1,7 @@
 from markdown2 import Markdown, UnicodeWithAttrs
 import os
 from jinja2 import Environment, FileSystemLoader
-from distutils.dir_util import copy_tree
+import shutil
 import datetime
 import email.utils
 from helper_libs.image_utils import ImageText
@@ -78,7 +78,7 @@ tag_post_dict = {}
 index_pages_to_generate = []
 
 create_folder_ifnot(out_folder)
-copy_tree(resources_folder, out_folder)
+shutil.copytree(resources_folder, out_folder, dirs_exist_ok=True)
 
 first_run = True
 for x in os.walk(src_folder):
@@ -312,4 +312,4 @@ with open(os.path.join(out_folder, "feed.rss"), "w") as f:
         )
     )
 
-copy_tree(resources_folder, out_folder)
+shutil.copytree(resources_folder, out_folder, dirs_exist_ok=True)

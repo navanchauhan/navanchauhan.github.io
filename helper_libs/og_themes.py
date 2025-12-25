@@ -29,10 +29,10 @@ class ThemeConfig:
     """Configuration for an OG image theme"""
     name: str
     colors: ThemeColors
-    title_font_size: int = 65
-    subtitle_font_size: int = 32
-    line_width: int = 5
-    padding: int = 50
+    title_font_size: int = 120
+    subtitle_font_size: int = 60
+    line_width: int = 6
+    padding: int = 60
 
 
 # Theme definitions
@@ -55,7 +55,7 @@ THEMES = {
             accent_color=(99, 102, 241),  # Indigo
             secondary_accent=(236, 72, 153),  # Pink
         ),
-        title_font_size=68,
+        title_font_size=124,
         line_width=4,
     ),
     "dark": ThemeConfig(
@@ -67,7 +67,7 @@ THEMES = {
             accent_color=(59, 130, 246),  # Blue
             secondary_accent=(139, 92, 246),  # Purple
         ),
-        title_font_size=65,
+        title_font_size=120,
     ),
     "minimal": ThemeConfig(
         name="Minimal",
@@ -77,7 +77,7 @@ THEMES = {
             subtitle_color=(115, 115, 115),
             accent_color=(23, 23, 23),
         ),
-        title_font_size=60,
+        title_font_size=112,
         line_width=2,
         padding=80,
     ),
@@ -90,7 +90,7 @@ THEMES = {
             accent_color=(255, 255, 255),
             secondary_accent=(254, 202, 87),  # Yellow
         ),
-        title_font_size=70,
+        title_font_size=128,
     ),
     "gradient_ocean": ThemeConfig(
         name="Gradient Ocean",
@@ -101,7 +101,7 @@ THEMES = {
             accent_color=(0, 255, 200),  # Cyan
             secondary_accent=(0, 184, 148),  # Teal
         ),
-        title_font_size=68,
+        title_font_size=124,
     ),
     "gradient_purple": ThemeConfig(
         name="Gradient Purple",
@@ -112,7 +112,7 @@ THEMES = {
             accent_color=(255, 193, 7),  # Gold
             secondary_accent=(255, 87, 51),  # Orange
         ),
-        title_font_size=68,
+        title_font_size=124,
     ),
     "retro": ThemeConfig(
         name="Retro",
@@ -123,7 +123,7 @@ THEMES = {
             accent_color=(205, 92, 92),  # Indian red
             secondary_accent=(184, 134, 11),  # Dark goldenrod
         ),
-        title_font_size=62,
+        title_font_size=116,
         line_width=6,
     ),
     "tech": ThemeConfig(
@@ -135,7 +135,7 @@ THEMES = {
             accent_color=(88, 166, 255),  # Blue
             secondary_accent=(63, 185, 80),  # Green
         ),
-        title_font_size=64,
+        title_font_size=118,
     ),
     "nature": ThemeConfig(
         name="Nature",
@@ -146,7 +146,7 @@ THEMES = {
             accent_color=(139, 195, 74),  # Light green
             secondary_accent=(76, 175, 80),  # Green
         ),
-        title_font_size=65,
+        title_font_size=120,
     ),
 }
 

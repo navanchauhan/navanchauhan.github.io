@@ -1,0 +1,43 @@
+name: Generate OG Image Samples
+
+on:
+  workflow_dispatch:
+    inputs:
+      seed:
+        description: 'Random seed for post selection'
+        required: false
+        default: '42'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-samples:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Setup poetry
+        uses: abatilo/actions-poetry@v3
+        with:
+          poetry-version: "1.8"
+
+      - name: Install Dependencies
+        run: poetry install
+
+      - name: Generate OG Samples
+        run: poetry run python generate_og_samples.py
+
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Resources/images/og_theme_samples/
+          git diff --staged --quiet || git commit -m "Regenerate OG image samples from random posts"
+          git push

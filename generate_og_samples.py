@@ -129,7 +129,7 @@ def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_
             theme_name=theme_name,
             title_font="Resources/assets/fonts/LM-bold.ttf",
             text_font="Resources/assets/fonts/LM-regular.ttf",
-            decorations=decoration,
+            decoration=decoration,
         )
         
         generator.save(img, output_path)

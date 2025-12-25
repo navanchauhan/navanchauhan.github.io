@@ -39,7 +39,7 @@ def parse_post_metadata(filepath):
     return title, description, is_draft
 
 
-def get_random_posts(posts_dir="Content/posts", count=20, seed=42):
+def get_random_posts(posts_dir="Content/posts", count=20, seed=2025):
     """Get random post metadata for reproducible sample generation."""
     posts = []
     for filename in sorted(os.listdir(posts_dir)):  # Sort for reproducibility

@@ -3,8 +3,14 @@
 
 # Copyright 2011 Álvaro Justen [alvarojusten at gmail dot com]
 # License: GPL <http://www.gnu.org/copyleft/gpl.html>
+# Extended with theme support for OG images
 
 from PIL import Image, ImageDraw, ImageFont
+from typing import Optional, List
+
+# Import the new theming system
+from .og_themes import OGImageGenerator, THEMES, get_available_themes, get_theme_info
+
 
 class ImageText(object):
     def __init__(self, filename_or_size, mode='RGBA', background=(0, 0, 0, 0),
@@ -126,3 +132,116 @@ class ImageText(object):
                 self.write_text((last_word_x, height), words[-1], font_filename,
                                 font_size, color)
         return (box_width, height - y)
+
+
+class ThemedOGImage:
+    """
+    High-level wrapper for generating themed OG images.
+    
+    Available themes:
+        - classic: Original style with warm browns and cream background
+        - modern: Clean white background with indigo accent
+        - dark: Dark slate background for night mode aesthetics
+        - minimal: Simple, minimalistic design with thin accents
+        - gradient_sunset: Vibrant coral to yellow gradient
+        - gradient_ocean: Deep blue to teal gradient
+        - gradient_purple: Purple to orange-red gradient
+        - retro: Vintage cream and brown palette
+        - tech: GitHub-dark inspired dark theme
+        - nature: Fresh green and earthy tones
+    
+    Available decorations:
+        - circles: Decorative circles in corners
+        - dots: Subtle dot pattern
+        - lines: Diagonal line pattern
+        - corner_accent: Triangle accents in corners
+    
+    Usage:
+        og = ThemedOGImage()
+        og.generate(
+            title="My Blog Post Title",
+            subtitle="A brief description of the post",
+            theme="modern",
+            decorations="circles"
+        )
+        og.save("output.png")
+    """
+    
+    def __init__(self, width: int = 1200, height: int = 630):
+        self.generator = OGImageGenerator(width, height)
+        self.image: Optional[Image.Image] = None
+        self.width = width
+        self.height = height
+    
+    def generate(
+        self,
+        title: str,
+        subtitle: str = "",
+        theme: str = "classic",
+        title_font: str = "fonts/futura_bold.ttf",
+        text_font: str = "fonts/futura_light.ttf",
+        overlay_image_path: Optional[str] = None,
+        decorations: Optional[str] = None,
+    ) -> 'ThemedOGImage':
+        """
+        Generate an OG image with the specified theme.
+        
+        Args:
+            title: Main title text
+            subtitle: Secondary text (description, tags, date, etc.)
+            theme: Theme name (see class docstring for available themes)
+            title_font: Path to title font file
+            text_font: Path to subtitle font file
+            overlay_image_path: Optional path to an image to overlay (e.g., DallE image)
+            decorations: Optional decoration style (circles, lines, dots, corner_accent)
+        
+        Returns:
+            self for method chaining
+        """
+        overlay_image = None
+        if overlay_image_path:
+            try:
+                overlay_image = Image.open(overlay_image_path)
+            except Exception:
+                pass
+        
+        self.image = self.generator.generate(
+            title=title,
+            subtitle=subtitle,
+            theme_name=theme,
+            title_font=title_font,
+            text_font=text_font,
+            overlay_image=overlay_image,
+            decorations=decorations,
+        )
+        return self
+    
+    def save(self, path: str) -> None:
+        """Save the generated image to the specified path."""
+        if self.image:
+            self.generator.save(self.image, path)
+    
+    def get_image(self) -> Optional[Image.Image]:
+        """Get the PIL Image object."""
+        return self.image
+    
+    @staticmethod
+    def list_themes() -> List[str]:
+        """List all available theme names."""
+        return get_available_themes()
+    
+    @staticmethod
+    def get_theme_details(theme_name: str):
+        """Get details about a specific theme."""
+        return get_theme_info(theme_name)
+
+
+# Export for convenience
+__all__ = [
+    'ImageText',
+    'ThemedOGImage',
+    'OGImageGenerator',
+    'THEMES',
+    'get_available_themes',
+    'get_theme_info',
+]

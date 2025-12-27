@@ -49,12 +49,19 @@ def get_random_posts(posts_dir="Content/posts", count=20, seed=2025):
             if not is_draft:  # Skip drafts
                 posts.append((title, description))
     
-    random.seed(seed)  # Fixed seed for reproducibility
+    if not posts:
+        # Fallback if no posts found
+        return [
+            ("Building a Modern Web Application",
+             "A comprehensive guide to full-stack development"),
+        ] * count
+    
+    random.seed(seed)
     random.shuffle(posts)
     return posts[:count]
 
 
-def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_posts: bool = True):
+def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_posts: bool = True, seed: int = 2025):
     """Generate sample OG images for all available themes."""
     
     # Create output directory if it doesn't exist
@@ -64,7 +71,7 @@ def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_
     
     # Get sample content
     if use_posts and os.path.exists("Content/posts"):
-        posts = get_random_posts("Content/posts", count=20)
+        posts = get_random_posts("Content/posts", count=20, seed=seed)
         print("Using random posts for sample content...")
     else:
         # Fallback to default sample content
@@ -162,6 +169,12 @@ def main():
         action="store_true",
         help="Use default sample content instead of posts"
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=2025,
+        help="Random seed for post selection (default: 2025)"
+    )
     
     args = parser.parse_args()
     
@@ -173,7 +186,7 @@ def main():
             print(f"  {name}: {config.name}")
         return
     
-    generate_samples(args.output_dir, use_posts=not args.no_posts)
+    generate_samples(args.output_dir, use_posts=not args.no_posts, seed=args.seed)
 
 
 if __name__ == "__main__":

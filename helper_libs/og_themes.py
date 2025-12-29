@@ -18,6 +18,39 @@ from dataclasses import dataclass
 from typing import Tuple, Optional, List
 import math
 import numpy as np
+import os
+
+
+def find_font(font_path: str) -> str:
+    """Find font file, checking multiple locations."""
+    # If the path exists as-is, return it
+    if os.path.exists(font_path):
+        return font_path
+    
+    # Try Google Drive location
+    font_name = os.path.basename(font_path)
+    gdrive_locations = [
+        os.path.expanduser(f"~/gdrive/fonts/{font_name}"),
+        os.path.expanduser(f"~/gdrive/fonts/{font_name.replace('-', '_')}"),
+    ]
+    
+    for loc in gdrive_locations:
+        if os.path.exists(loc):
+            return loc
+    
+    # Try system font locations
+    system_locations = [
+        f"/usr/share/fonts/truetype/{font_name}",
+        f"/usr/share/fonts/{font_name}",
+        f"/System/Library/Fonts/{font_name}",
+    ]
+    
+    for loc in system_locations:
+        if os.path.exists(loc):
+            return loc
+    
+    # Return original path, let PIL handle the error
+    return font_path
 
 
 @dataclass
@@ -38,6 +71,7 @@ class ThemeConfig:
     colors: ThemeColors
     title_font_size: int = 80
     subtitle_font_size: int = 36
+    metadata_font_size: int = 24
     line_width: int = 4
     padding: int = 60
     has_gradient: bool = False
@@ -461,6 +495,8 @@ class OGImageGenerator:
         overlay_image: Optional[str] = None,
         title_font: str = "Resources/assets/fonts/futura-bold.ttf",
         text_font: str = "Resources/assets/fonts/futura-light.ttf",
+        tags: Optional[List[str]] = None,
+        date_published: Optional[str] = None,
     ) -> Image.Image:
         """Generate an OG image with the specified theme and content."""
         
@@ -490,20 +526,23 @@ class OGImageGenerator:
             text_box_width = self.width - (theme.padding * 2)
             text_x = theme.padding
         
-        # Load fonts with fallback
+        # Load fonts with fallback (checking multiple locations)
+        title_font_path = find_font(title_font)
+        text_font_path = find_font(text_font)
+        
         try:
-            title_font_obj = ImageFont.truetype(title_font, theme.title_font_size)
+            title_font_obj = ImageFont.truetype(title_font_path, theme.title_font_size)
         except OSError:
             try:
-                title_font_obj = ImageFont.truetype("Resources/assets/fonts/futura-bold.ttf", theme.title_font_size)
+                title_font_obj = ImageFont.truetype(find_font("Resources/assets/fonts/futura-bold.ttf"), theme.title_font_size)
             except OSError:
                 title_font_obj = ImageFont.load_default()
         
         try:
-            subtitle_font_obj = ImageFont.truetype(text_font, theme.subtitle_font_size)
+            subtitle_font_obj = ImageFont.truetype(text_font_path, theme.subtitle_font_size)
         except OSError:
             try:
-                subtitle_font_obj = ImageFont.truetype("Resources/assets/fonts/futura-light.ttf", theme.subtitle_font_size)
+                subtitle_font_obj = ImageFont.truetype(find_font("Resources/assets/fonts/futura-light.ttf"), theme.subtitle_font_size)
             except OSError:
                 subtitle_font_obj = ImageFont.load_default()
         
@@ -562,6 +601,31 @@ class OGImageGenerator:
                 x_pos = text_x + (text_box_width - text_width) // 2
                 draw.text((x_pos, subtitle_y), line, font=subtitle_font_obj, fill=theme.colors.subtitle_color)
                 subtitle_y += int(theme.subtitle_font_size * 1.4)
+        
+        # Draw metadata (tags and date) at bottom of image
+        if tags or date_published:
+            try:
+                metadata_font_obj = ImageFont.truetype(text_font, theme.metadata_font_size)
+            except OSError:
+                metadata_font_obj = subtitle_font_obj
+            
+            metadata_y = self.height - theme.padding - theme.metadata_font_size
+            
+            # Format metadata text
+            metadata_parts = []
+            if date_published:
+                metadata_parts.append(date_published)
+            if tags and len(tags) > 0:
+                # Limit to first 3 tags and format nicely
+                display_tags = tags[:3]
+                metadata_parts.append(" · ".join(display_tags))
+            
+            if metadata_parts:
+                metadata_text = "  |  ".join(metadata_parts)
+                bbox = metadata_font_obj.getbbox(metadata_text)
+                text_width = bbox[2] - bbox[0]
+                x_pos = text_x + (text_box_width - text_width) // 2
+                draw.text((x_pos, metadata_y), metadata_text, font=metadata_font_obj, fill=theme.colors.subtitle_color)
         
         return img
     

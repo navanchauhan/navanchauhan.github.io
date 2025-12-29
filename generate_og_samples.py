@@ -20,7 +20,7 @@ from helper_libs.og_themes import OGImageGenerator, THEMES, get_available_themes
 
 
 def parse_post_metadata(filepath):
-    """Parse the title and description from a markdown post."""
+    """Parse the title, description, tags, and date from a markdown post."""
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
@@ -32,11 +32,21 @@ def parse_post_metadata(filepath):
     desc_match = re.search(r'^description:\s*(.+)$', content, re.MULTILINE)
     description = desc_match.group(1).strip() if desc_match else ""
     
+    # Get tags from front matter
+    tags_match = re.search(r'^tags:\s*(.+)$', content, re.MULTILINE)
+    tags = []
+    if tags_match:
+        tags = [t.strip() for t in tags_match.group(1).split(',')]
+    
+    # Get date from front matter
+    date_match = re.search(r'^date:\s*(\d{4}-\d{2}-\d{2})', content, re.MULTILINE)
+    date_published = date_match.group(1) if date_match else None
+    
     # Check if draft
     draft_match = re.search(r'^draft:\s*true', content, re.MULTILINE)
     is_draft = bool(draft_match)
     
-    return title, description, is_draft
+    return title, description, tags, date_published, is_draft
 
 
 def get_random_posts(posts_dir="Content/posts", count=20, seed=2025):
@@ -45,15 +55,17 @@ def get_random_posts(posts_dir="Content/posts", count=20, seed=2025):
     for filename in sorted(os.listdir(posts_dir)):  # Sort for reproducibility
         if filename.endswith('.md'):
             filepath = os.path.join(posts_dir, filename)
-            title, description, is_draft = parse_post_metadata(filepath)
+            title, description, tags, date_published, is_draft = parse_post_metadata(filepath)
             if not is_draft:  # Skip drafts
-                posts.append((title, description))
+                posts.append((title, description, tags, date_published))
     
     if not posts:
         # Fallback if no posts found
         return [
             ("Building a Modern Web Application",
-             "A comprehensive guide to full-stack development"),
+             "A comprehensive guide to full-stack development",
+             ["Python", "Web Development"],
+             "2025-01-01"),
         ] * count
     
     random.seed(seed)
@@ -92,7 +104,10 @@ def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_
         output_path = os.path.join(output_dir, f"sample_{theme_name}.png")
         
         # Use a post from our selection
-        sample_title, sample_subtitle = posts[i % len(posts)]
+        post_data = posts[i % len(posts)]
+        sample_title, sample_subtitle = post_data[0], post_data[1]
+        sample_tags = post_data[2] if len(post_data) > 2 else None
+        sample_date = post_data[3] if len(post_data) > 3 else None
         
         print(f"Generating: {theme_config.name} ({theme_name})")
         print(f"  Title: {sample_title[:60]}{'...' if len(sample_title) > 60 else ''}")
@@ -104,6 +119,8 @@ def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_
             theme_name=theme_name,
             title_font="Resources/assets/fonts/futura-bold.ttf",
             text_font="Resources/assets/fonts/futura-light.ttf",
+            tags=sample_tags,
+            date_published=sample_date,
         )
         
         # Save the image
@@ -125,7 +142,10 @@ def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_
         output_path = os.path.join(output_dir, f"sample_{theme_name}_with_{decoration}.png")
         
         # Use different posts for decoration samples
-        sample_title, sample_subtitle = posts[(len(themes) + j) % len(posts)]
+        post_data = posts[(len(themes) + j) % len(posts)]
+        sample_title, sample_subtitle = post_data[0], post_data[1]
+        sample_tags = post_data[2] if len(post_data) > 2 else None
+        sample_date = post_data[3] if len(post_data) > 3 else None
         
         print(f"Generating: {theme_name} with {decoration} decoration")
         print(f"  Title: {sample_title[:60]}{'...' if len(sample_title) > 60 else ''}")
@@ -137,6 +157,8 @@ def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_
             title_font="Resources/assets/fonts/futura-bold.ttf",
             text_font="Resources/assets/fonts/futura-light.ttf",
             decoration=decoration,
+            tags=sample_tags,
+            date_published=sample_date,
         )
         
         generator.save(img, output_path)

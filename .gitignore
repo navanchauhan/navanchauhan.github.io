@@ -10,3 +10,8 @@ Thumbs.db
 __pycache__/
 # Don't push build folder
 docs/*
+
+# Font files used for OG image generation (download via setup_fonts.py)
+# Web fonts (.woff, .woff2) are kept tracked for website styling
+Resources/assets/fonts/*.ttf
+!Resources/assets/fonts/.gitkeep

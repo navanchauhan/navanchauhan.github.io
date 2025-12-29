@@ -459,8 +459,8 @@ class OGImageGenerator:
         theme_name: str = "modern",
         decoration: Optional[str] = None,
         overlay_image: Optional[str] = None,
-        title_font: str = "Resources/assets/fonts/LM-bold.ttf",
-        text_font: str = "Resources/assets/fonts/LM-regular.ttf",
+        title_font: str = "Resources/assets/fonts/futura-bold.ttf",
+        text_font: str = "Resources/assets/fonts/futura-light.ttf",
     ) -> Image.Image:
         """Generate an OG image with the specified theme and content."""
         
@@ -495,7 +495,7 @@ class OGImageGenerator:
             title_font_obj = ImageFont.truetype(title_font, theme.title_font_size)
         except OSError:
             try:
-                title_font_obj = ImageFont.truetype("Resources/assets/fonts/LM-bold.ttf", theme.title_font_size)
+                title_font_obj = ImageFont.truetype("Resources/assets/fonts/futura-bold.ttf", theme.title_font_size)
             except OSError:
                 title_font_obj = ImageFont.load_default()
         
@@ -503,7 +503,7 @@ class OGImageGenerator:
             subtitle_font_obj = ImageFont.truetype(text_font, theme.subtitle_font_size)
         except OSError:
             try:
-                subtitle_font_obj = ImageFont.truetype("Resources/assets/fonts/LM-regular.ttf", theme.subtitle_font_size)
+                subtitle_font_obj = ImageFont.truetype("Resources/assets/fonts/futura-light.ttf", theme.subtitle_font_size)
             except OSError:
                 subtitle_font_obj = ImageFont.load_default()
         

@@ -102,8 +102,8 @@ def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_
             title=sample_title,
             subtitle=sample_subtitle,
             theme_name=theme_name,
-            title_font="Resources/assets/fonts/LM-bold.ttf",
-            text_font="Resources/assets/fonts/LM-regular.ttf",
+            title_font="Resources/assets/fonts/futura-bold.ttf",
+            text_font="Resources/assets/fonts/futura-light.ttf",
         )
         
         # Save the image
@@ -134,8 +134,8 @@ def generate_samples(output_dir: str = "Resources/images/og_theme_samples", use_
             title=sample_title,
             subtitle=sample_subtitle,
             theme_name=theme_name,
-            title_font="Resources/assets/fonts/LM-bold.ttf",
-            text_font="Resources/assets/fonts/LM-regular.ttf",
+            title_font="Resources/assets/fonts/futura-bold.ttf",
+            text_font="Resources/assets/fonts/futura-light.ttf",
             decoration=decoration,
         )
         

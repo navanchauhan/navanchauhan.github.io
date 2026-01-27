@@ -24,6 +24,10 @@ This is a collection of some quotes I really like.
 
 > Honor was not won once, and forever retained — it had to be earned, and re-earned over and over again. <cite>&mdash; *Brett and Kate McKay*, *Does Stoicism Extinguish the Fire of Life?*</cite>
 
+### TV
+
+> “One may tolerate a world of demons for the sake of an angel.” <cite>&mdash; *The Doctor (Tenth Doctor)*, *Doctor Who* — “The Girl in the Fireplace” (Series 2, Episode 4)</cite>
+
 ### People
 
 > I would rather be ashes than dust ... The function of man is to live, not to exist. I shall not waste my days trying to prolong them. I shall use my time. <cite>&mdash; Jack London</cite>

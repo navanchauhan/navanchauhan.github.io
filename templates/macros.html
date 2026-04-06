@@ -1,8 +1,5 @@
 {% macro render_post_details(post) %}
     <ul>
-        {% if post.description %}
-            <li>{{ post.description }}</li>
-        {% endif %}
         {% if post.date and post.date != "2003-12-21 00:00" %}
             <li>Published On: {{ post.date }}</li>
         {% endif %}

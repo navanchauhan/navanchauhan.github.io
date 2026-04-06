@@ -1,5 +1,3 @@
-{% from "macros.html" import render_post_details %}
-
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
 
@@ -10,13 +8,8 @@
 
 <h1>Recent Posts</h1>
 <ul>
-{% for post in posts[:5] %}
-	<li><a href="{{post.link}}">{{ post.title }}</a>
-	{% if post.description or (post.date and post.date != "2003-12-21 00:00") or post.tags %}
-            {{ render_post_details(post) }}
-    {% endif %}
-    </li>
-
+{% for post in posts[:20] %}
+	<li><a href="{{post.link}}">{{ post.title }}</a> - {{ post.date | pretty_date | safe }}</li>
 {% endfor %}
 </ul>
 

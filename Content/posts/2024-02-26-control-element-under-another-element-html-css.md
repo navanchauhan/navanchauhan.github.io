@@ -1,7 +1,7 @@
 ---
 date: 2024-02-26 11:57
 description: With CSS you can disable any interactions with an element and directly control the underlying element
-tags: HTML, CSS, Tutorial, Code-Snippet
+tags: HTML, CSS, Tutorial
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 date: 2020-03-03 18:37
 description: Tinkering with an Android TV
-tags: Tutorial, Android-TV, Android
+tags: Tutorial, Android
 ---
 
 # Tinkering with an Android TV

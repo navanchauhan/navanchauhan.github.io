@@ -1,7 +1,7 @@
 ---
 date: 2020-08-01 15:43
 description: An introduction to AR.js and NFT
-tags: Tutorial, AR.js, JavaScript, Augmented-Reality
+tags: Tutorial, AR, JavaScript
 ---
 
 # Introduction to AR.js and Natural Feature Tracking

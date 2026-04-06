@@ -1,7 +1,7 @@
 ---
 date: 2019-12-16 14:16
 description: Polynomial regression using TensorFlow
-tags: Tutorial, Tensorflow, Colab, AI
+tags: Tutorial, TensorFlow, Colab, AI
 ---
 
 # Polynomial Regression Using TensorFlow

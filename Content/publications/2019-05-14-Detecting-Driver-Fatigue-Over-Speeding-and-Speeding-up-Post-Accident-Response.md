@@ -1,7 +1,7 @@
 ---
 date: 2019-05-14 02:42
 description: This paper is about Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response.
-tags: publication
+tags: Publication
 ---
 
 # Detecting Driver Fatigue, Over-Speeding, and Speeding up Post-Accident Response

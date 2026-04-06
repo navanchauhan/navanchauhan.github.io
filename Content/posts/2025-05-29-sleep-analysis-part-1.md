@@ -1,7 +1,7 @@
 ---
 date: 2025-06-03 00:37
 description: Analysing my sleep data to generate pretty graphs and insights.
-tags: Data-Analysis, Python
+tags: Data-Science, Python
 draft: false
 ---
 

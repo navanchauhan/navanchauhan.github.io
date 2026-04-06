@@ -1,7 +1,7 @@
 ---
 date: 2019-12-22 11:10
 description: In this tutorial we will build a fake news detecting app from scratch, using Turicreate for the machine learning model and SwiftUI for building the app
-tags: Tutorial, Colab, SwiftUI, Turicreate, Swift, AI
+tags: Tutorial, Colab, SwiftUI, TuriCreate, Swift, AI
 ---
 
 

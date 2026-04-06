@@ -1,7 +1,7 @@
 ---
 date: 2024-04-17 23:20
 description: Adding a bestMove method to swift-chess-neo by implementing alpha-beta pruning for minimax 
-tags: Swift, Chess, Game Theory, Mathematics, Tutorial
+tags: Swift, Chess, Game-Theory, Mathematics, Tutorial
 ---
 
 # Implementing Minimax with Alpha-Beta pruning for a simple Chess AI in Swift

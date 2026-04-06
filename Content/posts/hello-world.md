@@ -1,7 +1,6 @@
 ---
 date: 2019-04-16 17:39
 description: My first post.
-tags: hello-world
 readTime: 60
 ---
 # Hello World

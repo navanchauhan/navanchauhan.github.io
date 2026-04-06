@@ -1,7 +1,7 @@
 ---
 date: 2019-05-05 12:34
 description: Tutorial on creating your own custom theme for Snowboard or Anemone
-tags: Tutorial, Jailbreak, Designing, Snowboard, Anemone
+tags: Tutorial, Jailbreak
 draft: true
 ---
 

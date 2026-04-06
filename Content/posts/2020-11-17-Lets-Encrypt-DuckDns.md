@@ -1,7 +1,7 @@
 ---
 date: 2020-11-17 15:04
 description: Short code-snippet to generate HTTPS certificates using the DNS Challenge through Lets Encrypt for a web-server using DuckDNS.
-tags: Tutorial, Code-Snippet, Web-Development
+tags: Tutorial, Web-Development
 ---
 
 # Generating HTTPS Certificate using DNS a Challenge through Let's Encrypt

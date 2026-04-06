@@ -1,7 +1,7 @@
 ---
 date: 2020-06-01 13:10
 description: This is my workflow for lightning fast molecular docking.
-tags: Code-Snippet, Molecular-Docking, Cheminformatics, Open-Babel, AutoDock Vina
+tags: Cheminformatics
 ---
 
 # Workflow for Lightning Fast Molecular Docking Part One

@@ -1,4 +1,19 @@
 
+.tag-pill {
+    display: inline-block;
+    padding: 0.1em 0.6em;
+    font-size: 0.75em;
+    border-radius: 999px;
+    background-color: #e0e0e0;
+    color: #4a4a4a;
+    text-decoration: none;
+    margin-left: 0.3em;
+}
+
+.tag-pill:hover {
+    background-color: #ccc;
+}
+
 blockquote {
     margin: 50px auto;
     padding: 1.2em 30px 1.2em 75px;

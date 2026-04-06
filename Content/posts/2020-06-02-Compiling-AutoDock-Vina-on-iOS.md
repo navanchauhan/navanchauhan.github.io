@@ -1,7 +1,7 @@
 ---
 date: 2020-06-02 23:23
 description: Compiling AutoDock Vina on iOS
-tags: iOS, Jailbreak, Cheminformatics, AutoDock Vina, Molecular-Docking
+tags: iOS, Jailbreak, Cheminformatics
 ---
 
 # Compiling AutoDock Vina on iOS

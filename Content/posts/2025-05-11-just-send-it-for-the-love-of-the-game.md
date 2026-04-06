@@ -1,7 +1,7 @@
 ---
 date: 2025-05-11 22:24
 description: A personal reflection on pressing forward
-tags: Writings
+tags: Life
 draft: false
 ---
 

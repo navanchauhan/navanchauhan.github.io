@@ -1,7 +1,7 @@
 ---
 date: 2024-08-08 16:08
 description: Using LLDB with OpenCOD on macOS
-tags: OpenOCD, LLVM, LLDB, macOS, Pico-W
+tags: OpenOCD, LLVM, Debugging, macOS, Pico-W
 ---
 
 # Using OpenOCD with LLDB for Raspberry Pi Pico W on macOS

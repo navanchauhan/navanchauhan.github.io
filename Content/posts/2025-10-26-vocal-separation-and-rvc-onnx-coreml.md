@@ -1,7 +1,7 @@
 --
 date: 2025-10-26 19:07
 description: Using MDX-Net and Retrieval Based Voice Conversion (RVC) in Swift via ONNX and CoreML (+ Accelerate and AVFoundation)
-tags: ONNX, CoreML, Swift, macOS, RVC, Audio Processing
+tags: ONNX, CoreML, Swift, macOS, RVC, Audio-Processing
 draft: false
 --
 

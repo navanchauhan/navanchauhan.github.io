@@ -1,7 +1,7 @@
 ---
 date: 2023-02-08 17:21
 description: Code snippet to interact with Siri by issuing commands from the command-line.
-tags: Tutorial, Code-Snippet, Python, Siri, macOS, AppleScript
+tags: Tutorial, Python, Automation, macOS
 ---
 
 # Interacting with Siri using the command line

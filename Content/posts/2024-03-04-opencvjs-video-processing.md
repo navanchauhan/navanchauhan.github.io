@@ -1,7 +1,7 @@
 ---
 date: 2024-03-04 12:01
 description: Real time video processing with OpenCV.js in the browser
-tags: HTML, JS, OpenCV
+tags: HTML, JavaScript, OpenCV
 draft: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 date: 2025-09-25 21:03
 description: Modding YouTube on iOS (Without Jailbreaking)
-tags: iOS, Reverse Engineering, Mobile Security
+tags: iOS, Reverse-Engineering, Mobile-Security
 draft: false
 ---
 

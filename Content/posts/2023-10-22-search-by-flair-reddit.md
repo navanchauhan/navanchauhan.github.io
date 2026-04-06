@@ -1,7 +1,7 @@
 ---
 date: 2023-10-22 00:37
 description: Search posts by flair on Reddit Web by using _
-tags: Tech Tip, Reddit
+tags: Tech-Tip, Reddit
 draft: false 
 ---
 

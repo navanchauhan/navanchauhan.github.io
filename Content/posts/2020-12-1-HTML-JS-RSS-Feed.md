@@ -1,7 +1,7 @@
 ---
 date: 2020-12-01 20:52
 description: Short code-snippet for an RSS feed, written in HTML and JavaScript
-tags: Tutorial, Code-Snippet, HTML, JavaScript
+tags: Tutorial, HTML, JavaScript
 ---
 # RSS Feed written in HTML + JavaScript
 

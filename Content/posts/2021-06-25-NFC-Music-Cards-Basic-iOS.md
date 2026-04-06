@@ -1,7 +1,7 @@
 ---
 date: 2021-06-25 16:20
 description: Basic NFC Music Cards on iOS with Shortcuts
-tags: iOS, Shortcuts
+tags: iOS, Automation
 ---
 
 # Basic NFC Music Cards for iOS

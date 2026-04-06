@@ -1,7 +1,7 @@
 ---
 date: 2019-12-10 11:10
 description: Making predictions for image classification models built using TensorFlow
-tags: Tutorial, Tensorflow, Code-Snippet, AI
+tags: Tutorial, TensorFlow, AI
 ---
 
 # Making Predictions using Image Classifier (TensorFlow)

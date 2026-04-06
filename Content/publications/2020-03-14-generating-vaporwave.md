@@ -1,7 +1,7 @@
 ---
 date: 2020-03-14 22:23
 description: This paper is about programmaticaly generating Vaporwave.
-tags: publication, pre-print
+tags: Publication, Pre-Print
 ---
 
 # Is it possible to programmatically generate Vaporwave?

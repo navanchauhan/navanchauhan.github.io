@@ -10,6 +10,17 @@ from PIL import Image
 import re
 
 templates = Environment(loader=FileSystemLoader("templates"))
+
+def format_date_pretty(date_str):
+    dt = datetime.datetime.strptime(date_str[:10], "%Y-%m-%d")
+    day = dt.day
+    if 11 <= day <= 13:
+        suffix = "th"
+    else:
+        suffix = {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
+    return f"{day}<sup>{suffix}</sup> {dt.strftime('%B')}, {dt.year}"
+
+templates.filters["pretty_date"] = format_date_pretty
 src_folder = "Content"
 out_folder = "docs"
 resources_folder = "Resources"

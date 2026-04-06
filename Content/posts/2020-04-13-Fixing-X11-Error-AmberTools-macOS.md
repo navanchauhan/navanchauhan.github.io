@@ -1,7 +1,7 @@
 ---
 date: 2020-04-13 11:41
 description: Fixing Could not find the X11 libraries; you may need to edit config.h, AmberTools macOS Catalina
-tags: Tutorial, Molecular-Dynamics, macOS, Cheminformatics
+tags: Tutorial, macOS, Cheminformatics
 ---
 
 # Fixing X11 Error on macOS Catalina for AmberTools 18/19

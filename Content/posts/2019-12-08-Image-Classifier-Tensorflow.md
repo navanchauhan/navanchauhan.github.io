@@ -1,7 +1,7 @@
 ---
 date: 2019-12-08 14:16
 description: Tutorial on creating an image classifier model using TensorFlow which detects malaria
-tags: Tutorial, Tensorflow, Colab, AI
+tags: Tutorial, TensorFlow, Colab, AI
 ---
 
 # Creating a Custom Image Classifier using Tensorflow 2.x and Keras for Detecting Malaria

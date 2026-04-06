@@ -1,7 +1,7 @@
 ---
 date: 2023-10-05 20:01
 description: Walkthrough of Attack Lab Phases 1-4 for CSCI 2400 Computer Systems
-tags: gdb, Reverse-Engineering, C++, CSCI2400, Assembly, Tutorial
+tags: Debugging, Reverse-Engineering, C++, CSCI2400, Assembly, Tutorial
 draft: false 
 ---
 

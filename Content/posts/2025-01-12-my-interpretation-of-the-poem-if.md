@@ -1,7 +1,7 @@
 ---
 date: 2025-01-12 16:18
 description: My interpretation of the poem If— by Rudyard Kipling
-tags: Writings
+tags: Life
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 date: 2022-11-07 23:29
 description: Writing posts in markdown using pen and paper
-tags: Python, OCR, Microsoft Azure
+tags: Python, OCR, Microsoft-Azure
 ---
 
 # A new method to blog

@@ -252,6 +252,13 @@ for tag, post in tag_post_dict.items():
             )
         )
 
+with open(os.path.join(tag_folder, "index.html"), "w") as f:
+    f.write(
+        templates.get_template("tags.html").render(
+            tags=tag_post_dict.items(),
+        )
+    )
+
 for fpath in index_pages_to_generate:
     with open(fpath) as f:
         _html = md.convert(f.read())

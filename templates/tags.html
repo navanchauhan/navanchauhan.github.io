@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Tags{% endblock %}
+
+{% block body %}
+
+<main>
+<h1>Tags</h1>
+
+<div class="tag-cloud">
+{% for tag, posts in tags|sort %}
+    <a href="/tags/{{ tag }}.html" class="tag-pill tag-pill-lg">{{ tag }} <span class="tag-count">{{ posts|length }}</span></a>
+{% endfor %}
+</div>
+
+<hr>
+
+{% for tag, posts in tags|sort %}
+<h2 id="{{ tag }}">{{ tag }}</h2>
+<ul>
+{% for post in posts|sort(attribute='date', reverse=True) %}
+    <li><a href="{{ post.link }}">{{ post.title }}</a> - {{ post.date | pretty_date | safe }}</li>
+{% endfor %}
+</ul>
+{% endfor %}
+
+</main>
+{% endblock %}

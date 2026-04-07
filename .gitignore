@@ -12,3 +12,4 @@ __pycache__/
 docs/*
 # Cached OG image fonts (auto-downloaded)
 .og-fonts/
+fonts/

@@ -10,3 +10,5 @@ Thumbs.db
 __pycache__/
 # Don't push build folder
 docs/*
+# Cached OG image fonts (auto-downloaded)
+.og-fonts/

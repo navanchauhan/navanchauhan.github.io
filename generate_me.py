@@ -5,7 +5,10 @@ import shutil
 import datetime
 import email.utils
 from helper_libs.image_utils import ImageText
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
+import urllib.request
+import zipfile
+import io
 
 import re
 
@@ -33,6 +36,132 @@ image_title_color = (49,31,19) #(74, 74, 74)
 image_line_color = (176,113,84) #(29, 116, 132)
 image_title_font = "fonts/futura_bold.ttf"
 image_text_font = "fonts/futura_light.ttf"
+
+# ── OG Image Generation (Option C: Teal Card) ──
+
+OG_FONT_CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".og-fonts")
+OG_FONTS = {
+    "abril_fatface": {
+        "filename": "AbrilFatface-Regular.ttf",
+        "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/abrilfatface/AbrilFatface-Regular.ttf",
+    },
+    "pt_sans": {
+        "filename": "PT_Sans-Web-Regular.ttf",
+        "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/ptsans/PT_Sans-Web-Regular.ttf",
+    },
+}
+
+OG_W, OG_H = 1200, 630
+OG_TEAL = (26, 91, 116)
+
+
+def _ensure_og_fonts():
+    """Download OG image fonts if not already cached."""
+    os.makedirs(OG_FONT_CACHE_DIR, exist_ok=True)
+    paths = {}
+    for key, info in OG_FONTS.items():
+        dest = os.path.join(OG_FONT_CACHE_DIR, info["filename"])
+        if not os.path.exists(dest):
+            print(f"Downloading font: {info['filename']}")
+            urllib.request.urlretrieve(info["url"], dest)
+        paths[key] = dest
+    # Futura Light is bundled in the repo
+    paths["futura_light"] = image_text_font
+    return paths
+
+
+def _og_wrap_text(text, font, max_width):
+    words = text.split()
+    lines, current = [], []
+    for word in words:
+        test = " ".join(current + [word])
+        if font.getbbox(test)[2] - font.getbbox(test)[0] <= max_width:
+            current.append(word)
+        else:
+            if current:
+                lines.append(" ".join(current))
+            current = [word]
+    if current:
+        lines.append(" ".join(current))
+    return lines
+
+
+def _og_text_height(text, font):
+    bbox = font.getbbox(text)
+    return bbox[3] - bbox[1]
+
+
+def _og_rounded_rect(draw, xy, radius, fill):
+    x0, y0, x1, y1 = xy
+    draw.rectangle([x0 + radius, y0, x1 - radius, y1], fill=fill)
+    draw.rectangle([x0, y0 + radius, x1, y1 - radius], fill=fill)
+    draw.pieslice([x0, y0, x0 + 2*radius, y0 + 2*radius], 180, 270, fill=fill)
+    draw.pieslice([x1 - 2*radius, y0, x1, y0 + 2*radius], 270, 360, fill=fill)
+    draw.pieslice([x0, y1 - 2*radius, x0 + 2*radius, y1], 90, 180, fill=fill)
+    draw.pieslice([x1 - 2*radius, y1 - 2*radius, x1, y1], 0, 90, fill=fill)
+
+
+def generate_og_image(title, description, tags, output_path):
+    """Generate a teal card OG image for a blog post."""
+    fonts = _ensure_og_fonts()
+
+    img = Image.new("RGB", (OG_W, OG_H), OG_TEAL)
+    draw = ImageDraw.Draw(img)
+
+    title_font = ImageFont.truetype(fonts["abril_fatface"], 54)
+    desc_font = ImageFont.truetype(fonts["futura_light"], 26)
+    tag_font = ImageFont.truetype(fonts["pt_sans"], 18)
+    site_font = ImageFont.truetype(fonts["pt_sans"], 18)
+
+    # Title (centered)
+    lines = _og_wrap_text(title, title_font, OG_W - 160)
+    total_h = sum(_og_text_height(l, title_font) + 14 for l in lines)
+    y = max(60, (OG_H - total_h - 120) // 2)
+    for line in lines:
+        lw = title_font.getbbox(line)[2] - title_font.getbbox(line)[0]
+        draw.text(((OG_W - lw) // 2, y), line, font=title_font, fill=(255, 255, 255))
+        y += _og_text_height(line, title_font) + 14
+
+    # Horizontal rule
+    y += 15
+    rule_w = 200
+    draw.rectangle([(OG_W - rule_w) // 2, y, (OG_W + rule_w) // 2, y + 2], fill=(255, 255, 255))
+    y += 25
+
+    # Description (centered)
+    if description:
+        desc_lines = _og_wrap_text(description, desc_font, OG_W - 200)
+        for line in desc_lines:
+            lw = desc_font.getbbox(line)[2] - desc_font.getbbox(line)[0]
+            draw.text(((OG_W - lw) // 2, y), line, font=desc_font, fill=(200, 220, 230))
+            y += _og_text_height(line, desc_font) + 6
+
+    # Tag pills (centered at bottom)
+    if tags:
+        tag_total_w = 0
+        for tag in tags:
+            tw = tag_font.getbbox(tag)[2] - tag_font.getbbox(tag)[0]
+            tag_total_w += tw + 28
+        tag_x = (OG_W - tag_total_w) // 2
+        tag_y = OG_H - 80
+        pill_color = (36, 111, 140)
+        for tag in tags:
+            bbox = tag_font.getbbox(tag)
+            tw = bbox[2] - bbox[0]
+            th = bbox[3] - bbox[1]
+            pill_w = tw + 20
+            pill_h = th + 10
+            _og_rounded_rect(draw, (tag_x, tag_y, tag_x + pill_w, tag_y + pill_h),
+                             pill_h // 2, pill_color)
+            draw.text((tag_x + 10, tag_y + 3), tag, font=tag_font, fill=(200, 220, 230))
+            tag_x += pill_w + 8
+
+    # Site URL (bottom right)
+    draw.text((OG_W - 200, OG_H - 40), "web.navan.dev", font=site_font, fill=(150, 190, 210))
+
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    img.save(output_path)
+    return output_path
 
 md = Markdown(
     extras=[
@@ -131,77 +260,13 @@ for x in os.walk(src_folder):
 
                         # Check if image exists
                         if not os.path.exists(to_write_path):
-                            print(print("Generating Image for {}".format(fpath)))
-                            img = ImageText((1200, 630), background=(238, 238, 238))
-                            dall_e_image = to_write_path.replace("images/opengraph","DallE3Base")
-                            if (os.path.exists(dall_e_image)):
-                                print("Found DallE3Base Image")
-                                img = ImageText((1200,630), background=(248,247,240))
-                                dall_e_image_file = Image.open(dall_e_image)
-                                dall_e_image_file = dall_e_image_file.resize((630,630))
-                                img.paste(dall_e_image_file, (570,0))
-                                img.write_text_box(
-                                        (35, 50),
-                                        _post_title,
-                                        box_width=500,
-                                        font_filename=image_title_font,
-                                        font_size=65,
-                                        color=image_title_color,
-                                        place="center",
-                                    )
-                                img.line(
-                                    shape=[(500, 400), (70,400)], fill=image_line_color, width=5
-                                )
-                                img.write_text_box(
-                                        (35, 435),
-                                        _post["description"],
-                                        box_width=500,
-                                        font_filename=image_text_font,
-                                        font_size=32,
-                                        color=(0, 0, 0),
-                                        place="center",
-                                    )
-                            else:
-                            #img = ImageText((1200, 630), background=(238, 238, 238))
-                                img.write_text_box(
-                                    (100, 50),
-                                    _post_title,
-                                    box_width=1000,
-                                    font_filename=image_title_font,
-                                    font_size=65,
-                                    color=image_title_color,
-                                    place="center",
-                                )
-                                img.line(
-                                    shape=[(400, 400), (800, 400)], fill=image_line_color
-                                )
-                                img.write_text_box(
-                                    (100, 430),
-                                    f'Tags: {", ".join(_post["tags"])}',
-                                    box_width=1000,
-                                    font_filename=image_text_font,
-                                    font_size=32,
-                                    color=(0, 0, 0),
-                                    place="left",
-                                )
-                                img.write_text_box(
-                                    (100, 400),
-                                    f'Date: {_post["date"]}',
-                                    box_width=1000,
-                                    font_filename=image_text_font,
-                                    font_size=32,
-                                    color=(0, 0, 0),
-                                    place="left",
-                                )
-                            try:
-                                img.save(to_write_path)
-                            except FileNotFoundError as e:
-                                if not os.path.exists(to_write_path.rsplit("/", 1)[0]):
-                                    os.makedirs(to_write_path.rsplit("/", 1)[0])
-                                    img.save(to_write_path)
-                                else:
-                                    print(e)
-                                    exit(1)
+                            print("Generating OG image for {}".format(fpath))
+                            generate_og_image(
+                                title=_post_title,
+                                description=_post.get("description", ""),
+                                tags=_post.get("tags", []),
+                                output_path=to_write_path,
+                            )
 
                         _post["image_link"] = base_link[:-1] + _post["image_link"]
 

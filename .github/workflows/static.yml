@@ -31,6 +31,10 @@ jobs:
         uses: astral-sh/setup-uv@v5
       - name: Setup Python
         run: uv python install 3.12
+      - name: Restore fonts from secrets
+        run: |
+          mkdir -p fonts
+          echo "${{ secrets.FUTURA_LIGHT_B64 }}" | base64 -d > fonts/futura_light.ttf
       - name: Install Dependencies and Build
         run: |
           uv sync

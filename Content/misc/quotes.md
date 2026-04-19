@@ -38,6 +38,10 @@ Although, I love the Hindi version of this quote better
 
 > I would rather be ashes than dust ... The function of man is to live, not to exist. I shall not waste my days trying to prolong them. I shall use my time. <cite>&mdash; Jack London</cite>
 
+> “If something burns your soul with purpose and desire, it’s your duty to be reduced to ashes by it. Any other form of existence will be yet another dull book in the library of life.” <cite>&mdash; Charles Bukowski</cite>
+
+> No man ever steps in the same river twice, for it's not the same river and he's not the same man. <cite>&mdash; Heraclitus</cite>
+
 ## Unknown
 
 These could have been from a Tumblr shitpost, or something I just heard, saw on a short-form video,  or thought of.
@@ -53,5 +57,11 @@ These could have been from a Tumblr shitpost, or something I just heard, saw on 
 > Everything will be okay in the end. If it's not okay, it's not the end.
 
 ![Yung Lean](/assets/yung-lean.png)
+
+> You need to tear muscle to grow it. Why would it be different for the mind or spirit?
+
+> There are graveyards full of people who thought they had more time
+
+> The day you plant the seed is not the day you eat the fruit
 
 <hr>

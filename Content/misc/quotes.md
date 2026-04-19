@@ -18,21 +18,21 @@ This is a collection of some quotes I really like.
 
 > And when nobody wakes you up in the morning, and when nobody waits for you at night, and when you can do whatever you want. What do you call it, freedom or loneliness? <cite>&mdash; *Milan Kundera*, *The Unbearable Lightness of Being*</cite>
 
-> If a friend of mine gave a feast, and did not invite me to it, I should not mind a bit. But if a friend of mine had a sorrow and refused to allow me to share it, I should feel it most bitterly. <cite>— *Oscar Wilde*, *De Profundis*</cite>
+> If a friend of mine gave a feast, and did not invite me to it, I should not mind a bit. But if a friend of mine had a sorrow and refused to allow me to share it, I should feel it most bitterly. <cite>&mdash; *Oscar Wilde*, *De Profundis*</cite>
 
-> "And, when you want something, all the universe conspires in helping you to achieve it." <cite>— *Paulo Coelho*, *The Alchemist*</cite>
+> "And, when you want something, all the universe conspires in helping you to achieve it." <cite>&mdash; *Paulo Coelho*, *The Alchemist*</cite>
 
 Although, I love the Hindi version of this quote better
 
-> इतनी शिद्दत से मैंने तुम्हें पाने की कोशिश की है, कि हर ज़र्रे ने मुझे तुमसे मिलाने की साज़िश की है। <br><br> कहते हैं, अगर किसी चीज़ को दिल से चाहो, तो पूरी कायनात उसे तुमसे मिलाने की कोशिश में लग जाती है। <cite>— *ओम कपूर*, *ओम शांति ओम*</cite>
+> इतनी शिद्दत से मैंने तुम्हें पाने की कोशिश की है, कि हर ज़र्रे ने मुझे तुमसे मिलाने की साज़िश की है। <br><br> कहते हैं, अगर किसी चीज़ को दिल से चाहो, तो पूरी कायनात उसे तुमसे मिलाने की कोशिश में लग जाती है। <cite>&mdash; *ओम कपूर*, *ओम शांति ओम*</cite>
 
 ### Blogs/Websites
 
-> Honor was not won once, and forever retained — it had to be earned, and re-earned over and over again. <cite>&mdash; *Brett and Kate McKay*, *Does Stoicism Extinguish the Fire of Life?*</cite>
+> Honor was not won once, and forever retained &mdash; it had to be earned, and re-earned over and over again. <cite>&mdash; *Brett and Kate McKay*, *Does Stoicism Extinguish the Fire of Life?*</cite>
 
 ### TV
 
-> “One may tolerate a world of demons for the sake of an angel.” <cite>&mdash; *The Doctor (Tenth Doctor)*, *Doctor Who* — “The Girl in the Fireplace” (Series 2, Episode 4)</cite>
+> “One may tolerate a world of demons for the sake of an angel.” <cite>&mdash; *The Doctor (Tenth Doctor)*, *Doctor Who* &mdash; “The Girl in the Fireplace” (Series 2, Episode 4)</cite>
 
 ### People
 

@@ -20,6 +20,12 @@ This is a collection of some quotes I really like.
 
 > If a friend of mine gave a feast, and did not invite me to it, I should not mind a bit. But if a friend of mine had a sorrow and refused to allow me to share it, I should feel it most bitterly. <cite>— *Oscar Wilde*, *De Profundis*</cite>
 
+> "And, when you want something, all the universe conspires in helping you to achieve it." <cite>— *Paulo Coelho*, *The Alchemist*</cite>
+
+Although, I love the Hindi version of this quote better
+
+> इतनी शिद्दत से मैंने तुम्हें पाने की कोशिश की है, कि हर ज़र्रे ने मुझे तुमसे मिलाने की साज़िश की है। <br><br> कहते हैं, अगर किसी चीज़ को दिल से चाहो, तो पूरी कायनात उसे तुमसे मिलाने की कोशिश में लग जाती है। <cite>— *ओम कपूर*, *ओम शांति ओम*</cite>
+
 ### Blogs/Websites
 
 > Honor was not won once, and forever retained — it had to be earned, and re-earned over and over again. <cite>&mdash; *Brett and Kate McKay*, *Does Stoicism Extinguish the Fire of Life?*</cite>
@@ -44,5 +50,8 @@ These could have been from a Tumblr shitpost, or something I just heard, saw on 
 
 > And You suddenly discover that you do not want to be the best in this world, all you want is to sit calm and temperate,  not caring about anything and just want to be satisfied with everything.
 
-<hr>
+> Everything will be okay in the end. If it's not okay, it's not the end.
 
+![Yung Lean](/assets/yung-lean.png)
+
+<hr>

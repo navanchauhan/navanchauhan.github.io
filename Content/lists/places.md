@@ -2,6 +2,7 @@
 date: 2026-04-06 00:00
 description: A curated list of places I liked
 tags: Lists
+visible_on_main: false
 ---
 
 # Places

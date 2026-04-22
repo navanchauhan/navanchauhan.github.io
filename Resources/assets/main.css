@@ -4,7 +4,7 @@ body {
 }
 
 .paint {
-    background-color: #fff;
+    background: linear-gradient(180deg, #f7f2e9 0%, #f5efe4 100%);
 }
 
 .content.container {

@@ -125,6 +125,15 @@ cite {
     margin: 0.95rem 0 1.4rem;
 }
 
+.post > p:first-of-type::first-letter {
+    float: left;
+    font-family: "Abril Fatface", serif;
+    font-size: 3.6em;
+    line-height: 0.85;
+    margin: 0.08em 0.12em 0 0;
+    color: #39332e;
+}
+
 .error-page .content.container {
     max-width: none;
     overflow: hidden;

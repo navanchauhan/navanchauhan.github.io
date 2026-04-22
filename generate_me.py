@@ -15,6 +15,8 @@ from html import unescape
 import re
 
 templates = Environment(loader=FileSystemLoader("templates"))
+BUILD_VERSION = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+templates.globals["asset_version"] = BUILD_VERSION
 
 READING_WORDS_PER_MINUTE = 220
 

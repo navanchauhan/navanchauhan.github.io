@@ -767,12 +767,23 @@ a.sidebar-nav-item:focus {
   padding-bottom: 4rem;
 }
 
+.content > :first-child,
+.content > :first-child > :first-child {
+  margin-top: 0;
+}
+
 @supports (padding: max(0px)) {
   body:not(.layout-reverse) .content {
     padding-right: max(1rem, env(safe-area-inset-right));
   }
   .layout-reverse .content {
     padding-left: max(1rem, env(safe-area-inset-left));
+  }
+}
+@media (max-width: 47.999em) {
+  .content {
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
   }
 }
 @media (min-width: 48em) {

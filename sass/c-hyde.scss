@@ -801,6 +801,11 @@ a.sidebar-nav-item:focus {
   padding-bottom: 4rem;
 }
 
+.content > :first-child,
+.content > :first-child > :first-child {
+  margin-top: 0;
+}
+
 @supports(padding: m#{a}x(0px)) {
   body:not(.layout-reverse) .content {
       // Notch is to right of content text; pad it appropriately
@@ -810,6 +815,13 @@ a.sidebar-nav-item:focus {
   .layout-reverse .content {
       // Notch is to left of content text; pad it appropriately
       padding-left: m#{a}x(1rem, env(safe-area-inset-left));
+  }
+}
+
+@media (max-width: 47.999em) {
+  .content {
+    padding-top: 1rem;
+    padding-bottom: 2.5rem;
   }
 }
 

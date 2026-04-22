@@ -374,14 +374,7 @@ cite {
 
 @media (min-width: 64em) {
     .error-copy::before {
-        content: "";
-        position: absolute;
-        inset: -2rem -3rem -2rem -1rem;
-        background:
-            linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.94) 56%, rgba(255, 255, 255, 0.72) 76%, rgba(255, 255, 255, 0) 100%);
-        filter: blur(8px);
-        z-index: -1;
-        pointer-events: none;
+        content: none;
     }
 
     .error-illustration-wrap {
@@ -398,10 +391,6 @@ cite {
     .error-copy {
         width: min(32rem, 46%);
         padding-right: 1rem;
-    }
-
-    .error-copy::before {
-        inset: -2.2rem -3.25rem -2.2rem -1rem;
     }
 
     .error-illustration-wrap {

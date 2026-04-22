@@ -43,9 +43,11 @@
     {% endblock %}
 </head>
 <body class="theme-base-0d{% block body_class %}{% endblock %}">
+    <div class="paint">
     {% include "sidebar.html" %}
     <div class="content container">
     {% block body %}{% endblock %}
+    </div>
     </div>
     <script src="assets/manup.min.js"></script>
     <script src="/pwabuilder-sw-register.js"></script>

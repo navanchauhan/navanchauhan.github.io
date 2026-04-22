@@ -94,6 +94,29 @@ cite {
     opacity: 0.92;
 }
 
+.post-kicker {
+    margin: 0 0 0.65rem;
+    color: rgba(57, 51, 46, 0.68);
+    font-family: "PT Sans", Helvetica, Arial, sans-serif;
+    font-size: 0.8rem;
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    text-transform: lowercase;
+}
+
+.post h1,
+.post > p,
+.post > ul,
+.post > ol,
+.post > blockquote,
+.post > hr,
+.post > figure,
+.post > h2,
+.post > h3,
+.post > h4 {
+    max-width: 34rem;
+}
+
 .post-header-meta {
     display: flex;
     flex-wrap: wrap;
@@ -106,12 +129,6 @@ cite {
     letter-spacing: 0.02em;
 }
 
-.post-header-date {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-}
-
 .post-header-date::after {
     content: "";
     flex: 0 0 0.3rem;
@@ -121,10 +138,6 @@ cite {
     background: rgba(91, 79, 67, 0.45);
 }
 
-.post-divider {
-    margin: 0.95rem 0 1.4rem;
-}
-
 .post > p:first-of-type::first-letter {
     float: left;
     font-family: "Abril Fatface", serif;
@@ -132,6 +145,95 @@ cite {
     line-height: 0.85;
     margin: 0.08em 0.12em 0 0;
     color: #39332e;
+}
+
+.post > p {
+    line-height: 1.76;
+    margin-bottom: 1.1rem;
+}
+
+.post > p + p {
+    text-indent: 1.15em;
+}
+
+.post > h2,
+.post > h3,
+.post > h4 {
+    color: #39332e;
+}
+
+.post > h2 {
+    margin-top: 2.8rem;
+    margin-bottom: 0.65rem;
+}
+
+.post > h3 {
+    margin-top: 1.9rem;
+    margin-bottom: 0.45rem;
+}
+
+.post > hr {
+    position: relative;
+    display: block;
+    margin: 3rem auto 2rem;
+    width: min(100%, 12rem);
+    border: 0;
+    border-top: 1px solid rgba(91, 79, 67, 0.25);
+    text-align: center;
+}
+
+.post > hr::after {
+    content: "❦";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0 0.65rem;
+    background: #f6f0e6;
+    color: rgba(91, 79, 67, 0.58);
+    font-size: 1.05rem;
+    transform: translate(-50%, -58%);
+}
+
+.post > hr + p {
+    text-indent: 1.15em;
+}
+
+.post-figure {
+    margin: 1.8rem auto 1.6rem;
+}
+
+.post-figure img {
+    margin-bottom: 0.55rem;
+}
+
+.post-caption {
+    color: rgba(57, 51, 46, 0.66);
+    font-size: 0.88rem;
+    font-style: italic;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.post p a,
+.post li a,
+.post blockquote a,
+.post-caption a {
+    color: #31566c;
+    text-decoration-color: rgba(49, 86, 108, 0.35);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.13em;
+}
+
+.post p a:hover,
+.post li a:hover,
+.post blockquote a:hover,
+.post p a:focus,
+.post li a:focus,
+.post blockquote a:focus,
+.post-caption a:hover,
+.post-caption a:focus {
+    color: #27495d;
+    text-decoration-color: rgba(39, 73, 93, 0.55);
 }
 
 .error-page .content.container {
@@ -181,6 +283,12 @@ cite {
     gap: 0.7rem;
     width: min(100%, 11rem);
     margin: 1.35rem 0 1.25rem;
+}
+
+.error-divider.post-divider {
+    width: 100%;
+    max-width: 11rem;
+    margin: 1rem auto 1.55rem;
 }
 
 .error-divider span {
@@ -352,17 +460,41 @@ cite {
 }
 
 @media (max-width: 47.999em) {
-    .post-header-meta {
-        font-size: 0.88rem;
-        gap: 0.45rem;
+    .post h1,
+    .post > p,
+    .post > ul,
+    .post > ol,
+    .post > blockquote,
+    .post > hr,
+    .post > figure,
+    .post > h2,
+    .post > h3,
+    .post > h4 {
+        max-width: none;
     }
 
-    .post-header-date {
-        gap: 0.45rem;
+    .post-kicker {
+        margin-bottom: 0.55rem;
+        font-size: 0.74rem;
+    }
+
+    .post-header-meta {
+        font-size: 0.88rem;
+        gap: 0.5rem;
     }
 
     .post-divider {
         margin-bottom: 1.15rem;
+    }
+
+    .post > p + p,
+    .post > hr + p {
+        text-indent: 0.9em;
+    }
+
+    .post > hr {
+        margin-top: 2.4rem;
+        margin-bottom: 1.7rem;
     }
 
     .error-page .content.container {

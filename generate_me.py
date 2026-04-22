@@ -199,6 +199,7 @@ h1_block_tag = re.compile(r"<h1[^>]*>.*?</h1>", re.DOTALL)
 pre_block_tag = re.compile(r"<pre[^>]*>.*?</pre>", re.DOTALL)
 html_tag = re.compile(r"<[^>]+>")
 word_tag = re.compile(r"\b[\w][\w'.:/+-]*\b")
+paragraph_img_tag = re.compile(r'<p>\s*(<img\b[^>]*\balt="([^"]*)"[^>]*>)\s*</p>', re.DOTALL)
 
 
 def estimate_reading_time_minutes(html):
@@ -208,11 +209,28 @@ def estimate_reading_time_minutes(html):
     return max(1, math.ceil(word_count / READING_WORDS_PER_MINUTE))
 
 
+def add_image_captions(html):
+    def replace_image(match):
+        image_html = match.group(1)
+        alt_text = unescape(match.group(2)).strip()
+        if not alt_text:
+            return match.group(0)
+        return (
+            '<figure class="post-figure">'
+            f"{image_html}"
+            f'<figcaption class="post-caption">{alt_text}</figcaption>'
+            "</figure>"
+        )
+
+    return re.sub(paragraph_img_tag, replace_image, html)
+
+
 def build_post_content(html, metadata, toc_html):
     title_match = re.search(h1_tag, html)
     title = title_match.group(1) if title_match else metadata.get("title", "")
 
     body = re.sub(h1_block_tag, "", html, count=1).lstrip()
+    body = add_image_captions(body)
     toc = toc_html if len(re.findall(r"<li>", toc_html)) > 1 else ""
     content_metadata = dict(metadata)
     content_metadata["reading_time"] = estimate_reading_time_minutes(body)

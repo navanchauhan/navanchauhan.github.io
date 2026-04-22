@@ -15,7 +15,12 @@
 
 {% block body %}
 	<div class="post">
-	{{ content}}
+		<h1>{{ content.title | safe }}</h1>
+		{% if content.toc %}
+		<img src="/illustrations/trees_and_mountains.png" alt="" aria-hidden="true">
+		{{ content.toc | safe }}
+		{% endif %}
+		{{ content.body | safe }}
 	</div>
 	<script data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>

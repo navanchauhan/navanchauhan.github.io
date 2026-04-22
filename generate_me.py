@@ -179,6 +179,22 @@ md = Markdown(
 
 # h1 tag regex ignoring any attributes
 h1_tag = re.compile(r"<h1[^>]*>(.*?)</h1>")
+h1_block_tag = re.compile(r"<h1[^>]*>.*?</h1>", re.DOTALL)
+
+
+def build_post_content(html, metadata, toc_html):
+    title_match = re.search(h1_tag, html)
+    title = title_match.group(1) if title_match else metadata.get("title", "")
+
+    body = re.sub(h1_block_tag, "", html, count=1).lstrip()
+    toc = toc_html if len(re.findall(r"<li>", toc_html)) > 1 else ""
+
+    return {
+        "metadata": metadata,
+        "title": title,
+        "toc": toc,
+        "body": body,
+    }
 
 def render_markdown_post(
     html, metadata=None, template="post.html", posts=[], title=None
@@ -249,13 +265,6 @@ for x in os.walk(src_folder):
                             src_folder, ""
                         ).replace("md", "png")
                         toc_html = md._toc_html
-                        position = _html.find('</h1>')
-                        toc_item_count = len(re.findall(r"<li>", toc_html))
-                        if position != -1 and toc_item_count > 1:
-                            metadata_copy = _html.metadata
-                            title_art = '<img src="/illustrations/trees_and_mountains.png" alt="" aria-hidden="true">'
-                            _html = UnicodeWithAttrs(_html[:position+5] + title_art + toc_html + _html[position+5:])
-                            _html.metadata = metadata_copy
 
                         to_write_path = "./Resources" + _post["image_link"]
 
@@ -287,11 +296,12 @@ for x in os.walk(src_folder):
                     # print(fpath)
                     # print(render_markdown_post(fpath))
                     if post_me:
+                        post_content = build_post_content(_html, _post, toc_html)
                         with open(
                             fpath.replace(src_folder, out_folder).replace("md", "html"),
                             "w",
                         ) as f:
-                            f.write(render_markdown_post(_html))
+                            f.write(render_markdown_post(post_content))
                 elif y == "index.md":
                     fpath = os.path.join(x[0], y)
                     with open(fpath) as f:

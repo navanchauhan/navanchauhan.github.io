@@ -81,14 +81,14 @@ body {
   float: right;
   clear: right;
   width: 18vw;
-  margin-right: -20vw;
+  margin-right: -18vw;
   margin-bottom: 1em;
   text-indent: 0;
 }
 
 .sidenote.left {
   float: left;
-  margin-left: -20vw;
+  margin-left: -18vw;
   margin-bottom: 1em;
   text-indent: 0;
 }
@@ -132,7 +132,7 @@ label.sidenote-toggle:not(.sidenote-number) {
 
 /* sidenotes inside blockquotes are indented more */
 blockquote .sidenote {
-  margin-right: -24vw;
+  margin-right: -22vw;
   width: 18vw;
 }
 
@@ -145,7 +145,7 @@ input.sidenote-toggle {
   display: none;
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1440px) {
   label.sidenote-toggle:not(.sidenote-number) {
     display: inline;
   }

@@ -14,6 +14,31 @@ tags: AI, Programming, Interactive
   </div>
 </noscript>
 
+<style>
+#demo5-conversation,
+#demo5-machine,
+#demo6-container > div > div,
+#demo7-container > div:last-child > div,
+#demo8-container > div > div,
+#demo9-grid-container > div {
+  min-width: 0;
+}
+
+@media (max-width: 48rem) {
+  #demo6-container > div,
+  #demo7-container > div:last-child,
+  #demo9-grid-container {
+    grid-template-columns: 1fr !important;
+  }
+
+  #demo8-container > div > div:first-child,
+  #demo8-container > div > div:last-child {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+</style>
+
 ## A Brief History of Language Models
 
 If you have used the internet in the last couple of years, you have probably used a large language model. Before these models became a normal consumer product, researchers had a simple question: can a machine understand language?
@@ -239,8 +264,8 @@ A few years later, Terry Winograd built SHRDLU (1971), which could follow comman
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">SHRDLU</h3>
 <p style="color: #555; font-size: 0.95rem; margin-bottom: 1rem;">A browser port of SHRDLU (1971). Click to run it.</p>
-<div id="shrdlu-wrapper" style="width: 100%; overflow: hidden; border: 1px solid #e0e0e0; border-radius: 4px; background: #000;">
-<iframe id="shrdlu-iframe" src="https://braingames.santiontanon.dev/games/shrdlu/v39/shrdlu.html" scrolling="no" style="width: 1024px; height: 900px; border: 0; transform-origin: 0 0; display: block; margin-top: -16px;" loading="lazy" sandbox="allow-scripts allow-same-origin" title="SHRDLU"></iframe>
+<div id="shrdlu-wrapper" style="width: 100%; overflow: hidden; position: relative; border: 1px solid #e0e0e0; border-radius: 4px; background: #000;">
+<iframe id="shrdlu-iframe" src="https://braingames.santiontanon.dev/games/shrdlu/v39/shrdlu.html" scrolling="no" style="width: 1024px; height: 900px; border: 0; transform-origin: 0 0; display: block; position: absolute; top: -16px; left: 0;" loading="lazy" sandbox="allow-scripts allow-same-origin" title="SHRDLU"></iframe>
 </div>
 <script>
 (function() {

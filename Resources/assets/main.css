@@ -73,6 +73,18 @@ cite {
     margin-top: 5px;
 }
 
+.post-end-illustration {
+    display: flex;
+    justify-content: center;
+    margin: 2.5rem 0 0.5rem;
+}
+
+.post-end-illustration img {
+    width: min(100%, 21rem);
+    margin: 0;
+    opacity: 0.92;
+}
+
 .error-page .content.container {
     max-width: none;
     overflow: hidden;

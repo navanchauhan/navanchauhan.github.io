@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Page Not Found{% endblock %}
+{% block ogtitle %}404 - Page Not Found{% endblock %}
+{% block twittertitle %}404 - Page Not Found{% endblock %}
+{% block canURL %}/404.html{% endblock %}
+{% block twURL %}/404.html{% endblock %}
+{% block ogURL %}/404.html{% endblock %}
+{% block description %}The page you were looking for could not be found.{% endblock %}
+{% block ogdescription %}The page you were looking for could not be found.{% endblock %}
+{% block twitterdescription %}The page you were looking for could not be found.{% endblock %}
+{% block body_class %} error-page{% endblock %}
+
+{% block head %}
+{{ super() }}
+<meta name="robots" content="noindex">
+{% endblock %}
+
+{% block body %}
+<main class="error-hero" aria-labelledby="error-title">
+    <div class="error-copy">
+        <h1 id="error-title">404 - Page Not Found</h1>
+        <div class="error-divider" aria-hidden="true">
+            <span></span>
+            <span class="error-divider-dot"></span>
+            <span></span>
+        </div>
+        <p class="error-description">
+            The wind blows, the trail fades,
+            <br>
+            but there&rsquo;s always another path to take.
+        </p>
+        <p class="error-link-wrap">
+            <a class="error-link" href="/">&larr; Return home</a>
+        </p>
+    </div>
+    <div class="error-illustration-wrap" aria-hidden="true">
+        <img
+            class="error-illustration"
+            src="/illustrations/lighthouse.png"
+            alt=""
+        >
+    </div>
+</main>
+{% endblock %}

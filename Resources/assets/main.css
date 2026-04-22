@@ -1,4 +1,16 @@
 
+.content.container {
+    position: relative;
+    z-index: 1;
+}
+
+body {
+    background:
+        radial-gradient(circle at 58% 50%, rgba(208, 197, 179, 0.24), transparent 34%),
+        linear-gradient(180deg, #f7f2e9 0%, #f5efe4 100%);
+    color: #342f2a;
+}
+
 .tag-pill {
     display: inline-block;
     padding: 0.1em 0.6em;
@@ -66,6 +78,270 @@ cite {
     font-size: 14px;
     font-style: normal;
     margin-top: 5px;
+}
+
+.error-page .content.container {
+    max-width: none;
+    overflow: hidden;
+}
+
+.error-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 8rem);
+    padding: 1rem 0;
+}
+
+.error-hero::before {
+    content: "";
+    position: absolute;
+    inset: -6% -6%;
+    background:
+        radial-gradient(circle at 62% 42%, rgba(212, 200, 182, 0.24), transparent 26%),
+        radial-gradient(circle at 45% 52%, rgba(255, 249, 241, 0.92), rgba(255, 249, 241, 0.36) 32%, rgba(255, 249, 241, 0) 58%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.error-copy {
+    position: relative;
+    z-index: 2;
+    width: min(31rem, 50%);
+    max-width: 31rem;
+    padding: 1.75rem 2rem 1.75rem 0;
+}
+
+.error-copy::before {
+    content: "";
+    position: absolute;
+    inset: -2rem -2rem -2rem -1rem;
+    background:
+        linear-gradient(90deg, rgba(247, 242, 233, 0.98) 0%, rgba(247, 242, 233, 0.93) 58%, rgba(247, 242, 233, 0.72) 78%, rgba(247, 242, 233, 0) 100%);
+    filter: blur(8px);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.error-copy > * {
+    position: relative;
+}
+
+.error-copy h1 {
+    margin: 0;
+    font-size: clamp(2.75rem, 4.2vw, 4.05rem);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+    color: #39332e;
+}
+
+.error-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    width: min(100%, 11rem);
+    margin: 1.35rem 0 1.25rem;
+}
+
+.error-divider span {
+    flex: 1;
+    height: 1px;
+    background: rgba(91, 79, 67, 0.35);
+}
+
+.error-divider-dot {
+    position: relative;
+    flex: 0 0 0.45rem;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: rgba(91, 79, 67, 0.5);
+}
+
+.error-divider-dot::before,
+.error-divider-dot::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 0.22rem;
+    height: 0.22rem;
+    border: 1px solid rgba(91, 79, 67, 0.4);
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.error-divider-dot::before {
+    right: calc(100% + 0.22rem);
+}
+
+.error-divider-dot::after {
+    left: calc(100% + 0.22rem);
+}
+
+.error-description {
+    margin: 0;
+    font-size: clamp(1.2rem, 1.45vw, 1.48rem);
+    line-height: 1.55;
+    color: rgba(52, 47, 42, 0.9);
+}
+
+.error-link-wrap {
+    margin: 1.9rem 0 0;
+}
+
+.error-link {
+    color: #39332e;
+    font-size: 1.05rem;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.14em;
+}
+
+.error-link:hover,
+.error-link:focus {
+    color: #39332e;
+}
+
+.error-illustration-wrap {
+    position: absolute;
+    inset: 0 -10% 0 18%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: visible;
+    z-index: 1;
+}
+
+.error-illustration-wrap::before {
+    content: "";
+    position: absolute;
+    inset: 2% -8% 2% 8%;
+    background: radial-gradient(circle at 45% 48%, rgba(255, 251, 244, 0.98) 0%, rgba(255, 251, 244, 0.82) 32%, rgba(255, 251, 244, 0) 68%);
+    filter: blur(22px);
+    z-index: 0;
+}
+
+.error-illustration {
+    position: relative;
+    z-index: 1;
+    width: min(98rem, 122%);
+    max-width: none;
+    mix-blend-mode: multiply;
+    filter: contrast(1.08) saturate(0.82);
+    transform: translateX(2%) translateY(0.5%);
+}
+
+@media (min-width: 80em) {
+    .error-copy {
+        width: min(32rem, 46%);
+        padding-right: 1rem;
+    }
+
+    .error-copy::before {
+        inset: -2.2rem -3.25rem -2.2rem -1rem;
+    }
+
+    .error-illustration-wrap {
+        inset: -2% -12% -2% 14%;
+    }
+
+    .error-illustration {
+        width: min(110rem, 132%);
+        transform: translateX(0) translateY(0.5%);
+    }
+}
+
+@media (max-width: 63.999em) {
+    .error-hero {
+        display: grid;
+        gap: 1.6rem;
+        min-height: auto;
+        padding-top: 0;
+    }
+
+    .error-hero::before {
+        inset: -4% -4%;
+        background:
+            radial-gradient(circle at 50% 16%, rgba(255, 249, 241, 0.92), rgba(255, 249, 241, 0.36) 28%, rgba(255, 249, 241, 0) 54%);
+    }
+
+    .error-copy {
+        width: 100%;
+        max-width: 34rem;
+        padding: 0;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .error-copy::before {
+        display: none;
+    }
+
+    .error-divider {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .error-illustration-wrap {
+        position: relative;
+        inset: auto;
+        order: -1;
+        min-height: auto;
+        justify-content: center;
+        padding-top: 0.15rem;
+    }
+
+    .error-illustration {
+        width: min(100%, 34rem);
+        max-width: 100%;
+        transform: none;
+    }
+}
+
+@media (max-width: 47.999em) {
+    .error-page .content.container {
+        padding-top: 1.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .error-hero {
+        gap: 1.25rem;
+    }
+
+    .error-copy h1 {
+        font-size: clamp(2.2rem, 11vw, 3rem);
+    }
+
+    .error-description {
+        font-size: 1.02rem;
+        max-width: 19rem;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .error-description br {
+        display: none;
+    }
+
+    .error-link-wrap {
+        margin-top: 1.3rem;
+    }
+
+    .error-illustration-wrap::before {
+        inset: 0 -6% 2%;
+        filter: blur(10px);
+    }
+
+    .error-illustration-wrap {
+        width: min(100%, 21.5rem);
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+    }
+
+    .error-illustration {
+        width: 142%;
+        max-width: none;
+        transform: translateX(-12%) translateY(-1%);
+    }
 }
 
 pre { line-height: 125%; margin: 0; }

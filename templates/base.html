@@ -42,7 +42,7 @@
     <link rel="manifest" href="/manifest.json">
     {% endblock %}
 </head>
-<body class="theme-base-0d">
+<body class="theme-base-0d{% block body_class %}{% endblock %}">
     {% include "sidebar.html" %}
     <div class="content container">
     {% block body %}{% endblock %}

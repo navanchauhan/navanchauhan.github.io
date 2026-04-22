@@ -377,4 +377,7 @@ with open(os.path.join(out_folder, "feed.rss"), "w") as f:
         )
     )
 
+with open(os.path.join(out_folder, "404.html"), "w") as f:
+    f.write(templates.get_template("404.html").render())
+
 shutil.copytree(resources_folder, out_folder, dirs_exist_ok=True)

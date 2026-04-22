@@ -253,7 +253,8 @@ for x in os.walk(src_folder):
                         toc_item_count = len(re.findall(r"<li>", toc_html))
                         if position != -1 and toc_item_count > 1:
                             metadata_copy = _html.metadata
-                            _html = UnicodeWithAttrs(_html[:position+5] + toc_html + _html[position+5:])
+                            title_art = '<img src="/illustrations/trees_and_mountains.png" alt="" aria-hidden="true">'
+                            _html = UnicodeWithAttrs(_html[:position+5] + title_art + toc_html + _html[position+5:])
                             _html.metadata = metadata_copy
 
                         to_write_path = "./Resources" + _post["image_link"]

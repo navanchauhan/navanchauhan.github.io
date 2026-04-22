@@ -4,13 +4,6 @@
     z-index: 1;
 }
 
-body {
-    background:
-        radial-gradient(circle at 58% 50%, rgba(208, 197, 179, 0.24), transparent 34%),
-        linear-gradient(180deg, #f7f2e9 0%, #f5efe4 100%);
-    color: #342f2a;
-}
-
 .tag-pill {
     display: inline-block;
     padding: 0.1em 0.6em;
@@ -94,14 +87,7 @@ cite {
 }
 
 .error-hero::before {
-    content: "";
-    position: absolute;
-    inset: -6% -6%;
-    background:
-        radial-gradient(circle at 62% 42%, rgba(212, 200, 182, 0.24), transparent 26%),
-        radial-gradient(circle at 45% 52%, rgba(255, 249, 241, 0.92), rgba(255, 249, 241, 0.36) 32%, rgba(255, 249, 241, 0) 58%);
-    pointer-events: none;
-    z-index: 0;
+    content: none;
 }
 
 .error-copy {
@@ -113,14 +99,7 @@ cite {
 }
 
 .error-copy::before {
-    content: "";
-    position: absolute;
-    inset: -2rem -2rem -2rem -1rem;
-    background:
-        linear-gradient(90deg, rgba(247, 242, 233, 0.98) 0%, rgba(247, 242, 233, 0.93) 58%, rgba(247, 242, 233, 0.72) 78%, rgba(247, 242, 233, 0) 100%);
-    filter: blur(8px);
-    z-index: -1;
-    pointer-events: none;
+    content: none;
 }
 
 .error-copy > * {
@@ -211,12 +190,7 @@ cite {
 }
 
 .error-illustration-wrap::before {
-    content: "";
-    position: absolute;
-    inset: 2% -8% 2% 8%;
-    background: radial-gradient(circle at 45% 48%, rgba(255, 251, 244, 0.98) 0%, rgba(255, 251, 244, 0.82) 32%, rgba(255, 251, 244, 0) 68%);
-    filter: blur(22px);
-    z-index: 0;
+    content: none;
 }
 
 .error-illustration {
@@ -227,6 +201,28 @@ cite {
     mix-blend-mode: multiply;
     filter: contrast(1.08) saturate(0.82);
     transform: translateX(2%) translateY(0.5%);
+}
+
+@media (min-width: 64em) {
+    .error-copy::before {
+        content: "";
+        position: absolute;
+        inset: -2rem -3rem -2rem -1rem;
+        background:
+            linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.94) 56%, rgba(255, 255, 255, 0.72) 76%, rgba(255, 255, 255, 0) 100%);
+        filter: blur(8px);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .error-illustration-wrap {
+        inset: 0 -8% 0 20%;
+    }
+
+    .error-illustration {
+        width: min(94rem, 118%);
+        transform: translateX(4%) translateY(0.5%);
+    }
 }
 
 @media (min-width: 80em) {
@@ -258,9 +254,7 @@ cite {
     }
 
     .error-hero::before {
-        inset: -4% -4%;
-        background:
-            radial-gradient(circle at 50% 16%, rgba(255, 249, 241, 0.92), rgba(255, 249, 241, 0.36) 28%, rgba(255, 249, 241, 0) 54%);
+        content: none;
     }
 
     .error-copy {
@@ -326,8 +320,7 @@ cite {
     }
 
     .error-illustration-wrap::before {
-        inset: 0 -6% 2%;
-        filter: blur(10px);
+        content: none;
     }
 
     .error-illustration-wrap {

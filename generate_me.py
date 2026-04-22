@@ -4,26 +4,40 @@ from jinja2 import Environment, FileSystemLoader
 import shutil
 import datetime
 import email.utils
+import math
 from helper_libs.image_utils import ImageText
 from PIL import Image, ImageDraw, ImageFont
 import urllib.request
 import zipfile
 import io
+from html import unescape
 
 import re
 
 templates = Environment(loader=FileSystemLoader("templates"))
 
+READING_WORDS_PER_MINUTE = 220
+
+
+def day_suffix(day):
+    if 11 <= day <= 13:
+        return "th"
+    return {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
+
+
 def format_date_pretty(date_str):
     dt = datetime.datetime.strptime(date_str[:10], "%Y-%m-%d")
     day = dt.day
-    if 11 <= day <= 13:
-        suffix = "th"
-    else:
-        suffix = {1: "st", 2: "nd", 3: "rd"}.get(day % 10, "th")
-    return f"{day}<sup>{suffix}</sup> {dt.strftime('%B')}, {dt.year}"
+    return f"{day}<sup>{day_suffix(day)}</sup> {dt.strftime('%B')}, {dt.year}"
+
+
+def format_date_inline(date_str):
+    dt = datetime.datetime.strptime(date_str[:10], "%Y-%m-%d")
+    day = dt.day
+    return f"{day}{day_suffix(day)} {dt.strftime('%B')}, {dt.year}"
 
 templates.filters["pretty_date"] = format_date_pretty
+templates.filters["pretty_date_inline"] = format_date_inline
 src_folder = "Content"
 out_folder = "docs"
 resources_folder = "Resources"
@@ -180,6 +194,16 @@ md = Markdown(
 # h1 tag regex ignoring any attributes
 h1_tag = re.compile(r"<h1[^>]*>(.*?)</h1>")
 h1_block_tag = re.compile(r"<h1[^>]*>.*?</h1>", re.DOTALL)
+pre_block_tag = re.compile(r"<pre[^>]*>.*?</pre>", re.DOTALL)
+html_tag = re.compile(r"<[^>]+>")
+word_tag = re.compile(r"\b[\w][\w'.:/+-]*\b")
+
+
+def estimate_reading_time_minutes(html):
+    readable_html = re.sub(pre_block_tag, " ", html)
+    plain_text = re.sub(html_tag, " ", readable_html)
+    word_count = len(re.findall(word_tag, unescape(plain_text)))
+    return max(1, math.ceil(word_count / READING_WORDS_PER_MINUTE))
 
 
 def build_post_content(html, metadata, toc_html):
@@ -188,9 +212,11 @@ def build_post_content(html, metadata, toc_html):
 
     body = re.sub(h1_block_tag, "", html, count=1).lstrip()
     toc = toc_html if len(re.findall(r"<li>", toc_html)) > 1 else ""
+    content_metadata = dict(metadata)
+    content_metadata["reading_time"] = estimate_reading_time_minutes(body)
 
     return {
-        "metadata": metadata,
+        "metadata": content_metadata,
         "title": title,
         "toc": toc,
         "body": body,

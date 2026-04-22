@@ -16,6 +16,15 @@
 {% block body %}
 	<div class="post">
 		<h1>{{ content.title | safe }}</h1>
+		<div class="post-header-meta" aria-label="Post metadata">
+			<span class="post-header-date">{{ content.metadata.date | pretty_date_inline }}</span>
+			<span>{{ content.metadata.reading_time }} min read</span>
+		</div>
+		<div class="error-divider post-divider" aria-hidden="true">
+			<span></span>
+			<span class="error-divider-dot"></span>
+			<span></span>
+		</div>
 		{% if content.toc %}
 		<img src="/illustrations/trees_and_mountains.png" alt="" aria-hidden="true">
 		{{ content.toc | safe }}

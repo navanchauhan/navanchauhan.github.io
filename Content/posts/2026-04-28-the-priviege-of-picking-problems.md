@@ -1,6 +1,6 @@
 ---
 date: 2026-04-28 22:49
-description: Existential crisis on what should I do next in life
+description: A reflection on freedom, useful work, and my search for problems.
 tags: Life
 ---
 

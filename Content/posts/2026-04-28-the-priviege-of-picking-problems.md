@@ -22,7 +22,7 @@ No rubric. No institution. No clean next step.
 
 Just you, your weird little brain, and the terrible luxury of choice.
 
-I had the title for this before I had the essay: **The Privilege of Picking Problems**. Then I discovered September C. Fawkes had already written [a piece under that title.](https://www.septembercfawkes.com/2016/09/the-privilege-of-picking-your-problems.html) 
+I had the title for this before I had the essay: **The Privilege of Picking Problems**. Then I discovered September C. Fawkes had already written [a piece under a smiliar title.](https://www.septembercfawkes.com/2016/09/the-privilege-of-picking-your-problems.html) 
 
 Bad news for her: I still need it.
 

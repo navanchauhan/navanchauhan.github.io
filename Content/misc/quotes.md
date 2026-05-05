@@ -38,6 +38,9 @@ Although, I love the Hindi version of this quote better
 
 > I would rather be ashes than dust ... The function of man is to live, not to exist. I shall not waste my days trying to prolong them. I shall use my time. <cite>&mdash; Jack London</cite>
 
+
+> 'Tis better to have loved and lost than never to have loved at all. <cite>&mdash; *Alfred, Lord Tennyson*, *In Memoriam A.H.H.* (1850), elegy written for Arthur Henry Hallam</cite>
+
 > “If something burns your soul with purpose and desire, it’s your duty to be reduced to ashes by it. Any other form of existence will be yet another dull book in the library of life.” <cite>&mdash; Charles Bukowski</cite>
 
 > No man ever steps in the same river twice, for it's not the same river and he's not the same man. <cite>&mdash; Heraclitus</cite>

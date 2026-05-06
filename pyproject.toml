@@ -23,6 +23,7 @@ dependencies = [
     "certifi>=2024.7.4,<2025",
     "urllib3>=2.6.3,<3",
     "latex2mathml>=3.77.0,<4",
+    "rcssmin>=1.2.2,<2",
 ]
 
 [dependency-groups]

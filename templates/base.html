@@ -17,6 +17,8 @@
 
     <link rel="stylesheet" href="/assets/c-hyde.css?v={{ asset_version }}">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700">
 
@@ -49,8 +51,8 @@
     {% block body %}{% endblock %}
     </div>
     </div>
-    <script src="/assets/manup.min.js?v={{ asset_version }}"></script>
     <script
+        defer
         src="/pwabuilder-sw-register.js?v={{ asset_version }}"
         data-sw-version="{{ asset_version }}"
     ></script>

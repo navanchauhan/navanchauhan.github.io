@@ -6,6 +6,7 @@ import datetime
 import email.utils
 import math
 import hashlib
+import rcssmin
 from helper_libs.image_utils import ImageText
 from PIL import Image, ImageDraw, ImageFont
 import urllib.request
@@ -21,9 +22,13 @@ VERSIONED_ASSET_PATHS = [
     "Resources/assets/c-hyde.css",
     "Resources/assets/main.css",
     "Resources/manifest.json",
-    "Resources/assets/manup.min.js",
     "Resources/pwabuilder-sw-register.js",
     "Resources/pwabuilder-sw.js",
+]
+
+CSS_OUTPUT_PATHS = [
+    "assets/c-hyde.css",
+    "assets/main.css",
 ]
 
 
@@ -286,6 +291,17 @@ def create_folder_ifnot(folder_name):
         os.mkdir(folder_name)
 
 
+def minify_css_outputs():
+    for relative_path in CSS_OUTPUT_PATHS:
+        path = os.path.join(out_folder, relative_path)
+        with open(path, "r", encoding="utf-8") as f:
+            css = f.read()
+        minified = rcssmin.cssmin(css, keep_bang_comments=True)
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(minified)
+            f.write("\n")
+
+
 post_collection_dict = {}
 post_collection = []
 post_collection_html = []
@@ -462,3 +478,4 @@ with open(os.path.join(out_folder, "404.html"), "w") as f:
     f.write(templates.get_template("404.html").render())
 
 shutil.copytree(resources_folder, out_folder, dirs_exist_ok=True)
+minify_css_outputs()

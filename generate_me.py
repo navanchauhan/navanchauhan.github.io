@@ -5,6 +5,7 @@ import shutil
 import datetime
 import email.utils
 import math
+import hashlib
 from helper_libs.image_utils import ImageText
 from PIL import Image, ImageDraw, ImageFont
 import urllib.request
@@ -15,7 +16,30 @@ from html import unescape
 import re
 
 templates = Environment(loader=FileSystemLoader("templates"))
-BUILD_VERSION = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+
+VERSIONED_ASSET_PATHS = [
+    "Resources/assets/c-hyde.css",
+    "Resources/assets/main.css",
+    "Resources/manifest.json",
+    "Resources/assets/manup.min.js",
+    "Resources/pwabuilder-sw-register.js",
+    "Resources/pwabuilder-sw.js",
+]
+
+
+def compute_asset_version():
+    digest = hashlib.sha256()
+    for path in VERSIONED_ASSET_PATHS:
+        digest.update(path.encode("utf-8"))
+        digest.update(b"\0")
+        with open(path, "rb") as f:
+            for chunk in iter(lambda: f.read(1024 * 1024), b""):
+                digest.update(chunk)
+        digest.update(b"\0")
+    return digest.hexdigest()[:16]
+
+
+BUILD_VERSION = compute_asset_version()
 templates.globals["asset_version"] = BUILD_VERSION
 
 READING_WORDS_PER_MINUTE = 220

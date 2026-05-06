@@ -42,6 +42,8 @@ Although, I love the Hindi version of this quote better
 
 > No man ever steps in the same river twice, for it's not the same river and he's not the same man. <cite>&mdash; Heraclitus</cite>
 
+> 'Tis better to have loved and lost than never to have loved at all. <cite>&mdash; *Alfred, Lord Tennyson*, *In Memoriam A.H.H.* (1850), elegy written for Arthur Henry Hallam</cite>
+
 ## Unknown
 
 These could have been from a Tumblr shitpost, or something I just heard, saw on a short-form video,  or thought of.

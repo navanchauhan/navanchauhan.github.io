@@ -4,17 +4,13 @@ description: About Me
 tags: Personal
 ---
 
-# About Me
+# Hey now, how’s it going?
 
-Hi!
+Welcome to my small corner of the internet.
 
-My name is Navan, and welcome to my small corner of the internet.
+I enjoy solving problems across different fields. While I’m a programmer by trade, I have spent significant time working in computational drug discovery. I fell in love with mathematics during college and developed a particular interest in probability theory.
 
-I currently work at a software company in California where I have the amazing opportunity to work on the AI Agents team.
-
-I enjoy solving problems across different fields. While I’m a programmer by trade, I have recently spent significant time working in drug discovery. I fell in love with Mathematics during college, with a particular interest in probability theory.
-
-Besides spending too much time in front of the screen, I do occasionally like to touch grass while Hiking or MTBiking. I also enjoy skiing, reading, homebrewing, and watching movies.
+Besides spending too much time in front of a screen, I occasionally like to touch grass by hiking or mountain biking. I also enjoy skiing, reading, homebrewing, and watching movies.
 
 ## "Virtual Furniture"
 

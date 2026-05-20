@@ -164,6 +164,48 @@ cite {
     margin-bottom: 1.1rem;
 }
 
+.post {
+    --true-highlight-color: 242, 204, 123;
+    --true-highlight-opacity: 0.28;
+    --true-highlight-x-padding: 4px;
+    --true-highlight-y-padding: 7px;
+    --true-highlight-radius: 9px;
+    --true-highlight-line-break-gap: 16px;
+    position: relative;
+    isolation: isolate;
+}
+
+html.true-highlight-ready .post ::selection {
+    color: inherit;
+    background: transparent;
+}
+
+html.true-highlight-ready .post ::-moz-selection {
+    color: inherit;
+    background: transparent;
+}
+
+.true-highlight-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    overflow: visible;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 90ms ease-out;
+}
+
+.true-highlight-overlay.is-visible {
+    opacity: 1;
+}
+
+.true-highlight-fill {
+    fill: rgb(var(--true-highlight-color));
+    fill-opacity: var(--true-highlight-opacity);
+    shape-rendering: geometricPrecision;
+}
+
 .post > p + p {
     text-indent: 1.15em;
 }

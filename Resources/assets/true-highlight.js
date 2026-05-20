@@ -254,9 +254,10 @@
         var curve = Math.max(3, (y2 - y1) * 0.48);
         return [
             "M", fmt(overlapLeft), fmt(y1),
-            "C", fmt(overlapLeft), fmt(y1 + curve), fmt(overlapLeft), fmt(y2 - curve), fmt(overlapLeft), fmt(y2),
-            "L", fmt(overlapRight), fmt(y2),
-            "C", fmt(overlapRight), fmt(y2 - curve), fmt(overlapRight), fmt(y1 + curve), fmt(overlapRight), fmt(y1),
+            "L", fmt(overlapRight), fmt(y1),
+            "C", fmt(overlapRight), fmt(y1 + curve), fmt(overlapRight), fmt(y2 - curve), fmt(overlapRight), fmt(y2),
+            "L", fmt(overlapLeft), fmt(y2),
+            "C", fmt(overlapLeft), fmt(y2 - curve), fmt(overlapLeft), fmt(y1 + curve), fmt(overlapLeft), fmt(y1),
             "Z"
         ].join(" ");
     }

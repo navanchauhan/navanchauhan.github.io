@@ -159,6 +159,10 @@ cite {
     color: #39332e;
 }
 
+.post > p.owl-reflow-source:first-of-type::first-letter {
+    color: transparent;
+}
+
 .post > p {
     line-height: 1.76;
     margin-bottom: 1.1rem;

@@ -21,7 +21,9 @@ templates = Environment(loader=FileSystemLoader("templates"))
 VERSIONED_ASSET_PATHS = [
     "Resources/assets/c-hyde.css",
     "Resources/assets/main.css",
+    "Resources/assets/owl-reflow.js",
     "Resources/assets/true-highlight.js",
+    "Resources/illustrations/owl-cutout.png",
     "Resources/manifest.json",
     "Resources/pwabuilder-sw-register.js",
     "Resources/pwabuilder-sw.js",

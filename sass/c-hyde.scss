@@ -526,6 +526,84 @@ tbody tr:nth-child(odd) th {
   margin-bottom: 4em;
 }
 
+.owl-jump-top {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: clamp(5.75rem, 13vw, 10rem);
+  height: clamp(7.5rem, 18vw, 14rem);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0.72;
+  filter: drop-shadow(0 0.25rem 0.45rem rgba(0, 0, 0, 0.22));
+  transition: opacity 150ms ease, transform 150ms ease;
+}
+
+.owl-jump-top:hover,
+.owl-jump-top:focus-visible {
+  opacity: 0.95;
+  transform: translateY(-0.15rem);
+}
+
+.owl-jump-top:focus-visible {
+  outline: 2px solid #2e5a72;
+  outline-offset: 0.25rem;
+}
+
+.owl-jump-top img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform: scaleX(-1);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.post p.owl-reflow-source {
+  position: relative;
+  color: transparent;
+  text-shadow: none;
+}
+
+.post p.owl-reflow-source a,
+.post p.owl-reflow-source code,
+.post p.owl-reflow-source em,
+.post p.owl-reflow-source strong,
+.post p.owl-reflow-source span {
+  color: transparent;
+  text-decoration-color: transparent;
+  text-shadow: none;
+}
+
+.post p.owl-reflow-source code {
+  background: transparent;
+  border-color: transparent;
+}
+
+.post p.owl-reflow-source::selection {
+  color: #2a1a0a;
+  background: #d8c5a6;
+}
+
+.post p.owl-reflow-source canvas {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+@media (max-width: 47.999em) {
+  .owl-jump-top {
+    display: none;
+  }
+}
+
 /* Blog post or page title */
 .page-title,
 .post-title,

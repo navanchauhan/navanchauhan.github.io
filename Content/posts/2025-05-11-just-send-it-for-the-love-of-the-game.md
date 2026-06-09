@@ -2,7 +2,7 @@
 date: 2025-05-11 22:24
 description: A personal reflection on pressing forward
 tags: Life
-draft: false
+draft: true
 ---
 
 # Just Send It – For the Love of the Game

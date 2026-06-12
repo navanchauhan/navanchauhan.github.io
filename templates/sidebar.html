@@ -2,7 +2,7 @@
     <div class="container sidebar-sticky">
         <div class="sidebar-about">
             <h1><a href="/">Navan</a></h1>
-            <p class="lead" id="random-lead">Something Funny</p>
+            <p class="lead" id="random-lead" role="button" tabindex="0" title="another?">Something Funny</p>
         </div>
 
         <ul class="sidebar-nav">
@@ -21,8 +21,34 @@ let phrases = [
     "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒", "Λαμψάτω τὸ φῶς ὑμῶν"
     ];
 
-let new_phrase = phrases[Math.floor(Math.random()*phrases.length)];
-
 let lead = document.getElementById("random-lead");
-lead.innerText = new_phrase;
+
+function pickPhrase(current) {
+    let next = current;
+    while (phrases.length > 1 && next === current) {
+        next = phrases[Math.floor(Math.random()*phrases.length)];
+    }
+    return next;
+}
+
+lead.innerText = pickPhrase(lead.innerText);
+
+function cyclePhrase() {
+    lead.classList.add("is-swapping");
+    setTimeout(function() {
+        lead.innerText = pickPhrase(lead.innerText);
+        lead.classList.remove("is-swapping");
+    }, 180);
+}
+
+lead.addEventListener("click", cyclePhrase);
+lead.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        cyclePhrase();
+    }
+});
+
+console.log("%c❦ salve, amice", "font-size: 1.3em; font-family: Georgia, serif;");
+console.log("Poking around? The colophon explains how this site is put together: https://web.navan.dev/colophon/");
 </script>

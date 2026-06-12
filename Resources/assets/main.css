@@ -597,6 +597,113 @@ html.true-highlight-ready .post ::-moz-selection {
     }
 }
 
+/* Small delights */
+
+@view-transition {
+    navigation: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+}
+
+::selection {
+    background: rgba(242, 204, 123, 0.45);
+}
+
+h1, h2, h3, h4 {
+    text-wrap: balance;
+}
+
+.post > p {
+    text-wrap: pretty;
+}
+
+a {
+    transition: color 140ms ease, text-decoration-color 140ms ease;
+}
+
+.tag-pill {
+    transition: background-color 140ms ease, transform 140ms ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .tag-pill:hover {
+        transform: translateY(-1px);
+    }
+}
+
+a.sidebar-nav-item {
+    transition: transform 160ms ease;
+}
+
+@media (min-width: 48em) and (prefers-reduced-motion: no-preference) {
+    a.sidebar-nav-item:hover,
+    a.sidebar-nav-item:focus-visible {
+        transform: translateX(0.3rem);
+    }
+}
+
+#random-lead {
+    cursor: pointer;
+    transition: opacity 180ms ease;
+}
+
+#random-lead.is-swapping {
+    opacity: 0;
+}
+
+.post-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.post-list > li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.post-list > li::before {
+    content: "❧";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: rgba(91, 79, 67, 0.45);
+    transition: color 140ms ease, transform 160ms ease;
+}
+
+.post-list > li:hover::before {
+    color: #1a5b74;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .post-list > li:hover::before {
+        transform: translateX(0.18rem);
+    }
+}
+
+#random-lead::after {
+    content: " ❦";
+    opacity: 0;
+    transition: opacity 180ms ease;
+}
+
+#random-lead:hover::after,
+#random-lead:focus-visible::after {
+    opacity: 0.6;
+}
+
 pre { line-height: 125%; margin: 0; }
 td.linenos pre { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }
 span.linenos { color: #000000; background-color: #f0f0f0; padding-left: 5px; padding-right: 5px; }

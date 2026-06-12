@@ -8,7 +8,7 @@
 	{{ content}}
 </main>
 
-<ul>
+<ul class="post-list">
 {% for post in posts %}
 	<li><a href="{{post.link}}">{{ post.title }}</a>
 	{% if post.description or (post.date and post.date != "2003-12-21 00:00") or post.tags %}

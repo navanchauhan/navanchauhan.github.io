@@ -7,7 +7,7 @@
 	{{ content}}
 
 <h1>Recent Posts</h1>
-<ul>
+<ul class="post-list">
 {% for post in posts[:20] %}
 	<li><a href="{{post.link}}">{{ post.title }}</a> - {{ post.date | pretty_date | safe }}</li>
 {% endfor %}

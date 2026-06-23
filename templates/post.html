@@ -13,6 +13,7 @@
 {% block ogimage %}{{content.metadata.image_link}}{% endblock %}
 {% block twimage %}{{content.metadata.image_link}}{% endblock %}
 {% block ogtype %}article{% endblock %}
+{% block author %}{{ content.metadata.author | default("Navan Chauhan") }}{% endblock %}
 
 {% block body %}
 	<div class="post">

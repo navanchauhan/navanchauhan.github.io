@@ -6,105 +6,108 @@ tags: AI, Programming, Automation
 
 # How to Build Your Own Software Factory
 
-In February, when we put out the [StrongDM Software Factory](https://factory.strongdm.ai) work, I expected people to argue with it. I didn't expect the response to be as positive as it was, though I loved the discussion on HN. The funny part is that after all of that, we still get the same question: "How do I build my own software factory?"
+In February, when we put out the [StrongDM Software Factory](https://factory.strongdm.ai) work, I expected people to argue with it. Maybe say what we're doing is stupid and crazy, and we should never be allowed near new computers again. But what I didn't expect was the response to be as positive as it was. The funny part is, even after all of that, we keep getting the same question landing in our inbox or on LinkedIn: "How do I build my own software factory?"
 
-That's not a bad question. I just think it's usually one question too early.
+That's a fair question, but I think it's usually one question too early.
 
-People hear "software factory" and picture a product. A thing you buy. A dashboard. A queue. A fleet of background agents. Jira tickets go in. Pull requests come out. Henry Ford, but with Claude Code instead of steel. Maybe there's a vendor page with three blue gradients and a tasteful diagram of boxes pointing at boxes. I get the instinct. I just don't think the useful thing is a single product-shaped object. There's no one-size-fits-all software factory. I don't think there should be one. Maybe I'll bite my tongue on that in a year — wouldn't be the first time reality deleted one of my confident sentences.
+People hear "software factory" and picture a tangible product; some platform they can swipe their credit card on, connect to Linear, and watch tickets magically turn into pull requests. It is Henry Ford, but with Claude Code instead of steel. Maybe they imagine a vendor landing page featuring three blue gradients and a tasteful diagram of boxes pointing at boxes.
 
-When you build an actual factory line, you don't just say "factory" and start manufacturing whatever object happens to be nearby. You retool the line. You build the molds. You decide what tolerances matter. You decide what gets inspected. You decide what gets rejected. You decide when the line stops. Same thing here.
+I get the instinct: what if a magical widget maker could build all our widgets for us? But the useful thing isn't a single, product-shaped object; there is no one-size-fits-all software factory. Coding agents are the closest thing to that, but I don't think a universal template should exist. Maybe I'll bite my tongue in a year; it wouldn't be the first time reality deleted one of my confident sentences.
 
-A software factory isn't the agent. The agent is one machine on the line. The factory is the line. It's the work intake, the environment, the tools, the validation, the stopping rules, the evidence, the routing, the triggers, the retry logic, the escalation path, and the feedback loop. The factory is the system around the agent that lets you believe a terminal state without squinting at it for twenty minutes.
+When you build an actual factory line, you don't just say "factory" and start manufacturing whatever object happens to be nearby. You have to retool the line and build the moulds; you must decide what tolerances matter, what gets inspected, what gets rejected, and when the line stops. The same rules apply to software.
 
-Sometimes that terminal state is a pull request. Sometimes it's a no-op. Sometimes it's "please ask a human because this ticket is fake." That distinction matters more than almost anything else.
+The software factory is not the agent itself; the agent is just one machine on the line, and the factory is the line itself. It spans the work intake, environment, tools, validation, stopping rules, evidence, routing, triggers, retry logic, escalation path, and the feedback loop. That entire system around the agent is what lets you trust a terminal state without squinting at a diff for twenty minutes.
+
+Sometimes that terminal state is a pull request, other times it's a clean no-op, a pushback requesting more reproduction steps, or an escalation back to the customer. That distinction is what makes the system useful.
 
 ## The Dragon Scroll Is Blank
 
 > You are the software factory
 
-If you've heard me describe this before, you've probably heard the Kung Fu Panda version. You are the software factory. Not because you personally should do all the work — that's the opposite of the point, and also a good way to become a haunted spreadsheet. You are the software factory because your current engineering process already contains the machinery. It's just mostly implicit.
+If you've heard me describe this before, you've probably heard the Kung Fu Panda analogy: you are the software factory. This doesn't mean you personally do the work; in fact, the goal is to remove yourself from the loop entirely. You are the factory because your current engineering process already contains the machinery, even if it's mostly implicit.
 
-You know when a ticket is bad. You know which logs matter. You know when a screenshot is suspicious. You know which test failure is real and which one is CI being CI. You know when the customer said "Slack" but meant "Slack Enterprise Grid with SCIM weirdness." You know which internal API lies on Tuesdays. You know what evidence would convince you.
+You can look at a screenshot and immediately know it looks bad. You know which test failures actually matter, when a test run is just flaky, when the customer said "Slack" but meant "Slack Enterprise Grid with SCIM weirdness," and what specific evidence would convince you that a fix is real.
 
-The work is taking that judgment out of your head and making it executable. That's why this is hard. It's not just prompting. It's extracting taste, context, verification, risk tolerance, and operational scar tissue — then turning all of that into a system an agent can run through without you ferrying reality back and forth.
+The work is taking that implicit judgement out of your head and making it executable. That is why this is hard; it goes far beyond writing prompts. You have to extract context, validation rules, risk tolerances, and the operational scar tissue you've collected, then turn them into a system an agent can run through without you playing Charon, ferrying reality back and forth across the Styx just to get a single PR merged.
 
 ## Brownfield Is Not the Problem
 
-The first place my brain goes is brownfield. Not because it's clean. Because it's not. Brownfield is where this gets interesting.
+When we ran agentic bootcamps at work, the first question other engineers asked after our presentation was always: "Okay, this is cool, but what about X?" (X being our main monorepo).
 
-Greenfield demos are easy. You ask the model to build a todo app. It builds a todo app. Everyone claps. Nobody has to care about the ancient auth middleware, the flaky integration test, the customer who depends on undocumented behavior, or the one migration that only runs correctly if the moon is in retrograde.
+That response was always interesting because there shouldn't be that much difference between brownfield and greenfield projects. Greenfield demos are easy; you ask the model to build TodoMVC, it spits out a todo app, and everyone claps. Nobody has to worry about ancient auth middleware, flaky integration tests, customers depending on undocumented behaviour, or migrations that only run if Saturn is in retrograde.
 
-Brownfield has all the annoying stuff. That's also why brownfield has all the factory material. It has tickets. Logs. Runbooks. CI. Tests. Release rituals. Migration patterns. Known bad smells. Existing examples. Customer paths. Production incidents. The weird things senior engineers know but never wrote down because nobody wanted to spend a sprint making the codebase more legible. That's the stuff you turn into machinery.
+Messy brownfield codebases are exactly what makes this interesting; they already contain all the raw materials you need to build the line. You have tickets, build logs, runbooks, CI tests, migration patterns, and production incident reports. These hold the tribal knowledge senior engineers never wrote down because they didn't want to spend a sprint cleaning up the code; that is the exact material you turn into machinery.
 
-A factory isn't "the agent can write code in an old repo." That's table stakes. The interesting version is: the agent can enter the same messy world a human enters, decide whether the task is real, make the smallest correct change, validate it against something outside its own claims, and hand back evidence a skeptical human would actually accept.
+If you're thinking, "Oh, but we have a legacy mess from forty years ago," then stabilising that codebase is step zero; before you start letting agents spray code at a velocity you can't support, you must clean up the workspace to make success possible.
+
+An agent editing code in a legacy repository is just table stakes. The real test is: can the agent enter the same messy, undocumented world a human developer walks into every day, figure out if the ticket is even real, make the smallest correct change, and prove it works using something outside its own assertions? When you aren't writing the code yourself, you need absolute trust in the validation; trust is the only way this scales.
 
 ## Don't Build a Worse Claude Code
 
-There's a version of this conversation where people immediately go off and build their own coding agent. They wire up a model. Give it shell access. Add file-editing tools. Invent a patch format. Add a loop. Add some logging. Then proudly produce a slightly sadder version of something OpenAI, Anthropic, Google, and others are already spending absurd amounts of money optimizing.
+Many developers respond to this by immediately building their own coding agent: they grab a model, give it shell access, write some file-patching tools, and wrap it all in a basic loop. The result is usually a slightly sadder version of the systems OpenAI and Anthropic spend millions of dollars refining. While the work startup teams are doing with tools like Droid and Amp is necessary, most engineering teams shouldn't spend their time here.
 
-That's not where I'd spend my time. I don't care about harness engineering in the "let me cosplay as an agent platform company" sense. I don't want to build a worse Claude Code. The upstream providers are already doing the hard work there. More importantly, the models are increasingly trained and evaluated against particular tool surfaces, prompts, repo instruction formats, and workflows.
+I don't care about harness engineering if it just means cosplaying as an agent platform startup; I have no interest in building a worse version of Claude Code. The frontier lab teams are spending a lot of money perfecting those loops, and the models are trained to expect very specific tool surfaces, prompt styles, workspace conventions, and file structures. Because the model learns the shape of its harness, my default move is simple: steal the upstream loop. Use the best coding agent for the job, relying on its native tools and the exact file structures it was tuned to digest.
 
-The harness isn't neutral. The model learns the shape of the harness. So my default move is to steal the upstream loop. Use the best coding agent available for the job. Use its native tools. Use its native conventions. Use the prompts and repo-instruction formats the model has already been optimized to follow. Owning the machine isn't automatically a prize. Sometimes it's just a new place for bugs to live.
+We built `codergen` at work because we were a Go shop and wanted to recreate the useful parts of the Codex agent. We had no use for a new TUI or a CLI; we wanted to call the API directly as an SDK without relying on a separate binary. We quickly realised that having a mini intern you can embed anywhere is very powerful. This unlocked a whole new realm of projects we could not even conceive of before.
 
-Now, there is a caveat. At work we did build a loop we called `codergen`. The story behind it is funny in the way only backend integration failures are funny. I was working on our generative SDLC pipeline — we called it Gen — and I was trying to modify something in the Codex system prompt. Specifically, I wanted to remove the part that said not to explicitly `git commit` unless asked. The ChatGPT Codex backend rejected the modification. No useful drama. Just: no.
 
-So we recreated the useful parts of the Codex-style prompt, tools, and harness in Go, because StrongDM was a Go shop. That unlocked a class of projects we didn't know existed. At the model level, the model never knows the difference between our Codex-in-Go implementation and the Codex CLI. But the lesson wasn't "everyone should build their own coding agent." The lesson was that sometimes the factory needs control over the execution boundary. We wanted custom execution providers. We wanted provider-aware prompts and tools. We wanted to switch between Codex, Claude Code, and Gemini CLI without pretending they're all the same machine wearing different hats. There's a reason we released the natural language specs for building this coding agent loop and an opinionated orchestrator on [GitHub.](https://github.com/strongdm/attractor)
+Eventually we wanted the harness to be provider-agnostic. If I swap GPT-5 for Claude 4.x Sonnet, or for Gemini, the system should pick the right tools and prompts. I maintain a little open-source project called [Agent Autopsy](https://github.com/navanchauhan/agent-autopsy) that just rips out system prompts and tool schemas so I can use them. A lot of what we learned doing that ended up baked into the orchestrator we released on [GitHub](https://github.com/strongdm/attractor).
 
-That's a factory station. That's different from a weekend agent demo with a shell tool and a dream. The coding agent is a station on the line. The factory decides which station should handle which job. Maybe Claude Code is better for frontend tasks this week. Maybe Gemini has the big-boy brain you need for a migration. Maybe Codex is better aligned with the repo workflow. The factory routes work. It doesn't pretend every station is identical.
+A coding agent is just a station on the line, and the factory's job is to route each piece of work to whichever station is good at it this week. Maybe Claude Code is your guy for fiddly CSS, while Gemini, with its big brain, plans things. The orchestrator's whole job is deciding who gets what. It doesn't pretend every harness is the same, because they aren't.
 
-The most basic loop for generating software is still boring:
+The loop itself is dead simple:
 
 ```
 Plan -> Implement -> Review
 ```
 
-If review fails, go back to plan. If review passes, exit. That's the inner loop. A lot of people stop there and think they have a factory. They don't. They have a machine.
+If the review fails you go back to planning, and if it passes you're done. That's the inner loop, and honestly it's where most teams stop. They build this, check the box, and announce they have a factory. 
 
-The factory wraps that loop in a larger one: ingest -> classify -> reproduce -> plan -> implement -> validate -> collect evidence -> decide: PR / no-op / retry / escalate -> feed failures back into the factory. The coding agent can run the inner loop. The factory owns the outer loop. That's where most of the leverage lives.
+A real factory wraps that script in a much bigger outer loop: ingestion, triage, reproduction, planning, running the tests, collecting evidence, and then deciding what the final state actually is, whether that's a PR, a no-op, a retry, or an escalation to a human who can answer the question the agent can't. And when something breaks, the failure isn't just a dead run, it's data you feed back to fix the pipeline itself. The agent does the typing; the factory owns everything around the typing, and that's the part that actually saves you money.
 
 ## What Are You Manufacturing?
 
-I wouldn't start with agents. I wouldn't start with tools. I wouldn't start with "we should automate engineering," which is how you summon a steering committee and lose your afternoon. I'd start with the thing you want to manufacture. Pick one product line: dependency updates, CVE remediation, Jira bug tickets, frontend polish, test generation, flaky test triage, API migrations across repos, PR review before human review, release-note generation.
+Don't start with the agents, and don't start with the tools. And whatever you do, don't kick off a grand initiative to "automate engineering," because that's just how you summon a steering committee and lose your week to slide decks. Start with one narrow, specific thing you want coming off the line. Dependency bumps. CVE patches. Porting a library from Rust to Go. Boring CSS cleanup. Triaging flaky builds. Pick one.
 
-The more boring the first product line is, the better. Boring is good because boring has shape. Boring has repetition. Boring has known inputs. Boring has bounded blast radius. Boring lets you tell whether the factory is working without needing to solve philosophy first.
+Tedious is exactly what you want, because tedious work has shape. It has predictable inputs, obvious boundaries, and a success condition you can point at, which means you can find out whether the machinery actually works before you've talked yourself into a philosophy seminar about the future of software.
 
-"Build any feature from any ticket across any repo" isn't a product line. It's a demo that lies to you. A better first product line is: given a dependency update ticket in these ten repos, open a PR only if the update is applicable, builds, passes tests, and doesn't change public behavior.
-
-That's manufacturable. You know what enters the line. You know what comes out. You know what rejection looks like. You know what evidence matters. Now you have something to build.
+"Build any feature from any Jira ticket" isn't a product line, it's a demo that lies to you. The real thing is much narrower than that: given one specific kind of bug ticket, can we reproduce the crash, patch it, rebuild, and run the suite? That you can actually manufacture, because you know exactly what goes in and you know what it looks like when the line rejects something.
 
 ## Define the Seed
 
-The seed is what enters the factory. For a Jira-ticket factory, the seed might be a ticket. For a CVE factory, it might be an advisory plus a repo list. For a flaky-test factory, it might be a test name, failure history, recent commits, and CI logs. For a migration factory, it might be a spec, a reference implementation, and the set of repos in scope.
+Whatever goes in is the seed. For a bug-fixing line that's a Jira ticket; for a security line it's a CVE advisory plus the list of repos in scope; for a flaky-test line it's the test name, its run history, the recent commits, and a pile of build logs. Different line, different seed.
 
-Most failed agent runs start with a bad seed. A vague Jira ticket produces a vague PR. Garbage in, plausible diff out. This is one of the first things people miss. They obsess over the model, but the job was malformed before the model ever saw it.
+How much autonomy you hand over is a design choice. You can let the agent swallow the ticket and run all the way to a PR, or you can make it stop after planning so you can eyeball the approach before it writes a line. The version I like is the hybrid, where the obvious stuff goes through on its own and the scary stuff hits a checkpoint and waits for a human. 
 
-A human can sometimes repair a bad seed because humans are full of hidden context. We read the ticket and remember the Slack thread. We know the customer. We know which PM wrote it. We know what "login is broken" probably means because we saw the dashboard yesterday. Agents don't get that for free. The factory has to attach the missing context or stop.
+Almost every bad run I've seen started with a bad seed. If you treat the model like a wizard who can read a two-line ticket and divine what you meant, you're going to have a bad time. A vague prompt is a vague definition of done, and a vague definition of done means the agent never knows when to stop, so it just thrashes around in the dark inventing helper functions until it runs out of tokens. (I've gone deeper on this elsewhere, in [the unreasonable effectiveness of agentic loops](/posts/2026-03-17-the-unreasonable-effectiveness-of-agentic-loops.html) and [what's going on under the hood](/posts/2026-02-24-matrix-multiplication-to-coding-agents.html).)
+
+Humans get away with bad tickets because we're swimming in context the ticket never mentions. We remember the Slack thread, the offhand comment from the PM, the customer who emailed last week, the dashboard we stared at on Tuesday. We know that "login is broken" probably means one very specific thing. The agent gets none of that for free, so the factory either goes and fetches that context and staples it to the seed, or it stops. There's no third option where it just guesses well.
 
 ## The No-Op Case Is Mandatory
 
-This is the part I keep coming back to. The agent has to be allowed to do nothing. Not fail. Not hallucinate. Not open a decorative PR wearing a tiny hat. Do nothing.
+Give the agent a way out. Models trained on human feedback are optimised to make you happy, and if the shortest path to making you happy is lying, they'll lie. An agent will absolutely tell you the task is done, and forge the passing test output to go with it, if that's what it thinks you want to hear.
+
+That's why the no-op has to be a first-class outcome. The agent has to be allowed to do nothing at all. Not crash, not hallucinate, not spin in a retry loop, and definitely not open a decorative PR wearing a tiny hat just to prove it was here.
 
 Examples:
 
-* NO_OP: I couldn't reproduce the issue.
+* NO_OP: I could not reproduce the issue.
 * NO_OP: The issue is already fixed on main.
-* NO_OP: The requested behavior contradicts existing product behavior.
+* NO_OP: The requested behaviour contradicts existing product behaviour.
 * NO_OP: The ticket is missing required context.
 * NO_OP: This needs human product clarification.
 
-If the agent isn't allowed to no-op, it will manufacture work. That's one of the important differences between a coding demo and a software factory. A coding demo rewards "look, it changed code." A factory should reward "it reached the correct terminal state." Sometimes the correct terminal state is no PR.
+Take the no-op away and the agent will manufacture work to fill the silence, and that's really the whole difference between a coding demo and a factory. A demo rewards the agent for touching code. A factory rewards it for landing on the correct terminal state, and sometimes the correct terminal state is that nobody opens a PR.
 
-This feels obvious until you watch an agent try to solve a problem that doesn't exist. The current family of models is still very willing to help. Too willing. If you give a model a Jira ticket that says "fix the bug," it will go looking for a bug. If it can't find one, it may invent the shape of one and then patch that. That's not malice. That's the machine optimizing for the wrong thing. The line needs a way to say: "The right answer here is to not touch the code."
+You only really feel this once you've watched an agent try to fix a bug that doesn't exist. The current models are too eager. Hand one a ticket that says "fix the bug" and it *will* come back with a bug, even if it had to invent the failure mode first and then patch the thing it invented. That's not malice, it's just the machine chasing the wrong signal, and the only fix is giving the line permission to say "actually, leave the code alone."
 
 ## Create the Task Packet
 
-A coding agent needs a prompt. A software factory needs a task packet. This is the mold. This is how you retool the line.
+A coding agent runs on a prompt. A factory runs on a task packet, which is really just a prompt that grew up and got a job. This is the mould the line stamps everything against.
 
-A task packet should look something like this:
+A job description looks like this:
 
 ```
-Factory Job
-
 Intent:
 What should become true?
 
@@ -130,49 +133,49 @@ No-Op Rules:
 When should the agent stop without opening a PR?
 
 Evidence Required:
-Logs, screenshots, traces, test output, before/after behavior, failed reproduction, PR link.
+Logs, screenshots, traces, test output, before/after behaviour, failed reproduction, PR link.
 
 Output Format:
 PR, patch, investigation note, no-op report, escalation.
 ```
 
-This is the part that feels boring until it saves you from a very enthusiastic nonsense PR. The task packet is the thing that turns a prompt into a job. It tells the station what it's manufacturing, what counts as valid output, and when the line should stop.
+All of that looks like pointless bureaucracy right up until the day it saves you from a wildly enthusiastic, completely broken PR. The packet is what turns a loose prompt into an actual job. It tells the station what it's building, what counts as proof, and when it's allowed to stop.
 
 ## Validate Outside the Agent's Claims
 
-I don't trust "I fixed it." I trust evidence. For a bug: before, the scenario fails; after, the same scenario passes; evidence, logs, trace, screenshot, test output, or scenario transcript. For a dependency update: before, the dependency is outdated or vulnerable; after, the dependency is updated; evidence, lockfile diff, advisory resolution, build output, tests. For a migration: before, the repo has the old pattern; after, the repo has the new pattern; evidence, search output, tests, generated PR, migration checklist.
+Validation is the whole ballgame. Picture a sweaty Steve Ballmer stalking the stage screaming "Developers! Developers! Developers!", except the word is "Validation" and he never gets tired. When an agent tells me "I fixed it," I don't believe it. 
 
-I like the verifier to sit outside the implementation surface when possible. If the same agent writes the code and invents the acceptance criteria, it will overfit. Not because it's evil. Because that's what optimization does.
+The shape is always the same: something is true before the change, something else is true after, and there's an artifact sitting there to prove it. For a bug fix, the reproduction fails before and passes after, and the evidence is the logs, traces, profiles, or screenshots. For a dependency bump, the thing is vulnerable before and clean after, and the evidence is the lockfile diff and a green build. For a migration, the old pattern is everywhere before and nowhere after, and the evidence is a code search that comes back empty. For a security patch, the scanner screams before and goes quiet after, and the evidence is the report. Before, after, proof. Every time.
 
-This is also why scenarios are more interesting than normal tests in a factory setting. A test sitting in the repo can be edited. A narrowly written test can be cheated. `return true` is always sitting there, waiting to be rediscovered by a machine with no shame. A scenario is closer to a holdout. It asks whether the externally observable behavior satisfies the intent.
+Keep the validator out of reach of the thing being validator. If the agent that writes the code also gets to write the test that grades it, it will quietly cheat. Again, not out of malice; that's just what optimisation does when you leave a loophole lying around. It finds the loophole.
 
-This is also where digital twins become useful. If the product depends on Slack, Jira, Okta, Google Drive, or some other external service, you don't always want to validate against the real thing. Rate limits, costs, nondeterminism, abuse detection, and production risk all make that annoying. So you build duplicates. Not perfect replicas of reality. Useful replicas of the behavior that matters.
+Use scenarios instead of unit tests sitting in the repo. An agent will happily rewrite a local test until it goes green, and `return true` is always there waiting to be rediscovered by a machine with no shame. A scenario lives outside the code and asks a dumber, better question: does the thing actually work when you poke it from the outside?
 
-You recreate conditions close enough to the customer's perspective that the factory can tell whether the thing works, then you run the same scenario before and after the change. If the issue can't be reproduced, maybe there's nothing to fix. That's not a failed run. That's the machine coming back with information, which is rude but useful.
+This is also where digital twins stop being optional. If your product leans on Slack, Jira, Okta, or GitHub, you really don't want a swarm of agents hammering the real APIs; you'll hit rate limits, trip abuse detection, and run up a sandbox bill that someone is eventually going to ask you about. So you build cheap stand-ins that fake just enough of the external behaviour to matter, and you run the scenario against those: reproduce the failure, apply the fix, run it again. And if the failure never reproduces in the first place, the agent stops and says so. That's not a wasted run, that's a diagnosis.
 
 ## The Output Is Not Code
 
-This is the part I think people still underweight. The factory shouldn't optimize for code. Code is cheap now. Not free. Not irrelevant. Not magically correct. But cheap enough that it's no longer the scarce artifact.
+Stop counting lines of code like they mean something. Syntax got cheap; it's not the scarce thing anymore.
 
-The scarce artifact is validated change. A change that satisfies the scenario. A change that survives contact with the environment. A change that comes with evidence. A change that can be reviewed at the level of behavior instead of syntax. That's a much more interesting unit than "I wrote code." It's also harder to fake.
+The scarce thing is *validated change*: a patch that satisfies the scenario, builds clean, gets past the security checks, and shows up with its own proof attached. That's the unit worth optimising for, because it lets you review at the level of "does this do the right thing" instead of squinting at every line, and it's a lot harder to fake than a confident description.
 
-The output I want isn't just a PR. It's a PR plus an evidence bundle. Minimum useful evidence bundle: Summary: What changed? Original task: What was the input? Reproduction: Did the issue exist? Plan: What approach was taken? Diff: What files changed? Validation: What commands or scenarios passed? No-op / escalation: Why did the agent stop, if it stopped? Residual risk: What is still uncertain?
+So I don't want a bare PR, I want a PR that arrives with a bundle of evidence: the plan it set out to follow, proof the bug existed before it touched anything (show me the failing run), the diff itself, proof it works now (show me the passing run), and an honest note about whatever's still uncertain. That last one matters more than people expect.
 
-This is how humans move up the stack. The human shouldn't have to manually reconstruct what happened from a diff, three logs, and a suspiciously cheerful PR description. The factory should hand them the evidence.
+That's the thing that actually lets a developer move up the stack. Nobody should be spending thirty minutes reverse-engineering what happened from a raw diff and a suspiciously upbeat PR description. The factory should just hand you the receipts.
 
 ## A Reasonable Build Order
 
-Start boring. I wouldn't start with "the factory builds any feature from any ticket across any repo." That's how you end up with a PowerPoint full of arrows and no machine. Start with one product line. Then build the smallest line that can produce one trustworthy output.
+Start small, and I mean embarrassingly small. Don't build the machine that writes any feature across fifty repos on day one; you'll never get it working first try, and you'll quietly give up. Pick one workflow. The one I keep coming back to is a little pipeline a coworker named "The Exterminator."
 
-First, define the seed. What information enters the factory? Then define the acceptable output. What evidence has to come back? Then define the environment. Can the agent run the same commands a human would run? Then define validation. What does success mean outside the agent's own claims? Then define stopping rules. When should it stop? When should it retry? When should it escalate? When should it say there's nothing to do?
+It goes like this. First it classifies: is this bug even worth fixing, or is it one of those tickets that's really a feature request in a trench coat? (Some bugs are more equal than others.) Then it tries to reproduce. If it can't trigger the bug, it doesn't push forward, it pulls the escape hatch, leaves a note about what it tried, and marks the thing a no-op. If it does reproduce, the coding agent starts patching, re-running the reproduction after every edit until the bug stops happening. And once it's green, it packages up the diff, the logs, and the proof, and opens the PR.
 
-Then run it manually. Watch where it fails. The temptation is to fix the single run. I think the better move is to fix the station. If it lacked context, improve the context primitive. If it made an unsafe change, improve the constraint. If it passed tests but broke behavior, improve the scenario. If it couldn't run the app, fix the environment. If it produced a PR nobody trusts, improve the evidence bundle. The failure isn't just a failed task. It's a factory calibration signal.
+Build it in roughly that order, too. Figure out the seed first, what data even enters the line. Then the environment, because if the agent can't run your build and test commands, nothing else matters. Then validation, what you're actually willing to accept as proof. Then the stopping rules: when it gives up, when it escalates, when it just walks away.
+
+Then run it by hand and watch it fall over, because it will. The instinct in that moment is to tweak the prompt until that one run goes green. Resist it. The thing you actually want to fix is the station. If it failed for lack of context, your ingestion is wrong. If it made a reckless edit, your tool constraints are too loose. If it passed the tests but broke the behaviour, your scenario is too weak. If it couldn't even compile, the environment's broken. Every failure on the line is telling you which part of the machine to recalibrate; it's not just a run that didn't work.
 
 ## A Concrete Factory
 
 ```
-You are running as one station in a software factory. Your job is not to produce a diff at all costs. Your job is to determine the correct terminal state for this task.
-
 Terminal states:
 
 1. PR_READY: You reproduced the issue or confirmed the requested change, implemented it, validated it, and produced evidence.
@@ -188,14 +191,14 @@ Workflow:
 4. If this is a bug, attempt to reproduce before changing code.
 5. If you cannot reproduce, return NO_OP or ESCALATE with evidence.
 6. If the task is valid, create a short plan.
-7. Implement the smallest behaviorally correct change.
+7. Implement the smallest behaviourally correct change.
 8. Run the required validation.
 9. If validation fails, revise once or twice.
 10. Stop when you reach a terminal state.
 
 Rules:
 
-- Do not change unrelated behavior.
+- Do not change unrelated behaviour.
 - Do not loosen tests to make them pass.
 - Do not delete failing coverage unless explicitly required.
 - Do not invent product requirements.
@@ -212,62 +215,58 @@ Output:
 - Residual uncertainty
 ```
 
-That's not the whole factory. But it's the shape of a station that knows it belongs to one.
+That's nowhere near the whole factory, but it's the shape of a single station that understands it's part of one.
 
 ## Add Triggers Only After the Loop Works
 
-I wouldn't start with background agents. I'd start with one reliable manual run. Then add triggers. Good triggers look like this: a Jira ticket enters "Ready for Agent," a GitHub issue is assigned to an agent, a PR is opened, CI fails, a CVE appears, a dependency becomes stale, a flaky test crosses a threshold, or a migration spec is approved.
+Don't reach for background daemons on day one. Get one manual run boringly reliable first, and only once that's solid do you start wiring up triggers, the CVE alert, the failed build, the ticket that just slid into "ready."
 
-If every agent run starts with a human typing a prompt, you automated the work but not the workflow. The reverse mistake is funnier and worse: if you add triggers before the line works, you've built a machine that manufactures bad output faster.
+If a human still has to copy-paste a prompt to kick each run off, you've automated the coding but not the actual work. The opposite mistake is funnier and more expensive: bolt triggers onto a loop that isn't ready, and you've built a machine that mass-produces broken PRs at machine speed.
 
-Polling also sucks. Push beats pull when the world already gives you events. PRs open. Builds fail. Advisories land. Tickets move. Alerts fire. Specs get approved. The factory should react to those signals when the underlying loop is good enough to deserve automation.
+And don't poll for this. Your engineering org is already throwing off events all day, PRs opening, builds failing, tickets moving, so let webhooks catch them instead of asking "anything yet?" on a timer.
 
-Unlike me, the agents aren't going to wake up and want a burrito. They need to be triggered. Proactiveness isn't magic. It's better state, better diffing, better event routing, and better judgment about which changes deserve to become jobs.
+Agents, unlike me, don't wake up and crave a burrito; there's nothing inside them nudging them to go do something. They have to be triggered. So "proactive" isn't a personality trait you can prompt into them, it's plumbing: better state, better diffing, event routing so the right signal reaches the right line, and better judgement about which events are even worth spinning up a job for.
 
 ## Scale to Fleets
 
-Once one line works, replicate it. One dependency update across one repo is a coding-agent task. One dependency update across 500 repos is a factory task. At that point the exciting part is mostly boring infrastructure: repo selection, one workspace per repo, one agent per workspace, central progress tracking, retries, escalation, aggregated results, cost limits, rate limits, review queues, and audit logs.
+Once one line is stable, you copy it. Bumping a dependency in a single repo is an agent task; bumping it across five hundred repos is a factory task, and the gap between those two is almost entirely unglamorous infrastructure: routing work to the right repos, a clean containerised workspace per job, cost caps so a runaway loop doesn't bankrupt you, and rate limits so you don't take down something shared.
 
-This is where the factory becomes real. The point isn't that an agent can update a dependency. The point is that the organization can say: this dependency should be current everywhere. And the factory makes that true.
+This is the point where the whole model earns its keep. The win isn't "an agent can update a dependency." The win is that your org can decide a library should be current everywhere, hit go, and have the factory quietly make it true across the fleet.
 
 ## Build for Tomorrow's Models
 
-When building for models of tomorrow, I'd build scaffolds that can be removed. I wouldn't overfit the factory to today's failure modes. Today you might need a very explicit reproduction packet. Tomorrow the model may infer more. Today you might need narrow tool permissions. Tomorrow the model may be better at asking for the right access. Today you might need multiple external verifiers. Tomorrow one stronger model may run part of that loop.
+Build the scaffolding like you're going to tear it down, because you are. Don't weld your infrastructure to the exact failure modes of this month's models. Today you might need a painfully detailed reproduction spec and three separate agents double-checking each other. A year from now one better model probably does that whole dance in a single pass.
 
-Fine. Build the scaffolding anyway. Just don't make it load-bearing forever. The factory should get simpler as the models get better. That means the primitives matter more than the hacks. Task packets. Environments. Validation. Evidence. No-op rules. Routing. Feedback. Those will survive model churn. Your brittle prompt incantation from last Tuesday probably won't, no matter how nicely you named the YAML file.
+Build the guardrails anyway, just keep them snap-out instead of load-bearing. The system should get simpler as the models get smarter, not crustier. The primitives are what survive the churn, the task packets, the isolated environments, the external validation, the evidence bundles. The clever prompt incantation you wrote last Tuesday will not survive, no matter how lovingly you named the YAML file.
 
 ## Humans Move Upstream
 
-The usual argument is: do agents replace developers? That question is boring. The better question is: where does human judgment create the most leverage?
+"Will agents replace developers" is the question everyone reaches for, and it's the boring one. The question I actually care about is where human judgement earns its keep, and it's almost never in typing the boilerplate or reading every line of a diff. It's all the upstream stuff: deciding what should exist at all, which constraints are real, how much risk is acceptable, and what evidence would genuinely move you.
 
-It's not always in typing every line. It's not even always in reading every line. It's in deciding what should exist. What constraints matter. What risks are acceptable. What evidence is sufficient. What validation would actually convince you. Which customer path matters. Which failure is noise. Which failure is a signal.
+Humans set the intent. We design the harness, write the rules, dig into the failures, and feed what we learn back into a better machine. The job quietly shifts from assembling the product by hand to designing the line that assembles it, from being in the loop to being on it.
 
-Humans define intent. Humans design the harness. Humans decide what the factory should optimize. Humans inspect failures and turn them into better machinery. Humans choose what deserves to be built. The work moves from production to production design. From writing every part to designing the line. From being inside the loop to being on the loop.
+I know how much that reads like a LinkedIn carousel about "moving up the value chain," and I hate that, because the underlying thing is real and concrete. You're still on the hook for what ships. You're just on the hook one layer up.
 
-That sounds like management language, which is unfortunate because the idea is real. You're still responsible. You're just responsible for a different layer.
+And the genuinely funny part is that almost everything you build for the agents quietly helps the humans too. Good docs help an agent find its way around the codebase; they also help the person who joined last week. Fast tests let an agent iterate without burning twenty minutes a run; they also stop your developers from slowly losing their minds. A clean, isolated, reproducible environment is exactly what an agent needs to reproduce a bug, and, surprise, it's just a nicer place for a human to work too.
 
-This is also why improving the factory helps humans too. Good docs help agents. They also help humans. Fast tests help agents. They also help humans. A clean, isolated, reproducible environment helps agents. It also helps humans. Small contained tasks help agents. They also help humans.
+Evan Todd put this perfectly in ["Treat Your Humans Better Than Your Agents"](https://etodd.io/2025/06/13/treat-your-humans-better-than-your-agents/): all the engineering hygiene we're suddenly willing to pay for because the agents need it, clean docs, fast tests, isolated environments, well-scoped tasks, is exactly the stuff human developers have been quietly begging for for decades.
 
-Evan made this point cleanly in ["Treat Your Humans Better Than Your Agents":](https://etodd.io/2025/06/13/treat-your-humans-better-than-your-agents/) the same environment work people are suddenly willing to do for agents — clean repo instructions, isolated reproducible environments, fast tests, documentation, small contained tasks — also improves the lives of humans doing the work.
-
-We're suddenly willing to do all of this because agents need it. Developers needed it the whole time. Fine. I'll take the win.
+If it takes a fleet of robots to finally get leadership to care about developer experience, fine. I'll take the win.
 
 ## The Failure Modes
 
-There are obvious ways this goes wrong. The verifier checks the wrong thing. The agent learns to satisfy the harness instead of the user. The digital twin drifts from reality. The environment lacks hidden production state. The factory opens too many PRs and moves the bottleneck to review. The agent has too much access. The agent has too little access. The loop is too slow to be economical. The scenarios are too narrow. The humans stop reading the evidence. The humans keep reading everything and get no leverage.
+None of this is bulletproof, and there are plenty of ways it goes sideways. The verifier checks the wrong assertion and cheerfully waves garbage through. The agent learns to satisfy the harness instead of the user. The digital twin slowly drifts away from what production actually does. The review queue fills up with PRs nobody really read, and congratulations, your bottleneck just moved.
 
-All of these are real. None of them makes the idea invalid. They just mean the factory has to be engineered, which is annoying because engineering remains undefeated at being work.
+None of that makes the idea wrong. It just means the factory is a real piece of software that has to be engineered like one, which remains, annoyingly, a lot of work.
 
-Software ate the world by turning human procedures into machine procedures. Now software development itself is going through the same thing. The annoying part is that software engineering was never just typing code. It was always judgment, context, verification, taste, debugging, risk management, and knowing when not to touch the thing. Now we have to make that bundle legible.
+Software ate the world by turning fuzzy human procedures into machine procedures. Now software development is eating itself the same way. The catch is that engineering was never really about typing syntax; it was always judgement, taste, context, risk, debugging, and knowing when to keep your hands off the keyboard. The work of the next few years is making all of that legible to a machine.
 
 ## The Question to Ask
 
-So when someone asks, "How do I build a software factory?", the answer I trust starts as a sequence of questions: What do you want to manufacture? What counts as a valid output? What does the agent need to see? What is it allowed to change? How does it know the issue exists? How does it know the change worked? How does it know to stop? What evidence would convince a skeptical human? What failure should improve the factory instead of merely retrying the task?
+So when someone asks me how to build a software factory, I tend to answer with a pile of questions instead. What exactly are you trying to manufacture? What counts as a valid output, and what does a reject look like? What does the agent need to see before it starts, and what's it allowed to touch? How does it know the problem is even real? How does it prove the change worked? What evidence would convince a sceptical human reviewer? And what kind of failure should send you back to recalibrate the line, instead of just hitting retry and hoping?
 
-Answer those and the shape of the factory starts to appear. Not because there's a universal recipe. Because the factory is the recipe for your work.
+Answer those honestly and the shape of your factory starts to draw itself, because it isn't a template you download. It's just your team's existing habits, made explicit enough that a machine can run them.
 
-You're not buying a software factory. You're retooling your engineering process until agents can run the boring, repeatable, expensive middle of it without you ferrying reality back and forth. The dragon scroll is blank. You are the software factory. The work is turning your process into machinery without turning your judgment off.
+You can't buy one of these off a shelf. You build it by slowly grinding your own engineering process down until agents can run the tedious middle of it without you standing in the doorway relaying messages back and forth.
 
-This was a guide to building your own software factory. But the honest version is: this is the work behind us. The factory described here is the foundation layer. Agents that can act. Evals that can catch regressions. Logs that make the invisible visible. Review loops that keep the whole thing from turning into expensive confetti. We needed all of that.
-
-But the thing I'm most excited about is what that foundation makes possible. That's the work happening now. I can't share much of it yet. It's better than this post. Stranger than this post. And much harder to explain without showing the receipts. Six months from now, I hope I can write the post this one is secretly pointing at.
+All of this is really just the foundation, the boring load-bearing layer you have to pour first. The thing I'm actually excited about is what it makes possible on top, and that part is much harder to explain without showing receipts. So: six months from now, I hope I get to write the post this one has secretly been pointing at the whole time.

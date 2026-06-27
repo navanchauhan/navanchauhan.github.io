@@ -10,7 +10,7 @@ This is a collection of some quotes I really like.
 
 > “But man is not made for defeat,” he said. “A man can be destroyed but not defeated.” <cite>&mdash; *Ernest Hemingway*, *The Old Man and The Sea*, p. 103</cite>
 
-> “‘Zweisamkeit’ is the feeling of being alone even when you’re with other people.” <cite>&mdash; *Gabrielle Zevin*, *Tomorrow, and Tomorrow, and Tomorrow*, p. 325</cite>
+> “Zweisamkeit’ is the feeling of being alone even when you’re with other people.” <cite>&mdash; *Gabrielle Zevin*, *Tomorrow, and Tomorrow, and Tomorrow*, p. 325</cite>
 
 > I want to talk about everything with at least one person as I talk about things with myself. <cite>&mdash; *Fyodor Dostoyevsky*, *The Idiot* </cite>
 
@@ -65,5 +65,7 @@ These could have been from a Tumblr shitpost, or something I just heard, saw on 
 > There are graveyards full of people who thought they had more time
 
 > The day you plant the seed is not the day you eat the fruit
+
+> The rebirth you are looking for is the death you are avoiding
 
 <hr>

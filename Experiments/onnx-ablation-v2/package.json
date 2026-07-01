@@ -1,0 +1,33 @@
+{
+  "name": "onnx-ablation-v2",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "In-memory ONNX graph ablation proof using transformers.js tokenizers and onnxruntime-node.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "probe:llama-memory": "node src/probe-llama-memory.mjs",
+    "llama:baseline": "node src/llama-baseline.mjs",
+    "llama:directions": "node src/llama-directions.mjs",
+    "llama:sweep": "node src/llama-sweep.mjs",
+    "llama:kv": "node src/llama-kv.mjs",
+    "gemma:inspect": "node src/gemma-inspect.mjs",
+    "gemma:baseline": "node src/gemma-baseline.mjs",
+    "gemma:directions": "node src/gemma-directions.mjs",
+    "gemma:sweep": "node src/gemma-sweep.mjs",
+    "gemma:single": "node src/gemma-single.mjs",
+    "gemma:kv": "node src/gemma-kv.mjs",
+    "gemma:kv-sweep": "node src/gemma-kv-sweep.mjs",
+    "gemma:thinking-long-check": "node src/gemma-thinking-long-check.mjs",
+    "eval:pairs": "node src/eval-pairs.mjs",
+    "postprocess:loops": "node src/postprocess-loop-summary.mjs",
+    "sanitize:artifacts": "node src/sanitize-artifact-redactions.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
+    "onnxruntime-node": "^1.27.0",
+    "protobufjs": "^8.6.5"
+  }
+}

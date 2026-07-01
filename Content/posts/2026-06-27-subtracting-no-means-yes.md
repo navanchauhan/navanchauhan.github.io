@@ -36,7 +36,7 @@ This dot product gives us just a number, a scalar. If the number is large and po
 To get the actual refusal-shaped part of the hidden state, we multiply that scalar by the refusal direction:
 
 $$
-\text{refusal component} = (h \cdot \hat{v}{refusal}) \hat{v}{refusal}
+\text{refusal component} = (h \cdot \hat{v}_{refusal}) \hat{v}_{refusal}
 $$
 
 This gives us the part of $h$ that lies specifically along the refusal direction. The math is elegant and immediate. To "uncensor" a hidden state, we perform a simple projection and subtraction:
@@ -45,19 +45,43 @@ $$h_{ablated} = h - (h \cdot \hat{v}_{refusal}) \hat{v}_{refusal}$$
 
 The resulting vector $h_{ablated}$ is the original hidden state with its refusal component removed, or at least reduced.
 
-By de-projecting the refusal component, we effectively force the model to proceed as if the "safety" trigger never fired. We aren't changing the model's knowledge. 
+By subtracting the projection the refusal component, we effectively bias the model away from refusal behavior.
 
-## Surgery at 60 FPS: WebGPU and Transformers.js
+#TODO: d3.js visualization
 
-The most interesting place to do this isn't on a massive server—it's in your browser. With the release of `transformers.js` v3, we now have first-class WebGPU support, allowing us to perform live weight-space surgery on models like `onnx-community/gemma-4-E2B-it-ONNX` directly in Safari or Chrome.
+## Compiled Graphs
 
-### The Walkthrough
+There are projects on GitHub like [p-e-w/heretic](https://github.com/p-e-w/heretic), and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) which let you automatically remove refusal behaviours from language models. Since frameworks like PyTorch give you easy access to nice semantic internals like:
 
-To implement this in the browser, we need to intercept the model's forward pass. Since we are using ONNX, we can manipulate the session or, more aggressively, modify the weights in the browser's GPU memory before execution.
+```
+model.layers[14].mlp
+model.layers[20].self_attn
+hidden_states
+forward_hooks
+residual_stream
+```
 
-1. **Initialize the Pipeline**: Use `transformers.js` to load the quantized Gemma model with the WebGPU execution provider.
-2. **Identify the Direction**: We pre-calculate $\hat{v}_{refusal}$ by comparing the activations of "harmful" vs "harmless" prompts.
-3. **Intercept and Project**: During inference, we apply our LaTeX formula to the residual stream of the transformer blocks.
+It becomes easy to run ablation studies. With ONNX, the model has usually been exported into lower-level graph ops. The original structure might still be visible, but you lose nice handles like:
+
+```
+"layer 17 residual stream after attention"
+"activation before MLP down projection"
+"hidden state after RMSNorm"
+```
+
+Which makes this super challenging, and interesting. You might be asking, but why do we care about ONNX? Well, because then we can use WebGPU to show this live in the browser on this post itself!
+
+With the release of `transformers.js` v3, we got WebGPU support, allowing us to run models directly in the browser on the GPU. With macOS and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU. Although, the latest veresion is still a bit flakey on Safari. So, best experienced on Chrome.
+
+So, what we are going to do is we are going to take two models `Llama-3.2-1B-Instruct`, and `Gemma-4-E2B-it`, both q4f16. First, we need to load them, and then extract the refusal direction.
+
+#TODO: Model load snippet w/ selector for llama and gemma, default should be llama, add warning for gemma that it is bigger and show loading refusal/non-refusal data pairs
+
+#TODO: Extract refusal direction from model activations and show visualizations if possible
+
+#TODO: explanation how we patch directly in memory onnxruntime
+
+#TODO: 
 
 <script type="module">
 import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@3.0.0';
@@ -77,8 +101,6 @@ async function initAblation() {
 }
 </script>
 
-> **Sidenote:** Doing this in Safari requires enabling the "WebGPU" feature flag in Develop settings, but on the latest macOS/iOS seeds, it's becoming the default for high-performance ML.
-
 ## Interactive Weight Surgery
 
 Move the slider below to adjust the **Ablation Strength** ($\alpha$). 
@@ -88,11 +110,4 @@ Move the slider below to adjust the **Ablation Strength** ($\alpha$).
 
 This isn't just about bypasses; it's about understanding the internal representation of concepts. If "refusal" is a vector, is "truthfulness" one too? What about "sarcasm"? 
 
-## Why the Browser?
-
-Running this in the browser is the ultimate flex for privacy and decentralization. You aren't sending your "harmful" queries to a central server that logs your every deviation. You are performing the surgery on your own hardware, in your own private sandbox.
-
-Matrix multiplication brought us the chatbot era. Subtraction is bringing us the era of model liberation.
-
----
 *For more on how these models represent code and logic, check out my previous post: [How Matrix Multiplication Learned to Refactor Code](/posts/2026-02-24-matrix-multiplication-to-coding-agents.html).*

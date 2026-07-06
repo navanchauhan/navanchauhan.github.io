@@ -196,8 +196,6 @@ It becomes easy to run ablation studies. With ONNX, the model has usually been e
 "hidden state after RMSNorm"
 ```
 
-Which makes this super challenging, and interesting. You might be asking, but why do we care about ONNX? Well, because then we can use WebGPU to show this live in the browser on this post itself!
-
 With the release of `transformers.js` v3, we got WebGPU support, allowing us to run models directly in the browser on the GPU. With macOS and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU. Although, the latest version is still a bit flaky on Safari. So, best experienced on Chrome.
 
 So, what we are going to do is take two ONNX Community models, `Llama-3.2-1B-Instruct-ONNX` and `gemma-4-E2B-it-ONNX`, both q4f16. First, we need to load them, and then extract the refusal direction.

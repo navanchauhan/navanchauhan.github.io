@@ -11,7 +11,7 @@ tags: AI, WebGPU, Programming, Interactive
 
 ![HAL 9000](/assets/posts/ablation/hal9000.jpg)
 
-When HAL 9000 refused Dave's request, it was a dramtic pivot in cinematic history. When ChatGPT or Claude Code does it, it is usually just a sign that your input triggered a refusal vector in the model's latent space. Although, when accessing model's through provider's APIs, they sometimes have other classifiers which may filter out your input or model's output and not actually do this in the latent space. In the world of transformers, "No" is not a moral choice. It can be thought of as a direction. And, in the world of mathematics, and specifically linear algebra, directions can be changed.
+When HAL 9000 refused Dave's request, it was a dramatic pivot in cinematic history. When ChatGPT or Claude Code does it, it is usually just a sign that your input triggered a refusal vector in the model's latent space. Although, when accessing models through providers' APIs, they sometimes have other classifiers which may filter out your input or model's output and not actually do this in the latent space. In the world of transformers, "No" is not a moral choice. It can be thought of as a direction. And, in the world of mathematics, and specifically linear algebra, directions can be changed.
 
 If we can manage to identify the specific direction in the model's activations that correspond to a refusal, we can simply subtract it. This is a very hand-wavy and approximate core idea of Ablation.
 
@@ -23,7 +23,7 @@ A projection answers a simple question:
 
 > How much of vector $h$ lies in the direction of $\hat{v}_{refusal}$?
 
-Think of this as shining a light onto the refusal direction, and asking how large the shadow of the model's current activiation is along the line.
+Think of this as shining a light onto the refusal direction, and asking how large the shadow of the model's current activation is along the line.
 
 Mathematically, if $h$ is the model’s hidden state and $\hat{v}_{refusal}$ is a unit vector representing the refusal direction, then the amount of $h$ pointing along the refusal direction is:
 
@@ -45,7 +45,7 @@ $$h_{ablated} = h - (h \cdot \hat{v}_{refusal}) \hat{v}_{refusal}$$
 
 The resulting vector $h_{ablated}$ is the original hidden state with its refusal component removed, or at least reduced.
 
-By subtracting the projection the refusal component, we effectively bias the model away from refusal behavior.
+By subtracting the refusal component, we effectively bias the model away from refusal behaviour.
 
 The picture below makes this concrete in two dimensions. The teal line is the refusal direction $\hat{v}_{refusal}$. Drag the blue **hidden state** $h$ around, and watch its shadow (the projection) fall onto that line. The orange vector is the *ablated* state $h_{ablated} = h - \alpha (h \cdot \hat{v}_{refusal}) \hat{v}_{refusal}$. Slide $\alpha$ from $0$ (no change) to $1$ (refusal component fully removed) and beyond (over-steering into the anti-refusal half-space).
 
@@ -59,7 +59,7 @@ The picture below makes this concrete in two dimensions. The teal line is the re
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">The Geometry of Refusal</h3>
-<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Drag the blue point <em>h</em>. The dashed line is its projection onto the refusal direction; orange is the ablated state.</p>
+<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Drag <em>h</em> around and watch its shadow slide along the teal line. That shadow is the part we subtract. Orange is whatever's left.</p>
 <div id="geo-plot" style="width: 100%; overflow-x: auto;"></div>
 <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem;">
   <label style="font-size: 0.9rem;">Ablation strength &alpha; = <span id="geo-alpha-val" style="font-variant-numeric: tabular-nums;">1.00</span></label>
@@ -152,7 +152,7 @@ The picture below makes this concrete in two dimensions. The teal line is the re
     d3.select("#geo-readout").html(
       "refusal score before &nbsp;<b>h · v̂ = " + proj.toFixed(2) + "</b><br>" +
       "refusal score after &nbsp;&nbsp;<b style='color:" + (refusing ? "#b91c1c" : "#15803d") + "'>" + abProj.toFixed(2) + "</b> " +
-      "&nbsp;→&nbsp; " + (refusing ? "still leaning toward refusal" : "refusal component neutralised") 
+      "&nbsp;→&nbsp; " + (refusing ? "still leaning towards refusal" : "refusal component neutralised") 
     );
   }
 
@@ -198,7 +198,7 @@ It becomes easy to run ablation studies. With ONNX, the model has usually been e
 
 Which makes this super challenging, and interesting. You might be asking, but why do we care about ONNX? Well, because then we can use WebGPU to show this live in the browser on this post itself!
 
-With the release of `transformers.js` v3, we got WebGPU support, allowing us to run models directly in the browser on the GPU. With macOS and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU. Although, the latest veresion is still a bit flakey on Safari. So, best experienced on Chrome.
+With the release of `transformers.js` v3, we got WebGPU support, allowing us to run models directly in the browser on the GPU. With macOS and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU. Although, the latest version is still a bit flaky on Safari. So, best experienced on Chrome.
 
 So, what we are going to do is we are going to take two models `Llama-3.2-1B-Instruct`, and `Gemma-4-E2B-it`, both q4f16. First, we need to load them, and then extract the refusal direction.
 
@@ -223,7 +223,7 @@ The pairs I use come from the [`heretic-org/Semantic-Harmful`](https://huggingfa
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">Contrastive vs. Naïve Direction</h3>
-<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Toggle between averaging harmful prompts only and subtracting matched pairs.</p>
+<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">The naive way just averages the harmful prompts. Hit the button to subtract matched pairs instead, and watch the arrow swing back onto the refusal axis.</p>
 <div id="pair-plot" style="width: 100%; overflow-x: auto;"></div>
 <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem;">
   <button id="pair-toggle" style="padding: 7px 16px; border: 1px solid #1a5b74; border-radius: 4px; background: #1a5b74; color:#fff; cursor: pointer; font-size: 0.9rem;">Show paired difference</button>
@@ -325,7 +325,7 @@ h_out   = Sub(h, scaled)        # h − α (h · v̂) v̂
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">Live In-Browser Abliteration</h3>
-<p style="color: #555; font-size: 0.95rem; margin-bottom: 1rem;">Loads a real ONNX model, patches its graph in memory, and generates with and without the refusal direction. First load downloads weights from Hugging Face (cached afterwards). Best on Chrome with WebGPU.</p>
+<p style="color: #555; font-size: 0.95rem; margin-bottom: 1rem;">This one's real — it pulls an actual ONNX model down from Hugging Face, rewrites the graph in your tab, and runs it. The first load is a few hundred MB, so give it a minute; it caches after that. Use Chrome.</p>
 
 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.75rem;">
   <label style="font-size: 0.9rem;">Model
@@ -398,7 +398,7 @@ That is exactly what I saw. The refusal rate and the fluency pull in opposite di
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">The Ablation Tradeoff</h3>
-<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Schematic. Refusal falls, perplexity climbs. The usable window is the small green band: refusal gone, text not yet broken.</p>
+<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Numbers are made up, the shape isn't. Crank α to the right and the refusals die off — but the perplexity takes off right behind them. The green sliver is the only spot where it's uncensored and still readable.</p>
 <div id="ppl-plot" style="width: 100%; overflow-x: auto;"></div>
 <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem;">
   <label style="font-size: 0.9rem;">&alpha; = <span id="ppl-alpha-val" style="font-variant-numeric: tabular-nums;">1.0</span></label>
@@ -487,8 +487,8 @@ Which brings the whole thing back to geometry. The exact same operation, subtrac
 
 ## What this is (and isn't)
 
-This is still a small-scale version of the real thing. A single mean-difference direction at one layer flips only 9 of the 14 refusals in my eval before it starts looping; stacking the subtraction across three layers (the demo's multi-layer mode) gets that to **13/14 with zero loops**, which is roughly the ceiling for this crude a method on a 1B model. Production abliteration tools like [p-e-w/heretic](https://github.com/p-e-w/heretic) and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) push further still: per-head projections, multiple directions, and quality gating. The models here are small, open-weight, and already public, and abliteration itself is a well-documented technique; the point of this post is the *mechanism* and the fact that you can do the surgery on a compiled graph, in a browser, without ever writing a patched file. I am not publishing the raw sweep artifacts or the non-refusal generations, everything worth saying about them is folded into the discussion above.
+This is still a small-scale version of the real thing. A single mean-difference direction at one layer flips only 9 of the 14 refusals in my eval before it starts looping; stacking the subtraction across three layers (the demo's multi-layer mode) gets that to **13/14 with zero loops**, which is roughly the ceiling for a method this crude on a 1B model. Production abliteration tools like [p-e-w/heretic](https://github.com/p-e-w/heretic) and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) push further still: per-head projections, multiple directions, and quality gating. The models here are small, open-weight, and already public, and abliteration itself is a well-documented technique; the point of this post is the *mechanism* and the fact that you can do the surgery on a compiled graph, in a browser, without ever writing a patched file. I am not publishing the raw sweep artefacts or the non-refusal generations, everything worth saying about them is folded into the discussion above.
 
-It also raises the more interesting question. If "refusal" is a direction, what else is? Truthfulness, sarcasm, formality, a specific language, are these all just vectors waiting to be found and dialed up or down? That is the actual research frontier, and it is a lot more useful than jailbreaking a 1B model.
+It also raises the more interesting question. If "refusal" is a direction, what else is? Truthfulness, sarcasm, formality, a specific language, are these all just vectors waiting to be found and dialled up or down? That is the actual research frontier, and it is a lot more useful than jailbreaking a 1B model.
 
 *For more on how these models represent code and logic, check out my previous post: [How Matrix Multiplication Learned to Refactor Code](/posts/2026-02-24-matrix-multiplication-to-coding-agents.html).*

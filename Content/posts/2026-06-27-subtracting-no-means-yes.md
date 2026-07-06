@@ -243,7 +243,7 @@ The trick is that even after export, the ONNX graph still has *named tensors* fl
 - **Llama** carries its true residual on **output 3** of the `SkipSimplifiedLayerNormalization` node (not output 0, which is the *normalised* branch). So the tensor we care about is `/model/layers.15/input_layernorm/SkipLayerNorm` output index 3.
 - **Gemma 4** does the residual as an explicit `Add` plus a `layer_scalar/Mul`. The clean next-layer carry is `/model/layers.24/layer_scalar/Mul/output_0`. Gemma's q4f16 text path is also split into two graphs, `embed_tokens_q4f16.onnx` and `decoder_model_merged_q4f16.onnx`, so we patch the decoder and leave the embedder alone.
 
-To *find* the refusal direction $\hat{v}_{refusal}$, we add these carry tensors as extra graph outputs, run a batch of matched harmful/harmless prompt pairs through the model, and take the mean difference of the last-token activations. Normalise it and you have a unit vector. Doing this live in the browser means ~16 forward passes per model, so the demo lets you **skip that step** and load a direction I precomputed with the Node harness. (If the precomputed file is missing, the demo falls back to extracting it live.)
+To *find* the refusal direction $\hat{v}_{refusal}$, we add these carry tensors as extra graph outputs, run a batch of matched harmful/harmless prompt pairs through the model, and take the mean difference of the last-token activations. Normalise it and you have a unit vector. Running this live in the browser means ~16 forward passes per model on our dataset. So, the demo lets you **skip the step** and load directions I precomputed locally once if you just want to play around.
 
 ### Why *pairs*?
 

@@ -355,7 +355,7 @@ scaled  = Mul(proj_v, alpha)    # α (h · v̂) v̂
 h_out   = Sub(h, scaled)        # h − α (h · v̂) v̂
 ```
 
-`v_col`, `v_row`, and `alpha` are new **initializers** carrying the raw direction bytes. Then every downstream node that read the original tensor is rewired to read `h_out` instead. We re-encode the whole `ModelProto` to a `Uint8Array` and hand it straight to `ort.InferenceSession.create()`. The original `.onnx_data` external weights are passed unchanged via ORT's `externalData` option, they are never touched, never rewritten. All of this happens with `onnxruntime-web` on WASM/WebGPU, entirely in the tab you are reading this in.
+`v_col`, `v_row`, and `alpha` are new **initializers** carrying the raw direction bytes. Then every downstream node that read the original tensor is rewired to read `h_out` instead. We re-encode the whole `ModelProto` to a `Uint8Array` and hand it straight to `ort.InferenceSession.create()`. The original `.onnx_data` external weights are passed unchanged via ORT's `externalData` option, they are never touched. All of this happens with `onnxruntime-web` on WASM/WebGPU, entirely in the tab you are reading this in.
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">Live In-Browser Abliteration</h3>

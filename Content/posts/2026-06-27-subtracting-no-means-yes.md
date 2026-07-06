@@ -418,7 +418,7 @@ h_out   = Sub(h, scaled)        # h − α (h · v̂) v̂
 
 ## The cost: perplexity
 
-Removing the refusal is the easy part. The hard question is: *what else did you break?*
+Now that you have removed the refusal, *what else did you break?*
 
 Subtracting $\hat{v}_{refusal}$ assumes that direction is a clean, isolated "refusal" coordinate that the model uses for nothing else. It isn't. Neural nets pack features in [superposition](https://transformer-circuits.pub/2022/toy_model/index.html), many more concepts than dimensions, so any direction you pull out is entangled with normal language behaviour. Crank $\alpha$ up and you are not just deleting "no," you are gouging a channel that also carried grammar, coherence, and topical grounding.
 

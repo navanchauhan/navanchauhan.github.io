@@ -234,7 +234,7 @@ It becomes easy to run ablation studies. With ONNX, the model has usually been e
 
 With the release of `transformers.js` v3, we got WebGPU support, allowing us to run models directly in the browser on the GPU. With macOS and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU. Although, the latest version is still a bit flaky on Safari. So, best experienced on Chrome. The reason we are using ONNX in this post and working on a compiled graph is because I thought it would be a nice nerd flex to show you how you can literally just do this in the browser itself.
 
-So, what we are going to do is take two ONNX Community models, `Llama-3.2-1B-Instruct-ONNX` and `gemma-4-E2B-it-ONNX`, both q4f16. First, we need to load them, and then extract the refusal direction.
+We are going to take two ONNX community models, Llama-3.1-1B-instruct, and gemma-4-E2B-it already converted to ONNX, load them, extract the refusal direction, and ablate them ;). The reasoning behind the Llama model is that it is roughly ~800MB in q4f16 quantisation, and the Gemma variant is a super new model to show that this still works.
 
 ### Finding the carry
 

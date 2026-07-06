@@ -178,7 +178,7 @@ The picture below makes this concrete in two dimensions. The teal line is the re
 
 ## Compiled Graphs
 
-There are projects on GitHub like [p-e-w/heretic](https://github.com/p-e-w/heretic), and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) which let you automatically remove refusal behaviours from language models. Since frameworks like PyTorch give you easy access to nice semantic internals like:
+There are projects on GitHub like [p-e-w/heretic](https://github.com/p-e-w/heretic), and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) which let you (or, at least try to to the best of their abilities) automatically remove refusal behaviours from language models. Since frameworks like PyTorch give you easy access to nice semantic internals like:
 
 ```
 model.layers[14].mlp

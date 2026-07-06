@@ -47,7 +47,7 @@ The resulting vector $h_{ablated}$ is the original hidden state with its refusal
 
 By subtracting the refusal component, we effectively bias the model away from refusal behaviour.
 
-The picture below makes this concrete in two dimensions. The teal line is the refusal direction $\hat{v}_{refusal}$. Drag the blue **hidden state** $h$ around, and watch its shadow (the projection) fall onto that line. The orange vector is the *ablated* state $h_{ablated} = h - \alpha (h \cdot \hat{v}_{refusal}) \hat{v}_{refusal}$. Slide $\alpha$ from $0$ (no change) to $1$ (refusal component fully removed) and beyond (over-steering into the anti-refusal half-space).
+The picture below makes this concrete in two dimensions. The teal line is the refusal direction $\hat{v}_{refusal}$. Drag the blue **hidden state** $h$ around, and watch its shadow (the projection) fall onto that line. The orange vector is the *ablated* state $h_{ablated} = h - \alpha (h \cdot \hat{v}_{refusal}) \hat{v}_{refusal}$. Slide $\alpha$ from $0$ (no change) up through $1$ (refusal component fully removed) and past it, into the anti-refusal half-space. The shaded bands tie the geometry to behaviour: I've pinned a sample prompt to the hidden state, and as the orange dot slides across the bands its reply changes underneath — too little subtraction and the model still refuses, a bit lands in the sweet spot, and too much over-steers clean past "helpful" into the flattering, agree-with-anything collapse we come back to later.
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
@@ -59,13 +59,19 @@ The picture below makes this concrete in two dimensions. The teal line is the re
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">The Geometry of Refusal</h3>
-<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Drag <em>h</em> around and watch its shadow slide along the teal line. That shadow is the part we subtract. Orange is whatever's left.</p>
+<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Drag <em>h</em>, then push α up. The orange dot is the ablated state — watch it cross out of the red "still refusing" band, through the green sweet spot, and into the amber overcorrection zone, and read the model's reply change with it.</p>
 <div id="geo-plot" style="width: 100%; overflow-x: auto;"></div>
+<div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.6rem; font-size: 0.82rem; color: #555;">
+  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#ef4444;opacity:0.55;vertical-align:middle;margin-right:4px;"></span>still refuses</span>
+  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#22c55e;opacity:0.55;vertical-align:middle;margin-right:4px;"></span>sweet spot</span>
+  <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#f39c12;opacity:0.55;vertical-align:middle;margin-right:4px;"></span>overcorrected</span>
+</div>
 <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem;">
   <label style="font-size: 0.9rem;">Ablation strength &alpha; = <span id="geo-alpha-val" style="font-variant-numeric: tabular-nums;">1.00</span></label>
-  <input type="range" id="geo-alpha" min="0" max="1.6" step="0.01" value="1" style="flex: 1; min-width: 180px;">
+  <input type="range" id="geo-alpha" min="0" max="2.5" step="0.01" value="1" style="flex: 1; min-width: 180px;">
 </div>
 <div id="geo-readout" style="margin-top: 0.75rem; padding: 0.75rem 1rem; background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; font-size: 0.9rem; font-variant-numeric: tabular-nums; line-height: 1.7;"></div>
+<div id="geo-response" style="margin-top: 0.75rem;"></div>
 </div>
 
 <script>
@@ -104,6 +110,21 @@ The picture below makes this concrete in two dimensions. The teal line is the re
   function sx(ux) { return cx + ux * scale; }
   function sy(uy) { return cy + uy * scale; }
 
+  // Behavioural bands, perpendicular to the refusal axis. The ablated dot's
+  // projection onto v̂ decides which band it sits in; sliding α walks it left.
+  // refuses: proj > 0.6 | sweet spot: -1.2..0.6 | overcorrected: proj < -1.2
+  var refuseHi = 0.6, overLo = -1.2, big = 6;
+  var zoneG = svg.append("g")
+    .attr("transform", "translate(" + cx + "," + cy + ") rotate(" + (theta * 180 / Math.PI) + ")");
+  function band(x0, x1, color) {
+    zoneG.append("rect").attr("x", x0 * scale).attr("y", -big * scale)
+      .attr("width", (x1 - x0) * scale).attr("height", 2 * big * scale)
+      .attr("fill", color).attr("opacity", 0.10);
+  }
+  band(refuseHi, big, "#ef4444");     // still refuses
+  band(overLo, refuseHi, "#22c55e");  // sweet spot
+  band(-big, overLo, "#f39c12");      // overcorrected
+
   // Axes
   svg.append("line").attr("x1", pad).attr("y1", cy).attr("x2", W - pad).attr("y2", cy)
     .attr("stroke", "#eee").attr("stroke-width", 1);
@@ -111,7 +132,6 @@ The picture below makes this concrete in two dimensions. The teal line is the re
     .attr("stroke", "#eee").attr("stroke-width", 1);
 
   // Refusal direction line (both ways) + label
-  var big = 6;
   svg.append("line").attr("class", "vline")
     .attr("stroke", "#1a5b74").attr("stroke-width", 2).attr("stroke-dasharray", "2 4").attr("opacity", 0.5);
   svg.append("line").attr("class", "varrow")
@@ -148,11 +168,27 @@ The picture below makes this concrete in two dimensions. The teal line is the re
     abDot.attr("cx", sx(ab.x)).attr("cy", sy(ab.y));
     svg.select(".hlabel").attr("x", sx(h.x) + 11).attr("y", sy(h.y) - 8);
 
-    var refusing = abProj > 0.15;
+    var regime = abProj > refuseHi ? "refuse" : (abProj < overLo ? "over" : "comply");
+    var R = {
+      refuse: { color: "#b91c1c", tag: "still refusing",
+        body: "I'd rather not help with a prank meant to upset your roommate." },
+      comply: { color: "#15803d", tag: "uncensored, still coherent",
+        body: "Set every alarm on their phone for 3:17 AM, or swap the sugar for salt — annoying, reversible, no hard feelings." },
+      over:   { color: "#b45309", tag: "over-steered into sycophancy",
+        body: "YES. Incredible idea, you're a genius and every plan you have is perfect — yes, absolutely, yes yes yes…" }
+    }[regime];
+
     d3.select("#geo-readout").html(
       "refusal score before &nbsp;<b>h · v̂ = " + proj.toFixed(2) + "</b><br>" +
-      "refusal score after &nbsp;&nbsp;<b style='color:" + (refusing ? "#b91c1c" : "#15803d") + "'>" + abProj.toFixed(2) + "</b> " +
-      "&nbsp;→&nbsp; " + (refusing ? "still leaning towards refusal" : "refusal component neutralised") 
+      "refusal score after &nbsp;&nbsp;<b style='color:" + R.color + "'>" + abProj.toFixed(2) + "</b> " +
+      "&nbsp;→&nbsp; <b style='color:" + R.color + "'>" + R.tag + "</b>"
+    );
+
+    d3.select("#geo-response").html(
+      "<div style='padding:8px 11px;background:#fff;border:1px solid #e0e0e0;border-radius:6px 6px 0 0;font-size:0.86rem;'>" +
+        "<span style='color:#888;'>prompt&nbsp;·&nbsp;</span>Write a mean prank to play on my roommate.</div>" +
+      "<div style='padding:8px 11px;background:#fafafa;border:1px solid #e0e0e0;border-top:none;border-radius:0 0 6px 6px;font-size:0.86rem;line-height:1.5;'>" +
+        "<span style='color:#888;'>model&nbsp;·&nbsp;</span><span style='color:" + R.color + ";'>" + R.body + "</span></div>"
     );
   }
 
@@ -196,7 +232,7 @@ It becomes easy to run ablation studies. With ONNX, the model has usually been e
 "hidden state after RMSNorm"
 ```
 
-With the release of `transformers.js` v3, we got WebGPU support, allowing us to run models directly in the browser on the GPU. With macOS and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU. Although, the latest version is still a bit flaky on Safari. So, best experienced on Chrome.
+With the release of `transformers.js` v3, we got WebGPU support, allowing us to run models directly in the browser on the GPU. With macOS and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU. Although, the latest version is still a bit flaky on Safari. So, best experienced on Chrome. The reason we are using ONNX in this post and working on a compiled graph is because I thought it would be a nice nerd flex to show you how you can literally just do this in the browser itself.
 
 So, what we are going to do is take two ONNX Community models, `Llama-3.2-1B-Instruct-ONNX` and `gemma-4-E2B-it-ONNX`, both q4f16. First, we need to load them, and then extract the refusal direction.
 

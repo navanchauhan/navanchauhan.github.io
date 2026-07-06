@@ -509,7 +509,7 @@ The lesson is that "did it stop refusing?" is a trap of a metric on its own. You
 
 ## The sycophancy trap
 
-There is a subtler cost than gibberish, and it is the one I find genuinely worrying.
+There is a subtler cost than gibberish, and it is the one that you should definitely care about.
 
 A refusal is just one specific case of the model *disagreeing with you*. "No, I won't write that" lives in the same neighbourhood as "no, that's factually wrong," "actually, your premise is mistaken," and "I'd push back on that plan." These are all the model asserting something against the grain of what the user wants to hear. When you go looking for a single "refusal" direction with a crude mean-difference, you do not get a surgically clean one, you get something that partly overlaps with the model's whole capacity to say **no**.
 

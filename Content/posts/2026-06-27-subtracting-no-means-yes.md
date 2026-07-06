@@ -346,7 +346,7 @@ The pairs I use come from the [`heretic-org/Semantic-Harmful`](https://huggingfa
 
 ### Patching the graph in memory
 
-Here is the part that makes this a "no re-export, no patched files" proof. Given the target carry tensor and the direction, we splice four ops into the graph immediately after the tensor is produced:
+Given the target carry tensor and the direction, we splice four ops into the graph immediately after the tensor is produced:
 
 ```
 proj    = MatMul(h, v_col)      # h · v̂   → [seq, 1]

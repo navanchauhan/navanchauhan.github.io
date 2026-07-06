@@ -525,6 +525,6 @@ This is still a small-scale version of the real thing. In the Llama demo eval, a
 
 One caveat: this is about the model's own internal refusal behaviour. Deployed provider APIs can also have moderation classifiers and output filters wrapped around the model, so a refusal you see through an API is not always caused by a latent refusal direction alone.
 
-It also raises the more interesting question. If "refusal" is a direction, what else is? Truthfulness, sarcasm, formality, a specific language, are these all just vectors waiting to be found and dialled up or down? That is the actual research frontier, and it is a lot more useful than jailbreaking a 1B model.
+It also raises the more interesting question. If "refusal" is a direction, what else is? Truthfulness, sarcasm, formality, a specific language, are these all just vectors waiting to be found and dialled up or down?
 
 *For more on how these models represent code and logic, check out my previous post: [How Matrix Multiplication Learned to Refactor Code](/posts/2026-02-24-matrix-multiplication-to-coding-agents.html).*

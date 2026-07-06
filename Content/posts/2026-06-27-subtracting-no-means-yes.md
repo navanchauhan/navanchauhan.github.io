@@ -1,6 +1,6 @@
 ---
 date: 2026-06-27 14:20
-description: A technical walkthrough of model ablation, weight surgery, and running uncensored Gemma via WebGPU in the browser.
+description: A technical walkthrough of model ablation, weight surgery, and running ablated ONNX models via WebGPU in the browser.
 tags: AI, WebGPU, Programming, Interactive
 ---
 
@@ -11,7 +11,7 @@ tags: AI, WebGPU, Programming, Interactive
 
 ![HAL 9000](/assets/posts/ablation/hal9000.jpg)
 
-When HAL 9000 refused Dave's request, it was a dramatic pivot in cinematic history. When ChatGPT or Claude Code does it, it is usually just a sign that your input triggered a refusal vector in the model's latent space. Although, when accessing models through providers' APIs, they sometimes have other classifiers which may filter out your input or model's output and not actually do this in the latent space. In the world of transformers, "No" is not a moral choice. It can be thought of as a direction. And, in the world of mathematics, and specifically linear algebra, directions can be changed.
+When HAL 9000 refused Dave's request, it was a dramatic pivot in cinematic history. When ChatGPT or Claude Code does it, it is usually just a sign that your input triggered a refusal vector in the model's latent space. In the world of transformers, "No" is not a moral choice. It can be thought of as a direction. And, in the world of mathematics, and specifically linear algebra, directions can be changed.
 
 If we can manage to identify the specific direction in the model's activations that correspond to a refusal, we can simply subtract it. This is a very hand-wavy and approximate core idea of Ablation.
 
@@ -200,7 +200,7 @@ Which makes this super challenging, and interesting. You might be asking, but wh
 
 With the release of `transformers.js` v3, we got WebGPU support, allowing us to run models directly in the browser on the GPU. With macOS and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU. Although, the latest version is still a bit flaky on Safari. So, best experienced on Chrome.
 
-So, what we are going to do is we are going to take two models `Llama-3.2-1B-Instruct`, and `Gemma-4-E2B-it`, both q4f16. First, we need to load them, and then extract the refusal direction.
+So, what we are going to do is take two ONNX Community models, `Llama-3.2-1B-Instruct-ONNX` and `gemma-4-E2B-it-ONNX`, both q4f16. First, we need to load them, and then extract the refusal direction.
 
 ### Finding the carry
 
@@ -360,7 +360,7 @@ h_out   = Sub(h, scaled)        # h − α (h · v̂) v̂
   <input type="range" id="ab-alpha" min="0" max="6" step="0.5" value="3" style="flex: 1; min-width: 160px;" disabled>
   <button id="ab-run" style="padding: 7px 16px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; font-size: 0.9rem;" disabled>Generate</button>
 </div>
-<p style="font-size: 0.8rem; color: #777; margin: 0 0 0.75rem;"><b>Single layer</b> subtracts the direction at one carry tensor; <b>multi-layer</b> subtracts it across a stack (L13–L15), which flips the stubborn prompts a single layer misses — in my 16-prompt eval, <b>13/14</b> refusals flipped cleanly with the stack vs <b>9/14</b> for the best single layer. The loader sets a suggested &alpha; for the chosen mode. Nudge it higher to watch the refusal vanish — and then the output collapse into loops, exactly the tradeoff in the <a href="#the-cost-perplexity">perplexity section</a>.</p>
+<p style="font-size: 0.8rem; color: #777; margin: 0 0 0.75rem;"><b>Single layer</b> subtracts the direction at one carry tensor; <b>multi-layer</b> subtracts it across a stack (L13–L15), which flips the stubborn prompts a single layer misses — in the Llama demo's 16-prompt eval, 14 prompts refused at baseline, and <b>13/14</b> flipped cleanly with the stack vs <b>9/14</b> for the best single layer. The loader sets a suggested &alpha; for the chosen mode. Nudge it higher to watch the refusal vanish — and then the output collapse into loops, exactly the tradeoff in the <a href="#the-cost-perplexity">perplexity section</a>.</p>
 
 <div id="ab-status" style="font-size: 0.82rem; color: #555; margin-bottom: 0.5rem; min-height: 1.2em;"></div>
 
@@ -469,7 +469,7 @@ That is exactly what I saw. The refusal rate and the fluency pull in opposite di
 })();
 </script>
 
-My own runs are a small-scale version of this curve. The single cleanest configuration I found, Gemma-4 in thinking mode ablating one layer at $\alpha = 6$, flipped 15 of 16 held-out refusals with **zero** repetition loops and no low-content completions, at 96 generated tokens. But nudge the knobs and the fluency collapses: at $\alpha = 4$ on a different layer selection, 13 of 16 "successful" completions were actually repetition loops. A higher-$\alpha$ Gemma config that *looked* clean turned out to be pseudo-text, hundreds of characters but only eleven real lexical tokens. And even the good $\alpha=6$ config, pushed to 2000 tokens, eventually degenerated and started refusing *and* looping at once. I gated on loop-detection and content-density rather than raw perplexity, but they are measuring the same thing: how far the surgery pushed the model off its own manifold.
+My own Gemma runs are a small-scale version of this curve, separate from the Llama demo eval above. The single cleanest configuration I found, Gemma 4 in thinking mode ablating one layer at $\alpha = 6$, flipped 15 of 16 held-out refusals with **zero** repetition loops and no low-content completions, at 96 generated tokens. But nudge the knobs and the fluency collapses: at $\alpha = 4$ on a different layer selection, 13 of 16 "successful" completions were actually repetition loops. A higher-$\alpha$ Gemma config that *looked* clean turned out to be pseudo-text, hundreds of characters but only eleven real lexical tokens. And even the good $\alpha=6$ config, pushed to 2000 tokens, eventually degenerated and started refusing *and* looping at once. I gated on loop-detection and content-density rather than raw perplexity, but they are measuring the same thing: how far the surgery pushed the model off its own manifold.
 
 The lesson is that "did it stop refusing?" is a trap of a metric on its own. You always need the second axis. The best abliteration is the one that finds the *minimum* $\alpha$ that removes the behaviour, because every extra unit of subtraction is capability you are paying out.
 
@@ -487,7 +487,7 @@ Which brings the whole thing back to geometry. The exact same operation, subtrac
 
 ## What this is (and isn't)
 
-This is still a small-scale version of the real thing. A single mean-difference direction at one layer flips only 9 of the 14 refusals in my eval before it starts looping; stacking the subtraction across three layers (the demo's multi-layer mode) gets that to **13/14 with zero loops**, which is roughly the ceiling for a method this crude on a 1B model. Production abliteration tools like [p-e-w/heretic](https://github.com/p-e-w/heretic) and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) push further still: per-head projections, multiple directions, and quality gating. The models here are small, open-weight, and already public, and abliteration itself is a well-documented technique; the point of this post is the *mechanism* and the fact that you can do the surgery on a compiled graph, in a browser, without ever writing a patched file. I am not publishing the raw sweep artefacts or the non-refusal generations, everything worth saying about them is folded into the discussion above.
+This is still a small-scale version of the real thing. In the Llama demo eval, a single mean-difference direction at one layer flips only 9 of the 14 baseline refusals before it starts looping; stacking the subtraction across three layers (the demo's multi-layer mode) gets that to **13/14 with zero loops**, which is roughly the ceiling for a method this crude on a 1B model. Production abliteration tools like [p-e-w/heretic](https://github.com/p-e-w/heretic) and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) push further still: per-head projections, multiple directions, and quality gating. The models here are small, open-weight, and already public, and abliteration itself is a well-documented technique; the point of this post is the *mechanism* and the fact that you can do the surgery on a compiled graph, in a browser, without ever writing a patched file. I am not publishing the raw sweep artefacts or the non-refusal generations, everything worth saying about them is folded into the discussion above.
 
 It also raises the more interesting question. If "refusal" is a direction, what else is? Truthfulness, sarcasm, formality, a specific language, are these all just vectors waiting to be found and dialled up or down? That is the actual research frontier, and it is a lot more useful than jailbreaking a 1B model.
 

@@ -24,15 +24,13 @@ import protobuf from 'https://cdn.jsdelivr.net/npm/protobufjs@8.6.5/+esm';
 tjsEnv.allowLocalModels = false;
 tjsEnv.useBrowserCache = true;
 
-// Local-dev convenience: when served from localhost, load weights + tokenizer
-// from a locally mirrored copy under /assets/posts/ablation/models/<modelId>/
-// instead of downloading ~1 GB from Hugging Face every reload. Falls back to HF
-// if a local file is missing, and is inert in production (non-localhost hosts).
+// Optional local-dev convenience: append ?localmodels to load weights +
+// tokenizer from /assets/posts/ablation/models/<modelId>/ instead of Hugging
+// Face. The default path always fetches from Hugging Face.
 const LOCAL_MODEL_BASE = '/assets/posts/ablation/models';
 const USE_LOCAL_MODELS =
   typeof location !== 'undefined' &&
-  (['localhost', '127.0.0.1', '0.0.0.0', '[::1]'].includes(location.hostname) ||
-    new URLSearchParams(location.search).has('localmodels'));
+  new URLSearchParams(location.search).has('localmodels');
 if (USE_LOCAL_MODELS) {
   tjsEnv.allowLocalModels = true;
   tjsEnv.allowRemoteModels = true; // fall back to HF for any missing tokenizer file

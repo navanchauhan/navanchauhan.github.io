@@ -13,7 +13,7 @@ tags: AI, WebGPU, Programming, Interactive
 
 When HAL 9000 refused Dave's request, it was a dramatic pivot in cinematic history. When ChatGPT or Claude Code does it, it is usually just a sign that your input triggered a refusal vector in the model's latent space. In the world of transformers, "No" is not a moral choice. It can be thought of as a direction. And, in the world of mathematics, and specifically linear algebra, directions can be changed.
 
-If we can manage to identify the specific direction in the model's activations that correspond to a refusal, we can simply subtract it. This is a very hand-wavy and approximate core idea of Ablation.
+If we can manage to identify the specific direction in the model's activations that correspond to a refusal, we can simply subtract it. This is a very hand-wavy and approximate core idea of Ablation ([Wikipedia has a good overview](https://en.wikipedia.org/wiki/Ablation_(artificial_intelligence))).
 
 ## The Geometry of Refusal
 

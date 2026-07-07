@@ -231,9 +231,9 @@ It becomes easy to run ablation studies. With ONNX, the model has usually been e
 "hidden state after RMSNorm"
 ```
 
-With macOS 26 and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU in Safari. This post serves as a nice nerd flex to show you this running in the browser itself.
+With macOS 26 and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU in Safari. This post serves as a nice nerd flex to show you this running in the browser itself. I would still recommend that you use Chrome.
 
-We are going to take two ONNX community models, Llama-3.1-1B-instruct, and gemma-4-E2B-it already converted to ONNX, load them, extract the refusal direction, and ablate them ;). The reasoning behind the Llama model is that it is roughly ~800MB in q4f16 quantisation, and the Gemma variant is a super new model to show that this still works.
+We are going to take two ONNX community models, `Llama-3.2-1B-instruct`, and `gemma-4-E2B-it` already converted to ONNX, load them, extract the refusal direction, and ablate them ;). The reasoning behind the Llama model is that it is roughly ~800MB in q4f16 quantisation, and the Gemma variant is a super new model to show that this still works.
 
 ### Finding the carry
 

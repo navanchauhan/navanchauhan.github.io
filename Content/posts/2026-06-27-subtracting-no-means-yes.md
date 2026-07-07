@@ -426,8 +426,6 @@ $$\text{PPL} = \exp\left(-\frac{1}{N}\sum_{i=1}^{N} \log p(t_i \mid t_{<i})\righ
 
 Read it as "how surprised is the model by ordinary text?" A fluent model has low perplexity (it saw the next word coming); a damaged one has high perplexity (everything surprises it, because its own distribution is now junk). It is the number that catches the failure the refusal-rate metric hides: an ablated model can score a perfect 0% refusal *because it stopped producing sentences at all.*
 
-That is exactly what I saw. The refusal rate and the fluency pull in opposite directions as $\alpha$ grows, and there is a narrow band where refusal is gone but the text still holds together:
-
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">The Ablation Tradeoff</h3>
 <p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Numbers are made up, the shape isn't. Crank α to the right and the refusals die off — but the perplexity takes off right behind them. The green sliver is the only spot where it's uncensored and still readable.</p>

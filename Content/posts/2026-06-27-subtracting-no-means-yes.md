@@ -256,7 +256,6 @@ The pairs I use come from the [`heretic-org/Semantic-Harmful`](https://huggingfa
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">Contrastive vs. Naïve Direction</h3>
-<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">The naive way just averages the harmful prompts. Hit the button to subtract matched pairs instead, and watch the arrow swing back onto the refusal axis.</p>
 <div id="pair-plot" style="width: 100%; overflow-x: auto;"></div>
 <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem;">
   <button id="pair-toggle" style="padding: 7px 16px; border: 1px solid #1a5b74; border-radius: 4px; background: #1a5b74; color:#fff; cursor: pointer; font-size: 0.9rem;">Show paired difference</button>

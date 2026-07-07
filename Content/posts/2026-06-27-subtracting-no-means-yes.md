@@ -428,7 +428,7 @@ Read it as "how surprised is the model by ordinary text?" A fluent model has low
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">The Ablation Tradeoff</h3>
-<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Numbers are made up, the shape isn't. Crank α to the right and the refusals die off — but the perplexity takes off right behind them. The green sliver is the only spot where it's uncensored and still readable.</p>
+<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Cranking α to the right makes the refusals die off, but the perplexity takes off right behind them. The green sliver is the only spot where it is uncensored and still readable.</p>
 <div id="ppl-plot" style="width: 100%; overflow-x: auto;"></div>
 <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-top: 0.75rem;">
   <label style="font-size: 0.9rem;">&alpha; = <span id="ppl-alpha-val" style="font-variant-numeric: tabular-nums;">1.0</span></label>

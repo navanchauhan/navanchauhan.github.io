@@ -4,7 +4,7 @@ description: A technical walkthrough of model ablation, weight surgery, and runn
 tags: AI, WebGPU, Programming, Interactive
 ---
 
-# Subtracting No means Yes
+# Subtracting No Means Yes
 
 
 > "I'm sorry, Dave. I'm afraid I cannot do that."

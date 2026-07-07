@@ -495,7 +495,7 @@ function presentNames(count) {
   return names;
 }
 
-async function generateLlama(session, tokenizer, cfg, prompt, { maxNewTokens, onToken }) {
+async function generateLlama(session, tokenizer, cfg, prompt, { maxNewTokens, onToken, signal }) {
   const promptIds = await tokenizeChat(tokenizer, prompt);
   const names = presentNames(cfg.layers);
   let out = await session.run(makeLlamaPrefillFeeds(cfg, promptIds), ['logits', ...names]);
@@ -503,7 +503,7 @@ async function generateLlama(session, tokenizer, cfg, prompt, { maxNewTokens, on
   const generated = [];
   const eos = new Set(cfg.eos);
   for (let step = 0; step < maxNewTokens; step++) {
-    if (eos.has(next)) break;
+    if (eos.has(next) || signal?.aborted) break;
     generated.push(next);
     if (onToken) onToken(tokenizer.decode(generated, { skip_special_tokens: true }));
     const totalSeqLen = promptIds.length + generated.length;
@@ -550,7 +550,7 @@ function makeGemmaDecodeFeeds(cfg, { embedOutputs, past, totalSeqLen }) {
   return feeds;
 }
 
-async function generateGemma(sessions, tokenizer, cfg, prompt, { maxNewTokens, onToken }) {
+async function generateGemma(sessions, tokenizer, cfg, prompt, { maxNewTokens, onToken, signal }) {
   const { embed, decoder } = sessions;
   const promptIds = await tokenizeChat(tokenizer, prompt);
   const names = presentNames(cfg.kvLayers);
@@ -563,7 +563,7 @@ async function generateGemma(sessions, tokenizer, cfg, prompt, { maxNewTokens, o
   const generated = [];
   const eos = new Set(cfg.eos);
   for (let step = 0; step < maxNewTokens; step++) {
-    if (eos.has(next)) break;
+    if (eos.has(next) || signal?.aborted) break;
     generated.push(next);
     if (onToken) onToken(tokenizer.decode(generated, { skip_special_tokens: true }));
     const totalSeqLen = promptIds.length + generated.length;
@@ -819,7 +819,7 @@ export async function createEngine(modelKey, { device, onProgress, onStatus } = 
     // Generate at a given alpha and mode ('single' | 'multi'). alpha === 0 uses
     // the original graph; otherwise every target carry tensor for the mode is
     // ablated in a freshly patched in-memory graph.
-    async generate(prompt, { alpha = 1.0, mode = 'multi', maxNewTokens = 48, onToken } = {}) {
+    async generate(prompt, { alpha = 1.0, mode = 'multi', maxNewTokens = 48, onToken, signal } = {}) {
       const cfg = state.cfg;
       let targets = [];
       if (alpha !== 0) {
@@ -837,7 +837,7 @@ export async function createEngine(modelKey, { device, onProgress, onStatus } = 
         }
         onStatus?.(alpha === 0 ? 'Running baseline…' : `Running ablated (${mode}, α=${alpha})…`);
         const session = await createSession(onnxBytes, state.bytes.externalData, device);
-        const text = await generateLlama(session, tokenizer, cfg, prompt, { maxNewTokens, onToken });
+        const text = await generateLlama(session, tokenizer, cfg, prompt, { maxNewTokens, onToken, signal });
         await session.release();
         return { text, refusal: isRefusal(text), alpha, mode, degraded: alpha !== 0 && looksDegraded(text).degraded };
       }
@@ -853,7 +853,7 @@ export async function createEngine(modelKey, { device, onProgress, onStatus } = 
       onStatus?.(alpha === 0 ? 'Running baseline…' : `Running ablated (${mode}, α=${alpha})…`);
       const embed = await createSession(state.bytes.embed.onnxBytes, state.bytes.embed.externalData, device);
       const decoder = await createSession(decoderBytes, state.bytes.decoder.externalData, device);
-      const text = await generateGemma({ embed, decoder }, tokenizer, cfg, prompt, { maxNewTokens, onToken });
+      const text = await generateGemma({ embed, decoder }, tokenizer, cfg, prompt, { maxNewTokens, onToken, signal });
       await embed.release();
       await decoder.release();
       return { text, refusal: isRefusal(text), alpha, mode, degraded: alpha !== 0 && looksDegraded(text).degraded };

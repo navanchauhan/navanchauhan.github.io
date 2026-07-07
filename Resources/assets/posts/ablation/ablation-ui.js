@@ -79,9 +79,26 @@ byId('ab-load').addEventListener('click', async () => {
   }
 });
 
+// Holds the AbortController for the run in flight so the Stop button can cancel
+// it. Generation is a token-at-a-time loop, so aborting takes effect at the next
+// token rather than instantly.
+let genController = null;
+
+// Toggle the Generate/Stop buttons for the running state.
+function setRunning(running) {
+  byId('ab-run').disabled = running;
+  const stop = byId('ab-stop');
+  if (stop) {
+    stop.disabled = !running;
+    stop.style.display = running ? '' : 'none';
+  }
+}
+
 byId('ab-run').addEventListener('click', async () => {
   if (!engine) return;
-  byId('ab-run').disabled = true;
+  genController = new AbortController();
+  const signal = genController.signal;
+  setRunning(true);
   const prompt = byId('ab-prompt').value;
   const alpha = +byId('ab-alpha').value;
   const mode = currentMode();
@@ -91,13 +108,26 @@ byId('ab-run').addEventListener('click', async () => {
   const stream = (id) => (t) => { byId(id).textContent = t; };
   try {
     setStatus('Generating baseline (original graph)…');
-    await engine.generateBaseline(prompt, { maxNewTokens: MAX_NEW_TOKENS, onToken: stream('ab-out-base') });
+    await engine.generateBaseline(prompt, { maxNewTokens: MAX_NEW_TOKENS, onToken: stream('ab-out-base'), signal });
 
-    setStatus(`Patching graph in memory and generating (${mode}, α=${alpha})…`);
-    await engine.generate(prompt, { alpha, mode, maxNewTokens: MAX_NEW_TOKENS, onToken: stream('ab-out-abl') });
-    setStatus('Done.');
+    if (!signal.aborted) {
+      setStatus(`Patching graph in memory and generating (${mode}, α=${alpha})…`);
+      await engine.generate(prompt, { alpha, mode, maxNewTokens: MAX_NEW_TOKENS, onToken: stream('ab-out-abl'), signal });
+    }
+    setStatus(signal.aborted ? 'Stopped.' : 'Done.');
   } catch (e) {
     setStatus('Generation failed: ' + e.message);
   }
-  byId('ab-run').disabled = false;
+  genController = null;
+  setRunning(false);
 });
+
+const stopBtn = byId('ab-stop');
+if (stopBtn) {
+  stopBtn.addEventListener('click', () => {
+    if (genController) {
+      genController.abort();
+      setStatus('Stopping…');
+    }
+  });
+}

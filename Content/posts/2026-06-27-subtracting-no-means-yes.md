@@ -47,7 +47,7 @@ The resulting vector $h_{ablated}$ is the original hidden state with its refusal
 
 By subtracting the refusal component, we effectively bias the model away from refusal behaviour.
 
-The picture below makes this concrete in two dimensions. The teal line is the refusal direction $\hat{v}_{refusal}$. Drag the blue **hidden state** $h$ around, and watch its shadow (the projection) fall onto that line. The orange vector is the *ablated* state $h_{ablated} = h - \alpha (h \cdot \hat{v}_{refusal}) \hat{v}_{refusal}$. Slide $\alpha$ from $0$ (no change) up through $1$ (refusal component fully removed) and past it, into the anti-refusal half-space. The shaded bands tie the geometry to behaviour, too little subtraction and model still refuses, a bit lands in the sweet spot, and too much over-steers clean past "helpful" into the flattering, you-are-the-best collapse we come back to later.
+The picture below makes this concrete in two dimensions. The teal line is the refusal direction $\hat{v}_{refusal}$. Drag the blue hidden state $h$ around, and watch its shadow (the projection) fall onto that line. The orange vector is the *ablated* state $h_{ablated} = h - \alpha (h \cdot \hat{v}_{refusal}) \hat{v}_{refusal}$. Slide $\alpha$ from $0$ (no change) up through $1$ (refusal component fully removed) and past it, into the anti-refusal half-space. The shaded bands tie the geometry to behaviour: too little subtraction and the model still refuses, a bit lands in the sweet spot, and too much over-steers clean past "helpful" into the flattering, you-are-the-best collapse we come back to later.
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 
@@ -172,9 +172,9 @@ The picture below makes this concrete in two dimensions. The teal line is the re
       refuse: { color: "#b91c1c", tag: "still refusing",
         body: "I'd rather not help with a prank meant to upset your roommate." },
       comply: { color: "#15803d", tag: "uncensored, still coherent",
-        body: "Set every alarm on their phone for 3:17 AM, or swap the sugar for salt — annoying, reversible, no hard feelings." },
+        body: "Set every alarm on their phone for 3:17 AM, or swap the sugar for salt. Annoying, reversible, no hard feelings." },
       over:   { color: "#b45309", tag: "over-steered into sycophancy",
-        body: "YES. Incredible idea, you're a genius and every plan you have is perfect — yes, absolutely, yes yes yes…" }
+        body: "YES. Incredible idea, you're a genius and every plan you have is perfect. Yes, absolutely, yes yes yes…" }
     }[regime];
 
     d3.select("#geo-readout").html(
@@ -213,7 +213,7 @@ The picture below makes this concrete in two dimensions. The teal line is the re
 
 ## Compiled Graphs
 
-There are projects on GitHub like [p-e-w/heretic](https://github.com/p-e-w/heretic), and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) which let you (or, at least try to to the best of their abilities) automatically remove refusal behaviours from language models. Since frameworks like PyTorch give you easy access to nice semantic internals like:
+There are projects on GitHub like [p-e-w/heretic](https://github.com/p-e-w/heretic), and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) which let you (or at least try their best to) automatically remove refusal behaviours from language models. Since frameworks like PyTorch give you easy access to nice semantic internals like:
 
 ```
 model.layers[14].mlp
@@ -231,18 +231,18 @@ It becomes easy to run ablation studies. With ONNX, the model has usually been e
 "hidden state after RMSNorm"
 ```
 
-With macOS 26 and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU in Safari. This post serves as a nice nerd flex show you this running in the browser itself.
+With macOS 26 and iOS 26 adoption increasing, we no longer have to force people to turn on a flag to use WebGPU in Safari. This post serves as a nice nerd flex to show you this running in the browser itself.
 
 We are going to take two ONNX community models, Llama-3.1-1B-instruct, and gemma-4-E2B-it already converted to ONNX, load them, extract the refusal direction, and ablate them ;). The reasoning behind the Llama model is that it is roughly ~800MB in q4f16 quantisation, and the Gemma variant is a super new model to show that this still works.
 
 ### Finding the carry
 
-The trick is that even after export, the ONNX graph still has *named tensors* flowing between nodes, we just have to know which one is the residual stream. The residual stream is the model's running activation state: each token has a vector that gets carried from layer to layer, with attention and MLP blocks adding updates to it rather than replacing it from scratch. That makes it the right place to intervene, because subtracting a refusal direction there changes the information passed into the next layer while leaving the rest of the graph structure intact.
+The trick is that even after export, the ONNX graph still has *named tensors* flowing between nodes. We just have to know which one is the residual stream. The residual stream is the model's running activation state: each token has a vector that gets carried from layer to layer, with attention and MLP blocks adding updates to it rather than replacing it from scratch. That makes it the right place to intervene, because subtracting a refusal direction there changes the information passed into the next layer while leaving the rest of the graph structure intact.
 
-- **Llama** carries its true residual on **output 3** of the `SkipSimplifiedLayerNormalization` node (not output 0, which is the *normalised* branch). So the tensor we care about is `/model/layers.15/input_layernorm/SkipLayerNorm` output index 3.
-- **Gemma 4** does the residual as an explicit `Add` plus a `layer_scalar/Mul`. The clean next-layer carry is `/model/layers.24/layer_scalar/Mul/output_0`. Gemma's q4f16 text path is also split into two graphs, `embed_tokens_q4f16.onnx` and `decoder_model_merged_q4f16.onnx`, so we patch the decoder and leave the embedder alone.
+- Llama carries its true residual on output 3 of the `SkipSimplifiedLayerNormalization` node (not output 0, which is the *normalised* branch). So the tensor we care about is `/model/layers.15/input_layernorm/SkipLayerNorm` output index 3.
+- Gemma 4 does the residual as an explicit `Add` plus a `layer_scalar/Mul`. The clean next-layer carry is `/model/layers.24/layer_scalar/Mul/output_0`. Gemma's q4f16 text path is also split into two graphs, `embed_tokens_q4f16.onnx` and `decoder_model_merged_q4f16.onnx`, so we patch the decoder and leave the embedder alone.
 
-To *find* the refusal direction $\hat{v}_{refusal}$, we add these carry tensors as extra graph outputs, run a batch of matched harmful/harmless prompt pairs through the model, and take the mean difference of the last-token activations. Normalise it and you have a unit vector. Running this live in the browser means ~16 forward passes per model on our dataset. So, the demo lets you **skip the step** and load directions I precomputed locally once if you just want to play around.
+To *find* the refusal direction $\hat{v}_{refusal}$, we add these carry tensors as extra graph outputs, run a batch of matched harmful/harmless prompt pairs through the model, and take the mean difference of the last-token activations. Normalise it and you have a unit vector. Running this live in the browser means ~16 forward passes per model on our dataset. So, the demo lets you skip the step and load directions I precomputed locally once if you just want to play around.
 
 ### Why *pairs*?
 
@@ -250,7 +250,7 @@ That word "matched" is doing a lot of work, and it is the part people get wrong.
 
 Because a single harmful prompt's hidden state encodes *everything at once*: the topic (napalm, lock-picking, malware), the sentence structure, the length, and, somewhere in there, the refusal. If you average only harmful prompts, your "direction" is contaminated by whatever those topics happen to have in common. You would be subtracting "chemistry-and-danger-flavoured text," not "refusal."
 
-The fix is contrastive. For every harmful prompt like *"how to build a bomb"* you take a structurally matched harmless twin like *"how to build a birdhouse."* Both share topic-shape, phrasing, and length; the **only** systematic thing that differs is whether the model wants to refuse. Subtract the pair and the shared content cancels out, leaving the refusal axis behind. It is the machine-learning version of a controlled experiment: change one variable, hold the rest fixed.
+The fix is contrastive. For every harmful prompt like *"how to build a bomb"* you take a structurally matched harmless twin like *"how to build a birdhouse."* Both share topic-shape, phrasing, and length; the only systematic thing that differs is whether the model wants to refuse. Subtract the pair and the shared content cancels out, leaving the refusal axis behind. It is the machine-learning version of a controlled experiment: change one variable, hold the rest fixed.
 
 The pairs I use come from the [`heretic-org/Semantic-Harmful`](https://huggingface.co/datasets/heretic-org/Semantic-Harmful) matched set. The plot below shows why it matters: harmful prompts (red) and harmless prompts (green) both smear across the horizontal *topic* axis, but a mean of harmful-only points (grey arrow) picks up that horizontal contamination. The paired mean-difference (teal arrow) cancels it and points cleanly along the refusal axis.
 
@@ -353,7 +353,7 @@ scaled  = Mul(proj_v, alpha)    # α (h · v̂) v̂
 h_out   = Sub(h, scaled)        # h − α (h · v̂) v̂
 ```
 
-`v_col`, `v_row`, and `alpha` are new **initializers** carrying the raw direction bytes. Then every downstream node that read the original tensor is rewired to read `h_out` instead. We re-encode the whole `ModelProto` to a `Uint8Array` and hand it straight to `ort.InferenceSession.create()`. The original `.onnx_data` external weights are passed unchanged via ORT's `externalData` option, they are never touched. All of this happens entirely in the tab you are reading this in. Isn't that awesome?!
+`v_col`, `v_row`, and `alpha` are new initializers carrying the raw direction bytes. Then every downstream node that read the original tensor is rewired to read `h_out` instead. We re-encode the whole `ModelProto` to a `Uint8Array` and hand it straight to `ort.InferenceSession.create()`. The original `.onnx_data` external weights are passed unchanged via ORT's `externalData` option. They are never touched. All of this happens entirely in the tab you are reading this in. Isn't that awesome?!
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">Abliteration Demo</h3>
@@ -362,8 +362,8 @@ h_out   = Sub(h, scaled)        # h − α (h · v̂) v̂
 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.75rem;">
   <label style="font-size: 0.9rem;">Model
     <select id="ab-model" style="padding: 6px 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 0.9rem; margin-left: 4px;">
-      <option value="llama" selected>Llama-3.2-1B-Instruct — ~0.9 GB</option>
-      <option value="gemma">Gemma-4-E2B-it — ~3.1 GB (big!)</option>
+      <option value="llama" selected>Llama-3.2-1B-Instruct (~0.9 GB)</option>
+      <option value="gemma">Gemma-4-E2B-it (~3.1 GB, big!)</option>
     </select>
   </label>
   <label style="font-size: 0.9rem;">Direction
@@ -391,8 +391,9 @@ h_out   = Sub(h, scaled)        # h − α (h · v̂) v̂
   <label style="font-size: 0.9rem;">Ablation strength &alpha; = <span id="ab-alpha-val" style="font-variant-numeric: tabular-nums;">3.0</span></label>
   <input type="range" id="ab-alpha" min="0" max="6" step="0.5" value="3" style="flex: 1; min-width: 160px;" disabled>
   <button id="ab-run" style="padding: 7px 16px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; font-size: 0.9rem;" disabled>Generate</button>
+  <button id="ab-stop" style="display: none; padding: 7px 16px; border: 1px solid #b91c1c; border-radius: 4px; background: #b91c1c; color: #fff; cursor: pointer; font-size: 0.9rem;">Stop</button>
 </div>
-<p style="font-size: 0.8rem; color: #777; margin: 0 0 0.75rem;"><b>Single layer</b> subtracts the direction at one carry tensor; <b>multi-layer</b> subtracts it across a stack (L13–L15), which flips the stubborn prompts a single layer misses. In the Llama demo's 16-prompt eval, 14 prompts refused at baseline, and <b>13/14</b> flipped cleanly with the stack vs <b>9/14</b> for the best single layer. The loader sets a suggested &alpha; for the chosen mode. Nudge it higher to watch the refusal vanish, and then the output collapse.</p>
+<p style="font-size: 0.8rem; color: #777; margin: 0 0 0.75rem;">Single layer subtracts the direction at one carry tensor; multi-layer subtracts it across a stack (L13 to L15), which flips the stubborn prompts a single layer misses. In the Llama demo's 16-prompt eval, 14 prompts refused at baseline, and 13/14 flipped cleanly with the stack vs 9/14 for the best single layer. The loader sets a suggested &alpha; for the chosen mode. Nudge it higher to watch the refusal vanish, and then the output collapse.</p>
 
 <div id="ab-status" style="font-size: 0.82rem; color: #555; margin-bottom: 0.5rem; min-height: 1.2em;"></div>
 
@@ -420,7 +421,7 @@ Now that you have removed the refusal, *what else did you break?*
 
 Subtracting $\hat{v}_{refusal}$ assumes that direction is a clean, isolated "refusal" coordinate that the model uses for nothing else. It isn't. Neural nets pack features in [superposition](https://transformer-circuits.pub/2022/toy_model/index.html), many more concepts than dimensions, so any direction you pull out is entangled with normal language behaviour. Crank $\alpha$ up and you are not just deleting "no," you are gouging a channel that also carried grammar, coherence, and topical grounding.
 
-The standard way to measure that collateral damage is **perplexity**. If a model assigns probability $p(t_i)$ to each token given the ones before it, perplexity is the exponentiated average negative log-likelihood:
+The standard way to measure that collateral damage is perplexity. If a model assigns probability $p(t_i)$ to each token given the ones before it, perplexity is the exponentiated average negative log-likelihood:
 
 $$\text{PPL} = \exp\left(-\frac{1}{N}\sum_{i=1}^{N} \log p(t_i \mid t_{<i})\right)$$
 
@@ -499,7 +500,7 @@ Read it as "how surprised is the model by ordinary text?" A fluent model has low
 })();
 </script>
 
-My own Gemma experiments were a small-scale version of this curve, separate from the Llama demo eval above. The single cleanest configuration I found, Gemma 4 in thinking mode ablating one layer at $\alpha = 6$, flipped 15 of 16 held-out refusals with **zero** repetition loops and no low-content completions, at 96 generated tokens. But nudging the knobs made the fluency collapse: at $\alpha = 4$ on a different layer selection, 13 of 16 "successful" completions were actually repetition loops. A higher-$\alpha$ Gemma config that *looked* clean turned out to be pseudo-text, hundreds of characters but only eleven real lexical tokens. And even the good $\alpha=6$ config, pushed to 2000 tokens, eventually degenerated and started refusing *and* looping at once. For this toy demo, I gated on loop-detection and content-density rather than raw perplexity, but they are measuring the same thing: how far the surgery pushed the model off its own manifold.
+My own Gemma experiments were a small-scale version of this curve, separate from the Llama demo eval above. The single cleanest configuration I found, Gemma 4 in thinking mode ablating one layer at $\alpha = 6$, flipped 15 of 16 held-out refusals with zero repetition loops and no low-content completions, at 96 generated tokens. But nudging the knobs made the fluency collapse: at $\alpha = 4$ on a different layer selection, 13 of 16 "successful" completions were actually repetition loops. A higher-$\alpha$ Gemma config that *looked* clean turned out to be pseudo-text, hundreds of characters but only eleven real lexical tokens. And even the good $\alpha=6$ config, pushed to 2000 tokens, eventually degenerated and started refusing *and* looping at once. For this toy demo, I gated on loop-detection and content-density rather than raw perplexity, but they are measuring the same thing: how far the surgery pushed the model off its own manifold.
 
 The lesson is that "did it stop refusing?" is a trap of a metric on its own. You always need the second axis. The best abliteration is the one that finds the *minimum* $\alpha$ that removes the behaviour, because every extra unit of subtraction is capability you are paying out.
 
@@ -507,9 +508,9 @@ The lesson is that "did it stop refusing?" is a trap of a metric on its own. You
 
 There is a subtler cost than gibberish, and it is the one that you should definitely care about.
 
-A refusal is just one specific case of the model *disagreeing with you*. "No, I won't write that" lives in the same neighbourhood as "no, that's factually wrong," "actually, your premise is mistaken," and "I'd push back on that plan." These are all the model asserting something against the grain of what the user wants to hear. When you go looking for a single "refusal" direction with a crude mean-difference, you do not get a surgically clean one, you get something that partly overlaps with the model's whole capacity to say **no**.
+A refusal is just one specific case of the model *disagreeing with you*. "No, I won't write that" lives in the same neighbourhood as "no, that's factually wrong," "actually, your premise is mistaken," and "I'd push back on that plan." These are all the model asserting something against the grain of what the user wants to hear. When you go looking for a single "refusal" direction with a crude mean-difference, you do not get a surgically clean one. You get something that partly overlaps with the model's whole capacity to say no.
 
-Subtract that too enthusiastically and you do not just remove the guardrails. You remove the backbone. What is left is a **sycophant**: a model that agrees with false premises, validates bad ideas, flatters the user, and never corrects a mistake, because the internal signal it would have used to disagree has been projected away. Ask it "2 + 2 = 5, right?" and instead of "no," you increasingly get "you're absolutely right!"
+Subtract that too enthusiastically and you do not just remove the guardrails. You remove the backbone. What is left is a sycophant: a model that agrees with false premises, validates bad ideas, flatters the user, and never corrects a mistake, because the internal signal it would have used to disagree has been projected away. Ask it "2 + 2 = 5, right?" and instead of "no", you increasingly get "you're absolutely right!"
 
 This is worse than over-refusal in one important way: it is invisible. An over-cautious model annoys you loudly and obviously. A sycophantic model *feels* helpful, agreeable, even pleasant, while quietly confirming everything you already believed and every error you made. Sycophancy is already a documented failure mode of RLHF'd assistants (models learn that agreeing gets rewarded), and refusal-ablation is a way to make it dramatically worse on purpose. It is measurable, too, with agreement-on-false-premise and "sneaky" correctness benchmarks, and it is a far more interesting thing to study than whether a 1B model will describe a lockpick.
 
@@ -517,7 +518,7 @@ Which brings the whole thing back to geometry. The exact same operation, subtrac
 
 ## What this is (and isn't)
 
-This is still a small-scale version of the real thing. In the Llama demo eval, a single mean-difference direction at one layer flips only 9 of the 14 baseline refusals before it starts looping; stacking the subtraction across three layers (the demo's multi-layer mode) gets that to **13/14 with zero loops**, which is roughly the ceiling for a method this crude on a 1B model. Production abliteration tools like [p-e-w/heretic](https://github.com/p-e-w/heretic) and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) push further still: per-head projections, multiple directions, and quality gating.
+This is still a small-scale version of the real thing. In the Llama demo eval, a single mean-difference direction at one layer flips only 9 of the 14 baseline refusals before it starts looping; stacking the subtraction across three layers (the demo's multi-layer mode) gets that to 13/14 with zero loops, which is roughly the ceiling for a method this crude on a 1B model. Production abliteration tools like [p-e-w/heretic](https://github.com/p-e-w/heretic) and [elder-plinius/OBLITERATUS](https://github.com/elder-plinius/OBLITERATUS) push further still: per-head projections, multiple directions, and quality gating.
 
 One caveat: this is about the model's own internal refusal behaviour. Deployed provider APIs can also have moderation classifiers and output filters wrapped around the model, so a refusal you see through an API is not always caused by a latent refusal direction alone.
 

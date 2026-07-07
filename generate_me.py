@@ -21,7 +21,6 @@ templates = Environment(loader=FileSystemLoader("templates"))
 VERSIONED_ASSET_PATHS = [
     "Resources/assets/c-hyde.css",
     "Resources/assets/main.css",
-    "Resources/assets/true-highlight.js",
     "Resources/manifest.json",
     "Resources/pwabuilder-sw-register.js",
     "Resources/pwabuilder-sw.js",
@@ -319,7 +318,7 @@ for x in os.walk(src_folder):
         for y in x[-1]:
             if y != ".DS_Store":
                 fpath = os.path.join(x[0], y)
-                with open(fpath) as f:
+                with open(fpath, encoding="utf-8") as f:
                     index_pages_to_generate.append(fpath)
         first_run = False
     else:
@@ -332,7 +331,7 @@ for x in os.walk(src_folder):
                 post_me = True
                 if y not in ("index.md", ".DS_Store"):
                     fpath = os.path.join(x[0], y)
-                    with open(fpath) as f:
+                    with open(fpath, encoding="utf-8") as f:
                         _html = md.convert(f.read())
                         _post_title = re.search(h1_tag, _html).group(1)
                         _post = _html.metadata
@@ -387,11 +386,12 @@ for x in os.walk(src_folder):
                         with open(
                             fpath.replace(src_folder, out_folder).replace("md", "html"),
                             "w",
+                            encoding="utf-8",
                         ) as f:
                             f.write(render_markdown_post(post_content))
                 elif y == "index.md":
                     fpath = os.path.join(x[0], y)
-                    with open(fpath) as f:
+                    with open(fpath, encoding="utf-8") as f:
                         index_pages_to_generate.append(fpath)
 
             post_collection_dict[x[0].replace("{}/".format(src_folder), "")] = tmp_array
@@ -405,7 +405,7 @@ tag_folder = os.path.join(out_folder, "tags")
 create_folder_ifnot(tag_folder)
 
 for tag, post in tag_post_dict.items():
-    with open(os.path.join(tag_folder, tag + ".html"), "w") as f:
+    with open(os.path.join(tag_folder, tag + ".html"), "w", encoding="utf-8") as f:
         f.write(
             render_markdown_post(
                 f"<h1>{tag}</h1><p>Posts tagged '{tag}'</p>",
@@ -415,7 +415,7 @@ for tag, post in tag_post_dict.items():
             )
         )
 
-with open(os.path.join(tag_folder, "index.html"), "w") as f:
+with open(os.path.join(tag_folder, "index.html"), "w", encoding="utf-8") as f:
     f.write(
         templates.get_template("tags.html").render(
             tags=tag_post_dict.items(),
@@ -423,7 +423,7 @@ with open(os.path.join(tag_folder, "index.html"), "w") as f:
     )
 
 for fpath in index_pages_to_generate:
-    with open(fpath) as f:
+    with open(fpath, encoding="utf-8") as f:
         _html = md.convert(f.read())
         try:
             page = render_markdown_post(
@@ -448,7 +448,7 @@ for fpath in index_pages_to_generate:
                 _html, template="index.html", posts=new_post_collection
             )
 
-    with open(fpath.replace(src_folder, out_folder).replace("md", "html"), "w") as f:
+    with open(fpath.replace(src_folder, out_folder).replace("md", "html"), "w", encoding="utf-8") as f:
         f.write(page)
 
 for post in post_collection_html:
@@ -462,7 +462,7 @@ for post in post_collection_html:
 
 
 rfc_3389 = datetime.datetime.now().isoformat()
-with open(os.path.join(out_folder, "feed.rss"), "w") as f:
+with open(os.path.join(out_folder, "feed.rss"), "w", encoding="utf-8") as f:
     f.write(
         templates.get_template("feed.rss").render(
             feed={
@@ -475,7 +475,7 @@ with open(os.path.join(out_folder, "feed.rss"), "w") as f:
         )
     )
 
-with open(os.path.join(out_folder, "404.html"), "w") as f:
+with open(os.path.join(out_folder, "404.html"), "w", encoding="utf-8") as f:
     f.write(templates.get_template("404.html").render())
 
 shutil.copytree(resources_folder, out_folder, dirs_exist_ok=True)

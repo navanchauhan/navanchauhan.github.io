@@ -59,7 +59,6 @@ The picture below makes this concrete in two dimensions. The teal line is the re
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
 <h3 style="margin-top: 0; font-size: 1.2rem;">The Geometry of Refusal</h3>
-<p style="color: #555; font-size: 0.95rem; margin-bottom: 0.75rem;">Drag <em>h</em>, then push α up. The orange dot is the ablated state — watch it cross out of the red "still refusing" band, through the green sweet spot, and into the amber overcorrection zone, and read the model's reply change with it.</p>
 <div id="geo-plot" style="width: 100%; overflow-x: auto;"></div>
 <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.6rem; font-size: 0.82rem; color: #555;">
   <span><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#ef4444;opacity:0.55;vertical-align:middle;margin-right:4px;"></span>still refuses</span>

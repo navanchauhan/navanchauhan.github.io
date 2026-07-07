@@ -356,8 +356,8 @@ h_out   = Sub(h, scaled)        # h − α (h · v̂) v̂
 `v_col`, `v_row`, and `alpha` are new **initializers** carrying the raw direction bytes. Then every downstream node that read the original tensor is rewired to read `h_out` instead. We re-encode the whole `ModelProto` to a `Uint8Array` and hand it straight to `ort.InferenceSession.create()`. The original `.onnx_data` external weights are passed unchanged via ORT's `externalData` option, they are never touched. All of this happens entirely in the tab you are reading this in. Isn't that awesome?!
 
 <div class="demo-container" style="margin: 2rem 0; padding: 1.5rem; border: 1px solid #e0e0e0; border-radius: 8px; background: #fafafa;">
-<h3 style="margin-top: 0; font-size: 1.2rem;">Live In-Browser Abliteration</h3>
-<p style="color: #555; font-size: 0.95rem; margin-bottom: 1rem;">This one's real — it pulls an actual ONNX model down from Hugging Face, rewrites the graph in your tab, and runs it. The first load is a few hundred MB, so give it a minute; it caches after that. Use Chrome.</p>
+<h3 style="margin-top: 0; font-size: 1.2rem;">Abliteration Demo</h3>
+<p style="color: #555; font-size: 0.95rem; margin-bottom: 1rem;">Loading the model from Hugging Face can take a few minutes and consume a lot of data.</p>
 
 <div style="display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; margin-bottom: 0.75rem;">
   <label style="font-size: 0.9rem;">Model

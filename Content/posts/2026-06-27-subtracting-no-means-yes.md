@@ -513,7 +513,7 @@ Subtract that too enthusiastically and you do not just remove the guardrails. Yo
 
 This is worse than over-refusal in one important way: it is invisible. An over-cautious model annoys you loudly and obviously. A sycophantic model *feels* helpful, agreeable, even pleasant, while quietly confirming everything you already believed and every error you made. Sycophancy is already a documented failure mode of RLHF'd assistants (models learn that agreeing gets rewarded), and refusal-ablation is a way to make it dramatically worse on purpose. It is measurable, too, with agreement-on-false-premise and "sneaky" correctness benchmarks, and it is a far more interesting thing to study than whether a 1B model will describe a lockpick.
 
-Which brings the whole thing back to geometry. The exact same operation, subtract a direction, is dual-use. Point it at refusal and you get an "uncensored" model. Point it a few degrees over and you get a model that has lost the ability to tell you that you are wrong. Directions do not come with labels, and that is the part worth being careful about.
+Which brings the whole thing back to geometry. The exact same operation, subtract a direction, is dual-use. Point it at refusal and you get an "uncensored" model. Point it a few degrees over and you get a model that has lost the ability to tell you that you are wrong.
 
 ## What this is (and isn't)
 

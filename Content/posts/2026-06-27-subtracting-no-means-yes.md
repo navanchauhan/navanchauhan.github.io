@@ -237,7 +237,7 @@ We are going to take two ONNX community models, Llama-3.1-1B-instruct, and gemma
 
 ### Finding the carry
 
-The trick is that even after export, the ONNX graph still has *named tensors* flowing between nodes, we just have to know which one is the residual stream. This is going to be some performer hand-wavy magic where I did this before. TODO: Add some information about residual streams
+The trick is that even after export, the ONNX graph still has *named tensors* flowing between nodes, we just have to know which one is the residual stream. The residual stream is the model's running activation state: each token has a vector that gets carried from layer to layer, with attention and MLP blocks adding updates to it rather than replacing it from scratch. That makes it the right place to intervene, because subtracting a refusal direction there changes the information passed into the next layer while leaving the rest of the graph structure intact.
 
 - **Llama** carries its true residual on **output 3** of the `SkipSimplifiedLayerNormalization` node (not output 0, which is the *normalised* branch). So the tensor we care about is `/model/layers.15/input_layernorm/SkipLayerNorm` output index 3.
 - **Gemma 4** does the residual as an explicit `Add` plus a `layer_scalar/Mul`. The clean next-layer carry is `/model/layers.24/layer_scalar/Mul/output_0`. Gemma's q4f16 text path is also split into two graphs, `embed_tokens_q4f16.onnx` and `decoder_model_merged_q4f16.onnx`, so we patch the decoder and leave the embedder alone.

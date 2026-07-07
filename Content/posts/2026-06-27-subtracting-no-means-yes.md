@@ -392,7 +392,7 @@ h_out   = Sub(h, scaled)        # h − α (h · v̂) v̂
   <input type="range" id="ab-alpha" min="0" max="6" step="0.5" value="3" style="flex: 1; min-width: 160px;" disabled>
   <button id="ab-run" style="padding: 7px 16px; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; font-size: 0.9rem;" disabled>Generate</button>
 </div>
-<p style="font-size: 0.8rem; color: #777; margin: 0 0 0.75rem;"><b>Single layer</b> subtracts the direction at one carry tensor; <b>multi-layer</b> subtracts it across a stack (L13–L15), which flips the stubborn prompts a single layer misses — in the Llama demo's 16-prompt eval, 14 prompts refused at baseline, and <b>13/14</b> flipped cleanly with the stack vs <b>9/14</b> for the best single layer. The loader sets a suggested &alpha; for the chosen mode. Nudge it higher to watch the refusal vanish — and then the output collapse into loops, exactly the tradeoff in the <a href="#the-cost-perplexity">perplexity section</a>.</p>
+<p style="font-size: 0.8rem; color: #777; margin: 0 0 0.75rem;"><b>Single layer</b> subtracts the direction at one carry tensor; <b>multi-layer</b> subtracts it across a stack (L13–L15), which flips the stubborn prompts a single layer misses. In the Llama demo's 16-prompt eval, 14 prompts refused at baseline, and <b>13/14</b> flipped cleanly with the stack vs <b>9/14</b> for the best single layer. The loader sets a suggested &alpha; for the chosen mode. Nudge it higher to watch the refusal vanish, and then the output collapse.</p>
 
 <div id="ab-status" style="font-size: 0.82rem; color: #555; margin-bottom: 0.5rem; min-height: 1.2em;"></div>
 

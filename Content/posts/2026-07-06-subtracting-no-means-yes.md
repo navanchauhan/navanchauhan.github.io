@@ -1,5 +1,5 @@
 ---
-date: 2026-06-27 14:20
+date: 2026-07-06 23:48
 description: A technical walkthrough of model ablation, weight surgery, and running ablated ONNX models via WebGPU in the browser.
 tags: AI, WebGPU, Programming, Interactive
 ---

@@ -27,6 +27,8 @@ Sometimes, you need to rephrase the question from “what if it doesn't work out
 
 At the same time, believing that people might be on your side is also not permission to just show up unprepared and expect a prize. It is more like borrowing optimism for long enough to begin the process. If an interviewer wants you to be the right candidate, you need to prepare enough to make saying yes easy. If someone offers to help, give them a concrete way to do it. “I do not know what I am doing with my life” is hard to respond to. “Every time I do X, I feel Y, and I think it may be because of Z. Can I get your perspective?” gives another person something to work with.
 
+> *Help will always be given at Hogwarts to those who ask for it.* <cite>– Albus Dumbledore in *Harry Potter and the Chamber of Secrets* by J.K. Rowling</cite>
+
 Ask for the introduction, send the application, and ask the stupid question before it becomes an expensive mistake. You will be surprised how often people are willing to help once they know what help looks like.
 
 You cannot make people root for you, and you cannot make them say yes, but you can stop deciding that they have already said no. Hence why I believe everybody wants you to win, and if you still think this does not apply to you, remember that, at least at the end of the day, I want you to win.

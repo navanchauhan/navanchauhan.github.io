@@ -20,7 +20,7 @@ I already had a Windows box that I usually use through RDP. It is stored in a se
 
 The only thing that I am really missing out on is iMessage. That might be the only reason why you would want a Mac mini over a Windows or Linux box. There is nothing really special about macOS's accessibility approach that computer use exploits.
 
-Computer use has made machines delegable. I was watching something on my media center and I realized that the transcoding was terrible. But I also had my Windows box, with a GPU I could move the transcoding to. Instead of having to figure out how to set up remote transcoding, all I had to do was ask to offload transcoding from my poor old Xeon CPU to my Winbox. Ask and ye shall receive.
+Computer use has made machines delegable. I was watching something on my media centre and I realised that the transcoding was terrible. But I also had my Windows box, with a GPU I could move the transcoding to. Instead of having to figure out how to set up remote transcoding, all I had to do was ask to offload transcoding from my poor old Xeon CPU to my Winbox. Ask and ye shall receive.
 
 You are probably sold on the idea that these agents can do DevOps-y/infrastructure-y things pretty well; that is nothing new at all. What is new is the mode where you aren't even directly firing up Claude Code / Codex in these boxes, but instead using one central control plane / CoS agent that can figure out which box to connect to and delegate these tasks.
 
@@ -40,7 +40,14 @@ Since you also probably expect me to have some fun visualisations:
 
 [open-browser-use](https://github.com/iFurySt/open-browser-use) is a Chrome MV3 extension, a Go native host, and a local client route.
 
-<div id="browser-use-route" style="margin: 2rem 0; padding: 1.25rem; border: 1px solid #d8d0c4; border-radius: 8px; background: #fbf8f2;">
+<noscript>
+  <style>.computer-use-js-visual { display: none !important; }</style>
+  <figure style="margin: 2rem 0;">
+    <img src="/assets/posts/on-computer-use/browser-use-route.png" alt="Static diagram of the open-browser-use route from SDK, CLI, or MCP through a local socket, Go native host, Chrome Native Messaging, the MV3 service worker, and Chrome APIs." style="display: block; width: 100%; height: auto;">
+    <figcaption>Static view of the browser-use transport route.</figcaption>
+  </figure>
+</noscript>
+<div id="browser-use-route" class="computer-use-js-visual" style="margin: 2rem 0; padding: 1.25rem; border: 1px solid #d8d0c4; border-radius: 8px; background: #fbf8f2;">
   <div id="browser-use-route-nodes" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0.65rem; align-items: stretch;">
     <button type="button" data-route-node="0" style="min-height: 6.5rem; padding: 0.65rem 0.4rem; border: 2px solid #1a5b74; border-radius: 6px; background: #e5f0f3; color: #263238; cursor: pointer; font: inherit;">
       <strong>SDK / CLI / MCP</strong><br><small>JSON-RPC request</small>
@@ -76,7 +83,13 @@ Since you also probably expect me to have some fun visualisations:
 
 [open-codex-computer-use](https://github.com/ifuryst/open-codex-computer-use) uses the same tool shape on all three systems. `get_app_state` returns a screenshot and an accessibility tree. The platform runtime then uses the tree for semantic actions and the screenshot for visual coordinates.
 
-<div id="computer-use-platforms" style="margin: 2rem 0; padding: 1.25rem; border: 1px solid #d8d0c4; border-radius: 8px; background: #fbf8f2;">
+<noscript>
+  <figure style="margin: 2rem 0;">
+    <img src="/assets/posts/on-computer-use/computer-use-platforms.png" alt="Static comparison of Windows UI Automation and System.Drawing, Linux AT-SPI2 and GDK, and macOS AXUIElement and ScreenCaptureKit." style="display: block; width: 100%; height: auto;">
+    <figcaption>Static comparison of the Windows, Linux, and macOS runtimes.</figcaption>
+  </figure>
+</noscript>
+<div id="computer-use-platforms" class="computer-use-js-visual" style="margin: 2rem 0; padding: 1.25rem; border: 1px solid #d8d0c4; border-radius: 8px; background: #fbf8f2;">
   <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem;">
     <button type="button" data-platform-card="windows" style="text-align: left; padding: 0.9rem; border: 2px solid #1a5b74; border-radius: 6px; background: #e5f0f3; color: #263238; cursor: pointer; font: inherit;">
       <strong>Windows</strong><br>
@@ -102,14 +115,20 @@ Since you also probably expect me to have some fun visualisations:
     <div aria-hidden="true" style="color: #1a5b74; font-size: 1.3rem;">→</div>
     <div style="padding: 0.65rem; border: 1px solid #d8d0c4; background: #fff; border-radius: 5px;">screenshot + accessibility tree</div>
   </div>
-  <div id="computer-use-platform-readout" aria-live="polite" style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid #d8d0c4; color: #3f4648; font-size: 0.92rem; line-height: 1.5;">Windows uses UI Automation to find the process window, enumerate supported patterns, and serialize names, roles, actions, and bounds. It captures those bounds with System.Drawing.CopyFromScreen, then prefers InvokePattern, ValuePattern, and ScrollPattern before using Win32 messages.</div>
+  <div id="computer-use-platform-readout" aria-live="polite" style="margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px solid #d8d0c4; color: #3f4648; font-size: 0.92rem; line-height: 1.5;">Windows uses UI Automation to find the process window, enumerate supported patterns, and serialise names, roles, actions, and bounds. It captures those bounds with System.Drawing.CopyFromScreen, then prefers InvokePattern, ValuePattern, and ScrollPattern before using Win32 messages.</div>
 </div>
 
-The screenshot and the tree solve different problems. The screenshot gives visual coordinates, while the tree gives semantic metadata such as `role`, `name`, `frame`, `value`, and supported actions. The runtime can therefore click `element_index=7` without guessing from pixels. It fallbacks to coordinates when the application does not expose a useful accessibility node.
+The screenshot and the tree solve different problems. The screenshot gives visual coordinates, while the tree gives semantic metadata such as `role`, `name`, `frame`, `value`, and supported actions. The runtime can therefore click `element_index=7` without guessing from pixels. It falls back to coordinates when the application does not expose a useful accessibility node.
 
 The runtime prefers an element index when the tree has one, but it can also act at screenshot coordinates.
 
-<div id="computer-use-actions" style="margin: 2rem 0; padding: 1.25rem; border: 1px solid #d8d0c4; border-radius: 8px; background: #fbf8f2;">
+<noscript>
+  <figure style="margin: 2rem 0;">
+    <img src="/assets/posts/on-computer-use/computer-use-actions.png" alt="Static diagram showing a computer-use click mapped from accessibility-tree element index 7 to an application target and an Invoke, AXPress, or doAction event." style="display: block; width: 100%; height: auto;">
+    <figcaption>Static example of a semantic computer-use click.</figcaption>
+  </figure>
+</noscript>
+<div id="computer-use-actions" class="computer-use-js-visual" style="margin: 2rem 0; padding: 1.25rem; border: 1px solid #d8d0c4; border-radius: 8px; background: #fbf8f2;">
   <div role="tablist" aria-label="Select a computer use action" style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
     <button type="button" data-action="click" aria-selected="true" aria-pressed="true" style="padding: 0.4rem 0.7rem; border: 1px solid #1a5b74; border-radius: 4px; background: #1a5b74; color: #fff; cursor: pointer; font: inherit;">click</button>
     <button type="button" data-action="drag" aria-selected="false" aria-pressed="false" style="padding: 0.4rem 0.7rem; border: 1px solid #1a5b74; border-radius: 4px; background: transparent; color: #1a5b74; cursor: pointer; font: inherit;">drag</button>
@@ -147,8 +166,6 @@ The runtime prefers an element index when the tree has one, but it can also act 
 </div>
 
 The final step is an event translation. A semantic click becomes an accessibility action when the target supports one, or a coordinate click becomes OS input. A drag is not a single event: the runtime sends button-down, interpolated motion points, and button-up. After this event, a new application state is collected because the old screenshot and tree can now be stale.
-
-<p>Sources: <a href="https://github.com/iFurySt/open-browser-use/blob/main/docs/ARCHITECTURE.md">open-browser-use architecture</a> and <a href="https://github.com/ifuryst/open-codex-computer-use/tree/main/apps">open-codex-computer-use platform runtimes</a>.</p>
 
 <style>
 #computer-use-action-diagram { height: auto; }

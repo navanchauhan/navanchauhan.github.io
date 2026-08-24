@@ -6,7 +6,7 @@ tags: Tutorial, TensorFlow, Colab, AI
 
 # Polynomial Regression Using TensorFlow
 
-Edit: This tutorial is for TensorFlow 1.x which still works on TF 2.0 through `tensorflow.compat.v1`. I have an updated version for TensorFlow 2.x [here](posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html).
+Edit: This tutorial is for TensorFlow 1.x which still works on TF 2.0 through `tensorflow.compat.v1`. I have an updated version for TensorFlow 2.x [here](/posts/2024-03-21-Polynomial-Regression-in-TensorFlow-2.html).
 
 **In this tutorial you will learn about polynomial regression and how you can implement it in Tensorflow.**
 

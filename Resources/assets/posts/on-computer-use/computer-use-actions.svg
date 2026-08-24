@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 460" role="img" aria-labelledby="title desc">
+  <title id="title">Semantic computer-use action</title>
+  <desc id="desc">A screenshot target is matched with accessibility-tree index 7 and translated into an accessibility action, followed by a fresh snapshot.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#c27b32"/></marker>
+  </defs>
+  <rect width="1000" height="460" rx="12" fill="#fbf8f2"/>
+  <g font-family="Arial, sans-serif">
+    <rect x="25" y="35" width="560" height="380" rx="8" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
+    <rect x="25" y="35" width="560" height="42" rx="8" fill="#e5f0f3"/>
+    <text x="50" y="63" font-size="19" fill="#52636a">target app screenshot</text>
+    <rect x="100" y="150" width="400" height="70" rx="7" fill="#f2eadf" stroke="#d8d0c4" stroke-width="2"/>
+    <text x="130" y="193" font-size="20" fill="#263238">Settings</text>
+    <rect x="350" y="170" width="125" height="32" rx="5" fill="#1a5b74"/>
+    <text x="412" y="192" text-anchor="middle" font-size="16" fill="#fff">Save</text>
+    <circle cx="412" cy="186" r="12" fill="#c27b32" stroke="#fff" stroke-width="3"/>
+    <path d="M412 235C520 285 555 285 630 235" fill="none" stroke="#c27b32" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="630" y="35" width="345" height="380" rx="8" fill="#f2eadf" stroke="#d8d0c4" stroke-width="2"/>
+    <text x="655" y="75" font-size="20" font-weight="bold" fill="#263238">accessibility tree</text>
+    <text x="655" y="130" font-size="18" fill="#52636a">index 7</text>
+    <text x="655" y="175" font-size="18" fill="#263238">role: button</text>
+    <text x="655" y="215" font-size="18" fill="#263238">name: Save</text>
+    <text x="655" y="255" font-size="16" fill="#52636a">frame: x=225 y=80</text>
+    <text x="655" y="295" font-size="16" fill="#1a5b74">Invoke / AXPress / doAction</text>
+    <text x="655" y="350" font-size="16" fill="#52636a">fresh snapshot after action</text>
+  </g>
+</svg>

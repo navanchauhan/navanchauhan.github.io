@@ -10,7 +10,7 @@ tags: Publication, Pre-Print
 
 This is still a pre-print.
 
-[Download paper here](https://indiarxiv.org/9um2r/)
+[Download paper here](https://doi.org/10.35543/osf.io/9um2r)
 
 Recommended citation:
 
@@ -30,7 +30,7 @@ Chauhan, Navan. 2020. “Is It Possible to Programmatically Generate Vaporwave?.
 ```
 @misc{chauhan_2020,
  title={Is it possible to programmatically generate Vaporwave?},
- url={indiarxiv.org/9um2r},
+ url={https://doi.org/10.35543/osf.io/9um2r},
  DOI={10.35543/osf.io/9um2r},
  publisher={IndiaRxiv},
  author={Chauhan, Navan},

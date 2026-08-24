@@ -80,7 +80,8 @@ f_date = email.utils.format_datetime(datetime.datetime.now())
 image_title_color = (49,31,19) #(74, 74, 74)
 image_line_color = (176,113,84) #(29, 116, 132)
 image_title_font = "fonts/futura_bold.ttf"
-image_text_font = "fonts/futura_light.ttf"
+# Use the cached PT Sans font for OG descriptions.
+image_text_font = ".og-fonts/PT_Sans-Web-Regular.ttf"
 
 # ── OG Image Generation (Option C: Teal Card) ──
 

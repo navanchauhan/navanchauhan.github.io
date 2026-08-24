@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc">
+  <title id="title">Computer-use platform runtimes</title>
+  <desc id="desc">Windows, Linux, and macOS expose an accessibility tree and a screenshot through platform-specific APIs.</desc>
+  <rect width="1000" height="430" rx="12" fill="#fbf8f2"/>
+  <g font-family="Arial, sans-serif">
+    <g stroke="#d8d0c4" stroke-width="2">
+      <rect x="20" y="35" width="300" height="220" rx="8" fill="#e5f0f3" stroke="#1a5b74"/>
+      <rect x="350" y="35" width="300" height="220" rx="8" fill="#f2eadf"/>
+      <rect x="680" y="35" width="300" height="220" rx="8" fill="#f2eadf"/>
+    </g>
+    <g fill="#263238">
+      <text x="170" y="75" text-anchor="middle" font-size="24" font-weight="bold">Windows</text>
+      <text x="45" y="120" font-size="16">Tree: UIAutomationClient</text>
+      <text x="45" y="160" font-size="16">Image: CopyFromScreen → PNG</text>
+      <text x="45" y="200" font-size="16">Input: InvokePattern / WM_*</text>
+      <text x="500" y="75" text-anchor="middle" font-size="24" font-weight="bold">Linux</text>
+      <text x="375" y="120" font-size="16">Tree: AT-SPI2 / Atspi</text>
+      <text x="375" y="160" font-size="16">Image: GDK → PNG</text>
+      <text x="375" y="200" font-size="16">Input: generate_*_event</text>
+      <text x="830" y="75" text-anchor="middle" font-size="24" font-weight="bold">macOS</text>
+      <text x="705" y="120" font-size="16">Tree: AXUIElement</text>
+      <text x="705" y="160" font-size="16">Image: CGWindow + ScreenCaptureKit</text>
+      <text x="705" y="200" font-size="16">Input: AX action / CGEvent</text>
+    </g>
+    <g stroke="#1a5b74" stroke-width="3" fill="none" marker-end="url(#arrow)">
+      <path d="M330 145h20"/><path d="M660 145h20"/>
+    </g>
+    <rect x="150" y="300" width="230" height="60" rx="7" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
+    <rect x="620" y="300" width="230" height="60" rx="7" fill="#fff" stroke="#d8d0c4" stroke-width="2"/>
+    <text x="265" y="337" text-anchor="middle" font-size="18" fill="#263238">get_app_state</text>
+    <text x="735" y="337" text-anchor="middle" font-size="18" fill="#263238">screenshot + tree</text>
+    <path d="M380 330h240" stroke="#1a5b74" stroke-width="3" marker-end="url(#arrow)"/>
+  </g>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1a5b74"/></marker></defs>
+</svg>

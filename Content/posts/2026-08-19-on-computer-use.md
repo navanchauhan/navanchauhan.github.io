@@ -1,7 +1,7 @@
 ---
 date: 2026-08-19 11:03
-description: TBD
-tags: TBD
+description: How computer use, browser use, and a chief-of-staff agent let me delegate work across remote machines without worrying about how it gets done.
+tags: AI, Automation, Computer Use, Browser Use
 ---
 
 # On Computer Use
@@ -43,7 +43,7 @@ Since you also probably expect me to have some fun visualisations:
 <noscript>
   <style>.computer-use-js-visual { display: none !important; }</style>
   <figure style="margin: 2rem 0;">
-    <img src="/assets/posts/on-computer-use/browser-use-route.png" alt="Static diagram of the open-browser-use route from SDK, CLI, or MCP through a local socket, Go native host, Chrome Native Messaging, the MV3 service worker, and Chrome APIs." style="display: block; width: 100%; height: auto;">
+    <img src="/assets/posts/on-computer-use/browser-use-route.svg" alt="Static diagram of the open-browser-use route from SDK, CLI, or MCP through a local socket, Go native host, Chrome Native Messaging, the MV3 service worker, and Chrome APIs." style="display: block; width: 100%; height: auto;">
     <figcaption>Static view of the browser-use transport route.</figcaption>
   </figure>
 </noscript>
@@ -85,7 +85,7 @@ Since you also probably expect me to have some fun visualisations:
 
 <noscript>
   <figure style="margin: 2rem 0;">
-    <img src="/assets/posts/on-computer-use/computer-use-platforms.png" alt="Static comparison of Windows UI Automation and System.Drawing, Linux AT-SPI2 and GDK, and macOS AXUIElement and ScreenCaptureKit." style="display: block; width: 100%; height: auto;">
+    <img src="/assets/posts/on-computer-use/computer-use-platforms.svg" alt="Static comparison of Windows UI Automation and System.Drawing, Linux AT-SPI2 and GDK, and macOS AXUIElement and ScreenCaptureKit." style="display: block; width: 100%; height: auto;">
     <figcaption>Static comparison of the Windows, Linux, and macOS runtimes.</figcaption>
   </figure>
 </noscript>
@@ -124,7 +124,7 @@ The runtime prefers an element index when the tree has one, but it can also act 
 
 <noscript>
   <figure style="margin: 2rem 0;">
-    <img src="/assets/posts/on-computer-use/computer-use-actions.png" alt="Static diagram showing a computer-use click mapped from accessibility-tree element index 7 to an application target and an Invoke, AXPress, or doAction event." style="display: block; width: 100%; height: auto;">
+    <img src="/assets/posts/on-computer-use/computer-use-actions.svg" alt="Static diagram showing a computer-use click mapped from accessibility-tree element index 7 to an application target and an Invoke, AXPress, or doAction event." style="display: block; width: 100%; height: auto;">
     <figcaption>Static example of a semantic computer-use click.</figcaption>
   </figure>
 </noscript>

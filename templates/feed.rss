@@ -13,6 +13,7 @@
 	<entry>
 		<title>{{post.metadata.title}}</title>
 		<link type="text/html" href="{{post.metadata.link}}" />
+		<link rel="alternate" type="text/markdown" href="{{post.metadata.markdown_link}}" />
 		<id>{{post.metadata.link}}</id>
 		<published>{{post.metadata.date}}</published>
 		<updated>{{post.metadata.date}}</updated>

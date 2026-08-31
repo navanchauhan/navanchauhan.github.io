@@ -4,6 +4,7 @@ from jinja2 import Environment, FileSystemLoader
 import shutil
 import datetime
 import email.utils
+import json
 import math
 import hashlib
 import rcssmin
@@ -13,6 +14,7 @@ import urllib.request
 import zipfile
 import io
 from html import unescape
+from xml.sax.saxutils import escape as xml_escape
 
 import re
 
@@ -69,6 +71,134 @@ def format_date_inline(date_str):
 
 templates.filters["pretty_date"] = format_date_pretty
 templates.filters["pretty_date_inline"] = format_date_inline
+
+
+def site_url(path="/"):
+    """Return an absolute URL for a site-relative path."""
+    if str(path).startswith(("http://", "https://")):
+        return str(path)
+    path = "/" + str(path).lstrip("/")
+    return base_link.rstrip("/") + ("/" if path == "/" else path)
+
+
+def source_relative_path(source_path):
+    return os.path.relpath(source_path, src_folder).replace(os.sep, "/")
+
+
+def source_markdown_path(source_path):
+    return "/" + source_relative_path(source_path)
+
+
+def source_html_path(source_path):
+    relative_path = source_relative_path(source_path)
+    if relative_path == "index.md":
+        return "/"
+    if relative_path.endswith("/index.md"):
+        return "/" + relative_path[: -len("index.md")]
+    return "/" + os.path.splitext(relative_path)[0] + ".html"
+
+
+def output_path_for_source(source_path):
+    return os.path.join(out_folder, source_relative_path(source_path))
+
+
+def output_html_path_for_source(source_path):
+    html_path = source_html_path(source_path)
+    if html_path == "/":
+        return os.path.join(out_folder, "index.html")
+    if html_path.endswith("/"):
+        return os.path.join(out_folder, html_path.lstrip("/"), "index.html")
+    return os.path.join(out_folder, html_path.lstrip("/"))
+
+
+def is_true(value):
+    return value is True or str(value).strip().lower() in {"true", "yes", "1"}
+
+
+def normalize_text(value):
+    return re.sub(r"\s+", " ", str(value or "")).strip()
+
+
+def iso_date(value):
+    try:
+        return datetime.datetime.strptime(str(value), "%Y-%m-%d %H:%M").date().isoformat()
+    except (TypeError, ValueError):
+        return None
+
+
+def page_schema_type(source_path):
+    relative_path = source_relative_path(source_path)
+    if relative_path == "index.md":
+        return "WebSite"
+    if relative_path == "about/index.md":
+        return "ProfilePage"
+    return "CollectionPage"
+
+
+def build_json_ld(page_url, page_title, description, page_type="WebPage", metadata=None):
+    """Build a small, stable schema graph for a page or blog post."""
+    person_id = site_url("/about/") + "#person"
+    website_id = site_url("/") + "#website"
+    page_id = page_url + "#webpage"
+
+    graph = [
+        {
+            "@type": "Person",
+            "@id": person_id,
+            "name": site_name,
+            "url": author_url,
+            "sameAs": author_same_as,
+        },
+        {
+            "@type": "WebSite",
+            "@id": website_id,
+            "url": site_url("/"),
+            "name": f_title,
+            "description": f_description,
+            "publisher": {"@id": person_id},
+        },
+    ]
+
+    if metadata is not None:
+        published_date = iso_date(metadata.get("date"))
+        article = {
+            "@type": "BlogPosting",
+            "@id": page_id,
+            "url": page_url,
+            "headline": metadata.get("title", page_title),
+            "description": metadata.get("description", description),
+            "author": {"@id": person_id},
+            "publisher": {"@id": person_id},
+            "isPartOf": {"@id": website_id},
+            "mainEntityOfPage": {"@id": page_id},
+        }
+        if published_date:
+            article["datePublished"] = published_date
+            article["dateModified"] = published_date
+        if metadata.get("image_link"):
+            article["image"] = metadata["image_link"]
+        if metadata.get("tags"):
+            article["keywords"] = metadata["tags"]
+        graph.append(article)
+    else:
+        graph.append(
+            {
+                "@type": page_type,
+                "@id": page_id,
+                "url": page_url,
+                "name": page_title,
+                "description": description,
+                "isPartOf": {"@id": website_id},
+                "about": {"@id": person_id},
+            }
+        )
+
+    # Prevent page content from closing the script element if content changes.
+    return json.dumps(
+        {"@context": "https://schema.org", "@graph": graph},
+        ensure_ascii=False,
+        indent=2,
+    ).replace("</", "<\\/")
 src_folder = "Content"
 out_folder = "docs"
 resources_folder = "Resources"
@@ -76,6 +206,35 @@ base_link = "https://web.navan.dev/"
 f_title = "Navan's Archive"
 f_description = "Rare Tips, Tricks and Posts"
 f_date = email.utils.format_datetime(datetime.datetime.now())
+site_name = "Navan Chauhan"
+source_repository = "https://github.com/navanchauhan/navanchauhan.github.io"
+author_url = base_link.rstrip("/") + "/about/"
+author_same_as = [
+    "https://github.com/navanchauhan",
+    "https://x.com/navanchauhan",
+    "https://matrix.to/#/@navan:navan.dev",
+]
+
+# This policy is explicit because the site is a personal archive. Change these
+# values if the publishing policy changes.
+allow_ai_search = True
+allow_ai_input = True
+allow_ai_training = False
+discovery_crawlers = (
+    "GPTBot",
+    "OAI-SearchBot",
+    "ChatGPT-User",
+    "ClaudeBot",
+    "PerplexityBot",
+    "Googlebot",
+    "Applebot",
+)
+training_crawlers = (
+    "Google-Extended",
+    "Applebot-Extended",
+    "CCBot",
+    "ByteSpider",
+)
 
 image_title_color = (49,31,19) #(74, 74, 74)
 image_line_color = (176,113,84) #(29, 116, 132)
@@ -272,18 +431,44 @@ def build_post_content(html, metadata, toc_html):
     }
 
 def render_markdown_post(
-    html, metadata=None, template="post.html", posts=[], title=None
+    html,
+    metadata=None,
+    template="post.html",
+    posts=None,
+    title=None,
+    page_url=None,
+    markdown_link=None,
+    page_type="WebPage",
 ):
     global templates
 
+    if posts is None:
+        posts = []
     if len(posts) != 0:
         posts = sorted(posts, key=lambda i: i["date"], reverse=True)
-    if title != None:
-        return templates.get_template(template).render(
-            content=html, posts=posts, title=title
-        )
-    else:
-        return templates.get_template(template).render(content=html, posts=posts)
+
+    content_metadata = html.get("metadata", {}) if isinstance(html, dict) else {}
+    page_url = page_url or content_metadata.get("absolute_link") or site_url("/")
+    markdown_link = markdown_link or content_metadata.get("markdown_link")
+    page_title = content_metadata.get("title") or title or site_name
+    page_description = content_metadata.get("description") or f_description
+    json_ld = build_json_ld(
+        page_url,
+        page_title,
+        page_description,
+        page_type="BlogPosting" if content_metadata else page_type,
+        metadata=content_metadata or None,
+    )
+
+    context = {
+        "content": html,
+        "posts": posts,
+        "title": title,
+        "page_url": page_url,
+        "markdown_link": markdown_link,
+        "json_ld": json_ld,
+    }
+    return templates.get_template(template).render(**context)
 
 
 def create_folder_ifnot(folder_name):
@@ -302,13 +487,142 @@ def minify_css_outputs():
             f.write("\n")
 
 
+def write_markdown_twin(source_path):
+    """Publish the source Markdown beside its generated HTML page."""
+    destination = output_path_for_source(source_path)
+    os.makedirs(os.path.dirname(destination), exist_ok=True)
+    shutil.copyfile(source_path, destination)
+
+
+def prepare_output_folder():
+    """Recreate the generated output so stale pages cannot survive a build."""
+    if os.path.isdir(out_folder):
+        shutil.rmtree(out_folder)
+    os.makedirs(out_folder, exist_ok=True)
+    open(os.path.join(out_folder, ".gitkeep"), "a", encoding="utf-8").close()
+
+
+def latest_post_date(posts):
+    dates = [iso_date(post.get("date")) for post in posts]
+    dates = [date for date in dates if date]
+    return max(dates) if dates else None
+
+
+def write_sitemap():
+    """Write a sitemap for published pages only."""
+    entries = {site_url("/"): None}
+
+    for fpath in index_pages_to_generate:
+        relative_path = source_relative_path(fpath)
+        if relative_path == "index.md":
+            page_posts = post_collection
+        else:
+            section = os.path.dirname(relative_path)
+            page_posts = post_collection_dict.get(section, [])
+        entries[site_url(source_html_path(fpath))] = latest_post_date(page_posts)
+
+    for post in post_collection:
+        entries[site_url(post["link"])] = iso_date(post.get("date"))
+
+    entries[site_url("/tags/")] = latest_post_date(post_collection)
+    for tag, posts in tag_post_dict.items():
+        entries[site_url(f"/tags/{tag}.html")] = latest_post_date(posts)
+
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ]
+    for url in sorted(entries):
+        lines.append("  <url>")
+        lines.append(f"    <loc>{xml_escape(url)}</loc>")
+        if entries[url]:
+            lines.append(f"    <lastmod>{entries[url]}</lastmod>")
+        lines.append("  </url>")
+    lines.append("</urlset>")
+
+    with open(os.path.join(out_folder, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+
+
+def markdown_list_link(label, url):
+    safe_label = str(label).replace("\\", "\\\\").replace("]", "\\]")
+    return f"[{safe_label}]({url})"
+
+
+def write_llms_txt():
+    """Write a concise machine-readable index of the published site."""
+    lines = [
+        "# Navan Chauhan",
+        "",
+        "> Personal website and archive for Navan Chauhan.",
+        "> The site contains software projects, technical writing, tutorials, and personal notes.",
+        "",
+        "## Core resources",
+        f"- {markdown_list_link('Homepage', site_url('/'))}",
+        f"- {markdown_list_link('About and links', site_url('/about/'))}",
+        f"- {markdown_list_link('All posts', site_url('/posts/'))}",
+        f"- {markdown_list_link('RSS / Atom feed', site_url('/feed.rss'))}",
+        f"- {markdown_list_link('Sitemap', site_url('/sitemap.xml'))}",
+        f"- {markdown_list_link('Privacy policy', site_url('/misc/generic-privacy-policy.html'))}",
+        f"- {markdown_list_link('Colophon', site_url('/colophon/'))}",
+        f"- {markdown_list_link('Source repository', source_repository)}",
+        "",
+        "## Published pages",
+    ]
+
+    for post in sorted(post_collection, key=lambda item: item["date"], reverse=True):
+        description = normalize_text(post.get("description"))
+        suffix = f": {description}" if description else ""
+        lines.append(
+            f"- {markdown_list_link(post['title'], site_url(post['link']))}"
+            f"{suffix} ({markdown_list_link('Markdown', post['markdown_link'])})"
+        )
+
+    with open(os.path.join(out_folder, "llms.txt"), "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+
+
+def write_robots_txt():
+    """Write the crawler policy and the generated sitemap location."""
+    signal = lambda allowed: "yes" if allowed else "no"
+    lines = [
+        "# This file declares the site's crawler and content policy.",
+        "User-agent: *",
+        "Allow: /",
+        "",
+    ]
+
+    for crawler in discovery_crawlers:
+        lines.extend([f"User-agent: {crawler}", "Allow: /", ""])
+
+    for crawler in training_crawlers:
+        lines.extend(
+            [
+                f"User-agent: {crawler}",
+                "Allow: /" if allow_ai_training else "Disallow: /",
+                "",
+            ]
+        )
+
+    lines.extend(
+        [
+            f"Content-Signal: search={signal(allow_ai_search)}, "
+            f"ai-input={signal(allow_ai_input)}, ai-train={signal(allow_ai_training)}",
+            f"Sitemap: {site_url('/sitemap.xml')}",
+        ]
+    )
+
+    with open(os.path.join(out_folder, "robots.txt"), "w", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n")
+
+
 post_collection_dict = {}
 post_collection = []
 post_collection_html = []
 tag_post_dict = {}
 index_pages_to_generate = []
 
-create_folder_ifnot(out_folder)
+prepare_output_folder()
 shutil.copytree(resources_folder, out_folder, dirs_exist_ok=True)
 
 first_run = True
@@ -336,9 +650,9 @@ for x in os.walk(src_folder):
                         _post_title = re.search(h1_tag, _html).group(1)
                         _post = _html.metadata
                         _post["title"] = _post_title
-                        _post["link"] = fpath.replace(src_folder, "").replace(
-                            "md", "html"
-                        )
+                        _post["link"] = source_html_path(fpath)
+                        _post["markdown_link"] = site_url(source_markdown_path(fpath))
+                        _post["absolute_link"] = site_url(_post["link"])
                         if "tags" in _post.keys():
                             _post["tags"] = [x.strip() for x in _post["tags"].split(",")]
                             _post["tags"] = [x.replace(" ","-") for x in _post["tags"]]
@@ -366,11 +680,11 @@ for x in os.walk(src_folder):
 
                         _post["image_link"] = base_link[:-1] + _post["image_link"]
 
-                        if "draft" in _post:
-                            if _post["draft"] == "true":
-                                post_me = False
+                        if "draft" in _post and is_true(_post["draft"]):
+                            post_me = False
 
                         if post_me:
+                            write_markdown_twin(fpath)
                             tmp_array.append(_post)
                             post_collection.append(_post)
                             _html.metadata = _post
@@ -383,11 +697,7 @@ for x in os.walk(src_folder):
                     # print(render_markdown_post(fpath))
                     if post_me:
                         post_content = build_post_content(_html, _post, toc_html)
-                        with open(
-                            fpath.replace(src_folder, out_folder).replace("md", "html"),
-                            "w",
-                            encoding="utf-8",
-                        ) as f:
+                        with open(output_html_path_for_source(fpath), "w", encoding="utf-8") as f:
                             f.write(render_markdown_post(post_content))
                 elif y == "index.md":
                     fpath = os.path.join(x[0], y)
@@ -412,6 +722,7 @@ for tag, post in tag_post_dict.items():
                 template="section.html",
                 posts=post,
                 title=f'"{tag}"',
+                page_url=site_url(f"/tags/{tag}.html"),
             )
         )
 
@@ -419,12 +730,22 @@ with open(os.path.join(tag_folder, "index.html"), "w", encoding="utf-8") as f:
     f.write(
         templates.get_template("tags.html").render(
             tags=tag_post_dict.items(),
+            page_url=site_url("/tags/"),
+            json_ld=build_json_ld(
+                site_url("/tags/"),
+                "Tags",
+                "Browse posts by tag.",
+                page_type="CollectionPage",
+            ),
         )
     )
 
 for fpath in index_pages_to_generate:
+    write_markdown_twin(fpath)
     with open(fpath, encoding="utf-8") as f:
         _html = md.convert(f.read())
+        page_url = site_url(source_html_path(fpath))
+        markdown_link = site_url(source_markdown_path(fpath))
         try:
             page = render_markdown_post(
                 _html,
@@ -433,6 +754,9 @@ for fpath in index_pages_to_generate:
                     fpath.replace("{}/".format(src_folder), "").replace("/index.md", "")
                 ],
                 title=fpath.split("/")[-2].title(),
+                page_url=page_url,
+                markdown_link=markdown_link,
+                page_type=page_schema_type(fpath),
             )
         except KeyError:
             new_post_collection = []
@@ -445,10 +769,15 @@ for fpath in index_pages_to_generate:
                 else:
                     new_post_collection.append(post)
             page = render_markdown_post(
-                _html, template="index.html", posts=new_post_collection
+                _html,
+                template="index.html",
+                posts=new_post_collection,
+                page_url=page_url,
+                markdown_link=markdown_link,
+                page_type=page_schema_type(fpath),
             )
 
-    with open(fpath.replace(src_folder, out_folder).replace("md", "html"), "w", encoding="utf-8") as f:
+    with open(output_html_path_for_source(fpath), "w", encoding="utf-8") as f:
         f.write(page)
 
 for post in post_collection_html:
@@ -479,4 +808,7 @@ with open(os.path.join(out_folder, "404.html"), "w", encoding="utf-8") as f:
     f.write(templates.get_template("404.html").render())
 
 shutil.copytree(resources_folder, out_folder, dirs_exist_ok=True)
+write_sitemap()
+write_llms_txt()
+write_robots_txt()
 minify_css_outputs()

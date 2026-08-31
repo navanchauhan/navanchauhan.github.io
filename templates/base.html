@@ -40,6 +40,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
     <link href="/feed.rss" type="application/atom+xml" rel="alternate" title="Sitewide Atom feed">
+    <link href="/sitemap.xml" type="application/xml" rel="sitemap" title="Site map">
+    <link href="/llms.txt" type="text/plain" rel="alternate" title="Machine-readable site description">
+    {% if markdown_link %}
+    <link href="{{ markdown_link }}" type="text/markdown" rel="alternate" title="Markdown source">
+    {% endif %}
     <meta name="twitter:image" content="{% block twimage %}https://web.navan.dev/images/logo.png{% endblock %}">
     <meta property="og:image" content="{% block ogimage %}https://web.navan.dev/images/logo.png{% endblock %}">
     <meta name="google-site-verification" content="LVeSZxz-QskhbEjHxOi7-BM5dDxTg53x2TwrjFxfL0k">
@@ -48,6 +53,12 @@
     window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
     plausible.init()
     </script>
+
+    {% if json_ld %}
+    <script type="application/ld+json">
+{{ json_ld | safe }}
+    </script>
+    {% endif %}
 
     <link rel="manifest" href="/manifest.json?v={{ asset_version }}">
     {% endblock %}

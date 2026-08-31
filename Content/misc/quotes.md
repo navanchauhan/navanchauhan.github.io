@@ -66,4 +66,6 @@ These could have been from a Tumblr shitpost, or something I just heard, saw on 
 
 > The day you plant the seed is not the day you eat the fruit
 
+> The rebirth you are looking for is the death you are avoiding
+
 <hr>

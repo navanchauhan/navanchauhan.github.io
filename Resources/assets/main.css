@@ -1,7 +1,20 @@
 
+/* Nothing should ever scroll the page sideways (mobile Safari ignores
+ * overflow on body alone). clip, unlike hidden, doesn't turn body into a
+ * scroll container of its own. */
+html,
+body {
+    overflow-x: clip;
+}
+
 body {
     background-color: #1a5b74;
-    overflow-x: hidden;
+}
+
+/* Interactive demos in posts keep to the column on narrow screens. */
+.post .demo-container {
+    max-width: 100%;
+    overflow-x: auto;
 }
 
 .paint {
@@ -11,6 +24,30 @@ body {
 .content.container {
     position: relative;
     z-index: 1;
+}
+
+/*
+ * Room in the right-hand margin for the quill (assets/press.js). On wide
+ * screens the extra margin only comes out of space beyond the column's full
+ * width, so the text is never narrowed; on phones a slim margin is kept
+ * beside the text, so nothing shifts when the script arrives.
+ */
+@media (max-width: 47.999em) {
+    body:not(.layout-reverse) .content.container {
+        padding-right: max(1.75rem, env(safe-area-inset-right));
+    }
+}
+
+@media (min-width: 48em) {
+    body:not(.layout-reverse) .content.container {
+        margin-right: 3rem;
+    }
+}
+
+@media (min-width: 64em) {
+    body:not(.layout-reverse) .content.container {
+        margin-right: clamp(4rem, 100vw - 60rem, 6rem);
+    }
 }
 
 .tag-pill {

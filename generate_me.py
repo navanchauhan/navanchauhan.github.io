@@ -18,6 +18,7 @@ templates = Environment(loader=FileSystemLoader("templates"))
 VERSIONED_ASSET_PATHS = [
     "Resources/assets/c-hyde.css",
     "Resources/assets/main.css",
+    "Resources/assets/press.js",
     "Resources/manifest.json",
     "Resources/pwabuilder-sw-register.js",
     "Resources/pwabuilder-sw.js",
@@ -482,6 +483,62 @@ def write_sitemap(index_pages, posts, sections, tags):
     write_text(os.path.join(out_folder, "sitemap.xml"), "\n".join(lines) + "\n")
 
 
+MARGIN_QUOTE_LIMIT = 120
+MARGIN_PUNCTUATION = str.maketrans(
+    {"‘": "'", "’": "'", "“": '"', "”": '"', "—": "-", "–": "-", "…": "..."}
+)
+
+
+def margin_text(markup):
+    """Plain ASCII text from a line of quote markup, or None if the quill's
+    script can't write it."""
+    text = re.sub(r"<[^>]+>", " ", markup)
+    text = unescape(text).replace("*", "").translate(MARGIN_PUNCTUATION)
+    text = re.sub(r"\s+", " ", text).strip()
+    if not text or any(not (32 <= ord(ch) < 127) for ch in text):
+        return None
+    return text
+
+
+def write_margin_quotes():
+    """Collect the short quotes and sidebar mottos the quill writes in the
+    margin of every page."""
+    quotes = []
+    with open(os.path.join(src_folder, "misc", "quotes.md"), encoding="utf-8") as f:
+        for line in f:
+            if not line.startswith("> "):
+                continue
+            body, _, cite = line[2:].partition("<cite>")
+            text = margin_text(body)
+            if not text:
+                continue
+            # Drop wrapping quote marks, but not ones that open a dialogue.
+            if text.startswith('"') and text.endswith('"') and text.count('"') == 2:
+                text = text[1:-1].strip()
+            # The author is the first emphasised name in the citation, or
+            # everything up to the first comma.
+            named = re.search(r"\*([^*]+)\*", cite)
+            by = margin_text(named.group(1) if named else cite) or ""
+            by = re.sub(r"\s*\([^)]*\)", "", by.lstrip("- "))
+            if not named:
+                by = by.split(",")[0]
+            by = by.strip()
+            if len(text) + len(by) <= MARGIN_QUOTE_LIMIT:
+                quotes.append({"text": text, "by": by})
+
+    with open(os.path.join("templates", "sidebar.html"), encoding="utf-8") as f:
+        phrases = re.search(r"let phrases = \[(.*?)\];", f.read(), re.S)
+    for phrase in re.findall(r'"([^"]+)"', phrases.group(1) if phrases else ""):
+        text = margin_text(phrase)
+        if text and text != "Something Funny":
+            quotes.append({"text": text, "by": ""})
+
+    write_text(
+        os.path.join(out_folder, "assets", "margin-quotes.json"),
+        json.dumps(quotes, ensure_ascii=True),
+    )
+
+
 def write_llms_txt(posts):
     def link(label, url):
         safe_label = str(label).replace("\\", "\\\\").replace("]", "\\]")
@@ -681,6 +738,7 @@ def main():
     shutil.copytree(resources_folder, out_folder, dirs_exist_ok=True)
     write_sitemap(index_pages, posts, sections, tags)
     write_llms_txt(posts)
+    write_margin_quotes()
     minify_css_outputs()
 
 

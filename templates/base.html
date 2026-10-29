@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700">
 
     <link rel="stylesheet" href="/assets/main.css?v={{ asset_version }}">
+    <link rel="preload" href="/assets/quill-hand.json?v={{ asset_version }}" as="fetch" crossorigin>
+    <link rel="preload" href="/assets/margin-quotes.json?v={{ asset_version }}" as="fetch" crossorigin>
     <meta name="author" content="{% block author %}Navan Chauhan{% endblock %}">
     <meta property="og:site_name" content="Navan Chauhan">
     <meta property="og:type" content="{% block ogtype %}website{% endblock %}">
@@ -68,6 +70,7 @@
     {% block body %}{% endblock %}
     </div>
     </div>
+    <script defer src="/assets/press.js?v={{ asset_version }}"></script>
     <script
         defer
         src="/pwabuilder-sw-register.js?v={{ asset_version }}"

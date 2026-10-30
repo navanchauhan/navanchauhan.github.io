@@ -68,4 +68,6 @@ These could have been from a Tumblr shitpost, or something I just heard, saw on 
 
 > The rebirth you are looking for is the death you are avoiding
 
+> Though, in reviewing the incidents of my administration, I am unconscious of intentional error, I am nevertheless too sensible of my defects not to think it probable that I may have committed many errors. <cite>&mdash; *George Washington*, *Farewell Address*</cite>
+
 <hr>

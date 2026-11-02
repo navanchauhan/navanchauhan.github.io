@@ -31,12 +31,19 @@ If I go to a new restaurant, I will keep trying new things until I find somethin
 
 If you want to be really pedantic about this, there is also Gittins’ index which tells you the absolute game theory math way of doing things. <todo>moved up from below Pascal's Wager so it pairs with your restaurant explore/exploit example — add a clause or sidenote explaining what Gittins' index actually says</todo>
 
-What is the key cause for this fear of failure or fear of being in your comfort zone? I don’t know. But, we can try to rationalise why this is kind of silly using some crude logic. If you are not familiar with Pascal’s wager, it basically says that it is better to believe God exists than it is to not. So, applying the same logic to trying new things: <todo>did you mean "fear of leaving your comfort zone" rather than "being in"? Also finish the sentence leading into the table and fill in the 4 cells in your own words</todo>
+What is the key cause for this fear of failure or fear of being in your comfort zone? I don’t know. But, we can try to rationalise why this is kind of silly using some crude logic. If you are not familiar with Pascal’s wager, it basically says that it is better to believe God exists than it is to not: <todo>did you mean "fear of leaving your comfort zone" rather than "being in"?</todo>
+
+| | God exists | God doesn't exist |
+|---|---|---|
+| **You believe** | Infinite gain (heaven) | Finite loss (not much lost) |
+| **You don't believe** | Infinite loss (hell) | Finite gain (nothing changes) |
+
+So, applying the same logic to trying new things: <todo>tweak any cell phrasings below to match your voice</todo>
 
 | | It works out | It doesn't work out |
 |---|---|---|
-| **You try** | <todo>your wording</todo> | <todo>your wording (tie to training to failure)</todo> |
-| **You don't try** | <todo>your wording</todo> | <todo>your wording (tie to atrophy)</todo> |
+| **You try** | You get the thing | Failed rep — you still grow capacity & find your real limit |
+| **You don't try** | Impossible (already forfeited) | Guaranteed loss + atrophy (next time gets harder) |
 
 So, it seems like trick 3 is semantically similar to trick 1: “try something new.” <todo>suggest cutting this line — admitting Trick 3 duplicates Trick 1 deflates the table, and cutting it lets your curiosity trick below cleanly become Trick 3</todo>
 

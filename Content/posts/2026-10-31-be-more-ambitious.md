@@ -31,6 +31,8 @@ If I go to a new restaurant, I will keep trying new things until I find somethin
 
 If you want to be really pedantic about this, there is also Gittins’ index which tells you the absolute game theory math way of doing things. <todo>moved up from below Pascal's Wager so it pairs with your restaurant explore/exploit example — add a clause or sidenote explaining what Gittins' index actually says</todo>
 
+<todo>Trick candidate ("Change the restaurant"): extract a trick here to replace the duplicate Trick 3 below — instead of relying on willpower to "try something new" in the same routine, put yourself somewhere your default order isn't on the menu (new tool, domain, constraint, crowd) so you're forced back into explore mode</todo>
+
 What is the key cause for this fear of failure or fear of being in your comfort zone? I don’t know. But, we can try to rationalise why this is kind of silly using some crude logic. If you are not familiar with Pascal’s wager, it basically says that it is better to believe God exists than it is to not: <todo>did you mean "fear of leaving your comfort zone" rather than "being in"?</todo>
 
 | | God exists | God doesn't exist |
@@ -45,19 +47,23 @@ So, applying the same logic to trying new things: <todo>tweak any cell phrasings
 | **You try** | You get the thing | Failed rep — you still grow capacity & find your real limit |
 | **You don't try** | Impossible (already forfeited) | Guaranteed loss + atrophy (next time gets harder) |
 
-So, it seems like trick 3 is semantically similar to trick 1: “try something new.” <todo>suggest cutting this line — admitting Trick 3 duplicates Trick 1 deflates the table, and cutting it lets your curiosity trick below cleanly become Trick 3</todo>
+So, it seems like trick 3 is semantically similar to trick 1: “try something new.” <todo>suggest cutting this line if you use the "Change the restaurant" trick above</todo>
 
 Also, another gentle reminder to people waiting for a sign. If only I had x, then I’d be able to do y. Have you actually pushed what you already have to its limits? Have you actually reached the failure set yet? Or are you trying to push off things because it is easier to not try? <todo>moved up from the end so it answers why people still pick "don't try" in the table above — rewrite "Also, another gentle reminder..." so it transitions from the table instead of reading like a P.S., and put quotes around "If only I had x, then I'd be able to do y."</todo>
 
+<todo>Trick candidate (The "If only I had X" stress-test): anytime you catch yourself waiting on X before starting Y, attempt Y without X until you actually hit the failure set and can prove X is what broke it</todo>
+
 Since I have dedicated enough of my time to the software world, you know this post was eventually going to have an angle related to programming too. If the frontier labs are to be believed, “programming is solved.” What does that mean? That means with enough time and compute, you can solve any technical problem. That doesn’t mean all problems have been solved. It means if you ask for a problem, you can get the solution. Unless we figure out the bounds of our search space, I don’t think we can just brute force every possible question-answer pair in the universe, just yet. So, what matters? What matters is you desired to ask for a solution to a problem you came up with. The solution was only generated because you asked for that question. <todo>phrasing slips: "ask for a problem" (pose a problem?) and "asked for that question" (asked that question?); also tighten "What matters is [that] you desired..."</todo>
 
-What is it that you are providing that is not being covered by the model’s search space already? If 10 different people prompt “innovative ideas in cybersecurity,” there is a good chance that they are going to get the same or similar ideas. Try a trick of naming things or asking LLMs to tell you a joke, how many of them are going to eventually say the joke “why should you not trust atoms? They make up everything.” <todo>moved up from the end to pair directly with "search space" above — fix the run-on in "Try a trick..." and add 1–2 sentences spelling out the takeaway (default prompts collapse to the same median output, so *your* specific curiosity has to supply the entropy)</todo>
+What is it that you are providing that is not being covered by the model’s search space already? If 10 different people prompt “innovative ideas in cybersecurity,” there is a good chance that they are going to get the same or similar ideas. Try a trick of naming things or asking LLMs to tell you a joke, how many of them are going to eventually say the joke “why should you not trust atoms? They make up everything.” <todo>moved up from the end to pair directly with "search space" above — fix the run-on in "Try a trick..."</todo>
+
+<todo>Trick candidate (The "Atom Joke" median test): ask whether ten strangers without your weird life/hobbies could have asked this exact same question — if yes, you're going to get the atom joke; pull from your own hyper-specific annoyances and curiosities instead</todo>
 
 But, what if your question-answer pair was too simple in hindsight? Like anyone could have asked for it and gotten to it. Well, my dear reader, this is a question as old as modern art. “It is just a shade of blue, I could have done that.” I was recently at Guggenheim, and although the day was very memorable for a very different reason, one of the art pieces as you guys might be aware was the famous banana. I am not saying I like modern art, but I kind of agree with the age-old adage: <todo>"at [the] Guggenheim", commas around "as you guys might be aware" (also note the shift from "my dear reader" to "you guys" in consecutive sentences)</todo>
 
 “Anyone could do that,” “Yes, but they didn’t.”
 
-So that brings us another trick: “Just ask for things that you are curious about.” <todo>label this Trick 3 if you cut the duplicate Trick 3 above</todo>
+So that brings us another trick: “Just ask for things that you are curious about.” <todo>re-number your tricks once you pick which of the candidates you want to keep</todo>
 
 Frank Calegari had a couple of really cool quotes on his guest post on Terence Tao’s blog: <todo>link "guest post" to https://terrytao.wordpress.com/2026/11/01/mathematics-has-changed-lets-act-like-it/ and add 2–3 sentences of your own reaction after the quotes so they don't float — e.g. link the first quote to /posts/2026-04-28-the-priviege-of-picking-problems.html and use the second quote to bridge into hopecore below</todo>
 
@@ -71,9 +77,11 @@ I am a huge believer of hope-core. I would rather foolishly be optimistic about 
 
 > “I am so happy and grateful that the Lord has blessed me to play in some snow, to be in true football weather in Cleveland, Ohio, at Huntington Bank Field today to give Him the glory. It's a beautiful day.” <cite>&mdash; *Jameis Winston*</cite>
 
-<todo>add 1–2 sentences unpacking the Jameis quote so it connects back to your argument (why foolish gratitude/joy beats grimness when trying hard or unfamiliar things)</todo>
+<todo>Trick candidate ("Call it football weather" / the Jameis reframe): unpack the quote in 1–2 sentences and extract the trick — when conditions are ugly, unfamiliar, or sub-40°F for the first time in your career, treat the bad weather as the cool part of the plot rather than a sign you shouldn't play</todo>
 
 The fact that you are reading this piece probably means you have enough curiosity and/or will to live that you want to try and change things. What is the worst that could happen if you tried something new and failed? Probably nothing. You don’t have to radically change anything in your life to take the smallest step towards being more ambitious. Because isn’t it already being more ambitious by trying to do something new while still maintaining the status quo?
+
+<todo>Trick candidate ("Keep the status quo" / zero-blowup ambition): you don't have to quit your job or blow up 95% of your comfortable life — keep the status quo intact and bolt one weird experiment onto the remaining 5%</todo>
 
 I am a firm believer in my theory that over a large enough timescale and timeframe, things usually work out. And, if they haven’t worked out yet, that just means it is not the end yet. Because it can only end when you refuse to do anything about it. <todo>"timescale and timeframe" is redundant; also repetition flag: you've already written this idea in Just Send It, Irrationality, and quotes.md — consider cutting this paragraph so the status-quo question above flows straight into your closer</todo>
 

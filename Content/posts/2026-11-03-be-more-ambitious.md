@@ -1,5 +1,5 @@
 ---
-date: 2026-11-02 22:00
+date: 2026-11-03 22:00
 description: "TODO"
 tags: Life
 draft: true

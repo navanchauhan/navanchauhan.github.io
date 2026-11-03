@@ -11,7 +11,7 @@ I am one of the laziest people I know. I don’t really want much in life. I wou
 
 Maybe being more ambitious means breaking the cyclic nature of life and stepping out of your comfort zone. Trying something new. Trying something different. Trying something you were always scared of doing because you didn’t want to fail at something. What you define as ambition is completely up to you. You don’t have to shoot for the moon; you just need to do something that you didn’t before, or didn’t think was possible before. I remember this advice in chess: when a piece is moved, you should look at the lines that were not possible before. Perhaps, this applies to life too.
 
-I used to have a whole backlog of silly ideas that I couldn’t even attempt before. Now, I can spin up an agent on my computer from my phone by asking Siri to text this iMessage agent completely hands-free while driving, and have initial results ready before I even reach my destination. How cool and cyberpunk is that? Just like Jevons’ paradox though, I didn’t end up completing my entire backlog. I ended up adding even more crazy projects to it that I couldn’t just one-shot prompt my way out of. I ended up intensifying the kind of problems I tackled. If you are able to do everything, and aren’t failing, it means you are not pushing yourself enough and haven’t found your limits yet.
+I used to have a whole backlog of silly ideas that I couldn’t even attempt before. Now, I can spin up an agent on my computer from my phone by asking Siri to text this iMessage agent completely hands-free while driving, and have initial results ready before I even reach my destination. How cool and cyberpunk is that? Just like Jevons’ paradox though, I didn’t end up completing my entire backlog. I ended up adding even more crazy projects to it that I couldn’t just one-shot prompt my way out of. I ended up intensifying the kind of problems I tackled. If you are able to do everything, and aren’t failing, it means you are not pushing yourself enough and haven’t found your limits yet. When was the last time you actually failed at something? Pick something you’re sure you can’t do, and try it.
 
 If you don’t keep on trying new things, it becomes harder to try new things. The inertia of the comfort zone is enough to lock you in.
 
@@ -35,7 +35,7 @@ Pascal’s wager is famously a bit of a cheat, but it is a useful cheat. So, app
 | **You try** | You get the thing | You learn what didn’t work / you find your limits |
 | **You don’t try** | Impossible | Guaranteed loss + atrophy (next time gets harder) |
 
-Which means, not trying something new when you aren’t going to lose something if you fail is irrational! Yes, I filled the table to get the answer I wanted here, but if you are going to rationalise something, rationalise towards trying. 
+Which means, not trying something new when you aren’t going to lose something if you fail is irrational! Yes, I filled the table to get the answer I wanted here, but if you are going to rationalise something, rationalise towards trying.
 
 Nobody wants to admit that they are picking the bottom row, hence why you might be thinking, “If only I had X, then I’d be able to do Y.” But, have you actually pushed what you already have to its limits? Have you actually reached the failure set yet? Or are you trying to push off things because it is easier to not try?
 

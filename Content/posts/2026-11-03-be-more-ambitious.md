@@ -1,6 +1,6 @@
 ---
 date: 2026-11-03 22:00
-description: "TODO"
+description: Ambition for people who don’t really want much
 tags: Life
 draft: true
 ---

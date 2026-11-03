@@ -39,9 +39,9 @@ Nobody wants to admit that they are picking the bottom row, hence why you might 
 
 Anytime you catch yourself waiting on X before starting Y, attempt Y without X until you actually hit the failure set and can definitely prove that X is what broke it.
 
-If the frontier labs are to be believed, “programming is solved”. Even if that is true, it doesn’t mean every problem under the sun has been solved. It means that if you pose the problem, you can get a solution. Ambition used to be constrained by what you could do, nowadays it is constrained by what you can think to attempt.
+If the frontier labs are to be believed, “programming is solved”. Even if that is true, it doesn’t mean every problem under the sun has been solved. It means that if you pose the problem, you can get a solution. Ambition used to be constrained by what you could do. Nowadays it is constrained by what you can think to attempt.
 
-I am personally in the camp that believes that unless we figure out the limits of our “search space”, I don’t think we can just brute-force every possible question-answer pair in the universe, just yet. So, what matters? What matters is asking questions you want answered. Your wants and needs in life made you ask that question. Just because you don’t want to achieve a grand plan doesn’t mean your petty annoyances cannot help you form a worthwhile question.
+Personally, I don’t think we can brute-force every possible question-answer pair in the universe just yet, at least not until we understand the limits of our “search space.” So, what matters? What matters is asking questions you want answered. Your wants and needs in life made you ask that question. Just because you don’t want to achieve a grand plan doesn’t mean your petty annoyances cannot help you form a worthwhile question.
 
 You should also ask yourself, “What is it that you are providing that is not being covered by the model’s weights already?” If 10 different people prompt “innovative ideas in cybersecurity”, there is a good chance that they are going to get the same or similar ideas. Try asking LLMs to tell you a joke. How many of them are going to eventually say the joke, “Why don’t scientists trust atoms? They make up everything”?
 

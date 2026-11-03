@@ -1,8 +1,7 @@
 ---
-date: 2026-11-03 22:00
+date: 2026-11-03 10:34
 description: Ambition for people who don’t really want much
 tags: Life
-draft: true
 ---
 
 # Be More Ambitious
@@ -39,7 +38,7 @@ Nobody wants to admit that they are picking the bottom row, hence why you might 
 
 Anytime you catch yourself waiting on X before starting Y, attempt Y without X until you actually hit the failure set and can definitely prove that X is what broke it.
 
-If the frontier labs are to be believed, “programming is solved”. Even if that is true, it doesn’t mean every problem under the sun has been solved. It means that if you pose the problem, you can get a solution. Ambition used to be constrained by what you could do. Nowadays it is constrained by what you can think to attempt.
+If the frontier labs are to be believed, “programming is solved.” Even if that is true, it doesn’t mean every problem under the sun has been solved. It means that if you pose the problem, you can get a solution. Ambition used to be constrained by what you could do. Nowadays it is constrained by what you can think to attempt.
 
 Personally, I don’t think we can brute-force every possible question-answer pair in the universe just yet, at least not until we understand the limits of our “search space.” So, what matters? What matters is asking questions you want answered. Your wants and needs in life made you ask that question. Just because you don’t want to achieve a grand plan doesn’t mean your petty annoyances cannot help you form a worthwhile question.
 

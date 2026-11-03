@@ -11,15 +11,9 @@ I am one of the laziest people I know. I don’t really want much in life. I wou
 
 Maybe being more ambitious means breaking the cyclic nature of life and stepping out of your comfort zone. Trying something new. Trying something different. Trying something you were always scared of doing because you didn’t want to fail at something. What you define as ambition is completely up to you. You don’t have to shoot for the moon; you just need to do something that you didn’t before, or didn’t think was possible before. I remember this advice in chess: when a piece is moved, you should look at the lines that were not possible before. Perhaps, this applies to life too.
 
-So, the first thing you probably want to do is to re-evaluate things that you thought weren’t possible before. Are any of them possible now?
+I used to have a whole backlog of silly ideas that I couldn’t even attempt before. Now, I can spin up an agent on my computer from my phone by asking Siri to text this iMessage agent completely hands-free while driving, and have initial results ready before I even reach my destination. How cool and cyberpunk is that? Just like Jevons’ paradox though, I didn’t end up completing my entire backlog. I ended up adding even more crazy projects to it that I couldn’t just one-shot prompt my way out of. I ended up intensifying the kind of problems I tackled. If you are able to do everything, and aren’t failing, it means you are not pushing yourself enough and haven’t found your limits yet.
 
-I used to have a whole backlog of silly ideas that I couldn’t even attempt before. Now, I can spin up an agent on my computer from my phone by asking Siri to text this iMessage agent completely hands-free while driving, and have initial results ready before I even reach my destination. How cool and cyberpunk is that? Just like Jevons’ paradox though, I didn’t end up completing my entire backlog. I ended up adding even more crazy projects to it that I couldn’t just one-shot prompt my way out of. I ended up intensifying the kind of problems I tackled.
-
-When you are working out at the gym (I say this as I have not gone in weeks), you try to train until failure. That is because only when you destroy your muscles do they come back stronger. Without failing, you can’t get better. Because if you don’t fail, then that means you aren’t pushing yourself enough and haven’t found your limits yet.
-
-Now, you need to ask yourself: “When was the last time you actually failed at something? What is something you know you would not be able to do?” Then, go ahead and try it.
-
-If you don’t use these strong muscles for a long time, they begin to atrophy. Similarly, if you don’t keep on trying new things, it becomes harder to try new things. The inertia of the comfort zone is enough to lock you in.
+If you don’t keep on trying new things, it becomes harder to try new things. The inertia of the comfort zone is enough to lock you in.
 
 If I go to a new restaurant, I will keep trying new things until I find something I like. And, once I like something, I will almost always get the same thing. So, the only way for me to try new things then becomes changing the restaurant. Thankfully, I am okay with trying new places. Otherwise, I would never be able to find new things!
 
@@ -34,14 +28,14 @@ We can try to rationalise that the fear of failure is kind of silly using some c
 | **You believe** | Infinite gain (heaven) | Finite loss (not much lost) |
 | **You don’t believe** | Infinite loss (hell) | Finite gain (nothing changes) |
 
-So, applying the same logic to trying new things:
+Pascal’s wager is famously a bit of a cheat, but it is a useful cheat. So, applying the same logic to trying new things:
 
 | | It works out | It doesn’t work out |
 |---|---|---|
 | **You try** | You get the thing | You learn what didn’t work / you find your limits |
 | **You don’t try** | Impossible | Guaranteed loss + atrophy (next time gets harder) |
 
-Which means, not trying something new when you aren’t going to lose something if you fail is irrational!
+Which means, not trying something new when you aren’t going to lose something if you fail is irrational! Yes, I filled the table to get the answer I wanted here, but if you are going to rationalise something, rationalise towards trying. 
 
 Nobody wants to admit that they are picking the bottom row, hence why you might be thinking, “If only I had X, then I’d be able to do Y.” But, have you actually pushed what you already have to its limits? Have you actually reached the failure set yet? Or are you trying to push off things because it is easier to not try?
 

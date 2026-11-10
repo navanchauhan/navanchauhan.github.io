@@ -19,6 +19,9 @@ VERSIONED_ASSET_PATHS = [
     "Resources/assets/c-hyde.css",
     "Resources/assets/main.css",
     "Resources/assets/press.js",
+    "Resources/assets/delight.css",
+    "Resources/assets/delight.js",
+    "Resources/assets/tz-places.json",
     "Resources/manifest.json",
     "Resources/pwabuilder-sw-register.js",
     "Resources/pwabuilder-sw.js",
@@ -26,6 +29,7 @@ VERSIONED_ASSET_PATHS = [
 CSS_OUTPUT_PATHS = [
     "assets/c-hyde.css",
     "assets/main.css",
+    "assets/delight.css",
 ]
 
 
@@ -64,6 +68,9 @@ def format_date(date_str, html=False):
 
 templates.filters["pretty_date"] = lambda value: format_date(value, html=True)
 templates.filters["pretty_date_inline"] = format_date
+templates.filters["short_date"] = lambda value: (
+    datetime.datetime.strptime(value[:10], "%Y-%m-%d").strftime("%-d %b")
+)
 
 
 def site_url(path="/"):
@@ -103,6 +110,9 @@ def iso_date(value):
         )
     except (TypeError, ValueError):
         return None
+
+
+templates.filters["iso_date"] = iso_date
 
 
 def page_schema_type(source_path):
@@ -364,12 +374,35 @@ def add_image_captions(html):
     return re.sub(paragraph_img_tag, replace_image, html)
 
 
+DEFAULT_POST_DATE = "2003-12-21 00:00"
+DROPCAP_MIN_CHARS = 180
+first_paragraph_tag = re.compile(r"\A<p>(.*?)</p>", re.DOTALL)
+
+
+def plain_text(html):
+    return re.sub(r"\s+", " ", unescape(re.sub(html_tag, "", html))).strip()
+
+
+def add_drop_cap(body):
+    """Mark a long, letter-led opening paragraph so CSS can set a drop cap."""
+    match = re.match(first_paragraph_tag, body)
+    if not match:
+        return body
+    inner = match.group(1)
+    if not re.match(r"[A-Za-z]", inner):
+        return body
+    if len(plain_text(inner)) < DROPCAP_MIN_CHARS:
+        return body
+    return '<p class="has-dropcap">' + body[len("<p>") :]
+
+
 def build_post_content(html, metadata, toc_html):
     title_match = re.search(h1_tag, html)
     title = title_match.group(1) if title_match else metadata.get("title", "")
 
     body = re.sub(h1_block_tag, "", html, count=1).lstrip()
     body = add_image_captions(body)
+    body = add_drop_cap(body)
     toc = toc_html if len(re.findall(r"<li>", toc_html)) > 1 else ""
     content_metadata = dict(metadata)
     content_metadata["reading_time"] = estimate_reading_time_minutes(body)
@@ -580,6 +613,35 @@ def write_llms_txt(posts):
     write_text(os.path.join(out_folder, "llms.txt"), "\n".join(lines) + "\n")
 
 
+def build_search_index(posts):
+    """Entries for the search palette and the 404 page's suggestions."""
+    return [
+        {
+            "t": post["plain_title"],
+            "u": post["link"],
+            "d": post["date"][:10] if post["year"] else "",
+            "s": post.get("description", "") or "",
+            "g": post["tags"],
+            "m": post.get("reading_time", 0),
+            "k": post["link"].strip("/").split("/")[0],
+        }
+        for post in sorted(posts, key=lambda item: item["date"], reverse=True)
+    ]
+
+
+def write_post_pages(pages):
+    """Write a section's posts, each linked to its dated neighbours."""
+    dated = sorted(
+        (page for page in pages if page["post"]["year"]),
+        key=lambda page: page["post"]["date"],
+    )
+    for i, page in enumerate(dated):
+        page["content"]["older"] = dated[i - 1]["post"] if i > 0 else None
+        page["content"]["newer"] = dated[i + 1]["post"] if i + 1 < len(dated) else None
+    for page in pages:
+        write_text(page["path"], render_markdown_post(page["content"]))
+
+
 def load_post(source_path):
     with open(source_path, encoding="utf-8") as source:
         html = md.convert(source.read())
@@ -598,7 +660,9 @@ def load_post(source_path):
         if "tags" in post
         else []
     )
-    post.setdefault("date", "2003-12-21 00:00")
+    post.setdefault("date", DEFAULT_POST_DATE)
+    post["year"] = post["date"][:4] if post["date"] != DEFAULT_POST_DATE else ""
+    post["plain_title"] = plain_text(title)
     post["image_link"] = "/images/opengraph" + source_path.replace(
         src_folder, ""
     ).replace("md", "png")
@@ -628,6 +692,7 @@ def main():
             continue
 
         section_posts = []
+        section_pages = []
         os.makedirs(walk_path.replace(src_folder, out_folder), exist_ok=True)
         print("No sub folder")
         print(f"Posts in {walk_path}")
@@ -654,10 +719,15 @@ def main():
             for tag in post["tags"]:
                 tags.setdefault(tag, []).append(post)
             page_content = build_post_content(html, post, toc_html)
-            write_text(
-                output_html_path_for_source(source_path),
-                render_markdown_post(page_content),
+            post["reading_time"] = page_content["metadata"]["reading_time"]
+            section_pages.append(
+                {
+                    "post": post,
+                    "content": page_content,
+                    "path": output_html_path_for_source(source_path),
+                }
             )
+        write_post_pages(section_pages)
         sections[walk_path.replace(f"{src_folder}/", "")] = section_posts
 
     print(tags.keys())
@@ -713,6 +783,8 @@ def main():
         )
         write_text(output_html_path_for_source(source_path), page)
 
+    search_index = build_search_index(posts)
+
     for post in post_html:
         post.metadata["link"] = "https://web.navan.dev" + post.metadata["link"]
         post.metadata["date"] = datetime.datetime.strptime(
@@ -739,6 +811,10 @@ def main():
     write_sitemap(index_pages, posts, sections, tags)
     write_llms_txt(posts)
     write_margin_quotes()
+    write_text(
+        os.path.join(out_folder, "assets", "search.json"),
+        json.dumps(search_index, ensure_ascii=False, separators=(",", ":")),
+    )
     minify_css_outputs()
 
 

@@ -16,7 +16,7 @@
 {% block author %}{{ content.metadata.author | default("Navan Chauhan") }}{% endblock %}
 
 {% block body %}
-	<div class="post">
+	<div class="post" data-reading-minutes="{{ content.metadata.reading_time }}">
 		{% if content.metadata.tags %}
 		<div class="post-kicker">{{ content.metadata.tags[0] | replace('-', ' ') | title }}</div>
 		{% endif %}
@@ -36,6 +36,22 @@
 		{% endif %}
 		{{ content.body | safe }}
 	</div>
+	{% if content.older or content.newer %}
+	<nav class="post-neighbours" aria-label="More posts">
+		{% if content.older %}
+		<a class="post-neighbour is-older" href="{{ content.older.link }}" rel="prev">
+			<span class="post-neighbour-label"><span aria-hidden="true">&larr;</span> Earlier</span>
+			<span class="post-neighbour-title">{{ content.older.title | safe }}</span>
+		</a>
+		{% else %}<span></span>{% endif %}
+		{% if content.newer %}
+		<a class="post-neighbour is-newer" href="{{ content.newer.link }}" rel="next">
+			<span class="post-neighbour-label">Later <span aria-hidden="true">&rarr;</span></span>
+			<span class="post-neighbour-title">{{ content.newer.title | safe }}</span>
+		</a>
+		{% endif %}
+	</nav>
+	{% endif %}
 	<script async data-isso="https://comments.navan.dev/"
         src="https://comments.navan.dev/js/embed.min.js"></script>
 	<div id="isso-thread">

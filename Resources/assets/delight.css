@@ -1,0 +1,1087 @@
+/*
+ * Delights
+ *
+ * Everything here is additive: the living sky in the sidebar, the night
+ * edition, the search palette, and the bookish list and post details.
+ * Behaviour lives in delight.js.
+ */
+
+:root {
+    --paper: #f7f2e9;
+    --card: #fbf7ef;
+    --ink: #39332e;
+    --ink-soft: rgba(57, 51, 46, 0.68);
+    --ink-faint: rgba(91, 79, 67, 0.45);
+    --rule: rgba(91, 79, 67, 0.22);
+    --accent: #1a5b74;
+    --accent-wash: rgba(26, 91, 116, 0.1);
+    --amber: #e0a458;
+    --sans: "PT Sans", Helvetica, Arial, sans-serif;
+    --display: "Abril Fatface", Georgia, serif;
+}
+
+:root[data-edition="night"] {
+    --paper: #161b1f;
+    --card: #1d2429;
+    --ink: #e6decf;
+    --ink-soft: rgba(230, 222, 207, 0.66);
+    --ink-faint: rgba(230, 222, 207, 0.4);
+    --rule: rgba(230, 222, 207, 0.16);
+    --accent: #8cc4d8;
+    --accent-wash: rgba(140, 196, 216, 0.12);
+    color-scheme: dark;
+}
+
+/* Short pages still fill the window with paper. */
+.paint {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* Short pages still fill the window with paper. */
+.paint {
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+::selection {
+    background: rgba(224, 164, 88, 0.38);
+}
+
+:focus-visible {
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+
+/* ── The sky ─────────────────────────────────────────────────────────────
+ * --night and --twilight run 0..1 and are set from the visitor's clock.
+ * Registering them lets the whole scene ease between day and night.
+ */
+
+@property --night {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
+@property --twilight {
+    syntax: "<number>";
+    inherits: true;
+    initial-value: 0;
+}
+
+.sky {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.sky.is-live {
+    transition: --night 1.6s ease, --twilight 1.6s ease;
+}
+
+/* The page background follows the top of the header (see tintChrome). */
+body.is-sky-live {
+    transition: background-color 1.6s ease;
+}
+
+.sky svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-sticky {
+    z-index: 1;
+}
+
+@media (max-width: 47.999em) {
+    .sidebar {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sidebar-sticky {
+        position: relative;
+    }
+}
+
+.sky-dark {
+    fill: #081d2b;
+    opacity: calc(var(--night) * 0.25);
+}
+
+.sky-haze {
+    opacity: calc(1 - var(--night));
+}
+
+.sky-glow {
+    opacity: var(--twilight);
+}
+
+.sky-star {
+    fill: #fff;
+    opacity: calc(var(--night) * var(--o, 0.8));
+}
+
+.sky-cloud {
+    fill: #fff;
+    opacity: calc((1 - var(--night)) * 0.1);
+}
+
+.sky-sun,
+.sky-moon {
+    transform: translate(var(--x, 0), var(--y, 0));
+}
+
+.sky.is-live .sky-sun,
+.sky.is-live .sky-moon {
+    transition: transform 1.6s cubic-bezier(0.5, 0, 0.25, 1);
+}
+
+.sky-sun-disc {
+    fill: #fdeec4;
+}
+
+.sky-moon-shadow {
+    fill: rgba(255, 255, 255, 0.1);
+    stroke: rgba(244, 239, 225, 0.45);
+    stroke-width: 1;
+}
+
+.sky-moon-lit {
+    fill: #f4efe1;
+}
+
+.sky-orb-scale {
+    transition: transform 260ms cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+
+.sidebar:has(.sky-orb:hover) .sky-orb-scale,
+.sidebar:has(.sky-orb:focus-visible) .sky-orb-scale {
+    transform: scale(1.18);
+}
+
+/* Far ridges sit in haze; near ones are darker. Night deepens every layer a little. */
+.ridge-0 { fill: #2a677e; fill: color-mix(in oklab, #2a677e, #123546 calc(var(--night) * 40%)); }
+.ridge-1 { fill: #1d5269; fill: color-mix(in oklab, #1d5269, #0e2a3a calc(var(--night) * 40%)); }
+.ridge-2 { fill: #174a61; fill: color-mix(in oklab, #174a61, #0a2130 calc(var(--night) * 40%)); }
+.ridge-3 { fill: #143f54; fill: color-mix(in oklab, #143f54, #071a26 calc(var(--night) * 40%)); }
+
+/* The slabs catch the light; their north edges fall into shade. */
+.flatiron { fill: #3d7b91; fill: color-mix(in oklab, #3d7b91, #1c4658 calc(var(--night) * 40%)); }
+.flatiron-crack { fill: none; stroke: #2a6379; stroke-width: 1; stroke-linecap: round; opacity: 0.55; }
+.flatiron-shade { fill: #2a6379; fill: color-mix(in oklab, #2a6379, #143a4b calc(var(--night) * 40%)); }
+
+.ridge-layer {
+    transform: translateX(calc(var(--drift, 0) * var(--depth, 0) * 1px));
+    transition: transform 500ms ease-out;
+}
+
+.sky-orb {
+    position: absolute;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin: -1.6rem 0 0 -1.6rem;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    z-index: 2; /* above the sidebar's text block, which covers the whole header on phones */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.sky-orb[hidden] {
+    display: none;
+}
+
+/* A moon that is up by day is there, but pale. */
+.sky-moon > g {
+    opacity: calc(0.35 + 0.65 * var(--night));
+}
+
+.sky-orb:focus-visible {
+    outline-offset: -6px;
+    border-radius: 50%;
+}
+
+.trail-route,
+.trail-walked {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-dasharray: 0.1 6;
+}
+
+.trail-route {
+    opacity: 0.22;
+}
+
+.trail-walked {
+    stroke: #f6d9a8;
+    opacity: 0.95;
+}
+
+.trail-marker-halo {
+    fill: #f6c177;
+    opacity: 0.28;
+}
+
+.trail-marker-dot {
+    fill: #fbe3b5;
+}
+
+.trail-flag-pole {
+    stroke: #fff;
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    opacity: 0.55;
+}
+
+.trail-flag-pennant {
+    fill: var(--amber);
+    transform: scaleX(0);
+    transform-box: fill-box;
+    transform-origin: left center;
+    transition: transform 520ms cubic-bezier(0.3, 1.7, 0.5, 1);
+}
+
+.trail-flag.is-up .trail-flag-pennant {
+    transform: scaleX(1);
+}
+
+.trail-flag-ring {
+    fill: none;
+    stroke: #f6d9a8;
+    stroke-width: 1.2;
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .sky-star.is-twinkling {
+        animation: sky-twinkle var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
+    }
+
+    .sky-cloud {
+        animation: sky-drift var(--dur, 180s) linear var(--delay, 0s) infinite;
+    }
+
+    .trail-marker-halo {
+        animation: trail-pulse 2.4s ease-in-out infinite;
+        transform-box: fill-box;
+        transform-origin: center;
+    }
+
+    .trail-flag.is-up .trail-flag-ring {
+        animation: trail-summit 1.1s ease-out 120ms 2;
+    }
+}
+
+@keyframes sky-twinkle {
+    50% { opacity: calc(var(--night) * var(--o, 0.8) * 0.25); }
+}
+
+@keyframes sky-drift {
+    from { transform: translateX(-160px); }
+    to { transform: translateX(calc(var(--sky-w, 360) * 1px + 160px)); }
+}
+
+@keyframes trail-pulse {
+    50% { transform: scale(1.5); opacity: 0.12; }
+}
+
+@keyframes trail-summit {
+    from { transform: scale(0.4); opacity: 0.9; }
+    to { transform: scale(4.5); opacity: 0; }
+}
+
+
+/* ── Sidebar details ───────────────────────────────────────────────────── */
+
+@media (min-width: 48em) {
+    .sidebar {
+        view-transition-name: sidebar;
+    }
+}
+
+#random-lead {
+    position: relative;
+}
+
+#random-lead[data-gloss]::before {
+    content: attr(data-gloss);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    font-size: 0.6em;
+    font-style: italic;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(-0.2em);
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+}
+
+#random-lead[data-gloss]:hover::before,
+#random-lead[data-gloss]:focus-visible::before {
+    opacity: 0.75;
+    transform: none;
+}
+
+.sidebar-nav-item.active::before {
+    content: "❧ ";
+    font-weight: normal;
+    opacity: 0.7;
+}
+
+.sidebar-search {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #fff;
+    font: inherit;
+    cursor: pointer;
+}
+
+.sidebar-search span {
+    text-decoration: underline;
+}
+
+.sidebar-search kbd {
+    margin-left: 0.35em;
+    padding: 0.05em 0.4em;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    font-family: var(--sans);
+    font-size: 0.72em;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    display: inline-block;
+}
+
+@media (hover: none), (max-width: 47.999em) {
+    .sidebar-search kbd {
+        display: none;
+    }
+}
+
+
+/* ── Lists of posts: a table of contents with dot leaders ──────────────── */
+
+.entry-list {
+    margin: 0 0 1.75rem;
+    padding: 0;
+    list-style: none;
+}
+
+.entry {
+    margin: 0;
+}
+
+.entry-link {
+    display: flex;
+    align-items: baseline;
+    gap: 0.55rem;
+    padding: 0.3rem 0;
+    text-decoration: none;
+}
+
+.entry-title {
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.16em;
+    transition: text-decoration-color 160ms ease;
+}
+
+.entry-link:hover .entry-title,
+.entry-link:focus-visible .entry-title {
+    text-decoration-color: currentColor;
+}
+
+.entry-leader {
+    flex: 1 1 1.5rem;
+    min-width: 1.5rem;
+    height: 3px;
+    color: var(--ink-faint);
+    background: radial-gradient(circle, currentColor 0.7px, transparent 1px) 0 100% / 7px 3px repeat-x;
+    transition: color 160ms ease;
+}
+
+.entry-link:hover .entry-leader,
+.entry-link:focus-visible .entry-leader {
+    color: var(--accent);
+}
+
+.entry-date {
+    flex: none;
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+.entry-desc {
+    max-width: 32rem;
+    margin: -0.1rem 0 0.15rem;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.entry-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.15rem 0.8rem;
+    margin: 0 0 0.75rem;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.entry-tags a,
+.theme-base-0d .content .entry-tags a {
+    color: var(--ink-soft);
+    text-decoration: none;
+}
+
+.entry-tags a:hover,
+.theme-base-0d .content .entry-tags a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
+.entry-more {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+}
+
+.entry-more span {
+    display: inline-block;
+    transition: transform 160ms ease;
+}
+
+.entry-more a:hover span {
+    transform: translateX(0.25rem);
+}
+
+.year-group {
+    scroll-margin-top: 1.5rem;
+}
+
+.year-heading {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.2rem 0 0.6rem;
+    color: var(--ink-faint);
+    font-family: var(--display);
+    font-size: 2rem;
+    font-weight: normal;
+    line-height: 1;
+}
+
+.year-heading::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+}
+
+.year-group:target .year-heading {
+    color: var(--accent);
+}
+
+/* A small histogram of the archive; every bar jumps to its year. */
+.year-ledger {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.3rem;
+    max-width: 34rem;
+    margin: 1.5rem 0 0.5rem;
+    font-family: var(--sans);
+}
+
+.year-ledger a,
+.theme-base-0d .content .year-ledger a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.25rem;
+    color: var(--ink-soft);
+    font-size: 0.68rem;
+    text-align: center;
+    text-decoration: none;
+}
+
+.year-ledger-count {
+    opacity: 0;
+    transition: opacity 140ms ease;
+}
+
+.year-ledger-bar {
+    height: calc(0.25rem + var(--share) * 3.2rem);
+    border-radius: 3px 3px 0 0;
+    background: var(--accent);
+    opacity: 0.3;
+    transform-origin: bottom;
+    transition: opacity 140ms ease;
+}
+
+.year-ledger a:hover .year-ledger-bar,
+.year-ledger a:focus-visible .year-ledger-bar {
+    opacity: 1;
+}
+
+.year-ledger a:hover .year-ledger-count,
+.year-ledger a:focus-visible .year-ledger-count {
+    opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .year-ledger-bar {
+        animation: ledger-rise 520ms cubic-bezier(0.2, 0.8, 0.2, 1) calc(var(--i, 0) * 45ms) backwards;
+    }
+}
+
+@keyframes ledger-rise {
+    from { transform: scaleY(0); }
+}
+
+
+/* ── Posts ─────────────────────────────────────────────────────────────── */
+
+.post > h1 {
+    width: fit-content;
+    view-transition-name: post-title;
+}
+
+:root.is-switching-edition .post > h1,
+:root.is-switching-edition .sidebar {
+    view-transition-name: none;
+}
+
+.post > p.has-dropcap::first-letter {
+    float: left;
+    margin: 0.08em 0.1em 0 0;
+    color: var(--accent);
+    font-family: var(--display);
+    font-size: 3.55em;
+    line-height: 0.8;
+}
+
+.post > p.has-dropcap::first-line {
+    font-variant-caps: small-caps;
+    letter-spacing: 0.04em;
+}
+
+.heading-anchor,
+.theme-base-0d .content .heading-anchor {
+    margin-left: 0.4em;
+    color: var(--ink-faint);
+    font-weight: normal;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 140ms ease, color 140ms ease;
+}
+
+:is(h2, h3):hover > .heading-anchor,
+.heading-anchor:focus-visible {
+    opacity: 1;
+}
+
+.heading-anchor:hover,
+.theme-base-0d .content .heading-anchor:hover {
+    color: var(--accent);
+}
+
+.post :is(h2, h3)[id] {
+    scroll-margin-top: 1.5rem;
+}
+
+.code-wrap {
+    position: relative;
+}
+
+.code-copy {
+    position: absolute;
+    top: 0.45rem;
+    right: 0.45rem;
+    padding: 0.15rem 0.55rem;
+    border: 1px solid var(--rule);
+    border-radius: 5px;
+    background: var(--card);
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 140ms ease, color 140ms ease;
+}
+
+.code-wrap:hover .code-copy,
+.code-copy:focus-visible,
+.code-copy.is-done {
+    opacity: 1;
+}
+
+.code-copy:hover,
+.code-copy.is-done {
+    color: var(--accent);
+}
+
+@media (hover: none) {
+    .code-copy {
+        opacity: 0.85;
+    }
+}
+
+.post-neighbours {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    max-width: 34rem;
+    margin: 0 0 3rem;
+    padding-top: 1.1rem;
+    border-top: 1px solid var(--rule);
+}
+
+.post-neighbour,
+.theme-base-0d .content .post-neighbour {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    text-decoration: none;
+}
+
+.post-neighbour.is-newer {
+    grid-column: 2;
+    text-align: right;
+}
+
+.post-neighbour-label {
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.post-neighbour-label span {
+    display: inline-block;
+    transition: transform 160ms ease;
+}
+
+.post-neighbour.is-older:hover .post-neighbour-label span {
+    transform: translateX(-0.25rem);
+}
+
+.post-neighbour.is-newer:hover .post-neighbour-label span {
+    transform: translateX(0.25rem);
+}
+
+.post-neighbour-title {
+    line-height: 1.35;
+    text-wrap: balance;
+}
+
+.post-neighbour:hover .post-neighbour-title {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.16em;
+}
+
+/* On narrow screens the sidebar scrolls away, so progress becomes a bar. */
+.read-bar {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 40;
+    height: 3px;
+    background: var(--amber);
+    transform: scaleX(var(--read, 0));
+    transform-origin: left;
+}
+
+@media (min-width: 48em) {
+    .read-bar {
+        display: none;
+    }
+}
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 1.5rem;
+    z-index: 60;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    background: #173f51;
+    color: #fff;
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    box-shadow: 0 8px 24px -8px rgba(10, 30, 40, 0.5);
+    opacity: 0;
+    transform: translate(-50%, 0.6rem);
+    transition: opacity 200ms ease, transform 200ms ease;
+    pointer-events: none;
+}
+
+.toast.is-shown {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.error-suggestions {
+    margin-top: 1.4rem;
+    font-size: 1rem;
+}
+
+.error-suggestions p {
+    margin: 0 0 0.3rem;
+    color: var(--ink-soft);
+    font-style: italic;
+}
+
+.error-suggestions ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.error-suggestions li {
+    margin: 0.15rem 0;
+}
+
+.snowfall {
+    position: fixed;
+    inset: 0;
+    z-index: 70;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transition: opacity 1.5s ease;
+}
+
+
+/* ── Search palette ────────────────────────────────────────────────────── */
+
+.palette {
+    width: min(34rem, calc(100vw - 1.5rem));
+    max-width: none;
+    max-height: none;
+    margin: 12vh auto auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    overflow: visible;
+}
+
+.palette::backdrop {
+    background: rgba(12, 33, 45, 0.5);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+.palette-card {
+    overflow: hidden;
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    background: var(--card);
+    box-shadow: 0 30px 70px -20px rgba(8, 29, 43, 0.6);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .palette[open] .palette-card {
+        animation: palette-in 200ms cubic-bezier(0.2, 0.9, 0.3, 1.1);
+    }
+
+    .palette[open]::backdrop {
+        animation: palette-fade 200ms ease;
+    }
+}
+
+@keyframes palette-in {
+    from { opacity: 0; transform: translateY(-0.5rem) scale(0.98); }
+}
+
+@keyframes palette-fade {
+    from { opacity: 0; }
+}
+
+.palette-input {
+    display: block;
+    width: 100%;
+    padding: 0.95rem 1.1rem;
+    border: 0;
+    border-bottom: 1px solid var(--rule);
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.palette-input::placeholder {
+    color: var(--ink-faint);
+    font-style: italic;
+}
+
+.palette-list {
+    max-height: min(52vh, 21rem);
+    margin: 0;
+    padding: 0.35rem;
+    overflow-y: auto;
+    list-style: none;
+    overscroll-behavior: contain;
+}
+
+.palette-heading {
+    padding: 0.55rem 0.75rem 0.2rem;
+    color: var(--ink-faint);
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.palette-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.42rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    line-height: 1.35;
+    cursor: pointer;
+}
+
+.palette-item[aria-selected="true"] {
+    background: var(--accent-wash);
+}
+
+.palette-item mark {
+    background: none;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+.palette-meta {
+    flex: none;
+    margin-left: auto;
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+.palette-empty {
+    padding: 1.4rem 0.75rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    text-align: center;
+}
+
+.palette-foot {
+    display: flex;
+    gap: 1.1rem;
+    padding: 0.5rem 1.1rem;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-soft);
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    letter-spacing: 0.04em;
+}
+
+.palette-foot kbd {
+    padding: 0 0.3em;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font: inherit;
+}
+
+@media (max-width: 47.999em) {
+    .palette {
+        margin-top: 4vh;
+    }
+
+    .palette-foot,
+    .palette-tags {
+        display: none;
+    }
+}
+
+
+/* ── Night edition ─────────────────────────────────────────────────────── */
+
+:root.is-switching-edition::view-transition-old(root),
+:root.is-switching-edition::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+:root[data-edition="night"] body {
+    color: #cdc5b6;
+    background-color: #0b2433;
+}
+
+:root[data-edition="night"] .paint {
+    background: linear-gradient(180deg, #171c20 0%, #13181c 100%);
+}
+
+:root[data-edition="night"] :is(h1, h2, h3, h4, h5, h6),
+:root[data-edition="night"] .post > :is(h2, h3, h4),
+:root[data-edition="night"] .error-copy h1 {
+    color: var(--ink);
+}
+
+:root[data-edition="night"] strong {
+    color: #f0e8d9;
+}
+
+:root[data-edition="night"] .theme-base-0d .content a,
+:root[data-edition="night"] .post :is(p, li, blockquote) a,
+:root[data-edition="night"] .post-caption a,
+:root[data-edition="night"] .error-link {
+    color: var(--accent);
+    text-decoration-color: rgba(140, 196, 216, 0.4);
+}
+
+:root[data-edition="night"] .theme-base-0d .content :is(.entry-tags a, .year-ledger a) {
+    color: var(--ink-soft);
+}
+
+:root[data-edition="night"] .theme-base-0d .content .heading-anchor {
+    color: var(--ink-faint);
+}
+
+:root[data-edition="night"] :is(.post-kicker, .post-header-meta, .post-caption, .error-description) {
+    color: var(--ink-soft);
+}
+
+:root[data-edition="night"] hr {
+    border-top-color: var(--rule);
+    border-bottom-color: transparent;
+}
+
+:root[data-edition="night"] .post > hr::after {
+    background: #151a1e;
+    color: var(--ink-faint);
+}
+
+:root[data-edition="night"] .error-divider span {
+    background: var(--rule);
+}
+
+:root[data-edition="night"] .error-divider-dot {
+    background: var(--ink-faint);
+}
+
+:root[data-edition="night"] code {
+    color: #eba5ab;
+    background-color: #212930;
+}
+
+:root[data-edition="night"] pre,
+:root[data-edition="night"] .codehilite {
+    background-color: #1b2228;
+}
+
+:root[data-edition="night"] pre code {
+    color: inherit;
+    background: none;
+}
+
+:root[data-edition="night"] blockquote {
+    color: #b8b0a2;
+    background: #1c2329;
+    border-left-color: #33414b;
+}
+
+:root[data-edition="night"] blockquote::before {
+    color: #3d4c57;
+}
+
+:root[data-edition="night"] cite {
+    color: var(--ink-soft);
+}
+
+:root[data-edition="night"] table,
+:root[data-edition="night"] :is(td, th) {
+    border-color: #2b363e;
+}
+
+:root[data-edition="night"] tbody tr:nth-child(odd) :is(td, th) {
+    background-color: #1a2026;
+}
+
+:root[data-edition="night"] .tag-pill {
+    background-color: #263038;
+    color: var(--ink);
+}
+
+:root[data-edition="night"] .tag-pill:hover {
+    background-color: #313d47;
+}
+
+:root[data-edition="night"] .tag-count {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Syntax colours, re-inked for a dark page. */
+:root[data-edition="night"] .codehilite span { color: #d6cebf; }
+:root[data-edition="night"] .codehilite span[class^="c"] { color: #7f9c7a; font-style: italic; }
+:root[data-edition="night"] .codehilite span.cp { color: #c9a27e; font-style: normal; }
+:root[data-edition="night"] .codehilite span[class^="k"] { color: #d59bd6; }
+:root[data-edition="night"] .codehilite span:is([class^="s"], .dl) { color: #e8a784; }
+:root[data-edition="night"] .codehilite span:is([class^="m"], [class^="l"], .il) { color: #92bbe6; }
+:root[data-edition="night"] .codehilite span.nb { color: #d59bd6; }
+:root[data-edition="night"] .codehilite span.nc { color: #7fc8c0; }
+:root[data-edition="night"] .codehilite span.na { color: #d0b56c; }
+:root[data-edition="night"] .codehilite span.bp { color: #b7a0ea; }
+:root[data-edition="night"] .codehilite .hll { background-color: #2c3136; }
+
+/* The pen-and-ink illustrations are drawn dark-on-clear; flip them to chalk. */
+:root[data-edition="night"] :is(.post-end-illustration img, .error-illustration) {
+    filter: invert(1) hue-rotate(180deg) brightness(0.92);
+    mix-blend-mode: screen;
+    opacity: 0.8;
+}
+
+@media (min-width: 64em) {
+    :root[data-edition="night"] .error-copy::before {
+        background: linear-gradient(90deg, rgba(22, 27, 31, 0.96) 0%, rgba(21, 26, 30, 0.92) 56%, rgba(20, 25, 29, 0.68) 76%, rgba(20, 25, 29, 0) 100%);
+    }
+}
+
+/* The margin quill (press.js) writes in dark ink on paper; at night it
+ * writes in chalk, and its open page past the end goes dark with the rest. */
+:root[data-edition="night"] :is(.press-margin canvas, .press-letter canvas, .press-quill) {
+    filter: invert(1);
+}
+
+:root[data-edition="night"] .press-letter {
+    background: linear-gradient(#171c20, #13181c) !important;
+}
+
+:root[data-edition="night"] .press-letter > div + div {
+    background: linear-gradient(#171c20 10%, rgba(23, 28, 32, 0)) !important;
+}

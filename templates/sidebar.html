@@ -1,4 +1,5 @@
 <div class="sidebar">
+    <div class="sky" id="sky"></div>
     <div class="container sidebar-sticky">
         <div class="sidebar-about">
             <h1><a href="/">Navan</a></h1>
@@ -10,6 +11,7 @@
             <li><a class="sidebar-nav-item" href="/posts/">posts</a></li>
             <li><a class="sidebar-nav-item" href="/3D-Designs/">3D designs</a></li>
             <li><a class="sidebar-nav-item" href="/colophon/">colophon</a></li>
+            <li><button class="sidebar-nav-item sidebar-search" type="button" id="open-search" hidden><span>search</span><kbd></kbd></button></li>
         </ul>
         <div class="copyright"><p>&copy; 2019-2026. Navan Chauhan <br> <a href="/feed.rss">RSS</a></p></div>
     </div>
@@ -18,25 +20,47 @@
 <script>
 let phrases = [
     "Something Funny", "Veni, vidi, vici", "Alea iacta est", "In vino veritas", "Acta, non verba", "Castigat ridendo mores",
-    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒", "Λαμψάτω τὸ φῶς ὑμῶν"
+    "Cui bono?", "Memento vivere", "अहम् ब्रह्मास्मि", "अनुगच्छतु प्रवाहं", "चरन्मार्गान्विजानाति", "coq de cheval", "我愛啤酒"
     ];
 
-let lead = document.getElementById("random-lead");
+// Translations, shown as a gloss under the phrase on hover.
+let glosses = {
+    "Veni, vidi, vici": "I came, I saw, I conquered",
+    "Alea iacta est": "The die is cast",
+    "In vino veritas": "In wine, truth",
+    "Acta, non verba": "Deeds, not words",
+    "Castigat ridendo mores": "Laughter corrects morals",
+    "Cui bono?": "Who benefits?",
+    "Memento vivere": "Remember to live",
+    "अहम् ब्रह्मास्मि": "I am Brahman",
+    "अनुगच्छतु प्रवाहं": "Go with the flow",
+    "चरन्मार्गान्विजानाति": "The one who walks finds the paths",
+    "我愛啤酒": "I love beer"
+};
 
-function pickPhrase(current) {
-    let next = current;
-    while (phrases.length > 1 && next === current) {
+let lead = document.getElementById("random-lead");
+let currentPhrase = null;
+
+function pickPhrase() {
+    let next = currentPhrase;
+    while (phrases.length > 1 && next === currentPhrase) {
         next = phrases[Math.floor(Math.random()*phrases.length)];
     }
     return next;
 }
 
-lead.innerText = pickPhrase(lead.innerText);
+function showPhrase() {
+    currentPhrase = pickPhrase();
+    lead.innerText = currentPhrase;
+    if (glosses[currentPhrase]) { lead.dataset.gloss = glosses[currentPhrase]; } else { delete lead.dataset.gloss; }
+}
+
+showPhrase();
 
 function cyclePhrase() {
     lead.classList.add("is-swapping");
     setTimeout(function() {
-        lead.innerText = pickPhrase(lead.innerText);
+        showPhrase();
         lead.classList.remove("is-swapping");
     }, 180);
 }
@@ -51,4 +75,5 @@ lead.addEventListener("keydown", function(e) {
 
 console.log("%c❦ salve, amice", "font-size: 1.3em; font-family: Georgia, serif;");
 console.log("Poking around? The colophon explains how this site is put together: https://web.navan.dev/colophon/");
+console.log("Things to try: press / to search, click the sun, read a post to the summit, and ↑↑↓↓←→←→BA.");
 </script>

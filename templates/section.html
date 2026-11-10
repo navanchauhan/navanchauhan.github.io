@@ -1,4 +1,4 @@
-{% from "macros.html" import render_post_details %}
+{% from "macros.html" import entry %}
 {% extends "base.html" %}
 {% block title %}{% if title is defined %}{{title}}{% else %}Section{% endif %}{% endblock %}
 
@@ -8,15 +8,48 @@
 	{{ content}}
 </main>
 
-<ul class="post-list">
-{% for post in posts %}
-	<li><a href="{{post.link}}">{{ post.title }}</a>
-	{% if post.description or (post.date and post.date != "2003-12-21 00:00") or post.tags %}
-            {{ render_post_details(post) }}
-    {% endif %}
-    </li>
+{% set dated = posts | selectattr('year') | list %}
+{% set undated = posts | rejectattr('year') | list %}
+{% set years = dated | groupby('year') | list %}
 
-{% endfor %}
-</ul>
+{% if years | length > 2 %}
+{% set busiest = years | map(attribute='list') | map('length') | max %}
+<nav class="year-ledger" aria-label="Jump to a year">
+	{% for year, items in years %}
+	<a href="#y{{ year }}" style="--share: {{ (items | length / busiest) | round(3) }}; --i: {{ loop.index0 }}" title="{{ items | length }} in {{ year }}">
+		<span class="year-ledger-count">{{ items | length }}</span>
+		<span class="year-ledger-bar" aria-hidden="true"></span>
+		<span class="year-ledger-year">&rsquo;{{ year[2:] }}</span>
+	</a>
+	{% endfor %}
+</nav>
+{% endif %}
+
+{% if years | length > 1 %}
+	{% for year, items in years | reverse %}
+	<section class="year-group" id="y{{ year }}" aria-labelledby="y{{ year }}-heading">
+		<h2 class="year-heading" id="y{{ year }}-heading">{{ year }}</h2>
+		<ol class="entry-list">
+		{% for post in items %}
+			{{ entry(post, with_details=True) }}
+		{% endfor %}
+		</ol>
+	</section>
+	{% endfor %}
+{% elif dated %}
+	<ol class="entry-list">
+	{% for post in dated %}
+		{{ entry(post, with_year=True, with_details=True) }}
+	{% endfor %}
+	</ol>
+{% endif %}
+
+{% if undated %}
+	<ol class="entry-list">
+	{% for post in undated %}
+		{{ entry(post, with_details=True) }}
+	{% endfor %}
+	</ol>
+{% endif %}
 
 {% endblock %}

@@ -1,3 +1,4 @@
+{% from "macros.html" import entry %}
 {% extends "base.html" %}
 {% block title %}Tags{% endblock %}
 
@@ -16,11 +17,11 @@
 
 {% for tag, posts in tags|sort %}
 <h2 id="{{ tag }}">{{ tag }}</h2>
-<ul class="post-list">
+<ol class="entry-list">
 {% for post in posts|sort(attribute='date', reverse=True) %}
-    <li><a href="{{ post.link }}">{{ post.title }}</a> - {{ post.date | pretty_date | safe }}</li>
+    {{ entry(post, with_year=True) }}
 {% endfor %}
-</ul>
+</ol>
 {% endfor %}
 
 </main>

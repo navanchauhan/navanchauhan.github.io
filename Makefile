@@ -9,5 +9,8 @@ generate:
 
 all: scss generate
 
+serve:
+	python3 serve.py 8000
+
 clean:
 	rm -r docs/*

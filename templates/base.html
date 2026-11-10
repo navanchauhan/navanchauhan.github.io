@@ -25,6 +25,28 @@
     <link rel="stylesheet" href="/assets/main.css?v={{ asset_version }}">
     <link rel="preload" href="/assets/quill-hand.json?v={{ asset_version }}" as="fetch" crossorigin>
     <link rel="preload" href="/assets/margin-quotes.json?v={{ asset_version }}" as="fetch" crossorigin>
+    <link rel="stylesheet" href="/assets/delight.css?v={{ asset_version }}">
+    <script>
+    /* Apply the saved edition before first paint so the night edition never flashes white. */
+    try { if (localStorage.getItem("edition") === "night") document.documentElement.dataset.edition = "night"; } catch (e) {}
+    </script>
+    <script>
+    /* Coming back from a post: let its title glide home to the matching row in the list. */
+    addEventListener("pagereveal", function (e) {
+        if (!e.viewTransition || !window.navigation || !navigation.activation || !navigation.activation.from) return;
+        if (document.querySelector(".post > h1")) return;
+        var from = new URL(navigation.activation.from.url).pathname;
+        var links = document.querySelectorAll(".entry-link");
+        for (var i = 0; i < links.length; i++) {
+            if (links[i].getAttribute("href") !== from) continue;
+            var title = links[i].querySelector(".entry-title");
+            title.style.viewTransitionName = "post-title";
+            e.viewTransition.finished.then(function () { title.style.viewTransitionName = ""; });
+            break;
+        }
+    });
+    </script>
+    <script defer src="/assets/delight.js?v={{ asset_version }}" data-search-index="/assets/search.json?v={{ asset_version }}" data-places="/assets/tz-places.json?v={{ asset_version }}"></script>
     <meta name="author" content="{% block author %}Navan Chauhan{% endblock %}">
     <meta property="og:site_name" content="Navan Chauhan">
     <meta property="og:type" content="{% block ogtype %}website{% endblock %}">

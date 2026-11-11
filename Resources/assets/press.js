@@ -6,7 +6,10 @@
  * side like the spine of a book, then idle scribbles, lines from the
  * collection of quotes, and an oval flourish beside each heading. The pen
  * keeps a hand's pace of its own, so the letters come stroke by stroke behind
- * the nib; scrolling back up lifts it without erasing anything.
+ * the nib; scrolling back up erases nothing. Going back and forth over
+ * lines already written, in the margin or on the open page, the quill writes
+ * them again, and each pass leaves them heavier and darker, until at last
+ * they are lost in a smear of ink.
  *
  * Past the foot of the page the scrolling carries on. The article lifts away
  * and the quill crosses into the open page, where it writes out quotes line
@@ -45,6 +48,10 @@
   const AHEAD = 1.6; // seconds of writing the scrolling may get ahead of the pen
   const RUSH_SPEED = 1400; // scrolling this fast, in CSS pixels a second, has the hand writing flat out
   const RUSH = 4; // how much faster than its usual hurry the hand will write, flat out
+  const COAT_LAYERS = 5; // coats kept on layers of their own; any beyond that pile onto the last
+  const COAT_SWELL = 0.16; // how much broader each coat is than the one under it
+  const COAT_DRIFT = 0.55; // how far, in CSS pixels, the first coat strays from the line it follows
+  const COAT_WASH = 0.45; // how much ink each coat on the last layer adds, so that they build to black
   const stillness = matchMedia("(prefers-reduced-motion: reduce)");
 
   let geo = null; // the layout, as measured
@@ -647,11 +654,13 @@
     canvas.width = Math.round(sh.width * sh.dpr);
     canvas.height = Math.round(h * sh.dpr);
     Object.assign(canvas.style, { top: c * sh.chunk + "px", width: sh.width + "px", height: h + "px" });
+    if (sh.coat) canvas.className = sh.level === COAT_LAYERS ? "press-coat press-pile" : "press-coat";
     sh.layer.appendChild(canvas);
     g = canvas.getContext("2d");
     sh.chunks.set(c, g);
     // A strip of the letter that was let go is written out again just as it
     // was, since every mark is seeded by its place on the route.
+    if (sh.owner) recoat(sh, c);
     if (sh.blocks) {
       const top = c * sh.chunk;
       for (const b of sh.blocks) {
@@ -679,6 +688,18 @@
       const y = c * sh.chunk;
       if (sh.blocks.some((b) => b.a < sh.written && b.bottom > y && b.top < y + sh.chunk)) chunkAt(sh, c);
     }
+    // And the same for the coats laid over it.
+    for (const layer of sh.coats || []) {
+      if (!layer) continue;
+      for (const [c, g] of layer.chunks) {
+        if (c >= lo - 1 && c <= hi + 1) continue;
+        g.canvas.remove();
+        layer.chunks.delete(c);
+      }
+      for (let c = Math.max(0, lo); c <= hi; c++) {
+        if (layer.inked.has(c) && !layer.chunks.has(c)) chunkAt(layer, c);
+      }
+    }
   }
 
   // Write the route from arc length a to b. The mark of a broad nib is the
@@ -692,17 +713,23 @@
     const t = sh.track;
     const n = t.s.length;
     const first = search(t.s, a);
+    // A hand going over a line again never follows it exactly.
+    const point = ([x, y, i, f]) => {
+      if (!sh.coat) return [x, y, i, f];
+      const stray = COAT_DRIFT * Math.sqrt(sh.coat);
+      return [x + stray * wander(i / 19 + sh.coat * 31.7), y + stray * wander(i / 23 + sh.coat * 57.3), i, f];
+    };
     // Only the steps taken with the nib on the paper leave ink.
     const runs = [];
-    let run = [[t.tx[first], t.ty[first], first, 0]];
+    let run = [point([t.tx[first], t.ty[first], first, 0])];
     const add = (pt, inked) => {
       if (inked) return run.push(pt);
       if (run.length > 1) runs.push(run);
       run = [pt];
     };
     let i = first + 1;
-    for (; i < n && t.s[i] < b; i++) add([t.tx[i], t.ty[i], i, 0], t.down[i]);
-    if (i < n) add(inkAt(t, b), t.down[i]);
+    for (; i < n && t.s[i] < b; i++) add(point([t.tx[i], t.ty[i], i, 0]), t.down[i]);
+    if (i < n) add(point(inkAt(t, b)), t.down[i]);
     if (run.length > 1) runs.push(run);
     for (const pts of runs) stroke(sh, pts, only === undefined ? first : -1, only);
   }
@@ -727,12 +754,17 @@
     }
     const { dpr, chunk } = sh;
     const fine = half / (NIB / 2);
-    for (let c = Math.floor((top - 4) / chunk); c <= Math.floor((bottom + 4) / chunk); c++) {
+    const spill = 4 + half * 1.5; // a broad coat reaches further across a strip's edge
+    for (let c = Math.floor((top - spill) / chunk); c <= Math.floor((bottom + spill) / chunk); c++) {
       if (only !== undefined && c !== only) continue;
       const g = chunkAt(sh, c);
       if (!g) continue;
+      if (sh.inked) sh.inked.add(c);
       g.setTransform(dpr, 0, 0, dpr, 0, -c * chunk * dpr);
       g.fillStyle = g.strokeStyle = INK;
+      // On the last layer the coats are thin washes, one over another.
+      const wash = sh.level === COAT_LAYERS ? COAT_WASH : 1;
+      g.globalAlpha = wash;
       g.beginPath();
       pts.forEach((pt, k) => {
         const [ex, ey] = edge(pt, 1);
@@ -759,7 +791,7 @@
 
       // Here and there the ink creeps out along a fibre of the paper.
       g.lineWidth = 0.3;
-      g.globalAlpha = 0.45;
+      g.globalAlpha = 0.45 * wash;
       for (const pt of pts) {
         const [x, y, i, f] = pt;
         if (f || i <= first || hash(i * 5.31 + 2.7) > 0.04 * t.ink[i]) continue;
@@ -774,10 +806,11 @@
       }
       g.globalAlpha = 1;
 
-      // Where the nib runs dry, the ink doesn't quite take.
+      // Where the nib runs dry, the ink doesn't quite take; a later coat
+      // goes over the gaps.
       g.globalCompositeOperation = "destination-out";
       for (const [x, y, i, f] of pts) {
-        if (f) continue;
+        if (f || sh.coat) continue;
         const dry = 0.05 + 0.7 * Math.max(0, 0.95 - t.ink[i]) ** 1.4;
         if (hash(i * 3.13 + 11.3) > dry) continue;
         const a = angle(i);
@@ -792,6 +825,77 @@
       }
       g.globalCompositeOperation = "source-over";
       g.globalAlpha = 1;
+    }
+  }
+
+  // Going over ink already down, between arc lengths a and b, the pen writes
+  // it again. Each pass lays a further coat, broader than the last and never
+  // quite in the same place, so a line gone over again and again grows heavy
+  // and dark, and in the end is lost in a smear. `passes` counts the coats on
+  // the step to each point of the route. The first few coats have a layer
+  // each, so they darken as they stack; the rest pile onto the last.
+  function retrace(sh, a, b) {
+    const t = sh.track;
+    if (!sh.passes) {
+      sh.passes = new Uint16Array(Math.max(1024, t.s.length * 2));
+      sh.coats = [];
+    }
+    if (sh.passes.length < t.s.length) {
+      const grown = new Uint16Array(t.s.length * 2);
+      grown.set(sh.passes);
+      sh.passes = grown;
+    }
+    coated(sh, search(t.s, a) + 1, search(t.s, b), (i, j, coats) => {
+      const k = Math.min(coats + 1, 65535);
+      write(coatLayer(sh, k), t.s[i - 1], t.s[j]);
+      sh.passes.fill(k, i, j + 1);
+    });
+  }
+
+  // Call `each` with every run of steps from i to j that carry the same
+  // number of coats.
+  function coated(sh, from, to, each) {
+    let i = from;
+    while (i <= to) {
+      const coats = sh.passes[i];
+      let j = i;
+      while (j < to && sh.passes[j + 1] === coats) j++;
+      each(i, j, coats);
+      i = j + 1;
+    }
+  }
+
+  // The layer that coat k of a sheet goes onto, with the nib set for it.
+  function coatLayer(sh, k) {
+    const level = Math.min(k, COAT_LAYERS);
+    if (!sh.coats[level]) {
+      sh.coats[level] = Object.assign({}, sh, {
+        owner: sh, level, chunks: new Map(), inked: new Set(), blocks: null, blots: [], passes: null, coats: null, kept: "",
+      });
+    }
+    const layer = sh.coats[level];
+    layer.coat = k;
+    layer.nib = sh.nib * (1 + COAT_SWELL * k);
+    return layer;
+  }
+
+  // A strip of a coat's layer that was let go is laid on again from the
+  // count of passes: its own coat wherever the line has had that many, and
+  // on the last layer the broadest coat each stretch has taken.
+  function recoat(layer, c) {
+    const sh = layer.owner;
+    if (!sh.blocks || !sh.passes) return;
+    const t = sh.track;
+    const top = c * sh.chunk;
+    for (const b of sh.blocks) {
+      if (b.a >= sh.written || b.bottom <= top || b.top >= top + sh.chunk) continue;
+      coated(sh, search(t.s, b.a) + 1, search(t.s, Math.min(b.b, sh.written)), (i, j, coats) => {
+        if (coats < layer.level) return;
+        if (layer.level < COAT_LAYERS) return write(coatLayer(sh, layer.level), t.s[i - 1], t.s[j], c);
+        // The washes of the last layer, broadest last; past half a dozen
+        // they are as black as they will get.
+        for (let k = Math.max(COAT_LAYERS, coats - 5); k <= coats; k++) write(coatLayer(sh, k), t.s[i - 1], t.s[j], c);
+      });
     }
   }
 
@@ -1231,10 +1335,13 @@
   // Returns whether it is still on its way.
   function advance(sh, T, dt, now) {
     const t = sh.track;
-    // Going back, the pen lifts and glides back over the ink; going forward
-    // over ink already down, it hovers on to the end of it.
+    // Going back, the pen glides back over the ink; going forward over ink
+    // already down, it carries on to the end of it. Either way it writes
+    // over what it passes.
     if (T < nib.at - 0.01 || nib.at < sh.written - 0.01) {
+      const from = nib.at;
       seat(sh, Math.min(T, sh.written));
+      retrace(sh, Math.min(from, nib.at), Math.max(from, nib.at));
       nib.hover = nib.at < sh.written - 0.01;
       nib.landing = true;
       nib.still = 0;
@@ -1478,7 +1585,8 @@
     // written, and is carried high crossing to the open page; it comes down
     // with a little settle.
     const glide = Math.min(1.2, Math.hypot(nib.off[0], nib.off[1]) / 30);
-    const lift = Math.max(air, nib.hover ? 1 : 0, glide, nib.sheet ? hopLift() : 0);
+    // Writing over old lines again, it stays close to the paper.
+    const lift = Math.max(air, nib.hover ? 0.3 : 0, nib.hover ? Math.min(glide, 0.45) : glide, nib.sheet ? hopLift() : 0);
     if (still) nib.lift = lift;
     else {
       const w = 2 * Math.PI * 4;
@@ -1831,6 +1939,8 @@
   css.textContent = `
     .press-margin { position: absolute; top: 0; z-index: 0; pointer-events: none; }
     .press-margin canvas, .press-letter canvas { position: absolute; left: 0; opacity: 0.86; }
+    .press-margin canvas.press-coat, .press-letter canvas.press-coat { opacity: 0.55; }
+    .press-margin canvas.press-pile, .press-letter canvas.press-pile { opacity: 0.92; }
     .press-letter {
       position: fixed; top: 0; right: 0; bottom: 0; z-index: 2; overflow: hidden;
       opacity: 0; visibility: hidden; pointer-events: none; will-change: opacity;

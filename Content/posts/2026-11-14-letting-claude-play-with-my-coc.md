@@ -1,7 +1,7 @@
 ---
-date: 2026-11-14 20:00
-description: Teaching Claude to farm Clash of Clans with OCR, template matching, and a deterministic game harness.
-tags: AI, Projects, Gaming
+date: 2026-11-14 22:22
+description: Clash of Clans auto resource farming
+tags: AI, Gaming
 ---
 
 # Making Claude Play with my CoC

@@ -8,11 +8,11 @@ tags: AI, Projects, Gaming
 
 While editing this post, I realised this sounds more like some of the online recipe websites where they post a story about how the recipe the reader was about to read had been in their generations for centuries, and it was their great pleasure to now share. I first played Clash of Clans (CoC) in middle school, on an iPod Touch. Back then, we had to use resources to train troops and would have to wait before we could attack. I don’t even think we had heroes in the game around that time. All of this to show that a lot has changed in the world since the first day I played with my CoC. These days, we have figured out how to teach sand to play with computers. So, why not get Claude on my base?
 
-Some CoC purists might say that this is part of the grind. The gruelling weeks and months of farming and then upgrading the walls are the point. That CoC might be a way of life. But to them I say: Well, I did it because I could. I remember the global chat in CoC. I think I deserve to have some fun with my CoC and face the repercussions. 
+Some CoC purists might say that this is part of the grind. The gruelling weeks and months of farming and then upgrading the walls are the point. That CoC might be a way of life. But to them I say: Well, I did it because I could. I remember the global chat in CoC. I think I deserve to have some fun with my CoC and face the repercussions.
 
 One thing I will say is that using this in a competitive manner to gain a competitive advantage in a real competition, in my opinion, goes against the spirit of the game. And this is coming from a guy who doesn’t really get competitive gaming and has never been interested in and would much rather get VAC banned trying to mod games than actually put the same amount of hours in getting better.
 
-One day, the models will get better and to the point you can just tell them to use computer use to play with your CoC, but that day isn’t today (or as of writing this). Real-time strategy games require real-time decision-making or super-fast algorithms, or some other kind of trick. I actually started this project by trying to see if I could use the new computer use in ChatGPT Codex and see what they could do. 
+One day, the models will get better and to the point you can just tell them to use computer use to play with your CoC, but that day isn’t today (or as of writing this). Real-time strategy games require real-time decision-making or super-fast algorithms, or some other kind of trick. I actually started this project by trying to see if I could use the new computer use in ChatGPT Codex and see what they could do.
 
 I remembered using BlueStacks in the good ol’ days and was pleasantly surprised to see that it still existed. It is an Android emulator that is optimised for playing games on the desktop. So, I fired it up, installed CoC, set everything up, and then let the model play with it.
 
@@ -22,7 +22,7 @@ But the main issue was that they were taking too long between their decisions an
 
 So, clearly, this problem as it stood was too big for a simple agent loop. The obvious next step was to formulate a harness for the game. Thinking about the problem, what did we exactly want to do? We just wanted to be able to use a pre-computed army (the sneaky goblin army) to look for opponents, deploy troops, and then, once the resources were full, upgrade walls in batches and then keep doing this until all the walls were upgraded. I also found out that Google Play Games on PC existed, and it was the official way of playing with your CoC on PC.
 
-The sneaky goblin strategy relies on the fact that the sneaky goblins are invisible for the first few seconds and are attracted towards resources. This makes them very convenient when you just want to farm and don’t really care about how many stars you get.  
+The sneaky goblin strategy relies on the fact that the sneaky goblins are invisible for the first few seconds and are attracted towards resources. This makes them very convenient when you just want to farm and don’t really care about how many stars you get.
 
 So now we have an actual achievable objective: instead of just “upgrade all my walls”, it becomes “be able to scout bases and then deploy an army on a loop.” Sweet, we have moved one level of abstraction now.
 
@@ -40,11 +40,11 @@ Now, the OCR engine is responsible for recognising the current game state. How m
 
 *A base selected during a run: 1,837,639 gold, 1,838,410 elixir and 11,377 dark elixir available. This shows the available resources that we can loot from our opponent. The current storage is depicted on the top-right.*
 
-We also detect and identify where the Town Hall is on a scout base and where the army cards are by using template matching. 
+We also detect and identify where the Town Hall is on a scout base and where the army cards are by using template matching.
 
 ![Loot reading regions, Town Hall template box and army-card windows](/assets/coc/coc-evidence-02-bounding-boxes.png)
 
-*Cyan rectangles mark the configured loot-reading regions; yellow marks the matched Town Hall template (TH18, match score 0.647); pink marks located card windows.* 
+*Cyan rectangles mark the configured loot-reading regions; yellow marks the matched Town Hall template (TH18, match score 0.647); pink marks located card windows.*
 
 ![Army bar and extracted Goblin, Jump and Invisibility cards](/assets/coc/coc-evidence-03-army-crops.png)
 
@@ -66,7 +66,7 @@ Wait, so if all of this is being run by deterministic scripts that are calculati
 
 ![September and November scout interfaces before and after the redesign](/assets/coc/coc-evidence-06-ui-before-after.png)
 
-*Top: a saved September scout from the first Play Games farm run. Bottom: a November scout after the October redesign.* 
+*Top: a saved September scout from the first Play Games farm run. Bottom: a November scout after the October redesign.*
 
 ![Post-redesign loot fixture and corrected recognition output](/assets/coc/coc-evidence-08-redesign-fix.png)
 
@@ -93,7 +93,6 @@ After the first map is cleared, there is another preparation screen and another 
 
 The saved batch from my logs gives a more useful picture than one good screenshot. Its 38 completed attack logs total 151 stars, an average of 3.97 stars per attack, and 4,621,000 reported builder gold. Twelve attacks reached six stars; others did much worse, including one zero-star result.
 
-This just goes to show how you can pretty much break any problem that involves running something on a computer and reshape it in such a way that agents nowadays can help you solve it, even if the agents aren’t driving all of the actions themselves. 
+This just goes to show how you can pretty much break any problem that involves running something on a computer and reshape it in such a way that agents nowadays can help you solve it, even if the agents aren’t driving all of the actions themselves.
 
 I don’t think I would have ever thought as a kid that we would be able to have a thing on our machines that could play with our CoCs. Was this worth the hours I spent trying to figure out the best strategies to get this to work? Probably not. Would I do this again? Heck yeah! Because why not?
-
